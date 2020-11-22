@@ -55,7 +55,7 @@ public class Comment {
 	@Setter
 	@NonNull
 	@ManyToOne
-	@JoinColumn(name = "cultural_site_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "site_id", referencedColumnName = "id", nullable = false)
 	private CulturalSite culturalSite;
 
 	@Getter
