@@ -1,7 +1,6 @@
 package com.kts.nvt.serbioneer.model;
 
 import java.util.Set;
-import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -18,7 +17,7 @@ public class Authority {
 
 	@Getter
 	@NonNull
-	private UUID id;
+	private Long id;
 
 	@Getter
 	@NonNull
