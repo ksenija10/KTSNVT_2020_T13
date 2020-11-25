@@ -3,6 +3,7 @@ package com.kts.nvt.serbioneer.model;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -21,6 +22,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 
 @Entity
+@DiscriminatorValue("AuthenticatedUser")
 public class AuthenticatedUser extends User {
 
 	@Getter

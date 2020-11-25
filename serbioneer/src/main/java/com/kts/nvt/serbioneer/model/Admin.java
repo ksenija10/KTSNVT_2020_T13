@@ -3,6 +3,7 @@ package com.kts.nvt.serbioneer.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 
 @Entity
+@DiscriminatorValue("AuthenticatedUser")
 public class Admin extends User {
 
 	@Getter
