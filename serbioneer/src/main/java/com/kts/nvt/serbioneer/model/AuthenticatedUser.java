@@ -27,17 +27,19 @@ public class AuthenticatedUser extends User {
 
 	@Getter
 	@Setter
-	@ManyToMany(mappedBy = "subscribedUsers", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	// cascadeType = None, ne zelimo propagaciju nijedne operacije
+	// (entiteti su u potpunosti nepovezani, nema smisla propagirati)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "subscribedUsers")
 	private Set<CulturalSite> subscribedSites;
 
 	@Getter
 	@Setter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "authanticatedUser")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "authanticatedUser")
 	private Set<Comment> comments;
 
 	@Getter
 	@Setter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "authenticatedUser")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "authenticatedUser")
 	private Set<Rating> ratings;
 	
 }

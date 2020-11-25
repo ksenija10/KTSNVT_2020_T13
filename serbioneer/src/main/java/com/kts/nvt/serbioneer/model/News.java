@@ -60,6 +60,6 @@ public class News {
 	
 	@Getter
 	@Setter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "news")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "news")
 	private Set<Image> images;
 }

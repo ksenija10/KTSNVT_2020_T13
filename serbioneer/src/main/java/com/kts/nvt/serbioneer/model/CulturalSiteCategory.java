@@ -4,11 +4,13 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -22,6 +24,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
+
+@Entity
+@Table(name = "cultural_category")
 public class CulturalSiteCategory {
 
 	@Getter
@@ -39,11 +44,11 @@ public class CulturalSiteCategory {
 	
 	@Getter
 	@Setter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "culturalSiteCategory")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "culturalSiteCategory")
 	private Set<CulturalCategoryType> culturalCategoryTypes;
 	
 	@Getter
 	@Setter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "culturalSiteCategory")
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "culturalSiteCategory")
 	private Set<CulturalSite> culturalSites;
 }

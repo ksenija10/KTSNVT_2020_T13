@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.ToString;
 
 @AllArgsConstructor
@@ -23,8 +22,7 @@ import lombok.ToString;
 public class Admin extends User {
 
 	@Getter
-	@NonNull
-	@Column(name = "birthday", nullable = false, unique = false)
+	@Column(name = "birthday", nullable = true, unique = false)
 	private Date dateOfBirth;
 
 }

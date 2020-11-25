@@ -53,6 +53,7 @@ public class CulturalCategoryType {
 
 	@Getter
 	@Setter
+	// ne zelimo da brisanjem tipa obrisemo sva kulturna dobra tog tipa
 	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "culturalCategoryType")
 	private Set<CulturalSite> culturalSites;
 

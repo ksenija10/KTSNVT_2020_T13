@@ -60,7 +60,7 @@ public class Comment {
 
 	@Getter
 	@Setter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "comment")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "comment")
 	private Set<Image> images;
 
 }

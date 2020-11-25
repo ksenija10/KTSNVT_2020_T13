@@ -80,34 +80,40 @@ public class CulturalSite {
 
 	@Getter
 	@Setter
+	// ako obrisemo tip kojeg je kulturno dobro, to polje ce biti null
+	// => nullable mora biti true
+	// ali kada se kreira, ne sme biti null -> validacija na back-u
 	@ManyToOne
-	@JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "type_id", referencedColumnName = "id", nullable = true)
 	private CulturalCategoryType culturalCategoryType;
 
 	@Getter
 	@Setter
+	// ako obrisemo kategoriju kojoj pripada kulturno dobro, to polje ce biti null
+	// => nullable mora biti true
+	// ali kada se kreira, ne sme biti null -> validacija na back-u
 	@ManyToOne
-	@JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "category_id", referencedColumnName = "id", nullable = true)
 	private CulturalSiteCategory culturalSiteCategory;
 
 	@Getter
 	@Setter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "culturalSite")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "culturalSite")
 	private Set<News> news;
 
 	@Getter
 	@Setter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "culturalSite")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "culturalSite")
 	private Set<Image> images;
 
 	@Getter
 	@Setter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "culturalSite")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "culturalSite")
 	private Set<Rating> ratings;
 
 	@Getter
 	@Setter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "culturalSite")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "culturalSite")
 	private Set<Comment> comments;
 
 	@Getter
