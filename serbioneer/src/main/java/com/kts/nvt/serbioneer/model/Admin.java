@@ -18,7 +18,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 
 @Entity
-@DiscriminatorValue("AuthenticatedUser")
+@DiscriminatorValue("Admin")
 public class Admin extends User {
 
 	@Getter
