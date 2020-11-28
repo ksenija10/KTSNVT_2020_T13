@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "61307cee-4258-4ad8-b069-9a58f7cb29fd",
+		"name": "Serbioneer",
+		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CulturalSiteCategory Requests",
+			"item": [
+				{
+					"name": "GetAllCategories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category"
+							]
+						},
+						"description": "Dobavljanje svih kategorija kulturnih dobara."
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCategory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Institucija\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category"
+							]
+						},
+						"description": "Kreiranje nove kategorije kulturnih dobara."
+					},
+					"response": []
+				},
+				{
+					"name": "GetCategoryById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category",
+								"1"
+							]
+						},
+						"description": "Dobavlja jednu kategoriju po zadatoj vrednosti id-a."
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCategory",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Institucija izmenjena\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category",
+								"1"
+							]
+						},
+						"description": "Menja jednu kategoriju po zadatoj vrednosti id-a."
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCategory",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category",
+								"1"
+							]
+						},
+						"description": "Brise jednu kategoriju po zadatoj vrednosti id-a."
+					},
+					"response": []
+				}
+			],
+			"description": "Zahtevi vezani za CRUD operacije CulturalSiteCategory entiteta.",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
