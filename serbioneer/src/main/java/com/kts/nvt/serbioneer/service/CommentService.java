@@ -1,7 +1,6 @@
 package com.kts.nvt.serbioneer.service;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -11,13 +10,13 @@ import com.kts.nvt.serbioneer.model.Comment;
 public class CommentService implements ServiceInterface<Comment> {
 
 	@Override
-	public Set<Comment> findAll() {
+	public List<Comment> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Comment findOneById(UUID id) {
+	public Comment findOneById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -29,13 +28,13 @@ public class CommentService implements ServiceInterface<Comment> {
 	}
 
 	@Override
-	public void delete(UUID id) throws Exception {
+	public void delete(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Comment update(Comment entity, UUID id) throws Exception {
+	public Comment update(Comment entity, Long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

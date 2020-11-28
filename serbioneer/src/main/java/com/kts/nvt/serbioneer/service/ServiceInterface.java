@@ -1,17 +1,16 @@
 package com.kts.nvt.serbioneer.service;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.List;
 
 public interface ServiceInterface<T> {
 
-	Set<T> findAll();
+	List<T> findAll();
 	
-	T findOneById(UUID id);
+	T findOneById(Long id);
 	
 	T create(T entity) throws Exception;
 	
-	void delete(UUID id) throws Exception;
+	void delete(Long id) throws Exception;
 	
-	T update(T entity, UUID id) throws Exception;
+	T update(T entity, Long id) throws Exception;
 }

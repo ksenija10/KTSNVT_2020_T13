@@ -1,7 +1,6 @@
 package com.kts.nvt.serbioneer.service;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -11,13 +10,13 @@ import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 public class AuthenticatedUserService implements ServiceInterface<AuthenticatedUser> {
 
 	@Override
-	public Set<AuthenticatedUser> findAll() {
+	public List<AuthenticatedUser> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AuthenticatedUser findOneById(UUID id) {
+	public AuthenticatedUser findOneById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -29,13 +28,13 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 	}
 
 	@Override
-	public void delete(UUID id) throws Exception {
+	public void delete(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public AuthenticatedUser update(AuthenticatedUser entity, UUID id) throws Exception {
+	public AuthenticatedUser update(AuthenticatedUser entity, Long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
