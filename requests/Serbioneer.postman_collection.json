@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "61307cee-4258-4ad8-b069-9a58f7cb29fd",
+		"_postman_id": "89846d95-9a47-411a-a42e-8a4d4d95b3ef",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -132,6 +132,160 @@
 				}
 			],
 			"description": "Zahtevi vezani za CRUD operacije CulturalSiteCategory entiteta.",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Comment Requests",
+			"item": [
+				{
+					"name": "GetAllComments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						},
+						"description": "Dobavljanje unapproved komentara"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUnapprovedComments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/comment/unapproved",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment",
+								"unapproved"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCommentByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/comment/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment",
+								"1"
+							]
+						},
+						"description": "Dobavljanje jednog komentara po id-ju"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteComment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/comment/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment",
+								"1"
+							]
+						},
+						"description": "Brisanje komentara po id-ju"
+					},
+					"response": []
+				},
+				{
+					"name": "ApproveComment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/comment/1/approval",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment",
+								"1",
+								"approval"
+							]
+						},
+						"description": "Approve komentara"
+					},
+					"response": []
+				},
+				{
+					"name": "RejectComment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/comment/{id}/approval",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment",
+								"{id}",
+								"approval"
+							]
+						},
+						"description": "Odbijanje komentara"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllCommentsOnCulturalSite",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site/1/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site",
+								"1",
+								"comment"
+							]
+						},
+						"description": "Dobavljanje komentara vezanih za odredjenu kulturnu ponudu"
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		}
 	],

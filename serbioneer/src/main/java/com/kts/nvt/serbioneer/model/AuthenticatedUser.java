@@ -34,7 +34,7 @@ public class AuthenticatedUser extends User {
 
 	@Getter
 	@Setter
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "authanticatedUser")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "authenticatedUser")
 	private Set<Comment> comments;
 
 	@Getter

@@ -8,4 +8,6 @@ import com.kts.nvt.serbioneer.model.Authority;
 @Repository
 public interface AuthorityRepository extends JpaRepository<Authority, Long> {
 
+    Authority findByName(String name);
+
 }
