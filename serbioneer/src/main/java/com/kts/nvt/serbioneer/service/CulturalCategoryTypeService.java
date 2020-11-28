@@ -1,7 +1,6 @@
 package com.kts.nvt.serbioneer.service;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -11,13 +10,13 @@ import com.kts.nvt.serbioneer.model.CulturalCategoryType;
 public class CulturalCategoryTypeService implements ServiceInterface<CulturalCategoryType> {
 
 	@Override
-	public Set<CulturalCategoryType> findAll() {
+	public List<CulturalCategoryType> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CulturalCategoryType findOneById(UUID id) {
+	public CulturalCategoryType findOneById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -29,13 +28,13 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 	}
 
 	@Override
-	public void delete(UUID id) throws Exception {
+	public void delete(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public CulturalCategoryType update(CulturalCategoryType entity, UUID id) throws Exception {
+	public CulturalCategoryType update(CulturalCategoryType entity, Long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
