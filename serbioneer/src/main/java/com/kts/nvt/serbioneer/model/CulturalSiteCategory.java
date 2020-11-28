@@ -17,10 +17,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
@@ -31,7 +33,6 @@ public class CulturalSiteCategory {
 
 	@Getter
 	@Setter
-	@NonNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
