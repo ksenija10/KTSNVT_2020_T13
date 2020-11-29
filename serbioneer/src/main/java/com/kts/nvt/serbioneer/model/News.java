@@ -15,51 +15,38 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
+@NoArgsConstructor
 
 @Entity
 @Table(name = "news")
 public class News {
-	
-	@Getter
-	@Setter
+
 	@NonNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Getter
-	@Setter
+
 	@NonNull
 	@Column(name = "information", nullable = false, unique = false)
 	private String information;
-	
-	@Getter
-	@Setter
+
 	@NonNull
 	@Column(name = "date_time", nullable = false, unique = false)
 	private Date dateTime;
 
-	@Getter
-	@Setter
 	@NonNull
 	@ManyToOne
 	@JoinColumn(name = "site_id", referencedColumnName = "id", nullable = false)
 	private CulturalSite culturalSite;
-	
-	@Getter
-	@Setter
+
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "news")
 	private Set<Image> images;
+
+	public News(@NonNull String information) {
+		this.information = information;
+	}
 }

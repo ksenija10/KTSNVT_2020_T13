@@ -1,17 +1,19 @@
 package com.kts.nvt.serbioneer.controller;
 
 import com.kts.nvt.serbioneer.dto.CommentDTO;
+import com.kts.nvt.serbioneer.dto.NewsDTO;
 import com.kts.nvt.serbioneer.helper.CommentMapper;
+import com.kts.nvt.serbioneer.helper.NewsMapper;
 import com.kts.nvt.serbioneer.model.Comment;
+import com.kts.nvt.serbioneer.model.News;
 import com.kts.nvt.serbioneer.service.CommentService;
+import com.kts.nvt.serbioneer.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -22,15 +24,21 @@ public class CulturalSiteController {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private NewsService newsService;
+
     private CommentMapper commentMapper;
 
+    private NewsMapper newsMapper;
+
     public CulturalSiteController() {
+        this.newsMapper = new NewsMapper();
         this.commentMapper = new CommentMapper();
     }
 
     /*
-   url: GET localhost:8080/api/cultural-site/{id}/comment
-   HTTP request getting all comments left on cultural site
+       url: GET localhost:8080/api/cultural-site/{id}/comment
+       HTTP request getting all comments left on cultural site
     */
     @GetMapping(value = "/{id}/comment")
     public ResponseEntity<List<CommentDTO>> getAllCulturalSiteComments(@PathVariable("id") Long id){
@@ -40,4 +48,35 @@ public class CulturalSiteController {
 
         return new ResponseEntity<>(commentDTOS, HttpStatus.OK);
     }
+
+    /*
+       url: GET localhost:8080/api/cultural-site/{id}/news
+       HTTP request getting all news related to a cultural site
+    */
+    @GetMapping(value = "/{id}/news")
+    public ResponseEntity<List<NewsDTO>> getAllCulturalSiteNews(@PathVariable("id") Long id) {
+        List<News> news = newsService.findAllByCulturalSiteId(id);
+
+        List<NewsDTO> newsDTOS = newsMapper.toDtoList(news);
+
+        return new ResponseEntity<>(newsDTOS, HttpStatus.OK);
+    }
+
+    /*
+		url: POST localhost:8080/api/cultural-site/{cultural-site-id}/news
+		HTTP request for creating news related to a specific cultural site
+	*/
+    @PostMapping(value = "/{cultural-site-id}/news")
+    public ResponseEntity<NewsDTO> createNews(@PathVariable("cultural-site-id") Long culturalSiteId,
+                                              @RequestBody NewsDTO newsDTO) {
+        News news = new News(newsDTO.getInformation());
+        try {
+            news = newsService.create(culturalSiteId, news);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+
+        return new ResponseEntity<>(newsMapper.toDto(news), HttpStatus.OK);
+    }
+
 }

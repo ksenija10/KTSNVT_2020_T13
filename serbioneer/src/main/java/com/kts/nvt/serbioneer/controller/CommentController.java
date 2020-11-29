@@ -57,7 +57,7 @@ public class CommentController {
     public ResponseEntity<CommentDTO> getComment(@PathVariable("id") Long id){
         Comment comment = commentService.findOneById(id);
 
-        if(comment == null){
+        if(comment == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 

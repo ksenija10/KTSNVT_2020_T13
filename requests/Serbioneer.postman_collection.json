@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2aae47a9-3efe-46d8-bd39-d4b8175250d4",
+		"_postman_id": "e0390966-e60f-4fcd-8d52-f1831f430702",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -428,7 +428,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "829dc294-5062-46c2-90ca-34f482efe106",
+						"id": "45212082-3103-4633-b617-451b80577d50",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -438,12 +438,174 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7642c9a3-3730-4604-92ae-87d3d4a6e215",
+						"id": "15f88b45-d669-4ed2-893f-1c0469b2d54e",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "News Requests",
+			"item": [
+				{
+					"name": "GetAllNews",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/news",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"news"
+							]
+						},
+						"description": "Dobavljanje svih novosti vezanih za sva kulturna dobra"
+					},
+					"response": []
+				},
+				{
+					"name": "GetNewsById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/news/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"news",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteNews",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/news/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"news",
+								"2"
+							]
+						},
+						"description": "Brisanje novosti po id-ju"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateNews",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"information\": \"Promenjene novosti\",\r\n        \"dateTime\": \"2020-11-10T23:00:00.000+00:00\",\r\n        \"culturalSiteName\": \"Biblioteka šabačka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/news/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"news",
+								"1"
+							]
+						},
+						"description": "Promena teksta novosti"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllNewsRelatedToCulturalSite",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site/2/news",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site",
+								"2",
+								"news"
+							]
+						},
+						"description": "Dobavljanje svih novosti vezanih za kulturno dobro"
+					},
+					"response": []
+				},
+				{
+					"name": "CreateNews",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"information\": \"Neke nove novosti Biblioteke šabačke\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cultural-site/2/news",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site",
+								"2",
+								"news"
+							]
+						},
+						"description": "Kreiranje novosti vezanih za odredjeno kulturno dobro"
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
