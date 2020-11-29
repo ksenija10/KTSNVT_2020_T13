@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kts.nvt.serbioneer.helper.exception.ForeignKeyException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.Comment;
 import com.kts.nvt.serbioneer.model.CulturalSite;
@@ -35,15 +34,15 @@ public class ImageService implements ServiceInterface<Image> {
 		return imageRepository.findAll();
 	}
 
-	List<Image> findAllByNewsId(Long newsId) {
+	public List<Image> findAllByNewsId(Long newsId) {
 		return imageRepository.findAllByNewsId(newsId);
 	}
 
-	List<Image> findAllByCommentId(Long commentId) {
+	public List<Image> findAllByCommentId(Long commentId) {
 		return findAllByCommentId(commentId);
 	}
 
-	List<Image> findAllByCulturalSiteId(Long culturalSiteId) {
+	public List<Image> findAllByCulturalSiteId(Long culturalSiteId) {
 		return findAllByCulturalSiteId(culturalSiteId);
 	}
 
@@ -89,15 +88,6 @@ public class ImageService implements ServiceInterface<Image> {
 		Image imageToDelete = imageRepository.findById(id).orElse(null);
 		if (imageToDelete == null) {
 			throw new NonexistentIdException(this.type);
-		}
-		if (imageToDelete.getComment() == null) {
-			throw new ForeignKeyException(this.type);
-		}
-		if (imageToDelete.getCulturalSite() == null) {
-			throw new ForeignKeyException(this.type);
-		}
-		if (imageToDelete.getNews() == null) {
-			throw new ForeignKeyException(this.type);
 		}
 		imageRepository.delete(imageToDelete);
 
