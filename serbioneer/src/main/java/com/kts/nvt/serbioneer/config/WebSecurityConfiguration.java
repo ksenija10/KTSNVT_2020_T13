@@ -1,9 +1,5 @@
 package com.kts.nvt.serbioneer.config;
 
-import antlr.Token;
-import com.kts.nvt.serbioneer.jwt.JwtUsernameAndPasswordAuthenticationFilter;
-import com.kts.nvt.serbioneer.jwt.TokenUtils;
-import com.kts.nvt.serbioneer.service.SecureUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +13,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.kts.nvt.serbioneer.jwt.JwtAuthenticationFilter;
+import com.kts.nvt.serbioneer.jwt.JwtUsernameAndPasswordAuthenticationFilter;
+import com.kts.nvt.serbioneer.jwt.TokenUtils;
+import com.kts.nvt.serbioneer.service.SecureUserDetailsService;
+
 @Configuration
 @EnableWebSecurity
 // Ukljucivanje podrske za anotacije "@Pre*" i "@Post*" koje ce aktivirati autorizacione provere za svaki pristup metodi
@@ -29,6 +30,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecureUserDetailsService secureUserDetailsService;
 
+    // Handler za vracanje 401 UNAUTHORIZED
+    @Autowired
+    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+    
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -50,19 +55,30 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .cors().and()
+                // REST ima stateless komunikaciju servera i korisnika
                 .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
-                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), tokenUtils))
+                // rukovalac pokusajem neautentifikovanog pristupa
+                .exceptionHandling()
+                	.authenticationEntryPoint(restAuthenticationEntryPoint)
+                	.and()
+                // dozvola pristupa zahteva
                 .authorizeRequests()
+                	// navoditi u redosledu: more specific first!
                     .antMatchers("/serbioneer/home/**").permitAll()
+                    // dok su u 
                     .anyRequest().authenticated()
                     .and()
-                //.formLogin().permitAll()
-                  //  .and()
+                /* nebotrebno dok ne budemo imali login formu... */
+                //.formLogin().permitAll().and()
+                // dozvola odjave
                 .logout()
-                    .permitAll();
-                //.addFilterAfter(new JwtAuthenticationFilter(/*prima sta treba*/),
-                 //       JwtUsernameAndPasswordAuthenticationFilter.class);
+                    .permitAll()
+                    .and()
+                // dodavanje custom filtera
+                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), tokenUtils))
+                .addFilterAfter(new JwtAuthenticationFilter(tokenUtils, secureUserDetailsService), 
+                				JwtUsernameAndPasswordAuthenticationFilter.class);
     }
 }

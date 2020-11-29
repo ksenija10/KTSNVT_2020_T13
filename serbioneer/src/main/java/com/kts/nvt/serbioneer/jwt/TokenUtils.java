@@ -89,9 +89,9 @@ public class TokenUtils {
     public Boolean validateToken(String token, UserDetails userDetails) {
         User user = (User) userDetails;
         final String username = getUsernameFromToken(token);
-        final Date created = getIssuedAtDateFromToken(token);
+        //final Date created = getIssuedAtDateFromToken(token);
 
-        return (username != null && username.equals(((User) userDetails).getEmail())
+        return (username != null && username.equals(user.getEmail())
                 /*&& !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate())*/);
     }
 
@@ -154,6 +154,10 @@ public class TokenUtils {
         }
 
         return null;
+    }
+    
+    public String getAuthHeader() {
+    	return AUTH_HEADER;
     }
 
     public String getAuthHeaderFromHeader(HttpServletRequest request) {
