@@ -13,19 +13,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 
 @Entity
 @Table(name = "cultural_category")
@@ -47,7 +43,7 @@ public class CulturalSiteCategory {
 	@Setter
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "culturalSiteCategory")
 	private Set<CulturalCategoryType> culturalCategoryTypes;
-	
+
 	@Getter
 	@Setter
 	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "culturalSiteCategory")

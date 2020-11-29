@@ -15,17 +15,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 
 @Entity
 @Table(name = "category_type")
@@ -33,7 +31,6 @@ public class CulturalCategoryType {
 
 	@Getter
 	@Setter
-	@NonNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -46,7 +43,7 @@ public class CulturalCategoryType {
 
 	@Getter
 	@Setter
-	@NonNull
+	//@NonNull
 	@ManyToOne
 	@JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
 	private CulturalSiteCategory culturalSiteCategory;
@@ -54,7 +51,6 @@ public class CulturalCategoryType {
 	@Getter
 	@Setter
 	// ne zelimo da brisanjem tipa obrisemo sva kulturna dobra tog tipa
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "culturalCategoryType")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.DETACH}, fetch = FetchType.LAZY, mappedBy = "culturalCategoryType")
 	private Set<CulturalSite> culturalSites;
-
 }
