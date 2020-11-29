@@ -29,7 +29,6 @@ public class Image {
 
 	@Getter
 	@Setter
-	@NonNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
