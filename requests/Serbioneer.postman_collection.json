@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e0390966-e60f-4fcd-8d52-f1831f430702",
+		"_postman_id": "9f0f298f-dd1f-4dfd-bbea-624253b7bab8",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -428,7 +428,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "45212082-3103-4633-b617-451b80577d50",
+						"id": "0715e817-5cf9-4631-bbba-4cd429546456",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -438,7 +438,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "15f88b45-d669-4ed2-893f-1c0469b2d54e",
+						"id": "17fcc6b8-6d2a-458c-bd5f-ef8b9db6849c",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -609,6 +609,62 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "LoginRequestAdmin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"neki_email\",\r\n    \"password\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				},
+				"description": "Zahtev za prijavu na sistem kao administrator."
+			},
+			"response": []
+		},
+		{
+			"name": "LoginRequestAuthenticatedUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"neki_drugi_email\",\r\n    \"password\": \"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				},
+				"description": "Zahtev za prijavu na sistem kao korisnik."
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
