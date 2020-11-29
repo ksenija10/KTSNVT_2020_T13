@@ -8,4 +8,6 @@ import com.kts.nvt.serbioneer.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    User findOneByEmail(String email);
+
 }

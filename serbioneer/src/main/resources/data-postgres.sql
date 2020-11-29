@@ -1,5 +1,6 @@
+-- password = admin
 insert into users (type, name, surname, email, password) values ('AuthenticatedUser',
-        'Ksenija', 'Prcic', 'neki_email', 'neki_password');
+        'Ksenija', 'Prcic', 'neki_email', '$2a$04$SwzgBrIJZhfnzOw7KFcdzOTiY6EFVwIpG7fkF/D1w26G1.fWsi.aK');
 
 insert into cultural_category (name) values ('Institucija');
 

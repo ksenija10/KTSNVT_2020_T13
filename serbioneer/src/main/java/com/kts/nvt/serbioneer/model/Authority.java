@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,7 +23,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="authority")
-public class Authority {
+public class Authority implements GrantedAuthority {
 
 	@Getter
 	@Setter
@@ -36,6 +37,11 @@ public class Authority {
 	@NonNull
 	@Column(name="name")
 	private String name;
+
+	@Override
+	public String getAuthority() {
+		return name;
+	}
 
 	/*
 	 * @Getter private Set<User> users;
