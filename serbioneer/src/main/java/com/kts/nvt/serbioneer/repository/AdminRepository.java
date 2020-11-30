@@ -7,5 +7,8 @@ import com.kts.nvt.serbioneer.model.Admin;
 
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Long> {
+	
+	Admin findOneById(Long id);
 
+	Admin findOneByEmail(String email);
 }

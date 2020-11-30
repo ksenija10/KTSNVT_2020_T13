@@ -10,10 +10,12 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @EqualsAndHashCode
 
@@ -22,7 +24,14 @@ import lombok.ToString;
 public class Admin extends User {
 
 	@Getter
+	@Setter
 	@Column(name = "birthday", nullable = true, unique = false)
 	private Date dateOfBirth;
+
+	public Admin(@NonNull Long id, @NonNull String name, @NonNull String surname, @NonNull String email,
+			@NonNull String password, Date dateOfBirth) {
+		super(id, name, surname, email, password);
+		this.dateOfBirth = dateOfBirth;
+	}
 
 }

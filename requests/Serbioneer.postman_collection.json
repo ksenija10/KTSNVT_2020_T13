@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f5080f69-9bab-41db-aad9-3ca94a857c00",
+		"_postman_id": "0400c439-4d69-4245-a7a5-4f34299738ff",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -140,16 +140,6 @@
 				{
 					"name": "GetAllComments",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1MTU0MywiZXhwIjoxNjA2NzUzMzQzLCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._AdAnoyeXynoFuZvXJyPxvtufu30VhwhjjQYdlv5cYdmwCtLSVwCxudFNj3ibQQ6SAK8Ius0VE0IkkFwE1lYKQ",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -168,59 +158,8 @@
 					"response": []
 				},
 				{
-					"name": "GetAllCommentsByPage",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1MTU0MywiZXhwIjoxNjA2NzUzMzQzLCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._AdAnoyeXynoFuZvXJyPxvtufu30VhwhjjQYdlv5cYdmwCtLSVwCxudFNj3ibQQ6SAK8Ius0VE0IkkFwE1lYKQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/comment/by-page?page=0&size=2",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"comment",
-								"by-page"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "0"
-								},
-								{
-									"key": "size",
-									"value": "2"
-								}
-							]
-						},
-						"description": "Dobavljanje komentara mehanizmom paginacije"
-					},
-					"response": []
-				},
-				{
 					"name": "GetAllUnapprovedComments",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1MTU0MywiZXhwIjoxNjA2NzUzMzQzLCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._AdAnoyeXynoFuZvXJyPxvtufu30VhwhjjQYdlv5cYdmwCtLSVwCxudFNj3ibQQ6SAK8Ius0VE0IkkFwE1lYKQ",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -239,60 +178,8 @@
 					"response": []
 				},
 				{
-					"name": "GetAllUnapprovedCommentsByPage",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1MTU0MywiZXhwIjoxNjA2NzUzMzQzLCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._AdAnoyeXynoFuZvXJyPxvtufu30VhwhjjQYdlv5cYdmwCtLSVwCxudFNj3ibQQ6SAK8Ius0VE0IkkFwE1lYKQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/comment/unapproved/by-page?page=1&size=1",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"comment",
-								"unapproved",
-								"by-page"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1"
-								},
-								{
-									"key": "size",
-									"value": "1"
-								}
-							]
-						},
-						"description": "Dobavljanje svih neodobrenih komentara mehanizmom paginacije"
-					},
-					"response": []
-				},
-				{
 					"name": "GetCommentByID",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9kcnVnaV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1MTI5OCwiZXhwIjoxNjA2NzUzMDk4LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.rgmOJfnnMPnfLjJ4aXr8NTbTaN5oy6k9sXZGJnpQqUvAFsAbT_GVgKmmnUdpseqXnQmNAydsE2fid5V2IqzOVw",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -312,58 +199,8 @@
 					"response": []
 				},
 				{
-					"name": "UpdateComment",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9kcnVnaV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1MjIxOCwiZXhwIjoxNjA2NzU0MDE4LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.Ue7wxkKKby1F-CIv1s5AeR8yhGvuPpo088nAHlxXrSJlISzkHAmcO1ak9CAjWjs_tBg2Ew_K5zHqxfttPBlsXA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"Promenio sam komentar\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/api/comment/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"comment",
-								"1"
-							]
-						},
-						"description": "Promena teksta komentara"
-					},
-					"response": []
-				},
-				{
 					"name": "DeleteComment",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9kcnVnaV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1MjIxOCwiZXhwIjoxNjA2NzU0MDE4LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.Ue7wxkKKby1F-CIv1s5AeR8yhGvuPpo088nAHlxXrSJlISzkHAmcO1ak9CAjWjs_tBg2Ew_K5zHqxfttPBlsXA",
-									"type": "string"
-								}
-							]
-						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -385,20 +222,10 @@
 				{
 					"name": "ApproveComment",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1MjI0MywiZXhwIjoxNjA2NzU0MDQzLCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0.uSIwTJi3hrARwWNmz2-igXOdl2evzGMVZGmdLooC6nJBEpnZ6VPDR8j9cQGw_IK4ZqfhnwB7ycfJzt1ysZ7uzA",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/comment/3/approval",
+							"raw": "localhost:8080/api/comment/1/approval",
 							"host": [
 								"localhost"
 							],
@@ -406,7 +233,7 @@
 							"path": [
 								"api",
 								"comment",
-								"3",
+								"1",
 								"approval"
 							]
 						},
@@ -417,20 +244,10 @@
 				{
 					"name": "RejectComment",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1MjI0MywiZXhwIjoxNjA2NzU0MDQzLCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0.uSIwTJi3hrARwWNmz2-igXOdl2evzGMVZGmdLooC6nJBEpnZ6VPDR8j9cQGw_IK4ZqfhnwB7ycfJzt1ysZ7uzA",
-									"type": "string"
-								}
-							]
-						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/comment/3/approval",
+							"raw": "localhost:8080/api/comment/{id}/approval",
 							"host": [
 								"localhost"
 							],
@@ -438,7 +255,7 @@
 							"path": [
 								"api",
 								"comment",
-								"3",
+								"{id}",
 								"approval"
 							]
 						},
@@ -449,82 +266,8 @@
 				{
 					"name": "GetAllCommentsOnCulturalSite",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1MjI0MywiZXhwIjoxNjA2NzU0MDQzLCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0.uSIwTJi3hrARwWNmz2-igXOdl2evzGMVZGmdLooC6nJBEpnZ6VPDR8j9cQGw_IK4ZqfhnwB7ycfJzt1ysZ7uzA",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/cultural-site/2/comment",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"cultural-site",
-								"2",
-								"comment"
-							]
-						},
-						"description": "Dobavljanje komentara vezanih za odredjenu kulturnu ponudu"
-					},
-					"response": []
-				},
-				{
-					"name": "GetAllCommentsOnCulturalSiteByPage",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9kcnVnaV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1MTU1NywiZXhwIjoxNjA2NzUzMzU3LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.WlS2n97dwq3q0E5dSdR_3zziHvrqRy1AnN-h79H8N7PiAxiR-GMAfWEbGW6__yTX94dntkkh4ul6ZnRazEsymw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/cultural-site/2/comment/by-page",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"cultural-site",
-								"2",
-								"comment",
-								"by-page"
-							]
-						},
-						"description": "Dobavljanje svih kometara na kulturnom dobru"
-					},
-					"response": []
-				},
-				{
-					"name": "CreateComment",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"text\": \"Novokreirani komentar\"\r\n}\r\n    ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "localhost:8080/api/cultural-site/1/comment",
 							"host": [
@@ -538,7 +281,7 @@
 								"comment"
 							]
 						},
-						"description": "Kreiranje komentara"
+						"description": "Dobavljanje komentara vezanih za odredjenu kulturnu ponudu"
 					},
 					"response": []
 				}
@@ -685,7 +428,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "aa8749c2-b379-4f0a-b5e6-5d000568f79c",
+						"id": "5a73662d-c7c3-4e08-8507-6391ca2166ba",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -695,7 +438,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "810b7541-db1e-4a56-a158-4f666669010e",
+						"id": "0a0e0955-9bb4-4518-b093-60f1b48b757c",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -861,6 +604,296 @@
 							]
 						},
 						"description": "Kreiranje novosti vezanih za odredjeno kulturno dobro"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Admin Requests",
+			"item": [
+				{
+					"name": "GetAllAdmins",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1ODMwNiwiZXhwIjoxNjA2NzYwMTA2LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._SCwKrnYE0GHHXIqGqcGR4ccFbMoNVEq73IHm6wXvUpgzn1bm0lmdJ9pPaGvX7aBoMJC6c4d7Fua6rFp_O3Kig",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1ODIwOSwiZXhwIjoxNjA2NzYwMDA5LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0.LpEHg5h4BxOhatIHi5JqHQb2HTI1TiR_45838pqvXyRpylywPDHUKxyhASg5Q6lYH-zQyXiFB0ETNEe0Md-W3w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAdmin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1ODMwNiwiZXhwIjoxNjA2NzYwMTA2LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._SCwKrnYE0GHHXIqGqcGR4ccFbMoNVEq73IHm6wXvUpgzn1bm0lmdJ9pPaGvX7aBoMJC6c4d7Fua6rFp_O3Kig",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateAdmin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1ODMwNiwiZXhwIjoxNjA2NzYwMTA2LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._SCwKrnYE0GHHXIqGqcGR4ccFbMoNVEq73IHm6wXvUpgzn1bm0lmdJ9pPaGvX7aBoMJC6c4d7Fua6rFp_O3Kig",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 16,\r\n    \"name\": \"Emilija\",\r\n    \"surname\": \"Momcilovic\",\r\n    \"email\": \"emin_email1\",\r\n    \"password\": \"malipas\",\r\n    \"dateOfBirth\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAdmin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1ODMwNiwiZXhwIjoxNjA2NzYwMTA2LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._SCwKrnYE0GHHXIqGqcGR4ccFbMoNVEq73IHm6wXvUpgzn1bm0lmdJ9pPaGvX7aBoMJC6c4d7Fua6rFp_O3Kig",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"Ja\",\r\n    \"surname\": \"JAJIC\",\r\n    \"email\": \"neki_email1\",\r\n    \"password\": \"duladjdklfd\",\r\n    \"dateOfBirth\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/admin/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "AuthenticatedUserRequests",
+			"item": [
+				{
+					"name": "GetAllAuthenticatedUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1OTM3NCwiZXhwIjoxNjA2NzYxMTc0LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._8SkCfNHsGkm54_ERhQ9G87fMFRkgrMoIKA0dep-xLNwWoknJP9XGvDSY9_M4gySB3nYVTBx3shIs4pvQTx1Mw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/authenticated-user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authenticated-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateAuthenticatedUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1ODMwNiwiZXhwIjoxNjA2NzYwMTA2LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._SCwKrnYE0GHHXIqGqcGR4ccFbMoNVEq73IHm6wXvUpgzn1bm0lmdJ9pPaGvX7aBoMJC6c4d7Fua6rFp_O3Kig",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 23,\r\n        \"name\": \"Jasmina\",\r\n        \"surname\": \"Urosevic\",\r\n        \"email\": \"jasminin_email\",\r\n        \"password\": \"malakuca\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/authenticated-user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authenticated-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAuthenticatedUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1ODMwNiwiZXhwIjoxNjA2NzYwMTA2LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._SCwKrnYE0GHHXIqGqcGR4ccFbMoNVEq73IHm6wXvUpgzn1bm0lmdJ9pPaGvX7aBoMJC6c4d7Fua6rFp_O3Kig",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/authenticated-user/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authenticated-user",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAuthanticatedUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1ODMwNiwiZXhwIjoxNjA2NzYwMTA2LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._SCwKrnYE0GHHXIqGqcGR4ccFbMoNVEq73IHm6wXvUpgzn1bm0lmdJ9pPaGvX7aBoMJC6c4d7Fua6rFp_O3Kig",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 5,\r\n        \"name\": \"Jasmina\",\r\n        \"surname\": \"Urosevic\",\r\n        \"email\": \"jasminin_email333\",\r\n        \"password\": \"$2a$04$Amda.Gm4Q.ZbXhGguowsdS1QO26Eh8Hovu3uzEpQvcq\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/authenticated-user/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authenticated-user",
+								"4"
+							]
+						}
 					},
 					"response": []
 				}
