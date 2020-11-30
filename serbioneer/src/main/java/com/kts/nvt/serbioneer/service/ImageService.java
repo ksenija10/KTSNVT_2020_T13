@@ -1,9 +1,18 @@
 package com.kts.nvt.serbioneer.service;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.Comment;
@@ -34,16 +43,32 @@ public class ImageService implements ServiceInterface<Image> {
 		return imageRepository.findAll();
 	}
 
+	public Page<Image> findAll(Pageable pageable) {
+		return imageRepository.findAll(pageable);
+	}
+
 	public List<Image> findAllByNewsId(Long newsId) {
 		return imageRepository.findAllByNewsId(newsId);
 	}
 
+	public Page<Image> findAllByNewsId(Pageable pageable, Long newsId) {
+		return imageRepository.findAllByNewsId(pageable, newsId);
+	}
+
 	public List<Image> findAllByCommentId(Long commentId) {
-		return findAllByCommentId(commentId);
+		return imageRepository.findAllByCommentId(commentId);
+	}
+
+	public Page<Image> findAllByCommentId(Pageable pageable, Long commentId) {
+		return imageRepository.findAllByCommentId(pageable, commentId);
 	}
 
 	public List<Image> findAllByCulturalSiteId(Long culturalSiteId) {
-		return findAllByCulturalSiteId(culturalSiteId);
+		return imageRepository.findAllByCulturalSiteId(culturalSiteId);
+	}
+
+	public Page<Image> findAllByCulturalSiteId(Pageable pageable, Long culturalSiteId) {
+		return imageRepository.findAllByCulturalSiteId(pageable, culturalSiteId);
 	}
 
 	@Override
@@ -56,27 +81,33 @@ public class ImageService implements ServiceInterface<Image> {
 		return null;
 	}
 
-	public Image create(Comment comment, Image entity) throws Exception {
-		Comment maybeComment = commentService.findOneById(comment.getId());
-		if (maybeComment == null) {
+	public Image createForComment(Long commentId, MultipartFile multipartFile) throws Exception {
+		Comment comment = commentService.findOneById(commentId);
+		if (comment == null) {
 			// throw new NonexistentIdException(commentService.getType());
 			throw new NonexistentIdException("Comment");
 		}
-		return imageRepository.save(entity);
+
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+
+		String filePath = this.saveImage(multipartFile, fileName, "Comment");
+
+		Image image = new Image(fileName, filePath, comment);
+		return imageRepository.save(image);
 	}
 
-	public Image create(News news, Image entity) throws Exception {
-		News maybeNews = newsService.findOneById(news.getId());
-		if (maybeNews == null) {
+	public Image createForNews(Long newsId, Image entity) throws Exception {
+		News news = newsService.findOneById(newsId);
+		if (news == null) {
 			// throw new NonexistentIdException(newsService.getType());
 			throw new NonexistentIdException("News");
 		}
 		return imageRepository.save(entity);
 	}
 
-	public Image create(CulturalSite culturalSite, Image entity) throws Exception {
-		CulturalSite maybeCulturalSite = culturalSiteService.findOneById(culturalSite.getId());
-		if (maybeCulturalSite == null) {
+	public Image createForCulturalSite(Long culturalSiteId, Image entity) throws Exception {
+		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
+		if (culturalSite == null) {
 			// throw new NonexistentIdException(newsService.getType());
 			throw new NonexistentIdException("Cultural Site");
 		}
@@ -99,9 +130,21 @@ public class ImageService implements ServiceInterface<Image> {
 		if (imageToUpdate == null) {
 			throw new NonexistentIdException(this.type);
 		}
-		imageToUpdate.setContent(entity.getContent());
+		imageToUpdate.setPath(entity.getPath());
 		imageToUpdate.setName(entity.getName());
 		return imageRepository.save(imageToUpdate);
+	}
+
+	public String saveImage(MultipartFile file, String fileName, String folderName) throws IOException {
+		String filePath = "src/main/resources/images/" + folderName + "/" + file.getOriginalFilename();
+		Path path = Paths.get(filePath);
+
+		OutputStream os = Files.newOutputStream(path);
+		os.write(file.getBytes());
+		os.close();
+
+		return filePath;
+
 	}
 
 }

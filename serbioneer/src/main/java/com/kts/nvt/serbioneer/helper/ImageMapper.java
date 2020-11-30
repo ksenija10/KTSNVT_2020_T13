@@ -6,17 +6,18 @@ import java.util.List;
 import com.kts.nvt.serbioneer.dto.ImageDTO;
 import com.kts.nvt.serbioneer.model.Image;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 public class ImageMapper implements MapperInterface<Image, ImageDTO> {
 
 	@Override
 	public Image toEntity(ImageDTO dto) {
-		return new Image(dto.getName(), dto.getContent());
+		return null;
 	}
 
 	@Override
 	public ImageDTO toDto(Image entity) {
-		return new ImageDTO(entity.getId(), entity.getName(), entity.getContent());
+		return null;
 	}
 
 	@Override
@@ -39,7 +40,8 @@ public class ImageMapper implements MapperInterface<Image, ImageDTO> {
 
 	@Override
 	public Page<ImageDTO> toDtoPage(Page<Image> entityPage) {
-		return null;
+		List<ImageDTO> imageDTOList = toDtoList(entityPage.toList());
+		return new PageImpl<>(imageDTOList, entityPage.getPageable(), entityPage.getTotalElements());
 	}
 
 }

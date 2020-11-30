@@ -14,11 +14,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @ToString
 @EqualsAndHashCode
 
@@ -28,13 +30,13 @@ public class Rating {
 	
 	@Getter
 	@Setter
-	@NonNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Getter
 	@Setter
+	@NonNull
 	@Column(name = "value", nullable = false, unique = false)
 	private int value;
 

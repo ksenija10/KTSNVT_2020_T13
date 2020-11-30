@@ -44,8 +44,8 @@ public class Image {
 	@Getter
 	@Setter
 	@NonNull
-	@Column(name = "content", nullable = false, unique = false)
-	private String content;
+	@Column(name = "path", nullable = false, unique = false)
+	private String path;
 
 	@Getter
 	@Setter
@@ -64,4 +64,27 @@ public class Image {
 	@ManyToOne
 	@JoinColumn(name = "comment", referencedColumnName = "id", nullable = true)
 	private Comment comment;
+
+	public Image(@NonNull String name, @NonNull String path, Comment comment) {
+		
+		this.name = name;
+		this.path = path;
+		this.comment = comment;
+	}
+
+	public Image(@NonNull String name, @NonNull String path, News news) {
+		
+		this.name = name;
+		this.path = path;
+		this.news = news;
+	}
+
+	public Image(@NonNull String name, @NonNull String path, CulturalSite culturalSite) {
+		
+		this.name = name;
+		this.path = path;
+		this.culturalSite = culturalSite;
+	}
+	
+	
 }
