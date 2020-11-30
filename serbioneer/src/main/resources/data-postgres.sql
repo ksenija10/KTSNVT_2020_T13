@@ -6,6 +6,8 @@ values ('Admin', 'Ksenija', 'Prcic', 'neki_email', '$2a$04$SwzgBrIJZhfnzOw7KFcdz
 -- password = user
 insert into users (type, name, surname, email, password) 
 values ('AuthenticatedUser', 'Isidor', 'Gavric', 'neki_drugi_email', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq');
+insert into users (type, name, surname, email, password)
+values ('AuthenticatedUser', 'Mileva', 'Isic', 'neki_treci_email', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq');
 
 insert into authority (name) values ('ROLE_ADMIN');
 insert into authority (name) values ('ROLE_USER');
@@ -14,6 +16,7 @@ insert into authority (name) values ('ROLE_USER');
 insert into user_authority (user_id, authority_id) values (1, 1);
 -- user has ROLE_USER
 insert into user_authority (user_id, authority_id) values (2, 2);
+insert into user_authority (user_id, authority_id) values (3, 2);
 
 
 -- kulturne kategorije
@@ -35,9 +38,10 @@ values ('Srpsko narodno pozorište', 45.2553797, 19.8429706, 'Pozorišni trg 1',
 --komentari
 insert into comment (text, approved, user_id, site_id)
             values ('Bas je super biblioteka', false, 2, 1);
-
 insert into comment (text, approved, user_id, site_id)
-            values ('Zište', true, 2, 2);
+            values ('Zište', true, 3, 2);
+insert into comment (text, approved, user_id, site_id)
+            values ('Ovaj komentar odbij!', false, 3, 2);
 
 --news
 insert into news (information, date_time, site_id) values ('Neke novosti', '2020-11-11', 1);

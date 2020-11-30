@@ -3,11 +3,14 @@ package com.kts.nvt.serbioneer.service;
 import java.util.List;
 
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalSite;
+import com.kts.nvt.serbioneer.model.User;
 import com.kts.nvt.serbioneer.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.model.Comment;
@@ -39,7 +42,7 @@ public class CommentService implements ServiceInterface<Comment> {
 	}
 
 	@Override
-	public Comment create(Comment entity) throws Exception {
+	public Comment create(Comment entity){
 		return commentRepository.save(entity);
 	}
 
@@ -49,16 +52,26 @@ public class CommentService implements ServiceInterface<Comment> {
 		if (culturalSite == null) {
 			throw new NonexistentIdException(culturalSiteService.getType());
 		}
+		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		comment.setCulturalSite(culturalSite);
+		comment.setAuthenticatedUser(user);
+		comment.setApproved(false);
 		return commentRepository.save(comment);
 	}
 
 	@Override
 	public void delete(Long id) throws Exception {
-		//provera da li je ulogovani onaj koji je i napravio komentar - SPRING SECURITY
 		Comment existingComment = commentRepository.findById(id).orElse(null);
 		if( existingComment == null){
 			throw new NonexistentIdException(this.type);
+		}
+		//provera da li je ulogovani korisnik isti onaj koji je napravio komentar
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (!user.getId().equals(existingComment.getAuthenticatedUser().getId())) {
+			throw new Exception("You can only delete your comments.");
+		}
+		if (!existingComment.isApproved()) {
+			throw new Exception("Comment is being revised, you can not delete it.");
 		}
 		commentRepository.delete(existingComment);
 		
@@ -70,13 +83,24 @@ public class CommentService implements ServiceInterface<Comment> {
 		if(commentToUpdate == null) {
 			throw new NonexistentIdException(this.type);
 		}
+		//provera da li je ulogovani korisnik isti onaj koji je napravio komentar
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (!user.getId().equals(commentToUpdate.getAuthenticatedUser().getId())) {
+			throw new Exception("You can only edit your comments.");
+		}
+		if (!commentToUpdate.isApproved()) {
+			throw new Exception("Comment is being revised, you can not modify it.");
+		}
 		commentToUpdate.setText(entity.getText());
-
 		return commentRepository.save(commentToUpdate);
 	}
 
 	public List<Comment> findAllByApproved(Boolean approved) {
 		return commentRepository.findAllByApproved(approved);
+	}
+
+	public Page<Comment> findAllByApproved(Pageable pageable, Boolean approved) {
+		return commentRepository.findAllByApproved(pageable, approved);
 	}
 
 	public Comment approve(Long id) throws Exception{
@@ -85,7 +109,7 @@ public class CommentService implements ServiceInterface<Comment> {
 			throw new Exception("Comment with given id doesn't exist.");
 		}
 
-		if(commentToUpdate.isApproved() == true){
+		if(commentToUpdate.isApproved()){
 			throw new Exception("Comment with given id is already approved.");
 		}
 		commentToUpdate.setApproved(true);
@@ -99,7 +123,7 @@ public class CommentService implements ServiceInterface<Comment> {
 			throw new Exception("Comment with given id doesn't exist.");
 		}
 
-		if(existingComment.isApproved() == true){
+		if(existingComment.isApproved()){
 			throw new Exception("Comment with given id is already approved and can not be rejected");
 		}
 
@@ -108,6 +132,10 @@ public class CommentService implements ServiceInterface<Comment> {
 
 	public List<Comment> findAllByCulturalSiteIdAndApproved(Long culturalSiteId, Boolean approved){
 		return commentRepository.findAllByCulturalSiteIdAndApproved(culturalSiteId, approved);
+	}
+
+	public Page<Comment> findAllByCulturalSiteIdAndApproved(Pageable pageable, Long culturalSiteId, Boolean approved) {
+		return commentRepository.findAllByCulturalSiteIdAndApproved(pageable, culturalSiteId, approved);
 	}
 
 }

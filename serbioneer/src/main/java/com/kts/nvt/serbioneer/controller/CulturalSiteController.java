@@ -9,9 +9,12 @@ import com.kts.nvt.serbioneer.model.News;
 import com.kts.nvt.serbioneer.service.CommentService;
 import com.kts.nvt.serbioneer.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -27,9 +30,9 @@ public class CulturalSiteController {
     @Autowired
     private NewsService newsService;
 
-    private CommentMapper commentMapper;
+    private final CommentMapper commentMapper;
 
-    private NewsMapper newsMapper;
+    private final NewsMapper newsMapper;
 
     public CulturalSiteController() {
         this.newsMapper = new NewsMapper();
@@ -40,6 +43,7 @@ public class CulturalSiteController {
        url: GET localhost:8080/api/cultural-site/{id}/comment
        HTTP request getting all comments left on cultural site
     */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(value = "/{id}/comment")
     public ResponseEntity<List<CommentDTO>> getAllCulturalSiteComments(@PathVariable("id") Long id){
         List<Comment> comments = commentService.findAllByCulturalSiteIdAndApproved(id, true);
@@ -50,9 +54,20 @@ public class CulturalSiteController {
     }
 
     /*
+       url: GET localhost:8080/api/cultural-site/{id}/comment/by-page
+       HTTP request getting all comments left on cultural site by page
+    */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @GetMapping(value = "/{id}/comment/by-page")
+    public ResponseEntity<Page<CommentDTO>> getAllCulturalSiteComments(Pageable pageable, @PathVariable("id") Long id){
+        Page<Comment> page = commentService.findAllByCulturalSiteIdAndApproved(pageable, id, true);
+        return new ResponseEntity<>(commentMapper.toDtoPage(page), HttpStatus.OK);
+    }
+    /*
 		url: POST localhost:8080/api/cultural-site/{cultural-site-id}/comment
 		HTTP request for commenting on a specific cultural site
 	*/
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping(value = "/{cultural-site-id}/comment")
     public ResponseEntity<CommentDTO> createComment(@PathVariable("cultural-site-id") Long culturalSiteId,
                                               @RequestBody CommentDTO commentDTO) {

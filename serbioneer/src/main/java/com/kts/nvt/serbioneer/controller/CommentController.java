@@ -1,10 +1,8 @@
 package com.kts.nvt.serbioneer.controller;
 
 import com.kts.nvt.serbioneer.dto.CommentDTO;
-import com.kts.nvt.serbioneer.dto.NewsDTO;
 import com.kts.nvt.serbioneer.helper.CommentMapper;
 import com.kts.nvt.serbioneer.model.Comment;
-import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
 import com.kts.nvt.serbioneer.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +16,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping(value = "api/comment", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CommentController {
@@ -26,7 +23,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    private CommentMapper commentMapper;
+    private final CommentMapper commentMapper;
 
     public CommentController() {
         this.commentMapper = new CommentMapper();
@@ -56,9 +53,10 @@ public class CommentController {
     }
 
     /*
-  url: GET localhost:8080/api/comment/unapproved
-  HTTP request for getting all unapproved comments
+      url: GET localhost:8080/api/comment/unapproved
+      HTTP request for getting all unapproved comments
    */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/unapproved")
     public ResponseEntity<List<CommentDTO>> getAllUnapprovedComments(){
         List<Comment> comments = commentService.findAllByApproved(false);
@@ -67,9 +65,21 @@ public class CommentController {
     }
 
     /*
-   url: GET localhost:8080/api/comment/{id}
-   HTTP request for getting one comment by id
+      url: GET localhost:8080/api/comment/unapproved/by-page
+      HTTP request for getting all unapproved comments by page
+   */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/unapproved/by-page")
+    public ResponseEntity<Page<CommentDTO>> getAllUnapprovedComments(Pageable pageable){
+        Page<Comment> page = commentService.findAllByApproved(pageable, false);
+        return new ResponseEntity<>(commentMapper.toDtoPage(page), HttpStatus.OK);
+    }
+
+    /*
+       url: GET localhost:8080/api/comment/{id}
+       HTTP request for getting one comment by id
     */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<CommentDTO> getComment(@PathVariable("id") Long id){
         Comment comment = commentService.findOneById(id);
@@ -82,9 +92,10 @@ public class CommentController {
     }
 
     /*
-   url: PUT localhost:8080/api/comment/{id}
-   HTTP request for updating comment by id
+       url: PUT localhost:8080/api/comment/{id}
+       HTTP request for updating comment by id
     */
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<CommentDTO> updateComment(@PathVariable("id") Long id,
                                                     @RequestBody CommentDTO commentDTO) {
@@ -98,42 +109,41 @@ public class CommentController {
     }
 
     /*
-   url: DELETE localhost:8080/api/comment/{id}
-   HTTP request for deleting one comment by id
+       url: DELETE localhost:8080/api/comment/{id}
+       HTTP request for deleting one comment by id
     */
+    @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable("id") Long id){
         try {
-            //ovde se salje username ulogovanog korinsika- SPRING SECURITY
             commentService.delete(id);
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /*
-   url: PUT localhost:8080/api/comment/{id}/approval
-   HTTP request for approving one comment by id
+       url: PUT localhost:8080/api/comment/{id}/approval
+       HTTP request for approving one comment by id
     */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping(value = "/{id}/approval")
     public ResponseEntity<CommentDTO> approveComment(@PathVariable("id") Long id){
         Comment comment;
-
         try {
             comment = commentService.approve(id);
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
-
         return new ResponseEntity<>(commentMapper.toDto(comment), HttpStatus.OK);
     }
 
     /*
-   url: DELETE localhost:8080/api/comment/{id}/approval
-   HTTP request for rejecting one comment by id
+       url: DELETE localhost:8080/api/comment/{id}/approval
+       HTTP request for rejecting one comment by id
     */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping(value = "/{id}/approval")
     public ResponseEntity<Void> rejectComment(@PathVariable("id") Long id){
         try {
@@ -144,6 +154,4 @@ public class CommentController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 }
