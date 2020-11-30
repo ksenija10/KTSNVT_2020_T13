@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kts.nvt.serbioneer.dto.ImageDTO;
@@ -67,18 +69,24 @@ public class ImageController {
 		return new ResponseEntity<>(imageMapper.toDtoList(images), HttpStatus.OK);
 	}
 
+	
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-	@PostMapping(value = "/comment/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ImageDTO> createImageForComment(@Valid @RequestBody ImageDTO imageDto,
-			@PathVariable("id") Long commentId) {
-		Image image = imageMapper.toEntity(imageDto);
+	@PostMapping(value = "/comment/{id}")
+	public ResponseEntity<ImageDTO> createImageForComment(@RequestParam("file") MultipartFile file,
+			@PathVariable("id") Long commentId) throws Exception {
+		
+		if(file == null) {
+			throw new Exception("Null je");
+		}
+		
 		try {
-			imageService.createForComment(commentId, image);
+			imageService.createForComment(commentId, file);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 
-		return new ResponseEntity<>(imageMapper.toDto(image), HttpStatus.CREATED);
+		//return new ResponseEntity<>(imageMapper.toDto(image), HttpStatus.CREATED);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -86,6 +94,7 @@ public class ImageController {
 	public ResponseEntity<ImageDTO> createImageForNews(@Valid @RequestBody ImageDTO imageDto,
 			@PathVariable("id") Long newsId) {
 		Image image = imageMapper.toEntity(imageDto);
+		
 		try {
 			imageService.createForNews(newsId, image);
 		} catch (Exception e) {

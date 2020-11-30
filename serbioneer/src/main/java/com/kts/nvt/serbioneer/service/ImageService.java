@@ -1,11 +1,18 @@
 package com.kts.nvt.serbioneer.service;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.Comment;
@@ -35,7 +42,7 @@ public class ImageService implements ServiceInterface<Image> {
 	public List<Image> findAll() {
 		return imageRepository.findAll();
 	}
-	
+
 	public Page<Image> findAll(Pageable pageable) {
 		return imageRepository.findAll(pageable);
 	}
@@ -43,7 +50,7 @@ public class ImageService implements ServiceInterface<Image> {
 	public List<Image> findAllByNewsId(Long newsId) {
 		return imageRepository.findAllByNewsId(newsId);
 	}
-	
+
 	public Page<Image> findAllByNewsId(Pageable pageable, Long newsId) {
 		return imageRepository.findAllByNewsId(pageable, newsId);
 	}
@@ -51,7 +58,7 @@ public class ImageService implements ServiceInterface<Image> {
 	public List<Image> findAllByCommentId(Long commentId) {
 		return imageRepository.findAllByCommentId(commentId);
 	}
-	
+
 	public Page<Image> findAllByCommentId(Pageable pageable, Long commentId) {
 		return imageRepository.findAllByCommentId(pageable, commentId);
 	}
@@ -59,7 +66,7 @@ public class ImageService implements ServiceInterface<Image> {
 	public List<Image> findAllByCulturalSiteId(Long culturalSiteId) {
 		return imageRepository.findAllByCulturalSiteId(culturalSiteId);
 	}
-	
+
 	public Page<Image> findAllByCulturalSiteId(Pageable pageable, Long culturalSiteId) {
 		return imageRepository.findAllByCulturalSiteId(pageable, culturalSiteId);
 	}
@@ -74,13 +81,19 @@ public class ImageService implements ServiceInterface<Image> {
 		return null;
 	}
 
-	public Image createForComment(Long commentId, Image entity) throws Exception {
+	public Image createForComment(Long commentId, MultipartFile multipartFile) throws Exception {
 		Comment comment = commentService.findOneById(commentId);
 		if (comment == null) {
-			//throw new NonexistentIdException(commentService.getType());
+			// throw new NonexistentIdException(commentService.getType());
 			throw new NonexistentIdException("Comment");
 		}
-		return imageRepository.save(entity);
+
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+
+		String filePath = this.saveImage(multipartFile, fileName, "Comment");
+
+		Image image = new Image(fileName, filePath, comment);
+		return imageRepository.save(image);
 	}
 
 	public Image createForNews(Long newsId, Image entity) throws Exception {
@@ -117,9 +130,21 @@ public class ImageService implements ServiceInterface<Image> {
 		if (imageToUpdate == null) {
 			throw new NonexistentIdException(this.type);
 		}
-		imageToUpdate.setContent(entity.getContent());
+		imageToUpdate.setPath(entity.getPath());
 		imageToUpdate.setName(entity.getName());
 		return imageRepository.save(imageToUpdate);
+	}
+
+	public String saveImage(MultipartFile file, String fileName, String folderName) throws IOException {
+		String filePath = "src/main/resources/images/" + folderName + "/" + file.getOriginalFilename();
+		Path path = Paths.get(filePath);
+
+		OutputStream os = Files.newOutputStream(path);
+		os.write(file.getBytes());
+		os.close();
+
+		return filePath;
+
 	}
 
 }
