@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -49,6 +50,7 @@ public class CommentController {
     @GetMapping("/by-page")
     public ResponseEntity<Page<CommentDTO>> getAllComments(Pageable pageable){
         Page<Comment> page = commentService.findAll(pageable);
+
         return new ResponseEntity<>(commentMapper.toDtoPage(page), HttpStatus.OK);
     }
 
@@ -72,6 +74,7 @@ public class CommentController {
     @GetMapping("/unapproved/by-page")
     public ResponseEntity<Page<CommentDTO>> getAllUnapprovedComments(Pageable pageable){
         Page<Comment> page = commentService.findAllByApproved(pageable, false);
+
         return new ResponseEntity<>(commentMapper.toDtoPage(page), HttpStatus.OK);
     }
 
@@ -105,6 +108,7 @@ public class CommentController {
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
+
         return new ResponseEntity<>(commentMapper.toDto(comment), HttpStatus.OK);
     }
 
@@ -120,6 +124,7 @@ public class CommentController {
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -136,6 +141,7 @@ public class CommentController {
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
+
         return new ResponseEntity<>(commentMapper.toDto(comment), HttpStatus.OK);
     }
 

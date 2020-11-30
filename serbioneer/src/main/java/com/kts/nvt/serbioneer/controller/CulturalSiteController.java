@@ -85,6 +85,7 @@ public class CulturalSiteController {
        url: GET localhost:8080/api/cultural-site/{id}/news
        HTTP request getting all news related to a cultural site
     */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(value = "/{id}/news")
     public ResponseEntity<List<NewsDTO>> getAllCulturalSiteNews(@PathVariable("id") Long id) {
         List<News> news = newsService.findAllByCulturalSiteId(id);
@@ -95,9 +96,22 @@ public class CulturalSiteController {
     }
 
     /*
+       url: GET localhost:8080/api/cultural-site/{id}/news/by-page
+       HTTP request getting all news related to a cultural site by page
+    */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @GetMapping(value = "{id}/news/by-page")
+    public ResponseEntity<Page<NewsDTO>> getAllCulturalSiteNews(Pageable pageable, @PathVariable("id") Long id){
+        Page<News> page = newsService.findAllByCulturalSiteId(pageable, id);
+
+        return new ResponseEntity<>(newsMapper.toDtoPage(page), HttpStatus.OK);
+    }
+
+    /*
 		url: POST localhost:8080/api/cultural-site/{cultural-site-id}/news
 		HTTP request for creating news related to a specific cultural site
 	*/
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/{cultural-site-id}/news")
     public ResponseEntity<NewsDTO> createNews(@PathVariable("cultural-site-id") Long culturalSiteId,
                                               @RequestBody NewsDTO newsDTO) {
