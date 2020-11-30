@@ -3,6 +3,8 @@ package com.kts.nvt.serbioneer.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
@@ -33,17 +35,33 @@ public class ImageService implements ServiceInterface<Image> {
 	public List<Image> findAll() {
 		return imageRepository.findAll();
 	}
+	
+	public Page<Image> findAll(Pageable pageable) {
+		return imageRepository.findAll(pageable);
+	}
 
 	public List<Image> findAllByNewsId(Long newsId) {
 		return imageRepository.findAllByNewsId(newsId);
 	}
+	
+	public Page<Image> findAllByNewsId(Pageable pageable, Long newsId) {
+		return imageRepository.findAllByNewsId(pageable, newsId);
+	}
 
 	public List<Image> findAllByCommentId(Long commentId) {
-		return findAllByCommentId(commentId);
+		return imageRepository.findAllByCommentId(commentId);
+	}
+	
+	public Page<Image> findAllByCommentId(Pageable pageable, Long commentId) {
+		return imageRepository.findAllByCommentId(pageable, commentId);
 	}
 
 	public List<Image> findAllByCulturalSiteId(Long culturalSiteId) {
-		return findAllByCulturalSiteId(culturalSiteId);
+		return imageRepository.findAllByCulturalSiteId(culturalSiteId);
+	}
+	
+	public Page<Image> findAllByCulturalSiteId(Pageable pageable, Long culturalSiteId) {
+		return imageRepository.findAllByCulturalSiteId(pageable, culturalSiteId);
 	}
 
 	@Override
@@ -56,27 +74,27 @@ public class ImageService implements ServiceInterface<Image> {
 		return null;
 	}
 
-	public Image create(Comment comment, Image entity) throws Exception {
-		Comment maybeComment = commentService.findOneById(comment.getId());
-		if (maybeComment == null) {
-			// throw new NonexistentIdException(commentService.getType());
+	public Image createForComment(Long commentId, Image entity) throws Exception {
+		Comment comment = commentService.findOneById(commentId);
+		if (comment == null) {
+			//throw new NonexistentIdException(commentService.getType());
 			throw new NonexistentIdException("Comment");
 		}
 		return imageRepository.save(entity);
 	}
 
-	public Image create(News news, Image entity) throws Exception {
-		News maybeNews = newsService.findOneById(news.getId());
-		if (maybeNews == null) {
+	public Image createForNews(Long newsId, Image entity) throws Exception {
+		News news = newsService.findOneById(newsId);
+		if (news == null) {
 			// throw new NonexistentIdException(newsService.getType());
 			throw new NonexistentIdException("News");
 		}
 		return imageRepository.save(entity);
 	}
 
-	public Image create(CulturalSite culturalSite, Image entity) throws Exception {
-		CulturalSite maybeCulturalSite = culturalSiteService.findOneById(culturalSite.getId());
-		if (maybeCulturalSite == null) {
+	public Image createForCulturalSite(Long culturalSiteId, Image entity) throws Exception {
+		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
+		if (culturalSite == null) {
 			// throw new NonexistentIdException(newsService.getType());
 			throw new NonexistentIdException("Cultural Site");
 		}
