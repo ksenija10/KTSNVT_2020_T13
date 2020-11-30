@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import com.kts.nvt.serbioneer.dto.AdminDTO;
+import com.kts.nvt.serbioneer.dto.CommentDTO;
 import com.kts.nvt.serbioneer.model.Admin;
 
 public class AdminMapper implements MapperInterface<Admin, AdminDTO>{
@@ -42,8 +44,8 @@ public class AdminMapper implements MapperInterface<Admin, AdminDTO>{
 
 	@Override
 	public Page<AdminDTO> toDtoPage(Page<Admin> entityPage) {
-		// TODO Auto-generated method stub
-		return null;
+		List<AdminDTO> adminDTOList = toDtoList(entityPage.toList());
+        return new PageImpl<>(adminDTOList, entityPage.getPageable(), entityPage.getTotalElements());
 	}
 
 }

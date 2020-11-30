@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
+import com.kts.nvt.serbioneer.dto.AdminDTO;
 import com.kts.nvt.serbioneer.dto.AuthenticatedUserDTO;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 
@@ -42,8 +44,8 @@ public class AuthenticatedUserMapper implements MapperInterface<AuthenticatedUse
 
 	@Override
 	public Page<AuthenticatedUserDTO> toDtoPage(Page<AuthenticatedUser> entityPage) {
-		// TODO Auto-generated method stub
-		return null;
+		List<AuthenticatedUserDTO> authenticatedUserDTOList = toDtoList(entityPage.toList());
+        return new PageImpl<>(authenticatedUserDTOList, entityPage.getPageable(), entityPage.getTotalElements());
 	}
 
 }

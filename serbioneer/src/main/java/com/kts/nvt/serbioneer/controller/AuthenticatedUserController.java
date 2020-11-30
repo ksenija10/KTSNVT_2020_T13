@@ -2,7 +2,11 @@ package com.kts.nvt.serbioneer.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.kts.nvt.serbioneer.dto.AdminDTO;
 import com.kts.nvt.serbioneer.dto.AuthenticatedUserDTO;
 import com.kts.nvt.serbioneer.helper.AuthenticatedUserMapper;
-import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
 
@@ -50,12 +52,24 @@ public class AuthenticatedUserController {
 	}
 	
 	/*
+	 * url: GET localhost:8080/api/authenticated-user/by-page
+	 * HTTP Request for getting all authenticated users
+	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/by-page")
+	public ResponseEntity<Page<AuthenticatedUserDTO>> getAllAuthenticatedUsers(Pageable pageable) {
+		Page<AuthenticatedUser> authenticatedUsers = authenticatedUserService.findAll(pageable);
+		return new ResponseEntity<>(authenticatedUserMapper.toDtoPage(authenticatedUsers), 
+									HttpStatus.OK);
+	}
+	
+	/*
 	 * url: POST localhost:8080/api/authenticated-user
 	 * HTTP Request for creating new authenticated user
 	*/
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AuthenticatedUserDTO> createAuthenticatedUser(@RequestBody AuthenticatedUserDTO authenticatedUserDto) {
+	public ResponseEntity<AuthenticatedUserDTO> createAuthenticatedUser(@Valid @RequestBody AuthenticatedUserDTO authenticatedUserDto) {
 		AuthenticatedUser authenticatedUser = authenticatedUserMapper.toEntity(authenticatedUserDto);
 		try {
 			authenticatedUser = authenticatedUserService.create(authenticatedUser);
@@ -88,7 +102,7 @@ public class AuthenticatedUserController {
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AuthenticatedUserDTO> updateAuthanticatedUser(@PathVariable("id") Long id, 
-												@RequestBody AuthenticatedUserDTO authenticatedUserDto) {
+												@Valid @RequestBody AuthenticatedUserDTO authenticatedUserDto) {
 		
 		AuthenticatedUser authenticatedUser = authenticatedUserMapper.toEntity(authenticatedUserDto);
 		try {

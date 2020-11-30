@@ -2,7 +2,11 @@ package com.kts.nvt.serbioneer.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -47,12 +51,23 @@ public class AdminController {
 	}
 	
 	/*
+	 * url: GET localhost:8080/api/admin/by-page
+	 * HTTP Request for getting all admins
+	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/by-page")
+	public ResponseEntity<Page<AdminDTO>> getAllAdmins(Pageable pageable) {
+		Page<Admin> admins = adminService.findAll(pageable);
+		return new ResponseEntity<>(adminMapper.toDtoPage(admins), HttpStatus.OK);
+	}
+	
+	/*
 	 * url: POST localhost:8080/api/admin
 	 * HTTP Request for creating new admin
 	*/
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AdminDTO> createAdmin(@RequestBody AdminDTO adminDto) {
+	public ResponseEntity<AdminDTO> createAdmin(@Valid @RequestBody AdminDTO adminDto) {
 		Admin admin = adminMapper.toEntity(adminDto);
 		try {
 			admin = adminService.create(admin);
@@ -84,7 +99,7 @@ public class AdminController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AdminDTO> updateAdmin(@PathVariable("id") Long id, 
-												@RequestBody AdminDTO adminDto) {
+												@Valid @RequestBody AdminDTO adminDto) {
 		
 		Admin admin = adminMapper.toEntity(adminDto);
 		try {
