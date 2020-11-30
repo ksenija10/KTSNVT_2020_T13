@@ -1,13 +1,18 @@
 package com.kts.nvt.serbioneer.controller;
 
 import com.kts.nvt.serbioneer.dto.CommentDTO;
+import com.kts.nvt.serbioneer.dto.NewsDTO;
 import com.kts.nvt.serbioneer.helper.CommentMapper;
 import com.kts.nvt.serbioneer.model.Comment;
+import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
 import com.kts.nvt.serbioneer.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -28,14 +33,26 @@ public class CommentController {
     }
 
     /*
-   url: GET localhost:8080/api/comment
-   HTTP request for getting all comments left on all cultural sites(approved and not approved)
+       url: GET localhost:8080/api/comment
+       HTTP request for getting all comments left on all cultural sites(approved and not approved)
     */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     public ResponseEntity<List<CommentDTO>> getAllComments(){
         List<Comment> comments = commentService.findAll();
 
         return new ResponseEntity<>(commentMapper.toDtoList(comments), HttpStatus.OK);
+    }
+
+    /*
+        url: GET localhost:8080/api/comment/by-page
+        HTTP request for getting all comments left on all cultural sites(approved and not approved) by page
+    */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/by-page")
+    public ResponseEntity<Page<CommentDTO>> getAllComments(Pageable pageable){
+        Page<Comment> page = commentService.findAll(pageable);
+        return new ResponseEntity<>(commentMapper.toDtoPage(page), HttpStatus.OK);
     }
 
     /*
@@ -64,7 +81,21 @@ public class CommentController {
         return new ResponseEntity<>(commentMapper.toDto(comment), HttpStatus.OK);
     }
 
-    //kreiranje i updatovanje komentara nakon ugradjenog spring sec jer mi treba trenutno ulogovani korisnik
+    /*
+   url: PUT localhost:8080/api/comment/{id}
+   HTTP request for updating comment by id
+    */
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CommentDTO> updateComment(@PathVariable("id") Long id,
+                                                    @RequestBody CommentDTO commentDTO) {
+        Comment comment = commentMapper.toEntity(commentDTO);
+        try {
+            comment = commentService.update(comment, id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+        return new ResponseEntity<>(commentMapper.toDto(comment), HttpStatus.OK);
+    }
 
     /*
    url: DELETE localhost:8080/api/comment/{id}

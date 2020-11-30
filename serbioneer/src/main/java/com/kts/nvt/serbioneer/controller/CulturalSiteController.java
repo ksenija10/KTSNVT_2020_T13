@@ -50,6 +50,23 @@ public class CulturalSiteController {
     }
 
     /*
+		url: POST localhost:8080/api/cultural-site/{cultural-site-id}/comment
+		HTTP request for commenting on a specific cultural site
+	*/
+    @PostMapping(value = "/{cultural-site-id}/comment")
+    public ResponseEntity<CommentDTO> createComment(@PathVariable("cultural-site-id") Long culturalSiteId,
+                                              @RequestBody CommentDTO commentDTO) {
+        Comment comment = commentMapper.toEntity(commentDTO);
+        try {
+            comment = commentService.create(culturalSiteId, comment);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+
+        return new ResponseEntity<>(commentMapper.toDto(comment), HttpStatus.CREATED);
+    }
+
+    /*
        url: GET localhost:8080/api/cultural-site/{id}/news
        HTTP request getting all news related to a cultural site
     */
@@ -69,14 +86,14 @@ public class CulturalSiteController {
     @PostMapping(value = "/{cultural-site-id}/news")
     public ResponseEntity<NewsDTO> createNews(@PathVariable("cultural-site-id") Long culturalSiteId,
                                               @RequestBody NewsDTO newsDTO) {
-        News news = new News(newsDTO.getInformation());
+        News news = newsMapper.toEntity(newsDTO);
         try {
             news = newsService.create(culturalSiteId, news);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
 
-        return new ResponseEntity<>(newsMapper.toDto(news), HttpStatus.OK);
+        return new ResponseEntity<>(newsMapper.toDto(news), HttpStatus.CREATED);
     }
 
 }

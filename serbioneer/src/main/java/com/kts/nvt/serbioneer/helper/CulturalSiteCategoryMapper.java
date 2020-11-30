@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.kts.nvt.serbioneer.dto.CulturalSiteCategoryDTO;
 import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
+import org.springframework.data.domain.Page;
 
 public class CulturalSiteCategoryMapper implements MapperInterface<CulturalSiteCategory, CulturalSiteCategoryDTO> {
 
@@ -34,6 +35,11 @@ public class CulturalSiteCategoryMapper implements MapperInterface<CulturalSiteC
 			culturalSiteCategoryDtos.add(toDto(entity));
 		}
 		return culturalSiteCategoryDtos;
+	}
+
+	@Override
+	public Page<CulturalSiteCategoryDTO> toDtoPage(Page<CulturalSiteCategory> entityPage) {
+		return null;
 	}
 
 }

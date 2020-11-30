@@ -64,4 +64,7 @@ public class Comment {
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "comment")
 	private Set<Image> images;
 
+	public Comment(@NonNull String text) {
+		this.text = text;
+	}
 }

@@ -2,8 +2,12 @@ package com.kts.nvt.serbioneer.service;
 
 import java.util.List;
 
+import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
+import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.model.Comment;
@@ -14,9 +18,19 @@ public class CommentService implements ServiceInterface<Comment> {
 	@Autowired
 	private CommentRepository commentRepository;
 
+	@Autowired
+	private CulturalSiteService culturalSiteService;
+
+	private final String type = "Comment";
+
 	@Override
 	public List<Comment> findAll() {
 		return commentRepository.findAll();
+	}
+
+	//@Override
+	public Page<Comment> findAll(Pageable pageable) {
+		return commentRepository.findAll(pageable);
 	}
 
 	@Override
@@ -29,12 +43,22 @@ public class CommentService implements ServiceInterface<Comment> {
 		return commentRepository.save(entity);
 	}
 
+	public Comment create(Long culturalSiteId, Comment comment) throws Exception {
+		//check if cultural site with given id exists
+		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
+		if (culturalSite == null) {
+			throw new NonexistentIdException(culturalSiteService.getType());
+		}
+		comment.setCulturalSite(culturalSite);
+		return commentRepository.save(comment);
+	}
+
 	@Override
 	public void delete(Long id) throws Exception {
 		//provera da li je ulogovani onaj koji je i napravio komentar - SPRING SECURITY
 		Comment existingComment = commentRepository.findById(id).orElse(null);
 		if( existingComment == null){
-			throw new Exception("Comment with given id doesn't exist.");
+			throw new NonexistentIdException(this.type);
 		}
 		commentRepository.delete(existingComment);
 		
@@ -44,7 +68,7 @@ public class CommentService implements ServiceInterface<Comment> {
 	public Comment update(Comment entity, Long id) throws Exception {
 		Comment commentToUpdate = commentRepository.findById(id).orElse(null);
 		if(commentToUpdate == null) {
-			throw new Exception("Comment with given id doesn't exist.");
+			throw new NonexistentIdException(this.type);
 		}
 		commentToUpdate.setText(entity.getText());
 

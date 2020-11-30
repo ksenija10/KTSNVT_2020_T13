@@ -34,10 +34,10 @@ values ('Srpsko narodno pozorište', 45.2553797, 19.8429706, 'Pozorišni trg 1',
 
 --komentari
 insert into comment (text, approved, user_id, site_id)
-            values ('Bas je super biblioteka', false, 1, 1);
+            values ('Bas je super biblioteka', false, 2, 1);
 
 insert into comment (text, approved, user_id, site_id)
-            values ('Zište', true, 1, 2);
+            values ('Zište', true, 2, 2);
 
 --news
 insert into news (information, date_time, site_id) values ('Neke novosti', '2020-11-11', 1);

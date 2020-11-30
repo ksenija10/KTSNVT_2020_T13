@@ -2,6 +2,8 @@ package com.kts.nvt.serbioneer.helper;
 
 import com.kts.nvt.serbioneer.dto.CommentDTO;
 import com.kts.nvt.serbioneer.model.Comment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,7 @@ public class CommentMapper implements MapperInterface<Comment, CommentDTO>{
 
     @Override
     public Comment toEntity(CommentDTO dto) {
-        return null;
+        return new Comment(dto.getText());
     }
 
     @Override
@@ -34,5 +36,11 @@ public class CommentMapper implements MapperInterface<Comment, CommentDTO>{
         }
 
         return commentDTOS;
+    }
+
+    @Override
+    public Page<CommentDTO> toDtoPage(Page<Comment> entityPage) {
+        List<CommentDTO> commentDTOList = toDtoList(entityPage.toList());
+        return new PageImpl<>(commentDTOList, entityPage.getPageable(), entityPage.getTotalElements());
     }
 }

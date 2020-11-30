@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.kts.nvt.serbioneer.dto.CulturalCategoryTypeDTO;
 import com.kts.nvt.serbioneer.model.CulturalCategoryType;
+import org.springframework.data.domain.Page;
 
 public class CulturalCategoryTypeMapper implements MapperInterface<CulturalCategoryType, CulturalCategoryTypeDTO> {
 
@@ -38,5 +39,9 @@ public class CulturalCategoryTypeMapper implements MapperInterface<CulturalCateg
 		return dtos;
 	}
 
-	
+	@Override
+	public Page<CulturalCategoryTypeDTO> toDtoPage(Page<CulturalCategoryType> entityPage) {
+		return null;
+	}
+
 }

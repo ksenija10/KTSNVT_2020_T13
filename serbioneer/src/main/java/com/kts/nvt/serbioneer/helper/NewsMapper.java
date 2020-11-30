@@ -2,6 +2,7 @@ package com.kts.nvt.serbioneer.helper;
 
 import com.kts.nvt.serbioneer.dto.NewsDTO;
 import com.kts.nvt.serbioneer.model.News;
+import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +37,10 @@ public class NewsMapper implements MapperInterface<News, NewsDTO>{
         }
 
         return dtos;
+    }
+
+    @Override
+    public Page<NewsDTO> toDtoPage(Page<News> entityPage) {
+        return null;
     }
 }
