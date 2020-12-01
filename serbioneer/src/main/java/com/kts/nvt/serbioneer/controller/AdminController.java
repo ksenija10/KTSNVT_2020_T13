@@ -74,10 +74,6 @@ public class AdminController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AdminDTO> createAdmin(@Valid @RequestBody AdminDTO adminDto) {
-		//enkripcija lozinke
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		adminDto.setPassword(encoder.encode(adminDto.getPassword()));
-		
 		Admin admin = adminMapper.toEntity(adminDto);
 		try {
 			admin.setAuthorities(new HashSet<>(authorityService.findByName("ROLE_ADMIN")));

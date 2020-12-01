@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
+import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.repository.AuthenticatedUserRepository;
 
@@ -37,6 +39,9 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 
 	@Override
 	public AuthenticatedUser create(AuthenticatedUser entity) throws Exception {
+		//enkripcija lozinke
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		entity.setPassword(encoder.encode(entity.getPassword()));
 		AuthenticatedUser authenticatedUserToCreate = authenticatedUserRepository.findOneByEmail(entity.getEmail());
 		if(authenticatedUserToCreate == null) {
 			return authenticatedUserRepository.save(entity);
@@ -55,6 +60,11 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 
 	@Override
 	public AuthenticatedUser update(AuthenticatedUser entity, Long id) throws Exception {
+		//provera da li je ulogovani korisnik isti onaj koji je napravio komentar
+		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (!user.getId().equals(entity.getId())) {
+			throw new Exception("You can only update your own profile.");
+		}
 		AuthenticatedUser authenticatedUserToUpdate = authenticatedUserRepository.findById(id).orElse(null);
 		if(authenticatedUserToUpdate == null) {
 			throw new NonexistentIdException(this.type);

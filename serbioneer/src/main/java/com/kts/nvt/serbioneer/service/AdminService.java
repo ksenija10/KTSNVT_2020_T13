@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.Admin;
+import com.kts.nvt.serbioneer.model.User;
 import com.kts.nvt.serbioneer.repository.AdminRepository;
 
 @Service
@@ -37,6 +39,9 @@ public class AdminService implements ServiceInterface<Admin> {
 
 	@Override
 	public Admin create(Admin entity) throws Exception {
+		//enkripcija lozinke
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		entity.setPassword(encoder.encode(entity.getPassword()));
 		Admin adminToCreate = adminRepository.findOneByEmail(entity.getEmail());
 		if(adminToCreate == null) {
 			return adminRepository.save(entity);
@@ -55,6 +60,11 @@ public class AdminService implements ServiceInterface<Admin> {
 
 	@Override
 	public Admin update(Admin entity, Long id) throws Exception {
+		//provera da li je ulogovani korisnik isti onaj koji je napravio komentar
+		Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (!user.getId().equals(entity.getId())) {
+			throw new Exception("You can only update your own profile.");
+		}
 		Admin adminToUpdate = adminRepository.findById(id).orElse(null);
 		if(adminToUpdate == null) {
 			throw new NonexistentIdException(this.type);

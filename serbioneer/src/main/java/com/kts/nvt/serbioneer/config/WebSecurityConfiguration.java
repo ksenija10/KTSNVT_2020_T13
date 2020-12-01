@@ -67,6 +67,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 	// navoditi u redosledu: more specific first!
                     .antMatchers("/serbioneer/home/**").permitAll()
+                    .antMatchers("/api/authenticated-user").permitAll()
                     // dok su u 
                     .anyRequest().authenticated()
                     .and()

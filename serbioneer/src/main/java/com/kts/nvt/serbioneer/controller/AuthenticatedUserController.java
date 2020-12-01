@@ -73,13 +73,9 @@ public class AuthenticatedUserController {
 	 * url: POST localhost:8080/api/authenticated-user
 	 * HTTP Request for creating new authenticated user
 	*/
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AuthenticatedUserDTO> createAuthenticatedUser(@Valid @RequestBody AuthenticatedUserDTO authenticatedUserDto) {
-		//enkripcija lozinke
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		authenticatedUserDto.setPassword(encoder.encode(authenticatedUserDto.getPassword()));
-
 		AuthenticatedUser authenticatedUser = authenticatedUserMapper.toEntity(authenticatedUserDto);
 		try {
 			authenticatedUser.setAuthorities(new HashSet<>(authorityService.findByName("ROLE_USER")));
@@ -110,7 +106,7 @@ public class AuthenticatedUserController {
 	 * url: PUT localhost:8080/api/authenticated-user/{id}
 	 * HTTP Request for updating an authenticated users by id
 	*/
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AuthenticatedUserDTO> updateAuthanticatedUser(@PathVariable("id") Long id, 
 												@Valid @RequestBody AuthenticatedUserDTO authenticatedUserDto) {

@@ -1,5 +1,6 @@
 package com.kts.nvt.serbioneer.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ public class AuthenticatedUserDTO {
     private String surname;
 
 	@NotBlank(message = "Email cannot be empty.")
+	@Email(message = "Poorly formated email address.")
     private String email;
 
 	@NotBlank(message = "Password cannot be empty.")

@@ -2,6 +2,7 @@ package com.kts.nvt.serbioneer.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ public class AdminDTO {
     private String surname;
 
     @NotBlank(message = "Email cannot be empty.")
+    @Email(message = "Poorly formated email address.")
     private String email;
 
     @NotBlank(message = "Password cannot be empty.")
