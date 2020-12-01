@@ -1,5 +1,6 @@
 package com.kts.nvt.serbioneer.controller;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,7 @@ import com.kts.nvt.serbioneer.dto.AdminDTO;
 import com.kts.nvt.serbioneer.helper.AdminMapper;
 import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.service.AdminService;
+import com.kts.nvt.serbioneer.service.AuthorityService;
 
 @RestController
 @RequestMapping(value = "api/admin", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -32,6 +35,9 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private AuthorityService authorityService;
 	
 	private AdminMapper adminMapper;
 	
@@ -68,9 +74,15 @@ public class AdminController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AdminDTO> createAdmin(@Valid @RequestBody AdminDTO adminDto) {
+		//enkripcija lozinke
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		adminDto.setPassword(encoder.encode(adminDto.getPassword()));
+		
 		Admin admin = adminMapper.toEntity(adminDto);
 		try {
+			admin.setAuthorities(new HashSet<>(authorityService.findByName("ROLE_ADMIN")));
 			admin = adminService.create(admin);
+			//mozda u authority da dodam admina posle
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}

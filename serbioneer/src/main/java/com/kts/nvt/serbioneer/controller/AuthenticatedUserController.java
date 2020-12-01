@@ -1,5 +1,6 @@
 package com.kts.nvt.serbioneer.controller;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,7 @@ import com.kts.nvt.serbioneer.dto.AuthenticatedUserDTO;
 import com.kts.nvt.serbioneer.helper.AuthenticatedUserMapper;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
+import com.kts.nvt.serbioneer.service.AuthorityService;
 
 @RestController
 @RequestMapping(value = "api/authenticated-user", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -32,6 +35,9 @@ public class AuthenticatedUserController {
 
 	@Autowired
 	private AuthenticatedUserService authenticatedUserService;
+	
+	@Autowired
+	private AuthorityService authorityService;
 	
 	private AuthenticatedUserMapper authenticatedUserMapper;
 	
@@ -70,8 +76,13 @@ public class AuthenticatedUserController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AuthenticatedUserDTO> createAuthenticatedUser(@Valid @RequestBody AuthenticatedUserDTO authenticatedUserDto) {
+		//enkripcija lozinke
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		authenticatedUserDto.setPassword(encoder.encode(authenticatedUserDto.getPassword()));
+
 		AuthenticatedUser authenticatedUser = authenticatedUserMapper.toEntity(authenticatedUserDto);
 		try {
+			authenticatedUser.setAuthorities(new HashSet<>(authorityService.findByName("ROLE_USER")));
 			authenticatedUser = authenticatedUserService.create(authenticatedUser);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());

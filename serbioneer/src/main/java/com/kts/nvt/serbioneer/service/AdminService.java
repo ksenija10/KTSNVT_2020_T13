@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
@@ -59,7 +60,9 @@ public class AdminService implements ServiceInterface<Admin> {
 			throw new NonexistentIdException(this.type);
 		}
 		adminToUpdate.setEmail(entity.getEmail());
-		adminToUpdate.setPassword(entity.getPassword());
+		//enkodovanje sifre
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		adminToUpdate.setPassword(encoder.encode(entity.getPassword()));
 		adminToUpdate.setName(entity.getName());
 		adminToUpdate.setSurname(entity.getSurname());
 		adminToUpdate.setDateOfBirth(entity.getDateOfBirth());

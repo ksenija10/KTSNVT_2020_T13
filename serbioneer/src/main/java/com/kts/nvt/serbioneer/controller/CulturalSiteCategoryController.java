@@ -86,7 +86,7 @@ public class CulturalSiteCategoryController {
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
-		return new ResponseEntity<>(culturalSiteCategoryMapper.toDto(culturalSiteCategory), HttpStatus.OK);
+		return new ResponseEntity<>(culturalSiteCategoryMapper.toDto(culturalSiteCategory), HttpStatus.CREATED);
 	}
 	
 	/*
@@ -174,7 +174,7 @@ public class CulturalSiteCategoryController {
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
-		return new ResponseEntity<>(culturalCategoryTypeMapper.toDto(culturalCategoryType), HttpStatus.OK);
+		return new ResponseEntity<>(culturalCategoryTypeMapper.toDto(culturalCategoryType), HttpStatus.CREATED);
 	}
 	
 	/*

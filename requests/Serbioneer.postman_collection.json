@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ec577915-5ce9-487c-ad3c-02cff51c1c2e",
+		"_postman_id": "3f17935f-ca09-4dff-9fbf-2e7e41ef610d",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -366,7 +366,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "a5b11ddf-8606-4b94-b7fb-b872b4988166",
+						"id": "bfeb52da-296e-418e-84fc-792d94297a36",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -376,7 +376,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b5ee0206-89ef-4504-bfe8-beef6f87d28a",
+						"id": "6831e98d-5577-467b-8af8-46cab578a9d9",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1423,36 +1423,6 @@
 					"response": []
 				},
 				{
-					"name": "DeleteAdmin",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1ODMwNiwiZXhwIjoxNjA2NzYwMTA2LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._SCwKrnYE0GHHXIqGqcGR4ccFbMoNVEq73IHm6wXvUpgzn1bm0lmdJ9pPaGvX7aBoMJC6c4d7Fua6rFp_O3Kig",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/admin/4",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"admin",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "CreateAdmin",
 					"request": {
 						"auth": {
@@ -1491,7 +1461,7 @@
 					"response": []
 				},
 				{
-					"name": "UpdateAdmin",
+					"name": "DeleteAdmin",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1503,11 +1473,41 @@
 								}
 							]
 						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAdmin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiZW1pbl9lbWFpbDEiLCJhdWQiOiJ3ZWIiLCJpYXQiOjE2MDY4Mzc3NjgsImV4cCI6MTYwNjgzOTU2OCwiYXV0aG9yaXRpZXMiOltdfQ.H7zijQN75o4HjeOk94GfXeImbk9Mdq2ANUePIJ3_nWGw45GrS5Ckn80TrkTQU5jFeF9aacA6i3E8p0kq-nULZA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"Ja\",\r\n    \"surname\": \"JAJIC\",\r\n    \"email\": \"neki_email1\",\r\n    \"password\": \"duladjdklfd\",\r\n    \"dateOfBirth\": null\r\n}",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"Emilija\",\r\n    \"surname\": \"Momovic\",\r\n    \"email\": \"emin_email1\",\r\n    \"password\": \"malipas\",\r\n    \"dateOfBirth\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1649,7 +1649,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"id\": 5,\r\n        \"name\": \"Jasmina\",\r\n        \"surname\": \"Urosevic\",\r\n        \"email\": \"jasminin_email333\",\r\n        \"password\": \"$2a$04$Amda.Gm4Q.ZbXhGguowsdS1QO26Eh8Hovu3uzEpQvcq\"\r\n    }",
+							"raw": "{\r\n        \"id\": 5,\r\n        \"name\": \"Jasmina\",\r\n        \"surname\": \"Urosevic\",\r\n        \"email\": \"jasminin_email333\",\r\n        \"password\": \"malakuca\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
