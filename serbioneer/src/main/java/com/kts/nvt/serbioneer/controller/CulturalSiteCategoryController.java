@@ -2,7 +2,11 @@ package com.kts.nvt.serbioneer.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -58,11 +62,24 @@ public class CulturalSiteCategoryController {
 	}
 	
 	/*
+		url: GET localhost:8080/api/cultural-site-category/by-page
+		HTTP request for getting all cultural site categories by page
+	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping(value = "/by-page")
+	public ResponseEntity<Page<CulturalSiteCategoryDTO>> getAllCulturalSiteCategories(Pageable pageable) {
+		Page<CulturalSiteCategory> page = culturalSiteCategoryService.findAll(pageable);
+		return new ResponseEntity<>(culturalSiteCategoryMapper.toDtoPage(page), HttpStatus.OK);
+    }
+	
+	/*
 		url: POST localhost:8080/api/cultural-site-category
 		HTTP request for creating new cultural site category
 	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CulturalSiteCategoryDTO> createCulturalSiteCategory(@RequestBody CulturalSiteCategoryDTO culturalSiteCategoryDto) {
+	public ResponseEntity<CulturalSiteCategoryDTO> createCulturalSiteCategory(
+			@Valid @RequestBody CulturalSiteCategoryDTO culturalSiteCategoryDto) {
 		CulturalSiteCategory culturalSiteCategory = culturalSiteCategoryMapper.toEntity(culturalSiteCategoryDto);
 		try {
 			culturalSiteCategory = culturalSiteCategoryService.create(culturalSiteCategory);
@@ -76,6 +93,7 @@ public class CulturalSiteCategoryController {
 		url: GET localhost:8080/api/cultural-site-category/{id}
 		HTTP request for getting one cultural site category by id
 	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CulturalSiteCategoryDTO> getCulturalSiteCategory(@PathVariable("id") Long id) {
 		CulturalSiteCategory culturalSiteCategory = culturalSiteCategoryService.findOneById(id);
@@ -89,9 +107,11 @@ public class CulturalSiteCategoryController {
 		url: PUT localhost:8080/api/cultural-site-category/{id}
 		HTTP request for updating a cultural site category by id
 	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CulturalSiteCategoryDTO> updateCulturalSiteCategory(@PathVariable("id") Long id, 
-											@RequestBody CulturalSiteCategoryDTO culturalSiteCategoryDto) {
+	public ResponseEntity<CulturalSiteCategoryDTO> updateCulturalSiteCategory(
+				@PathVariable("id") Long id, 
+				@Valid @RequestBody CulturalSiteCategoryDTO culturalSiteCategoryDto) {
 		CulturalSiteCategory culturalSiteCategory = culturalSiteCategoryMapper.toEntity(culturalSiteCategoryDto);
 		try {
 			culturalSiteCategory = culturalSiteCategoryService.update(culturalSiteCategory, id);
@@ -105,6 +125,7 @@ public class CulturalSiteCategoryController {
 		url: DELETE localhost:8080/api/cultural-site-category/{id}
 		HTTP request for deleting a cultural site category by id
 	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deleteCulturalSiteCategory(@PathVariable("id") Long id) {
 		try {
@@ -120,6 +141,7 @@ public class CulturalSiteCategoryController {
 		url: GET localhost:8080/api/cultural-site-category/{category-id}/type
 		HTTP request for getting all category types of a cultural site category given by id
 	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping(value = "/{category-id}/type")
 	public ResponseEntity<List<CulturalCategoryTypeDTO>> getAllCategoryTypes(@PathVariable("category-id") Long categoryId) {
         List<CulturalCategoryType> categoryTypes = culturalCategoryTypeService.findAll(categoryId);
@@ -127,12 +149,25 @@ public class CulturalSiteCategoryController {
 	}
 	
 	/*
+		url: GET localhost:8080/api/cultural-site-category/{category-id}/type/by-page
+		HTTP request for getting all category types by page of a cultural site category given by id
+	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping(value = "/{category-id}/type/by-page")
+	public ResponseEntity<Page<CulturalCategoryTypeDTO>> getAllCategoryTypes(Pageable pageable) {
+		Page<CulturalCategoryType> page = culturalCategoryTypeService.findAll(pageable);
+		return new ResponseEntity<>(culturalCategoryTypeMapper.toDtoPage(page), HttpStatus.OK);
+	}
+	
+	/*
 		url: POST localhost:8080/api/cultural-site-category/{category-id}/type
 		HTTP request for creating a new category type for category given by id
 	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping(value = "/{category-id}/type")
-	public ResponseEntity<CulturalCategoryTypeDTO> createCategoryType(@PathVariable("category-id") Long categoryId, 
-																	@RequestBody CulturalCategoryTypeDTO categoryTypeDto) {
+	public ResponseEntity<CulturalCategoryTypeDTO> createCategoryType(
+					@PathVariable("category-id") Long categoryId, 
+					@Valid @RequestBody CulturalCategoryTypeDTO categoryTypeDto) {
 		CulturalCategoryType culturalCategoryType = culturalCategoryTypeMapper.toEntity(categoryTypeDto);
 		try {
 			culturalCategoryType = culturalCategoryTypeService.create(categoryId, culturalCategoryType);
@@ -146,9 +181,11 @@ public class CulturalSiteCategoryController {
 		url: GET localhost:8080/api/cultural-site-category/{category-id}/type/{id}
 		HTTP request for getting a category type by given id and given category id
 	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping(value = "/{category-id}/type/{id}")
-	public ResponseEntity<CulturalCategoryTypeDTO> getCategoryType(@PathVariable("category-id") Long categoryId, 
-																@PathVariable("id") Long typeId) {
+	public ResponseEntity<CulturalCategoryTypeDTO> getCategoryType(
+								@PathVariable("category-id") Long categoryId, 
+								@PathVariable("id") Long typeId) {
 		CulturalCategoryType categoryType = culturalCategoryTypeService.findOneById(typeId);
 		if (categoryType == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -160,10 +197,11 @@ public class CulturalSiteCategoryController {
 		url: PUT localhost:8080/api/cultural-site-category/{category-id}/type/{id}
 		HTTP request for updating a category type by given id and given category id
 	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping(value = "/{category-id}/type/{id}")
 	public ResponseEntity<CulturalCategoryTypeDTO> updateCategoryType(@PathVariable("category-id") Long categoryId, 
-																@PathVariable("id") Long typeId, 
-																@RequestBody CulturalCategoryTypeDTO typeDto) {
+								@PathVariable("id") Long typeId, 
+								@Valid @RequestBody CulturalCategoryTypeDTO typeDto) {
 		CulturalCategoryType categoryType = culturalCategoryTypeMapper.toEntity(typeDto);
 		try {
 			categoryType = culturalCategoryTypeService.update(categoryType, typeId);
@@ -177,9 +215,10 @@ public class CulturalSiteCategoryController {
 		url: DELETE localhost:8080/api/cultural-site-category/{category-id}/type/{id}
 		HTTP request for deleting a category type by given id and given category id
 	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping(value = "/{category-id}/type/{id}")
 	public ResponseEntity<Void> deleteCategoryType(@PathVariable("category-id") Long categoryId, 
-																@PathVariable("id") Long typeId) {
+												@PathVariable("id") Long typeId) {
 		try {
 			culturalCategoryTypeService.delete(typeId);
 		} catch (Exception e) {

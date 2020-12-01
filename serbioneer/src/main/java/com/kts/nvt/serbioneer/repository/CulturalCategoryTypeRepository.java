@@ -15,4 +15,6 @@ public interface CulturalCategoryTypeRepository extends JpaRepository<CulturalCa
 	CulturalCategoryType findOneByName(String name);
 	
 	CulturalCategoryType findOneByNameAndIdNot(String name, Long id);
+	
+	CulturalCategoryType findOneByIdAndCulturalSiteCategoryId(Long id, Long categoryId);
 }

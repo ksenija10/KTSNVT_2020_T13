@@ -3,6 +3,8 @@ package com.kts.nvt.serbioneer.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
@@ -26,6 +28,10 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
 	@Override
 	public List<CulturalSiteCategory> findAll() {
 		return culturalSiteCategoryRepository.findAll();
+	}
+	
+	public Page<CulturalSiteCategory> findAll(Pageable pageable) {
+		return culturalSiteCategoryRepository.findAll(pageable);
 	}
 
 	@Override

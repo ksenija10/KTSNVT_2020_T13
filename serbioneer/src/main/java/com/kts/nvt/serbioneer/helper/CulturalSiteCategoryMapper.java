@@ -3,9 +3,11 @@ package com.kts.nvt.serbioneer.helper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+
 import com.kts.nvt.serbioneer.dto.CulturalSiteCategoryDTO;
 import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
-import org.springframework.data.domain.Page;
 
 public class CulturalSiteCategoryMapper implements MapperInterface<CulturalSiteCategory, CulturalSiteCategoryDTO> {
 
@@ -39,7 +41,8 @@ public class CulturalSiteCategoryMapper implements MapperInterface<CulturalSiteC
 
 	@Override
 	public Page<CulturalSiteCategoryDTO> toDtoPage(Page<CulturalSiteCategory> entityPage) {
-		return null;
+		List<CulturalSiteCategoryDTO> culturalSiteCategoryDTOList = toDtoList(entityPage.toList());
+		return new PageImpl<>(culturalSiteCategoryDTOList, entityPage.getPageable(), entityPage.getTotalElements());
 	}
 
 }

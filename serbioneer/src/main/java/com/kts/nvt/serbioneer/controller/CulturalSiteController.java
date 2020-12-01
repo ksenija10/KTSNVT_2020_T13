@@ -1,13 +1,9 @@
 package com.kts.nvt.serbioneer.controller;
 
-import com.kts.nvt.serbioneer.dto.CommentDTO;
-import com.kts.nvt.serbioneer.dto.NewsDTO;
-import com.kts.nvt.serbioneer.helper.CommentMapper;
-import com.kts.nvt.serbioneer.helper.NewsMapper;
-import com.kts.nvt.serbioneer.model.Comment;
-import com.kts.nvt.serbioneer.model.News;
-import com.kts.nvt.serbioneer.service.CommentService;
-import com.kts.nvt.serbioneer.service.NewsService;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,30 +11,143 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import com.kts.nvt.serbioneer.dto.CommentDTO;
+import com.kts.nvt.serbioneer.dto.CulturalSiteDTO;
+import com.kts.nvt.serbioneer.dto.NewsDTO;
+import com.kts.nvt.serbioneer.helper.CommentMapper;
+import com.kts.nvt.serbioneer.helper.CulturalSiteMapper;
+import com.kts.nvt.serbioneer.helper.NewsMapper;
+import com.kts.nvt.serbioneer.model.Comment;
+import com.kts.nvt.serbioneer.model.CulturalSite;
+import com.kts.nvt.serbioneer.model.News;
+import com.kts.nvt.serbioneer.service.CommentService;
+import com.kts.nvt.serbioneer.service.CulturalSiteService;
+import com.kts.nvt.serbioneer.service.NewsService;
 
 @RestController
 @RequestMapping(value = "api/cultural-site", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CulturalSiteController {
 
+	@Autowired
+	private CulturalSiteService culturalSiteService;
+	
     @Autowired
     private CommentService commentService;
 
     @Autowired
     private NewsService newsService;
 
+    private final CulturalSiteMapper culturalSiteMapper;
     private final CommentMapper commentMapper;
-
     private final NewsMapper newsMapper;
 
     public CulturalSiteController() {
+    	this.culturalSiteMapper = new CulturalSiteMapper();
         this.newsMapper = new NewsMapper();
         this.commentMapper = new CommentMapper();
     }
-
+    
+    /*
+    	url: GET localhost:8080/api/cultural-site
+    	HTTP request for getting all cultural sites
+     */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @GetMapping
+    public ResponseEntity<List<CulturalSiteDTO>> getAllCulturalSites() {
+    	List<CulturalSite> culturalSites = culturalSiteService.findAll();
+    	return new ResponseEntity<>(culturalSiteMapper.toDtoList(culturalSites), HttpStatus.OK);
+    }
+    
+    /*
+		url: GET localhost:8080/api/cultural-site/by-page
+		HTTP request for getting cultural sites by page
+	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+	@GetMapping(value = "by-page")
+	public ResponseEntity<Page<CulturalSiteDTO>> getAllCulturalSites(Pageable pageable){
+        Page<CulturalSite> page = culturalSiteService.findAll(pageable);
+        return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
+    }
+    
+    /*
+		url: POST localhost:8080/api/cultural-site
+		HTTP request for creating a new cultural site
+	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CulturalSiteDTO> createCulturalSite(
+					@Valid @RequestBody CulturalSiteDTO culturalSiteDto) {
+		
+		Long categoryId = culturalSiteDto.getCategoryId();
+		Long categoryTypeId = culturalSiteDto.getCategoryTypeId();
+		CulturalSite culturalSite = culturalSiteMapper.toEntity(culturalSiteDto);
+		
+		try {
+			culturalSite = culturalSiteService.create(culturalSite, categoryId, categoryTypeId);
+		} catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+		
+		return new ResponseEntity<>(culturalSiteMapper.toDto(culturalSite), HttpStatus.CREATED);
+	}
+	
+	/*
+		url: GET localhost:8080/api/cultural-site/{id}
+		HTTP request for getting a specific cultural site given by id
+	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<CulturalSiteDTO> getCulturalSite(@PathVariable("id") Long id) {
+		CulturalSite culturalSite = culturalSiteService.findOneById(id);
+		if (culturalSite == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(culturalSiteMapper.toDto(culturalSite), HttpStatus.OK);
+	}
+	
+	/*
+		url: PUT localhost:8080/api/cultural-site/{id}
+		HTTP request for updating a specific cultural site given by id
+	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CulturalSiteDTO> updateCulturalSite(@PathVariable("id") Long id,
+								@Valid @RequestBody CulturalSiteDTO culturalSiteDto) {
+		CulturalSite culturalSite = culturalSiteMapper.toEntity(culturalSiteDto);
+		try {
+			culturalSite = culturalSiteService.update(culturalSite, id);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+        return new ResponseEntity<>(culturalSiteMapper.toDto(culturalSite), HttpStatus.OK);
+	}
+	
+	/*
+		url: DELETE localhost:8080/api/cultural-site/{id}
+		HTTP request for deleting a specific cultural site given by id
+	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> deleteCulturalSite(@PathVariable("id") Long id) {
+		try {
+			culturalSiteService.delete(id);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	
     /*
        url: GET localhost:8080/api/cultural-site/{id}/comment
        HTTP request getting all comments left on cultural site

@@ -1,12 +1,12 @@
 package com.kts.nvt.serbioneer.dto;
 
+import java.util.Date;
+
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-
-import javax.validation.constraints.NotBlank;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor

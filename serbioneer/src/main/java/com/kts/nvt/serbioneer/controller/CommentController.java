@@ -1,9 +1,9 @@
 package com.kts.nvt.serbioneer.controller;
 
-import com.kts.nvt.serbioneer.dto.CommentDTO;
-import com.kts.nvt.serbioneer.helper.CommentMapper;
-import com.kts.nvt.serbioneer.model.Comment;
-import com.kts.nvt.serbioneer.service.CommentService;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,11 +11,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import com.kts.nvt.serbioneer.dto.CommentDTO;
+import com.kts.nvt.serbioneer.helper.CommentMapper;
+import com.kts.nvt.serbioneer.model.Comment;
+import com.kts.nvt.serbioneer.service.CommentService;
 
 @RestController
 @RequestMapping(value = "api/comment", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -101,7 +109,7 @@ public class CommentController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<CommentDTO> updateComment(@PathVariable("id") Long id,
-                                                    @RequestBody CommentDTO commentDTO) {
+                                                    @Valid @RequestBody CommentDTO commentDTO) {
         Comment comment = commentMapper.toEntity(commentDTO);
         try {
             comment = commentService.update(comment, id);

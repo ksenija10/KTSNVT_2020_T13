@@ -1,5 +1,7 @@
 package com.kts.nvt.serbioneer.dto;
 
+import javax.validation.constraints.Email;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserLoginDTO {
 
+	@Email(message = "Poorly formated email address.")
     private String username;
     private String password;
 }

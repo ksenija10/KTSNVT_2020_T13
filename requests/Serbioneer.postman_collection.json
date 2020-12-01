@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "76d2d97e-9cf1-43de-bf54-2e7cdc7b68ac",
+		"_postman_id": "f9b118a1-25e8-47fd-b723-1e48fb99e5df",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -12,6 +12,16 @@
 				{
 					"name": "GetAllCategories",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2Nzg1NDQzLCJleHAiOjE2MDY3ODcyNDMsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.0qTN_hNZGOKvYZxf-Vct-EFk-D1HR0i_koa4Vg24qNvuvUIBqBCDXLxcoh23N5k0vnfc1LZjvZReWn-5LEv8mQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -26,6 +36,46 @@
 							]
 						},
 						"description": "Dobavljanje svih kategorija kulturnih dobara."
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllCategoriesPageable",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2Nzg1NTA3LCJleHAiOjE2MDY3ODczMDcsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.8D1uHlwozJFZ4IH-ro3dF6Js0ci7BDlyWQ_rqD9xGVV5pFbTnLgv0wYKG3pUC-aDeinkc70IwS4VY1hR9wc_wg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category/by-page?page=0&size=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category",
+								"by-page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								}
+							]
+						}
 					},
 					"response": []
 				},
@@ -132,6 +182,458 @@
 				}
 			],
 			"description": "Zahtevi vezani za CRUD operacije CulturalSiteCategory entiteta.",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CulturalCategoryType Requests",
+			"item": [
+				{
+					"name": "GetAllCategoryTypes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category/1/type",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category",
+								"1",
+								"type"
+							]
+						},
+						"description": "Dobavljanje svih tipova odredjene kategorije kulturnih dobara."
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllCategoryTypesPageable",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2Nzg1NTc4LCJleHAiOjE2MDY3ODczNzgsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.9isAauX8kw70fHFsQlYJixRwsW2QyFPVev3Cay6D7ZS2R43bCr-KHqPMtSyfA9X7_0D3vOZzGWnPJI9plhSgEg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category/1/type/by-page?page=1&size=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category",
+								"1",
+								"type",
+								"by-page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCategoryType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pozoriste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category/1/type",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category",
+								"1",
+								"type"
+							]
+						},
+						"description": "Kreiranje novog tipa odredjene kategorije kulturnih dobara."
+					},
+					"response": []
+				},
+				{
+					"name": "GetCategoryTypeByCategoryIdAndTypeId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category/1/type/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category",
+								"1",
+								"type",
+								"1"
+							]
+						},
+						"description": "Dobavljanje postojeceg tipa kategorije na osnovu id-a kategorije i tipa kategorije."
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCategoryType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pozoriste novo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category/1/type/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category",
+								"1",
+								"type",
+								"1"
+							]
+						},
+						"description": "Izmena tipa kategorije na osnovu id-a kategorije i tipa kategorije."
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCategoryType",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site-category/1/type/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site-category",
+								"1",
+								"type",
+								"2"
+							]
+						},
+						"description": "Brisanje tipa kategorije na osnovu id-a kategorije i tipa kategorije."
+					},
+					"response": []
+				}
+			],
+			"description": "Zahtevi vezani za CRUD operacije CulturalCategoryType entiteta.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "61fdd368-6f61-41a7-bb25-cdafd2a49a11",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "83ad173b-fe89-4514-a2be-fa411f1b14f6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CulturalSite Requests",
+			"item": [
+				{
+					"name": "GetAllCulturalSites",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2Nzg3NTA1LCJleHAiOjE2MDY3ODkzMDUsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.XPAWooheVCz1s9JnWwXt07zfWAKvsnjD5MVfhJoZkPLFSV5WIGOBm7kBixA2mByuleSSvalWPebFFu9yXgP0iw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllCulturalSitesPageable",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoicHJ2aUB1c2VyLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc4NTY4MCwiZXhwIjoxNjA2Nzg3NDgwLCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.w4jW2DNWYHlaHdESBjFpjciMFGBqBV6CCNfTvz9GQZC2qo3q2aEP-MDm8DcUAVcL45L2L6ZFDLUblkkN7CygQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site/by-page?page=1&size=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site",
+								"by-page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCulturalSite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2Nzg3NTA1LCJleHAiOjE2MDY3ODkzMDUsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.XPAWooheVCz1s9JnWwXt07zfWAKvsnjD5MVfhJoZkPLFSV5WIGOBm7kBixA2mByuleSSvalWPebFFu9yXgP0iw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\": 1,\r\n    \"categoryTypeId\": 1,\r\n    \"name\": \"Nova biblioteka\",\r\n    \"lat\": 44.7556269,\r\n    \"lng\": 19.6923025,\r\n    \"address\": \"Skolska 18\",\r\n    \"city\": \"Majur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cultural-site",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCulturalSite ValidationFail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2Nzg2NDE4LCJleHAiOjE2MDY3ODgyMTgsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.Ru83odhBENF3oza8YnfylpH9kdWY4wESULLDbcRsTHKCjLlRVu5DAMN9_m09YdjU_ydoJ2_t8XHg4S9HbjYAmQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\": null,\r\n    \"categoryTypeId\": null,\r\n    \"name\": \"Biblioteka šabačka\",\r\n    \"lat\": 41.7556269,\r\n    \"lng\": 24.6923025,\r\n    \"address\": \"Masarikova 18\",\r\n    \"city\": \"sabac\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cultural-site",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCulturalSiteById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2Nzg3NTA1LCJleHAiOjE2MDY3ODkzMDUsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.XPAWooheVCz1s9JnWwXt07zfWAKvsnjD5MVfhJoZkPLFSV5WIGOBm7kBixA2mByuleSSvalWPebFFu9yXgP0iw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCulturalSite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2Nzg3NTA1LCJleHAiOjE2MDY3ODkzMDUsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.XPAWooheVCz1s9JnWwXt07zfWAKvsnjD5MVfhJoZkPLFSV5WIGOBm7kBixA2mByuleSSvalWPebFFu9yXgP0iw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\": 98,\r\n    \"categoryTypeId\": 5235,\r\n    \"name\": \"Izmenjena biblioteka\",\r\n    \"lat\": 44.7556269,\r\n    \"lng\": 19.6923025,\r\n    \"address\": \"Izmenjena adresa\",\r\n    \"city\": \"Novograd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cultural-site/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCulturalSite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2Nzg3NTA1LCJleHAiOjE2MDY3ODkzMDUsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.XPAWooheVCz1s9JnWwXt07zfWAKvsnjD5MVfhJoZkPLFSV5WIGOBm7kBixA2mByuleSSvalWPebFFu9yXgP0iw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
@@ -541,166 +1043,6 @@
 						"description": "Kreiranje komentara"
 					},
 					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "CulturalCategoryType Requests",
-			"item": [
-				{
-					"name": "GetAllCategoryTypes",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/cultural-site-category/1/type",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"cultural-site-category",
-								"1",
-								"type"
-							]
-						},
-						"description": "Dobavljanje svih tipova odredjene kategorije kulturnih dobara."
-					},
-					"response": []
-				},
-				{
-					"name": "CreateCategoryType",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Pozoriste\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/api/cultural-site-category/1/type",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"cultural-site-category",
-								"1",
-								"type"
-							]
-						},
-						"description": "Kreiranje novog tipa odredjene kategorije kulturnih dobara."
-					},
-					"response": []
-				},
-				{
-					"name": "GetCategoryTypeByCategoryIdAndTypeId",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/cultural-site-category/1/type/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"cultural-site-category",
-								"1",
-								"type",
-								"1"
-							]
-						},
-						"description": "Dobavljanje postojeceg tipa kategorije na osnovu id-a kategorije i tipa kategorije."
-					},
-					"response": []
-				},
-				{
-					"name": "UpdateCategoryType",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Pozoriste novo\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/api/cultural-site-category/1/type/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"cultural-site-category",
-								"1",
-								"type",
-								"1"
-							]
-						},
-						"description": "Izmena tipa kategorije na osnovu id-a kategorije i tipa kategorije."
-					},
-					"response": []
-				},
-				{
-					"name": "DeleteCategoryType",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/cultural-site-category/1/type/2",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"cultural-site-category",
-								"1",
-								"type",
-								"2"
-							]
-						},
-						"description": "Brisanje tipa kategorije na osnovu id-a kategorije i tipa kategorije."
-					},
-					"response": []
-				}
-			],
-			"description": "Zahtevi vezani za CRUD operacije CulturalCategoryType entiteta.",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "8223ae60-cbac-4ff7-a6c1-083ce3066cf6",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "d0abdbd7-bbc8-4749-b458-29b7021b4059",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -1339,7 +1681,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"neki_email\",\r\n    \"password\": \"admin\"\r\n}",
+					"raw": "{\r\n    \"username\": \"admin@admin.com\",\r\n    \"password\": \"admin\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1367,7 +1709,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"neki_drugi_email\",\r\n    \"password\": \"user\"\r\n}",
+					"raw": "{\r\n    \"username\": \"prvi@user.com\",\r\n    \"password\": \"user\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

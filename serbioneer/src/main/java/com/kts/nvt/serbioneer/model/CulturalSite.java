@@ -17,17 +17,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 
 @Entity
 @Table(name = "cultural_site")
@@ -35,7 +33,6 @@ public class CulturalSite {
 
 	@Getter
 	@Setter
-	@NonNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -80,18 +77,14 @@ public class CulturalSite {
 
 	@Getter
 	@Setter
-	// ako obrisemo tip kojeg je kulturno dobro, to polje ce biti null
-	// => nullable mora biti true
-	// ali kada se kreira, ne sme biti null -> validacija na back-u
+	@NonNull
 	@ManyToOne
 	@JoinColumn(name = "type_id", referencedColumnName = "id", nullable = true)
 	private CulturalCategoryType culturalCategoryType;
 
 	@Getter
 	@Setter
-	// ako obrisemo kategoriju kojoj pripada kulturno dobro, to polje ce biti null
-	// => nullable mora biti true
-	// ali kada se kreira, ne sme biti null -> validacija na back-u
+	@NonNull
 	@ManyToOne
 	@JoinColumn(name = "category_id", referencedColumnName = "id", nullable = true)
 	private CulturalSiteCategory culturalSiteCategory;
@@ -125,4 +118,16 @@ public class CulturalSite {
 			inverseJoinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }
 			)
 	private Set<AuthenticatedUser> subscribedUsers;
+
+	
+	public CulturalSite(@NonNull String name, double lat, double lng, @NonNull String address, @NonNull String city,
+			String description) {
+		this.name = name;
+		this.lat = lat;
+		this.lng = lng;
+		this.address = address;
+		this.city = city;
+		this.description = description;
+	}
+	
 }

@@ -5,19 +5,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
-import com.kts.nvt.serbioneer.model.AuthenticatedUser;
-import com.kts.nvt.serbioneer.model.CulturalSite;
-import com.kts.nvt.serbioneer.repository.AuthenticatedUserRepository;
-import com.kts.nvt.serbioneer.repository.NewsRepository;
-import com.kts.nvt.serbioneer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
+import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.News;
+import com.kts.nvt.serbioneer.repository.AuthenticatedUserRepository;
+import com.kts.nvt.serbioneer.repository.NewsRepository;
 
 @Service
 public class NewsService implements ServiceInterface<News> {
@@ -92,15 +91,18 @@ public class NewsService implements ServiceInterface<News> {
 	}
 
 	public List<News> getAllSubscribedNews() {
-		/*Long id = ((AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+		Long id = ((AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
 		AuthenticatedUser user = userRepository.findById(id).orElse(null);
 		Set<CulturalSite> subscribedSites = user.getSubscribedSites();
 		List<News> allNews = new ArrayList<>();
 		for (CulturalSite subscribed : subscribedSites) {
 			allNews.addAll(newsRepository.findAllByCulturalSiteId(subscribed.getId()));
 		}
-		return allNews;*/
-		return null;
+		// MORAS NAPRAVITI NEWSDTO ZA SVAKI NEWS KOJI DODAS
+		// TU ODE U BESKONACNU PETLJU
+		// ZAUSTAVI GA TAKO STO CES MU ROKNUTI DTO
+		// NARAVNO DTO U KONTROLERU (ja kreno ovde debil)
+		return allNews;
 	}
 
 

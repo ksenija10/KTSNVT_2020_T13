@@ -3,6 +3,8 @@ package com.kts.nvt.serbioneer.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
@@ -11,6 +13,8 @@ import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.CulturalCategoryType;
 import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
 import com.kts.nvt.serbioneer.repository.CulturalCategoryTypeRepository;
+
+import lombok.Getter;
 
 @Service
 public class CulturalCategoryTypeService implements ServiceInterface<CulturalCategoryType> {
@@ -21,6 +25,7 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 	@Autowired
 	private CulturalSiteCategoryService culturalSiteCategoryService;
 	
+	@Getter
 	private final String type = "Cultural category type";
 	private final String unique = "name";
 	
@@ -31,6 +36,10 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 	
 	public List<CulturalCategoryType> findAll(Long categoryId) {
 		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(categoryId);
+	}
+	
+	public Page<CulturalCategoryType> findAll(Pageable pageable) {
+		return culturalCategoryTypeRepository.findAll(pageable);
 	}
 
 	@Override
@@ -82,6 +91,10 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 		}
 		categoryTypeToUpdate.setName(entity.getName());
 		return culturalCategoryTypeRepository.save(categoryTypeToUpdate);
+	}
+	
+	public CulturalCategoryType findOneByIdAndCategoryId(Long typeId, Long categoryId) {
+		return culturalCategoryTypeRepository.findOneByIdAndCulturalSiteCategoryId(typeId, categoryId);
 	}
 
 }

@@ -1,13 +1,13 @@
 -- korisnici
 -- password = admin
 insert into users (type, name, surname, email, password) 
-values ('Admin', 'Ksenija', 'Prcic', 'neki_email', '$2a$04$SwzgBrIJZhfnzOw7KFcdzOTiY6EFVwIpG7fkF/D1w26G1.fWsi.aK');
+values ('Admin', 'Ksenija', 'Prcic', 'admin@admin.com', '$2a$04$SwzgBrIJZhfnzOw7KFcdzOTiY6EFVwIpG7fkF/D1w26G1.fWsi.aK');
 
 -- password = user
 insert into users (type, name, surname, email, password) 
-values ('AuthenticatedUser', 'Isidor', 'Gavric', 'neki_drugi_email', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq');
+values ('AuthenticatedUser', 'Isidor', 'Gavric', 'prvi@user.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq');
 insert into users (type, name, surname, email, password)
-values ('AuthenticatedUser', 'Mileva', 'Isic', 'neki_treci_email', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq');
+values ('AuthenticatedUser', 'Mileva', 'Isic', 'drugi@user.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq');
 
 insert into authority (name) values ('ROLE_ADMIN');
 insert into authority (name) values ('ROLE_USER');
@@ -47,5 +47,5 @@ insert into comment (text, approved, user_id, site_id)
 insert into news (information, date_time, site_id) values ('Neke novosti', '2020-11-11', 1);
 insert into news (information, date_time, site_id) values ('Neke novosti pt2', '2020-11-11', 2);
 
---subscribed cultural sites from user 2 Isidor Gavric
+--subscribed cultural sites Biblioteka sabacka for user 2 Isidor Gavric
 insert into sites_users(site_id, user_id) values (1, 2);
