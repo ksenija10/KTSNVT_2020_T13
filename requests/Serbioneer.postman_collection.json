@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f9b118a1-25e8-47fd-b723-1e48fb99e5df",
+		"_postman_id": "ec577915-5ce9-487c-ad3c-02cff51c1c2e",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -366,7 +366,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "61fdd368-6f61-41a7-bb25-cdafd2a49a11",
+						"id": "a5b11ddf-8606-4b94-b7fb-b872b4988166",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -376,7 +376,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "83ad173b-fe89-4514-a2be-fa411f1b14f6",
+						"id": "b5ee0206-89ef-4504-bfe8-beef6f87d28a",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1358,7 +1358,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9kcnVnaV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc3NzU3NSwiZXhwIjoxNjA2Nzc5Mzc1LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.gijFHpF-V_ooPM5dGNROj9S9rf9u4AlH24g-zycP6hsM7UoXc3n6Mvzk50m768KxuZE0tYH_gh27cquOGWKqbg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoicHJ2aUB1c2VyLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjgwODY5OCwiZXhwIjoxNjA2ODEwNDk4LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.HG0zlrGj5xfdMpI1PL_tFhGHMrMoq6BbLQiJWvxL-SrGmZdMnIIGw_WzYhYwJgaIt-cd7fXt349gNvcwT1O2Xw",
 									"type": "string"
 								}
 							]

@@ -98,10 +98,6 @@ public class NewsService implements ServiceInterface<News> {
 		for (CulturalSite subscribed : subscribedSites) {
 			allNews.addAll(newsRepository.findAllByCulturalSiteId(subscribed.getId()));
 		}
-		// MORAS NAPRAVITI NEWSDTO ZA SVAKI NEWS KOJI DODAS
-		// TU ODE U BESKONACNU PETLJU
-		// ZAUSTAVI GA TAKO STO CES MU ROKNUTI DTO
-		// NARAVNO DTO U KONTROLERU (ja kreno ovde debil)
 		return allNews;
 	}
 

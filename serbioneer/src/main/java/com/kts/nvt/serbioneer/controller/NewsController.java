@@ -108,8 +108,8 @@ public class NewsController {
     */
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/subscribed")
-    public List<News> getAllSubscribedNews() {
-        return newsService.getAllSubscribedNews();
+    public List<NewsDTO> getAllSubscribedNews() {
+        return newsMapper.toDtoList(newsService.getAllSubscribedNews());
     }
 
 }
