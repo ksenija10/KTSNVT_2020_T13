@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.Rating;
+import com.kts.nvt.serbioneer.model.User;
 import com.kts.nvt.serbioneer.repository.RatingRepository;
 
 @Service
@@ -20,10 +22,10 @@ public class RatingService implements ServiceInterface<Rating> {
 	private RatingRepository ratingRepository;
 
 	@Autowired
-	private AuthenticatedUserService authenticatedUserService;
-
-	@Autowired
 	private CulturalSiteService culturalSiteService;
+	
+	@Autowired
+	private AuthenticatedUserService authenticatedUserService;
 
 	private final String type = "Rating";
 
@@ -31,7 +33,7 @@ public class RatingService implements ServiceInterface<Rating> {
 	public List<Rating> findAll() {
 		return ratingRepository.findAll();
 	}
-	
+
 	public Page<Rating> findAll(Pageable pageable) {
 		return ratingRepository.findAll(pageable);
 	}
@@ -39,7 +41,7 @@ public class RatingService implements ServiceInterface<Rating> {
 	public List<Rating> findAllByCulturalSiteId(Long culturalSiteId) {
 		return ratingRepository.findAllByCulturalSiteId(culturalSiteId);
 	}
-	
+
 	public Page<Rating> findAllByCulturalSiteId(Pageable pageable, Long culturalSiteId) {
 		return ratingRepository.findAllByCulturalSiteId(pageable, culturalSiteId);
 	}
@@ -51,7 +53,7 @@ public class RatingService implements ServiceInterface<Rating> {
 	public Page<Rating> findAllByAuthenticatedUserId(Pageable pageable, Long authenticatedUserId) {
 		return ratingRepository.findAllByAuthenticatedUserId(pageable, authenticatedUserId);
 	}
-	
+
 	@Override
 	public Rating findOneById(Long id) {
 		return ratingRepository.findById(id).orElse(null);
@@ -62,17 +64,26 @@ public class RatingService implements ServiceInterface<Rating> {
 		return null;
 	}
 
-	public Rating create(Long culturalSiteId, Long authenticatedUserId, int value) throws Exception {
+	public Rating create(Long culturalSiteId, int value) throws Exception {
 		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
 		if (culturalSite == null) {
 			throw new NonexistentIdException("Cultural Site");
 		}
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		AuthenticatedUser authUser = authenticatedUserService.findOneById(user.getId());
+		System.out.println("\n\n\n=================\n\n\n");
+		System.out.println(authUser.getId() + " " + authUser.getName());
+		System.out.println("\n\n\n=================\n\n\n");
+		
+		
+		
+		Rating entity = new Rating(value, culturalSite, authUser);
+		System.out.println("\n\n\n=================\n\n\n");
+		System.out.println(entity.getAuthenticatedUser().getId() + " " + authUser.getName());
+		System.out.println("\n\n\n=================\n\n\n");
+		
 
-		AuthenticatedUser authenticatedUser = authenticatedUserService.findOneById(authenticatedUserId);
-		if (authenticatedUser == null) {
-			throw new NonexistentIdException("Authenticated User");
-		}
-		Rating entity = new Rating(value, culturalSite, authenticatedUser);
 		return ratingRepository.save(entity);
 	}
 
@@ -82,6 +93,13 @@ public class RatingService implements ServiceInterface<Rating> {
 		if (ratingToDelete == null) {
 			throw new NonexistentIdException(this.type);
 		}
+		
+		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if (!ratingToDelete.getAuthenticatedUser().getId().equals(user.getId())) {
+			throw new Exception("You can only delete your ratings");
+		}
+		
 		ratingRepository.delete(ratingToDelete);
 
 	}
@@ -91,6 +109,14 @@ public class RatingService implements ServiceInterface<Rating> {
 		if (ratingToUpdate == null) {
 			throw new NonexistentIdException(this.type);
 		}
+
+		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		
+		if (!ratingToUpdate.getAuthenticatedUser().getId().equals(user.getId())) {
+			throw new Exception("You can only edit your ratings");
+		}
+
 		ratingToUpdate.setValue(value);
 		return ratingRepository.save(ratingToUpdate);
 	}

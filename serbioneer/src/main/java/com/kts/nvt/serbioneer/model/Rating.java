@@ -49,4 +49,10 @@ public class Rating {
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
 	private AuthenticatedUser authenticatedUser;
+
+	public Rating(@NonNull int value) {
+		this.value = value;
+	}
+	
+	
 }

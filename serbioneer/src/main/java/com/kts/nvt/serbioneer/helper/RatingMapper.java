@@ -13,7 +13,7 @@ public class RatingMapper implements MapperInterface<Rating, RatingDTO> {
 
 	@Override
 	public Rating toEntity(RatingDTO dto) {
-		return null;
+		return new Rating(dto.getValue());
 	}
 
 	@Override

@@ -36,6 +36,10 @@ public class RatingController {
 		this.ratingMapper = new RatingMapper();
 	}
 
+	/*
+	 * url: GET localhost:8080/api/rating/cultural-site/{cultural-site-id} HTTP
+	 * request for getting all ratings of a cultural site
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@GetMapping(value = "/cultural-site/{cultural-site-id}")
 	public ResponseEntity<List<RatingDTO>> getAllRatingsForCulturalSite(
@@ -44,6 +48,10 @@ public class RatingController {
 		return new ResponseEntity<>(ratingMapper.toDtoList(ratings), HttpStatus.OK);
 	}
 
+	/*
+	 * url: GET localhost:8080/api/rating/authenticated-user/{authenticated-user-id}
+	 * HTTP request for getting all ratings of an authenticated user
+	 */
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/authenticated-user/{authenticated-user-id}")
 	public ResponseEntity<List<RatingDTO>> getAllRatingsForAuthenticatedUser(
@@ -52,13 +60,17 @@ public class RatingController {
 		return new ResponseEntity<>(ratingMapper.toDtoList(ratings), HttpStatus.OK);
 	}
 
+	/*
+	 * url: POST localhost:8080/api/rating/cultural-site/{cultural-site-id} HTTP
+	 * request for creating a new rating of a cultural site
+	 */
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RatingDTO> create(@Valid @RequestBody RatingDTO ratingDto) {
+	@PostMapping(value = "/cultural-site/{cultural-site-id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RatingDTO> createRating(@Valid @RequestBody RatingDTO ratingDto,
+			@PathVariable("cultural-site-id") Long culturalSiteId) {
 		Rating rating;
 		try {
-			rating = ratingService.create(ratingDto.getCulturalSiteId(), ratingDto.getAuthenticatedUserId(),
-					ratingDto.getValue());
+			rating = ratingService.create(culturalSiteId, ratingDto.getValue());
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
@@ -66,6 +78,10 @@ public class RatingController {
 		return new ResponseEntity<>(ratingMapper.toDto(rating), HttpStatus.CREATED);
 	}
 
+	/*
+	 * url: PUT localhost:8080/api/rating HTTP request for updating a specific
+	 * rating
+	 */
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RatingDTO> updateRating(@Valid @RequestBody RatingDTO ratingDto) {
