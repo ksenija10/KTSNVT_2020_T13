@@ -59,19 +59,7 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 
 	@Override
 	public CulturalSite update(CulturalSite entity, Long id) throws Exception {
-		CulturalSite culturalSiteToUpdate = culturalSiteRepository.findById(id).orElse(null);
-        if (culturalSiteToUpdate == null) {
-            throw new NonexistentIdException(this.type);
-        }
-        // izmena dobavljenog kulturnog dobra
-        culturalSiteToUpdate.setName(entity.getName());
-        culturalSiteToUpdate.setLat(entity.getLat());
-        culturalSiteToUpdate.setLng(entity.getLng());
-        culturalSiteToUpdate.setAddress(entity.getAddress());
-        culturalSiteToUpdate.setCity(entity.getCity());
-        culturalSiteToUpdate.setDescription(entity.getDescription());
-        // TODO potencijalno promena tipa
-        return culturalSiteRepository.save(culturalSiteToUpdate);
+		return null;
 	}
 	
 	public CulturalSite create(CulturalSite entity, Long categoryId, Long categoryTypeId) throws Exception {
@@ -95,6 +83,34 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 		entity.setCulturalCategoryType(categoryType);
 		// cuvamo u bazu
 		return culturalSiteRepository.save(entity);
+	}
+	
+	public CulturalSite update(CulturalSite entity, Long id, Long categoryId, Long categoryTypeId) 
+			throws Exception {
+		CulturalSite culturalSiteToUpdate = culturalSiteRepository.findById(id).orElse(null);
+        if (culturalSiteToUpdate == null) {
+            throw new NonexistentIdException(this.type);
+        }
+        // provera postojanja kategorije
+        CulturalSiteCategory category = culturalSiteCategoryService.findOneById(categoryId);
+        if (category == null) {
+            throw new NonexistentIdException(culturalSiteCategoryService.getType());
+        }
+        // provera postojanja tipa kategorije
+        CulturalCategoryType categoryType = culturalCategoryTypeService.findOneById(categoryTypeId);
+        if (categoryType == null) {
+        	throw new NonexistentIdException(culturalCategoryTypeService.getType());
+        }
+        // izmena dobavljenog kulturnog dobra
+        culturalSiteToUpdate.setName(entity.getName());
+        culturalSiteToUpdate.setLat(entity.getLat());
+        culturalSiteToUpdate.setLng(entity.getLng());
+        culturalSiteToUpdate.setAddress(entity.getAddress());
+        culturalSiteToUpdate.setCity(entity.getCity());
+        culturalSiteToUpdate.setDescription(entity.getDescription());
+        culturalSiteToUpdate.setCulturalSiteCategory(category);
+        culturalSiteToUpdate.setCulturalCategoryType(categoryType);
+        return culturalSiteRepository.save(culturalSiteToUpdate);
 	}
 
 }

@@ -123,9 +123,11 @@ public class CulturalSiteController {
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CulturalSiteDTO> updateCulturalSite(@PathVariable("id") Long id,
 								@Valid @RequestBody CulturalSiteDTO culturalSiteDto) {
+		Long categoryId = culturalSiteDto.getCategoryId();
+		Long categoryTypeId = culturalSiteDto.getCategoryTypeId();
 		CulturalSite culturalSite = culturalSiteMapper.toEntity(culturalSiteDto);
 		try {
-			culturalSite = culturalSiteService.update(culturalSite, id);
+			culturalSite = culturalSiteService.update(culturalSite, id, categoryId, categoryTypeId);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}

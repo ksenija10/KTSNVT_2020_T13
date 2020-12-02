@@ -36,7 +36,7 @@ public class CulturalSiteDTO {
 	private String address;
 
 	@NotBlank(message = "Cultural site city cannot be empty.")
-	@Pattern(regexp = "[A-Z]{1}[a-z]+", message = "City name must begin with a capital letter.")
+	@Pattern(regexp = "([A-Z]{1}[a-z]+)(\\s[A-Z]{1}[a-z]+)*", message = "City name must begin with a capital letter.")
 	private String city;
 	
 	private String description;
