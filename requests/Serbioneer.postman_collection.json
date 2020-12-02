@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3f17935f-ca09-4dff-9fbf-2e7e41ef610d",
+		"_postman_id": "d125319b-4a32-4e7c-83cc-a1c73e3617fb",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -366,7 +366,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "bfeb52da-296e-418e-84fc-792d94297a36",
+						"id": "5410253d-bc3f-4ff7-aaee-977a8ac18a85",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -376,7 +376,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6831e98d-5577-467b-8af8-46cab578a9d9",
+						"id": "9ac64044-0351-4eba-aa83-10ad2b49cd7a",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1666,6 +1666,544 @@
 								"api",
 								"authenticated-user",
 								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Image Requests",
+			"item": [
+				{
+					"name": "GetAllImagesForNews",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2OTIyNzUwLCJleHAiOjE2MDY5MjQ1NTAsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.pf5_JeIGv5TrEuvRIlzAurWUrz-tIuij0jx0c_c1nuLewd9NZc67iW8Cy4zodlqRvDuE6aPLXWQQfUurX6fk2A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/image/news/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"image",
+								"news",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllImagesForComment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2OTIxNjk3LCJleHAiOjE2MDY5MjM0OTcsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.eOym76yvOlNrnPmLK919lE6tw6pcXhiEK5iNA37_xFcZCB7fUkD-KzWJHncA1a6B_czonxQWPfsBLuuyXpxJhQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/image/comment/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"image",
+								"comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllImagesForNewsByPage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2OTIxNjk3LCJleHAiOjE2MDY5MjM0OTcsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.eOym76yvOlNrnPmLK919lE6tw6pcXhiEK5iNA37_xFcZCB7fUkD-KzWJHncA1a6B_czonxQWPfsBLuuyXpxJhQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/image/news/1/by-page?page=0&size=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"image",
+								"news",
+								"1",
+								"by-page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllImagesForCommentByPage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2OTIyNzUwLCJleHAiOjE2MDY5MjQ1NTAsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.pf5_JeIGv5TrEuvRIlzAurWUrz-tIuij0jx0c_c1nuLewd9NZc67iW8Cy4zodlqRvDuE6aPLXWQQfUurX6fk2A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/image/comment/1/by-page?page=0&size=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"image",
+								"comment",
+								"1",
+								"by-page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllImagesForCulturalSite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2OTIyNzUwLCJleHAiOjE2MDY5MjQ1NTAsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.pf5_JeIGv5TrEuvRIlzAurWUrz-tIuij0jx0c_c1nuLewd9NZc67iW8Cy4zodlqRvDuE6aPLXWQQfUurX6fk2A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/image/cultural-site/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"image",
+								"cultural-site",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllImagesForCulturalSiteByPage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2OTIyNzUwLCJleHAiOjE2MDY5MjQ1NTAsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.pf5_JeIGv5TrEuvRIlzAurWUrz-tIuij0jx0c_c1nuLewd9NZc67iW8Cy4zodlqRvDuE6aPLXWQQfUurX6fk2A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/image/cultural-site/1/by-page?page=0&size=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"image",
+								"cultural-site",
+								"1",
+								"by-page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateImageForComment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2OTIyNzUwLCJleHAiOjE2MDY5MjQ1NTAsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.pf5_JeIGv5TrEuvRIlzAurWUrz-tIuij0jx0c_c1nuLewd9NZc67iW8Cy4zodlqRvDuE6aPLXWQQfUurX6fk2A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Igor/Files/Skola/Radovi iz Grafike/Butman.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/image/comment/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"image",
+								"comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateImageForNews",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2OTIzMzkwLCJleHAiOjE2MDY5MjUxOTAsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.cCSoU2fdqrgiLJsP8DFf9U1f26q8n_yHi2ozGrDbAx_RqltE2y_scdEKKNfanerhlebPHu8mLTU6-xQz3_gYsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Igor/Files/Skola/Radovi iz Grafike/Butman.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/image/news/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"image",
+								"news",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateImageForCulturalSite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA2OTIzMzkwLCJleHAiOjE2MDY5MjUxOTAsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.cCSoU2fdqrgiLJsP8DFf9U1f26q8n_yHi2ozGrDbAx_RqltE2y_scdEKKNfanerhlebPHu8mLTU6-xQz3_gYsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Igor/Files/Skola/Radovi iz Grafike/Butman.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/image/cultural-site/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"image",
+								"cultural-site",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteImage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoicHJ2aUB1c2VyLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjkyNDA2NywiZXhwIjoxNjA2OTI1ODY3LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19._i7ervLsRFAl-sOSS09V7eplPZGaHusDO35J7L8SJZEUdqQFD3Olxgofp01A88_Sx_LNoF-BDVQV4AXldion6g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/image/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"image",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Rating Requests",
+			"item": [
+				{
+					"name": "GetAllRatingsForCulturalSite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoicHJ2aUB1c2VyLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjkyNDA2NywiZXhwIjoxNjA2OTI1ODY3LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19._i7ervLsRFAl-sOSS09V7eplPZGaHusDO35J7L8SJZEUdqQFD3Olxgofp01A88_Sx_LNoF-BDVQV4AXldion6g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/rating/cultural-site/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"rating",
+								"cultural-site",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllRatingsForAuthenticatedUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoicHJ2aUB1c2VyLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjkyNDIyNywiZXhwIjoxNjA2OTI2MDI3LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.PxDXWzZt1xashZM6EarkbDp_Fchi8WCmpAGYsdazgNt-f8q-FHZOdgKAe1i6RSdIoIJtjSPnEaoNJabNUML2pA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/rating/authenticated-user/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"rating",
+								"authenticated-user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateRating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoicHJ2aUB1c2VyLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjkyNTU3NCwiZXhwIjoxNjA2OTI3Mzc0LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.h7uY0m6M-tiYBtvp6otfWgQ5rV1esVsjBvLI9v4rf2m-TUuVclw0OE4QAh5ybl15j_QBrR4MBq3rX7NmUbODSQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/rating/cultural-site/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"rating",
+								"cultural-site",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateRating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoicHJ2aUB1c2VyLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjkyNTU3NCwiZXhwIjoxNjA2OTI3Mzc0LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.h7uY0m6M-tiYBtvp6otfWgQ5rV1esVsjBvLI9v4rf2m-TUuVclw0OE4QAh5ybl15j_QBrR4MBq3rX7NmUbODSQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 1,\r\n    \"value\" : 4,\r\n    \"culturalSiteId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/rating",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"rating"
 							]
 						}
 					},
