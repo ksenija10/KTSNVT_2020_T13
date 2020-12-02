@@ -1,5 +1,6 @@
 package com.kts.nvt.serbioneer.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -10,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +21,7 @@ import com.kts.nvt.serbioneer.model.Comment;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.Image;
 import com.kts.nvt.serbioneer.model.News;
+import com.kts.nvt.serbioneer.model.User;
 import com.kts.nvt.serbioneer.repository.ImageRepository;
 
 @Service
@@ -41,10 +44,6 @@ public class ImageService implements ServiceInterface<Image> {
 	@Override
 	public List<Image> findAll() {
 		return imageRepository.findAll();
-	}
-
-	public Page<Image> findAll(Pageable pageable) {
-		return imageRepository.findAll(pageable);
 	}
 
 	public List<Image> findAllByNewsId(Long newsId) {
@@ -84,34 +83,43 @@ public class ImageService implements ServiceInterface<Image> {
 	public Image createForComment(Long commentId, MultipartFile multipartFile) throws Exception {
 		Comment comment = commentService.findOneById(commentId);
 		if (comment == null) {
-			// throw new NonexistentIdException(commentService.getType());
 			throw new NonexistentIdException("Comment");
 		}
 
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-
-		String filePath = this.saveImage(multipartFile, fileName, "Comment");
-
+		String filePath = this.saveImage(multipartFile, fileName, "comment", commentId);
 		Image image = new Image(fileName, filePath, comment);
+
 		return imageRepository.save(image);
 	}
 
-	public Image createForNews(Long newsId, Image entity) throws Exception {
+	public Image createForNews(Long newsId, MultipartFile multipartFile) throws Exception {
 		News news = newsService.findOneById(newsId);
 		if (news == null) {
-			// throw new NonexistentIdException(newsService.getType());
 			throw new NonexistentIdException("News");
 		}
-		return imageRepository.save(entity);
+
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		String filePath = this.saveImage(multipartFile, fileName, "news", newsId);
+		System.out.println("Prosao");
+		Image image = new Image(fileName, filePath, news);
+
+		return imageRepository.save(image);
 	}
 
-	public Image createForCulturalSite(Long culturalSiteId, Image entity) throws Exception {
+	public Image createForCulturalSite(Long culturalSiteId, MultipartFile multipartFile) throws Exception {
 		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
 		if (culturalSite == null) {
-			// throw new NonexistentIdException(newsService.getType());
+
 			throw new NonexistentIdException("Cultural Site");
 		}
-		return imageRepository.save(entity);
+
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		String filePath = this.saveImage(multipartFile, fileName, "culturalSite", culturalSiteId);
+		System.out.println("Prosao");
+		Image image = new Image(fileName, filePath, culturalSite);
+
+		return imageRepository.save(image);
 	}
 
 	@Override
@@ -120,24 +128,41 @@ public class ImageService implements ServiceInterface<Image> {
 		if (imageToDelete == null) {
 			throw new NonexistentIdException(this.type);
 		}
-		imageRepository.delete(imageToDelete);
 
+		if (imageToDelete.getComment() != null) {
+			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (!imageToDelete.getComment().getAuthenticatedUser().getId().equals(user.getId())) {
+				throw new Exception("You can only delete your images");
+			}
+		}
+
+		imageRepository.delete(imageToDelete);
 	}
 
 	@Override
 	public Image update(Image entity, Long id) throws Exception {
-		Image imageToUpdate = imageRepository.findById(id).orElse(null);
-		if (imageToUpdate == null) {
-			throw new NonexistentIdException(this.type);
-		}
-		imageToUpdate.setPath(entity.getPath());
-		imageToUpdate.setName(entity.getName());
-		return imageRepository.save(imageToUpdate);
+
+		return null;
 	}
 
-	public String saveImage(MultipartFile file, String fileName, String folderName) throws IOException {
-		String filePath = "src/main/resources/images/" + folderName + "/" + file.getOriginalFilename();
+	public String saveImage(MultipartFile file, String fileName, String folderName, Long entityId) throws IOException{
+		String separator = System.getProperty("file.separator");
+		String folderPath = "src" + separator + "main" + separator + "resources" + separator + "images" + separator
+				+ folderName;
+		String entityFolderPath = folderPath + separator + entityId;
+		String filePath = entityFolderPath + separator + file.getOriginalFilename();
+		
 		Path path = Paths.get(filePath);
+
+		File folder = new File(folderPath);
+		if (!folder.exists()) {
+			folder.mkdir();
+		}
+		
+		File entityFolder = new File(entityFolderPath);
+		if(!entityFolder.exists()) {
+			entityFolder.mkdir();
+		}
 
 		OutputStream os = Files.newOutputStream(path);
 		os.write(file.getBytes());

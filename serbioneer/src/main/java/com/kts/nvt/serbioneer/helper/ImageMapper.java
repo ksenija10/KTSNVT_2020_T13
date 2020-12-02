@@ -1,5 +1,8 @@
 package com.kts.nvt.serbioneer.helper;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +19,15 @@ public class ImageMapper implements MapperInterface<Image, ImageDTO> {
 	}
 
 	@Override
-	public ImageDTO toDto(Image entity) {
-		return null;
+	public ImageDTO toDto(Image entity){
+		byte[] content;
+		try {
+			content = Files.readAllBytes (Paths.get (entity.getPath()));
+		} catch (IOException e) {
+			content = null;
+		}
+		ImageDTO imageDto = new ImageDTO(entity.getId(), entity.getName(), content);
+		return imageDto;
 	}
 
 	@Override
