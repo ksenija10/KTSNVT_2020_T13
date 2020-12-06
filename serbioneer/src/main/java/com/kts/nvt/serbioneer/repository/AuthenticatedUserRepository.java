@@ -9,4 +9,6 @@ import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 public interface AuthenticatedUserRepository extends JpaRepository<AuthenticatedUser, Long> {
 
 	AuthenticatedUser findOneByEmail(String email);
+
+	AuthenticatedUser findOneByEmailAndActivated(String email, boolean activated);
 }

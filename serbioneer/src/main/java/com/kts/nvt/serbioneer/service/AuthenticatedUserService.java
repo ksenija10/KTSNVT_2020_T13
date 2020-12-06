@@ -2,9 +2,12 @@ package com.kts.nvt.serbioneer.service;
 
 import java.util.List;
 
+import com.kts.nvt.serbioneer.registration.VerificationToken;
+import com.kts.nvt.serbioneer.repository.VerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,13 +17,17 @@ import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.repository.AuthenticatedUserRepository;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class AuthenticatedUserService implements ServiceInterface<AuthenticatedUser> {
 
 	@Autowired
 	private AuthenticatedUserRepository authenticatedUserRepository;
-	
+
+	@Autowired
+	private VerificationTokenRepository verificationTokenRepository;
+
 	private final String type = "AuthenticatedUser";
 	
 	@Override
@@ -43,10 +50,28 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		entity.setPassword(encoder.encode(entity.getPassword()));
 		AuthenticatedUser authenticatedUserToCreate = authenticatedUserRepository.findOneByEmail(entity.getEmail());
+
 		if(authenticatedUserToCreate == null) {
-			return authenticatedUserRepository.save(entity);
+			AuthenticatedUser saved = authenticatedUserRepository.save(entity);
+			return saved;
+		} else {
+			if (authenticatedUserToCreate.isActivated()) {
+				throw new ExistentFieldValueException(this.type, "email");
+			} else {
+				//postoji u bazi ali je neaktivan jer nije pration link
+				VerificationToken token = verificationTokenRepository.findByUser(authenticatedUserToCreate);
+				if (token.isExpired()) {
+					//istekao je moze da se registruje ponovo
+					verificationTokenRepository.delete(token);
+					System.out.println(authenticatedUserToCreate.getId());
+					return authenticatedUserToCreate;
+				} else {
+					throw new Exception("Please check your email for the verification link!");
+				}
+
+			}
 		}
-		throw new ExistentFieldValueException(this.type, "email");
+
 	}
 
 	@Override
@@ -75,6 +100,24 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		authenticatedUserToUpdate.setName(entity.getName());
 		authenticatedUserToUpdate.setSurname(entity.getSurname());
 		return authenticatedUserRepository.save(authenticatedUserToUpdate);
+	}
+
+	public AuthenticatedUser getUserByToken(String verificationToken) {
+		AuthenticatedUser user = verificationTokenRepository.findByToken(verificationToken).getUser();
+		return user;
+	}
+
+	public VerificationToken getVerificationToken(String VerificationToken) {
+		return verificationTokenRepository.findByToken(VerificationToken);
+	}
+
+	public void saveRegisteredUser(AuthenticatedUser user) {
+		authenticatedUserRepository.save(user);
+	}
+
+	public void createVerificationToken(AuthenticatedUser user, String token) {
+		VerificationToken myToken = new VerificationToken(token, user);
+		verificationTokenRepository.save(myToken);
 	}
 
 }
