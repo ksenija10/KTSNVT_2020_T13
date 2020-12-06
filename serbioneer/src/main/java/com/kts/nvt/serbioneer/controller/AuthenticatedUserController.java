@@ -1,6 +1,5 @@
 package com.kts.nvt.serbioneer.controller;
 
-import java.util.HashSet;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -12,11 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +24,6 @@ import com.kts.nvt.serbioneer.dto.AuthenticatedUserDTO;
 import com.kts.nvt.serbioneer.helper.AuthenticatedUserMapper;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
-import com.kts.nvt.serbioneer.service.AuthorityService;
 
 @RestController
 @RequestMapping(value = "api/authenticated-user", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,11 +31,8 @@ public class AuthenticatedUserController {
 
 	@Autowired
 	private AuthenticatedUserService authenticatedUserService;
-	
-	@Autowired
-	private AuthorityService authorityService;
-	
-	private AuthenticatedUserMapper authenticatedUserMapper;
+
+	private final AuthenticatedUserMapper authenticatedUserMapper;
 	
 	public AuthenticatedUserController() {
 		this.authenticatedUserMapper = new AuthenticatedUserMapper();
@@ -68,25 +61,7 @@ public class AuthenticatedUserController {
 		return new ResponseEntity<>(authenticatedUserMapper.toDtoPage(authenticatedUsers), 
 									HttpStatus.OK);
 	}
-	
-	/*
-	 * url: POST localhost:8080/api/authenticated-user
-	 * HTTP Request for creating new authenticated user
-	*/
-	//@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AuthenticatedUserDTO> createAuthenticatedUser(@Valid @RequestBody AuthenticatedUserDTO authenticatedUserDto) {
-		AuthenticatedUser authenticatedUser = authenticatedUserMapper.toEntity(authenticatedUserDto);
-		try {
-			authenticatedUser.setAuthorities(new HashSet<>(authorityService.findByName("ROLE_USER")));
-			authenticatedUser = authenticatedUserService.create(authenticatedUser);
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
-		return new ResponseEntity<>(authenticatedUserMapper.toDto(authenticatedUser), 
-									HttpStatus.CREATED);
-	}
-	
+
 	/*
 	 * url: DELETE localhost:8080/api/authenticated-user/{id}
 	 * HTTP Request for deleting an authenticated user by id

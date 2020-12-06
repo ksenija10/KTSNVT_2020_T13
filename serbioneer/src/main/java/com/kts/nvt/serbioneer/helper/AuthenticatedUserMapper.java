@@ -15,13 +15,13 @@ public class AuthenticatedUserMapper implements MapperInterface<AuthenticatedUse
 	@Override
 	public AuthenticatedUser toEntity(AuthenticatedUserDTO dto) {
 		return new AuthenticatedUser(dto.getId(), dto.getName(), dto.getSurname(), 
-				dto.getEmail(), dto.getPassword());
+				dto.getEmail(), dto.getPassword(), dto.isActivated());
 	}
 
 	@Override
 	public AuthenticatedUserDTO toDto(AuthenticatedUser entity) {
 		return new AuthenticatedUserDTO(entity.getId(), entity.getName(), entity.getSurname(), 
-				entity.getEmail(), entity.getPassword());
+				entity.getEmail(), entity.getPassword(), entity.isActivated());
 	}
 
 	@Override

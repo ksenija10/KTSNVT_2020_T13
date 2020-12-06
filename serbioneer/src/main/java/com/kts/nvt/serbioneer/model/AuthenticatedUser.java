@@ -2,12 +2,7 @@ package com.kts.nvt.serbioneer.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +21,11 @@ public class AuthenticatedUser extends User {
 
 	@Getter
 	@Setter
+	@Column(name = "activated")
+	private boolean activated;
+
+	@Getter
+	@Setter
 	// cascadeType = None, ne zelimo propagaciju nijedne operacije
 	// (entiteti su u potpunosti nepovezani, nema smisla propagirati)
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "subscribedUsers")
@@ -41,8 +41,9 @@ public class AuthenticatedUser extends User {
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "authenticatedUser")
 	private Set<Rating> ratings;
 
-	public AuthenticatedUser(@NonNull Long id, @NonNull String name, @NonNull String surname, @NonNull String email,
-			@NonNull String password) {
+	public AuthenticatedUser(Long id, @NonNull String name, @NonNull String surname, @NonNull String email,
+			@NonNull String password, boolean activated) {
 		super(id, name, surname, email, password);
+		this.activated = activated;
 	}
 }

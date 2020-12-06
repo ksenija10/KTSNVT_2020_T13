@@ -2,6 +2,7 @@ package com.kts.nvt.serbioneer.service;
 
 import java.util.List;
 
+import com.kts.nvt.serbioneer.repository.VerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class UserService implements ServiceInterface<User> {
 	
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	private final String type = "User";
 
 	@Override

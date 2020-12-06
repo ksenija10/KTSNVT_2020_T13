@@ -38,7 +38,6 @@ public abstract class User implements UserDetails {
 	
 	@Getter
 	@Setter
-	@NonNull
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
@@ -98,5 +97,13 @@ public abstract class User implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	public User(Long id, @NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password) {
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.password = password;
 	}
 }
