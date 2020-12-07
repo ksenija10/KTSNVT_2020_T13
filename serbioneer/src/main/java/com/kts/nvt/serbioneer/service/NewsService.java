@@ -100,6 +100,5 @@ public class NewsService implements ServiceInterface<News> {
 		}
 		return allNews;
 	}
-
-
+	
 }

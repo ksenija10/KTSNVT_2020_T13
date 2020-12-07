@@ -41,8 +41,8 @@ public class CulturalSiteCategoryController {
 	@Autowired
 	private CulturalCategoryTypeService culturalCategoryTypeService;
 	
-	private CulturalSiteCategoryMapper culturalSiteCategoryMapper;
-	private CulturalCategoryTypeMapper culturalCategoryTypeMapper;
+	private final CulturalSiteCategoryMapper culturalSiteCategoryMapper;
+	private final CulturalCategoryTypeMapper culturalCategoryTypeMapper;
 	
 	public CulturalSiteCategoryController() {
 		this.culturalSiteCategoryMapper = new CulturalSiteCategoryMapper();

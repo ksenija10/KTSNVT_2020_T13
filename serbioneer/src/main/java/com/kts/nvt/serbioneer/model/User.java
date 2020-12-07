@@ -1,5 +1,7 @@
 package com.kts.nvt.serbioneer.model;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -61,10 +63,14 @@ public abstract class User implements UserDetails {
 	private String email;
 	
 	@Getter
-	@Setter
 	@NonNull
 	@Column(name = "password", nullable = false, unique = false)
 	private String password;
+
+	@Getter
+	@Setter
+	@Column(name = "last_password_reset_date")
+	private Timestamp lastPasswordResetDate;
 	
 	@Getter
 	@Setter
@@ -97,6 +103,13 @@ public abstract class User implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+
+	public void setPassword(String password) {
+		Timestamp now = new Timestamp(new Date().getTime());
+		this.setLastPasswordResetDate(now);
+		this.password = password;
 	}
 
 	public User(Long id, @NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password) {

@@ -31,7 +31,7 @@ public class ImageController {
 	@Autowired
 	private ImageService imageService;
 
-	private ImageMapper imageMapper;
+	private final ImageMapper imageMapper;
 
 	public ImageController() {
 		this.imageMapper = new ImageMapper();
@@ -85,7 +85,7 @@ public class ImageController {
 	}
 
 	/*
-	 * url: GET localhost:8080/api/image/comment/{cultural-site-id} HTTP request for
+	 * url: GET localhost:8080/api/image/cultural-site/{cultural-site-id} HTTP request for
 	 * getting all images for specific cultural site
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
@@ -97,7 +97,7 @@ public class ImageController {
 	}
 
 	/*
-	 * url: GET localhost:8080/api/image/comment/{cultural-site-id}/by-page HTTP
+	 * url: GET localhost:8080/api/image/cultural-site/{cultural-site-id}/by-page HTTP
 	 * request for getting all images for specific cultural site by page
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
@@ -116,7 +116,7 @@ public class ImageController {
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@PostMapping(value = "/comment/{id}")
 	public ResponseEntity<ImageDTO> createImageForComment(@RequestParam("file") MultipartFile file,
-			@PathVariable("id") Long commentId) throws Exception {
+			@PathVariable("id") Long commentId){
 		Image image;
 
 		if (file == null) {

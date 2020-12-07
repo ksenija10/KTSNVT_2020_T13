@@ -1,7 +1,11 @@
 package com.kts.nvt.serbioneer.service;
 
+import java.util.HashSet;
 import java.util.List;
 
+import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
+import com.kts.nvt.serbioneer.dto.PasswordDTO;
+import com.kts.nvt.serbioneer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +16,6 @@ import org.springframework.stereotype.Service;
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.Admin;
-import com.kts.nvt.serbioneer.model.User;
 import com.kts.nvt.serbioneer.repository.AdminRepository;
 
 @Service
@@ -20,6 +23,12 @@ public class AdminService implements ServiceInterface<Admin> {
 
 	@Autowired
 	private AdminRepository adminRepository;
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private AuthorityService authorityService;
 	
 	private final String type = "Admin";
 	
@@ -39,11 +48,14 @@ public class AdminService implements ServiceInterface<Admin> {
 
 	@Override
 	public Admin create(Admin entity) throws Exception {
-		//enkripcija lozinke
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		entity.setPassword(encoder.encode(entity.getPassword()));
-		Admin adminToCreate = adminRepository.findOneByEmail(entity.getEmail());
+		//mora provera nad celom user tabelom da bi mail bio jedinstven
+		Admin adminToCreate = (Admin) userRepository.findOneByEmail(entity.getEmail());
 		if(adminToCreate == null) {
+			//enkripcija lozinke
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			entity.setPassword(encoder.encode(entity.getPassword()));
+			//postavljanje authorities
+			entity.setAuthorities(new HashSet<>(authorityService.findByName("ROLE_ADMIN")));
 			return adminRepository.save(entity);
 		}
 		throw new ExistentFieldValueException(this.type, "email");
@@ -60,23 +72,47 @@ public class AdminService implements ServiceInterface<Admin> {
 
 	@Override
 	public Admin update(Admin entity, Long id) throws Exception {
-		//provera da li je ulogovani korisnik isti onaj koji je napravio komentar
+		return null;
+	}
+
+	public Admin updatePersonalInformation(UserUpdateDTO entity) throws Exception {
 		Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (!user.getId().equals(entity.getId())) {
-			throw new Exception("You can only update your own profile.");
-		}
-		Admin adminToUpdate = adminRepository.findById(id).orElse(null);
+
+		Admin adminToUpdate = adminRepository.findById(user.getId()).orElse(null);
 		if(adminToUpdate == null) {
 			throw new NonexistentIdException(this.type);
 		}
-		adminToUpdate.setEmail(entity.getEmail());
-		//enkodovanje sifre
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		adminToUpdate.setPassword(encoder.encode(entity.getPassword()));
 		adminToUpdate.setName(entity.getName());
 		adminToUpdate.setSurname(entity.getSurname());
 		adminToUpdate.setDateOfBirth(entity.getDateOfBirth());
 		return adminRepository.save(adminToUpdate);
+	}
+
+	public void updatePassword (PasswordDTO passwordDTO) throws Exception {
+		Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		Admin adminToUpdate = adminRepository.findById(user.getId()).orElse(null);
+		if(adminToUpdate == null) {
+			throw new NonexistentIdException(this.type);
+		}
+
+		//enkodovanje sifre
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+		if(!encoder.matches(passwordDTO.getOldPassword(), adminToUpdate.getPassword())) {
+			throw new Exception("Old password is incorrect.");
+		}
+
+		if(passwordDTO.getOldPassword().equals(passwordDTO.getNewPassword())) {
+			throw new Exception("New password can not be same as old password.");
+		}
+
+		if(!passwordDTO.getNewPassword().equals(passwordDTO.getRepeatedPassword())) {
+			throw new Exception("New password and repeated password don`t match.");
+		}
+
+		adminToUpdate.setPassword(encoder.encode(passwordDTO.getNewPassword()));
+		adminRepository.save(adminToUpdate);
 	}
 
 }

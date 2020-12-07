@@ -1,10 +1,11 @@
 package com.kts.nvt.serbioneer.controller;
 
-import java.util.HashSet;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
+import com.kts.nvt.serbioneer.dto.PasswordDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,11 +39,7 @@ public class AdminController {
 	@Autowired
 	private AuthorityService authorityService;
 	
-	private AdminMapper adminMapper;
-	
-	public AdminController() {
-		this.adminMapper = new AdminMapper();
-	}
+	private final AdminMapper adminMapper = new AdminMapper();
 	
 	/*
 	 * url: GET localhost:8080/api/admin
@@ -76,9 +72,7 @@ public class AdminController {
 	public ResponseEntity<AdminDTO> createAdmin(@Valid @RequestBody AdminDTO adminDto) {
 		Admin admin = adminMapper.toEntity(adminDto);
 		try {
-			admin.setAuthorities(new HashSet<>(authorityService.findByName("ROLE_ADMIN")));
 			admin = adminService.create(admin);
-			//mozda u authority da dodam admina posle
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
@@ -101,20 +95,35 @@ public class AdminController {
 	}
 	
 	/*
-	 * url: PUT localhost:8080/api/admin/{id}
-	 * HTTP Request for updating an admins by id
+	 * url: PUT localhost:8080/api/admin/updatePersonalInformation
+	 * HTTP Request for updating personal information
 	*/
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AdminDTO> updateAdmin(@PathVariable("id") Long id, 
-												@Valid @RequestBody AdminDTO adminDto) {
-		
-		Admin admin = adminMapper.toEntity(adminDto);
+	@PutMapping(value = "/updatePersonalInformation", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserUpdateDTO> updatePersonalInformation(@Valid @RequestBody UserUpdateDTO userUpdateDTO) {
+
 		try {
-			admin = adminService.update(admin, id);
+			adminService.updatePersonalInformation(userUpdateDTO);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
-		return new ResponseEntity<>(adminMapper.toDto(admin), HttpStatus.OK);
+
+		return new ResponseEntity<>(userUpdateDTO, HttpStatus.OK);
+	}
+
+	/*
+	 * url: PUT localhost:8080/api/admin/updatePassword
+	 * HTTP Request for updating password
+	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
+		try{
+			adminService.updatePassword(passwordDTO);
+		}catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

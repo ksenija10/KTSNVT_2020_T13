@@ -2,7 +2,11 @@ package com.kts.nvt.serbioneer.service;
 
 import java.util.List;
 
+import com.kts.nvt.serbioneer.dto.PasswordDTO;
+import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
+import com.kts.nvt.serbioneer.model.User;
 import com.kts.nvt.serbioneer.registration.VerificationToken;
+import com.kts.nvt.serbioneer.repository.UserRepository;
 import com.kts.nvt.serbioneer.repository.VerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,6 +28,9 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 
 	@Autowired
 	private AuthenticatedUserRepository authenticatedUserRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private VerificationTokenRepository verificationTokenRepository;
@@ -49,8 +56,8 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		//enkripcija lozinke
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		entity.setPassword(encoder.encode(entity.getPassword()));
-		AuthenticatedUser authenticatedUserToCreate = authenticatedUserRepository.findOneByEmail(entity.getEmail());
-
+		//mora provera nad celom user tabelom da bi mail bio jedinstven
+		AuthenticatedUser authenticatedUserToCreate = (AuthenticatedUser) userRepository.findOneByEmail(entity.getEmail());
 		if(authenticatedUserToCreate == null) {
 			AuthenticatedUser saved = authenticatedUserRepository.save(entity);
 			return saved;
@@ -85,21 +92,42 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 
 	@Override
 	public AuthenticatedUser update(AuthenticatedUser entity, Long id) throws Exception {
-		//provera da li je ulogovani korisnik isti onaj koji je napravio komentar
-		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (!user.getId().equals(entity.getId())) {
-			throw new Exception("You can only update your own profile.");
-		}
-		AuthenticatedUser authenticatedUserToUpdate = authenticatedUserRepository.findById(id).orElse(null);
-		if(authenticatedUserToUpdate == null) {
-			throw new NonexistentIdException(this.type);
-		}
-		authenticatedUserToUpdate.setEmail(entity.getEmail());
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		authenticatedUserToUpdate.setPassword(encoder.encode(entity.getPassword()));
+		return null;
+	}
+
+	public AuthenticatedUser updatePersonalInformation(UserUpdateDTO entity) throws Exception {
+		AuthenticatedUser authenticatedUserToUpdate = authenticatedUserRepository.findById(entity.getId()).orElse(null);
+
 		authenticatedUserToUpdate.setName(entity.getName());
 		authenticatedUserToUpdate.setSurname(entity.getSurname());
 		return authenticatedUserRepository.save(authenticatedUserToUpdate);
+	}
+
+	public void updatePassword (PasswordDTO passwordDTO) throws Exception {
+		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		AuthenticatedUser authenticatedUserToUpdate = authenticatedUserRepository.findById(user.getId()).orElse(null);
+		if(authenticatedUserToUpdate == null) {
+			throw new NonexistentIdException(this.type);
+		}
+
+		//enkodovanje sifre
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+		if(!encoder.matches(passwordDTO.getOldPassword(), authenticatedUserToUpdate.getPassword())) {
+			throw new Exception("Old password is incorrect.");
+		}
+
+		if(passwordDTO.getOldPassword().equals(passwordDTO.getNewPassword())) {
+			throw new Exception("New password can not be same as old password.");
+		}
+
+		if(!passwordDTO.getNewPassword().equals(passwordDTO.getRepeatedPassword())) {
+			throw new Exception("New password and repeated password don`t match.");
+		}
+
+		authenticatedUserToUpdate.setPassword(encoder.encode(passwordDTO.getNewPassword()));
+		authenticatedUserRepository.save(authenticatedUserToUpdate);
 	}
 
 	public AuthenticatedUser getUserByToken(String verificationToken) {

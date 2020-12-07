@@ -25,7 +25,7 @@ public class SecureUserDetailsService implements UserDetailsService {
 
         if (user.getClass() == AuthenticatedUser.class) {
             if(!((AuthenticatedUser) user).isActivated()) {
-                throw new UsernameNotFoundException(String.format("The account: %s isnt activated. To activate your" +
+                throw new UsernameNotFoundException(String.format("The account: %s isn`t activated. To activate your" +
                         "account please check your email.", username));
             }
         }

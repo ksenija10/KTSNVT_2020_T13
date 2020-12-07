@@ -18,9 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Calendar;
 import java.util.HashSet;
-import java.util.Locale;
 
 @RestController
 @RequestMapping(value = "api", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -63,11 +61,13 @@ public class RegistrationController {
                 HttpStatus.CREATED);
     }
 
+    /*
+     * url: POST localhost:8080/api/registrationConfirm
+     * HTTP Request for confirming registration
+     */
     @GetMapping("/registrationConfirm")
     public ResponseEntity<AuthenticatedUserDTO> confirmRegistration
             (WebRequest request, @RequestParam("token") String token) {
-
-        Locale locale = request.getLocale();
 
         VerificationToken verificationToken = authenticatedUserService.getVerificationToken(token);
         if (verificationToken == null) {
