@@ -30,15 +30,15 @@ public class RatingController {
 	@Autowired
 	private RatingService ratingService;
 
-	private RatingMapper ratingMapper;
+	private final RatingMapper ratingMapper;
 
 	public RatingController() {
 		this.ratingMapper = new RatingMapper();
 	}
 
 	/*
-	 * url: GET localhost:8080/api/rating/cultural-site/{cultural-site-id} HTTP
-	 * request for getting all ratings of a cultural site
+	 * url: GET localhost:8080/api/rating/cultural-site/{cultural-site-id}
+	 * HTTP request for getting all ratings of a cultural site
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@GetMapping(value = "/cultural-site/{cultural-site-id}")

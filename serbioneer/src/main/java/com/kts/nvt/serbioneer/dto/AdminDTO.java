@@ -23,7 +23,7 @@ public class AdminDTO {
     private String surname;
 
     @NotBlank(message = "Email cannot be empty.")
-    @Email(message = "Poorly formated email address.")
+    @Email(message = "Poorly formatted email address.")
     private String email;
 
     @NotBlank(message = "Password cannot be empty.")

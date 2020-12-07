@@ -14,7 +14,7 @@ public class AdminMapper implements MapperInterface<Admin, AdminDTO>{
 
 	@Override
 	public Admin toEntity(AdminDTO dto) {
-		return new Admin(dto.getId(), dto.getName(), dto.getSurname(), dto.getEmail(), 
+		return new Admin(dto.getId(), dto.getName(), dto.getSurname(), dto.getEmail(),
 				dto.getPassword(), dto.getDateOfBirth());
 	}
 
@@ -47,5 +47,4 @@ public class AdminMapper implements MapperInterface<Admin, AdminDTO>{
 		List<AdminDTO> adminDTOList = toDtoList(entityPage.toList());
         return new PageImpl<>(adminDTOList, entityPage.getPageable(), entityPage.getTotalElements());
 	}
-
 }

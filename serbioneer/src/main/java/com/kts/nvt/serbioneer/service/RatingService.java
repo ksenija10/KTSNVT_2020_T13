@@ -72,17 +72,8 @@ public class RatingService implements ServiceInterface<Rating> {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		AuthenticatedUser authUser = authenticatedUserService.findOneById(user.getId());
-		System.out.println("\n\n\n=================\n\n\n");
-		System.out.println(authUser.getId() + " " + authUser.getName());
-		System.out.println("\n\n\n=================\n\n\n");
-		
-		
-		
+
 		Rating entity = new Rating(value, culturalSite, authUser);
-		System.out.println("\n\n\n=================\n\n\n");
-		System.out.println(entity.getAuthenticatedUser().getId() + " " + authUser.getName());
-		System.out.println("\n\n\n=================\n\n\n");
-		
 
 		return ratingRepository.save(entity);
 	}

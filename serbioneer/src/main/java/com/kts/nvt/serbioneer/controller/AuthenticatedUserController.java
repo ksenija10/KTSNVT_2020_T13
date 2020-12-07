@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.kts.nvt.serbioneer.dto.PasswordDTO;
+import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -78,21 +80,34 @@ public class AuthenticatedUserController {
 	}
 	
 	/*
-	 * url: PUT localhost:8080/api/authenticated-user/{id}
-	 * HTTP Request for updating an authenticated users by id
+	 * url: PUT localhost:8080/api/authenticated-user/updatePersonalInformation
+	 * HTTP Request for updating personal information
 	*/
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AuthenticatedUserDTO> updateAuthanticatedUser(@PathVariable("id") Long id, 
-												@Valid @RequestBody AuthenticatedUserDTO authenticatedUserDto) {
-		
-		AuthenticatedUser authenticatedUser = authenticatedUserMapper.toEntity(authenticatedUserDto);
+	@PutMapping(value = "/updatePersonalInformation", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserUpdateDTO> updatePersonalInformation(@Valid @RequestBody UserUpdateDTO userUpdateDTO) {
 		try {
-			authenticatedUserService.update(authenticatedUser, id);
+			authenticatedUserService.updatePersonalInformation(userUpdateDTO);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
-		return new ResponseEntity<>(authenticatedUserMapper.toDto(authenticatedUser), HttpStatus.OK);
+		return new ResponseEntity<>(userUpdateDTO, HttpStatus.OK);
+	}
+
+	/*
+	 * url: PUT localhost:8080/api/authenticated/updatePassword
+	 * HTTP Request for updating password
+	 */
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
+		try{
+			authenticatedUserService.updatePassword(passwordDTO);
+		}catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 }
