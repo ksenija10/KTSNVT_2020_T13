@@ -44,8 +44,11 @@ insert into comment (text, approved, user_id, site_id)
             values ('Ovaj komentar odbij!', false, 3, 2);
 
 --news
-insert into news (information, date_time, site_id) values ('Neke novosti', '2020-11-11', 1);
+insert into news (information, date_time, site_id) values ('Neke novosti za bibl', '2020-11-12', 1);
+insert into news (information, date_time, site_id) values ('Neke novosti za bibl 2', '2020-11-14', 1);
 insert into news (information, date_time, site_id) values ('Neke novosti pt2', '2020-11-11', 2);
 
 --subscribed cultural sites Biblioteka sabacka for user 2 Isidor Gavric
 insert into sites_users(site_id, user_id) values (1, 2);
+--Snp za Isidor Gavric
+insert into sites_users(site_id, user_id) values (2, 2);

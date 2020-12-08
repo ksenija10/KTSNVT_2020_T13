@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d125319b-4a32-4e7c-83cc-a1c73e3617fb",
+		"_postman_id": "6d71e910-1a61-48b3-97f1-0fafe6a76331",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -366,7 +366,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "5410253d-bc3f-4ff7-aaee-977a8ac18a85",
+						"id": "0177f819-cfbb-4104-bba5-31b6b1351da9",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -376,7 +376,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9ac64044-0351-4eba-aa83-10ad2b49cd7a",
+						"id": "8c282df8-5ff8-4efe-8765-65340a36bd64",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1352,21 +1352,33 @@
 				},
 				{
 					"name": "GetAllSubscribedNews",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoicHJ2aUB1c2VyLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjgwODY5OCwiZXhwIjoxNjA2ODEwNDk4LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.HG0zlrGj5xfdMpI1PL_tFhGHMrMoq6BbLQiJWvxL-SrGmZdMnIIGw_WzYhYwJgaIt-cd7fXt349gNvcwT1O2Xw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoicHJ2aUB1c2VyLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYwNzQxNzM5MCwiZXhwIjoxNjA3NDE5MTkwLCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.SXaP5QibAC7frVN1J7DR3ERTx7ixXYLoEBJwPDePHMPnS2MeI4wPLk8tmam924qXVITwp2rU_qsK5_8q-XXQag",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"prvi@user.com\",\r\n    \"password\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:8080/api/news/subscribed",
+							"raw": "localhost:8080/api/news/subscribed/by-page?page=0&size=10",
 							"host": [
 								"localhost"
 							],
@@ -1374,7 +1386,18 @@
 							"path": [
 								"api",
 								"news",
-								"subscribed"
+								"subscribed",
+								"by-page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
 							]
 						},
 						"description": "Dobavljanje svih novosti kulturnih ponuda na koje je ulogovani korisnik subscribed"
@@ -1395,7 +1418,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1ODMwNiwiZXhwIjoxNjA2NzYwMTA2LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._SCwKrnYE0GHHXIqGqcGR4ccFbMoNVEq73IHm6wXvUpgzn1bm0lmdJ9pPaGvX7aBoMJC6c4d7Fua6rFp_O3Kig",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA3MzU2MzU1LCJleHAiOjE2MDczNTgxNTUsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.GQHYCbtUIE7Yb9cQYsQj3bjkn56oxDxqSuTFMEmbRc3XlmOh0p6_cgsrJcfITR33wj0LLpr-gHFSdDJHM6jJVg",
 									"type": "string"
 								}
 							]
@@ -1491,14 +1514,14 @@
 					"response": []
 				},
 				{
-					"name": "UpdateAdmin",
+					"name": "UpdatePersonalInformation",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiZW1pbl9lbWFpbDEiLCJhdWQiOiJ3ZWIiLCJpYXQiOjE2MDY4Mzc3NjgsImV4cCI6MTYwNjgzOTU2OCwiYXV0aG9yaXRpZXMiOltdfQ.H7zijQN75o4HjeOk94GfXeImbk9Mdq2ANUePIJ3_nWGw45GrS5Ckn80TrkTQU5jFeF9aacA6i3E8p0kq-nULZA",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA3MzU0ODE0LCJleHAiOjE2MDczNTY2MTQsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.VH8GXnCNViCfAWaIr2UZy-XygqaybP-jaG9_sXgMsScXGz69CuvuStEzrk7rd6cpUCcpBxVlVWYqUZfYbZcwPg",
 									"type": "string"
 								}
 							]
@@ -1507,7 +1530,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"Emilija\",\r\n    \"surname\": \"Momovic\",\r\n    \"email\": \"emin_email1\",\r\n    \"password\": \"malipas\",\r\n    \"dateOfBirth\": null\r\n}",
+							"raw": "{\r\n    \"name\": \"Emilija\",\r\n    \"surname\": \"Momovic\",\r\n    \"dateOfBirth\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1515,7 +1538,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/admin/4",
+							"raw": "localhost:8080/api/admin/updatePersonalInformation",
 							"host": [
 								"localhost"
 							],
@@ -1523,9 +1546,49 @@
 							"path": [
 								"api",
 								"admin",
-								"4"
+								"updatePersonalInformation"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePassword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA3MzU2MzE1LCJleHAiOjE2MDczNTgxMTUsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.2Lcuc3nwkFm6tWkQ46TpD8VGROYYWGMSd_QexpJ9RnsMUBsoe-Y0GmZW6gqbkYYl6V4NKQGKlzql8TXZ18Y-YQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"admin\",\r\n    \"newPassword\": \"admin2\",\r\n    \"repeatedPassword\": \"admin2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/admin/updatePassword",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"updatePassword"
+							]
+						},
+						"description": "Promena lozinke"
 					},
 					"response": []
 				}
@@ -1543,7 +1606,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc1OTM3NCwiZXhwIjoxNjA2NzYxMTc0LCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0._8SkCfNHsGkm54_ERhQ9G87fMFRkgrMoIKA0dep-xLNwWoknJP9XGvDSY9_M4gySB3nYVTBx3shIs4pvQTx1Mw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA3MjQzNzA4LCJleHAiOjE2MDcyNDU1MDgsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.r8qnpoQwBNbze2SxN35wrtrEqC1Bwx9scmUWI95Qkvp0R2jvtqxNp04tY9Fklay_veiV5AP1c2UyNa0JMDIFaA",
 									"type": "string"
 								}
 							]
@@ -1633,7 +1696,7 @@
 					"response": []
 				},
 				{
-					"name": "UpdateAuthanticatedUser",
+					"name": "UpdatePersonalInformation",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1649,7 +1712,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"id\": 5,\r\n        \"name\": \"Jasmina\",\r\n        \"surname\": \"Urosevic\",\r\n        \"email\": \"jasminin_email333\",\r\n        \"password\": \"malakuca\"\r\n    }",
+							"raw": "{\r\n        \"name\": \"Jasmina\",\r\n        \"surname\": \"Urosevic\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1657,7 +1720,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/authenticated-user/4",
+							"raw": "localhost:8080/api/authenticated-user/updatePersonalInformation",
 							"host": [
 								"localhost"
 							],
@@ -1665,7 +1728,36 @@
 							"path": [
 								"api",
 								"authenticated-user",
-								"4"
+								"updatePersonalInformation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePassword",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"admin\",\r\n    \"newPassword\": \"admin2\",\r\n    \"repeatedPassword\": \"admin2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/authenticated/updatePassword",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authenticated",
+								"updatePassword"
 							]
 						}
 					},
@@ -2215,11 +2307,14 @@
 		{
 			"name": "LoginRequestAdmin",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"admin@admin.com\",\r\n    \"password\": \"admin\"\r\n}",
+					"raw": "{\r\n    \"username\": \"admin@admin.com\",\r\n    \"password\": \"admin2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2265,6 +2360,35 @@
 					]
 				},
 				"description": "Zahtev za prijavu na sistem kao korisnik."
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ime\",\r\n    \"surname\": \"Prezime\",\r\n    \"email\": \"ksenija.prcic1998@gmail.com\",\r\n    \"password\": \"neki_pass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"register"
+					]
+				},
+				"description": "Zahtev za registraciju"
 			},
 			"response": []
 		}

@@ -107,9 +107,12 @@ public class NewsController {
        HTTP request for getting all subscribed news
     */
     @PreAuthorize("hasRole('ROLE_USER')")
-    @GetMapping("/subscribed")
-    public List<NewsDTO> getAllSubscribedNews() {
-        return newsMapper.toDtoList(newsService.getAllSubscribedNews());
+    @GetMapping("/subscribed/by-page")
+    public ResponseEntity<Page<NewsDTO>> getAllSubscribedNews(Pageable pageable) {
+
+        Page<News> page = newsService.getAllSubscribedNews(pageable);
+
+        return new ResponseEntity<>(newsMapper.toDtoPage(page), HttpStatus.OK);
     }
 
 }
