@@ -90,15 +90,13 @@ public class NewsService implements ServiceInterface<News> {
 		return newsRepository.findAllByCulturalSiteId(pageable, culturalSiteId);
 	}
 
-	public List<News> getAllSubscribedNews() {
+	public Page<News> getAllSubscribedNews(Pageable pageable) {
 		Long id = ((AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
 		AuthenticatedUser user = userRepository.findById(id).orElse(null);
-		Set<CulturalSite> subscribedSites = user.getSubscribedSites();
-		List<News> allNews = new ArrayList<>();
-		for (CulturalSite subscribed : subscribedSites) {
-			allNews.addAll(newsRepository.findAllByCulturalSiteId(subscribed.getId()));
-		}
-		return allNews;
+
+		Page<News> news = newsRepository.findAllByCulturalSiteInOrderByDateTimeDesc(user.getSubscribedSites(), pageable);
+
+		return news;
 	}
 	
 }
