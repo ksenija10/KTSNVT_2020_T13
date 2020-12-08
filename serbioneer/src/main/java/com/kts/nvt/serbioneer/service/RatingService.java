@@ -75,7 +75,11 @@ public class RatingService implements ServiceInterface<Rating> {
 
 		Rating entity = new Rating(value, culturalSite, authUser);
 
-		return ratingRepository.save(entity);
+		entity = ratingRepository.save(entity);
+
+		culturalSiteService.updateRating(culturalSite);
+
+		return entity;
 	}
 
 	@Override
@@ -109,6 +113,11 @@ public class RatingService implements ServiceInterface<Rating> {
 		}
 
 		ratingToUpdate.setValue(value);
+
+		ratingToUpdate = ratingRepository.save(ratingToUpdate);
+
+		culturalSiteService.updateRating(ratingToUpdate.getCulturalSite());
+
 		return ratingRepository.save(ratingToUpdate);
 	}
 

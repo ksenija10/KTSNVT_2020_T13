@@ -29,7 +29,7 @@ insert into category_type (name, category_id) values ('Pozorište', 1);
 -- kulturna dobra
 insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id)
 values ('Biblioteka šabačka', 44.7556269, 19.6923025, 'Masarikova 18', 'Šabac',
-'Библиотека шабачка је матична установа за све библиотеке на подручју осам општина Мачванског округа.', 4.8, 1, 1);
+'Библиотека шабачка је матична установа за све библиотеке на подручју осам општина Мачванског округа.', 3, 1, 1);
 
 insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id)
 values ('Srpsko narodno pozorište', 45.2553797, 19.8429706, 'Pozorišni trg 1', 'Novi Sad',
@@ -52,3 +52,7 @@ insert into news (information, date_time, site_id) values ('Neke novosti pt2', '
 insert into sites_users(site_id, user_id) values (1, 2);
 --Snp za Isidor Gavric
 insert into sites_users(site_id, user_id) values (2, 2);
+
+--rating
+--Isidor je ocenio biblioteku sabacku sa 3
+insert into rating (value, user_id, site_id) values (3, 2, 1);

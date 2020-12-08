@@ -2,6 +2,7 @@ package com.kts.nvt.serbioneer.service;
 
 import java.util.List;
 
+import com.kts.nvt.serbioneer.model.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -111,6 +112,20 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
         culturalSiteToUpdate.setCulturalSiteCategory(category);
         culturalSiteToUpdate.setCulturalCategoryType(categoryType);
         return culturalSiteRepository.save(culturalSiteToUpdate);
+	}
+
+	public double updateRating (CulturalSite culturalSite) {
+
+		int ratingSum = 0;
+		for(Rating r : culturalSite.getRatings()) {
+			ratingSum += r.getValue();
+		}
+		double newRating = (double) ratingSum / culturalSite.getRatings().size();
+		culturalSite.setRating(newRating);
+
+		culturalSiteRepository.save(culturalSite);
+
+		return newRating;
 	}
 
 }

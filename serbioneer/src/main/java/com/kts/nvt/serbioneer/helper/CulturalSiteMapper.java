@@ -26,7 +26,7 @@ public class CulturalSiteMapper implements MapperInterface<CulturalSite, Cultura
 									entity.getCulturalCategoryType().getName(),
 									entity.getLat(), entity.getLng(),
 									entity.getAddress(), entity.getCity(),
-									entity.getDescription());
+									entity.getDescription(), entity.getRating());
 	}
 
 	@Override
