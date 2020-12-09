@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
@@ -41,6 +42,8 @@ public class CulturalSiteDTO {
 	
 	private String description;
 
+	private double rating;
+
 	public CulturalSiteDTO(Long id,
 			@NotBlank(message = "Cultural site name cannot be empty.") String name,
 			Long categoryId, String category,
@@ -49,7 +52,7 @@ public class CulturalSiteDTO {
 			@DecimalMin("18.850") @DecimalMax("23.017") double lng,
 			@NotBlank(message = "Cultural site address cannot be empty.") String address,
 			@NotBlank(message = "Cultural site city cannot be empty.") String city,
-			String description) {
+			String description, double rating) {
 		this.id = id;
 		this.name = name;
 		this.categoryId = categoryId;
@@ -61,5 +64,6 @@ public class CulturalSiteDTO {
 		this.address = address;
 		this.city = city;
 		this.description = description;
+		this.rating = rating;
 	}
 }
