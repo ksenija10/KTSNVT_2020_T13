@@ -6,10 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.dto.CulturalSiteFilterDTO;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalCategoryType;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
@@ -123,6 +125,7 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 					filterDTO.getCulturalSiteName(), filterDTO.getLocation());
 	}
 	
+	//dobavljanje svih gradova za front
 	public List<String> findAllCities(){
 		List<String> cities = new ArrayList<String>();
 		List<CulturalSite> culturalSites = this.findAll();
@@ -130,5 +133,10 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 			cities.add(culturalSite.getCity());
 		}
 		return cities;
+	}
+	
+	public Page<CulturalSite> findAllSubscribed(Pageable pageable){
+		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return culturalSiteRepository.findAllBySubscribedUsersId(pageable, user.getId());
 	}
 }
