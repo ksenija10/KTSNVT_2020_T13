@@ -77,3 +77,5 @@ insert into news (information, date_time, site_id) values ('Neke novosti pt2', '
 insert into sites_users(site_id, user_id) values (1, 2);
 --Snp za Isidor Gavric
 insert into sites_users(site_id, user_id) values (2, 2);
+--Civijada za Isidor Gavric
+insert into sites_users(site_id, user_id) values (4, 2);

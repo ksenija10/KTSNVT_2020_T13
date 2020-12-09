@@ -247,5 +247,16 @@ public class CulturalSiteController {
 		Page<CulturalSite> page = culturalSiteService.filterCulturalSites(pageable, filterDTO);
 		return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
 	}
+	
+	/*
+		url: GET localhost:8080/api/cultural-site/subscribed/by-page
+		HTTP request for getting subscribed cultural sites by page
+	 */
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@GetMapping(value = "/subscribed/by-page")
+	public ResponseEntity<Page<CulturalSiteDTO>> getAllSubscribedCulturalSites(Pageable pageable){
+	    Page<CulturalSite> page = culturalSiteService.findAllSubscribed(pageable);
+	    return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
+	}
 
 }
