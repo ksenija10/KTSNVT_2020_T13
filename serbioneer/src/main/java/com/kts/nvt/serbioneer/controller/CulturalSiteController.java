@@ -23,6 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.kts.nvt.serbioneer.dto.CommentDTO;
 import com.kts.nvt.serbioneer.dto.CulturalSiteDTO;
+import com.kts.nvt.serbioneer.dto.CulturalSiteFilterDTO;
 import com.kts.nvt.serbioneer.dto.NewsDTO;
 import com.kts.nvt.serbioneer.helper.CommentMapper;
 import com.kts.nvt.serbioneer.helper.CulturalSiteMapper;
@@ -181,7 +182,7 @@ public class CulturalSiteController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping(value = "/{cultural-site-id}/comment")
     public ResponseEntity<CommentDTO> createComment(@PathVariable("cultural-site-id") Long culturalSiteId,
-                                              @RequestBody CommentDTO commentDTO) {
+                                              @Valid @RequestBody CommentDTO commentDTO) {
         Comment comment = commentMapper.toEntity(commentDTO);
         try {
             comment = commentService.create(culturalSiteId, comment);
@@ -225,7 +226,7 @@ public class CulturalSiteController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/{cultural-site-id}/news")
     public ResponseEntity<NewsDTO> createNews(@PathVariable("cultural-site-id") Long culturalSiteId,
-                                              @RequestBody NewsDTO newsDTO) {
+                                              @Valid @RequestBody NewsDTO newsDTO) {
         News news = newsMapper.toEntity(newsDTO);
         try {
             news = newsService.create(culturalSiteId, news);
@@ -235,5 +236,16 @@ public class CulturalSiteController {
 
         return new ResponseEntity<>(newsMapper.toDto(news), HttpStatus.CREATED);
     }
+    
+    /*
+		url: POST localhost:8080/api/cultural-site/filter/by-page
+		HTTP request for filtering cultural sites
+	*/
+	@PostMapping(value = "/filter/by-page", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Page<CulturalSiteDTO>> filterCulturalSites(Pageable pageable, 
+									@Valid @RequestBody CulturalSiteFilterDTO filterDTO) {
+		Page<CulturalSite> page = culturalSiteService.filterCulturalSites(pageable, filterDTO);
+		return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
+	}
 
 }

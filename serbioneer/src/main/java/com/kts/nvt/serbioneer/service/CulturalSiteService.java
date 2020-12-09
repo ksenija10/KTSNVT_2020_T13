@@ -1,5 +1,6 @@
 package com.kts.nvt.serbioneer.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.kts.nvt.serbioneer.dto.CulturalSiteFilterDTO;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.CulturalCategoryType;
 import com.kts.nvt.serbioneer.model.CulturalSite;
@@ -112,5 +114,21 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
         culturalSiteToUpdate.setCulturalCategoryType(categoryType);
         return culturalSiteRepository.save(culturalSiteToUpdate);
 	}
-
+	
+	public Page<CulturalSite> filterCulturalSites(Pageable pageable, CulturalSiteFilterDTO filterDTO) {
+		//findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityIn
+		return culturalSiteRepository.
+				findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase
+			(pageable, filterDTO.getCategoryName(), filterDTO.getCategoryTypeName(), 
+					filterDTO.getCulturalSiteName(), filterDTO.getLocation());
+	}
+	
+	public List<String> findAllCities(){
+		List<String> cities = new ArrayList<String>();
+		List<CulturalSite> culturalSites = this.findAll();
+		for (CulturalSite culturalSite : culturalSites) {
+			cities.add(culturalSite.getCity());
+		}
+		return cities;
+	}
 }
