@@ -269,4 +269,24 @@ public class CulturalSiteController {
 	    return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
 	}
 
+	
+	/*
+	 * url: POST localhost:8080/api/cultural-site/subscribe/1
+	 * HTTP Request for subscribing to a site
+	 * */
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PostMapping("/subscribe/{cultural-site-id}")
+	public ResponseEntity<Void> subscribeToCulturalSite(@PathVariable("cultural-site-id") Long culturalSiteId){
+		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
+		if(culturalSite == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<CulturalSite> allSubscribed = culturalSiteService.findAllSubscribed();
+		if(allSubscribed.contains(culturalSite)) {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
+		culturalSiteService.addSubscribedUserToCulturalSite(culturalSite);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 }

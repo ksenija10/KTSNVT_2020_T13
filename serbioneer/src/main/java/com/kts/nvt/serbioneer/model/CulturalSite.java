@@ -130,4 +130,7 @@ public class CulturalSite {
 		this.description = description;
 	}
 	
+	public void addSubscribedUser(AuthenticatedUser user) {
+		subscribedUsers.add(user);
+	}
 }

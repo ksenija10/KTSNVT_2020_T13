@@ -19,4 +19,6 @@ public interface CulturalSiteRepository extends JpaRepository<CulturalSite, Long
 					(Pageable pageable, String cat, String type, String name, String city);
 	
 	Page<CulturalSite> findAllBySubscribedUsersId(Pageable pageable, Long Id);
+	
+	List<CulturalSite> findAllBySubscribedUsersId(Long id);
 }
