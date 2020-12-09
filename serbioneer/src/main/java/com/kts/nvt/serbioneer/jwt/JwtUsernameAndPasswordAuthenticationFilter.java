@@ -53,5 +53,6 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
         String jwtToken = tokenUtils.generateToken(authResult.getName(), authResult.getAuthorities());
 
         response.addHeader(tokenUtils.getAuthHeader(), "Bearer " + jwtToken);
+        response.addHeader(tokenUtils.getExpHeader(), String.valueOf(tokenUtils.getExpiresIn()));
     }
 }

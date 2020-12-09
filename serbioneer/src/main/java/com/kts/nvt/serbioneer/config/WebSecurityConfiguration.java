@@ -67,6 +67,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 	// navoditi u redosledu: more specific first!
                     .antMatchers("/serbioneer/home/**").permitAll()
+                    .antMatchers("/successful-logout.html").permitAll()
                     .antMatchers("/api/register").permitAll()
                     .antMatchers("/api/registrationConfirm").permitAll()
                     .antMatchers("/api/cultural-site/filter/by-page").permitAll()
@@ -78,7 +79,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //.formLogin().permitAll().and()
                 // dozvola odjave
                 .logout()
-                    .permitAll()
+                	.logoutUrl("/logout-user")
+                	.logoutSuccessUrl("/successful-logout.html")
                     .and()
                 // dodavanje custom filtera
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), tokenUtils))

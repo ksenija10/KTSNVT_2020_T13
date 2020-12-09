@@ -1,18 +1,20 @@
 package com.kts.nvt.serbioneer.jwt;
 
-import com.kts.nvt.serbioneer.model.User;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import java.util.Collection;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
-import java.util.Date;
+import com.kts.nvt.serbioneer.model.User;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 // Utility klasa za rad sa JSON Web Tokenima
 @Component
@@ -27,12 +29,17 @@ public class TokenUtils {
     public String SECRET;
 
     // Period vazenja
-    @Value("1800000") // 5h
+    @Value("900000") // 15 min -> 1800000 = 30 min
+    //@Value("30000") // 30 sekundi -> demonstracija
     private int EXPIRES_IN;
 
     // Naziv headera kroz koji ce se prosledjivati JWT u komunikaciji server-klijent
     @Value("Authorization")
     private String AUTH_HEADER;
+    
+    // Naziv headera kroz koji ce se prosledjivati kada istice JWT u komunikaciji server-klijent
+    @Value("Expires-In")
+    private String EXP_HEADER;
 
     // Moguce je generisati JWT za razlicite klijente (npr. web i mobilni klijenti nece imati isto trajanje JWT, JWT za mobilne klijente ce trajati duze jer se mozda aplikacija redje koristi na taj nacin)
     private static final String AUDIENCE_UNKNOWN = "unknown";
@@ -139,7 +146,7 @@ public class TokenUtils {
         return expiration;
     }
 
-    public int getExpiredIn() {
+    public int getExpiresIn() {
         return EXPIRES_IN;
     }
 
@@ -158,6 +165,10 @@ public class TokenUtils {
     
     public String getAuthHeader() {
     	return AUTH_HEADER;
+    }
+    
+    public String getExpHeader() {
+    	return EXP_HEADER;
     }
 
     public String getAuthHeaderFromHeader(HttpServletRequest request) {
