@@ -175,7 +175,7 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 			throw new LoggedInUserNotFoundException();
 		}
 		Set<CulturalSite> allSubscribed = user.getSubscribedSites();
-		if(allSubscribed.contains(culturalSite)) {
+		if(!allSubscribed.contains(culturalSite)) {
 			throw new ConflictException("User is not subscribed to this cultural site");
 		}
 		user.removeSubscribedSite(culturalSite);

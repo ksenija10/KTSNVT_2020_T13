@@ -120,9 +120,15 @@ public class AuthenticatedUserController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
+	/*
+	 * url POST localhost:8080/api/authenticated-user/subscribe/{cultural-site-id}
+	 * HTTP Request for subscribing to a cultural site
+	 * 
+	 * */
+	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping("/subscribe/{cultural-site-id}")
-	public ResponseEntity<Object> subscribe(@PathVariable("cultural-site-id") Long culturalSiteId){
+	public ResponseEntity<Void> subscribe(@PathVariable("cultural-site-id") Long culturalSiteId){
 		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
 		if(culturalSite == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -132,11 +138,16 @@ public class AuthenticatedUserController {
 		} catch (LoggedInUserNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
 		} catch (ConflictException e) {
-			new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+			throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
 		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
+	/*
+	 * url POST localhost:8080/api/authenticated-user/unsubscribe/{cultural-site-id}
+	 * HTTP Request for unsubscribing from a cultural site
+	 * 
+	 * */
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping("/unsubscribe/{cultural-site-id}")
 	public ResponseEntity<Object> unsubscribe(@PathVariable("cultural-site-id") Long culturalSiteId){
@@ -149,7 +160,7 @@ public class AuthenticatedUserController {
 		} catch (LoggedInUserNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
 		} catch (ConflictException e) {
-			new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+			throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
 		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

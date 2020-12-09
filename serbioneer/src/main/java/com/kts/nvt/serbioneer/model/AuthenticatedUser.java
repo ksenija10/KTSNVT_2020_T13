@@ -59,6 +59,6 @@ public class AuthenticatedUser extends User {
 
 	public void removeSubscribedSite(CulturalSite culturalSite) {
 		subscribedSites.remove(culturalSite);
-		
 	}
+	
 }
