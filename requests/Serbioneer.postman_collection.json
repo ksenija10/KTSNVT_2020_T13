@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1749bf7c-36a5-477a-b39f-d3050bf5cd33",
+		"_postman_id": "1c59d502-f8a4-4594-b700-18f37ab230e5",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -366,7 +366,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "614f0eae-d83a-407b-914e-9ad5ba1e7c90",
+						"id": "2b5a7b9b-a403-43b1-9ccf-112a70699d3e",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -376,7 +376,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "465f1b4d-3541-43bf-b0e5-78597f6ae586",
+						"id": "c9aa0575-8088-41bc-b496-876dda4112dc",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1417,7 +1417,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"information\": \"Neke nove novosti Biblioteke šabačke\"\r\n}",
+							"raw": "{\r\n        \"information\": \"Neke nove novosti u vezi SLF-a.\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1425,7 +1425,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/cultural-site/2/news",
+							"raw": "localhost:8080/api/cultural-site/3/news",
 							"host": [
 								"localhost"
 							],
@@ -1433,7 +1433,7 @@
 							"path": [
 								"api",
 								"cultural-site",
-								"2",
+								"3",
 								"news"
 							]
 						},
@@ -2405,7 +2405,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"admin@admin.com\",\r\n    \"password\": \"admin2\"\r\n}",
+					"raw": "{\r\n    \"username\": \"admin@admin.com\",\r\n    \"password\": \"admin\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

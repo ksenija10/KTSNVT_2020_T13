@@ -70,6 +70,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/register").permitAll()
                     .antMatchers("/api/registrationConfirm").permitAll()
                     .antMatchers("/api/cultural-site/filter/by-page").permitAll()
+                    .antMatchers("/api/cultural-site/{id}").permitAll()
                     // dok su u 
                     .anyRequest().authenticated()
                     .and()

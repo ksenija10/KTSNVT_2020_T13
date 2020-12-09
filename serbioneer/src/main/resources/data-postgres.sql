@@ -8,6 +8,10 @@ insert into users (type, name, surname, email, password, activated)
 values ('AuthenticatedUser', 'Isidor', 'Gavric', 'prvi@user.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq', true);
 insert into users (type, name, surname, email, password, activated)
 values ('AuthenticatedUser', 'Mileva', 'Isic', 'drugi@user.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq', true);
+insert into users (type, name, surname, email, password, activated)
+values ('AuthenticatedUser', 'Srdjan', 'Milic', 'srdjanmilic12@gmail.com', 'srdjabroj1', true);
+insert into users (type, name, surname, email, password, activated)
+values ('AuthenticatedUser', 'Katarina', 'Donalnov', 'dolanovkatarina@gmail.com', 'katarina1!', true);
 
 insert into authority (name) values ('ROLE_ADMIN');
 insert into authority (name) values ('ROLE_USER');
@@ -17,7 +21,8 @@ insert into user_authority (user_id, authority_id) values (1, 1);
 -- user has ROLE_USER
 insert into user_authority (user_id, authority_id) values (2, 2);
 insert into user_authority (user_id, authority_id) values (3, 2);
-
+insert into user_authority (user_id, authority_id) values (4, 2);
+insert into user_authority (user_id, authority_id) values (5, 2);
 
 -- kulturne kategorije
 insert into cultural_category (name) values ('Institucija');
@@ -77,12 +82,14 @@ insert into news (information, date_time, site_id) values ('Neke novosti pt2', '
 insert into sites_users(site_id, user_id) values (1, 2);
 --Snp za Isidor Gavric
 insert into sites_users(site_id, user_id) values (2, 2);
-
+--Civijada za Srdjana
+insert into sites_users(site_id, user_id) values (3, 4);
+--Civijada za Katarinu
+insert into sites_users(site_id, user_id) values (3, 5);
+--Civijada za Isidor Gavric
+insert into sites_users(site_id, user_id) values (4, 2);
 
 --rating
 --Isidor je ocenio biblioteku sabacku sa 3
 insert into rating (value, user_id, site_id) values (3, 2, 1);
-
---Civijada za Isidor Gavric
-insert into sites_users(site_id, user_id) values (4, 2);
 
