@@ -125,13 +125,6 @@ public class AuthenticatedUserController {
 		if(culturalSite == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
-				.getPrincipal();
-		AuthenticatedUser user = authenticatedUserService.findOneById(loggedIn.getId());
-		Set<CulturalSite> allSubscribed = user.getSubscribedSites();
-		if(allSubscribed.contains(culturalSite)) {
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
-		}
 		try {
 			authenticatedUserService.addSubscribedSite(culturalSite);
 		} catch (Exception e) {

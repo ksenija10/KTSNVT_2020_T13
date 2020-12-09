@@ -1,6 +1,7 @@
 package com.kts.nvt.serbioneer.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.kts.nvt.serbioneer.dto.PasswordDTO;
 import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -154,6 +156,10 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		AuthenticatedUser user = authenticatedUserRepository.findById(loggedIn.getId()).orElse(null);
 		if(user == null) {
 			throw new Exception("Logged in user not found in database");
+		}
+		Set<CulturalSite> allSubscribed = user.getSubscribedSites();
+		if(allSubscribed.contains(culturalSite)) {
+			throw new Exception("User is already subscribed");
 		}
 		user.addSubscribedSite(culturalSite);
 		authenticatedUserRepository.save(user);
