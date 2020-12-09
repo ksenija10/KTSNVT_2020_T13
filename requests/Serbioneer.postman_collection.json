@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "98007802-3e38-4005-9afa-14cd454cb5dc",
+		"_postman_id": "b3f630dc-740a-4c7d-a919-52d045120ff9",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -366,7 +366,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "6d09787e-fc31-421a-b1dd-dccd8f89f61f",
+						"id": "ea12ab32-49a9-41f7-b4ac-75fdacbb2182",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -376,7 +376,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5bdc0fad-c34f-47c9-9632-b0de29906135",
+						"id": "4ab4d8bf-eb99-49d2-ad55-0b197c99e3fe",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -719,27 +719,6 @@
 									"key": "size",
 									"value": "5"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "AddSubscribedUser",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/cultural-site/subscribe/3",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"cultural-site",
-								"subscribe",
-								"3"
 							]
 						}
 					},
@@ -1870,6 +1849,68 @@
 								"api",
 								"authenticated",
 								"updatePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SubscribeToCulturalSite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoicHJ2aUB1c2VyLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYwNzU0ODk3OCwiZXhwIjoxNjA3NTQ5ODc4LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.84BIjG1N6XsAsBYioBYu63Rm2ARf8_5zRlCWIIv-FHLSk5hgnLi4u_cONDx_wDbAj6VrlJIMAJO-LgiqO2XtEA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/authenticated-user/subscribe/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authenticated-user",
+								"subscribe",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UnsubscribeFromCulturalSite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoicHJ2aUB1c2VyLmNvbSIsImF1ZCI6IndlYiIsImlhdCI6MTYwNzU0ODk3OCwiZXhwIjoxNjA3NTQ5ODc4LCJhdXRob3JpdGllcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIiLCJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.84BIjG1N6XsAsBYioBYu63Rm2ARf8_5zRlCWIIv-FHLSk5hgnLi4u_cONDx_wDbAj6VrlJIMAJO-LgiqO2XtEA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/authenticated-user/unsubscribe/100",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authenticated-user",
+								"unsubscribe",
+								"100"
 							]
 						}
 					},
