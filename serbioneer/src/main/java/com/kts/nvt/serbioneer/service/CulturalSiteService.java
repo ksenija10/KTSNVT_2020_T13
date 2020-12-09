@@ -159,11 +159,5 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return culturalSiteRepository.findAllBySubscribedUsersId(user.getId());
 	}
-	
-	public void addSubscribedUserToCulturalSite(CulturalSite culturalSite) {
-		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		culturalSite.addSubscribedUser(user);
-		culturalSiteRepository.save(culturalSite);
-	}
 
 }

@@ -20,6 +20,7 @@ import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
+import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.repository.AuthenticatedUserRepository;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -146,6 +147,17 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 	public void createVerificationToken(AuthenticatedUser user, String token) {
 		VerificationToken myToken = new VerificationToken(token, user);
 		verificationTokenRepository.save(myToken);
+	}
+
+	public void addSubscribedSite(CulturalSite culturalSite) throws Exception {
+		AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		AuthenticatedUser user = authenticatedUserRepository.findById(loggedIn.getId()).orElse(null);
+		if(user == null) {
+			throw new Exception("Logged in user not found in database");
+		}
+		user.addSubscribedSite(culturalSite);
+		authenticatedUserRepository.save(user);
+		
 	}
 
 }
