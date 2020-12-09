@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1c59d502-f8a4-4594-b700-18f37ab230e5",
+		"_postman_id": "98007802-3e38-4005-9afa-14cd454cb5dc",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -366,7 +366,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "2b5a7b9b-a403-43b1-9ccf-112a70699d3e",
+						"id": "6d09787e-fc31-421a-b1dd-dccd8f89f61f",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -376,7 +376,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c9aa0575-8088-41bc-b496-876dda4112dc",
+						"id": "5bdc0fad-c34f-47c9-9632-b0de29906135",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -719,6 +719,27 @@
 									"key": "size",
 									"value": "5"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddSubscribedUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site/subscribe/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site",
+								"subscribe",
+								"3"
 							]
 						}
 					},

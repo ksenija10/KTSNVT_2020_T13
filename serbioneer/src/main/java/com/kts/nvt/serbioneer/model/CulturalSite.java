@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -111,12 +110,7 @@ public class CulturalSite {
 
 	@Getter
 	@Setter
-	@ManyToMany
-	@JoinTable(
-			name = "sites_users", 
-			joinColumns = { @JoinColumn(name = "site_id", referencedColumnName = "id") }, 
-			inverseJoinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }
-			)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "subscribedSites", cascade=CascadeType.PERSIST)
 	private Set<AuthenticatedUser> subscribedUsers;
 
 	

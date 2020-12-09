@@ -28,7 +28,13 @@ public class AuthenticatedUser extends User {
 	@Setter
 	// cascadeType = None, ne zelimo propagaciju nijedne operacije
 	// (entiteti su u potpunosti nepovezani, nema smisla propagirati)
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "subscribedUsers")
+	
+	@ManyToMany(cascade= CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "sites_users", 
+			joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, 
+			inverseJoinColumns = { @JoinColumn(name = "site_id", referencedColumnName = "id") }
+			)
 	private Set<CulturalSite> subscribedSites;
 
 	@Getter
@@ -45,5 +51,9 @@ public class AuthenticatedUser extends User {
 			@NonNull String password, boolean activated) {
 		super(id, name, surname, email, password);
 		this.activated = activated;
+	}
+	
+	public void addSubscribedSite(CulturalSite culturalSite) {
+		subscribedSites.add(culturalSite);
 	}
 }

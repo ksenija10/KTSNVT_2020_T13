@@ -1,6 +1,7 @@
 package com.kts.nvt.serbioneer.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -13,9 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +28,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.kts.nvt.serbioneer.dto.AuthenticatedUserDTO;
 import com.kts.nvt.serbioneer.helper.AuthenticatedUserMapper;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
+import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
+import com.kts.nvt.serbioneer.service.CulturalSiteService;
 
 @RestController
 @RequestMapping(value = "api/authenticated-user", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -34,6 +39,9 @@ public class AuthenticatedUserController {
 	@Autowired
 	private AuthenticatedUserService authenticatedUserService;
 
+	@Autowired
+	private CulturalSiteService culturalSiteService;
+	
 	private final AuthenticatedUserMapper authenticatedUserMapper;
 	
 	public AuthenticatedUserController() {
@@ -107,6 +115,21 @@ public class AuthenticatedUserController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PostMapping("/subscribe/{cultural-site-id}")
+	public ResponseEntity<Object> subscribe(@PathVariable("cultural-site-id") Long culturalSiteId){
+		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
+		if(culturalSite == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		try {
+			authenticatedUserService.addSubscribedSite(culturalSite);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	

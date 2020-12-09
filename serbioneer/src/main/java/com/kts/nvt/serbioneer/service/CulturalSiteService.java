@@ -154,5 +154,5 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return culturalSiteRepository.findAllBySubscribedUsersId(pageable, user.getId());
 	}
-
+	
 }

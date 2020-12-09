@@ -1,6 +1,7 @@
 package com.kts.nvt.serbioneer.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.kts.nvt.serbioneer.dto.PasswordDTO;
 import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
+import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.repository.AuthenticatedUserRepository;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -146,6 +149,21 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 	public void createVerificationToken(AuthenticatedUser user, String token) {
 		VerificationToken myToken = new VerificationToken(token, user);
 		verificationTokenRepository.save(myToken);
+	}
+
+	public void addSubscribedSite(CulturalSite culturalSite) throws Exception {
+		AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		AuthenticatedUser user = authenticatedUserRepository.findById(loggedIn.getId()).orElse(null);
+		if(user == null) {
+			throw new Exception("Logged in user not found in database");
+		}
+		Set<CulturalSite> allSubscribed = user.getSubscribedSites();
+		if(allSubscribed.contains(culturalSite)) {
+			throw new Exception("User is already subscribed");
+		}
+		user.addSubscribedSite(culturalSite);
+		authenticatedUserRepository.save(user);
+		
 	}
 
 }
