@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6d71e910-1a61-48b3-97f1-0fafe6a76331",
+		"_postman_id": "1749bf7c-36a5-477a-b39f-d3050bf5cd33",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -366,7 +366,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "0177f819-cfbb-4104-bba5-31b6b1351da9",
+						"id": "614f0eae-d83a-407b-914e-9ad5ba1e7c90",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -376,7 +376,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8c282df8-5ff8-4efe-8765-65340a36bd64",
+						"id": "465f1b4d-3541-43bf-b0e5-78597f6ae586",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -628,6 +628,56 @@
 								"api",
 								"cultural-site",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FilterCulturalSite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA3NDcxMDg0LCJleHAiOjE2MDc0NzI4ODQsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.u9SNTrlHXFnZQNd-QWzo_TBVXSCrNAnmJFEOQcXNQsJHYuOyGBLZUJy03igiQB8-mjLDFwOy8SAhxZithgV6Fw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\" : \"\",\r\n    \"categoryTypeName\" : \"\",\r\n    \"culturalSiteName\" : \"\",\r\n    \"location\" : \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cultural-site/filter/by-page?page=0&size=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site",
+								"filter",
+								"by-page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
 							]
 						}
 					},
