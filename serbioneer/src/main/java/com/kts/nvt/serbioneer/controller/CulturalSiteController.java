@@ -2,9 +2,11 @@ package com.kts.nvt.serbioneer.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,7 @@ import com.kts.nvt.serbioneer.dto.NewsDTO;
 import com.kts.nvt.serbioneer.helper.CommentMapper;
 import com.kts.nvt.serbioneer.helper.CulturalSiteMapper;
 import com.kts.nvt.serbioneer.helper.NewsMapper;
+import com.kts.nvt.serbioneer.mailsender.OnNewsCreatedEvent;
 import com.kts.nvt.serbioneer.model.Comment;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.News;
@@ -47,6 +50,9 @@ public class CulturalSiteController {
 
     @Autowired
     private NewsService newsService;
+    
+    @Autowired
+    ApplicationEventPublisher eventPublisher;
 
     private final CulturalSiteMapper culturalSiteMapper;
     private final CommentMapper commentMapper;
@@ -106,7 +112,6 @@ public class CulturalSiteController {
 		url: GET localhost:8080/api/cultural-site/{id}
 		HTTP request for getting a specific cultural site given by id
 	 */
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CulturalSiteDTO> getCulturalSite(@PathVariable("id") Long id) {
 		CulturalSite culturalSite = culturalSiteService.findOneById(id);
@@ -226,10 +231,15 @@ public class CulturalSiteController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/{cultural-site-id}/news")
     public ResponseEntity<NewsDTO> createNews(@PathVariable("cultural-site-id") Long culturalSiteId,
-                                              @Valid @RequestBody NewsDTO newsDTO) {
+                                              @Valid @RequestBody NewsDTO newsDTO,
+                                              HttpServletRequest request) {
         News news = newsMapper.toEntity(newsDTO);
         try {
             news = newsService.create(culturalSiteId, news);
+            //slanje mejla svim pretplacenim korisnicam prilikom kreiranja novosti
+            String appUrl = request.getContextPath();
+            eventPublisher.publishEvent(new OnNewsCreatedEvent(news,
+                    request.getLocale(), appUrl, news.getCulturalSite().getSubscribedUsers()));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
