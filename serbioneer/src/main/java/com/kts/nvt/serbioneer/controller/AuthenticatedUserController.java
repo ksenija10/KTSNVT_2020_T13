@@ -27,6 +27,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.kts.nvt.serbioneer.dto.AuthenticatedUserDTO;
 import com.kts.nvt.serbioneer.helper.AuthenticatedUserMapper;
+import com.kts.nvt.serbioneer.helper.exception.ConflictException;
+import com.kts.nvt.serbioneer.helper.exception.LoggedInUserNotFoundException;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
@@ -127,8 +129,27 @@ public class AuthenticatedUserController {
 		}
 		try {
 			authenticatedUserService.addSubscribedSite(culturalSite);
-		} catch (Exception e) {
+		} catch (LoggedInUserNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+		} catch (ConflictException e) {
+			new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+		}
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PostMapping("/unsubscribe/{cultural-site-id}")
+	public ResponseEntity<Object> unsubscribe(@PathVariable("cultural-site-id") Long culturalSiteId){
+		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
+		if(culturalSite == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		try {
+			authenticatedUserService.removeSubscribedSite(culturalSite);
+		} catch (LoggedInUserNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+		} catch (ConflictException e) {
+			new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
 		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

@@ -18,7 +18,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.kts.nvt.serbioneer.helper.exception.ConflictException;
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
+import com.kts.nvt.serbioneer.helper.exception.LoggedInUserNotFoundException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
@@ -151,17 +153,32 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		verificationTokenRepository.save(myToken);
 	}
 
-	public void addSubscribedSite(CulturalSite culturalSite) throws Exception {
+	public void addSubscribedSite(CulturalSite culturalSite) throws LoggedInUserNotFoundException, ConflictException{
 		AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		AuthenticatedUser user = authenticatedUserRepository.findById(loggedIn.getId()).orElse(null);
 		if(user == null) {
-			throw new Exception("Logged in user not found in database");
+			throw new LoggedInUserNotFoundException();
 		}
 		Set<CulturalSite> allSubscribed = user.getSubscribedSites();
 		if(allSubscribed.contains(culturalSite)) {
-			throw new Exception("User is already subscribed");
+			throw new ConflictException("User is already subscribed");
 		}
 		user.addSubscribedSite(culturalSite);
+		authenticatedUserRepository.save(user);
+		
+	}
+
+	public void removeSubscribedSite(CulturalSite culturalSite) throws ConflictException, LoggedInUserNotFoundException {
+		AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		AuthenticatedUser user = authenticatedUserRepository.findById(loggedIn.getId()).orElse(null);
+		if(user == null) {
+			throw new LoggedInUserNotFoundException();
+		}
+		Set<CulturalSite> allSubscribed = user.getSubscribedSites();
+		if(allSubscribed.contains(culturalSite)) {
+			throw new ConflictException("User is not subscribed to this cultural site");
+		}
+		user.removeSubscribedSite(culturalSite);
 		authenticatedUserRepository.save(user);
 		
 	}

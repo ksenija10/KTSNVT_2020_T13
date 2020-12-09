@@ -56,4 +56,9 @@ public class AuthenticatedUser extends User {
 	public void addSubscribedSite(CulturalSite culturalSite) {
 		subscribedSites.add(culturalSite);
 	}
+
+	public void removeSubscribedSite(CulturalSite culturalSite) {
+		subscribedSites.remove(culturalSite);
+		
+	}
 }
