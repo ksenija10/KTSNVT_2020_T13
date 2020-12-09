@@ -69,6 +69,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/serbioneer/home/**").permitAll()
                     .antMatchers("/api/register").permitAll()
                     .antMatchers("/api/registrationConfirm").permitAll()
+                    .antMatchers("/api/cultural-site/filter/by-page").permitAll()
                     // dok su u 
                     .anyRequest().authenticated()
                     .and()

@@ -1,14 +1,18 @@
 package com.kts.nvt.serbioneer.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.kts.nvt.serbioneer.model.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.kts.nvt.serbioneer.dto.CulturalSiteFilterDTO;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalCategoryType;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
@@ -126,6 +130,29 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 		culturalSiteRepository.save(culturalSite);
 
 		return newRating;
+	}
+
+	public Page<CulturalSite> filterCulturalSites(Pageable pageable, CulturalSiteFilterDTO filterDTO) {
+		//findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityIn
+		return culturalSiteRepository.
+				findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase
+			(pageable, filterDTO.getCategoryName(), filterDTO.getCategoryTypeName(), 
+					filterDTO.getCulturalSiteName(), filterDTO.getLocation());
+	}
+	
+	//dobavljanje svih gradova za front
+	public List<String> findAllCities(){
+		List<String> cities = new ArrayList<String>();
+		List<CulturalSite> culturalSites = this.findAll();
+		for (CulturalSite culturalSite : culturalSites) {
+			cities.add(culturalSite.getCity());
+		}
+		return cities;
+	}
+	
+	public Page<CulturalSite> findAllSubscribed(Pageable pageable){
+		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return culturalSiteRepository.findAllBySubscribedUsersId(pageable, user.getId());
 	}
 
 }
