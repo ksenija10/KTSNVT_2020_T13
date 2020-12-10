@@ -10,19 +10,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
 
 @Entity
 @Table(name = "image")
+@SQLDelete(sql =
+"UPDATE image " +
+"SET is_active = false " +
+"WHERE id = ?")
+@Where(clause="is_active=true")
 public class Image {
 
 	@Getter
@@ -31,6 +37,11 @@ public class Image {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Getter
+	@Setter
+	@Column(name="is_active")
+	private Boolean active;
+	
 	@Getter
 	@Setter
 	@NonNull
@@ -61,22 +72,26 @@ public class Image {
 	@JoinColumn(name = "comment", referencedColumnName = "id", nullable = true)
 	private Comment comment;
 
+	public Image() {
+		this.active = true;
+	}
+	
 	public Image(@NonNull String name, @NonNull String path, Comment comment) {
-		
+		this.active = true;
 		this.name = name;
 		this.path = path;
 		this.comment = comment;
 	}
 
 	public Image(@NonNull String name, @NonNull String path, News news) {
-		
+		this.active = true;
 		this.name = name;
 		this.path = path;
 		this.news = news;
 	}
 
 	public Image(@NonNull String name, @NonNull String path, CulturalSite culturalSite) {
-		
+		this.active = true;
 		this.name = name;
 		this.path = path;
 		this.culturalSite = culturalSite;

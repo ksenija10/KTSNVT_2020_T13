@@ -15,19 +15,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
 
 @Entity
 @Table(name = "cultural_site")
+@SQLDelete(sql =
+"UPDATE cultural_site " +
+"SET is_active = false " +
+"WHERE id = ?")
+@Where(clause="is_active=true")
 public class CulturalSite {
 
 	@Getter
@@ -36,6 +42,11 @@ public class CulturalSite {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Getter
+	@Setter
+	@Column(name="is_active")
+	private Boolean active;
+	
 	@Getter
 	@Setter
 	@NonNull
@@ -113,6 +124,9 @@ public class CulturalSite {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "subscribedSites", cascade=CascadeType.PERSIST)
 	private Set<AuthenticatedUser> subscribedUsers;
 
+	public CulturalSite() {
+		this.active = true;
+	}
 	
 	public CulturalSite(@NonNull String name, double lat, double lng, @NonNull String address, @NonNull String city,
 			String description) {
@@ -122,6 +136,7 @@ public class CulturalSite {
 		this.address = address;
 		this.city = city;
 		this.description = description;
+		this.active = true;
 	}
 	
 }
