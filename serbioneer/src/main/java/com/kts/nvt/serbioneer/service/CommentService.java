@@ -1,19 +1,17 @@
 package com.kts.nvt.serbioneer.service;
 
-import java.util.List;
-
-import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
-import com.kts.nvt.serbioneer.model.AuthenticatedUser;
-import com.kts.nvt.serbioneer.model.CulturalSite;
-import com.kts.nvt.serbioneer.model.User;
-import com.kts.nvt.serbioneer.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.Comment;
+import com.kts.nvt.serbioneer.model.CulturalSite;
+import com.kts.nvt.serbioneer.model.User;
+import com.kts.nvt.serbioneer.repository.CommentRepository;
 
 @Service
 public class CommentService implements ServiceInterface<Comment> {
@@ -27,11 +25,6 @@ public class CommentService implements ServiceInterface<Comment> {
 	private final String type = "Comment";
 
 	@Override
-	public List<Comment> findAll() {
-		return commentRepository.findAll();
-	}
-
-	// @Override
 	public Page<Comment> findAll(Pageable pageable) {
 		return commentRepository.findAll(pageable);
 	}
@@ -39,11 +32,6 @@ public class CommentService implements ServiceInterface<Comment> {
 	@Override
 	public Comment findOneById(Long id) {
 		return commentRepository.findById(id).orElse(null);
-	}
-
-	@Override
-	public Comment create(Comment entity) {
-		return commentRepository.save(entity);
 	}
 
 	public Comment create(Long culturalSiteId, Comment comment) throws Exception {
@@ -78,7 +66,6 @@ public class CommentService implements ServiceInterface<Comment> {
 
 	}
 
-	@Override
 	public Comment update(Comment entity, Long id) throws Exception {
 		Comment commentToUpdate = commentRepository.findById(id).orElse(null);
 		if (commentToUpdate == null) {
@@ -94,10 +81,6 @@ public class CommentService implements ServiceInterface<Comment> {
 		}
 		commentToUpdate.setText(entity.getText());
 		return commentRepository.save(commentToUpdate);
-	}
-
-	public List<Comment> findAllByApproved(Boolean approved) {
-		return commentRepository.findAllByApproved(approved);
 	}
 
 	public Page<Comment> findAllByApproved(Pageable pageable, Boolean approved) {
@@ -129,10 +112,6 @@ public class CommentService implements ServiceInterface<Comment> {
 		}
 
 		commentRepository.delete(existingComment);
-	}
-
-	public List<Comment> findAllByCulturalSiteIdAndApproved(Long culturalSiteId, Boolean approved) {
-		return commentRepository.findAllByCulturalSiteIdAndApproved(culturalSiteId, approved);
 	}
 
 	public Page<Comment> findAllByCulturalSiteIdAndApproved(Pageable pageable, Long culturalSiteId, Boolean approved) {

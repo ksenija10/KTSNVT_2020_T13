@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
 import com.kts.nvt.serbioneer.dto.AdminDTO;
-import com.kts.nvt.serbioneer.dto.CommentDTO;
 import com.kts.nvt.serbioneer.model.Admin;
 
 public class AdminMapper implements MapperInterface<Admin, AdminDTO>{

@@ -1,7 +1,5 @@
 package com.kts.nvt.serbioneer.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -65,21 +63,9 @@ public class CulturalSiteController {
     }
     
     /*
-    	url: GET localhost:8080/api/cultural-site
-    	HTTP request for getting all cultural sites
-     */
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @GetMapping
-    public ResponseEntity<List<CulturalSiteDTO>> getAllCulturalSites() {
-    	List<CulturalSite> culturalSites = culturalSiteService.findAll();
-    	return new ResponseEntity<>(culturalSiteMapper.toDtoList(culturalSites), HttpStatus.OK);
-    }
-    
-    /*
 		url: GET localhost:8080/api/cultural-site/by-page
 		HTTP request for getting cultural sites by page
 	 */
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	@GetMapping(value = "by-page")
 	public ResponseEntity<Page<CulturalSiteDTO>> getAllCulturalSites(Pageable pageable){
         Page<CulturalSite> page = culturalSiteService.findAll(pageable);
@@ -154,32 +140,17 @@ public class CulturalSiteController {
 		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
-	
-    /*
-       url: GET localhost:8080/api/cultural-site/{id}/comment
-       HTTP request getting all comments left on cultural site
-    */
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @GetMapping(value = "/{id}/comment")
-    public ResponseEntity<List<CommentDTO>> getAllCulturalSiteComments(@PathVariable("id") Long id){
-        List<Comment> comments = commentService.findAllByCulturalSiteIdAndApproved(id, true);
-
-        List<CommentDTO> commentDTOS = commentMapper.toDtoList(comments);
-
-        return new ResponseEntity<>(commentDTOS, HttpStatus.OK);
-    }
 
     /*
        url: GET localhost:8080/api/cultural-site/{id}/comment/by-page
        HTTP request getting all comments left on cultural site by page
     */
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(value = "/{id}/comment/by-page")
     public ResponseEntity<Page<CommentDTO>> getAllCulturalSiteComments(Pageable pageable, @PathVariable("id") Long id){
         Page<Comment> page = commentService.findAllByCulturalSiteIdAndApproved(pageable, id, true);
         return new ResponseEntity<>(commentMapper.toDtoPage(page), HttpStatus.OK);
     }
+    
     /*
 		url: POST localhost:8080/api/cultural-site/{cultural-site-id}/comment
 		HTTP request for commenting on a specific cultural site
@@ -199,24 +170,9 @@ public class CulturalSiteController {
     }
 
     /*
-       url: GET localhost:8080/api/cultural-site/{id}/news
-       HTTP request getting all news related to a cultural site
-    */
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @GetMapping(value = "/{id}/news")
-    public ResponseEntity<List<NewsDTO>> getAllCulturalSiteNews(@PathVariable("id") Long id) {
-        List<News> news = newsService.findAllByCulturalSiteId(id);
-
-        List<NewsDTO> newsDTOS = newsMapper.toDtoList(news);
-
-        return new ResponseEntity<>(newsDTOS, HttpStatus.OK);
-    }
-
-    /*
        url: GET localhost:8080/api/cultural-site/{id}/news/by-page
        HTTP request getting all news related to a cultural site by page
     */
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(value = "{id}/news/by-page")
     public ResponseEntity<Page<NewsDTO>> getAllCulturalSiteNews(Pageable pageable, @PathVariable("id") Long id){
         Page<News> page = newsService.findAllByCulturalSiteId(pageable, id);

@@ -34,11 +34,12 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 	@Getter
 	private final String type = "Cultural site";
 
-	@Override
+	
 	public List<CulturalSite> findAll() {
 		return culturalSiteRepository.findAll();
 	}
 	
+	@Override
 	public Page<CulturalSite> findAll(Pageable pageable) {
 		return culturalSiteRepository.findAll(pageable);
 	}
@@ -49,22 +50,12 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 	}
 
 	@Override
-	public CulturalSite create(CulturalSite entity) throws Exception {
-		return null;
-	}
-
-	@Override
 	public void delete(Long id) throws Exception {
 		CulturalSite culturalSiteToDelete = culturalSiteRepository.findById(id).orElse(null);
 		if (culturalSiteToDelete == null) {
 			throw new NonexistentIdException(this.type);
 		}
 		culturalSiteRepository.delete(culturalSiteToDelete);
-	}
-
-	@Override
-	public CulturalSite update(CulturalSite entity, Long id) throws Exception {
-		return null;
 	}
 	
 	public CulturalSite create(CulturalSite entity, Long categoryId, Long categoryTypeId) throws Exception {
@@ -118,7 +109,7 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
         return culturalSiteRepository.save(culturalSiteToUpdate);
 	}
 
-	public double updateRating (CulturalSite culturalSite) {
+	public double updateRating(CulturalSite culturalSite) {
 
 		int ratingSum = 0;
 		for(Rating r : culturalSite.getRatings()) {

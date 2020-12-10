@@ -13,6 +13,8 @@ import lombok.Setter;
 
 public class OnNewsCreatedEvent extends ApplicationEvent {
 
+	private static final long serialVersionUID = 1L;
+
 	@Getter
     @Setter
     private String appUrl;

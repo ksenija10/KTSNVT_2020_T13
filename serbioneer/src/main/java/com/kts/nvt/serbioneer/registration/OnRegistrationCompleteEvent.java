@@ -1,15 +1,19 @@
 package com.kts.nvt.serbioneer.registration;
 
-import com.kts.nvt.serbioneer.model.AuthenticatedUser;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Locale;
+
 import org.springframework.context.ApplicationEvent;
 
-import java.util.Locale;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
+
+import lombok.Getter;
+import lombok.Setter;
 
 public class OnRegistrationCompleteEvent extends ApplicationEvent {
 
-    @Getter
+	private static final long serialVersionUID = 1L;
+
+	@Getter
     @Setter
     private String appUrl;
 

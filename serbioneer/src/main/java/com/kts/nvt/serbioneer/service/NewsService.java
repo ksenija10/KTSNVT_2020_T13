@@ -1,9 +1,7 @@
 package com.kts.nvt.serbioneer.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,11 +30,8 @@ public class NewsService implements ServiceInterface<News> {
 
 	private final String type = "News";
 
+	
 	@Override
-	public List<News> findAll() {
-		return newsRepository.findAll();
-	}
-
 	public Page<News> findAll(Pageable pageable) {
 		return newsRepository.findAll(pageable);
 	}
@@ -44,12 +39,6 @@ public class NewsService implements ServiceInterface<News> {
 	@Override
 	public News findOneById(Long id) {
 		return newsRepository.findById(id).orElse(null);
-	}
-
-	@Override
-	public News create(News entity) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public News create(Long culturalSiteId, News news) throws Exception{
@@ -72,7 +61,6 @@ public class NewsService implements ServiceInterface<News> {
 		newsRepository.delete(existingNews);
 	}
 
-	@Override
 	public News update(News entity, Long id) throws Exception {
 		News newsToUpdate = newsRepository.findById(id).orElse(null);
 		if (newsToUpdate == null) {

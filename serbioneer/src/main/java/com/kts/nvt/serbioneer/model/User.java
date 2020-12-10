@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -42,7 +43,10 @@ import lombok.Setter;
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type", discriminatorType= DiscriminatorType.STRING)
 public abstract class User implements UserDetails {
-	
+
+	@Transient
+	private static final long serialVersionUID = 1L;
+
 	@Getter
 	@Setter
 	@Id

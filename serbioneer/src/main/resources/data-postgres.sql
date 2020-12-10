@@ -15,6 +15,7 @@ insert into users (type, name, surname, email, password, activated, is_active)
 -- katarina1! gmail
 values ('AuthenticatedUser', 'Katarina', 'Donalnov', 'dolanovkatarina@gmail.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq', true, true);
 
+
 insert into authority (name) values ('ROLE_ADMIN');
 insert into authority (name) values ('ROLE_USER');
 

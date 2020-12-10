@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.SQLDelete;
 
@@ -30,6 +31,9 @@ import lombok.ToString;
 "WHERE id = ?")
 @DiscriminatorValue("AuthenticatedUser")
 public class AuthenticatedUser extends User {
+
+	@Transient
+	private static final long serialVersionUID = 1L;
 
 	@Getter
 	@Setter

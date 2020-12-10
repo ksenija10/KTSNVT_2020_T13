@@ -1,32 +1,25 @@
 package com.kts.nvt.serbioneer.service;
 
-import java.util.List;
 import java.util.Set;
 
-import com.kts.nvt.serbioneer.dto.PasswordDTO;
-import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
-import com.kts.nvt.serbioneer.model.User;
-import com.kts.nvt.serbioneer.registration.VerificationToken;
-import com.kts.nvt.serbioneer.repository.UserRepository;
-import com.kts.nvt.serbioneer.repository.VerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.kts.nvt.serbioneer.dto.PasswordDTO;
+import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
 import com.kts.nvt.serbioneer.helper.exception.ConflictException;
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
-import com.kts.nvt.serbioneer.helper.exception.LoggedInUserNotFoundException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
-import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalSite;
+import com.kts.nvt.serbioneer.registration.VerificationToken;
 import com.kts.nvt.serbioneer.repository.AuthenticatedUserRepository;
-import org.springframework.web.server.ResponseStatusException;
+import com.kts.nvt.serbioneer.repository.UserRepository;
+import com.kts.nvt.serbioneer.repository.VerificationTokenRepository;
 
 @Service
 public class AuthenticatedUserService implements ServiceInterface<AuthenticatedUser> {
@@ -36,17 +29,17 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 
 	@Autowired
 	private UserRepository userRepository;
-
+	
 	@Autowired
 	private VerificationTokenRepository verificationTokenRepository;
 
+	@Autowired
+	private CulturalSiteService culturalSiteService;
+	
 	private final String type = "AuthenticatedUser";
 	
-	@Override
-	public List<AuthenticatedUser> findAll() {
-		return authenticatedUserRepository.findAll();
-	}
 	
+	@Override
 	public Page<AuthenticatedUser> findAll(Pageable pageable) {
 		return authenticatedUserRepository.findAll(pageable);
 	}
@@ -56,7 +49,6 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		return authenticatedUserRepository.findById(id).orElse(null);
 	}
 
-	@Override
 	public AuthenticatedUser create(AuthenticatedUser entity) throws Exception {
 		//enkripcija lozinke
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -95,14 +87,9 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		authenticatedUserRepository.delete(authenticatedUserToDelete);
 	}
 
-	@Override
-	public AuthenticatedUser update(AuthenticatedUser entity, Long id) throws Exception {
-		return null;
-	}
-
 	public AuthenticatedUser updatePersonalInformation(UserUpdateDTO entity) throws Exception {
-		AuthenticatedUser authenticatedUserToUpdate = authenticatedUserRepository.findById(entity.getId()).orElse(null);
-
+		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		AuthenticatedUser authenticatedUserToUpdate = findOneById(user.getId());
 		authenticatedUserToUpdate.setName(entity.getName());
 		authenticatedUserToUpdate.setSurname(entity.getSurname());
 		return authenticatedUserRepository.save(authenticatedUserToUpdate);
@@ -153,34 +140,37 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		verificationTokenRepository.save(myToken);
 	}
 
-	public void addSubscribedSite(CulturalSite culturalSite) throws LoggedInUserNotFoundException, ConflictException{
-		AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		AuthenticatedUser user = authenticatedUserRepository.findById(loggedIn.getId()).orElse(null);
-		if(user == null) {
-			throw new LoggedInUserNotFoundException();
+	public void addSubscribedSite(Long culturalSiteId) throws NonexistentIdException, ConflictException {
+		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
+		if(culturalSite == null) {
+			throw new NonexistentIdException(culturalSiteService.getType());
 		}
+		AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		AuthenticatedUser user = findOneById(loggedIn.getId());
 		Set<CulturalSite> allSubscribed = user.getSubscribedSites();
 		if(allSubscribed.contains(culturalSite)) {
-			throw new ConflictException("User is already subscribed");
+			throw new ConflictException("User is already subscribed.");
 		}
 		user.addSubscribedSite(culturalSite);
 		authenticatedUserRepository.save(user);
-		
 	}
 
-	public void removeSubscribedSite(CulturalSite culturalSite) throws ConflictException, LoggedInUserNotFoundException {
-		AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		AuthenticatedUser user = authenticatedUserRepository.findById(loggedIn.getId()).orElse(null);
-		if(user == null) {
-			throw new LoggedInUserNotFoundException();
+	public void removeSubscribedSite(Long culturalSiteId) throws NonexistentIdException, ConflictException {
+		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
+		if(culturalSite == null) {
+			throw new NonexistentIdException(culturalSiteService.getType());
 		}
+		AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		AuthenticatedUser user = findOneById(loggedIn.getId());
 		Set<CulturalSite> allSubscribed = user.getSubscribedSites();
 		if(!allSubscribed.contains(culturalSite)) {
-			throw new ConflictException("User is not subscribed to this cultural site");
+			throw new ConflictException("User is not subscribed to this cultural site.");
 		}
 		user.removeSubscribedSite(culturalSite);
 		authenticatedUserRepository.save(user);
-		
 	}
 
+	public AuthenticatedUser findCurrent() {
+		return (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
 }

@@ -1,22 +1,31 @@
 package com.kts.nvt.serbioneer.registration;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class VerificationToken {
-    private static final int EXPIRATION = 60 * 24;
+	//TODO 60*24 = jedan dan
+	// radi prikaza funkcionalnosti 1 minut
+    private static final int EXPIRATION = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,8 +57,7 @@ public class VerificationToken {
     public VerificationToken(String token, AuthenticatedUser user) {
         this.token = token;
         this.user = user;
-        this.calculateExpiryDate(1);
-
+        this.calculateExpiryDate(EXPIRATION);
     }
 
     public boolean isExpired() {

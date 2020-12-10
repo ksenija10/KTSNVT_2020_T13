@@ -43,7 +43,7 @@ public class Rating {
 	
 	@Getter
 	@Setter
-	@NonNull
+	@NonNull // -> primitivan tip ne moze biti null, ali neophodno zbog konstruktora!
 	@Column(name = "value", nullable = false, unique = false)
 	private int value;
 
@@ -69,6 +69,5 @@ public class Rating {
 		this.value = value;
 		this.active = true;
 	}
-	
 	
 }

@@ -52,7 +52,7 @@ public class Comment {
 
 	@Getter
 	@Setter
-	@NonNull
+	//@NonNull -> primitivan tip ne moze biti null
 	@Column(name = "approved", nullable = false, unique = false)
 	private boolean approved;
 

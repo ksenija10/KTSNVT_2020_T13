@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -21,6 +22,9 @@ import lombok.Setter;
 @Entity
 @Table(name="authority")
 public class Authority implements GrantedAuthority {
+
+	@Transient
+	private static final long serialVersionUID = 1L;
 
 	@Getter
 	@Setter

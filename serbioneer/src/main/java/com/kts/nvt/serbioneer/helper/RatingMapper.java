@@ -24,7 +24,11 @@ public class RatingMapper implements MapperInterface<Rating, RatingDTO> {
 
 	@Override
 	public List<Rating> toEntityList(List<RatingDTO> dtoList) {
-		return null;
+		List<Rating> ratings = new ArrayList<>();
+		for (RatingDTO dto : dtoList) {
+			ratings.add(toEntity(dto));
+		}
+		return ratings;
 	}
 
 	@Override
