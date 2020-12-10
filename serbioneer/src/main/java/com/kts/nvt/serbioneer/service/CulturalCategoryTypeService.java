@@ -29,15 +29,11 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 	private final String type = "Cultural category type";
 	private final String unique = "name";
 	
-	@Override
-	public List<CulturalCategoryType> findAll() {
-		return culturalCategoryTypeRepository.findAll();
-	}
-	
 	public List<CulturalCategoryType> findAll(Long categoryId) {
 		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(categoryId);
 	}
 	
+	@Override
 	public Page<CulturalCategoryType> findAll(Pageable pageable) {
 		return culturalCategoryTypeRepository.findAll(pageable);
 	}
@@ -45,12 +41,6 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 	@Override
 	public CulturalCategoryType findOneById(Long id) {
 		return culturalCategoryTypeRepository.findById(id).orElse(null);
-	}
-
-	@Override
-	public CulturalCategoryType create(CulturalCategoryType entity) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	public CulturalCategoryType create(Long categoryId, CulturalCategoryType entity) throws Exception {
@@ -80,7 +70,6 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 		culturalCategoryTypeRepository.delete(categoryTypeToDelete);
 	}
 
-	@Override
 	public CulturalCategoryType update(CulturalCategoryType entity, Long id) throws Exception {
 		CulturalCategoryType categoryTypeToUpdate = culturalCategoryTypeRepository.findById(id).orElse(null);
 		if (categoryTypeToUpdate == null) {

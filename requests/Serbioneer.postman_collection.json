@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b3f630dc-740a-4c7d-a919-52d045120ff9",
+		"_postman_id": "d3866944-2a94-4061-aace-64656327cf15",
 		"name": "Serbioneer",
 		"description": "Kolekcija zahteva za testiranje RestAPI-ja.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -366,7 +366,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "ea12ab32-49a9-41f7-b4ac-75fdacbb2182",
+						"id": "9c5bb915-edb8-4fdc-9c8e-a15e2b880741",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -376,7 +376,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4ab4d8bf-eb99-49d2-ad55-0b197c99e3fe",
+						"id": "e66c8143-c389-43da-8f92-f549659ab9e8",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1401,47 +1401,6 @@
 					"response": []
 				},
 				{
-					"name": "CreateNews",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoibmVraV9lbWFpbCIsImF1ZCI6IndlYiIsImlhdCI6MTYwNjc3NTk4MCwiZXhwIjoxNjA2Nzc3NzgwLCJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIiwiYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9XX0.LMdHPHd9f4GvZUCNZih_bhT2tAHnXzc9pw-kq_fDRV3xVSsQy8A1dyJEAv-AOxof5GcXR17cdUKGzjoafiHegA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"information\": \"Neke nove novosti u vezi SLF-a.\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/api/cultural-site/3/news",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"cultural-site",
-								"3",
-								"news"
-							]
-						},
-						"description": "Kreiranje novosti vezanih za odredjeno kulturno dobro"
-					},
-					"response": []
-				},
-				{
 					"name": "GetAllSubscribedNews",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -1494,6 +1453,47 @@
 						"description": "Dobavljanje svih novosti kulturnih ponuda na koje je ulogovani korisnik subscribed"
 					},
 					"response": []
+				},
+				{
+					"name": "CreateNews",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA3NTYzMTY0LCJleHAiOjE2MDc1NjQwNjQsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.ccmTh2uKAuXkQyyAp1NAxcufACsPhaDOMj-pCFBgIomD3CIHITU2RpHonI7hEoFTCVa7NDcPCzrbFlkf5JSCbw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"information\": \"Neke nove novosti u vezi SLF-a.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cultural-site/3/news",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site",
+								"3",
+								"news"
+							]
+						},
+						"description": "Kreiranje novosti vezanih za odredjeno kulturno dobro"
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -1531,6 +1531,36 @@
 							"path": [
 								"api",
 								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ViewProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA3NTQ1ODg2LCJleHAiOjE2MDc1NDY3ODYsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.52fiY9mPeaAx2YKvrX2HOUgGOhmdMRrLTOND2dWTei72MJDUpWyKCfGI-0Bn8s_HlBOQ0A84QEyA3pdtBQB4aA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/view-profile",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"view-profile"
 							]
 						}
 					},
@@ -1713,6 +1743,36 @@
 							"path": [
 								"api",
 								"authenticated-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ViewProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA3NTQ1ODg2LCJleHAiOjE2MDc1NDY3ODYsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.52fiY9mPeaAx2YKvrX2HOUgGOhmdMRrLTOND2dWTei72MJDUpWyKCfGI-0Bn8s_HlBOQ0A84QEyA3pdtBQB4aA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/authenticated-user/view-profile",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authenticated-user",
+								"view-profile"
 							]
 						}
 					},
@@ -2458,92 +2518,187 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "LoginRequestAdmin",
-			"request": {
-				"auth": {
-					"type": "noauth"
+			"name": "Spring Security",
+			"item": [
+				{
+					"name": "LoginRequestAdmin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin@admin.com\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						},
+						"description": "Zahtev za prijavu na sistem kao administrator."
+					},
+					"response": []
 				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"admin@admin.com\",\r\n    \"password\": \"admin\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "LoginRequestAuthenticatedUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"prvi@user.com\",\r\n    \"password\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						},
+						"description": "Zahtev za prijavu na sistem kao korisnik."
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ime\",\r\n    \"surname\": \"Prezime\",\r\n    \"email\": \"ksenija.prcic1998@gmail.com\",\r\n    \"password\": \"neki_pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"register"
+							]
+						},
+						"description": "Zahtev za registraciju"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA3NTQ1ODg2LCJleHAiOjE2MDc1NDY3ODYsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.52fiY9mPeaAx2YKvrX2HOUgGOhmdMRrLTOND2dWTei72MJDUpWyKCfGI-0Bn8s_HlBOQ0A84QEyA3pdtBQB4aA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/logout-user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"logout-user"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/login",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"login"
-					]
-				},
-				"description": "Zahtev za prijavu na sistem kao administrator."
-			},
-			"response": []
-		},
-		{
-			"name": "LoginRequestAuthenticatedUser",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"prvi@user.com\",\r\n    \"password\": \"user\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "RefreshToken",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjA3NTQ1ODg2LCJleHAiOjE2MDc1NDY3ODYsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.52fiY9mPeaAx2YKvrX2HOUgGOhmdMRrLTOND2dWTei72MJDUpWyKCfGI-0Bn8s_HlBOQ0A84QEyA3pdtBQB4aA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/refresh",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"refresh"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/login",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"login"
-					]
-				},
-				"description": "Zahtev za prijavu na sistem kao korisnik."
-			},
-			"response": []
-		},
-		{
-			"name": "Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Ime\",\r\n    \"surname\": \"Prezime\",\r\n    \"email\": \"ksenija.prcic1998@gmail.com\",\r\n    \"password\": \"neki_pass\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Unregistered user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/cultural-site/2/comment/by-page?page=0&size=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cultural-site",
+								"2",
+								"comment",
+								"by-page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
 						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/api/register",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"register"
-					]
-				},
-				"description": "Zahtev za registraciju"
-			},
-			"response": []
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}

@@ -32,7 +32,7 @@ public class Rating {
 	
 	@Getter
 	@Setter
-	@NonNull
+	@NonNull // -> primitivan tip ne moze biti null, ali neophodno zbog konstruktora!
 	@Column(name = "value", nullable = false, unique = false)
 	private int value;
 
@@ -50,7 +50,7 @@ public class Rating {
 	@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
 	private AuthenticatedUser authenticatedUser;
 
-	public Rating(@NonNull int value) {
+	public Rating(/*@NonNull*/ int value) {
 		this.value = value;
 	}
 	

@@ -1,7 +1,5 @@
 package com.kts.nvt.serbioneer.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,27 +27,16 @@ public class RatingService implements ServiceInterface<Rating> {
 
 	private final String type = "Rating";
 
-	@Override
-	public List<Rating> findAll() {
-		return ratingRepository.findAll();
-	}
 
+	@Override
 	public Page<Rating> findAll(Pageable pageable) {
 		return ratingRepository.findAll(pageable);
-	}
-
-	public List<Rating> findAllByCulturalSiteId(Long culturalSiteId) {
-		return ratingRepository.findAllByCulturalSiteId(culturalSiteId);
 	}
 
 	public Page<Rating> findAllByCulturalSiteId(Pageable pageable, Long culturalSiteId) {
 		return ratingRepository.findAllByCulturalSiteId(pageable, culturalSiteId);
 	}
-
-	public List<Rating> findAllByAuthenticatedUserId(Long authenticatedUserId) {
-		return ratingRepository.findAllByAuthenticatedUserId(authenticatedUserId);
-	}
-
+	
 	public Page<Rating> findAllByAuthenticatedUserId(Pageable pageable, Long authenticatedUserId) {
 		return ratingRepository.findAllByAuthenticatedUserId(pageable, authenticatedUserId);
 	}
@@ -57,11 +44,6 @@ public class RatingService implements ServiceInterface<Rating> {
 	@Override
 	public Rating findOneById(Long id) {
 		return ratingRepository.findById(id).orElse(null);
-	}
-
-	@Override
-	public Rating create(Rating entity) throws Exception {
-		return null;
 	}
 
 	public Rating create(Long culturalSiteId, int value) throws Exception {
@@ -119,12 +101,6 @@ public class RatingService implements ServiceInterface<Rating> {
 		culturalSiteService.updateRating(ratingToUpdate.getCulturalSite());
 
 		return ratingRepository.save(ratingToUpdate);
-	}
-
-	@Override
-	public Rating update(Rating entity, Long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

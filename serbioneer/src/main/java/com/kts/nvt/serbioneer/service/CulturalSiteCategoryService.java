@@ -25,11 +25,12 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
 	private final String type = "Cultural category type";
 	private final String unique = "name";
 	
-	@Override
+	
 	public List<CulturalSiteCategory> findAll() {
 		return culturalSiteCategoryRepository.findAll();
 	}
 	
+	@Override
 	public Page<CulturalSiteCategory> findAll(Pageable pageable) {
 		return culturalSiteCategoryRepository.findAll(pageable);
 	}
@@ -39,7 +40,6 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
 		return culturalSiteCategoryRepository.findById(id).orElse(null);
 	}
 
-	@Override
 	public CulturalSiteCategory create(CulturalSiteCategory entity) throws Exception {
 		if (culturalSiteCategoryRepository.findOneByName(entity.getName()) != null) {
 			throw new ExistentFieldValueException(this.type, this.unique);
@@ -60,7 +60,6 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
 		culturalSiteCategoryRepository.delete(clturalSiteCategoryToDelete);
 	}
 
-	@Override
 	public CulturalSiteCategory update(CulturalSiteCategory entity, Long id) throws Exception {
 		CulturalSiteCategory culturalSiteCategoryToUpdate = culturalSiteCategoryRepository.findById(id).orElse(null);
         if (culturalSiteCategoryToUpdate == null) {

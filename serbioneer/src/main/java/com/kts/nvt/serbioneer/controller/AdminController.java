@@ -1,11 +1,7 @@
 package com.kts.nvt.serbioneer.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
-import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
-import com.kts.nvt.serbioneer.dto.PasswordDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,10 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kts.nvt.serbioneer.dto.AdminDTO;
+import com.kts.nvt.serbioneer.dto.PasswordDTO;
+import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
 import com.kts.nvt.serbioneer.helper.AdminMapper;
 import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.service.AdminService;
-import com.kts.nvt.serbioneer.service.AuthorityService;
 
 @RestController
 @RequestMapping(value = "api/admin", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,21 +33,7 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	@Autowired
-	private AuthorityService authorityService;
-	
 	private final AdminMapper adminMapper = new AdminMapper();
-	
-	/*
-	 * url: GET localhost:8080/api/admin
-	 * HTTP Request for getting all admins
-	*/
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@GetMapping
-	public ResponseEntity<List<AdminDTO>> getAllAdmins() {
-		List<Admin> admins = adminService.findAll();
-		return new ResponseEntity<>(adminMapper.toDtoList(admins), HttpStatus.OK);
-	}
 	
 	/*
 	 * url: GET localhost:8080/api/admin/by-page
@@ -61,6 +44,17 @@ public class AdminController {
 	public ResponseEntity<Page<AdminDTO>> getAllAdmins(Pageable pageable) {
 		Page<Admin> admins = adminService.findAll(pageable);
 		return new ResponseEntity<>(adminMapper.toDtoPage(admins), HttpStatus.OK);
+	}
+	
+	/*
+	 * url: GET localhost:8080/api/admin/view-profile
+	 * HTTP Request for viewing pesonal information
+	*/
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/view-profile")
+	public ResponseEntity<AdminDTO> getCurrentAdmin() {
+		Admin admin = adminService.findCurrent();
+		return new ResponseEntity<>(adminMapper.toDto(admin), HttpStatus.OK);
 	}
 	
 	/*

@@ -1,9 +1,7 @@
 package com.kts.nvt.serbioneer.controller;
 
-import com.kts.nvt.serbioneer.dto.NewsDTO;
-import com.kts.nvt.serbioneer.helper.NewsMapper;
-import com.kts.nvt.serbioneer.model.News;
-import com.kts.nvt.serbioneer.service.NewsService;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,10 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import com.kts.nvt.serbioneer.dto.NewsDTO;
+import com.kts.nvt.serbioneer.helper.NewsMapper;
+import com.kts.nvt.serbioneer.model.News;
+import com.kts.nvt.serbioneer.service.NewsService;
 
 @RestController
 @RequestMapping(value = "api/news", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -27,18 +34,6 @@ public class NewsController {
 
     public NewsController() {
         this.newsMapper = new NewsMapper();
-    }
-
-    /*
-       url: GET localhost:8080/api/news
-       HTTP request for getting all news related to all cultural sites
-    */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping
-    public ResponseEntity<List<NewsDTO>> getAllNews(){
-        List<News> news = newsService.findAll();
-
-        return new ResponseEntity<>(newsMapper.toDtoList(news), HttpStatus.OK);
     }
 
     /*
@@ -76,7 +71,7 @@ public class NewsController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<NewsDTO> updateNews(@PathVariable("id") Long id,
-                                              @RequestBody NewsDTO newsDTO){
+                                              @Valid @RequestBody NewsDTO newsDTO){
         News news = newsMapper.toEntity(newsDTO);
         try {
             news = newsService.update(news, id);

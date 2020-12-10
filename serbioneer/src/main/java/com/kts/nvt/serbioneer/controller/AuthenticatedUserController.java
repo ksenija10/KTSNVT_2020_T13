@@ -1,12 +1,7 @@
 package com.kts.nvt.serbioneer.controller;
 
-import java.util.List;
-import java.util.Set;
-
 import javax.validation.Valid;
 
-import com.kts.nvt.serbioneer.dto.PasswordDTO;
-import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,13 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kts.nvt.serbioneer.dto.AuthenticatedUserDTO;
+import com.kts.nvt.serbioneer.dto.PasswordDTO;
+import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
 import com.kts.nvt.serbioneer.helper.AuthenticatedUserMapper;
 import com.kts.nvt.serbioneer.helper.exception.ConflictException;
-import com.kts.nvt.serbioneer.helper.exception.LoggedInUserNotFoundException;
+import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
-import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
-import com.kts.nvt.serbioneer.service.CulturalSiteService;
 
 @RestController
 @RequestMapping(value = "api/authenticated-user", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -40,26 +34,11 @@ public class AuthenticatedUserController {
 
 	@Autowired
 	private AuthenticatedUserService authenticatedUserService;
-
-	@Autowired
-	private CulturalSiteService culturalSiteService;
 	
 	private final AuthenticatedUserMapper authenticatedUserMapper;
 	
 	public AuthenticatedUserController() {
 		this.authenticatedUserMapper = new AuthenticatedUserMapper();
-	}
-	
-	/*
-	 * url: GET localhost:8080/api/authenticated-user
-	 * HTTP Request for getting all authenticated users
-	*/
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@GetMapping
-	public ResponseEntity<List<AuthenticatedUserDTO>> getAllAuthenticatedUsers() {
-		List<AuthenticatedUser> authenticatedUsers = authenticatedUserService.findAll();
-		return new ResponseEntity<>(authenticatedUserMapper.toDtoList(authenticatedUsers), 
-									HttpStatus.OK);
 	}
 	
 	/*
@@ -72,6 +51,17 @@ public class AuthenticatedUserController {
 		Page<AuthenticatedUser> authenticatedUsers = authenticatedUserService.findAll(pageable);
 		return new ResponseEntity<>(authenticatedUserMapper.toDtoPage(authenticatedUsers), 
 									HttpStatus.OK);
+	}
+	
+	/*
+	 * url: GET localhost:8080/api/authenticated-user/view-profile
+	 * HTTP Request for viewing pesonal information
+	*/
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@GetMapping("/view-profile")
+	public ResponseEntity<AuthenticatedUserDTO> getCurrentAuthenticatedUser() {
+		AuthenticatedUser authenticatedUser = authenticatedUserService.findCurrent();
+		return new ResponseEntity<>(authenticatedUserMapper.toDto(authenticatedUser), HttpStatus.OK);
 	}
 
 	/*
@@ -116,27 +106,20 @@ public class AuthenticatedUserController {
 		}catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
-
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	/*
 	 * url POST localhost:8080/api/authenticated-user/subscribe/{cultural-site-id}
 	 * HTTP Request for subscribing to a cultural site
-	 * 
-	 * */
-	
+	 */
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping("/subscribe/{cultural-site-id}")
 	public ResponseEntity<Void> subscribe(@PathVariable("cultural-site-id") Long culturalSiteId){
-		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
-		if(culturalSite == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
 		try {
-			authenticatedUserService.addSubscribedSite(culturalSite);
-		} catch (LoggedInUserNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+			authenticatedUserService.addSubscribedSite(culturalSiteId);
+		} catch (NonexistentIdException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		} catch (ConflictException e) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
 		}
@@ -146,19 +129,14 @@ public class AuthenticatedUserController {
 	/*
 	 * url POST localhost:8080/api/authenticated-user/unsubscribe/{cultural-site-id}
 	 * HTTP Request for unsubscribing from a cultural site
-	 * 
-	 * */
+	 */
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping("/unsubscribe/{cultural-site-id}")
 	public ResponseEntity<Object> unsubscribe(@PathVariable("cultural-site-id") Long culturalSiteId){
-		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
-		if(culturalSite == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
 		try {
-			authenticatedUserService.removeSubscribedSite(culturalSite);
-		} catch (LoggedInUserNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+			authenticatedUserService.removeSubscribedSite(culturalSiteId);
+		} catch (NonexistentIdException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		} catch (ConflictException e) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
 		}

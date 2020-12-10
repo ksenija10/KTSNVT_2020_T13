@@ -38,8 +38,8 @@ public class ImageController {
 	}
 
 	/*
-	 * url: GET localhost:8080/api/image/news/{news-id} HTTP request for getting all
-	 * images for specific news
+	 * url: GET localhost:8080/api/image/news/{news-id} 
+	 * HTTP request for getting all images for specific news
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@GetMapping(value = "/news/{news-id}")
@@ -49,8 +49,8 @@ public class ImageController {
 	}
 
 	/*
-	 * url: GET localhost:8080/api/image/news/{news-id}/by-page HTTP request for
-	 * getting all images for specific news by page
+	 * url: GET localhost:8080/api/image/news/{news-id}/by-page 
+	 * HTTP request for getting all images for specific news by page
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@GetMapping(value = "/news/{news-id}/by-page")
@@ -61,8 +61,8 @@ public class ImageController {
 	}
 
 	/*
-	 * url: GET localhost:8080/api/image/comment/{commet-id} HTTP request for
-	 * getting all images for specific comment
+	 * url: GET localhost:8080/api/image/comment/{commet-id} 
+	 * HTTP request for getting all images for specific comment
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@GetMapping(value = "/comment/{comment-id}")
@@ -72,8 +72,8 @@ public class ImageController {
 	}
 
 	/*
-	 * url: GET localhost:8080/api/image/comment/{commet-id}/by-page HTTP request
-	 * for getting all images for specific comment by page
+	 * url: GET localhost:8080/api/image/comment/{commet-id}/by-page
+	 * HTTP request for getting all images for specific comment by page
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@GetMapping(value = "/comment/{comment-id}/by-page")
@@ -85,8 +85,8 @@ public class ImageController {
 	}
 
 	/*
-	 * url: GET localhost:8080/api/image/cultural-site/{cultural-site-id} HTTP request for
-	 * getting all images for specific cultural site
+	 * url: GET localhost:8080/api/image/cultural-site/{cultural-site-id} 
+	 * HTTP request for getting all images for specific cultural site
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@GetMapping(value = "/cultural-site/{cultural-site-id}")
@@ -97,8 +97,8 @@ public class ImageController {
 	}
 
 	/*
-	 * url: GET localhost:8080/api/image/cultural-site/{cultural-site-id}/by-page HTTP
-	 * request for getting all images for specific cultural site by page
+	 * url: GET localhost:8080/api/image/cultural-site/{cultural-site-id}/by-page
+	 * HTTP request for getting all images for specific cultural site by page
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@GetMapping(value = "/cultural-site/{cultural-site-id}/by-page")
@@ -110,8 +110,8 @@ public class ImageController {
 	}
 
 	/*
-	 * url: POST localhost:8080/api/image/comment/{id} HTTP request for creating a
-	 * new image for a comment
+	 * url: POST localhost:8080/api/image/comment/{id}
+	 * HTTP request for creating a new image for a comment
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@PostMapping(value = "/comment/{id}")
@@ -140,8 +140,8 @@ public class ImageController {
 	}
 
 	/*
-	 * url: POST localhost:8080/api/image/news/{id} HTTP request for creating a new
-	 * image for news
+	 * url: POST localhost:8080/api/image/news/{id}
+	 * HTTP request for creating a new image for news
 	 */
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping(value = "/news/{id}")
@@ -169,8 +169,8 @@ public class ImageController {
 	}
 
 	/*
-	 * url: POST localhost:8080/api/image/cultural-site/{id} HTTP request for
-	 * creating a new image for a cultural site
+	 * url: POST localhost:8080/api/image/cultural-site/{id}
+	 * HTTP request for creating a new image for a cultural site
 	 */
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping(value = "/cultural-site/{id}")
@@ -198,8 +198,8 @@ public class ImageController {
 	}
 
 	/*
-	 * url: DELETE localhost:8080/api/image/{id} HTTP request for deleting a specific
-	 * image
+	 * url: DELETE localhost:8080/api/image/{id}
+	 * HTTP request for deleting a specific image
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@DeleteMapping(value = "/{id}")
