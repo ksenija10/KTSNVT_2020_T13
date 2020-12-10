@@ -1,7 +1,5 @@
 package com.kts.nvt.serbioneer.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,18 +36,7 @@ public class CommentController {
         this.commentMapper = new CommentMapper();
     }
 
-    /*
-       url: GET localhost:8080/api/comment
-       HTTP request for getting all comments left on all cultural sites(approved and not approved)
-    */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping
-    public ResponseEntity<List<CommentDTO>> getAllComments(){
-        List<Comment> comments = commentService.findAll();
-
-        return new ResponseEntity<>(commentMapper.toDtoList(comments), HttpStatus.OK);
-    }
-
+    //TODO obrisati, ostaje demonstrativne prirode radi (uvid u stanje baze)
     /*
         url: GET localhost:8080/api/comment/by-page
         HTTP request for getting all comments left on all cultural sites(approved and not approved) by page
@@ -60,18 +47,6 @@ public class CommentController {
         Page<Comment> page = commentService.findAll(pageable);
 
         return new ResponseEntity<>(commentMapper.toDtoPage(page), HttpStatus.OK);
-    }
-
-    /*
-      url: GET localhost:8080/api/comment/unapproved
-      HTTP request for getting all unapproved comments
-   */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(value = "/unapproved")
-    public ResponseEntity<List<CommentDTO>> getAllUnapprovedComments(){
-        List<Comment> comments = commentService.findAllByApproved(false);
-
-        return new ResponseEntity<>(commentMapper.toDtoList(comments), HttpStatus.OK);
     }
 
     /*

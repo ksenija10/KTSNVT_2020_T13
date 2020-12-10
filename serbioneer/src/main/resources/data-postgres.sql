@@ -11,7 +11,7 @@ values ('AuthenticatedUser', 'Mileva', 'Isic', 'drugi@user.com', '$2a$04$Amda.Gm
 insert into users (type, name, surname, email, password, activated)
 values ('AuthenticatedUser', 'Srdjan', 'Milic', 'srdjanmilic12@gmail.com', 'srdjabroj1', true);
 insert into users (type, name, surname, email, password, activated)
-values ('AuthenticatedUser', 'Katarina', 'Donalnov', 'dolanovkatarina@gmail.com', 'katarina1!', true);
+values ('AuthenticatedUser', 'Katarina', 'Dolanov', 'dolanovkatarina@gmail.com', 'katarina1!', true);
 
 insert into authority (name) values ('ROLE_ADMIN');
 insert into authority (name) values ('ROLE_USER');

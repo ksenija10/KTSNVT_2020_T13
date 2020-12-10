@@ -24,7 +24,13 @@ public class CommentMapper implements MapperInterface<Comment, CommentDTO>{
 
     @Override
     public List<Comment> toEntityList(List<CommentDTO> dtoList) {
-        return null;
+    	List<Comment> comments = new ArrayList<Comment>();
+
+        for(CommentDTO dto : dtoList){
+        	comments.add(toEntity(dto));
+        }
+
+        return comments;
     }
 
     @Override

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
-import com.kts.nvt.serbioneer.dto.AdminDTO;
 import com.kts.nvt.serbioneer.dto.AuthenticatedUserDTO;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 

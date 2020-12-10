@@ -1,22 +1,22 @@
 package com.kts.nvt.serbioneer.registration;
 
-import com.kts.nvt.serbioneer.model.AuthenticatedUser;
-import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
+import java.util.UUID;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-import javax.transaction.Transactional;
-import java.util.UUID;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
+import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
 
 @Component
 public class RegistrationListener implements

@@ -70,8 +70,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/successful-logout.html").permitAll()
                     .antMatchers("/api/register").permitAll()
                     .antMatchers("/api/registrationConfirm").permitAll()
+                    .antMatchers("/api/cultural-site/by-page").permitAll()
                     .antMatchers("/api/cultural-site/filter/by-page").permitAll()
                     .antMatchers("/api/cultural-site/{id}").permitAll()
+                    .antMatchers("/api/cultural-site/{id}/comment/by-page").permitAll()
+                    .antMatchers("/api/cultural-site/{id}/news/by-page").permitAll()
                     // dok su u 
                     .anyRequest().authenticated()
                     .and()

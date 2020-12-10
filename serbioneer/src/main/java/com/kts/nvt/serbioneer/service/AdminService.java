@@ -1,11 +1,7 @@
 package com.kts.nvt.serbioneer.service;
 
 import java.util.HashSet;
-import java.util.List;
 
-import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
-import com.kts.nvt.serbioneer.dto.PasswordDTO;
-import com.kts.nvt.serbioneer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,10 +9,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.kts.nvt.serbioneer.dto.PasswordDTO;
+import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.repository.AdminRepository;
+import com.kts.nvt.serbioneer.repository.UserRepository;
 
 @Service
 public class AdminService implements ServiceInterface<Admin> {
@@ -32,11 +31,8 @@ public class AdminService implements ServiceInterface<Admin> {
 	
 	private final String type = "Admin";
 	
-	@Override
-	public List<Admin> findAll() {
-		return adminRepository.findAll();
-	}
 	
+	@Override
 	public Page<Admin> findAll(Pageable pageable) {
 		return adminRepository.findAll(pageable);
 	}
@@ -46,7 +42,6 @@ public class AdminService implements ServiceInterface<Admin> {
 		return adminRepository.findOneById(id);
 	}
 
-	@Override
 	public Admin create(Admin entity) throws Exception {
 		//mora provera nad celom user tabelom da bi mail bio jedinstven
 		Admin adminToCreate = (Admin) userRepository.findOneByEmail(entity.getEmail());
@@ -70,18 +65,9 @@ public class AdminService implements ServiceInterface<Admin> {
 		adminRepository.delete(adminToDelete);
 	}
 
-	@Override
-	public Admin update(Admin entity, Long id) throws Exception {
-		return null;
-	}
-
 	public Admin updatePersonalInformation(UserUpdateDTO entity) throws Exception {
 		Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		Admin adminToUpdate = adminRepository.findById(user.getId()).orElse(null);
-		if(adminToUpdate == null) {
-			throw new NonexistentIdException(this.type);
-		}
+		Admin adminToUpdate = findOneById(user.getId());
 		adminToUpdate.setName(entity.getName());
 		adminToUpdate.setSurname(entity.getSurname());
 		adminToUpdate.setDateOfBirth(entity.getDateOfBirth());
@@ -104,7 +90,7 @@ public class AdminService implements ServiceInterface<Admin> {
 		}
 
 		if(passwordDTO.getOldPassword().equals(passwordDTO.getNewPassword())) {
-			throw new Exception("New password can not be same as old password.");
+			throw new Exception("New password cannot be the same as old password.");
 		}
 
 		if(!passwordDTO.getNewPassword().equals(passwordDTO.getRepeatedPassword())) {
@@ -113,6 +99,10 @@ public class AdminService implements ServiceInterface<Admin> {
 
 		adminToUpdate.setPassword(encoder.encode(passwordDTO.getNewPassword()));
 		adminRepository.save(adminToUpdate);
+	}
+	
+	public Admin findCurrent() {
+		return (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 
 }

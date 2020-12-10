@@ -40,10 +40,10 @@ public class ImageService implements ServiceInterface<Image> {
 	private CulturalSiteService culturalSiteService;
 
 	private final String type = "Image";
-
-	@Override
-	public List<Image> findAll() {
-		return imageRepository.findAll();
+	
+	
+	public Page<Image> findAll(Pageable pageable) {
+		return imageRepository.findAll(pageable);
 	}
 
 	public List<Image> findAllByNewsId(Long newsId) {
@@ -73,11 +73,6 @@ public class ImageService implements ServiceInterface<Image> {
 	@Override
 	public Image findOneById(Long id) {
 		return imageRepository.findById(id).orElse(null);
-	}
-
-	@Override
-	public Image create(Image entity) throws Exception {
-		return null;
 	}
 
 	public Image createForComment(Long commentId, MultipartFile multipartFile) throws Exception {
@@ -137,12 +132,6 @@ public class ImageService implements ServiceInterface<Image> {
 		}
 
 		imageRepository.delete(imageToDelete);
-	}
-
-	@Override
-	public Image update(Image entity, Long id) throws Exception {
-
-		return null;
 	}
 
 	public String saveImage(MultipartFile file, String fileName, String folderName, Long entityId) throws IOException{
