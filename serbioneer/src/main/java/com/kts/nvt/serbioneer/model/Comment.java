@@ -14,17 +14,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 
-@NoArgsConstructor
 @AllArgsConstructor
 
 @Entity
 @Table(name = "comment")
+@SQLDelete(sql =
+"UPDATE comment " +
+"SET is_active = false " +
+"WHERE id = ?")
+@Where(clause="is_active=true")
 public class Comment {
 
 	@Getter
@@ -33,6 +39,11 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Getter
+	@Setter
+	@Column(name="is_active")
+	private Boolean active;
+	
 	@Getter
 	@Setter
 	@NonNull
@@ -64,7 +75,12 @@ public class Comment {
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "comment")
 	private Set<Image> images;
 
+	public Comment() {
+		this.active = true;
+	}
+	
 	public Comment(@NonNull String text) {
 		this.text = text;
+		this.active = true;
 	}
 }

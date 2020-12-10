@@ -15,14 +15,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import lombok.*;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @RequiredArgsConstructor
 
 @Entity
 @Table(name = "news")
+@SQLDelete(sql =
+"UPDATE news " +
+"SET is_active = false " +
+"WHERE id = ?")
+@Where(clause="is_active=true")
 public class News {
 
 	@Getter
@@ -31,6 +38,11 @@ public class News {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Getter
+	@Setter
+	@Column(name="is_active")
+	private Boolean active;
+	
 	@Getter
 	@Setter
 	@NonNull
@@ -55,7 +67,12 @@ public class News {
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy = "news")
 	private Set<Image> images;
 
+	public News() {
+		this.active = true;
+	}
+	
 	public News(@NonNull String information) {
 		this.information = information;
+		this.active = true;
 	}
 }

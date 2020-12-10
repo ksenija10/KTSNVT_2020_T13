@@ -14,19 +14,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@RequiredArgsConstructor
 @AllArgsConstructor
 
 @Entity
 @Table(name = "category_type")
+@SQLDelete(sql =
+"UPDATE category_type " +
+"SET is_active = false " +
+"WHERE id = ?")
+@Where(clause="is_active=true")
 public class CulturalCategoryType {
 
 	@Getter
@@ -35,6 +39,11 @@ public class CulturalCategoryType {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Getter
+	@Setter
+	@Column(name="is_active")
+	private Boolean active;
+	
 	@Getter
 	@Setter
 	@NonNull
@@ -53,4 +62,13 @@ public class CulturalCategoryType {
 	// ne zelimo da brisanjem tipa obrisemo sva kulturna dobra tog tipa
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.DETACH}, fetch = FetchType.LAZY, mappedBy = "culturalCategoryType")
 	private Set<CulturalSite> culturalSites;
+	
+	public CulturalCategoryType() {
+		this.active = true;
+	}
+	
+	public CulturalCategoryType(@NonNull String name) {
+		this.active = true;
+		this.name = name;
+	}
 }

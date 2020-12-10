@@ -12,19 +12,23 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@RequiredArgsConstructor
 @AllArgsConstructor
 
 @Entity
 @Table(name = "cultural_category")
+@SQLDelete(sql =
+"UPDATE cultural_category " +
+"SET is_active = false " +
+"WHERE id = ?")
+@Where(clause="is_active=true")
 public class CulturalSiteCategory {
 
 	@Getter
@@ -32,6 +36,11 @@ public class CulturalSiteCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Getter
+	@Setter
+	@Column(name="is_active")
+	private Boolean active;
 	
 	@Getter
 	@Setter
@@ -48,4 +57,13 @@ public class CulturalSiteCategory {
 	@Setter
 	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "culturalSiteCategory")
 	private Set<CulturalSite> culturalSites;
+	
+	public CulturalSiteCategory() {
+		this.active = true;
+	}
+	
+	public CulturalSiteCategory(@NonNull String name) {
+		this.active = true;
+		this.name = name;
+	}
 }

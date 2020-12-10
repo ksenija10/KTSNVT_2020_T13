@@ -19,21 +19,26 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
 
 @Entity
 @Table(name="users")
+@SQLDelete(sql =
+"UPDATE users " +
+"SET is_active = false " +
+"WHERE id = ?")
+@Where(clause="is_active=true")
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type", discriminatorType= DiscriminatorType.STRING)
 public abstract class User implements UserDetails {
@@ -43,6 +48,11 @@ public abstract class User implements UserDetails {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
+	
+	@Getter
+	@Setter
+	@Column(name="is_active")
+	private Boolean active;
 	
 	@Getter
 	@Setter
@@ -112,11 +122,16 @@ public abstract class User implements UserDetails {
 		this.password = password;
 	}
 
+	public User() {
+		this.active = true;
+	}
+	
 	public User(Long id, @NonNull String name, @NonNull String surname, @NonNull String email, @NonNull String password) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
 		this.password = password;
+		this.active = true;
 	}
 }

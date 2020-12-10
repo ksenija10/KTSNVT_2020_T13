@@ -132,7 +132,7 @@ public class ImageService implements ServiceInterface<Image> {
 		if (imageToDelete.getComment() != null) {
 			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			if (!imageToDelete.getComment().getAuthenticatedUser().getId().equals(user.getId())) {
-				throw new Exception("You can only delete your images");
+				throw new Exception("You can only delete your images.");
 			}
 		}
 

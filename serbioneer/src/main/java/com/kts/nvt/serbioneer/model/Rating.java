@@ -9,19 +9,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
 
 @Entity
 @Table(name = "rating")
+@SQLDelete(sql =
+"UPDATE rating " +
+"SET is_active = false " +
+"WHERE id = ?")
+@Where(clause="is_active=true")
 public class Rating {
 	
 	@Getter
@@ -29,6 +35,11 @@ public class Rating {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Getter
+	@Setter
+	@Column(name="is_active")
+	private Boolean active;
 	
 	@Getter
 	@Setter
@@ -50,8 +61,13 @@ public class Rating {
 	@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
 	private AuthenticatedUser authenticatedUser;
 
+	public Rating() {
+		this.active = true;
+	}
+	
 	public Rating(@NonNull int value) {
 		this.value = value;
+		this.active = true;
 	}
 	
 	
