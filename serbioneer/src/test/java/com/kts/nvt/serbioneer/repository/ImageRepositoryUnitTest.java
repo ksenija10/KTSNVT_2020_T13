@@ -43,9 +43,9 @@ public class ImageRepositoryUnitTest {
 
     @Before
     public void setUp(){
-        Comment comment = commentRepository.findById(Long.parseLong("1")).orElse(null);
-        News news = newsRepository.findById(Long.parseLong("1")).orElse(null);
-        CulturalSite culturalSite = culturalSiteRepository.findById(Long.parseLong("1")).orElse(null);
+        Comment comment = commentRepository.findById(COMMENT_ID).orElse(null);
+        News news = newsRepository.findById(NEWS_ID).orElse(null);
+        CulturalSite culturalSite = culturalSiteRepository.findById(CULTURAL_SITE_ID).orElse(null);
         entityManager.persist(new Image(IMAGE_NAME_1, IMAGE_PATH_1, comment));
         entityManager.persist(new Image(IMAGE_NAME_2, IMAGE_PATH_2, comment));
         entityManager.persist(new Image(IMAGE_NAME_3, IMAGE_PATH_3, news));
@@ -54,73 +54,73 @@ public class ImageRepositoryUnitTest {
 
     @Test
     public void Test_find_all_by_comment_id(){
-        List<Image> found = imageRepository.findAllByCommentId(Long.parseLong("1"));
+        List<Image> found = imageRepository.findAllByCommentId(COMMENT_ID);
         assertEquals(2,found.size());
     }
 
     @Test
     public void Test_find_all_by_comment_page_id(){
-        Page<Image> found = imageRepository.findAllByCommentId(PageRequest.of(0,2), Long.parseLong("1"));
+        Page<Image> found = imageRepository.findAllByCommentId(PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE), COMMENT_ID);
         assertEquals(2, found.getContent().size());
     }
 
     @Test
     public void Test_find_all_by_news_id(){
-        List<Image> found = imageRepository.findAllByNewsId(Long.parseLong("1"));
+        List<Image> found = imageRepository.findAllByNewsId(NEWS_ID);
         assertEquals(1,found.size());
     }
 
     @Test
     public void Test_find_all_by_news_page_id(){
-        Page<Image> found = imageRepository.findAllByNewsId(PageRequest.of(0,2), Long.parseLong("1"));
+        Page<Image> found = imageRepository.findAllByNewsId(PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE), NEWS_ID);
         assertEquals(1, found.getContent().size());
     }
 
     @Test
     public void Test_find_all_by_cultural_site_id(){
-        List<Image> found = imageRepository.findAllByCulturalSiteId(Long.parseLong("1"));
+        List<Image> found = imageRepository.findAllByCulturalSiteId(CULTURAL_SITE_ID);
         assertEquals(1,found.size());
     }
 
     @Test
     public void Test_find_all_by_cultural_site_page_id(){
-        Page<Image> found = imageRepository.findAllByCulturalSiteId(PageRequest.of(0,2), Long.parseLong("1"));
+        Page<Image> found = imageRepository.findAllByCulturalSiteId(PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE), CULTURAL_SITE_ID);
         assertEquals(1, found.getContent().size());
     }
 
     @Test
     public void Test_fail_find_all_by_comment_id(){
-        List<Image> found = imageRepository.findAllByCommentId(Long.parseLong("1"));
+        List<Image> found = imageRepository.findAllByCommentId(COMMENT_ID);
         assertNotEquals(-1,found.size());
     }
 
     @Test
     public void Test_fail_find_all_by_comment_page_id(){
-        Page<Image> found = imageRepository.findAllByCommentId(PageRequest.of(0,2), Long.parseLong("1"));
+        Page<Image> found = imageRepository.findAllByCommentId(PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE), COMMENT_ID);
         assertNotEquals(-1, found.getContent().size());
     }
 
     @Test
     public void Test_fail_find_all_by_news_id(){
-        List<Image> found = imageRepository.findAllByNewsId(Long.parseLong("1"));
+        List<Image> found = imageRepository.findAllByNewsId(NEWS_ID);
         assertNotEquals(-1,found.size());
     }
 
     @Test
     public void Test_fail_find_all_by_news_page_id(){
-        Page<Image> found = imageRepository.findAllByNewsId(PageRequest.of(0,2), Long.parseLong("1"));
+        Page<Image> found = imageRepository.findAllByNewsId(PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE), NEWS_ID);
         assertNotEquals(-1, found.getContent().size());
     }
 
     @Test
     public void Test_fail_find_all_by_cultural_site_id(){
-        List<Image> found = imageRepository.findAllByCulturalSiteId(Long.parseLong("1"));
+        List<Image> found = imageRepository.findAllByCulturalSiteId(CULTURAL_SITE_ID);
         assertNotEquals(-1,found.size());
     }
 
     @Test
     public void Test_fail_find_all_by_cultural_site_page_id(){
-        Page<Image> found = imageRepository.findAllByCulturalSiteId(PageRequest.of(0,2), Long.parseLong("1"));
+        Page<Image> found = imageRepository.findAllByCulturalSiteId(PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE), CULTURAL_SITE_ID);
         assertNotEquals(-1, found.getContent().size());
     }
 
