@@ -14,11 +14,17 @@ public class ImageConstants {
     public static final String IMAGE_NAME_4 = "name4";
 
     public static final Long IMAGE_ID = 1L;
+    public static final Long IMAGE_ID_DELETE = 2L;
     public static final Long IMAGE_ID_RANDOM = 100L;
 
     public static final Long NEWS_ID = 1L;
+    public static final Long NEWS_ID_NEW = 4L;
+
     public static final Long COMMENT_ID = 1L;
+    public static final Long COMMENT_ID_NEW = 4L;
+
     public static final Long CULTURAL_SITE_ID = 1L;
+    public static final Long CULTURAL_SITE_ID_NEW = 4L;
 
     public static final Integer PAGEABLE_PAGE = 0;
     public static final Integer PAGEABLE_SIZE = 2;
@@ -41,6 +47,10 @@ public class ImageConstants {
     public static final Image CREATED_IMAGE_NEWS = new Image("something", EXPECTED_PATH_NEWS, NEWS);
     public static final Image CREATED_IMAGE_CULTURAL_SITE = new Image("something",
             EXPECTED_PATH_CULTURAL_SITE, CULTURAL_SITE);
+
+
+    public static final String USER_USERNAME = "prvi@user.com";
+    public static final String USER_PASSWORD = "user";
 
 
 
