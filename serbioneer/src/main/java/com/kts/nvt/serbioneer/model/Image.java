@@ -19,6 +19,8 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @AllArgsConstructor
 @RequiredArgsConstructor
 
@@ -96,6 +98,30 @@ public class Image {
 		this.path = path;
 		this.culturalSite = culturalSite;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Image{" +
+				"id=" + id +
+				", active=" + active +
+				", name='" + name + '\'' +
+				", path='" + path + '\'' +
+				", news=" + news +
+				", culturalSite=" + culturalSite +
+				", comment=" + comment +
+				'}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Image image = (Image) o;
+		return name.equals(image.name) && path.equals(image.path);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, path);
+	}
 }
