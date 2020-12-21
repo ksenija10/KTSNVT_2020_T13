@@ -13,6 +13,8 @@ import com.kts.nvt.serbioneer.model.Rating;
 import com.kts.nvt.serbioneer.model.User;
 import com.kts.nvt.serbioneer.repository.RatingRepository;
 
+import java.util.List;
+
 @Service
 public class RatingService implements ServiceInterface<Rating> {
 
@@ -27,7 +29,6 @@ public class RatingService implements ServiceInterface<Rating> {
 
 	private final String type = "Rating";
 
-
 	@Override
 	public Page<Rating> findAll(Pageable pageable) {
 		return ratingRepository.findAll(pageable);
@@ -39,6 +40,18 @@ public class RatingService implements ServiceInterface<Rating> {
 	
 	public Page<Rating> findAllByAuthenticatedUserId(Pageable pageable, Long authenticatedUserId) {
 		return ratingRepository.findAllByAuthenticatedUserId(pageable, authenticatedUserId);
+	}
+
+	public List<Rating> findAll() {
+		return ratingRepository.findAll();
+	}
+
+	public List<Rating> findAllByCulturalSiteId(Long culturalSiteId) {
+		return ratingRepository.findAllByCulturalSiteId(culturalSiteId);
+	}
+
+	public List<Rating> findAllByAuthenticatedUserId(Long authenticatedUserId) {
+		return ratingRepository.findAllByAuthenticatedUserId(authenticatedUserId);
 	}
 
 	@Override
