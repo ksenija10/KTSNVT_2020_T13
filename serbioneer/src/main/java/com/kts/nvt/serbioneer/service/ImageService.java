@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -39,9 +40,7 @@ public class ImageService implements ServiceInterface<Image> {
 	@Autowired
 	private CulturalSiteService culturalSiteService;
 
-	private final String type = "Image";
-	
-	
+
 	public Page<Image> findAll(Pageable pageable) {
 		return imageRepository.findAll(pageable);
 	}
@@ -81,7 +80,7 @@ public class ImageService implements ServiceInterface<Image> {
 			throw new NonexistentIdException("Comment");
 		}
 
-		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
 		String filePath = this.saveImage(multipartFile, fileName, "comment", commentId);
 		Image image = new Image(fileName, filePath, comment);
 
@@ -94,9 +93,8 @@ public class ImageService implements ServiceInterface<Image> {
 			throw new NonexistentIdException("News");
 		}
 
-		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
 		String filePath = this.saveImage(multipartFile, fileName, "news", newsId);
-		System.out.println("Prosao");
 		Image image = new Image(fileName, filePath, news);
 
 		return imageRepository.save(image);
@@ -109,9 +107,8 @@ public class ImageService implements ServiceInterface<Image> {
 			throw new NonexistentIdException("Cultural Site");
 		}
 
-		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
 		String filePath = this.saveImage(multipartFile, fileName, "culturalSite", culturalSiteId);
-		System.out.println("Prosao");
 		Image image = new Image(fileName, filePath, culturalSite);
 
 		return imageRepository.save(image);
@@ -121,7 +118,7 @@ public class ImageService implements ServiceInterface<Image> {
 	public void delete(Long id) throws Exception {
 		Image imageToDelete = imageRepository.findById(id).orElse(null);
 		if (imageToDelete == null) {
-			throw new NonexistentIdException(this.type);
+			throw new NonexistentIdException("Image");
 		}
 
 		if (imageToDelete.getComment() != null) {
@@ -139,7 +136,7 @@ public class ImageService implements ServiceInterface<Image> {
 		String folderPath = "src" + separator + "main" + separator + "resources" + separator + "images" + separator
 				+ folderName;
 		String entityFolderPath = folderPath + separator + entityId;
-		String filePath = entityFolderPath + separator + file.getOriginalFilename();
+		String filePath = entityFolderPath + separator + fileName;
 		
 		Path path = Paths.get(filePath);
 
