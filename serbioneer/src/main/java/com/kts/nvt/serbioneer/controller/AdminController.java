@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -111,13 +112,14 @@ public class AdminController {
 	 */
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
+	public ResponseEntity<PasswordDTO> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
 		try{
-			adminService.updatePassword(passwordDTO);
+			Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			adminService.updatePassword(passwordDTO, user);
 		}catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(passwordDTO, HttpStatus.OK);
 	}
 }
