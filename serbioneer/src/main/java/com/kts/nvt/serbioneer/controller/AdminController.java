@@ -96,9 +96,9 @@ public class AdminController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping(value = "/updatePersonalInformation", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserUpdateDTO> updatePersonalInformation(@Valid @RequestBody UserUpdateDTO userUpdateDTO) {
-
 		try {
-			adminService.updatePersonalInformation(userUpdateDTO);
+			Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			adminService.updatePersonalInformation(userUpdateDTO, user);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
@@ -115,7 +115,7 @@ public class AdminController {
 	public ResponseEntity<PasswordDTO> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
 		try{
 			Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			adminService.updatePassword(passwordDTO, user);
+			user = adminService.updatePassword(passwordDTO, user);
 		}catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
