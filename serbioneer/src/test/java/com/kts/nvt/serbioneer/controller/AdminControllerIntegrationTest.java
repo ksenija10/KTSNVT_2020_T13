@@ -66,7 +66,7 @@ public class AdminControllerIntegrationTest {
     	//exchange radi da bi poslali header
     	//HelperPage je nasa hc klasa zato sto ResponseEntity p***a ne zeli da prihvati Page jer je apstraktna klasa
     	//pa mozete procitati sve u com.kts.nvt.serbioneer.helper.HelperPage klasi!
-    	ResponseEntity<HelperPage<AdminDTO>> responseEntity = restTemplate.exchange("/api/admin/by-page?page=0&size=2", 
+    	ResponseEntity<HelperPage<AdminDTO>> responseEntity = restTemplate.exchange("/api/admin/by-page?page=0&size=3", 
     							HttpMethod.GET, httpEntity, new ParameterizedTypeReference<HelperPage<AdminDTO>>() {} );
     	
     	List<AdminDTO> admins = responseEntity.getBody().toList();

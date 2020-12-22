@@ -16,6 +16,8 @@ insert into users (type, name, surname, email, password, activated, is_active)
 values ('AuthenticatedUser', 'Katarina', 'Donalnov', 'dolanovkatarina@gmail.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq', true, true);
 insert into users (type, name, surname, email, password, is_active) 
 values ('Admin', 'Marija', 'Maric', 'admin2@admin.com', '$2y$12$IVBar4DN2RFVW8TqTF/BnuvuErSbRAHC0M7esAx2l5KLjEH8DC6jO', true);
+insert into users (type, name, surname, email, password, is_active) 
+values ('Admin', 'Ignjat', 'Arsic', 'admin3@admin.com', '$2y$12$GzLhpKp2D3WWVBqKyybeu.zG7axbOaxwRkdMnOoBM/BdG70rpG9Gm', true);
 
 
 insert into authority (name) values ('ROLE_ADMIN');
@@ -29,6 +31,7 @@ insert into user_authority (user_id, authority_id) values (3, 2);
 insert into user_authority (user_id, authority_id) values (4, 2);
 insert into user_authority (user_id, authority_id) values (5, 2);
 insert into user_authority (user_id, authority_id) values (6, 1);
+insert into user_authority (user_id, authority_id) values (7, 1);
 
 -- kulturne kategorije
 insert into cultural_category (name, is_active) values ('Institucija', true);
