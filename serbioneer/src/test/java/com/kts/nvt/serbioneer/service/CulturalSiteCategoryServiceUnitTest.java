@@ -1,14 +1,25 @@
 package com.kts.nvt.serbioneer.service;
 
 import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.CATEGORY_ID;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.CATEGORY_WITH_SITES;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.CATEGORY_WITH_SITES_ID;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.EXISTING_CATEGORY;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.INVALID_ID;
 import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.NEW_CATEGORY_NAME;
 import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.PAGEABLE_PAGE;
 import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.PAGEABLE_SIZE;
 import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.PAGEABLE_TOTAL_ELEMENTS;
-import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.SAVED_CATEGORY;
-import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.SAVED_CATEGORY_ID;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.SAVED_CATEGORY_1;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.SAVED_CATEGORY_2;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.SAVED_CATEGORY_ID_1;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.SAVED_CATEGORY_ID_2;
 import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.TOTAL_ELEMENTS;
-import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.*;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.UNIQUE_CATEGORY;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.UNIQUE_CATEGORY_NAME;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.UPDATED_CATEGORY_INVALID;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.UPDATED_CATEGORY_NAME;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.UPDATED_CATEGORY_SAME_NAME;
+import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.UPDATED_CATEGORY_VALID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -76,27 +87,34 @@ public class CulturalSiteCategoryServiceUnitTest {
 		
 		// create
 		CulturalSiteCategory newCategory = UNIQUE_CATEGORY;
-		CulturalSiteCategory savedCategory = SAVED_CATEGORY;
-		savedCategory.setId(SAVED_CATEGORY_ID);
+		CulturalSiteCategory savedCategory = SAVED_CATEGORY_1;
+		savedCategory.setId(SAVED_CATEGORY_ID_1);
 		given(culturalSiteCategoryRepository.save(newCategory)).willReturn(savedCategory);
 		
-		given(culturalSiteCategoryRepository.findById(SAVED_CATEGORY_ID)).willReturn(Optional.of(savedCategory));
+		given(culturalSiteCategoryRepository.findById(SAVED_CATEGORY_ID_1)).willReturn(Optional.of(savedCategory));
 		
 		// delete
-		CulturalSiteCategory categoryWithTypes = CATEGORY_WITH_TYPES;
+		CulturalSiteCategory categoryWithSites = CATEGORY_WITH_SITES;
 		CulturalSite culturalSite = new CulturalSite();
-		categoryWithTypes.addCulturalSite(culturalSite);
-		given(culturalSiteCategoryRepository.findById(CATEGORY_WITH_TYPES_ID)).willReturn(Optional.of(categoryWithTypes));
+		categoryWithSites.addCulturalSite(culturalSite);
+		given(culturalSiteCategoryRepository.findById(CATEGORY_WITH_SITES_ID)).willReturn(Optional.of(categoryWithSites));
 		
-		doNothing().when(culturalSiteCategoryRepository).delete(SAVED_CATEGORY);
+		doNothing().when(culturalSiteCategoryRepository).delete(SAVED_CATEGORY_1);
 		
 		// update
+		given(culturalSiteCategoryRepository.findById(SAVED_CATEGORY_ID_2)).willReturn(Optional.of(SAVED_CATEGORY_2));
 		// name and id do not match -> name not unique -> invalid update
-		given(culturalSiteCategoryRepository.findOneByNameAndIdNot(NEW_CATEGORY_NAME, SAVED_CATEGORY_ID)).willReturn(category);
+		given(culturalSiteCategoryRepository.findOneByNameAndIdNot(NEW_CATEGORY_NAME, SAVED_CATEGORY_ID_1)).willReturn(category);
 		// name is unique -> valid update
-		given(culturalSiteCategoryRepository.findOneByNameAndIdNot(UPDATED_CATEGORY_NAME, SAVED_CATEGORY_ID)).willReturn(null);
+		given(culturalSiteCategoryRepository.findOneByNameAndIdNot(UPDATED_CATEGORY_NAME, SAVED_CATEGORY_ID_1)).willReturn(null);
 		// name is unchanged -> valid update
-		given(culturalSiteCategoryRepository.findOneByNameAndIdNot(UNIQUE_CATEGORY_NAME, SAVED_CATEGORY_ID)).willReturn(null);
+		given(culturalSiteCategoryRepository.findOneByNameAndIdNot(UNIQUE_CATEGORY_NAME, SAVED_CATEGORY_ID_1)).willReturn(null);
+		// save updated category
+		SAVED_CATEGORY_2.setId(SAVED_CATEGORY_ID_2);
+		UPDATED_CATEGORY_VALID.setId(SAVED_CATEGORY_ID_1);
+		UPDATED_CATEGORY_SAME_NAME.setId(SAVED_CATEGORY_ID_2);
+		given(culturalSiteCategoryRepository.save(SAVED_CATEGORY_1)).willReturn(UPDATED_CATEGORY_VALID);
+		given(culturalSiteCategoryRepository.save(SAVED_CATEGORY_2)).willReturn(UPDATED_CATEGORY_SAME_NAME);
 	}
 	
 	@Test
@@ -154,10 +172,10 @@ public class CulturalSiteCategoryServiceUnitTest {
 
 	@Test
 	public void testDeleteSuccessful() throws Exception {
-		culturalSiteCategoryService.delete(SAVED_CATEGORY_ID);
+		culturalSiteCategoryService.delete(SAVED_CATEGORY_ID_1);
 		
-		verify(culturalSiteCategoryRepository, times(1)).findById(SAVED_CATEGORY_ID);
-		verify(culturalSiteCategoryRepository, times(1)).delete(SAVED_CATEGORY);
+		verify(culturalSiteCategoryRepository, times(1)).findById(SAVED_CATEGORY_ID_1);
+		verify(culturalSiteCategoryRepository, times(1)).delete(SAVED_CATEGORY_1);
 	}
 	
 	@Test(expected = NonexistentIdException.class)
@@ -165,51 +183,55 @@ public class CulturalSiteCategoryServiceUnitTest {
 		culturalSiteCategoryService.delete(INVALID_ID);
 		
 		verify(culturalSiteCategoryRepository, times(1)).findById(INVALID_ID);
-		verify(culturalSiteCategoryRepository, times(0)).delete(SAVED_CATEGORY);
+		verify(culturalSiteCategoryRepository, times(0)).delete(SAVED_CATEGORY_1);
 	}
 	
 	@Test(expected = ForeignKeyException.class)
-	public void testDeleteWithCategoryTypes() throws Exception {
-		culturalSiteCategoryService.delete(CATEGORY_WITH_TYPES_ID);
+	public void testDeleteCategoryWithCulturalSites() throws Exception {
+		culturalSiteCategoryService.delete(CATEGORY_WITH_SITES_ID);
 		
-		verify(culturalSiteCategoryRepository, times(1)).findById(CATEGORY_WITH_TYPES_ID);
-		verify(culturalSiteCategoryRepository, times(0)).delete(SAVED_CATEGORY);
+		verify(culturalSiteCategoryRepository, times(1)).findById(CATEGORY_WITH_SITES_ID);
+		verify(culturalSiteCategoryRepository, times(0)).delete(SAVED_CATEGORY_1);
 	}
 
 	@Test
 	public void testUpdateSuccessful() throws Exception {
-		culturalSiteCategoryService.update(UPDATED_CATEGORY_VALID, SAVED_CATEGORY_ID);
+		CulturalSiteCategory updatedCategory = culturalSiteCategoryService.update(UPDATED_CATEGORY_VALID, SAVED_CATEGORY_ID_1);
 		
-		verify(culturalSiteCategoryRepository, times(1)).findById(SAVED_CATEGORY_ID);
-		verify(culturalSiteCategoryRepository, times(1)).findOneByNameAndIdNot(UPDATED_CATEGORY_NAME, SAVED_CATEGORY_ID);
-		verify(culturalSiteCategoryRepository, times(1)).save(SAVED_CATEGORY);
+		verify(culturalSiteCategoryRepository, times(1)).findById(SAVED_CATEGORY_ID_1);
+		verify(culturalSiteCategoryRepository, times(1)).findOneByNameAndIdNot(UPDATED_CATEGORY_NAME, SAVED_CATEGORY_ID_1);
+		verify(culturalSiteCategoryRepository, times(1)).save(SAVED_CATEGORY_1);
+		assertEquals(UPDATED_CATEGORY_NAME, updatedCategory.getName());
 	}
 	
 	@Test
 	public void testUpdateSuccessfulUnchangedName() throws Exception {
-		culturalSiteCategoryService.update(UNIQUE_CATEGORY, SAVED_CATEGORY_ID);
+		CulturalSiteCategory updatedCategory = culturalSiteCategoryService.update(UPDATED_CATEGORY_SAME_NAME, SAVED_CATEGORY_ID_2);
 		
-		verify(culturalSiteCategoryRepository, times(1)).findById(SAVED_CATEGORY_ID);
-		verify(culturalSiteCategoryRepository, times(1)).findOneByNameAndIdNot(UNIQUE_CATEGORY_NAME, SAVED_CATEGORY_ID);
-		verify(culturalSiteCategoryRepository, times(1)).save(SAVED_CATEGORY);
+		verify(culturalSiteCategoryRepository, times(1)).findById(SAVED_CATEGORY_ID_2);
+		verify(culturalSiteCategoryRepository, times(1)).findOneByNameAndIdNot(UNIQUE_CATEGORY_NAME, SAVED_CATEGORY_ID_2);
+		verify(culturalSiteCategoryRepository, times(1)).save(SAVED_CATEGORY_2);
+		assertEquals(UNIQUE_CATEGORY_NAME, updatedCategory.getName());
 	}
 	
 	@Test(expected = NonexistentIdException.class)
 	public void testUpdateNotExistingId() throws Exception {
-		culturalSiteCategoryService.update(UPDATED_CATEGORY_VALID, INVALID_ID);
+		CulturalSiteCategory updatedCategory = culturalSiteCategoryService.update(UPDATED_CATEGORY_VALID, INVALID_ID);
 		
 		verify(culturalSiteCategoryRepository, times(1)).findById(INVALID_ID);
 		verify(culturalSiteCategoryRepository, times(0)).findOneByNameAndIdNot(UPDATED_CATEGORY_NAME, INVALID_ID);
 		verify(culturalSiteCategoryRepository, times(0)).save(UPDATED_CATEGORY_VALID);
+		assertNull(updatedCategory);
 	}
 	
 	@Test(expected = ExistentFieldValueException.class)
 	public void testUpdateWithExistingCategoryName() throws Exception {
-		culturalSiteCategoryService.update(UPDATED_CATEGORY_INVALID, SAVED_CATEGORY_ID);
+		CulturalSiteCategory updatedCategory = culturalSiteCategoryService.update(UPDATED_CATEGORY_INVALID, SAVED_CATEGORY_ID_1);
 		
-		verify(culturalSiteCategoryRepository, times(1)).findById(SAVED_CATEGORY_ID);
-		verify(culturalSiteCategoryRepository, times(1)).findOneByNameAndIdNot(NEW_CATEGORY_NAME, SAVED_CATEGORY_ID);
+		verify(culturalSiteCategoryRepository, times(1)).findById(SAVED_CATEGORY_ID_1);
+		verify(culturalSiteCategoryRepository, times(1)).findOneByNameAndIdNot(NEW_CATEGORY_NAME, SAVED_CATEGORY_ID_1);
 		verify(culturalSiteCategoryRepository, times(0)).save(UPDATED_CATEGORY_INVALID);
+		assertNull(updatedCategory);
 	}
 
 }

@@ -18,13 +18,16 @@ public class CulturalSiteCategoryConstants {
 	
 	public static final Long CATEGORY_ID = 25L;
 	public static final Long INVALID_ID = -1L;
-	public static final Long CATEGORY_WITH_TYPES_ID = 26L;
+	public static final Long CATEGORY_WITH_SITES_ID = 26L;
 	
-	public static final Long SAVED_CATEGORY_ID = 27L;
+	public static final Long SAVED_CATEGORY_ID_1 = 27L;
+	public static final Long SAVED_CATEGORY_ID_2 = 28L;
 	public static final CulturalSiteCategory EXISTING_CATEGORY = new CulturalSiteCategory(NEW_CATEGORY_NAME);
 	public static final CulturalSiteCategory UNIQUE_CATEGORY = new CulturalSiteCategory(UNIQUE_CATEGORY_NAME);
 	public static final CulturalSiteCategory UPDATED_CATEGORY_INVALID = new CulturalSiteCategory(NEW_CATEGORY_NAME);
-	public static final CulturalSiteCategory UPDATED_CATEGORY_VALID = new CulturalSiteCategory(UPDATED_CATEGORY_NAME);
-	public static CulturalSiteCategory SAVED_CATEGORY = new CulturalSiteCategory(UNIQUE_CATEGORY_NAME);
-	public static CulturalSiteCategory CATEGORY_WITH_TYPES = new CulturalSiteCategory(UNIQUE_CATEGORY_NAME);
+	public static CulturalSiteCategory UPDATED_CATEGORY_VALID = new CulturalSiteCategory(UPDATED_CATEGORY_NAME);
+	public static CulturalSiteCategory UPDATED_CATEGORY_SAME_NAME = new CulturalSiteCategory(UNIQUE_CATEGORY_NAME);
+	public static CulturalSiteCategory SAVED_CATEGORY_1 = new CulturalSiteCategory(UNIQUE_CATEGORY_NAME);
+	public static CulturalSiteCategory SAVED_CATEGORY_2 = new CulturalSiteCategory(UNIQUE_CATEGORY_NAME);
+	public static CulturalSiteCategory CATEGORY_WITH_SITES = new CulturalSiteCategory(UNIQUE_CATEGORY_NAME);
 }
