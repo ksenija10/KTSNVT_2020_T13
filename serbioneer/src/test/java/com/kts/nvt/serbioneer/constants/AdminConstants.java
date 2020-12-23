@@ -48,4 +48,6 @@ public class AdminConstants {
 	public static final String DELETE_SURNAME = "Isbic";
 	public static final String DELETE_EMAIL = "delete@admin.com";
 	public static final String DELETE_PASSWORD = "delete";
+	
+	public static final String ADMIN_NULL_USERNAME = "neki@admin.com";
 }
