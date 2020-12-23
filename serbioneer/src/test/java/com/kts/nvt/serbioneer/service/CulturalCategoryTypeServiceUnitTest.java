@@ -54,7 +54,7 @@ import com.kts.nvt.serbioneer.repository.CulturalCategoryTypeRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource("classpath:test.properties")
-public class CulturalCategoryTypeServiceTest {
+public class CulturalCategoryTypeServiceUnitTest {
 
 	@Autowired
 	private CulturalCategoryTypeService culturalCategoryTypeService;
