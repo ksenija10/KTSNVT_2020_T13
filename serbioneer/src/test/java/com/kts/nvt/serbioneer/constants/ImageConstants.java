@@ -52,6 +52,9 @@ public class ImageConstants {
     public static final String USER_USERNAME = "prvi@user.com";
     public static final String USER_PASSWORD = "user";
 
+    public static final String ADMIN_USERNAME = "admin@admin.com";
+    public static final String ADMIN_PASSWORD = "admin";
+
 
 
 

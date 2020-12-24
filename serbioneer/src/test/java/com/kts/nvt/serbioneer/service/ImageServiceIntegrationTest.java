@@ -15,13 +15,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -105,14 +106,7 @@ public class ImageServiceIntegrationTest {
     @Test
     public void Test_find_all_by_comment_id(){
         List<Image> all = imageRepository.findAll();
-        for(Image im: all){
-            System.out.println(im);
-        }
-
         List<Image> found = imageService.findAllByCommentId(COMMENT_ID);
-        for(Image im: found){
-            System.out.println(im);
-        }
 
         assertEquals(1, found.size());
     }
@@ -155,6 +149,8 @@ public class ImageServiceIntegrationTest {
     }
 
     @Test
+    @Transactional
+    @Rollback
     public void Test_create_for_comment() throws Exception {
         Image created = imageService.createForComment(COMMENT_ID_NEW, file);
 
@@ -163,6 +159,8 @@ public class ImageServiceIntegrationTest {
     }
 
     @Test
+    @Transactional
+    @Rollback
     public void Test_create_for_news() throws Exception {
         Image created = imageService.createForNews(NEWS_ID_NEW, file);
 
@@ -171,6 +169,8 @@ public class ImageServiceIntegrationTest {
     }
 
     @Test
+    @Transactional
+    @Rollback
     public void Test_create_for_cultural_site() throws Exception {
         Image created = imageService.createForCulturalSite(CULTURAL_SITE_ID_NEW, file);
 
@@ -186,6 +186,8 @@ public class ImageServiceIntegrationTest {
     }
 
     @Test
+    @Transactional
+    @Rollback
     public void Test_delete() throws Exception {
         login(USER_USERNAME, USER_PASSWORD);
 

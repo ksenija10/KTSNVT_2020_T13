@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,6 +41,9 @@ public class ImageService implements ServiceInterface<Image> {
 	@Autowired
 	private CulturalSiteService culturalSiteService;
 
+	public List<Image> findAll() {
+		return imageRepository.findAll();
+	}
 
 	public Page<Image> findAll(Pageable pageable) {
 		return imageRepository.findAll(pageable);
