@@ -1,5 +1,6 @@
 package com.kts.nvt.serbioneer.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -139,4 +140,11 @@ public class CulturalSite {
 		this.active = true;
 	}
 	
+	public void addRating(Rating r) {
+		if (this.ratings == null) {
+			this.ratings = new HashSet<>();
+		}
+		this.ratings.add(r);
+		r.setCulturalSite(this);
+	}
 }

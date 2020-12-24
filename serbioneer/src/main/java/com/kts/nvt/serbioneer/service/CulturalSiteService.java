@@ -3,11 +3,9 @@ package com.kts.nvt.serbioneer.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kts.nvt.serbioneer.model.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.dto.CulturalSiteFilterDTO;
@@ -16,6 +14,7 @@ import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalCategoryType;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
+import com.kts.nvt.serbioneer.model.Rating;
 import com.kts.nvt.serbioneer.repository.CulturalSiteRepository;
 
 import lombok.Getter;
@@ -132,7 +131,7 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 	}
 	
 	//dobavljanje svih gradova za front
-	public List<String> findAllCities(){
+	public List<String> findAllCities() {
 		List<String> cities = new ArrayList<String>();
 		List<CulturalSite> culturalSites = this.findAll();
 		for (CulturalSite culturalSite : culturalSites) {
@@ -141,8 +140,7 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 		return cities;
 	}
 	
-	public Page<CulturalSite> findAllSubscribed(Pageable pageable){
-		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public Page<CulturalSite> findAllSubscribed(Pageable pageable, AuthenticatedUser user) {
 		return culturalSiteRepository.findAllBySubscribedUsersId(pageable, user.getId());
 	}
 	
