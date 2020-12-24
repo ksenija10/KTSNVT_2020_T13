@@ -13,8 +13,7 @@ import com.kts.nvt.serbioneer.service.AdminServiceIntegrationTest;
 import com.kts.nvt.serbioneer.service.AdminServiceUnitTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({AdminControllerIntegrationTest.class, AdminRepositoryIntegationTest.class, AdminServiceIntegrationTest.class, 
-		AdminServiceUnitTest.class, ImageRepositoryUnitTest.class, ImageServiceUnitTest.class})
+@SuiteClasses({AdminControllerIntegrationTest.class, AdminRepositoryIntegationTest.class, AdminServiceIntegrationTest.class})
 @TestPropertySource("classpath:test.properties")
 public class SuiteAll {
 
