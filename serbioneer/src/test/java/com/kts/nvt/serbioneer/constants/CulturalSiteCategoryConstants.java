@@ -30,4 +30,16 @@ public class CulturalSiteCategoryConstants {
 	public static CulturalSiteCategory SAVED_CATEGORY_1 = new CulturalSiteCategory(UNIQUE_CATEGORY_NAME);
 	public static CulturalSiteCategory SAVED_CATEGORY_2 = new CulturalSiteCategory(UNIQUE_CATEGORY_NAME);
 	public static CulturalSiteCategory CATEGORY_WITH_SITES = new CulturalSiteCategory(UNIQUE_CATEGORY_NAME);
+
+	// integration testing
+	public static final int DB_COUNT = 3;
+	public static final Integer DB_PAGEABLE_PAGE = 1;
+	public static final Integer DB_PAGEABLE_SIZE = 2;
+	public static final long DB_PAGEABLE_NUM = 1;
+	
+	public static final String DB_NAME = "Institucija";
+	public static final Long DB_ID = 1L;
+	public static final Long DB_ID_REFERENCED = DB_ID;
+	
+	public static final String DB_NAME_EXISTING = "Manifestacija";
 }

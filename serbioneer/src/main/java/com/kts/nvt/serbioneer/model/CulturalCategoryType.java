@@ -71,7 +71,6 @@ public class CulturalCategoryType {
 	public CulturalCategoryType(@NonNull String name) {
 		this.active = true;
 		this.name = name;
-		this.culturalSites = new HashSet<>();
 	}
 	
 	public void addCulturalSite(CulturalSite culturalSite) {
