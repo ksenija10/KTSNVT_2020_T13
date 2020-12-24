@@ -34,6 +34,10 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(categoryId);
 	}
 	
+	public List<CulturalCategoryType> findAll() {
+		return culturalCategoryTypeRepository.findAll();
+	}
+	
 	@Override
 	public Page<CulturalCategoryType> findAll(Pageable pageable) {
 		return culturalCategoryTypeRepository.findAll(pageable);

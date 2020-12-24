@@ -56,6 +56,13 @@ public class CulturalSiteCategoryServiceIntegrationTest {
 		// only able to get active elements
 		assertEquals(true, category.getActive());
 	}
+	
+	@Test
+	public void testFindOneByInvalidId() {
+		CulturalSiteCategory category = culturalSiteCategoryService.findOneById(INVALID_ID);
+	
+		assertNull(category);
+	}
 
 	@Test
 	@Transactional
@@ -71,7 +78,7 @@ public class CulturalSiteCategoryServiceIntegrationTest {
 		assertNotNull(savedCategory);
 		List<CulturalSiteCategory> allCategories = culturalSiteCategoryService.findAll();
 		assertEquals(dbSizeBeforeAdd + 1, allCategories.size());
-		// gets last category
+		// get last category
 		savedCategory = allCategories.get(allCategories.size() - 1);
 		// validate data
 		assertEquals(NEW_CATEGORY_NAME, savedCategory.getName());
@@ -176,6 +183,9 @@ public class CulturalSiteCategoryServiceIntegrationTest {
 		dbCategory = culturalSiteCategoryService.update(dbCategory, DB_ID);
 		
 		assertNull(dbCategory);
+		// validate data -> UNCHANGED
+		dbCategory = culturalSiteCategoryService.findOneById(DB_ID);
+		assertEquals(DB_NAME, dbCategory.getName());
 	}
 	
 	@Test(expected = NullPointerException.class)
