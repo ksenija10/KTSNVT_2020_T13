@@ -18,8 +18,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,6 +110,8 @@ public class RatingServiceIntegrationTest {
     }
 
     @Test
+    @Transactional
+    @Rollback(value = true)
     public void Test_create() throws Exception {
 
         login(USER_USERNAME, USER_PASSWORD);
@@ -122,6 +126,8 @@ public class RatingServiceIntegrationTest {
     }
 
     @Test
+    @Transactional
+    @Rollback(value = true)
     public void Test_update() throws Exception {
         login(USER_USERNAME, USER_PASSWORD);
         UserDetails userDetails = userDetailsService.loadUserByUsername(USER_USERNAME);
@@ -135,6 +141,8 @@ public class RatingServiceIntegrationTest {
     }
 
     @Test
+    @Transactional
+    @Rollback(value = true)
     public void Test_delete() throws Exception {
         login(USER_USERNAME, USER_PASSWORD);
         UserDetails userDetails = userDetailsService.loadUserByUsername(USER_USERNAME);

@@ -71,6 +71,7 @@ public class RatingService implements ServiceInterface<Rating> {
 		AuthenticatedUser authUser = authenticatedUserService.findOneById(user.getId());
 
 		Rating entity = new Rating(value, culturalSite, authUser);
+		entity.setActive(true);
 
 		entity = ratingRepository.save(entity);
 

@@ -20,14 +20,6 @@ public class RatingConstants {
             new CulturalSiteCategory("category1")
     );
 
-
-
-
-
-    public static final Long ADMIN_ID = 1L;
-    public static final String ADMIN_USERNAME = "admin@admin.com";
-    public static final String ADMIN_PASSWORD = "admin";
-
     public static final String USER_USERNAME = "prvi@user.com";
     public static final String USER_PASSWORD = "user";
 
@@ -43,5 +35,11 @@ public class RatingConstants {
             ),
             AUTHENTICATED_USER
     );
+
+    public static final Integer NEW_VALUE = 5;
+    public static final Integer NEW_CULTURAL_SITE = 3;
+    public static final String NEW_USER_USERNAME = "srdjanmilic12@gmail.com";
+    public static final String NEW_USER_PASSWORD = "srdjabroj1";
+
 
 }
