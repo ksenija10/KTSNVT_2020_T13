@@ -56,8 +56,10 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
 			throw new NonexistentIdException(this.type);
 		}
 		// provera da li ima vezanih kulturnih dobara za sebe
-		if (!clturalSiteCategoryToDelete.getCulturalSites().isEmpty()) {
-			throw new ForeignKeyException(this.type);
+		if (clturalSiteCategoryToDelete.getCulturalSites() != null) {
+			if (!clturalSiteCategoryToDelete.getCulturalSites().isEmpty()) {
+				throw new ForeignKeyException(this.type);
+			}
 		}
 		culturalSiteCategoryRepository.delete(clturalSiteCategoryToDelete);
 	}

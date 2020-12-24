@@ -70,7 +70,7 @@ public class CulturalSiteCategory {
 	
 	public void addCulturalCategoryType(CulturalCategoryType categoryType) {
 		if (this.culturalCategoryTypes == null) {
-			this.culturalSites = new HashSet<>();
+			this.culturalCategoryTypes = new HashSet<>();
 		}
 		this.culturalCategoryTypes.add(categoryType);
 		categoryType.setCulturalSiteCategory(this);
