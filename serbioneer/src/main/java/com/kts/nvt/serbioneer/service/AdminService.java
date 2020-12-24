@@ -1,6 +1,7 @@
 package com.kts.nvt.serbioneer.service;
 
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +32,10 @@ public class AdminService implements ServiceInterface<Admin> {
 	
 	private final String type = "Admin";
 	
+	//za potrebe testiranja
+	public List<Admin> findAll() {
+		return adminRepository.findAll();
+	}
 	
 	@Override
 	public Page<Admin> findAll(Pageable pageable) {
@@ -39,7 +44,7 @@ public class AdminService implements ServiceInterface<Admin> {
 
 	@Override
 	public Admin findOneById(Long id) {
-		return adminRepository.findOneById(id);
+		return adminRepository.findById(id).orElse(null);
 	}
 
 	public Admin create(Admin entity) throws Exception {
@@ -65,8 +70,8 @@ public class AdminService implements ServiceInterface<Admin> {
 		adminRepository.delete(adminToDelete);
 	}
 
-	public Admin updatePersonalInformation(UserUpdateDTO entity) throws Exception {
-		Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public Admin updatePersonalInformation(UserUpdateDTO entity, Admin user) throws Exception {
+		//Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Admin adminToUpdate = findOneById(user.getId());
 		adminToUpdate.setName(entity.getName());
 		adminToUpdate.setSurname(entity.getSurname());
@@ -74,8 +79,8 @@ public class AdminService implements ServiceInterface<Admin> {
 		return adminRepository.save(adminToUpdate);
 	}
 
-	public void updatePassword (PasswordDTO passwordDTO) throws Exception {
-		Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public Admin updatePassword (PasswordDTO passwordDTO, Admin user) throws Exception {
+		//Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		Admin adminToUpdate = adminRepository.findById(user.getId()).orElse(null);
 		if(adminToUpdate == null) {
@@ -98,7 +103,7 @@ public class AdminService implements ServiceInterface<Admin> {
 		}
 
 		adminToUpdate.setPassword(encoder.encode(passwordDTO.getNewPassword()));
-		adminRepository.save(adminToUpdate);
+		return adminRepository.save(adminToUpdate);
 	}
 	
 	public Admin findCurrent() {

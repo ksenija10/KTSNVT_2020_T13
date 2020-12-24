@@ -10,11 +10,13 @@ insert into users (type, name, surname, email, password, activated, is_active)
 values ('AuthenticatedUser', 'Mileva', 'Isic', 'drugi@user.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq', true, true);
 insert into users (type, name, surname, email, password, activated, is_active)
 -- srdjabroj1 gmail
-values ('AuthenticatedUser', 'Srdjan', 'Milic', 'srdjanmilic12@gmail.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq', true, true);
+values ('AuthenticatedUser', 'Srdjan', 'Milic', 'srdjanmilic12@gmail.com', '$2y$12$3PKWDsIWuDRSKV4z8/9Su.NZIQanfAr9IcOxZCEEQoHYwasVJxYja', true, true);
 insert into users (type, name, surname, email, password, activated, is_active)
 -- katarina1! gmail
-values ('AuthenticatedUser', 'Katarina', 'Donalnov', 'dolanovkatarina@gmail.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq', true, true);
+values ('AuthenticatedUser', 'Katarina', 'Donalnov', 'dolanovkatarina@gmail.com', '$2y$12$SIXeGBUz6VbA1LkQYp/U2uqqs5Ss0paG3KP4wuVEdFq9N30hXO94a', true, true);
 
+insert into users (type, name, surname, email, password, is_active) 
+values ('Admin', 'Ksenija', 'Prcic', 'admin2@admin.com', '$2y$12$gUay6OjlceRVx93A/bhMXekaalqkDavEEzUG43h9E9XiF0kwUXxe2', true);
 
 insert into authority (name) values ('ROLE_ADMIN');
 insert into authority (name) values ('ROLE_USER');
@@ -26,6 +28,7 @@ insert into user_authority (user_id, authority_id) values (2, 2);
 insert into user_authority (user_id, authority_id) values (3, 2);
 insert into user_authority (user_id, authority_id) values (4, 2);
 insert into user_authority (user_id, authority_id) values (5, 2);
+insert into user_authority (user_id, authority_id) values (6, 1);
 
 -- kulturne kategorije
 insert into cultural_category (name, is_active) values ('Institucija', true);

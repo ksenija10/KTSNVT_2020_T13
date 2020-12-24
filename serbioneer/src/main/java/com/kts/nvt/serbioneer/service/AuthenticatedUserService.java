@@ -1,5 +1,6 @@
 package com.kts.nvt.serbioneer.service;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kts.nvt.serbioneer.dto.PasswordDTO;
 import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
@@ -37,7 +39,10 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 	private CulturalSiteService culturalSiteService;
 	
 	private final String type = "AuthenticatedUser";
-	
+
+	public List<AuthenticatedUser> findAll() {
+		return authenticatedUserRepository.findAll();
+	}
 	
 	@Override
 	public Page<AuthenticatedUser> findAll(Pageable pageable) {
@@ -87,16 +92,16 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		authenticatedUserRepository.delete(authenticatedUserToDelete);
 	}
 
-	public AuthenticatedUser updatePersonalInformation(UserUpdateDTO entity) throws Exception {
-		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public AuthenticatedUser updatePersonalInformation(UserUpdateDTO entity,AuthenticatedUser user) throws Exception {
+		//AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		AuthenticatedUser authenticatedUserToUpdate = findOneById(user.getId());
 		authenticatedUserToUpdate.setName(entity.getName());
 		authenticatedUserToUpdate.setSurname(entity.getSurname());
 		return authenticatedUserRepository.save(authenticatedUserToUpdate);
 	}
 
-	public void updatePassword (PasswordDTO passwordDTO) throws Exception {
-		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public AuthenticatedUser updatePassword (PasswordDTO passwordDTO, AuthenticatedUser user) throws Exception {
+		//AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		AuthenticatedUser authenticatedUserToUpdate = authenticatedUserRepository.findById(user.getId()).orElse(null);
 		if(authenticatedUserToUpdate == null) {
@@ -119,9 +124,10 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		}
 
 		authenticatedUserToUpdate.setPassword(encoder.encode(passwordDTO.getNewPassword()));
-		authenticatedUserRepository.save(authenticatedUserToUpdate);
+		return authenticatedUserRepository.save(authenticatedUserToUpdate);
 	}
 
+	//nigde se ne koristi -> nije testirano
 	public AuthenticatedUser getUserByToken(String verificationToken) {
 		AuthenticatedUser user = verificationTokenRepository.findByToken(verificationToken).getUser();
 		return user;
@@ -131,21 +137,22 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		return verificationTokenRepository.findByToken(VerificationToken);
 	}
 
-	public void saveRegisteredUser(AuthenticatedUser user) {
-		authenticatedUserRepository.save(user);
+	public AuthenticatedUser saveRegisteredUser(AuthenticatedUser user) {
+		return authenticatedUserRepository.save(user);
 	}
 
-	public void createVerificationToken(AuthenticatedUser user, String token) {
+	public VerificationToken createVerificationToken(AuthenticatedUser user, String token) {
 		VerificationToken myToken = new VerificationToken(token, user);
-		verificationTokenRepository.save(myToken);
+		return verificationTokenRepository.save(myToken);
 	}
 
-	public void addSubscribedSite(Long culturalSiteId) throws NonexistentIdException, ConflictException {
+	@Transactional
+	public void addSubscribedSite(Long culturalSiteId, AuthenticatedUser loggedIn) throws NonexistentIdException, ConflictException {
 		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
 		if(culturalSite == null) {
 			throw new NonexistentIdException(culturalSiteService.getType());
 		}
-		AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		AuthenticatedUser user = findOneById(loggedIn.getId());
 		Set<CulturalSite> allSubscribed = user.getSubscribedSites();
 		if(allSubscribed.contains(culturalSite)) {
@@ -155,12 +162,13 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		authenticatedUserRepository.save(user);
 	}
 
-	public void removeSubscribedSite(Long culturalSiteId) throws NonexistentIdException, ConflictException {
+	@Transactional
+	public void removeSubscribedSite(Long culturalSiteId, AuthenticatedUser loggedIn) throws NonexistentIdException, ConflictException {
 		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
 		if(culturalSite == null) {
 			throw new NonexistentIdException(culturalSiteService.getType());
 		}
-		AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		AuthenticatedUser user = findOneById(loggedIn.getId());
 		Set<CulturalSite> allSubscribed = user.getSubscribedSites();
 		if(!allSubscribed.contains(culturalSite)) {
