@@ -96,6 +96,11 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
         if (categoryType == null) {
         	throw new NonexistentIdException(culturalCategoryTypeService.getType());
         }
+        // provera da li tip kategorije pripada prosledjenoj kategoriji
+ 		if (culturalCategoryTypeService.findOneByIdAndCategoryId(categoryTypeId, categoryId) == null) {
+ 			// ne pripada odgovarajucoj kategoriji
+ 			throw new Exception("Cultural category type doesn't belong to the given cultural site category.");
+ 		}
         // izmena dobavljenog kulturnog dobra
         culturalSiteToUpdate.setName(entity.getName());
         culturalSiteToUpdate.setLat(entity.getLat());

@@ -270,7 +270,7 @@ public class CulturalSiteServiceUnitTest {
 		assertNull(updatedSite);
 	}
 	
-	/*@Test
+	@Test
 	public void testUpdateInvalidCategoryIdAndTypeIdCombination() throws Exception {
 		
 		Exception exception = assertThrows(Exception.class, () -> {
@@ -288,7 +288,7 @@ public class CulturalSiteServiceUnitTest {
 		verify(culturalCategoryTypeService, times(1)).findOneById(INVALID_COMBINATION_ID);
 		verify(culturalCategoryTypeService, times(1)).findOneByIdAndCategoryId(INVALID_COMBINATION_ID, CATEGORY_ID);
 		verify(culturalSiteRepository, times(0)).save(SAVED_CULTURAL_SITE);
-	}*/
+	}
 
 	@Test
 	public void testUpdateRating() {
