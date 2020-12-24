@@ -3,6 +3,7 @@ package com.kts.nvt.serbioneer.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -160,8 +162,10 @@ public class CulturalSiteController {
     public ResponseEntity<CommentDTO> createComment(@PathVariable("cultural-site-id") Long culturalSiteId,
                                               @Valid @RequestBody CommentDTO commentDTO) {
         Comment comment = commentMapper.toEntity(commentDTO);
+		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
         try {
-            comment = commentService.create(culturalSiteId, comment);
+            comment = commentService.create(culturalSiteId, comment, user);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }

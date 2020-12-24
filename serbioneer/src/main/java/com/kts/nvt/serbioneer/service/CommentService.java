@@ -34,14 +34,12 @@ public class CommentService implements ServiceInterface<Comment> {
 		return commentRepository.findById(id).orElse(null);
 	}
 
-	public Comment create(Long culturalSiteId, Comment comment) throws Exception {
+	public Comment create(Long culturalSiteId, Comment comment, AuthenticatedUser user) throws Exception {
 		// check if cultural site with given id exists
 		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
 		if (culturalSite == null) {
 			throw new NonexistentIdException(culturalSiteService.getType());
 		}
-		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
-				.getPrincipal();
 		comment.setCulturalSite(culturalSite);
 		comment.setAuthenticatedUser(user);
 		comment.setApproved(false);
