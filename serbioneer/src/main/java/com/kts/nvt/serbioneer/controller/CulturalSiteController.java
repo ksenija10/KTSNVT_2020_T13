@@ -165,7 +165,7 @@ public class CulturalSiteController {
 		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
         try {
-            comment = commentService.create(culturalSiteId, comment, user);
+            comment = commentService.create(culturalSiteId, comment, user.getId());
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }

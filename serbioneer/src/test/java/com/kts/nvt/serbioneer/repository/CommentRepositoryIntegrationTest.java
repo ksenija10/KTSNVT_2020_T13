@@ -40,17 +40,10 @@ public class CommentRepositoryIntegrationTest {
     }
 
     @Test
-    public void testFindAllByCulturalSiteIdAndApproved() {
-        List<Comment> allApprovedCommentsOnCulturalSite = commentRepository.findAllByCulturalSiteIdAndApproved(CULTURAL_SITE_ID, APPROVED);
-
-        assertEquals(APPROVED_COMMENTS_NUM_CULTURAL_SITE_1, allApprovedCommentsOnCulturalSite.size());
-    }
-
-    @Test
     public void testFindAllByCulturalSiteIdAndApprovedPageable() {
         Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
-        Page<Comment> allUnapprovedCommentsByPageOnCulturalSite = commentRepository.findAllByCulturalSiteIdAndApproved(pageable, CULTURAL_SITE_ID, UNAPPROVED);
+        Page<Comment> allUnapprovedCommentsByPageOnCulturalSite = commentRepository.findAllByCulturalSiteIdAndApproved(pageable, EXISTING_CULTURAL_SITE_ID, APPROVED);
 
-        assertEquals(UNAPPROVED_COMMENTS_NUM_CULTURAL_SITE_1, allUnapprovedCommentsByPageOnCulturalSite.getContent().size());
+        assertEquals(APPROVED_COMMENTS_NUM_CULTURAL_SITE_2, allUnapprovedCommentsByPageOnCulturalSite.getContent().size());
     }
 }

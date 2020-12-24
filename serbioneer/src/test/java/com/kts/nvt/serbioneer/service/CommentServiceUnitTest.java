@@ -40,7 +40,7 @@ public class CommentServiceUnitTest {
     @MockBean
     private CommentRepository commentRepository;
 
-    @Before
+    /*@Before
     public void setUp() {
 
         //testCreateSuccess
@@ -92,5 +92,5 @@ public class CommentServiceUnitTest {
     @Test
     public void testReject() {
 
-    }
+    }*/
 }

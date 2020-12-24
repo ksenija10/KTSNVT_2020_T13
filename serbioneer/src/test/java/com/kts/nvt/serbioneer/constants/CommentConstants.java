@@ -4,23 +4,60 @@ import com.kts.nvt.serbioneer.model.*;
 
 public class CommentConstants {
 
-    // new comment info
-    public static final Long USER_ID = 2L;
-    public static final Long CULTURAL_SITE_ID = 1L;
-    public static final String COMMENT_TEXT_1 = "Prvi komentar";
-    public static final Boolean APPROVED = true;
-    public static final Boolean UNAPPROVED = false;
-
-    //approved and unapproved number of comments
-    public static final int APPROVED_COMMENTS_SIZE = 2;
+    //All, approved and unapproved comments
+    public static final int ALL_COMMENTS_SIZE = 3;
+    public static final int APPROVED_COMMENTS_SIZE = 1;
     public static final int UNAPPROVED_COMMENTS_SIZE = 2;
 
-    //page constants
+    //Pagination
     public static final int PAGEABLE_PAGE = 0;
     public static final int PAGEABLE_SIZE = 3;
 
+    //Approved and unapproved
+    public static final Boolean APPROVED = true;
+    public static final Boolean UNAPPROVED = false;
+
+    //Srpsko narodno pozorište
+    public static Long EXISTING_CULTURAL_SITE_ID = 2L;
+    public static final int APPROVED_COMMENTS_NUM_CULTURAL_SITE_2 = 1;
+    public static final int UNAPPROVED_COMMENTS_NUM_CULTURAL_SITE_2 = 1;
+
+    //Existing user
+    public static final Long EXISTING_USER_ID = 3L;
+
+    //Existing approved and unapproved comment
+    public static Long EXISTING_APPROVED_COMMENT_ID = 2L;
+    public static Long EXISTING_UNAPPROVED_COMMENT_ID = 3L;
+
+    //New comment info
+    public static final String NEW_COMMENT_TEXT_1 = "Novi komentar";
+    //Db state after adding new comment
+    public static final int ALL_COMMENTS_SIZE_AFTER_ADD = 4;
+    public static final int APPROVED_COMMENTS_SIZE_AFTER_ADD = 2;
+    public static final int UNAPPROVED_COMMENTS_SIZE_AFTER_ADD = 2;
+    public static final int APPROVED_COMMENTS_SIZE_AFTER_ADD_CULTURAL_SITE_2 = 2;
+
+    //Non existing ids
+    public static final Long NON_EXISTING_COMMENT_ID = 10L;
+    public static final Long NON_EXISTING_USER_ID = 10L;
+    public static final Long NON_EXISTING_CULTURAL_SITE_ID = 10L;
+
+
+    //Updated text
+    public static final String UPDATED_TEXT = "Promenjen komentar";
+    public static final String OLD_TEXT_APPROVED = "Zište";
+    public static final String OLD_TEXT_UNAPPROVED = "Ovaj komentar odbij!";
+
+
+    // new comment info
+    /*public static final Long USER_ID = 2L;
+    public static final Long CULTURAL_SITE_ID = 1L;
+    public static final Long COMMENT_ID = 1L;
+
+
+
     //approved and unapproved number of comments on Biblioteka Šabačka(id: 1)
-    public static final int APPROVED_COMMENTS_NUM_CULTURAL_SITE_1 = 0;
+
     public static final int APPROVED_COMMENTS_NUM_CULTURAL_SITE_1_ADD = 1;
     public static final int UNAPPROVED_COMMENTS_NUM_CULTURAL_SITE_1 = 1;
 
@@ -31,8 +68,6 @@ public class CommentConstants {
     //Service saved comment id
     public static final Long SAVED_COMMENT_ID = 2L;
 
-    //Service bad cultural site id
-    public static final Long BAD_CULTURAL_SITE_ID = 10L;
 
     //AuthenticatedUser for service
     public static final Long NEW_USER_ID = 10L;
@@ -44,10 +79,9 @@ public class CommentConstants {
     public static final AuthenticatedUser USER = new AuthenticatedUser(USER_ID, USER_NAME, USER_SURNAME, USER_EMAIL,
             USER_PASSWORD, USER_ACTIVATED);
 
-    //Cultural site for service
-    /*public static final
-    public static final CulturalSite CULTURAL_SITE = new CulturalSite("name", "address", "city",
-            new CulturalCategoryType("type"), new CulturalSiteCategory("category"));
 
-    public static final Comment NEW_COMMENT = new Comment(COMMENT_TEXT_1, APPROVED, USER_ID, CULTURAL_SITE_ID);*/
+
+    public static final Long NEW_COMMENT_ID = 4L;
+*/
+
 }
