@@ -42,4 +42,5 @@ public class CulturalSiteCategoryConstants {
 	public static final Long DB_ID_REFERENCED = DB_ID;
 	
 	public static final String DB_NAME_EXISTING = "Manifestacija";
+	public static final Long DB_ID_EXISTING = 2L;
 }

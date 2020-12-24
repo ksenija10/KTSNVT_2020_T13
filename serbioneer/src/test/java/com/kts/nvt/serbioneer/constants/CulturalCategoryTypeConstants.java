@@ -56,5 +56,5 @@ public class CulturalCategoryTypeConstants {
 	// update
 	public static final String UPDATED_CATEGORY_TYPE_NAME = "Izmenjena kategorija";
 	public static final String DB_EXISTING_NAME = "Spomenik";
-	
+	public static final Long DB_EXISTING_ID = 5L;
 }
