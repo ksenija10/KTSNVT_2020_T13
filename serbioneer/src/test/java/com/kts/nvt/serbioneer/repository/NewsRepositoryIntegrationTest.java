@@ -34,29 +34,29 @@ public class NewsRepositoryIntegrationTest {
 
     @Test
     public void testFindAllByCulturalSiteId() {
-        List<News> newsByCulturalSiteId = newsRepository.findAllByCulturalSiteId(CULTURAL_SITE_ID);
+        List<News> newsByCulturalSiteId = newsRepository.findAllByCulturalSiteId(EXISTING_CULTURAL_SITE_ID);
 
-        assertEquals(NEWS_BY_CULTURAL_SITE_ID_1_SIZE, newsByCulturalSiteId.size());
+        assertEquals(NEWS_CULTURAL_SITE_ID_1, newsByCulturalSiteId.size());
     }
 
     @Test
     public void testFindAllByCulturalSiteIdPageable() {
         Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
-        Page<News> newsByCulturalSiteId = newsRepository.findAllByCulturalSiteId(pageable, CULTURAL_SITE_ID);
+        Page<News> newsByCulturalSiteId = newsRepository.findAllByCulturalSiteId(pageable, EXISTING_CULTURAL_SITE_ID);
 
-        assertEquals(NEWS_BY_CULTURAL_SITE_ID_1_SIZE, newsByCulturalSiteId.getContent().size());
+        assertEquals(NEWS_CULTURAL_SITE_ID_1, newsByCulturalSiteId.getContent().size());
     }
 
     @Test
     @Transactional
     public void testFindAllByCulturalSiteInOrderByDateTimeDesc() {
-        Set<CulturalSite> subscribedCulturalSites = (userRepository.findById(AUTHENTICATED_USER_ID).
+        Set<CulturalSite> subscribedCulturalSites = (userRepository.findById(EXISTING_USER_ID).
                 orElse(null)).getSubscribedSites();
         Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
         Page<News> newsByCulturalSiteInOrderByDateTimeDesc =
                 newsRepository.findAllByCulturalSiteInOrderByDateTimeDesc(subscribedCulturalSites, pageable);
 
-        assertEquals(NEWS_BY_CULTURAL_SITES_SIZE, newsByCulturalSiteInOrderByDateTimeDesc.getContent().size());
+        assertEquals(NEWS_BY_CULTURAL_SITE_ID_1_ADD, newsByCulturalSiteInOrderByDateTimeDesc.getContent().size());
         assertTrue(newsByCulturalSiteInOrderByDateTimeDesc.getContent().get(0).getDateTime().after(
                 newsByCulturalSiteInOrderByDateTimeDesc.getContent().get(1).getDateTime()
         ));

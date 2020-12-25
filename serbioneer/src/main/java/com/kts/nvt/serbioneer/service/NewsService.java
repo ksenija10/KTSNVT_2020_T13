@@ -30,10 +30,21 @@ public class NewsService implements ServiceInterface<News> {
 
 	private final String type = "News";
 
-	
+	public List<News> findAll() {
+		return newsRepository.findAll();
+	}
+
 	@Override
 	public Page<News> findAll(Pageable pageable) {
 		return newsRepository.findAll(pageable);
+	}
+
+	public List<News> findAllByCulturalSiteId(Long id) {
+		return newsRepository.findAllByCulturalSiteId(id);
+	}
+
+	public Page<News> findAllByCulturalSiteId(Pageable pageable, Long culturalSiteId) {
+		return newsRepository.findAllByCulturalSiteId(pageable, culturalSiteId);
 	}
 
 	@Override
@@ -56,7 +67,7 @@ public class NewsService implements ServiceInterface<News> {
 	public void delete(Long id) throws Exception {
 		News existingNews = newsRepository.findById(id).orElse(null);
 		if (existingNews == null){
-			throw new Exception("News with given id doesn't exist.");
+			throw new NonexistentIdException(this.type);
 		}
 		newsRepository.delete(existingNews);
 	}
@@ -70,21 +81,15 @@ public class NewsService implements ServiceInterface<News> {
 		return newsRepository.save(newsToUpdate);
 	}
 
-	public List<News> findAllByCulturalSiteId(Long id) {
-		return newsRepository.findAllByCulturalSiteId(id);
-	}
+	public Page<News> getAllSubscribedNews(Pageable pageable, Long userId) throws Exception {
+		AuthenticatedUser user = userRepository.findById(userId).orElse(null);
 
-	public Page<News> findAllByCulturalSiteId(Pageable pageable, Long culturalSiteId) {
-		return newsRepository.findAllByCulturalSiteId(pageable, culturalSiteId);
-	}
-
-	public Page<News> getAllSubscribedNews(Pageable pageable) {
-		Long id = ((AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-		AuthenticatedUser user = userRepository.findById(id).orElse(null);
+		if(user == null) {
+			throw new NonexistentIdException("user");
+		}
 
 		Page<News> news = newsRepository.findAllByCulturalSiteInOrderByDateTimeDesc(user.getSubscribedSites(), pageable);
 
 		return news;
 	}
-	
 }

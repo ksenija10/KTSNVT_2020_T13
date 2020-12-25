@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -38,33 +39,33 @@ public class NewsRepositoryUnitTest {
 
     @Before
     public void setUp() {
-        CulturalSite culturalSite = entityManager.find(CulturalSite.class, CULTURAL_SITE_ID);
+        CulturalSite culturalSite = entityManager.find(CulturalSite.class, EXISTING_CULTURAL_SITE_ID);
 
         News news = new News();
         news.setInformation(NEWS_INFORMATION);
-        news.setDateTime(NEWS_DATE);
+        news.setDateTime(new Date());
         news.setCulturalSite(culturalSite);
 
         entityManager.persist(news);
 
         //Subscribed cultural sites for authenticated user
-        AuthenticatedUser authenticatedUser = entityManager.find(AuthenticatedUser.class, AUTHENTICATED_USER_ID);
+        AuthenticatedUser authenticatedUser = entityManager.find(AuthenticatedUser.class, EXISTING_USER_ID);
         this.subscribedCulturalSites = authenticatedUser.getSubscribedSites();
     }
 
     @Test
     public void testFindAllByCulturalSiteId() {
-        List<News> newsByCulturalSiteId = newsRepository.findAllByCulturalSiteId(CULTURAL_SITE_ID);
+        List<News> newsByCulturalSiteId = newsRepository.findAllByCulturalSiteId(EXISTING_CULTURAL_SITE_ID);
 
-        assertEquals(NEWS_BY_CULTURAL_SITE_ID_1_ADD_SIZE, newsByCulturalSiteId.size());
+        assertEquals(NEWS_BY_CULTURAL_SITE_ID_1_ADD, newsByCulturalSiteId.size());
     }
 
     @Test
     public void testFindAllByCulturalSiteIdPageable() {
         Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
-        Page<News> newsByCulturalSiteId = newsRepository.findAllByCulturalSiteId(pageable, CULTURAL_SITE_ID);
+        Page<News> newsByCulturalSiteId = newsRepository.findAllByCulturalSiteId(pageable, EXISTING_CULTURAL_SITE_ID);
 
-        assertEquals(NEWS_BY_CULTURAL_SITE_ID_1_ADD_SIZE, newsByCulturalSiteId.getContent().size());
+        assertEquals(NEWS_BY_CULTURAL_SITE_ID_1_ADD, newsByCulturalSiteId.getContent().size());
     }
 
     @Test
@@ -73,7 +74,7 @@ public class NewsRepositoryUnitTest {
         Page<News> newsByCulturalSiteInOrderByDateTimeDesc =
                 newsRepository.findAllByCulturalSiteInOrderByDateTimeDesc(subscribedCulturalSites, pageable);
 
-        assertEquals(NEWS_BY_CULTURAL_SITES_ADD_SIZE, newsByCulturalSiteInOrderByDateTimeDesc.getContent().size());
+        assertEquals(NEWS_BY_CULTURAL_SITES_ADD, newsByCulturalSiteInOrderByDateTimeDesc.getContent().size());
         assertTrue(newsByCulturalSiteInOrderByDateTimeDesc.getContent().get(0).getDateTime().after(
                 newsByCulturalSiteInOrderByDateTimeDesc.getContent().get(1).getDateTime()
             ));
