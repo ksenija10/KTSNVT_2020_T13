@@ -140,6 +140,18 @@ public class CulturalSite {
 		this.active = true;
 	}
 
+	public CulturalSite(Long id, @NonNull String name, double lat, double lng, @NonNull String address, @NonNull String city,
+						String description) {
+		this.id = id;
+		this.name = name;
+		this.lat = lat;
+		this.lng = lng;
+		this.address = address;
+		this.city = city;
+		this.description = description;
+		this.active = true;
+  }
+  
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
