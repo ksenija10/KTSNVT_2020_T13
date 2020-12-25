@@ -36,7 +36,7 @@ public class ImageConstants {
             new CulturalCategoryType("type"), new CulturalSiteCategory("category"));
 
     public static final String separator = System.getProperty("file.separator");
-    public static final String EXPECTED_PATH_COMMENT = "src" + separator + "main" + separator + "resources" + separator
+    public static final String EXPECTED_PATH_COMMENT = "src" + separator + "test" + separator + "resources" + separator
             + "images" + separator + "comment" + separator + COMMENT_ID + separator + "something";
     public static final String EXPECTED_PATH_NEWS = "src" + separator + "main" + separator + "resources" + separator
             + "images" + separator + "news" + separator + COMMENT_ID + separator + "something";
