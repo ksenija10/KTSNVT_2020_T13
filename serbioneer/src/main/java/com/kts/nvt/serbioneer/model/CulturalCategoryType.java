@@ -71,4 +71,10 @@ public class CulturalCategoryType {
 		this.active = true;
 		this.name = name;
 	}
+
+	public CulturalCategoryType(@NonNull String name, CulturalSiteCategory culturalSiteCategory) {
+		this.active = true;
+		this.name = name;
+		this.culturalSiteCategory = culturalSiteCategory;
+	}
 }

@@ -75,4 +75,10 @@ public class News {
 		this.information = information;
 		this.active = true;
 	}
+
+	public News(Long id, @NonNull String information) {
+		this.id = id;
+		this.information = information;
+		this.active = true;
+	}
 }

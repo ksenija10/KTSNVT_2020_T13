@@ -54,7 +54,7 @@ public class NewsService implements ServiceInterface<News> {
 
 	public News create(Long culturalSiteId, News news) throws Exception{
 		//check if cultural site with given id exists
-		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
+			CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
 		if (culturalSite == null) {
 			throw new NonexistentIdException(culturalSiteService.getType());
 		}
@@ -88,8 +88,6 @@ public class NewsService implements ServiceInterface<News> {
 			throw new NonexistentIdException("user");
 		}
 
-		Page<News> news = newsRepository.findAllByCulturalSiteInOrderByDateTimeDesc(user.getSubscribedSites(), pageable);
-
-		return news;
+		return newsRepository.findAllByCulturalSiteInOrderByDateTimeDesc(user.getSubscribedSites(), pageable);
 	}
 }

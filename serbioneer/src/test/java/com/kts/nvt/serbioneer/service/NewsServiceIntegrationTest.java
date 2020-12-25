@@ -92,7 +92,7 @@ public class NewsServiceIntegrationTest {
 
         int dbSizeBeforeAdd = newsService.findAll().size();
 
-        news = newsService.create(NON_EXISTING_NEWS_ID, news);
+        news = newsService.create(NON_EXISTING_CULTURAL_SITE_ID, news);
         assertNull(news);
 
         List<News> newss = newsService.findAll();
