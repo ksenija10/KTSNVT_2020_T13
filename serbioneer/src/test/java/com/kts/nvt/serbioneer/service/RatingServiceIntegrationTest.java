@@ -120,9 +120,12 @@ public class RatingServiceIntegrationTest {
         authentication.setToken(accessToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        int size = ratingService.findAll().size();
+
         Rating created = ratingService.create(CULTURAL_SITE_ID, 4);
 
         assertEquals(NEW_RATING.getValue(), created.getValue());
+        assertEquals(size+1, ratingService.findAll().size());
     }
 
     @Test
@@ -150,8 +153,11 @@ public class RatingServiceIntegrationTest {
         authentication.setToken(accessToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        int size = ratingService.findAll().size();
+
         ratingService.delete(2L);
 
+        assertEquals(size -1, ratingService.findAll().size());
 
     }
 }
