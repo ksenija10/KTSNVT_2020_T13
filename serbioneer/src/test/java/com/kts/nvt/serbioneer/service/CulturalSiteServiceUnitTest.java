@@ -25,6 +25,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.kts.nvt.serbioneer.dto.CulturalSiteFilterDTO;
+import com.kts.nvt.serbioneer.helper.exception.IncompatibleCategoryAndTypeException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.repository.CulturalSiteRepository;
@@ -108,7 +109,6 @@ public class CulturalSiteServiceUnitTest {
 				.willReturn(filteredSitesPage);
 		
 		// find all subscribed
-		USER.setId(SUBSCRIBED_USER_ID);
 		given(culturalSiteRepository.findAllBySubscribedUsersId(pageable, SUBSCRIBED_USER_ID)).willReturn(sitesPage);
 	}
 	
@@ -199,23 +199,15 @@ public class CulturalSiteServiceUnitTest {
 		assertNull(savedCulturalSite);
 	}
 
-	@Test()
+	@Test(expected = IncompatibleCategoryAndTypeException.class)
 	public void testCreateInvalidCategoryIdAndTypeIdCombination() throws Exception {
-		
-		Exception exception = assertThrows(Exception.class, () -> {
-			CulturalSite savedCulturalSite = culturalSiteService.create(NEW_CULTURAL_SITE, CATEGORY_ID, INVALID_COMBINATION_ID);
-			assertNull(savedCulturalSite);
-		});
+		CulturalSite savedCulturalSite = culturalSiteService.create(NEW_CULTURAL_SITE, CATEGORY_ID, INVALID_COMBINATION_ID);
 
-	    String expectedMessage = "Cultural category type doesn't belong to the given cultural site category.";
-	    String actualMessage = exception.getMessage();
-
-	    assertTrue(actualMessage.contains(expectedMessage));
-		
 		verify(culturalSiteCategoryService, times(1)).findOneById(CATEGORY_ID);
 		verify(culturalCategoryTypeService, times(1)).findOneById(INVALID_COMBINATION_ID);
 		verify(culturalCategoryTypeService, times(1)).findOneByIdAndCategoryId(INVALID_COMBINATION_ID, CATEGORY_ID);
 		verify(culturalSiteRepository, times(0)).save(NEW_CULTURAL_SITE);
+		assertNull(savedCulturalSite);
 	}
 	
 	@Test
@@ -270,24 +262,16 @@ public class CulturalSiteServiceUnitTest {
 		assertNull(updatedSite);
 	}
 	
-	@Test
+	@Test(expected = IncompatibleCategoryAndTypeException.class)
 	public void testUpdateInvalidCategoryIdAndTypeIdCombination() throws Exception {
-		
-		Exception exception = assertThrows(Exception.class, () -> {
-			CulturalSite updatedSite = culturalSiteService.update(UPDATED_CULTURAL_SITE_VALID, SAVED_CULTURAL_SITE_ID, CATEGORY_ID, INVALID_COMBINATION_ID);
-			assertNull(updatedSite);
-		});
-
-	    String expectedMessage = "Cultural category type doesn't belong to the given cultural site category.";
-	    String actualMessage = exception.getMessage();
-
-	    assertTrue(actualMessage.contains(expectedMessage));
+		CulturalSite updatedSite = culturalSiteService.update(UPDATED_CULTURAL_SITE_VALID, SAVED_CULTURAL_SITE_ID, CATEGORY_ID, INVALID_COMBINATION_ID);
 		
 		verify(culturalSiteRepository, times(1)).findById(SAVED_CULTURAL_SITE_ID);
 		verify(culturalSiteCategoryService, times(1)).findOneById(CATEGORY_ID);
 		verify(culturalCategoryTypeService, times(1)).findOneById(INVALID_COMBINATION_ID);
 		verify(culturalCategoryTypeService, times(1)).findOneByIdAndCategoryId(INVALID_COMBINATION_ID, CATEGORY_ID);
 		verify(culturalSiteRepository, times(0)).save(SAVED_CULTURAL_SITE);
+		assertNull(updatedSite);
 	}
 
 	@Test
@@ -325,7 +309,7 @@ public class CulturalSiteServiceUnitTest {
 	@Test
 	public void testFindAllSubscribed() {
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
-		Page<CulturalSite> subscribedSites = culturalSiteService.findAllSubscribed(pageable, USER);
+		Page<CulturalSite> subscribedSites = culturalSiteService.findAllSubscribed(pageable, SUBSCRIBED_USER_ID);
 		
 		verify(culturalSiteRepository, times(1)).findAllBySubscribedUsersId(pageable, SUBSCRIBED_USER_ID);
 		assertEquals(PAGEABLE_TOTAL_ELEMENTS, subscribedSites.getContent().size());

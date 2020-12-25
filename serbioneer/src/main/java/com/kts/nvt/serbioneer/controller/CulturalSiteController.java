@@ -224,7 +224,7 @@ public class CulturalSiteController {
 	@GetMapping(value = "/subscribed/by-page")
 	public ResponseEntity<Page<CulturalSiteDTO>> getAllSubscribedCulturalSites(Pageable pageable){
 		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Page<CulturalSite> page = culturalSiteService.findAllSubscribed(pageable, user);
+		Page<CulturalSite> page = culturalSiteService.findAllSubscribed(pageable, user.getId());
 	    return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
 	}
 

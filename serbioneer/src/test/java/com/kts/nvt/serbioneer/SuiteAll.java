@@ -5,12 +5,16 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.springframework.test.context.TestPropertySource;
 
-import com.kts.nvt.serbioneer.controller.AdminControllerIntegrationTest;
+import com.kts.nvt.serbioneer.repository.CulturalSiteRepositoryIntegrationTest;
+import com.kts.nvt.serbioneer.repository.CulturalSiteRepositoryUnitTest;
+import com.kts.nvt.serbioneer.service.CulturalSiteServiceIntegrationTest;
+import com.kts.nvt.serbioneer.service.CulturalSiteServiceUnitTest;
 
 @RunWith(Suite.class)
-/*, AdminRepositoryIntegationTest.class, AdminServiceIntegrationTest.class, 
-		AdminServiceUnitTest.class*/
-@SuiteClasses({AdminControllerIntegrationTest.class})
+@SuiteClasses({
+	CulturalSiteRepositoryIntegrationTest.class, CulturalSiteRepositoryUnitTest.class,
+	CulturalSiteServiceIntegrationTest.class, CulturalSiteServiceUnitTest.class
+})
 @TestPropertySource("classpath:test.properties")
 public class SuiteAll {
 

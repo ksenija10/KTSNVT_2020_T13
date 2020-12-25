@@ -1,7 +1,9 @@
 package com.kts.nvt.serbioneer.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,8 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.dto.CulturalSiteFilterDTO;
+import com.kts.nvt.serbioneer.helper.exception.IncompatibleCategoryAndTypeException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
-import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalCategoryType;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
@@ -71,7 +73,7 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 		// provera da li tip kategorije pripada prosledjenoj kategoriji
 		if (culturalCategoryTypeService.findOneByIdAndCategoryId(categoryTypeId, categoryId) == null) {
 			// ne pripada odgovarajucoj kategoriji
-			throw new Exception("Cultural category type doesn't belong to the given cultural site category.");
+			throw new IncompatibleCategoryAndTypeException();
 		}
 		// postavljamo vrednosti kategorije i tipa kategorije
 		entity.setCulturalSiteCategory(category);
@@ -99,7 +101,7 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
         // provera da li tip kategorije pripada prosledjenoj kategoriji
  		if (culturalCategoryTypeService.findOneByIdAndCategoryId(categoryTypeId, categoryId) == null) {
  			// ne pripada odgovarajucoj kategoriji
- 			throw new Exception("Cultural category type doesn't belong to the given cultural site category.");
+ 			throw new IncompatibleCategoryAndTypeException();
  		}
         // izmena dobavljenog kulturnog dobra
         culturalSiteToUpdate.setName(entity.getName());
@@ -138,15 +140,17 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 	//dobavljanje svih gradova za front
 	public List<String> findAllCities() {
 		List<String> cities = new ArrayList<String>();
+		/*Set<String> citiesSet = new HashSet<String>();
 		List<CulturalSite> culturalSites = this.findAll();
 		for (CulturalSite culturalSite : culturalSites) {
-			cities.add(culturalSite.getCity());
+			citiesSet.add(culturalSite.getCity());
 		}
+		cities.addAll(citiesSet);*/
 		return cities;
 	}
 	
-	public Page<CulturalSite> findAllSubscribed(Pageable pageable, AuthenticatedUser user) {
-		return culturalSiteRepository.findAllBySubscribedUsersId(pageable, user.getId());
+	public Page<CulturalSite> findAllSubscribed(Pageable pageable, Long userId) {
+		return culturalSiteRepository.findAllBySubscribedUsersId(pageable, userId);
 	}
 	
 }

@@ -1,6 +1,5 @@
 package com.kts.nvt.serbioneer.constants;
 
-import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalCategoryType;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
@@ -9,6 +8,7 @@ import com.kts.nvt.serbioneer.model.Rating;
 public class CulturalSiteConstants {
 
 	public static final Long SUBSCRIBED_USER_ID = 2L;
+	public static final int USER_SUBSCRIBED_NUM = 3;
 	
 	public static final long PAGEABLE_TOTAL_ELEMENTS = 3;
 	public static final Integer PAGEABLE_PAGE = 0;
@@ -84,6 +84,39 @@ public class CulturalSiteConstants {
 	public static final String name = "dobro"; // -> Kulturno dobro 1, Kulturno dobro 2, Kulturno dobro 3
 	public static final String city = "1"; // -> Grad 1
 	
-	// subscribed sites
-	public static final AuthenticatedUser USER = new AuthenticatedUser();
+	
+	// integration tests
+	public static final int DB_TOTAL_SITES_NUM = 7;
+	public static final Integer DB_PAGEABLE_PAGE = 0;
+	public static final Integer DB_PAGEABLE_SIZE = 5;
+	public static final int DB_PAGEABLE_NUM = 5;
+	
+	public static final Long DB_ID = 1L;
+	public static final String DB_NAME = "Biblioteka šabačka";
+	public static final Long DB_CATEGORY_ID = 1L;
+	public static final Long DB_TYPE_ID = 1L;
+	public static final Long DB_INCOMPATIBLE_TYPE_ID = 3L;
+	
+	// update
+	public static final String UPDATE_CULTURAL_SITE_NAME = "Izmenjeno kulturno dobro";
+	public static final String UPDATE_CULTURAL_SITE_ADDRESS = "Izmenjena adresa";
+	public static final String UPDATE_CULTURAL_SITE_CITY = "Izmenjen grad";
+	public static final double UPDATE_CULTURAL_SITE_LAT = 55;
+	public static final double UPDATE_CULTURAL_SITE_LNG = 5;
+	public static final String UPDATE_CULTURAL_SITE_DESC = "Izmenjen opis";
+	public static final Long UPDATE_CATEGORY_ID = 3L;
+	public static final Long UPDATE_TYPE_ID = 5L;
+	
+	// filter DB
+	public static final String DB_FILTER_CATEGORY_NAME = "cija"; // -> Manifestacija, Institucija
+	public static final String DB_FILTER_TYPE_NAME = "a"; // -> Biblioteka, Festival, Sajam
+	public static final String DB_FILTER_SITE_NAME = "sajam"; // -> Beogradski sajam knjiga, Beogradski sajam automobila
+	public static final String DB_FILTER_CITY_NAME = "grad"; // -> Beograd
+	public static final int DB_FILTER_NUM = 2;
+	
+	// update rating
+	public static final int NEW_RATING_VALUE = 5;
+	
+	// find all cities
+	public static final int DB_CITY_NUM = 3;
 }
