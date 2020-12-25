@@ -83,11 +83,15 @@ insert into comment (text, approved, user_id, site_id, is_active)
             values ('Zište', true, 3, 2, true);
 insert into comment (text, approved, user_id, site_id, is_active)
             values ('Ovaj komentar odbij!', false, 3, 2, true);
+insert into comment (text, approved, user_id, site_id, is_active)
+            values ('test', true, 2, 2, true);
 
 --news
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti za bibl', '2020-11-12', 1, true);
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti za bibl 2', '2020-11-14', 1, true);
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti pt2', '2020-11-11', 2, true);
+
+insert into news (information, date_time, site_id, is_active) values ('test', '2020-11-11', 2, true);
 
 --subscribed cultural sites Biblioteka sabacka for user 2 Isidor Gavric
 insert into sites_users(site_id, user_id) values (1, 2);
@@ -106,3 +110,6 @@ insert into rating (value, user_id, site_id, is_active) values (3, 2, 1, true);
 insert into rating (value, user_id, site_id, is_active) values (5, 2, 2, true);
 
 
+insert into image (id, is_active, name, path, comment) values (1, true, 'name1', 'path1', 1);
+insert into image (id, is_active, name, path, news) values (2, true, 'name1', 'path1', 1);
+insert into image (id, is_active, name, path, cultural_site) values (3, true, 'name1', 'path1', 1);
