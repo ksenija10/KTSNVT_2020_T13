@@ -7,7 +7,7 @@ import org.junit.runners.Suite;
 import org.springframework.test.context.TestPropertySource;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({CommentServiceIntegrationTest.class})
+@Suite.SuiteClasses({CommentServiceIntegrationTest.class, CommentServiceUnitTest.class})
 @TestPropertySource("classpath:test.properties")
 public class CommentServiceSuite {
 }
