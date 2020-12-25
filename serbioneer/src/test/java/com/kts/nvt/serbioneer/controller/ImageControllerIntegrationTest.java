@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -82,32 +84,33 @@ public class ImageControllerIntegrationTest {
         headers.add("Authorization", this.accessToken);
         HttpEntity<Object> httpEntity = new HttpEntity<Object>(headers);
 
-        int size = imageService.findAll().size();
+        int size = imageService.findAllByNewsId(1L).size();
 
         ResponseEntity<List<ImageDTO>> responseEntity = restTemplate.exchange("/api/image/news/1",
                 HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<ImageDTO>>() {} );
 
-        List<ImageDTO> ratings = Objects.requireNonNull(responseEntity.getBody());
+        List<ImageDTO> images = Objects.requireNonNull(responseEntity.getBody());
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(size, ratings.size());
+        assertEquals(size, images.size());
     }
 
     @Test
     public void Test_get_all_images_for_news_page(){
         login(USER_USERNAME, USER_PASSWORD);
+        Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", this.accessToken);
         HttpEntity<Object> httpEntity = new HttpEntity<Object>(headers);
 
-        int size = imageService.findAll().size();
+        int size = imageService.findAllByNewsId(pageable, 1L).getNumberOfElements();
 
-        ResponseEntity<HelperPage<ImageDTO>> responseEntity = restTemplate.exchange("/api/image/news/1/by-page",
+        ResponseEntity<HelperPage<ImageDTO>> responseEntity = restTemplate.exchange("/api/image/news/1/by-page?page=0&size=2",
                 HttpMethod.GET, httpEntity, new ParameterizedTypeReference<HelperPage<ImageDTO>>() {} );
 
-        List<ImageDTO> ratings = Objects.requireNonNull(responseEntity.getBody()).toList();
+        List<ImageDTO> images = Objects.requireNonNull(responseEntity.getBody()).toList();
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(size, ratings.size());
+        assertEquals(size, images.size());
     }
 
     @Test
@@ -118,32 +121,33 @@ public class ImageControllerIntegrationTest {
         headers.add("Authorization", this.accessToken);
         HttpEntity<Object> httpEntity = new HttpEntity<Object>(headers);
 
-        int size = imageService.findAll().size();
+        int size = imageService.findAllByCommentId(1L).size();
 
         ResponseEntity<List<ImageDTO>> responseEntity = restTemplate.exchange("/api/image/comment/1",
                 HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<ImageDTO>>() {} );
 
-        List<ImageDTO> ratings = Objects.requireNonNull(responseEntity.getBody());
+        List<ImageDTO> images = Objects.requireNonNull(responseEntity.getBody());
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(size, ratings.size());
+        assertEquals(size, images.size());
     }
 
     @Test
     public void Test_get_all_images_for_comment_page(){
         login(USER_USERNAME, USER_PASSWORD);
+        Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", this.accessToken);
         HttpEntity<Object> httpEntity = new HttpEntity<Object>(headers);
 
-        int size = imageService.findAll().size();
+        int size = imageService.findAllByCommentId(pageable, 1L).getNumberOfElements();
 
         ResponseEntity<HelperPage<ImageDTO>> responseEntity = restTemplate.exchange("/api/image/comment/1/by-page",
                 HttpMethod.GET, httpEntity, new ParameterizedTypeReference<HelperPage<ImageDTO>>() {} );
 
-        List<ImageDTO> ratings = Objects.requireNonNull(responseEntity.getBody()).toList();
+        List<ImageDTO> images = Objects.requireNonNull(responseEntity.getBody()).toList();
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(size, ratings.size());
+        assertEquals(size, images.size());
     }
 
     @Test
@@ -154,37 +158,38 @@ public class ImageControllerIntegrationTest {
         headers.add("Authorization", this.accessToken);
         HttpEntity<Object> httpEntity = new HttpEntity<Object>(headers);
 
-        int size = imageService.findAll().size();
+        int size = imageService.findAllByCulturalSiteId(1L).size();
 
         ResponseEntity<List<ImageDTO>> responseEntity = restTemplate.exchange("/api/image/cultural-site/1",
                 HttpMethod.GET, httpEntity, new ParameterizedTypeReference<List<ImageDTO>>() {} );
 
-        List<ImageDTO> ratings = Objects.requireNonNull(responseEntity.getBody());
+        List<ImageDTO> images = Objects.requireNonNull(responseEntity.getBody());
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(size, ratings.size());
+        assertEquals(size, images.size());
     }
 
     @Test
     public void Test_get_all_images_for_cultural_site_page(){
         login(USER_USERNAME, USER_PASSWORD);
+        Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", this.accessToken);
         HttpEntity<Object> httpEntity = new HttpEntity<Object>(headers);
 
-        int size = imageService.findAll().size();
+        int size = imageService.findAllByCulturalSiteId(pageable, 1L).getNumberOfElements();
 
         ResponseEntity<HelperPage<ImageDTO>> responseEntity = restTemplate.exchange("/api/image/cultural-site/1/by-page",
                 HttpMethod.GET, httpEntity, new ParameterizedTypeReference<HelperPage<ImageDTO>>() {} );
 
-        List<ImageDTO> ratings = Objects.requireNonNull(responseEntity.getBody()).toList();
+        List<ImageDTO> images = Objects.requireNonNull(responseEntity.getBody()).toList();
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(size, ratings.size());
+        assertEquals(size, images.size());
     }
 
     @Test
-    @Transactional
-    @Rollback
+//    @Transactional
+//    @Rollback
     public void Test_create_image_for_comment() throws Exception {
         login(USER_USERNAME, USER_PASSWORD);
 
@@ -221,8 +226,8 @@ public class ImageControllerIntegrationTest {
 
 
     @Test
-    @Transactional
-    @Rollback
+//    @Transactional
+//    @Rollback
     public void Test_create_image_for_news() throws Exception {
         login(ADMIN_USERNAME, ADMIN_PASSWORD);
 
@@ -258,8 +263,8 @@ public class ImageControllerIntegrationTest {
 
 
     @Test
-    @Transactional
-    @Rollback
+//    @Transactional
+//    @Rollback
     public void Test_create_image_for_cultural_site() throws Exception {
         login(ADMIN_USERNAME, ADMIN_PASSWORD);
 

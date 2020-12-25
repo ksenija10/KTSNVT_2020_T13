@@ -22,6 +22,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -152,10 +153,15 @@ public class ImageServiceIntegrationTest {
     @Transactional
     @Rollback
     public void Test_create_for_comment() throws Exception {
+        int size = imageService.findAll().size();
         Image created = imageService.createForComment(COMMENT_ID_NEW, file);
 
-        assertEquals("something", created.getName());
 
+        File file = new File(created.getPath());
+        file.delete();
+
+        assertEquals("something", created.getName());
+        assertEquals(size+1, imageService.findAll().size());
     }
 
     @Test
@@ -164,6 +170,9 @@ public class ImageServiceIntegrationTest {
     public void Test_create_for_news() throws Exception {
         int size = imageService.findAll().size();
         Image created = imageService.createForNews(NEWS_ID_NEW, file);
+
+        File file = new File(created.getPath());
+        file.delete();
 
         assertEquals("something", created.getName());
         assertEquals(size+1, imageService.findAll().size());
@@ -175,6 +184,9 @@ public class ImageServiceIntegrationTest {
     public void Test_create_for_cultural_site() throws Exception {
         int size = imageService.findAll().size();
         Image created = imageService.createForCulturalSite(CULTURAL_SITE_ID_NEW, file);
+
+        File file = new File(created.getPath());
+        file.delete();
 
         assertEquals("something", created.getName());
         assertEquals(size+1, imageService.findAll().size());
