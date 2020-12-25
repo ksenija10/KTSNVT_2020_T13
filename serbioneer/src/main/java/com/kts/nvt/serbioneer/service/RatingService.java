@@ -12,6 +12,7 @@ import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.Rating;
 import com.kts.nvt.serbioneer.model.User;
 import com.kts.nvt.serbioneer.repository.RatingRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class RatingService implements ServiceInterface<Rating> {
 		return ratingRepository.findById(id).orElse(null);
 	}
 
+	@Transactional
 	public Rating create(Long culturalSiteId, int value) throws Exception {
 		CulturalSite culturalSite = culturalSiteService.findOneById(culturalSiteId);
 		if (culturalSite == null) {
@@ -72,6 +74,8 @@ public class RatingService implements ServiceInterface<Rating> {
 		
 		culturalSite.addRating(entity);
 		
+		entity.setActive(true);
+
 		entity = ratingRepository.save(entity);
 
 		culturalSiteService.updateRating(culturalSite);
@@ -96,6 +100,7 @@ public class RatingService implements ServiceInterface<Rating> {
 
 	}
 
+	@Transactional
 	public Rating update(int value, Long id) throws Exception {
 		Rating ratingToUpdate = ratingRepository.findById(id).orElse(null);
 		if (ratingToUpdate == null) {

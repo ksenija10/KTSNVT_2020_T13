@@ -14,15 +14,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-
 @AllArgsConstructor
+@RequiredArgsConstructor
 
 @Entity
 @Table(name = "comment")
@@ -81,6 +78,14 @@ public class Comment {
 	
 	public Comment(@NonNull String text) {
 		this.text = text;
+		this.active = true;
+	}
+
+	public Comment(@NonNull String text, boolean approved, @NonNull AuthenticatedUser authenticatedUser, @NonNull CulturalSite culturalSite) {
+		this.text = text;
+		this.approved = approved;
+		this.authenticatedUser = authenticatedUser;
+		this.culturalSite = culturalSite;
 		this.active = true;
 	}
 }

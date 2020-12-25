@@ -153,4 +153,9 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 		return culturalSiteRepository.findAllBySubscribedUsersId(pageable, userId);
 	}
 	
+	//za potrebe testiranja
+	public List<CulturalSite> findAllSubscribed(AuthenticatedUser user){
+		return culturalSiteRepository.findAllBySubscribedUsersId(user.getId());
+	}
+	
 }
