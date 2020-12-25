@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -87,7 +88,8 @@ public class AuthenticatedUserController {
 	@PutMapping(value = "/updatePersonalInformation", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserUpdateDTO> updatePersonalInformation(@Valid @RequestBody UserUpdateDTO userUpdateDTO) {
 		try {
-			authenticatedUserService.updatePersonalInformation(userUpdateDTO);
+			AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			authenticatedUserService.updatePersonalInformation(userUpdateDTO, user);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
@@ -100,13 +102,14 @@ public class AuthenticatedUserController {
 	 */
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
+	public ResponseEntity<PasswordDTO> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
 		try{
-			authenticatedUserService.updatePassword(passwordDTO);
+			AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			authenticatedUserService.updatePassword(passwordDTO, user);
 		}catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(passwordDTO, HttpStatus.OK);
 	}
 	
 	/*
@@ -117,7 +120,8 @@ public class AuthenticatedUserController {
 	@PostMapping("/subscribe/{cultural-site-id}")
 	public ResponseEntity<Void> subscribe(@PathVariable("cultural-site-id") Long culturalSiteId){
 		try {
-			authenticatedUserService.addSubscribedSite(culturalSiteId);
+			AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			authenticatedUserService.addSubscribedSite(culturalSiteId, loggedIn);
 		} catch (NonexistentIdException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		} catch (ConflictException e) {
@@ -134,7 +138,8 @@ public class AuthenticatedUserController {
 	@PostMapping("/unsubscribe/{cultural-site-id}")
 	public ResponseEntity<Object> unsubscribe(@PathVariable("cultural-site-id") Long culturalSiteId){
 		try {
-			authenticatedUserService.removeSubscribedSite(culturalSiteId);
+			AuthenticatedUser loggedIn = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			authenticatedUserService.removeSubscribedSite(culturalSiteId, loggedIn);
 		} catch (NonexistentIdException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		} catch (ConflictException e) {

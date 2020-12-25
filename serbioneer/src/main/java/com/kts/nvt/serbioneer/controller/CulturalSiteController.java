@@ -31,6 +31,7 @@ import com.kts.nvt.serbioneer.helper.CommentMapper;
 import com.kts.nvt.serbioneer.helper.CulturalSiteMapper;
 import com.kts.nvt.serbioneer.helper.NewsMapper;
 import com.kts.nvt.serbioneer.mailsender.OnNewsCreatedEvent;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.Comment;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.News;
