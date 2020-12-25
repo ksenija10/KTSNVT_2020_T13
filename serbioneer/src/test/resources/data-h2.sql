@@ -107,6 +107,8 @@ insert into sites_users(site_id, user_id) values (4, 2);
 --rating
 --Isidor je ocenio biblioteku sabacku sa 3
 insert into rating (value, user_id, site_id, is_active) values (3, 2, 1, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 2, 2, true);
+
 
 insert into image (id, is_active, name, path, comment) values (1, true, 'name1', 'path1', 1);
 insert into image (id, is_active, name, path, news) values (2, true, 'name1', 'path1', 1);
