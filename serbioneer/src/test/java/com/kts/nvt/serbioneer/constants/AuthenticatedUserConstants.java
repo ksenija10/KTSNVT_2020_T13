@@ -1,5 +1,7 @@
 package com.kts.nvt.serbioneer.constants;
 
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
+
 public class AuthenticatedUserConstants {
 	//logovanje admina i prebrojavanje user-a
 	public static final String ADMIN_USERNAME = "admin@admin.com";
@@ -53,7 +55,12 @@ public class AuthenticatedUserConstants {
 	public static final Long CULTURAL_SITE_ID4 = 2L;
 	public static final Long CULTURAL_SITE_ID5 = 5L;
 	public static final Long CULTURAL_SITE_ID6 = 4L;
-	
+
+	public static  AuthenticatedUser USER_BEFORE = new AuthenticatedUser();
+	public static  AuthenticatedUser USER_AFTER = new AuthenticatedUser();
+	public static  AuthenticatedUser USER = new AuthenticatedUser();
+
+
 	//service unit testovi
 	
 }
