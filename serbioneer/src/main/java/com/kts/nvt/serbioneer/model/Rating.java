@@ -18,6 +18,8 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @AllArgsConstructor
 @RequiredArgsConstructor
 
@@ -69,5 +71,28 @@ public class Rating {
 		this.value = value;
 		this.active = true;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Rating{" +
+				"id=" + id +
+				", active=" + active +
+				", value=" + value +
+				", culturalSite=" + culturalSite +
+				", authenticatedUser=" + authenticatedUser +
+				'}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Rating rating = (Rating) o;
+		return value == rating.value && culturalSite.equals(rating.culturalSite) && authenticatedUser.equals(rating.authenticatedUser);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(value, culturalSite, authenticatedUser);
+	}
 }
