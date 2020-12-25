@@ -140,12 +140,12 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 	//dobavljanje svih gradova za front
 	public List<String> findAllCities() {
 		List<String> cities = new ArrayList<String>();
-		/*Set<String> citiesSet = new HashSet<String>();
+		Set<String> citiesSet = new HashSet<String>();
 		List<CulturalSite> culturalSites = this.findAll();
 		for (CulturalSite culturalSite : culturalSites) {
 			citiesSet.add(culturalSite.getCity());
 		}
-		cities.addAll(citiesSet);*/
+		cities.addAll(citiesSet);
 		return cities;
 	}
 	
