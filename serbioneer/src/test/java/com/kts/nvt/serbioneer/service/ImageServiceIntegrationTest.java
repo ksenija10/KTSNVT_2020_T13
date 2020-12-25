@@ -162,20 +162,22 @@ public class ImageServiceIntegrationTest {
     @Transactional
     @Rollback
     public void Test_create_for_news() throws Exception {
+        int size = imageService.findAll().size();
         Image created = imageService.createForNews(NEWS_ID_NEW, file);
 
         assertEquals("something", created.getName());
-
+        assertEquals(size+1, imageService.findAll().size());
     }
 
     @Test
     @Transactional
     @Rollback
     public void Test_create_for_cultural_site() throws Exception {
+        int size = imageService.findAll().size();
         Image created = imageService.createForCulturalSite(CULTURAL_SITE_ID_NEW, file);
 
         assertEquals("something", created.getName());
-
+        assertEquals(size+1, imageService.findAll().size());
     }
 
     @Test
@@ -196,6 +198,9 @@ public class ImageServiceIntegrationTest {
         authentication.setToken(accessToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        int size = imageService.findAll().size();
+
         imageService.delete(IMAGE_ID_DELETE);
+        assertEquals(size-1, imageService.findAll().size());
     }
 }
