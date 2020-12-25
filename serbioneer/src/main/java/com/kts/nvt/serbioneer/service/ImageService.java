@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -85,7 +86,8 @@ public class ImageService implements ServiceInterface<Image> {
 		}
 
 		String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-		String filePath = this.saveImage(multipartFile, fileName, "comment", commentId);
+		UUID uuid = UUID.randomUUID();
+		String filePath = this.saveImage(multipartFile, uuid.toString(), "comment", commentId);
 		Image image = new Image(fileName, filePath, comment);
 
 		return imageRepository.save(image);
@@ -98,7 +100,8 @@ public class ImageService implements ServiceInterface<Image> {
 		}
 
 		String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-		String filePath = this.saveImage(multipartFile, fileName, "news", newsId);
+		UUID uuid = UUID.randomUUID();
+		String filePath = this.saveImage(multipartFile, uuid.toString(), "news", newsId);
 		Image image = new Image(fileName, filePath, news);
 
 		return imageRepository.save(image);
@@ -112,6 +115,7 @@ public class ImageService implements ServiceInterface<Image> {
 		}
 
 		String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+		UUID uuid = UUID.randomUUID();
 		String filePath = this.saveImage(multipartFile, fileName, "culturalSite", culturalSiteId);
 		Image image = new Image(fileName, filePath, culturalSite);
 

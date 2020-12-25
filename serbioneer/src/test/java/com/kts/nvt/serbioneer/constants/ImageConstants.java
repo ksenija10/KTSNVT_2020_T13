@@ -43,10 +43,10 @@ public class ImageConstants {
     public static final String EXPECTED_PATH_CULTURAL_SITE = "src" + separator + "main" + separator + "resources"
             + separator + "images" + separator + "culturalSite" + separator + COMMENT_ID + separator + "something";
 
-    public static final Image CREATED_IMAGE_COMMENT = new Image("something", EXPECTED_PATH_COMMENT, COMMENT);
-    public static final Image CREATED_IMAGE_NEWS = new Image("something", EXPECTED_PATH_NEWS, NEWS);
-    public static final Image CREATED_IMAGE_CULTURAL_SITE = new Image("something",
-            EXPECTED_PATH_CULTURAL_SITE, CULTURAL_SITE);
+    public static final String CREATED_IMAGE_NAME = "something";
+
+    public static final Image CREATED_IMAGE = new Image(CREATED_IMAGE_NAME,
+            EXPECTED_PATH_COMMENT, COMMENT);
 
 
     public static final String USER_USERNAME = "prvi@user.com";
