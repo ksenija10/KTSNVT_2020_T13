@@ -1,7 +1,9 @@
 package com.kts.nvt.serbioneer.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -138,10 +140,12 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 	//dobavljanje svih gradova za front
 	public List<String> findAllCities() {
 		List<String> cities = new ArrayList<String>();
+		Set<String> citiesSet = new HashSet<String>();
 		List<CulturalSite> culturalSites = this.findAll();
 		for (CulturalSite culturalSite : culturalSites) {
-			cities.add(culturalSite.getCity());
+			citiesSet.add(culturalSite.getCity());
 		}
+		cities.addAll(citiesSet);
 		return cities;
 	}
 	
