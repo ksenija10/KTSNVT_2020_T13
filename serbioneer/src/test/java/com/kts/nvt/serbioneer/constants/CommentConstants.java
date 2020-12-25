@@ -77,38 +77,20 @@ public class CommentConstants {
     public static Long EXISTING_UNAPPROVED_COMMENT_FOR_DELETE_ID = 6L;
     public static Comment EXISTING_UNAPPROVED_COMMENT_FOR_DELETE = new Comment("Tekst neodobrenog komentara",
             false, EXISTING_AUTHENTICATED_USER, EXISTING_CULTURAL_SITE);
-    // new comment info
-    /*public static final Long USER_ID = 2L;
-    public static final Long CULTURAL_SITE_ID = 1L;
-    public static final Long COMMENT_ID = 1L;
 
 
+    // CONTROLLER
+    //admin
+    public static final String DB_ADMIN_USERNAME = "admin@admin.com";
+    public static final String DB_ADMIN_PASSWORD = "admin";
+    //user
+    public static final String DB_USER_USERNAME = "drugi@user.com";
+    public static final String DB_USER_PASSWORD = "user";
+    //first comment
+    public static final Long FIRST_EXISTING_COMMENT_ID = 1L;
 
-    //approved and unapproved number of comments on Biblioteka Šabačka(id: 1)
-
-    public static final int APPROVED_COMMENTS_NUM_CULTURAL_SITE_1_ADD = 1;
-    public static final int UNAPPROVED_COMMENTS_NUM_CULTURAL_SITE_1 = 1;
-
-    //Service new comment for create method
-    public static Comment COMMENT = new Comment(COMMENT_TEXT_1);
-    //Service saved comment
-    public static Comment SAVED_COMMENT = new Comment(COMMENT_TEXT_1);
-    //Service saved comment id
-
-
-    //AuthenticatedUser for service
-    public static final Long NEW_USER_ID = 10L;
-    public static final String USER_NAME = "Mika";
-    public static final String USER_SURNAME = "Antic";
-    public static final String USER_EMAIL = "novi@user.com";
-    public static final String USER_PASSWORD = "nova";
-    public static final Boolean USER_ACTIVATED = true;
-    public static final AuthenticatedUser USER = new AuthenticatedUser(USER_ID, USER_NAME, USER_SURNAME, USER_EMAIL,
-            USER_PASSWORD, USER_ACTIVATED);
-
-
-
-    public static final Long NEW_COMMENT_ID = 4L;
-*/
+    //user who didnt make the comment
+    public static final String DB_USER_USERNAME_2 = "prvi@user.com";
+    public static final String DB_USER_PASSWORD_2 = "user";
 
 }
