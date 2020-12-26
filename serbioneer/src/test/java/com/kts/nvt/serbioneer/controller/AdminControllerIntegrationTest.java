@@ -131,7 +131,6 @@ public class AdminControllerIntegrationTest {
    		adminService.delete(responseEntity.getBody().getId());
     }
     
-    
     @Test
 //    @Transactional()
 //    @Rollback()
@@ -198,11 +197,12 @@ public class AdminControllerIntegrationTest {
     	assertEquals(UPDATE_SURNAME, adminDatabase.getSurname());
     	
     	//vratiti sve na staro
-    	updateAdminDto.put("name", "Ksenija");
+    	adminService.updatePersonalInformation(new UserUpdateDTO("Ksenija", "Prcic", null), adminDatabase);
+    	/*updateAdminDto.put("name", "Ksenija");
     	updateAdminDto.put("surname", "Prcic");
     	httpEntity = new HttpEntity<Object>(updateAdminDto.toString(), headers);
     	responseEntity = restTemplate.exchange("/api/admin/updatePersonalInformation",
-                HttpMethod.PUT, httpEntity, UserUpdateDTO.class);
+                HttpMethod.PUT, httpEntity, UserUpdateDTO.class);*/
     }
     
     @Test

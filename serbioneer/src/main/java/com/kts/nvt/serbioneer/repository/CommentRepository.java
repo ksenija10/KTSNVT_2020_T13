@@ -16,7 +16,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     Page<Comment> findAllByApproved(Pageable pageable, Boolean approved);
 
-    List<Comment> findAllByCulturalSiteIdAndApproved(Long culturalSiteId, Boolean approved);
-
     Page<Comment> findAllByCulturalSiteIdAndApproved(Pageable pageable, Long culturalSiteId, Boolean approved);
 }

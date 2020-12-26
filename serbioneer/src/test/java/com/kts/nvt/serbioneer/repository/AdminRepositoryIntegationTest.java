@@ -1,6 +1,7 @@
 package com.kts.nvt.serbioneer.repository;
 
 import static com.kts.nvt.serbioneer.constants.AdminConstants.*;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
@@ -27,8 +28,20 @@ public class AdminRepositoryIntegationTest {
 	}
 	
 	@Test
+	public void testFindOneByIdNull() {
+		Admin admin = adminRepository.findOneById(NULL_ID);
+		assertNull(admin);
+	}
+	
+	@Test
 	public void testFindOneByEmail() {
 		Admin admin = adminRepository.findOneByEmail(ADMIN_USERNAME);
 		assertEquals(ADMIN_USERNAME, admin.getEmail());
+	}
+	
+	@Test
+	public void testFindOneByEmailNull() {
+		Admin admin = adminRepository.findOneByEmail(ADMIN_NULL_USERNAME);
+		assertNull(admin);
 	}
 }

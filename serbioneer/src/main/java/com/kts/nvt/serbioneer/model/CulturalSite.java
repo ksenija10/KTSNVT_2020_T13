@@ -1,5 +1,6 @@
 package com.kts.nvt.serbioneer.model;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -150,5 +151,18 @@ public class CulturalSite {
 		this.description = description;
 		this.active = true;
 	}
-	
+  
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		CulturalSite that = (CulturalSite) o;
+		return name.equals(that.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
 }

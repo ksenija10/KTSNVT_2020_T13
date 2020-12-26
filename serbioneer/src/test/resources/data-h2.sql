@@ -10,15 +10,16 @@ insert into users (type, name, surname, email, password, activated, is_active)
 values ('AuthenticatedUser', 'Mileva', 'Isic', 'drugi@user.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq', true, true);
 insert into users (type, name, surname, email, password, activated, is_active)
 -- srdjabroj1 gmail
-values ('AuthenticatedUser', 'Srdjan', 'Milic', 'srdjanmilic12@gmail.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq', true, true);
+values ('AuthenticatedUser', 'Srdjan', 'Milic', 'srdjanmilic12@gmail.com', '$2y$12$3PKWDsIWuDRSKV4z8/9Su.NZIQanfAr9IcOxZCEEQoHYwasVJxYja', true, true);
 insert into users (type, name, surname, email, password, activated, is_active)
 -- katarina1! gmail
-values ('AuthenticatedUser', 'Katarina', 'Donalnov', 'dolanovkatarina@gmail.com', '$2a$04$Amda.Gm4Q.ZbXz9wcohDHOhOBaNQAkSS1QO26Eh8Hovu3uzEpQvcq', true, true);
+values ('AuthenticatedUser', 'Katarina', 'Donalnov', 'dolanovkatarina@gmail.com', '$2y$12$SIXeGBUz6VbA1LkQYp/U2uqqs5Ss0paG3KP4wuVEdFq9N30hXO94a', true, true);
 insert into users (type, name, surname, email, password, is_active) 
 values ('Admin', 'Marija', 'Maric', 'admin2@admin.com', '$2y$12$IVBar4DN2RFVW8TqTF/BnuvuErSbRAHC0M7esAx2l5KLjEH8DC6jO', true);
 insert into users (type, name, surname, email, password, is_active) 
 values ('Admin', 'Ignjat', 'Arsic', 'admin3@admin.com', '$2y$12$GzLhpKp2D3WWVBqKyybeu.zG7axbOaxwRkdMnOoBM/BdG70rpG9Gm', true);
-
+insert into users (type, name, surname, email, password, activated, is_active)
+values ('AuthenticatedUser', 'Sasa', 'Urosevic', 'treci@user.com', '$2y$12$8oX67pL6tceLNA1jYolVxOyXsrXeWPZsfo.jWibpWlczygR6mUUOW', false, true);
 
 insert into authority (name) values ('ROLE_ADMIN');
 insert into authority (name) values ('ROLE_USER');
@@ -32,6 +33,7 @@ insert into user_authority (user_id, authority_id) values (4, 2);
 insert into user_authority (user_id, authority_id) values (5, 2);
 insert into user_authority (user_id, authority_id) values (6, 1);
 insert into user_authority (user_id, authority_id) values (7, 1);
+insert into user_authority (user_id, authority_id) values (8, 2);
 
 -- kulturne kategorije
 insert into cultural_category (name, is_active) values ('Institucija', true);
@@ -81,11 +83,15 @@ insert into comment (text, approved, user_id, site_id, is_active)
             values ('Zište', true, 3, 2, true);
 insert into comment (text, approved, user_id, site_id, is_active)
             values ('Ovaj komentar odbij!', false, 3, 2, true);
+insert into comment (text, approved, user_id, site_id, is_active)
+            values ('test', true, 2, 2, true);
 
 --news
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti za bibl', '2020-11-12', 1, true);
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti za bibl 2', '2020-11-14', 1, true);
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti pt2', '2020-11-11', 2, true);
+
+insert into news (information, date_time, site_id, is_active) values ('test', '2020-11-11', 2, true);
 
 --subscribed cultural sites Biblioteka sabacka for user 2 Isidor Gavric
 insert into sites_users(site_id, user_id) values (1, 2);
@@ -101,4 +107,9 @@ insert into sites_users(site_id, user_id) values (4, 2);
 --rating
 --Isidor je ocenio biblioteku sabacku sa 3
 insert into rating (value, user_id, site_id, is_active) values (3, 2, 1, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 2, 2, true);
 
+
+insert into image (id, is_active, name, path, comment) values (1, true, 'name1', 'path1', 1);
+insert into image (id, is_active, name, path, news) values (2, true, 'name1', 'path1', 1);
+insert into image (id, is_active, name, path, cultural_site) values (3, true, 'name1', 'path1', 1);
