@@ -32,10 +32,15 @@ public class CulturalCategoryTypeServiceIntegrationTest {
 	private CulturalCategoryTypeService culturalCategoryTypeService;
 	
 	@Test
-	public void testFindAllLong() {
+	public void testFindAllLongSuccessful() throws Exception {
 		List<CulturalCategoryType> allCategorysTypes = culturalCategoryTypeService.findAll(DB_CATEGORY_ID);
 	
 		assertEquals(DB_CATEGORY_ID_TYPE_NUM, allCategorysTypes.size());
+	}
+	
+	@Test(expected = NonexistentIdException.class)
+	public void testFindAllLongNotExistingId() throws Exception {
+		culturalCategoryTypeService.findAll(INVALID_ID);
 	}
 
 	@Test

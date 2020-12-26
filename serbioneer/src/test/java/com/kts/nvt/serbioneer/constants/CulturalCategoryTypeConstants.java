@@ -42,8 +42,12 @@ public class CulturalCategoryTypeConstants {
 
 	// integration tests
 	public static final Long DB_CATEGORY_ID = 1L;
+	public static final String DB_CATEGORY_NAME = "Institucija";
+	public static final int DB_CATEGORY_TYPES_NUM = 2;
+	
 	public static final Long DB_CATEGORY_ID_2 = 2L;
 	public static final int DB_CATEGORY_ID_TYPE_NUM = 2;
+	
 	public static final Integer DB_PAGEABLE_PAGE = 0;
 	public static final Integer DB_PAGEABLE_SIZE = 3;
 	public static final int DB_PAGEABLE_NUM = 3;
@@ -52,9 +56,16 @@ public class CulturalCategoryTypeConstants {
 	public static final String DB_NAME = "Biblioteka";
 	
 	// create
-	public static final String NEW_CATEGORY_TYPE_NAME = "Nova kategorija";
+	public static final String NEW_CATEGORY_TYPE_NAME = "Novi tip kategorije";
 	// update
-	public static final String UPDATED_CATEGORY_TYPE_NAME = "Izmenjena kategorija";
+	public static final String UPDATED_CATEGORY_TYPE_NAME = "Izmenjeni tip kategorije";
 	public static final String DB_EXISTING_NAME = "Spomenik";
 	public static final Long DB_EXISTING_ID = 5L;
+	
+	// controller
+	public static final String DB_ADMIN_USERNAME = "admin@admin.com";
+	public static final String DB_ADMIN_PASSWORD = "admin";
+	
+	public static final String DB_USER_USERNAME = "prvi@user.com";
+	public static final String DB_USER_PASSWORD = "user";
 }

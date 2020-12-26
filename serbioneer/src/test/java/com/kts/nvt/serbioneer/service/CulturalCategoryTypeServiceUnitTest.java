@@ -81,7 +81,8 @@ public class CulturalCategoryTypeServiceUnitTest {
 		categoryTypes.add(CATEGORY_TYPE_1);
 		categoryTypes.add(CATEGORY_TYPE_2);
 		given(culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(CATEGORY_ID)).willReturn(categoryTypes);
-	
+		given(culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(INVALID_ID)).willReturn(null);
+		
 		// find all
 		given(culturalCategoryTypeRepository.findAll()).willReturn(categoryTypes);
 		
@@ -130,11 +131,19 @@ public class CulturalCategoryTypeServiceUnitTest {
 	}
 	
 	@Test
-	public void testFindAllLong() {
+	public void testFindAllLongSuccessful() throws Exception {
 		List<CulturalCategoryType> categoryTypes = culturalCategoryTypeService.findAll(CATEGORY_ID);
 		
 		verify(culturalCategoryTypeRepository, times(1)).findAllByCulturalSiteCategoryId(CATEGORY_ID);
 		assertEquals(2, categoryTypes.size());
+	}
+	
+	@Test(expected = NonexistentIdException.class)
+	public void testFindAllLongNotExistingId() throws Exception {
+		List<CulturalCategoryType> categoryTypes = culturalCategoryTypeService.findAll(INVALID_ID);
+		
+		verify(culturalCategoryTypeRepository, times(1)).findAllByCulturalSiteCategoryId(INVALID_ID);
+		assertNull(categoryTypes);
 	}
 	
 	@Test

@@ -48,7 +48,7 @@ public class CulturalCategoryType {
 	@Getter
 	@Setter
 	@NonNull
-	@Column(name = "name", nullable = false, unique = true)
+	@Column(name = "name", nullable = false, unique = false)
 	private String name;
 
 	@Getter

@@ -2,7 +2,11 @@ package com.kts.nvt.serbioneer.repository;
 
 import static com.kts.nvt.serbioneer.constants.CulturalCategoryTypeConstants.*;
 import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.DB_CATEGORY_ID;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -11,6 +15,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -29,6 +36,21 @@ public class CulturalCategoryTypeRepositoryIntegrationTest {
 		List<CulturalCategoryType> allCategorysTypes = culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(DB_CATEGORY_ID);
 		
 		assertEquals(DB_CATEGORY_ID_TYPE_NUM, allCategorysTypes.size());
+	}
+	
+	@Test
+	public void testFindAllByCulturalSiteCategoryIdInvalid() {
+		List<CulturalCategoryType> allCategorysTypes = culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(INVALID_ID);
+		
+		assertTrue(allCategorysTypes.isEmpty());
+	}
+	
+	@Test
+	public void testFindAllByCulturalSiteCategoryIdPageable() {
+		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
+		Page<CulturalCategoryType> allCategoriesPage = culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(DB_CATEGORY_ID, pageable);
+	
+		assertEquals(PAGEABLE_TOTAL_ELEMENTS, allCategoriesPage.getContent().size());
 	}
 
 	@Test

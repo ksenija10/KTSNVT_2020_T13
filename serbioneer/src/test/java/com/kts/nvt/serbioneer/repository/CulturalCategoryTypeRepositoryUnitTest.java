@@ -3,6 +3,9 @@ package com.kts.nvt.serbioneer.repository;
 import static com.kts.nvt.serbioneer.constants.CulturalCategoryTypeConstants.DB_CATEGORY_TYPE_ID;
 import static com.kts.nvt.serbioneer.constants.CulturalCategoryTypeConstants.NEW_CATEGORY_TYPE_NAME_1;
 import static com.kts.nvt.serbioneer.constants.CulturalCategoryTypeConstants.NEW_CATEGORY_TYPE_NAME_2;
+import static com.kts.nvt.serbioneer.constants.CulturalCategoryTypeConstants.PAGEABLE_PAGE;
+import static com.kts.nvt.serbioneer.constants.CulturalCategoryTypeConstants.PAGEABLE_SIZE;
+import static com.kts.nvt.serbioneer.constants.CulturalCategoryTypeConstants.PAGEABLE_TOTAL_ELEMENTS;
 import static com.kts.nvt.serbioneer.constants.CulturalSiteCategoryConstants.DB_CATEGORY_ID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -17,6 +20,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -58,6 +64,14 @@ public class CulturalCategoryTypeRepositoryUnitTest {
 		List<CulturalCategoryType> allCategorysTypes = culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(DB_CATEGORY_ID);
 		
 		assertEquals(categoryTypesSizeDB + 2, allCategorysTypes.size());
+	}
+	
+	@Test
+	public void testFindAllByCulturalSiteCategoryIdPageable() {
+		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
+		Page<CulturalCategoryType> allCategoriesPage = culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(DB_CATEGORY_ID, pageable);
+	
+		assertEquals(PAGEABLE_TOTAL_ELEMENTS, allCategoriesPage.getContent().size());
 	}
 
 	@Test

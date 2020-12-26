@@ -30,7 +30,10 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 	private final String type = "Cultural category type";
 	private final String unique = "name";
 	
-	public List<CulturalCategoryType> findAll(Long categoryId) {
+	public List<CulturalCategoryType> findAll(Long categoryId) throws Exception {
+		if (culturalSiteCategoryService.findOneById(categoryId) == null) {
+			throw new NonexistentIdException(culturalSiteCategoryService.getType());
+		}
 		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(categoryId);
 	}
 	
@@ -41,6 +44,13 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 	@Override
 	public Page<CulturalCategoryType> findAll(Pageable pageable) {
 		return culturalCategoryTypeRepository.findAll(pageable);
+	}
+	
+	public Page<CulturalCategoryType> findAll(Long categoryId, Pageable pageable) throws Exception {
+		if (culturalSiteCategoryService.findOneById(categoryId) == null) {
+			throw new NonexistentIdException(culturalSiteCategoryService.getType());
+		}
+		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(categoryId, pageable);
 	}
 
 	@Override
