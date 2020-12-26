@@ -80,4 +80,10 @@ public class CulturalCategoryType {
 		this.culturalSites.add(culturalSite);
 		culturalSite.setCulturalCategoryType(this);
 	}
+
+	public CulturalCategoryType(@NonNull String name, CulturalSiteCategory culturalSiteCategory) {
+		this.active = true;
+		this.name = name;
+		this.culturalSiteCategory = culturalSiteCategory;
+	}
 }

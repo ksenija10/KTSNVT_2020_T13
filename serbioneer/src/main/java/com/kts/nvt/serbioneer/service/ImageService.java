@@ -8,8 +8,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -40,6 +42,12 @@ public class ImageService implements ServiceInterface<Image> {
 	@Autowired
 	private CulturalSiteService culturalSiteService;
 
+	@Value( "${image.folder}" )
+	private String imageFolder;
+
+	public List<Image> findAll() {
+		return imageRepository.findAll();
+	}
 
 	public Page<Image> findAll(Pageable pageable) {
 		return imageRepository.findAll(pageable);
@@ -81,7 +89,8 @@ public class ImageService implements ServiceInterface<Image> {
 		}
 
 		String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-		String filePath = this.saveImage(multipartFile, fileName, "comment", commentId);
+		UUID uuid = UUID.randomUUID();
+		String filePath = this.saveImage(multipartFile, uuid.toString(), "comment", commentId);
 		Image image = new Image(fileName, filePath, comment);
 
 		return imageRepository.save(image);
@@ -94,7 +103,8 @@ public class ImageService implements ServiceInterface<Image> {
 		}
 
 		String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-		String filePath = this.saveImage(multipartFile, fileName, "news", newsId);
+		UUID uuid = UUID.randomUUID();
+		String filePath = this.saveImage(multipartFile, uuid.toString(), "news", newsId);
 		Image image = new Image(fileName, filePath, news);
 
 		return imageRepository.save(image);
@@ -108,7 +118,8 @@ public class ImageService implements ServiceInterface<Image> {
 		}
 
 		String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-		String filePath = this.saveImage(multipartFile, fileName, "culturalSite", culturalSiteId);
+		UUID uuid = UUID.randomUUID();
+		String filePath = this.saveImage(multipartFile, uuid.toString(), "culturalSite", culturalSiteId);
 		Image image = new Image(fileName, filePath, culturalSite);
 
 		return imageRepository.save(image);
@@ -133,7 +144,7 @@ public class ImageService implements ServiceInterface<Image> {
 
 	public String saveImage(MultipartFile file, String fileName, String folderName, Long entityId) throws IOException{
 		String separator = System.getProperty("file.separator");
-		String folderPath = "src" + separator + "main" + separator + "resources" + separator + "images" + separator
+		String folderPath = "src" + separator + this.imageFolder + separator + "resources" + separator + "images" + separator
 				+ folderName;
 		String entityFolderPath = folderPath + separator + entityId;
 		String filePath = entityFolderPath + separator + fileName;

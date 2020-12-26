@@ -1,10 +1,13 @@
 package com.kts.nvt.serbioneer.service;
 
+import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.Image;
 import com.kts.nvt.serbioneer.repository.ImageRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,6 +23,7 @@ import static com.kts.nvt.serbioneer.constants.ImageConstants.COMMENT_ID;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -87,9 +91,7 @@ public class ImageServiceUnitTest {
 
         given(imageRepository.findById(IMAGE_ID)).willReturn(Optional.of(savedImage));
         given(imageRepository.findById(IMAGE_ID_RANDOM)).willReturn(Optional.empty());
-        given(imageRepository.save(CREATED_IMAGE_COMMENT)).willReturn(CREATED_IMAGE_COMMENT);
-        given(imageRepository.save(CREATED_IMAGE_NEWS)).willReturn(CREATED_IMAGE_NEWS);
-        given(imageRepository.save(CREATED_IMAGE_CULTURAL_SITE)).willReturn(CREATED_IMAGE_CULTURAL_SITE);
+        given(imageRepository.save(any(Image.class))).willReturn(CREATED_IMAGE);
 
         doNothing().when(imageRepository).delete(savedImage);
 
@@ -174,25 +176,26 @@ public class ImageServiceUnitTest {
         assertNull(found);
     }
 
+
     @Test
     public void Test_create_for_comment() throws Exception {
         Image created = imageService.createForComment(COMMENT_ID, file);
 
         verify(commentService, times(1)).findOneById(COMMENT_ID);
-        verify(imageRepository, times(1)).save(CREATED_IMAGE_COMMENT);
+        verify(imageRepository, times(1)).save(any(Image.class));
 
-        assertEquals("something", created.getName());
+        assertEquals(CREATED_IMAGE_NAME, created.getName());
 
     }
 
     @Test
     public void Test_create_for_news() throws Exception {
         Image created = imageService.createForNews(NEWS_ID, file);
-
+        System.out.println(created);
         verify(newsService, times(1)).findOneById(NEWS_ID);
-        verify(imageRepository, times(1)).save(CREATED_IMAGE_NEWS);
+        verify(imageRepository, times(1)).save(any(Image.class));
 
-        assertEquals("something", created.getName());
+        assertEquals(CREATED_IMAGE_NAME, created.getName());
 
     }
 
@@ -201,9 +204,9 @@ public class ImageServiceUnitTest {
         Image created = imageService.createForCulturalSite(CULTURAL_SITE_ID, file);
 
         verify(culturalSiteService, times(1)).findOneById(CULTURAL_SITE_ID);
-        verify(imageRepository, times(1)).save(CREATED_IMAGE_CULTURAL_SITE);
+        verify(imageRepository, times(1)).save(any(Image.class));
 
-        assertEquals("something", created.getName());
+        assertEquals(CREATED_IMAGE_NAME, created.getName());
 
     }
 

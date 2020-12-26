@@ -2,6 +2,7 @@ package com.kts.nvt.serbioneer.model;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -137,5 +138,18 @@ public abstract class User implements UserDetails {
 		this.email = email;
 		this.password = password;
 		this.active = true;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		User user = (User) o;
+		return email.equals(user.email);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email);
 	}
 }

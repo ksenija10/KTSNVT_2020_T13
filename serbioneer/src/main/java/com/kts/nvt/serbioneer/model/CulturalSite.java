@@ -1,5 +1,7 @@
 package com.kts.nvt.serbioneer.model;
 
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -139,4 +141,37 @@ public class CulturalSite {
 		this.active = true;
 	}
 	
+	public void addRating(Rating r) {
+		if (this.ratings == null) {
+			this.ratings = new HashSet<>();
+		}
+		this.ratings.add(r);
+		r.setCulturalSite(this);
+	}
+
+	public CulturalSite(Long id, @NonNull String name, double lat, double lng, @NonNull String address, @NonNull String city,
+						String description) {
+		this.id = id;
+		this.name = name;
+		this.lat = lat;
+		this.lng = lng;
+		this.address = address;
+		this.city = city;
+		this.description = description;
+		this.active = true;
+	}
+  
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		CulturalSite that = (CulturalSite) o;
+		return name.equals(that.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
 }

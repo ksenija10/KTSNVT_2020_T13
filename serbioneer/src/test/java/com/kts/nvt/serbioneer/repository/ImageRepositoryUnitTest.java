@@ -55,7 +55,7 @@ public class ImageRepositoryUnitTest {
     @Test
     public void Test_find_all_by_comment_id(){
         List<Image> found = imageRepository.findAllByCommentId(COMMENT_ID);
-        assertEquals(2,found.size());
+        assertEquals(3,found.size());
     }
 
     @Test
@@ -67,25 +67,25 @@ public class ImageRepositoryUnitTest {
     @Test
     public void Test_find_all_by_news_id(){
         List<Image> found = imageRepository.findAllByNewsId(NEWS_ID);
-        assertEquals(1,found.size());
+        assertEquals(2,found.size());
     }
 
     @Test
     public void Test_find_all_by_news_page_id(){
         Page<Image> found = imageRepository.findAllByNewsId(PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE), NEWS_ID);
-        assertEquals(1, found.getContent().size());
+        assertEquals(2, found.getContent().size());
     }
 
     @Test
     public void Test_find_all_by_cultural_site_id(){
         List<Image> found = imageRepository.findAllByCulturalSiteId(CULTURAL_SITE_ID);
-        assertEquals(1,found.size());
+        assertEquals(2,found.size());
     }
 
     @Test
     public void Test_find_all_by_cultural_site_page_id(){
         Page<Image> found = imageRepository.findAllByCulturalSiteId(PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE), CULTURAL_SITE_ID);
-        assertEquals(1, found.getContent().size());
+        assertEquals(2, found.getContent().size());
     }
 
     @Test

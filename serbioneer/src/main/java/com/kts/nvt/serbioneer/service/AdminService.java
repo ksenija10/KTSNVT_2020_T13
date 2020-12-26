@@ -32,7 +32,7 @@ public class AdminService implements ServiceInterface<Admin> {
 	
 	private final String type = "Admin";
 	
-	
+	//za potrebe testiranja
 	public List<Admin> findAll() {
 		return adminRepository.findAll();
 	}
@@ -70,8 +70,8 @@ public class AdminService implements ServiceInterface<Admin> {
 		adminRepository.delete(adminToDelete);
 	}
 
-	public Admin updatePersonalInformation(UserUpdateDTO entity) throws Exception {
-		Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	public Admin updatePersonalInformation(UserUpdateDTO entity, Admin user) throws Exception {
+		//Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Admin adminToUpdate = findOneById(user.getId());
 		adminToUpdate.setName(entity.getName());
 		adminToUpdate.setSurname(entity.getSurname());
@@ -79,7 +79,7 @@ public class AdminService implements ServiceInterface<Admin> {
 		return adminRepository.save(adminToUpdate);
 	}
 
-	public void updatePassword (PasswordDTO passwordDTO, Admin user) throws Exception {
+	public Admin updatePassword (PasswordDTO passwordDTO, Admin user) throws Exception {
 		//Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		Admin adminToUpdate = adminRepository.findById(user.getId()).orElse(null);
@@ -103,7 +103,7 @@ public class AdminService implements ServiceInterface<Admin> {
 		}
 
 		adminToUpdate.setPassword(encoder.encode(passwordDTO.getNewPassword()));
-		adminRepository.save(adminToUpdate);
+		return adminRepository.save(adminToUpdate);
 	}
 	
 	public Admin findCurrent() {

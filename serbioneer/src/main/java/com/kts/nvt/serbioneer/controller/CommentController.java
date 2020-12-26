@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.kts.nvt.serbioneer.dto.CommentDTO;
 import com.kts.nvt.serbioneer.helper.CommentMapper;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.Comment;
 import com.kts.nvt.serbioneer.service.CommentService;
 
@@ -87,7 +89,8 @@ public class CommentController {
                                                     @Valid @RequestBody CommentDTO commentDTO) {
         Comment comment = commentMapper.toEntity(commentDTO);
         try {
-            comment = commentService.update(comment, id);
+            AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            comment = commentService.update(comment, id, user.getId());
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
@@ -103,7 +106,8 @@ public class CommentController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable("id") Long id){
         try {
-            commentService.delete(id);
+            AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            commentService.delete(id, user.getId());
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
