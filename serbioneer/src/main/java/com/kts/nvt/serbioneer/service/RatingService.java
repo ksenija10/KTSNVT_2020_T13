@@ -116,8 +116,6 @@ public class RatingService implements ServiceInterface<Rating> {
 
 		ratingToUpdate.setValue(value);
 
-		ratingToUpdate = ratingRepository.save(ratingToUpdate);
-
 		culturalSiteService.updateRating(ratingToUpdate.getCulturalSite());
 
 		return ratingRepository.save(ratingToUpdate);

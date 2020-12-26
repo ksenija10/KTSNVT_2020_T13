@@ -1,18 +1,19 @@
 package com.kts.nvt.serbioneer.constants;
 
-import com.kts.nvt.serbioneer.model.*;
-import lombok.NonNull;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
+import com.kts.nvt.serbioneer.model.Comment;
+import com.kts.nvt.serbioneer.model.CulturalSite;
 
 public class CommentConstants {
 
     //All, approved and unapproved comments
-    public static final int ALL_COMMENTS_SIZE = 3;
-    public static final int APPROVED_COMMENTS_SIZE = 1;
+    public static final int ALL_COMMENTS_SIZE = 4;
+    public static final int APPROVED_COMMENTS_SIZE = 2;
     public static final int UNAPPROVED_COMMENTS_SIZE = 2;
 
     //Pagination
     public static final int PAGEABLE_PAGE = 0;
-    public static final int PAGEABLE_SIZE = 3;
+    public static final int PAGEABLE_SIZE = 4;
 
     //Approved and unapproved
     public static final Boolean APPROVED = true;
@@ -20,7 +21,7 @@ public class CommentConstants {
 
     //Srpsko narodno pozorište
     public static Long EXISTING_CULTURAL_SITE_ID = 2L;
-    public static final int APPROVED_COMMENTS_NUM_CULTURAL_SITE_2 = 1;
+    public static final int APPROVED_COMMENTS_NUM_CULTURAL_SITE_2 = 2;
     public static final int UNAPPROVED_COMMENTS_NUM_CULTURAL_SITE_2 = 1;
 
     //Existing user
@@ -35,9 +36,9 @@ public class CommentConstants {
     public static final String NEW_COMMENT_TEXT_1 = "Novi komentar";
     //Db state after adding new comment
     public static final int ALL_COMMENTS_SIZE_AFTER_ADD = 4;
-    public static final int APPROVED_COMMENTS_SIZE_AFTER_ADD = 2;
+    public static final int APPROVED_COMMENTS_SIZE_AFTER_ADD = 3;
     public static final int UNAPPROVED_COMMENTS_SIZE_AFTER_ADD = 2;
-    public static final int APPROVED_COMMENTS_SIZE_AFTER_ADD_CULTURAL_SITE_2 = 2;
+    public static final int APPROVED_COMMENTS_SIZE_AFTER_ADD_CULTURAL_SITE_2 = 3;
 
     //Non existing ids
     public static final Long NON_EXISTING_COMMENT_ID = 10L;

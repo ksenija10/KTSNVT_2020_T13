@@ -1,6 +1,13 @@
 package com.kts.nvt.serbioneer.repository;
 
-import com.kts.nvt.serbioneer.model.Rating;
+import static com.kts.nvt.serbioneer.constants.RatingConstants.CULTURAL_SITE_ID;
+import static com.kts.nvt.serbioneer.constants.RatingConstants.PAGEABLE_PAGE;
+import static com.kts.nvt.serbioneer.constants.RatingConstants.PAGEABLE_SIZE;
+import static com.kts.nvt.serbioneer.constants.RatingConstants.USER_ID;
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +15,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
-import static com.kts.nvt.serbioneer.constants.RatingConstants.*;
-import static com.kts.nvt.serbioneer.constants.RatingConstants.USER_ID;
-import static org.junit.Assert.assertEquals;
+import com.kts.nvt.serbioneer.model.Rating;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)

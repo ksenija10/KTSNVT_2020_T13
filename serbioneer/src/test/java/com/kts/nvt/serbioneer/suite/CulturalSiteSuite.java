@@ -20,5 +20,4 @@ import com.kts.nvt.serbioneer.service.CulturalSiteServiceUnitTest;
 })
 @TestPropertySource("classpath:test.properties")
 public class CulturalSiteSuite {
-
 }

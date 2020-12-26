@@ -74,7 +74,7 @@ public abstract class User implements UserDetails {
 	@Getter
 	@Setter
 	@NonNull
-	@Column(name = "email", nullable = false, unique = true)
+	@Column(name = "email", nullable = false, unique = false)
 	private String email;
 	
 	@Getter

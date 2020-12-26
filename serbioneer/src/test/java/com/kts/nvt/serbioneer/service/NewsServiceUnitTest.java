@@ -158,7 +158,7 @@ public class NewsServiceUnitTest {
 
         verify(userRepository, times(1)).findById(EXISTING_USER_ID);
         verify(newsRepository, times(1)).findAllByCulturalSiteInOrderByDateTimeDesc(this.subscribedCulturalSites, pageable);
-        assertEquals(ALL_NEWS, subscribedNewsPageable.getContent().size());
+        assertEquals(NEWS_BY_CULTURAL_SITE_ID_1_ADD, subscribedNewsPageable.getContent().size());
     }
 
     @Test(expected = NonexistentIdException.class)

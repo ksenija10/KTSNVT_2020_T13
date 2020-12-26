@@ -5,31 +5,27 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.springframework.test.context.TestPropertySource;
 
-import com.kts.nvt.serbioneer.controller.AdminControllerIntegrationTest;
-import com.kts.nvt.serbioneer.controller.AuthenticatedUserControllerIntegrationTest;
-import com.kts.nvt.serbioneer.controller.CulturalSiteControllerIntegrationTest;
-import com.kts.nvt.serbioneer.controller.RatingControllerIntegrationTest;
-import com.kts.nvt.serbioneer.repository.AdminRepositoryIntegationTest;
-import com.kts.nvt.serbioneer.repository.AuthenticatedUserRepositoryIntegrationTest;
-import com.kts.nvt.serbioneer.repository.CulturalSiteRepositoryIntegrationTest;
-import com.kts.nvt.serbioneer.repository.CulturalSiteRepositoryUnitTest;
-import com.kts.nvt.serbioneer.repository.RatingRepositoryIntegrationTest;
-import com.kts.nvt.serbioneer.service.AdminServiceIntegrationTest;
-import com.kts.nvt.serbioneer.service.AuthenticatedUserServiceIntegrationTest;
-import com.kts.nvt.serbioneer.service.CulturalSiteServiceIntegrationTest;
-import com.kts.nvt.serbioneer.service.CulturalSiteServiceUnitTest;
-import com.kts.nvt.serbioneer.service.RatingServiceIntegrationTest;
-import com.kts.nvt.serbioneer.service.RatingServiceUnitTest;
+import com.kts.nvt.serbioneer.suite.AdminSuite;
+import com.kts.nvt.serbioneer.suite.AuthenticatedUserSuite;
+import com.kts.nvt.serbioneer.suite.CommentSuite;
+import com.kts.nvt.serbioneer.suite.CulturalSiteCategoryAndTypeSuite;
+import com.kts.nvt.serbioneer.suite.CulturalSiteSuite;
+import com.kts.nvt.serbioneer.suite.ImageSuite;
+import com.kts.nvt.serbioneer.suite.NewsSuite;
+import com.kts.nvt.serbioneer.suite.RatingSuite;
+import com.kts.nvt.serbioneer.suite.RegistrationSuite;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	AdminControllerIntegrationTest.class, AdminServiceIntegrationTest.class, AdminRepositoryIntegationTest.class,
-	AuthenticatedUserControllerIntegrationTest.class, AuthenticatedUserServiceIntegrationTest.class, AuthenticatedUserRepositoryIntegrationTest.class,
-	RatingServiceUnitTest.class, RatingServiceIntegrationTest.class,
-	RatingRepositoryIntegrationTest.class, RatingControllerIntegrationTest.class, 
-	CulturalSiteControllerIntegrationTest.class,
-	CulturalSiteRepositoryIntegrationTest.class, CulturalSiteRepositoryUnitTest.class,
-	CulturalSiteServiceIntegrationTest.class, CulturalSiteServiceUnitTest.class
+	AdminSuite.class,
+	AuthenticatedUserSuite.class,
+	CommentSuite.class,
+	CulturalSiteCategoryAndTypeSuite.class,
+	CulturalSiteSuite.class,
+	ImageSuite.class,
+	NewsSuite.class,
+	RatingSuite.class,
+	RegistrationSuite.class
 })
 @TestPropertySource("classpath:test.properties")
 public class SuiteAll {

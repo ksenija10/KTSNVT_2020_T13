@@ -46,7 +46,7 @@ public class CulturalSiteCategory {
 	@Getter
 	@Setter
 	@NonNull
-	@Column(name = "name", nullable = false, unique = true)
+	@Column(name = "name", nullable = false, unique = false)
 	private String name;
 	
 	@Getter
@@ -66,13 +66,11 @@ public class CulturalSiteCategory {
 	public CulturalSiteCategory(@NonNull String name) {
 		this.active = true;
 		this.name = name;
-		this.culturalSites = new HashSet<>();
-		this.culturalCategoryTypes = new HashSet<>();
 	}
 	
 	public void addCulturalCategoryType(CulturalCategoryType categoryType) {
 		if (this.culturalCategoryTypes == null) {
-			this.culturalSites = new HashSet<>();
+			this.culturalCategoryTypes = new HashSet<>();
 		}
 		this.culturalCategoryTypes.add(categoryType);
 		categoryType.setCulturalSiteCategory(this);

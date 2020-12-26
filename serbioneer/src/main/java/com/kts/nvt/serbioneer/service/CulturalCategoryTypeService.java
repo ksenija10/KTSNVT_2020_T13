@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.helper.exception.ForeignKeyException;
@@ -29,13 +30,27 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 	private final String type = "Cultural category type";
 	private final String unique = "name";
 	
-	public List<CulturalCategoryType> findAll(Long categoryId) {
+	public List<CulturalCategoryType> findAll(Long categoryId) throws Exception {
+		if (culturalSiteCategoryService.findOneById(categoryId) == null) {
+			throw new NonexistentIdException(culturalSiteCategoryService.getType());
+		}
 		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(categoryId);
+	}
+	
+	public List<CulturalCategoryType> findAll() {
+		return culturalCategoryTypeRepository.findAll();
 	}
 	
 	@Override
 	public Page<CulturalCategoryType> findAll(Pageable pageable) {
 		return culturalCategoryTypeRepository.findAll(pageable);
+	}
+	
+	public Page<CulturalCategoryType> findAll(Long categoryId, Pageable pageable) throws Exception {
+		if (culturalSiteCategoryService.findOneById(categoryId) == null) {
+			throw new NonexistentIdException(culturalSiteCategoryService.getType());
+		}
+		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(categoryId, pageable);
 	}
 
 	@Override
@@ -59,13 +74,17 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 	}
 
 	@Override
+	@Transactional
 	public void delete(Long id) throws Exception {
 		CulturalCategoryType categoryTypeToDelete = culturalCategoryTypeRepository.findById(id).orElse(null);
 		if (categoryTypeToDelete == null) {
 			throw new NonexistentIdException(this.type);
 		}
-		if (!categoryTypeToDelete.getCulturalSites().isEmpty()) {
-			throw new ForeignKeyException(this.type);
+		// provera da li ima vezanih kulturnih dobara za sebe
+		if (categoryTypeToDelete.getCulturalSites() != null) {
+			if (!categoryTypeToDelete.getCulturalSites().isEmpty()) {
+				throw new ForeignKeyException(this.type);
+			}
 		}
 		culturalCategoryTypeRepository.delete(categoryTypeToDelete);
 	}

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.helper.exception.ForeignKeyException;
@@ -48,14 +49,17 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
 	}
 
 	@Override
+	@Transactional
 	public void delete(Long id) throws Exception {
 		CulturalSiteCategory clturalSiteCategoryToDelete = culturalSiteCategoryRepository.findById(id).orElse(null);
 		if (clturalSiteCategoryToDelete == null) {
 			throw new NonexistentIdException(this.type);
 		}
 		// provera da li ima vezanih kulturnih dobara za sebe
-		if (!clturalSiteCategoryToDelete.getCulturalSites().isEmpty()) {
-			throw new ForeignKeyException(this.type);
+		if (clturalSiteCategoryToDelete.getCulturalSites() != null) {
+			if (!clturalSiteCategoryToDelete.getCulturalSites().isEmpty()) {
+				throw new ForeignKeyException(this.type);
+			}
 		}
 		culturalSiteCategoryRepository.delete(clturalSiteCategoryToDelete);
 	}
