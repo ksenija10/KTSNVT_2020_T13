@@ -150,7 +150,7 @@ public class CulturalSite {
 		this.city = city;
 		this.description = description;
 		this.active = true;
-  }
+	}
   
 	@Override
 	public boolean equals(Object o) {
@@ -164,4 +164,5 @@ public class CulturalSite {
 	public int hashCode() {
 		return Objects.hash(name);
 	}
+
 }
