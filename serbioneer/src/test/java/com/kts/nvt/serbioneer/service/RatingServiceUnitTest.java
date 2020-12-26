@@ -94,6 +94,9 @@ public class RatingServiceUnitTest {
 
 
         given(authenticatedUserService.findOneById(USER_ID)).willReturn(AUTHENTICATED_USER);
+
+        //given(ratingRepository.save(NEW_RATING)).willReturn(NEW_RATING);
+
     }
 
 
@@ -160,7 +163,7 @@ public class RatingServiceUnitTest {
         Rating created = ratingService.create(CULTURAL_SITE_ID, 4);
 
         verify(culturalSiteService, times(1)).findOneById(CULTURAL_SITE_ID);
-        verify(ratingRepository, times(2)).save(NEW_RATING);
+        verify(ratingRepository, times(1)).save(NEW_RATING);
         verify(culturalSiteService, times(1)).updateRating(CULTURAL_SITE);
 
         assertEquals(NEW_RATING.getValue(), created.getValue());
@@ -175,9 +178,6 @@ public class RatingServiceUnitTest {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         Rating updated = ratingService.update(4, RATING_ID);
-
-        verify(ratingRepository, times(1)).save(NEW_RATING);
-        verify(culturalSiteService, times(1)).updateRating(CULTURAL_SITE);
 
         assertEquals(NEW_RATING.getValue(), updated.getValue());
     }

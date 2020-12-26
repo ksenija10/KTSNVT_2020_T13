@@ -1,0 +1,1 @@
+Folder za cuvanje slika za testiranje

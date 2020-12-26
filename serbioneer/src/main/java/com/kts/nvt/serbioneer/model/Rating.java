@@ -88,7 +88,7 @@ public class Rating {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Rating rating = (Rating) o;
-		return value == rating.value && culturalSite.equals(rating.culturalSite) && authenticatedUser.equals(rating.authenticatedUser);
+		return value == rating.value && authenticatedUser.equals(rating.authenticatedUser);
 	}
 
 	@Override

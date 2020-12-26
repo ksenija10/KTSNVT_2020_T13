@@ -141,10 +141,10 @@ public class AuthenticatedUserServiceIntegrationTest {
 	
 	@Test(expected = ConflictException.class)
 	public void testSubscribeNull() throws NonexistentIdException, ConflictException {
-		AuthenticatedUser user = authentiicatedUserService.findOneById(USER_ID);
+		AuthenticatedUser user = authentiicatedUserService.findOneById(USER3_ID);
 		assertNotNull(user);
 		List<CulturalSite> citesBefore = culturalSiteService.findAllSubscribed(user);
-		authentiicatedUserService.addSubscribedSite(CULTURAL_SITE_ID5, user);
+		authentiicatedUserService.addSubscribedSite(CULTURAL_SITE_ID2, user);
 	}
 	
 	@Test
