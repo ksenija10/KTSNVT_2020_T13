@@ -7,7 +7,7 @@ import java.util.*;
 public class NewsConstants {
 
     //All news
-    public static final int ALL_NEWS = 3;
+    public static final int ALL_NEWS = 4;
 
     //Pagination
     public static final Integer PAGEABLE_PAGE = 0;
@@ -22,7 +22,7 @@ public class NewsConstants {
     //Existing user id
     public static final Long EXISTING_USER_ID = 2L;
     //Subscribed news
-    public static final int SUBSCRIBED_NEWS_USER_ID_2 = 3;
+    public static final int SUBSCRIBED_NEWS_USER_ID_2 = 4;
 
     //Biblioteka Sabacka
     public static final int NEWS_CULTURAL_SITE_ID_1 = 2;

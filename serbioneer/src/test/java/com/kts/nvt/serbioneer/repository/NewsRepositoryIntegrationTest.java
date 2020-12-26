@@ -1,8 +1,19 @@
 package com.kts.nvt.serbioneer.repository;
 
-import com.kts.nvt.serbioneer.model.AuthenticatedUser;
-import com.kts.nvt.serbioneer.model.CulturalSite;
-import com.kts.nvt.serbioneer.model.News;
+import static com.kts.nvt.serbioneer.constants.NewsConstants.EXISTING_CULTURAL_SITE_ID;
+import static com.kts.nvt.serbioneer.constants.NewsConstants.EXISTING_USER_ID;
+import static com.kts.nvt.serbioneer.constants.NewsConstants.NEWS_BY_CULTURAL_SITES_ADD;
+import static com.kts.nvt.serbioneer.constants.NewsConstants.NEWS_CULTURAL_SITE_ID_1;
+import static com.kts.nvt.serbioneer.constants.NewsConstants.PAGEABLE_PAGE;
+import static com.kts.nvt.serbioneer.constants.NewsConstants.PAGEABLE_SIZE;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+import java.util.Set;
+
+import javax.transaction.Transactional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +24,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Set;
-
-import static com.kts.nvt.serbioneer.constants.NewsConstants.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import com.kts.nvt.serbioneer.model.CulturalSite;
+import com.kts.nvt.serbioneer.model.News;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -56,7 +62,7 @@ public class NewsRepositoryIntegrationTest {
         Page<News> newsByCulturalSiteInOrderByDateTimeDesc =
                 newsRepository.findAllByCulturalSiteInOrderByDateTimeDesc(subscribedCulturalSites, pageable);
 
-        assertEquals(NEWS_BY_CULTURAL_SITE_ID_1_ADD, newsByCulturalSiteInOrderByDateTimeDesc.getContent().size());
+        assertEquals(NEWS_BY_CULTURAL_SITES_ADD, newsByCulturalSiteInOrderByDateTimeDesc.getContent().size());
         assertTrue(newsByCulturalSiteInOrderByDateTimeDesc.getContent().get(0).getDateTime().after(
                 newsByCulturalSiteInOrderByDateTimeDesc.getContent().get(1).getDateTime()
         ));

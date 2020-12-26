@@ -1,42 +1,48 @@
 package com.kts.nvt.serbioneer.controller;
 
+import static com.kts.nvt.serbioneer.constants.RatingConstants.CULTURAL_SITE_ID;
+import static com.kts.nvt.serbioneer.constants.RatingConstants.NEW_CULTURAL_SITE;
+import static com.kts.nvt.serbioneer.constants.RatingConstants.NEW_USER_PASSWORD;
+import static com.kts.nvt.serbioneer.constants.RatingConstants.NEW_USER_USERNAME;
+import static com.kts.nvt.serbioneer.constants.RatingConstants.NEW_VALUE;
+import static com.kts.nvt.serbioneer.constants.RatingConstants.RATING_ID;
+import static com.kts.nvt.serbioneer.constants.RatingConstants.USER_PASSWORD;
+import static com.kts.nvt.serbioneer.constants.RatingConstants.USER_USERNAME;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import com.kts.nvt.serbioneer.dto.AdminDTO;
-import com.kts.nvt.serbioneer.dto.RatingDTO;
-import com.kts.nvt.serbioneer.dto.UserLoginDTO;
-import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
-import com.kts.nvt.serbioneer.helper.HelperPage;
-import com.kts.nvt.serbioneer.helper.RatingMapper;
-import com.kts.nvt.serbioneer.jwt.JwtBasedAuthentication;
-import com.kts.nvt.serbioneer.model.Rating;
-import com.kts.nvt.serbioneer.service.RatingService;
-import com.kts.nvt.serbioneer.service.SecureUserDetailsService;
-import net.minidev.json.JSONObject;
+import java.util.List;
+import java.util.Objects;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.*;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
-import java.util.Objects;
+import com.kts.nvt.serbioneer.dto.RatingDTO;
+import com.kts.nvt.serbioneer.dto.UserLoginDTO;
+import com.kts.nvt.serbioneer.helper.HelperPage;
+import com.kts.nvt.serbioneer.jwt.JwtBasedAuthentication;
+import com.kts.nvt.serbioneer.model.Rating;
+import com.kts.nvt.serbioneer.service.RatingService;
+import com.kts.nvt.serbioneer.service.SecureUserDetailsService;
 
-import static com.kts.nvt.serbioneer.constants.AdminConstants.NEW_EMAIL;
-import static com.kts.nvt.serbioneer.constants.RatingConstants.*;
-import static org.junit.jupiter.api.Assertions.*;
+import net.minidev.json.JSONObject;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -45,8 +51,6 @@ public class RatingControllerIntegrationTest {
 
     @Autowired
     private RatingService ratingService;
-
-    private final RatingMapper ratingMapper = new RatingMapper();
 
     @Autowired
     private TestRestTemplate restTemplate;

@@ -1,5 +1,47 @@
 package com.kts.nvt.serbioneer.controller;
 
+import static com.kts.nvt.serbioneer.constants.ImageConstants.ADMIN_PASSWORD;
+import static com.kts.nvt.serbioneer.constants.ImageConstants.ADMIN_USERNAME;
+import static com.kts.nvt.serbioneer.constants.ImageConstants.COMMENT_ID;
+import static com.kts.nvt.serbioneer.constants.ImageConstants.CULTURAL_SITE_ID;
+import static com.kts.nvt.serbioneer.constants.ImageConstants.NEWS_ID;
+import static com.kts.nvt.serbioneer.constants.ImageConstants.PAGEABLE_PAGE;
+import static com.kts.nvt.serbioneer.constants.ImageConstants.PAGEABLE_SIZE;
+import static com.kts.nvt.serbioneer.constants.ImageConstants.USER_PASSWORD;
+import static com.kts.nvt.serbioneer.constants.ImageConstants.USER_USERNAME;
+import static com.kts.nvt.serbioneer.constants.ImageConstants.separator;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.kts.nvt.serbioneer.dto.ImageDTO;
 import com.kts.nvt.serbioneer.dto.UserLoginDTO;
 import com.kts.nvt.serbioneer.helper.HelperPage;
@@ -7,36 +49,6 @@ import com.kts.nvt.serbioneer.jwt.JwtBasedAuthentication;
 import com.kts.nvt.serbioneer.model.Image;
 import com.kts.nvt.serbioneer.service.ImageService;
 import com.kts.nvt.serbioneer.service.SecureUserDetailsService;
-import net.minidev.json.JSONObject;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.*;
-import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
-
-import static com.kts.nvt.serbioneer.constants.ImageConstants.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
