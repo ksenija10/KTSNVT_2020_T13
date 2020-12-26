@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.kts.nvt.serbioneer.dto.CulturalSiteFilterDTO;
 import com.kts.nvt.serbioneer.helper.exception.IncompatibleCategoryAndTypeException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalCategoryType;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.CulturalSiteCategory;

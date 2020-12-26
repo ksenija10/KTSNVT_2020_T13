@@ -48,9 +48,9 @@ public class CulturalSiteConstants {
 	// new
 	public static final String NEW_CULTURAL_SITE_NAME = "Novo kulturno dobro";
 	public static final String NEW_CULTURAL_SITE_ADDRESS = "Nova adresa";
-	public static final String NEW_CULTURAL_SITE_CITY = "Novi grad";
-	public static final double NEW_CULTURAL_SITE_LAT = 0;
-	public static final double NEW_CULTURAL_SITE_LNG = 0;
+	public static final String NEW_CULTURAL_SITE_CITY = "Grad";
+	public static final double NEW_CULTURAL_SITE_LAT = 44.7556269;
+	public static final double NEW_CULTURAL_SITE_LNG = 19.6923025;
 	public static final String NEW_CULTURAL_SITE_DESC = null;
 	public static CulturalSite NEW_CULTURAL_SITE = 
 			new CulturalSite(NEW_CULTURAL_SITE_NAME, NEW_CULTURAL_SITE_LAT, NEW_CULTURAL_SITE_LNG, 
@@ -120,10 +120,10 @@ public class CulturalSiteConstants {
 	// find all cities
 	public static final int DB_CITY_NUM = 3;
 
+	
 	// controller
-	/*
-	public static final String CATEGORY_NAME = "Manifestacija";
-	public static final String TYPE_NAME = "Sajam";
+	public static final String CATEGORY_NAME_CON = "Manifestacija";
+	public static final String TYPE_NAME_CON = "Sajam";
 	public static final String CITE_NAME = "sajam";
 	public static final String LOCATION = "Šabac";
 	public static final String NO_LOCATION = "Gornji Milanovac";
@@ -133,5 +133,41 @@ public class CulturalSiteConstants {
 	public static final long FILTER_SABAC_NUM = 3;
 	public static final long FILTER_NUM = 2;
 	public static final long FILTER_NO_NUM = 0;
-	*/
+	
+	public static final String ADMIN_USERNAME = "admin@admin.com";
+	public static final String ADMIN_PASSWORD = "admin";
+	public static final Long USER_ID = 3L;
+	public static final String USER_USERNAME = "drugi@user.com";
+	public static final String USER_PASSWORD = "user";
+	public static final String USER2_USERNAME = "prvi@user.com";
+	public static final String USER2_PASSWORD = "user";
+	
+	// new
+	public static final Long NEW_CATEGORY_ID = 1L;
+	public static final Long NEW_TYPE_ID = 1L;
+	
+	public static final Long CULTURAL_SITE_ID = 2L;
+	public static final Long CULTURAL_SITE_UPDATE_ID = 3L;
+	
+	// delete
+	public static final Long DELETE_CATEGORY_ID = 1L;
+	public static final Long DELETE_TYPE_ID = 1L;
+	public static final String DELETE_CULTURAL_SITE_NAME = "Novo kulturno dobro";
+	public static final String DELETE_CULTURAL_SITE_ADDRESS = "Nova adresa";
+	public static final String DELETE_CULTURAL_SITE_CITY = "Novi grad";
+	public static final double DELETE_CULTURAL_SITE_LAT = 44.7556269;
+	public static final double DELETE_CULTURAL_SITE_LNG = 19.6923025;
+	public static final String DELETE_CULTURAL_SITE_DESC = "Opis";
+	
+	// comments
+	public static final long NUM_OF_COMMENTS = 1; //jedan nije approved
+	public static final long NUM_OF_FALSE_COMMENTS = 2; //svi
+	public static final String NEW_COMMENT = "Neki novi komentar";
+	
+	// news
+	public static final Long CULTURAL_SITE_ID2 = 1L;
+	public static final long NUM_OF_NEWS = 2;
+	public static final String NEW_NEWS = "Neke nove informacije";
+	
+	public static final long NUM_OF_SUBSCRIBED = 3;
 }

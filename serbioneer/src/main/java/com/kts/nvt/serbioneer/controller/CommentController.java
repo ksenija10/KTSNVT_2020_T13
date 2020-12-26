@@ -2,8 +2,6 @@ package com.kts.nvt.serbioneer.controller;
 
 import javax.validation.Valid;
 
-import com.kts.nvt.serbioneer.model.AuthenticatedUser;
-import com.kts.nvt.serbioneer.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.kts.nvt.serbioneer.dto.CommentDTO;
 import com.kts.nvt.serbioneer.helper.CommentMapper;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.Comment;
 import com.kts.nvt.serbioneer.service.CommentService;
 

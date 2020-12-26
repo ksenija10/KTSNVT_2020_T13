@@ -1,24 +1,24 @@
 package com.kts.nvt.serbioneer.controller;
 
-import com.kts.nvt.serbioneer.dto.CulturalSiteDTO;
-import com.kts.nvt.serbioneer.dto.UserLoginDTO;
-import com.kts.nvt.serbioneer.helper.HelperPage;
-import com.kts.nvt.serbioneer.jwt.TokenUtils;
-import com.kts.nvt.serbioneer.service.SecureUserDetailsService;
+import static com.kts.nvt.serbioneer.constants.RefreshConstants.ADMIN_PASSWORD;
+import static com.kts.nvt.serbioneer.constants.RefreshConstants.ADMIN_USERNAME;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static com.kts.nvt.serbioneer.constants.CulturalSiteConstants.FILTER_NO_NUM;
-import static com.kts.nvt.serbioneer.constants.RefreshConstants.ADMIN_PASSWORD;
-import static com.kts.nvt.serbioneer.constants.RefreshConstants.ADMIN_USERNAME;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.kts.nvt.serbioneer.dto.UserLoginDTO;
 
 
 @RunWith(SpringRunner.class)
@@ -28,12 +28,6 @@ public class RefreshControllerIntegrationTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-
-    @Autowired
-    private TokenUtils tokenUtils;
-
-    @Autowired
-    private SecureUserDetailsService userDetailsService;
 
     private String accessToken;
 

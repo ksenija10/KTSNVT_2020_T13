@@ -1,22 +1,20 @@
 package com.kts.nvt.serbioneer.service;
 
-import com.kts.nvt.serbioneer.helper.exception.NonExistingAuthenticatedUser;
-import com.kts.nvt.serbioneer.helper.exception.UserViolationException;
-import com.kts.nvt.serbioneer.repository.AuthenticatedUserRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.kts.nvt.serbioneer.helper.exception.NonExistingAuthenticatedUser;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
+import com.kts.nvt.serbioneer.helper.exception.UserViolationException;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.Comment;
 import com.kts.nvt.serbioneer.model.CulturalSite;
-import com.kts.nvt.serbioneer.model.User;
+import com.kts.nvt.serbioneer.repository.AuthenticatedUserRepository;
 import com.kts.nvt.serbioneer.repository.CommentRepository;
-
-import java.util.List;
 
 @Service
 public class CommentService{
@@ -45,6 +43,11 @@ public class CommentService{
 		return commentRepository.findAllByApproved(pageable, approved);
 	}
 
+	// neophodno za potrebe testiranja
+	public List<Comment> findAllByCulturalSiteIdAndApproved(Long culturalSiteId, Boolean approved) {
+		return commentRepository.findAllByCulturalSiteIdAndApproved(culturalSiteId, approved);
+	}
+	
 	public Page<Comment> findAllByCulturalSiteIdAndApproved(Pageable pageable, Long culturalSiteId, Boolean approved) {
 		return commentRepository.findAllByCulturalSiteIdAndApproved(pageable, culturalSiteId, approved);
 	}

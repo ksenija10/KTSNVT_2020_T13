@@ -3,7 +3,6 @@ package com.kts.nvt.serbioneer.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
