@@ -41,6 +41,7 @@ public class NewsConstants {
 
     //Updated news
     public static final String UPDATED_NEWS_INFORMATION = "Promenjene novosti";
+    public static final String OLD_NEWS_INFORMATION = "Neke novosti za bibl";
 
     //Unit service testing
     //public static CulturalSiteCategory culturalCategory =  new CulturalSiteCategory("Institucija");
@@ -62,4 +63,14 @@ public class NewsConstants {
             CULTURAL_SITE);
     public static News NEWS_3 = new News("Neke novosti pt2", new GregorianCalendar(2020, Calendar.NOVEMBER, 12).getTime(),
             CULTURAL_SITE);
+
+    //CONTROLLER
+    //admin
+    public static final String DB_ADMIN_USERNAME = "admin@admin.com";
+    public static final String DB_ADMIN_PASSWORD = "admin";
+    //user
+    public static final String DB_USER_USERNAME = "prvi@user.com";
+    public static final String DB_USER_PASSWORD = "user";
+
+
 }
