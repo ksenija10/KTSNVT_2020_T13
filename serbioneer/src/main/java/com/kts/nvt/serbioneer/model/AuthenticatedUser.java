@@ -42,9 +42,8 @@ public class AuthenticatedUser extends User {
 
 	@Getter
 	@Setter
-	// cascadeType = None, ne zelimo propagaciju nijedne operacije
-	// (entiteti su u potpunosti nepovezani, nema smisla propagirati)
-	
+	// cascadeType = MERGE, propagiramo update
+	// (pri pretplati korisnika na postojece kulturno dobro, zelimo da sacuvamo promene i na dobru)
 	@ManyToMany(cascade= CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "sites_users", 

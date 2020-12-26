@@ -1,5 +1,6 @@
 package com.kts.nvt.serbioneer.model;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -138,6 +139,14 @@ public class CulturalSite {
 		this.city = city;
 		this.description = description;
 		this.active = true;
+	}
+	
+	public void addRating(Rating r) {
+		if (this.ratings == null) {
+			this.ratings = new HashSet<>();
+		}
+		this.ratings.add(r);
+		r.setCulturalSite(this);
 	}
 
 	public CulturalSite(Long id, @NonNull String name, double lat, double lng, @NonNull String address, @NonNull String city,

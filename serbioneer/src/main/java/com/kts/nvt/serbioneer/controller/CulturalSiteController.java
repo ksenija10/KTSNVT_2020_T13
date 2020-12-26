@@ -3,7 +3,6 @@ package com.kts.nvt.serbioneer.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -226,7 +225,8 @@ public class CulturalSiteController {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/subscribed/by-page")
 	public ResponseEntity<Page<CulturalSiteDTO>> getAllSubscribedCulturalSites(Pageable pageable){
-	    Page<CulturalSite> page = culturalSiteService.findAllSubscribed(pageable);
+		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Page<CulturalSite> page = culturalSiteService.findAllSubscribed(pageable, user.getId());
 	    return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
 	}
 

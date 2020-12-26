@@ -1,5 +1,6 @@
 package com.kts.nvt.serbioneer.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -70,6 +71,15 @@ public class CulturalCategoryType {
 	public CulturalCategoryType(@NonNull String name) {
 		this.active = true;
 		this.name = name;
+		this.culturalSites = new HashSet<>();
+	}
+	
+	public void addCulturalSite(CulturalSite culturalSite) {
+		if (this.culturalSites == null) {
+			this.culturalSites = new HashSet<>();
+		}
+		this.culturalSites.add(culturalSite);
+		culturalSite.setCulturalCategoryType(this);
 	}
 
 	public CulturalCategoryType(@NonNull String name, CulturalSiteCategory culturalSiteCategory) {
