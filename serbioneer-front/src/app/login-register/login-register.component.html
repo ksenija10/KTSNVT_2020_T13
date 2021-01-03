@@ -1,0 +1,47 @@
+<!--<img src="../../assets/images/baner_pozadina.png" class="mx-auto d-block" alt="Serbioneer banner">
+<nav mat-tab-nav-bar mat-align-tabs="center">
+    <a mat-tab-link
+    [routerLink]="'login'"
+    (click)="activeLink = 'login'"
+    [active]="activeLink == 'login'"
+    >
+    Login
+    </a>
+    <a mat-tab-link
+    [routerLink]="'register'"
+    (click)="activeLink = 'register'"
+    [active]="activeLink == 'register'"
+    >
+    Register
+    </a>
+</nav>
+<router-outlet></router-outlet>-->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <img src="../../assets/images/baner_pozadina.png" class="mx-auto d-block" alt="Serbioneer banner">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <nav mat-tab-nav-bar mat-align-tabs="center">
+                <a mat-tab-link
+                [routerLink]="'login'"
+                (click)="activeLink = 'login'"
+                [active]="activeLink == 'login'"
+                >
+                Login
+                </a>
+                <a mat-tab-link
+                [routerLink]="'register'"
+                (click)="activeLink = 'register'"
+                [active]="activeLink == 'register'"
+                >
+                Register
+                </a>
+            </nav>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
