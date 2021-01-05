@@ -14,12 +14,14 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
+  hide = true;
+
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
     ) {
     this.registerForm = new FormGroup({
-      email: new FormControl('', [Validators.email, Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -57,6 +59,33 @@ export class RegisterComponent implements OnInit {
         error => {
           console.log(error);
         })
+  }
+
+  getEmailErrorMessage() {
+    if(this.registerForm.controls['email'].touched) {
+      if ( this.registerForm.controls['email'].hasError('required')) {
+        return 'Required field';
+      }
+  
+      return  this.registerForm.controls['email'].hasError('email') ? 'Not a valid email' : '';
+    }
+    return '';
+  }
+
+  getRequiredFieldErrorMessage(fieldName: string) {
+    if(this.registerForm.controls[fieldName].touched) {
+      return  this.registerForm.controls[fieldName].hasError('required') ? 'Required field' : '';
+    }
+
+    return '';
+  }
+
+  getPasswordsMatch() {
+    if(this.registerForm.controls['password'].touched && this.registerForm.controls['confirmPassword'].touched) {
+      return  this.registerForm.hasError('passwordsDontMatch') ? 'Passwords must match' : '';
+    }
+
+    return '';
   }
 
 }

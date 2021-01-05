@@ -15,6 +15,11 @@ import { RegisterComponent } from './components/login-register/register/register
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +38,10 @@ import { HomepageComponent } from './components/homepage/homepage.component';
     ReactiveFormsModule,
     MatTabsModule,
     MatToolbarModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatButtonModule,
     BrowserAnimationsModule
   ],
   providers: [],
