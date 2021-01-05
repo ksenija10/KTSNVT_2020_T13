@@ -54,5 +54,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
         response.addHeader(tokenUtils.getAuthHeader(), "Bearer " + jwtToken);
         response.addHeader(tokenUtils.getExpHeader(), String.valueOf(tokenUtils.getExpiresIn()));
+        response.addHeader("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept, Authorization, Expires-In");
+        response.addHeader("Access-Control-Expose-Headers", "Authorization, Expires-In");
     }
 }

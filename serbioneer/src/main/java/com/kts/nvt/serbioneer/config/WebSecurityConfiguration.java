@@ -3,6 +3,7 @@ package com.kts.nvt.serbioneer.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -53,8 +54,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+        		.cors().and()
                 .csrf().disable()
-                .cors().and()
                 // REST ima stateless komunikaciju servera i korisnika
                 .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -65,6 +66,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 	.and()
                 // dozvola pristupa zahteva
                 .authorizeRequests()
+                	.antMatchers(HttpMethod.OPTIONS).permitAll()
                 	// navoditi u redosledu: more specific first!
                     .antMatchers("/serbioneer/home/**").permitAll()
                     .antMatchers("/successful-logout.html").permitAll()
@@ -90,4 +92,5 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwtAuthenticationFilter(tokenUtils, secureUserDetailsService), 
                 				JwtUsernameAndPasswordAuthenticationFilter.class);
     }
+
 }
