@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/model/user-login.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -11,22 +11,31 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
+  loginForm: FormGroup;
+
+  hide = true;
+
   constructor(
     private authService: AuthenticationService,
     private router: Router
-  ) {}
+  ) {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    })
+  }
 
   ngOnInit(): void {
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     // check if form is valid
-    if (!form.valid) {
+    if (!this.loginForm.valid) {
       return;
     }
 
-    const email = form.value.email;
-    const password = form.value.password;
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
 
     let userLoginDto = new UserLogin(email, password);
 
@@ -41,6 +50,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('expiresIn', expiresIn);
           // pokretanje tajmera za refresh tokena
           this.authService.startRefreshTokenTimer(jwtToken);
+          //reset forme
+          this.loginForm.reset();
           // preusmerenje
           this.router.navigate(['homepage']);
         },
@@ -51,4 +62,25 @@ export class LoginComponent implements OnInit {
       )
   }
 
+  getEmailErrorMessage() {
+    if(this.loginForm.controls['email'].touched) {
+      if ( this.loginForm.controls['email'].hasError('required')) {
+        return 'Required field';
+      }
+  
+      return  this.loginForm.controls['email'].hasError('email') ? 'Not a valid email' : '';
+    }
+    return '';
+  }
+
+  getRequiredFieldErrorMessage(fieldName: string) {
+    if(this.loginForm.controls[fieldName].touched) {
+      return  this.loginForm.controls[fieldName].hasError('required') ? 'Required field' : '';
+    }
+
+    return '';
+  }
+
 }
+
+
