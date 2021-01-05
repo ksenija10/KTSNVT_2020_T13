@@ -23,9 +23,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class VerificationToken {
-	//TODO 60*24 = jedan dan
-	// radi prikaza funkcionalnosti 1 minut
-    private static final int EXPIRATION = 1;
+
+    private static final int EXPIRATION = 60;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
