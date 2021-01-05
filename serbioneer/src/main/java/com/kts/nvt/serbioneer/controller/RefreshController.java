@@ -48,6 +48,9 @@ public class RefreshController {
             // postavljanje headera
             response.addHeader(tokenUtils.getAuthHeader(), "Bearer " + refreshedToken);
             response.addHeader(tokenUtils.getExpHeader(), String.valueOf(expiresIn));
+            // prikaz heder-a na frontu, da bismo mogli da ih dobavimo
+            response.addHeader("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept, Authorization, Expires-In");
+            response.addHeader("Access-Control-Expose-Headers", "Authorization, Expires-In");
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
         	// ako je nevalidan, bice zaustavljen vec u filteru za validaciju tokena

@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
           // postavljanje tokena
           localStorage.setItem('jwtToken', jwtToken);
           localStorage.setItem('expiresIn', expiresIn);
+          // pokretanje tajmera za refresh tokena
+          this.authService.startRefreshTokenTimer(jwtToken);
           // preusmerenje
           this.router.navigate(['homepage']);
         },
