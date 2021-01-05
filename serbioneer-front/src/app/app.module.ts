@@ -1,17 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginRegisterComponent } from './login-register/login-register.component';
-import { HeaderComponent } from './header/header.component';
-
+import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './login-register/login/login.component';
-import { RegisterComponent } from './login-register/register/register.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LoginRegisterComponent } from './components/login-register/login-register.component';
+import { LoginComponent } from './components/login-register/login/login.component';
+import { RegisterComponent } from './components/login-register/register/register.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule, 
+    FormsModule,
+    ReactiveFormsModule,
     MatTabsModule,
     MatToolbarModule,
     BrowserAnimationsModule
