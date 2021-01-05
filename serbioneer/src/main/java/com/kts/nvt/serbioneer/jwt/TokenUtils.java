@@ -31,6 +31,7 @@ public class TokenUtils {
     // Period vazenja
     @Value("900000") // 15 min -> 1800000 = 30 min
     //@Value("30000") // 30 sekundi -> demonstracija
+    //@Value("120000") // 2 min -> demonstracija
     private int EXPIRES_IN;
 
     // Naziv headera kroz koji ce se prosledjivati JWT u komunikaciji server-klijent
