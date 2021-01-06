@@ -60,7 +60,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['homepage']);
         },
         (error) => {
-          this.toastr.error("Incorrect email or password.");
+          if(error.error.message) {
+            this.toastr.error("Incorrect email or password.");
+          } else {
+            this.toastr.error('503 Server Unavailable');
+          }
           this.loginForm.reset();
         }
       )

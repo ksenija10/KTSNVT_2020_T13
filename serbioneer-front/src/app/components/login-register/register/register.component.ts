@@ -61,7 +61,11 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['login-register/login']);
         },
         error => {
-          this.toastr.error(error.error.message);
+          if(error.error.message){
+            this.toastr.error(error.error.message);
+          } else {
+            this.toastr.error('503 Server Unavailable');
+          }
           this.registerForm.reset();
         })
   }

@@ -14,7 +14,7 @@ export class PageNotFoundComponent implements OnInit {
   }
 
   onHome() {
-    this.router.navigate(['login-register/login'])
+    this.router.navigate(['homepage'])
   }
 
 }
