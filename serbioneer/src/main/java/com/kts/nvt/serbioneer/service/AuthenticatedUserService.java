@@ -16,8 +16,10 @@ import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
 import com.kts.nvt.serbioneer.helper.exception.ConflictException;
 import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
+import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalSite;
+import com.kts.nvt.serbioneer.model.User;
 import com.kts.nvt.serbioneer.registration.VerificationToken;
 import com.kts.nvt.serbioneer.repository.AuthenticatedUserRepository;
 import com.kts.nvt.serbioneer.repository.UserRepository;
@@ -38,7 +40,7 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 	@Autowired
 	private CulturalSiteService culturalSiteService;
 	
-	private final String type = "AuthenticatedUser";
+	private final String type = "Authenticated user";
 
 	public List<AuthenticatedUser> findAll() {
 		return authenticatedUserRepository.findAll();
@@ -59,15 +61,20 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		entity.setPassword(encoder.encode(entity.getPassword()));
 		//mora provera nad celom user tabelom da bi mail bio jedinstven
-		AuthenticatedUser authenticatedUserToCreate = (AuthenticatedUser) userRepository.findOneByEmail(entity.getEmail());
-		if(authenticatedUserToCreate == null) {
+		// posto je nad celom tabelom -> moze se desiti da je Admin
+		User userToCreate = (User) userRepository.findOneByEmail(entity.getEmail());
+		if(userToCreate == null) {
 			AuthenticatedUser saved = authenticatedUserRepository.save(entity);
 			return saved;
 		} else {
+			if (userToCreate instanceof Admin) {
+				throw new ExistentFieldValueException("Admin", "email");
+			}
+			AuthenticatedUser authenticatedUserToCreate = (AuthenticatedUser) userToCreate;
 			if (authenticatedUserToCreate.isActivated()) {
 				throw new ExistentFieldValueException(this.type, "email");
 			} else {
-				//postoji u bazi ali je neaktivan jer nije pration link
+				//postoji u bazi ali je neaktivan jer nije pratio link
 				VerificationToken token = verificationTokenRepository.findByUser(authenticatedUserToCreate);
 				if (token.isExpired()) {
 					//istekao je moze da se registruje ponovo

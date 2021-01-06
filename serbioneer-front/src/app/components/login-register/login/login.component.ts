@@ -3,6 +3,7 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/model/user-login.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -42,6 +44,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(userLoginDto)
       .subscribe(
         (response) => {
+          this.toastr.success('Logged in successfully!');
+          // ekstrakcija tokena
           let jwtTokenBearer = response.headers.get('Authorization');
           let jwtToken = jwtTokenBearer.split(" ")[1];
           let expiresIn = response.headers.get('Expires-In');
@@ -56,8 +60,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['homepage']);
         },
         (error) => {
-          // bice toster
-          alert('ah')
+          this.toastr.error("Incorrect email or password.");
+          this.loginForm.reset();
         }
       )
   }

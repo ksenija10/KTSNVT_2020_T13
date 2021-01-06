@@ -1,53 +1,60 @@
-<form [formGroup] = "registerForm" (ngSubmit) = "onSubmit()">
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="something@example.com" formControlName ="email">
-            <mat-error *ngIf="registerForm.get('email')?.invalid">{{getEmailErrorMessage()}}</mat-error>
-          </mat-form-field>
+<div class="card col-7 mx-auto">
+    <div class="card-body">
+        <form [formGroup] = "registerForm" (ngSubmit) = "onSubmit()">
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput placeholder="something@example.com" formControlName ="email">
+                    <mat-error *ngIf="registerForm.get('email')?.invalid">{{getEmailErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div formGroupName="passwordGroup">
+                <div class="form-group">
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'"  formControlName ="password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="registerForm.get('password')?.invalid">{{getRequiredFieldErrorMessage('password')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Repeat entered password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'"  formControlName ="confirmPassword"
+                            [errorStateMatcher]="confirmPasswordMatcher">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="registerForm.get('confirmPassword')?.invalid">{{getRequiredFieldErrorMessage('confirmPassword')}}</mat-error>
+                        <mat-error *ngIf="registerForm.controls.passwordGroup.hasError('passwordsDontMatch')">{{getPasswordsMatch()}}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName ="name">
+                    <mat-error *ngIf="registerForm.get('name')?.invalid">{{getNameErrorMessage('name')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Surname</mat-label>
+                    <input matInput formControlName ="surname">
+                    <mat-error *ngIf="registerForm.get('surname')?.invalid">{{getNameErrorMessage('surname')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <button
+                    class="btn btn-theme"
+                    type="submit"
+                    [disabled] = "registerForm.invalid"
+                >
+                    Register
+                </button>
+            </div>
+        </form>
     </div>
-    <div class="form-group password-field">
-        <mat-form-field appearance="fill">
-            <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'"  formControlName ="password">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error *ngIf="registerForm.get('password')?.invalid">{{getRequiredFieldErrorMessage('password')}}</mat-error>
-          </mat-form-field>
-    </div>
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Repeat entered password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'"  formControlName ="confirmPassword">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error *ngIf="registerForm.get('confirmPassword')?.invalid">{{getRequiredFieldErrorMessage('confirmPassword')}}</mat-error>
-            <mat-error *ngIf="registerForm.hasError('passwordsDontMatch')">{{getPasswordsMatch()}}</mat-error>
-          </mat-form-field>
-    </div>
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Name</mat-label>
-            <input matInput formControlName ="name">
-            <mat-error *ngIf="registerForm.get('name')?.invalid">{{getRequiredFieldErrorMessage('name')}}</mat-error>
-          </mat-form-field>
-    </div>
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Surname</mat-label>
-            <input matInput formControlName ="surname">
-            <mat-error *ngIf="registerForm.get('surname')?.invalid">{{getRequiredFieldErrorMessage('surname')}}</mat-error>
-          </mat-form-field>
-    </div>
-    <div>
-        <button
-            class="btn btn-theme"
-            type="submit"
-            [disabled] = "registerForm.invalid"
-        >
-            Register
-        </button>
-    </div>
-</form>
+</div>

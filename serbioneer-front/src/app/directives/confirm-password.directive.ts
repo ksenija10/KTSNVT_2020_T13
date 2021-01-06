@@ -9,12 +9,11 @@ export function confirmPasswordValidator(): ValidatorFn {
     }
 }
 
-export class ConfirmValidParentMatcher implements ErrorStateMatcher {
+export class ConfirmPasswordMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
         if(control && control.parent) {
             return control.parent.invalid && control.touched;
         }
-
         return false;
     }
 }
