@@ -9,7 +9,7 @@ We used Balsamiq tool for creating wireframe of our application(link to the site
 How to start front
 ------------------
 
-Run "npm install ngx-toastr" inside KTSNVT_2020_T13/serbioneer-front folder to install all dependencies.
+Run "npm install ngx-toastr @auth0/angular-jwt" inside KTSNVT_2020_T13/serbioneer-front folder to install all dependencies.
 
 Make sure you use the latest version of the CLI (upgrade guide below)
 
