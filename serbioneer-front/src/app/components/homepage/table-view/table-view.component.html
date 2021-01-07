@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-xs-8">
+        <mat-form-field class="chip-list">
+            <mat-label>Cultural site categories</mat-label>
+            <mat-chip-list #chipList aria-label="Cultural site categories selection">
+              <mat-chip
+                *ngFor="let culturalSiteCategory of culturalSiteCategorys"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(culturalSiteCategory)">
+                {{culturalSiteCategory}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="New cultural site category..."
+                #culturalSiteCategorysInput
+                [formControl]="culturalSiteCategoryCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let culturalSiteCategory of filteredCulturalSiteCategories | async" [value]="culturalSiteCategory">
+                {{culturalSiteCategory}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+    </div>
+</div>
