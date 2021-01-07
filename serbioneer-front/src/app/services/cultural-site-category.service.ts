@@ -21,6 +21,7 @@ export class CulturalSiteCategoryService{
         {headers: this.headers})
         .pipe(
             map((responseData) => {
+                //ovde treba jos jedna map
               let names: string[] = [];
               for (let culturalSite of responseData) {
                 names.push(culturalSite.name);

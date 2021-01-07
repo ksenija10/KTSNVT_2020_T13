@@ -27,6 +27,8 @@ import { CulturalSitesTableComponent } from './components/homepage/table-view/cu
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import {MatChipsModule} from '@angular/material/chips';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MatAutocompleteModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [
     {

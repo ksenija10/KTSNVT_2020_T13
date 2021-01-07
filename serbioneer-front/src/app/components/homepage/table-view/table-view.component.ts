@@ -7,6 +7,7 @@ import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/a
 import {map, startWith} from 'rxjs/operators';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { CulturalSiteCategory } from 'src/app/model/cultural-site-category.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-table-view',
@@ -22,18 +23,21 @@ export class TableViewComponent implements OnInit {
   culturalSiteCategoryCtrl = new FormControl();
   filteredCulturalSiteCategories: Observable<string[]>;
   culturalSiteCategorys: string[] = [];
-  allCulturalSiteCategorys: string[] = [];
+  //ovo se dobija sa beka a ovde je samo da Milic ne bi crkao
+  allCulturalSiteCategorys: string[] = ['Kulturno dobro', 'Institucija', 'Manifestacija'];
 
   @ViewChild('culturalSiteCategorysInput') culturalSiteCategorysInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
 
   constructor(
-    private culturalSiteCategoryService: CulturalSiteCategoryService
+    private culturalSiteCategoryService: CulturalSiteCategoryService,
+    private toastr: ToastrService
   ) {
-    this.culturalSiteCategoryService.getAllCulturalSiteCategorys()
+    //dobavljanje sa beka
+    /*this.culturalSiteCategoryService.getAllCulturalSiteCategorys()
       .subscribe((responseData) => {
         this.allCulturalSiteCategorys = responseData;
-      })
+      })*/
     this.filteredCulturalSiteCategories = this.culturalSiteCategoryCtrl.valueChanges.pipe(
       startWith(null),
       map((culturalSiteCategory: string | null) => culturalSiteCategory
@@ -48,9 +52,16 @@ export class TableViewComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
+    //provera da li se uneta vrednost uopste nalazi u listi
+    if(this.allCulturalSiteCategorys.indexOf(this.titleCaseWord(value)) === -1) {
+      this.toastr.error('Cultural site category ' + value + ' doesnt exist');
+      return;
+    }
+
     // Add our fruit
     if ((value || '').trim()) {
-      this.culturalSiteCategorys.push(value.trim());
+      this.culturalSiteCategorys.push(value.trim());  
+      this.removeFromList(value);
     }
 
     // Reset the input value
@@ -61,16 +72,21 @@ export class TableViewComponent implements OnInit {
     this.culturalSiteCategoryCtrl.setValue(null);
   }
 
-  remove(fruit: string): void {
-    const index = this.culturalSiteCategorys.indexOf(fruit);
+  remove(value: string): void {
+    const index = this.culturalSiteCategorys.indexOf(value);
 
     if (index >= 0) {
       this.culturalSiteCategorys.splice(index, 1);
     }
+
+    this.allCulturalSiteCategorys.push(value);
+    //event da je doslo do promene u allculturalsitecategorys
+    this.culturalSiteCategoryCtrl.setValue('');
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.culturalSiteCategorys.push(event.option.viewValue);
+    this.removeFromList(event.option.viewValue);
     this.culturalSiteCategorysInput.nativeElement.value = '';
     this.culturalSiteCategoryCtrl.setValue(null);
   }
@@ -79,6 +95,20 @@ export class TableViewComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.allCulturalSiteCategorys.filter(culturalSiteCategory => culturalSiteCategory.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  titleCaseWord(word: string) {
+    if (!word) return word;
+    return word[0].toUpperCase() + word.substr(1).toLowerCase();
+  }
+
+  removeFromList(value: string) {
+    //ukloni iz liste
+    const index = this.allCulturalSiteCategorys.indexOf(value);
+
+    if (index >= 0) {
+      this.allCulturalSiteCategorys.splice(index, 1);
+    }
   }
 
 }
