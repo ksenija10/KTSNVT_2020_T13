@@ -71,6 +71,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/serbioneer/home/**").permitAll()
                     .antMatchers("/successful-logout.html").permitAll()
                     .antMatchers("/api/register").permitAll()
+                    .antMatchers("/api/cultural-site-category").permitAll()
                     .antMatchers("/api/registrationConfirm").permitAll()
                     .antMatchers("/api/cultural-site/by-page").permitAll()
                     .antMatchers("/api/cultural-site/filter/by-page").permitAll()

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,7 +55,7 @@ public class CulturalSiteCategoryController {
 		url: GET localhost:8080/api/cultural-site-category
 		HTTP request for getting all cultural site categories
 	*/
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping
 	public ResponseEntity<List<CulturalSiteCategoryDTO>> getAllCulturalSiteCategories() {
 		List<CulturalSiteCategory> culturalSiteCategories = culturalSiteCategoryService.findAll();

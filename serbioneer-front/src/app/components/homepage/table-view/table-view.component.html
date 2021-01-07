@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-8">
+        <mat-form-field class="chip-list">
+            <mat-label>Cultural site categories</mat-label>
+            <mat-chip-list #chipList aria-label="Cultural site categories selection">
+              <mat-chip
+                *ngFor="let culturalSiteCategory of culturalSiteCategorys"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(culturalSiteCategory)">
+                {{culturalSiteCategory}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="New cultural site category..."
+                #culturalSiteCategorysInput
+                [formControl]="culturalSiteCategoryCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let culturalSiteCategory of filteredCulturalSiteCategories | async" [value]="culturalSiteCategory">
+                {{culturalSiteCategory}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+    </div>
+
+    <!--Cultural sites table-->
+    <div class="col-md-10">
+      <app-cultural-sites-table #appCulturalSitesTable
+        [location] = "location"
+        [name] = "name"
+        [culturalSiteCategorys] = "culturalSiteCategorys"
+      ></app-cultural-sites-table>
+    </div>
+
+
+    <div class="col-md-5">
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Filter by name</mat-label>
+          <input (keyup)="onKey($event)" matInput placeholder="Ex. Kulturno dobro">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Filter by location</mat-label>
+        <mat-select [(value)] = "location">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let location of allLocations" [value]="location">{{location}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="cold-md-2">
+      <button mat-raised-button color="primary" (click)=" appCulturalSitesTable.onFilter()">
+        Filter
+      </button>
+    </div>
+</div>

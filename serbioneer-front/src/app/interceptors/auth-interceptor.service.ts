@@ -1,4 +1,4 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from "@angular/common/http";
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
@@ -14,7 +14,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         //ukoliko je neko ulogovan zakacimo authorization header sa jwt tokenom
         //httpRequest je immutable pa moramo da ga kloniramo da bismo ga izmenili
         const modifiedReq = req.clone({
-            params: new HttpParams().set('Authorization', 'Bearer ' +  jwtToken)
+            headers: req.headers.set('Authorization', 'Bearer ' +  jwtToken)
           });
         return next.handle(modifiedReq);
     }

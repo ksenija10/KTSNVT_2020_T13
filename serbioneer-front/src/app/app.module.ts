@@ -21,6 +21,15 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+import { TableViewComponent } from './components/homepage/table-view/table-view.component';
+import { MapViewComponent } from './components/homepage/map-view/map-view.component';
+import { CulturalSitesTableComponent } from './components/homepage/table-view/cultural-sites-table/cultural-sites-table.component';
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -30,7 +39,10 @@ import { AuthInterceptorService } from './interceptors/auth-interceptor.service'
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
-    HomepageComponent
+    HomepageComponent,
+    TableViewComponent,
+    MapViewComponent,
+    CulturalSitesTableComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +57,12 @@ import { AuthInterceptorService } from './interceptors/auth-interceptor.service'
     MatIconModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSelectModule
   ],
   providers: [
     {
