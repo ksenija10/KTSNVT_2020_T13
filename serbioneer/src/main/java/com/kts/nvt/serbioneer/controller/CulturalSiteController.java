@@ -1,5 +1,7 @@
 package com.kts.nvt.serbioneer.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -213,6 +215,7 @@ public class CulturalSiteController {
 		url: POST localhost:8080/api/cultural-site/filter/by-page
 		HTTP request for filtering cultural sites
 	*/
+    @CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value = "/filter/by-page", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Page<CulturalSiteDTO>> filterCulturalSites(Pageable pageable, 
 									@Valid @RequestBody CulturalSiteFilterDTO filterDTO) {
@@ -231,5 +234,12 @@ public class CulturalSiteController {
 		Page<CulturalSite> page = culturalSiteService.findAllSubscribed(pageable, user.getId());
 	    return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
 	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping(value = "/locations")
+	public ResponseEntity<List<String>> getAllCulturalSiteLocations(){
+        List<String> locations = culturalSiteService.findAllCities();
+        return new ResponseEntity<>(locations, HttpStatus.OK);
+    }
 
 }

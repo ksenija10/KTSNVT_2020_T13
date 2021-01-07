@@ -18,9 +18,6 @@ public class CulturalSiteFilterDTO {
 	@NotNull
 	private String culturalSiteName;
 	
-	/*@NotNull
-	private List<String> location;*/
-	
 	@NotNull
 	private String location;
 }

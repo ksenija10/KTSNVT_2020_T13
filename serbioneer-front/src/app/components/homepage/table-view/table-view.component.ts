@@ -8,6 +8,7 @@ import {map, startWith} from 'rxjs/operators';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { CulturalSiteCategory } from 'src/app/model/cultural-site-category.model';
 import { ToastrService } from 'ngx-toastr';
+import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 
 @Component({
   selector: 'app-table-view',
@@ -16,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TableViewComponent implements OnInit {
 
+  //for chips
   visible = true;
   selectable = true;
   removable = true;
@@ -23,21 +25,36 @@ export class TableViewComponent implements OnInit {
   culturalSiteCategoryCtrl = new FormControl();
   filteredCulturalSiteCategories: Observable<string[]>;
   culturalSiteCategorys: string[] = [];
-  //ovo se dobija sa beka a ovde je samo da Milic ne bi crkao
-  allCulturalSiteCategorys: string[] = ['Kulturno dobro', 'Institucija', 'Manifestacija'];
+  allCulturalSiteCategorys: string[] = [];
+
+  //for locations
+  allLocations:string[] = [];
+
+  //filter fields
+  location: string = '';
+  name: string = '';
 
   @ViewChild('culturalSiteCategorysInput') culturalSiteCategorysInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
 
+
   constructor(
     private culturalSiteCategoryService: CulturalSiteCategoryService,
+    private culturalSiteService: CulturalSiteService,
     private toastr: ToastrService
   ) {
-    //dobavljanje sa beka
-    /*this.culturalSiteCategoryService.getAllCulturalSiteCategorys()
+    //dobavljanje svih locations
+    this.culturalSiteService.findAllLocations()
+      .subscribe((responseData)=> {
+        this.allLocations = responseData;
+      })
+    //dobavljanje cultural site categories
+    this.culturalSiteCategoryService.getAllCulturalSiteCategorys()
       .subscribe((responseData) => {
         this.allCulturalSiteCategorys = responseData;
-      })*/
+        //event da je doslo do promene u allculturalsitecategorys
+        this.culturalSiteCategoryCtrl.setValue('');
+      })
     this.filteredCulturalSiteCategories = this.culturalSiteCategoryCtrl.valueChanges.pipe(
       startWith(null),
       map((culturalSiteCategory: string | null) => culturalSiteCategory
@@ -109,6 +126,17 @@ export class TableViewComponent implements OnInit {
     if (index >= 0) {
       this.allCulturalSiteCategorys.splice(index, 1);
     }
+  }
+
+  onKey(event: any ) {
+    this.name = event.target.value;
+  }
+
+  //filter
+  onFilter() {
+    console.log(this.location)
+    console.log(this.name)
+    console.log(this.culturalSiteCategorys)
   }
 
 }

@@ -27,7 +27,34 @@
             </mat-autocomplete>
           </mat-form-field>
     </div>
-    <div class="col-md-8">
-      <app-cultural-sites-table></app-cultural-sites-table>
+
+    <!--Cultural sites table-->
+    <div class="col-md-10">
+      <app-cultural-sites-table
+        [location] = "location"
+        [name] = "name"
+        [culturalSiteCategorys] = "culturalSiteCategorys"
+      ></app-cultural-sites-table>
+    </div>
+
+
+    <div class="col-md-5">
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Filter by name</mat-label>
+          <input (keyup)="onKey($event)" matInput placeholder="Ex. Kulturno dobro">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Filter by location</mat-label>
+        <mat-select [(value)] = "location">
+          <mat-option *ngFor="let location of allLocations" [value]="location">{{location}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="cold-md-2">
+      <button mat-raised-button color="primary" (click) = "onFilter()">Filter</button>
     </div>
 </div>
