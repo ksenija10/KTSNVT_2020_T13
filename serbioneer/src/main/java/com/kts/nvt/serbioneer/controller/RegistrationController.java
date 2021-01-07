@@ -57,6 +57,8 @@ public class RegistrationController {
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
+        // dekriptovanu sifru saljemo na front
+        authenticatedUser.setPassword(authenticatedUserDto.getPassword());
         return new ResponseEntity<>(authenticatedUserMapper.toDto(authenticatedUser),
                 HttpStatus.CREATED);
     }

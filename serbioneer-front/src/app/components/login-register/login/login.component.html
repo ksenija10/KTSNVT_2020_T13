@@ -1,35 +1,28 @@
-<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-    <div class="form-group">
-        <label for="email">E-mail</label>
-        <input
-            type="email"
-            id="email"
-            class="form-control"
-            ngModel
-            name="email"
-            required
-            email
-        />
+<div class="card col-7 mx-auto">
+    <div class="card-body">
+        <form [formGroup] = "loginForm" (ngSubmit) = "onSubmit()">
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput placeholder="something@example.com" formControlName ="email">
+                    <mat-error *ngIf="loginForm.get('email')?.invalid">{{getEmailErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'"  formControlName ="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="loginForm.get('password')?.invalid">{{getRequiredFieldErrorMessage('password')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <button class="btn btn-theme" type="submit" [disabled]="loginForm.invalid">
+                    Log in
+                </button>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input
-            type="password"
-            id="password"
-            class="form-control"
-            ngModel
-            name="password"
-            required
-            password
-        />
-    </div>
-    <div>
-        <button
-            class="btn btn-theme"
-            type="submit"
-            [disabled]="!loginForm.valid"
-        >
-            Log in
-        </button>
-    </div>
-</form>
+</div>
