@@ -30,7 +30,7 @@
 
     <!--Cultural sites table-->
     <div class="col-md-10">
-      <app-cultural-sites-table
+      <app-cultural-sites-table #appCulturalSitesTable
         [location] = "location"
         [name] = "name"
         [culturalSiteCategorys] = "culturalSiteCategorys"
@@ -50,11 +50,14 @@
       <mat-form-field appearance="fill" class="form-field">
         <mat-label>Filter by location</mat-label>
         <mat-select [(value)] = "location">
+          <mat-option>None</mat-option>
           <mat-option *ngFor="let location of allLocations" [value]="location">{{location}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="cold-md-2">
-      <button mat-raised-button color="primary" (click) = "onFilter()">Filter</button>
+      <button mat-raised-button color="primary" (click)=" appCulturalSitesTable.onFilter()">
+        Filter
+      </button>
     </div>
 </div>

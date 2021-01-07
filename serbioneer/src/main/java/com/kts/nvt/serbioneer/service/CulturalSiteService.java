@@ -131,11 +131,18 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 	}
 
 	public Page<CulturalSite> filterCulturalSites(Pageable pageable, CulturalSiteFilterDTO filterDTO) {
+		if (filterDTO.getCategoryNames().length == 0) {
+			// poziv "krace" metode
+			return culturalSiteRepository.findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCase
+					(pageable, filterDTO.getCulturalSiteName(), filterDTO.getLocation());
+		}
+		return culturalSiteRepository.findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCase
+				(pageable, filterDTO.getCategoryNames(), filterDTO.getCulturalSiteName(), filterDTO.getLocation());
 		//findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityIn
-		return culturalSiteRepository.
+		/*return culturalSiteRepository.
 				findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase
 			(pageable, filterDTO.getCategoryName(), filterDTO.getCategoryTypeName(), 
-					filterDTO.getCulturalSiteName(), filterDTO.getLocation());
+					filterDTO.getCulturalSiteName(), filterDTO.getLocation());*/
 	}
 	
 	//dobavljanje svih gradova za front

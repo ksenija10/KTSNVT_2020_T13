@@ -28,7 +28,7 @@ export class TableViewComponent implements OnInit {
   allCulturalSiteCategorys: string[] = [];
 
   //for locations
-  allLocations:string[] = [];
+  allLocations: string[] = [];
 
   //filter fields
   location: string = '';
@@ -130,13 +130,6 @@ export class TableViewComponent implements OnInit {
 
   onKey(event: any ) {
     this.name = event.target.value;
-  }
-
-  //filter
-  onFilter() {
-    console.log(this.location)
-    console.log(this.name)
-    console.log(this.culturalSiteCategorys)
   }
 
 }

@@ -9,11 +9,14 @@ import lombok.Data;
 @AllArgsConstructor
 public class CulturalSiteFilterDTO {
 
-	@NotNull
+	/*@NotNull
 	private String categoryName;
 	
 	@NotNull
-	private String categoryTypeName;
+	private String categoryTypeName;*/
+	
+	@NotNull
+	private String[] categoryNames;
 	
 	@NotNull
 	private String culturalSiteName;

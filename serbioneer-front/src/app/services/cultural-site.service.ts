@@ -4,6 +4,7 @@ import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { CulturalSite } from "../model/cultural-site.model";
+import { FilterDTO } from "../model/filter-cultural-site.model";
 
 export interface CulturalSiteData {
     content: CulturalSite[],
@@ -33,16 +34,17 @@ findAllByPage(page: number, size: number): Observable<CulturalSiteData> {
   }
 
   //cultural-site/filter/by-page
-  filterByPage(page: number, size: number): Observable<CulturalSiteData> {
+  filterByPage(page: number, size: number, filterDto: FilterDTO): Observable<CulturalSiteData> {
     let params = new HttpParams();
 
     params = params.append('page', String(page));
     params = params.append('size', String(size));
 
-    return this.http.get<CulturalSiteData>(environment.apiEndpoint + 'cultural-site/filter/by-page', {params}).pipe(
-      map((culturalSiteData: CulturalSiteData) => culturalSiteData),
-      catchError(err => throwError(err))
-    )
+    return this.http.post<CulturalSiteData>
+      (environment.apiEndpoint + 'cultural-site/filter/by-page', filterDto, {params}).pipe(
+        map((culturalSiteData: CulturalSiteData) => culturalSiteData),
+        catchError(err => throwError(err))
+      )
   }
 
   findAllLocations() {
