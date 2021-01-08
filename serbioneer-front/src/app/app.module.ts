@@ -6,9 +6,11 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +20,7 @@ import { LoginComponent } from './components/login-register/login/login.componen
 import { RegisterComponent } from './components/login-register/register/register.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { NewAdminComponent } from './components/admin/new-admin/new-admin.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
@@ -25,11 +28,11 @@ import { TableViewComponent } from './components/homepage/table-view/table-view.
 import { MapViewComponent } from './components/homepage/map-view/map-view.component';
 import { CulturalSitesTableComponent } from './components/homepage/table-view/cultural-sites-table/cultural-sites-table.component';
 
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSelectModule} from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -42,12 +45,13 @@ import {MatSelectModule} from '@angular/material/select';
     HomepageComponent,
     TableViewComponent,
     MapViewComponent,
-    CulturalSitesTableComponent
+    CulturalSitesTableComponent,
+    NewAdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, 
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule,
@@ -62,16 +66,18 @@ import {MatSelectModule} from '@angular/material/select';
     MatChipsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       //ako multi nije true ovo bi bio jedini interceptor i pregazio bi sve defaultne interceptore
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
