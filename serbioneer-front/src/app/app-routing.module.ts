@@ -5,6 +5,7 @@ import { LoginRegisterComponent } from './components/login-register/login-regist
 import { LoginComponent } from './components/login-register/login/login.component';
 import { RegisterComponent } from './components/login-register/register/register.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { LoginGuard } from './guards/login-guard.service';
 import { RoleGuard } from './guards/role-guard.service';
 
@@ -37,6 +38,9 @@ const routes: Routes = [
         component: RegisterComponent
       }
   ] },
+  { 
+    path: 'pending-comments', 
+    component: PendingCommentsComponent},
   { 
     path: '**', 
     component: PageNotFoundComponent
