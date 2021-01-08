@@ -1,0 +1,7 @@
+<app-news *ngFor = "let news of dataSource.content" [news] = "news"></app-news>
+<mat-paginator 
+        [length]="dataSource.totalElements" 
+        [pageSize]="dataSource.size" 
+        [pageSizeOptions]="[2,5,10]"
+        (page)="onPaginateChange($event)"
+></mat-paginator>

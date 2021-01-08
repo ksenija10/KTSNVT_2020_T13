@@ -30,6 +30,9 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
+import { NewsfeedComponent } from './components/newsfeed/newsfeed.component';
+import { NewsComponent } from './components/newsfeed/news/news.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import {MatSelectModule} from '@angular/material/select';
     HomepageComponent,
     TableViewComponent,
     MapViewComponent,
-    CulturalSitesTableComponent
+    CulturalSitesTableComponent,
+    NewsfeedComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatChipsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule
   ],
   providers: [
     {
@@ -70,7 +76,8 @@ import {MatSelectModule} from '@angular/material/select';
       useClass: AuthInterceptorService,
       //ako multi nije true ovo bi bio jedini interceptor i pregazio bi sve defaultne interceptore
       multi: true
-    }
+    },
+    { provide: Window, useValue: window } 
   ],
   bootstrap: [AppComponent]
 })

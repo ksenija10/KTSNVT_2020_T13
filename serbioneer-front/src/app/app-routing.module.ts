@@ -4,6 +4,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { LoginComponent } from './components/login-register/login/login.component';
 import { RegisterComponent } from './components/login-register/register/register.component';
+import { NewsfeedComponent } from './components/newsfeed/newsfeed.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginGuard } from './guards/login-guard.service';
 import { RoleGuard } from './guards/role-guard.service';
@@ -37,6 +38,12 @@ const routes: Routes = [
         component: RegisterComponent
       }
   ] },
+  {
+    path: 'newsfeed',
+    component: NewsfeedComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_USER' }
+  },
   { 
     path: '**', 
     component: PageNotFoundComponent
