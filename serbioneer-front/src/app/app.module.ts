@@ -24,12 +24,19 @@ import { AuthInterceptorService } from './interceptors/auth-interceptor.service'
 import { TableViewComponent } from './components/homepage/table-view/table-view.component';
 import { MapViewComponent } from './components/homepage/map-view/map-view.component';
 import { CulturalSitesTableComponent } from './components/homepage/table-view/cultural-sites-table/cultural-sites-table.component';
+import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
+import { ApproveCommentComponent } from './components/approve-comment/approve-comment.component';
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
+import { from } from 'rxjs';
+
+import {MatListModule} from '@angular/material/list';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -42,7 +49,9 @@ import {MatSelectModule} from '@angular/material/select';
     HomepageComponent,
     TableViewComponent,
     MapViewComponent,
-    CulturalSitesTableComponent
+    CulturalSitesTableComponent,
+    PendingCommentsComponent,
+    ApproveCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +71,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatChipsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSelectModule
+    MatSelectModule,
+    MatListModule,
+    ScrollingModule,
+    MatDividerModule
   ],
   providers: [
     {
