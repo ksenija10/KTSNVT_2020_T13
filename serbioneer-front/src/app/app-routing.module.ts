@@ -40,7 +40,10 @@ const routes: Routes = [
   ] },
   { 
     path: 'pending-comments', 
-    component: PendingCommentsComponent},
+    component: PendingCommentsComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN'}
+  },
   { 
     path: '**', 
     component: PageNotFoundComponent
