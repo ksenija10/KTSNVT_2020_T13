@@ -1,6 +1,7 @@
 package com.kts.nvt.serbioneer.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
@@ -21,6 +22,8 @@ public class NewsDTO {
     private Date dateTime;
 
     private String culturalSiteName;
+    
+    private List<ImageDTO> images;
 
     public NewsDTO(@NotBlank(message = "News information can not be empty.") String information, Date dateTime, String culturalSiteName) {
         this.information = information;

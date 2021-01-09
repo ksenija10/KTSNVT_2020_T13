@@ -5,6 +5,7 @@ import { catchError, map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { CulturalSite } from "../model/cultural-site.model";
 import { FilterDTO } from "../model/filter-cultural-site.model";
+import { NewsDTO } from "../model/news.model";
 
 export interface CulturalSiteData {
     content: CulturalSite[],
@@ -52,5 +53,15 @@ findAllByPage(page: number, size: number): Observable<CulturalSiteData> {
       map((locationsData: string[]) => locationsData),
       catchError(err => throwError(err))
     )
+  }
+
+  createNews(news : NewsDTO, culturalSiteId = 0){
+    let params = new HttpParams();
+
+    params = params.append('cultural-site-id', String(culturalSiteId));
+
+    return this.http.put<NewsDTO>(environment.apiEndpoint + 'cultural-site/' + culturalSiteId + '/approval', news).pipe(
+      catchError(err => throwError(err))
+  );
   }
 }
