@@ -43,6 +43,8 @@ const routes: Routes = [
   {
     path: 'new-admin',
     component: NewAdminComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' },
   },
   {
     path: '**',
