@@ -5,7 +5,11 @@
           <mat-card-title>{{ news.culturalSiteName }}</mat-card-title>
           <mat-card-subtitle>{{ news.dateTime | date:'medium'}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <cdk-virtual-scroll-viewport itemSize="100" orientation="horizontal">
+          <div *cdkVirtualFor="let image of news.images" >
+            <img src="data:image/png;base64,{{image.content}}" class="example-item" id="image._id" alt="proba">
+          </div>
+        </cdk-virtual-scroll-viewport>
         <mat-card-content>
           <p>
             {{ news.information }}

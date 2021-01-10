@@ -116,3 +116,9 @@ insert into image (id, is_active, name, path, comment) values (10, true, 'name10
 insert into image (id, is_active, name, path, comment) values (11, true, 'name11', 'src/main/resources/images/comment/1/name11.png', 1);
 insert into image (id, is_active, name, path, comment) values (12, true, 'name12', 'src/main/resources/images/comment/1/name12.png', 1);
 insert into image (id, is_active, name, path, comment) values (13, true, 'name13', 'src/main/resources/images/comment/1/name13.png', 1);
+
+
+insert into image (id, is_active, name, path, news) values (14, true, 'name11.png', 'src/main/resources/images/news/1/name11.png', 1);
+insert into image (id, is_active, name, path, news) values (15, true, 'name12.png', 'src/main/resources/images/news/2/name12.png', 2);
+insert into image (id, is_active, name, path, news) values (16, true, 'name13.png', 'src/main/resources/images/news/3/name13.png', 3);
+insert into image (id, is_active, name, path, news) values (17, true, 'name111.png', 'src/main/resources/images/news/1/name111.png', 1);

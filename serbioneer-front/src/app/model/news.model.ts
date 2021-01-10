@@ -9,4 +9,5 @@ export interface NewsDTOInterface {
   information?: string;
   dateTime?: Date;
   culturalSiteName?: string;
+  images: Image[];
 }
