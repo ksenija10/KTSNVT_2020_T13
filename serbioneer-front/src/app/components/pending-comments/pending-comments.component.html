@@ -1,0 +1,18 @@
+<div>
+  <div class=”container”>
+    <div class="row">
+      <div class="page-title">Reviews</div>
+      <mat-icon class="page-title" color="black">comment</mat-icon>
+    </div>
+    <mat-list-item *ngFor="let comment of commentsData.content">
+      <app-approve-comment [comment]="comment"></app-approve-comment>
+    </mat-list-item>
+    <!--pomeriti paginator gore mozda?-->
+    <mat-paginator 
+        [length]="commentsData.totalElements" 
+        [pageSize]="commentsData.size" 
+        [pageSizeOptions]="[1,5,10]"
+        (page)="pageEvent = $event; onPaginateChange($event)">
+    </mat-paginator>
+  </div>
+</div>

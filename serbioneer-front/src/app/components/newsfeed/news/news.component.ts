@@ -1,18 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NewsDTO } from 'src/app/model/news.model';
+import { NewsDTOInterface } from 'src/app/model/news.model';
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
-  styleUrls: ['./news.component.sass']
+  styleUrls: ['./news.component.sass'],
 })
 export class NewsComponent implements OnInit {
+  @Input() news!: NewsDTOInterface;
 
-  @Input() news!: NewsDTO;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

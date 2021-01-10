@@ -1,10 +1,12 @@
 package com.kts.nvt.serbioneer.dto;
 
+import java.util.List;
+
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
@@ -25,6 +27,8 @@ public class CommentDTO {
     private String culturalSiteName;
 
     private boolean approved;
+    
+    private List<ImageDTO> images;
 
     public CommentDTO(Long id, @NotBlank(message = "Comment text cannot be empty.") String text) {
         this.id = id;
