@@ -38,6 +38,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { from } from 'rxjs';
 
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { MatListModule } from '@angular/material/list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDividerModule } from '@angular/material/divider';
@@ -57,6 +59,8 @@ import { MatDividerModule } from '@angular/material/divider';
     PendingCommentsComponent,
     ApproveCommentComponent,
     NewNewsArticleComponent,
+    MyProfileComponent,
+    ChangePasswordComponent
     NewAdminComponent,
   ],
   imports: [
