@@ -6,7 +6,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login-register/login/login.componen
 import { RegisterComponent } from './components/login-register/register/register.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { ViewAdminComponent } from './components/admin/view-admin/view-admin.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
@@ -26,18 +27,18 @@ import { MapViewComponent } from './components/homepage/map-view/map-view.compon
 import { CulturalSitesTableComponent } from './components/homepage/table-view/cultural-sites-table/cultural-sites-table.component';
 import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { ApproveCommentComponent } from './components/approve-comment/approve-comment.component';
-import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
+//import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
 
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSelectModule} from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 import { from } from 'rxjs';
 
-import {MatListModule} from '@angular/material/list';
-import {ScrollingModule} from '@angular/cdk/scrolling';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -53,12 +54,13 @@ import {MatDividerModule} from '@angular/material/divider';
     CulturalSitesTableComponent,
     PendingCommentsComponent,
     ApproveCommentComponent,
-    NewNewsArticleComponent
+    //NewNewsArticleComponent,
+    ViewAdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, 
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule,
@@ -76,16 +78,16 @@ import {MatDividerModule} from '@angular/material/divider';
     MatSelectModule,
     MatListModule,
     ScrollingModule,
-    MatDividerModule
+    MatDividerModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       //ako multi nije true ovo bi bio jedini interceptor i pregazio bi sve defaultne interceptore
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

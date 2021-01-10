@@ -43,7 +43,7 @@ public class CulturalSiteRepositoryUnitTest {
 		Set<CulturalSite> subscribedSites = user.getSubscribedSites();
 		userSubscribedSitesSizeDB = subscribedSites.size();
 	}
-	
+	/*
 	@Test
 	public void testFindAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase() {
 		String categoryName = "cija"; // -> Manifestacija, Institucija
@@ -66,7 +66,7 @@ public class CulturalSiteRepositoryUnitTest {
 		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase(pageable, categoryName, typeName, name, city);
 		
 		assertEquals(5, filteredSitesPageable.getContent().size());
-	}
+	}*/
 
 	@Test
 	public void testFindAllBySubscribedUsersIdPageableLong() {
