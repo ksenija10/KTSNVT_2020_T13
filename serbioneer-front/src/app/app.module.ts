@@ -38,6 +38,9 @@ import { from } from 'rxjs';
 import {MatListModule} from '@angular/material/list';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatDividerModule} from '@angular/material/divider';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ import {MatDividerModule} from '@angular/material/divider';
     CulturalSitesTableComponent,
     PendingCommentsComponent,
     ApproveCommentComponent,
-    NewNewsArticleComponent
+    NewNewsArticleComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +80,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatSelectModule,
     MatListModule,
     ScrollingModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     {

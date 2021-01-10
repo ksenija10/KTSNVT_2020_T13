@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,6 +59,7 @@ public class AuthenticatedUserController {
 	 * url: GET localhost:8080/api/authenticated-user/view-profile
 	 * HTTP Request for viewing pesonal information
 	*/
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/view-profile")
 	public ResponseEntity<AuthenticatedUserDTO> getCurrentAuthenticatedUser() {
@@ -84,6 +86,7 @@ public class AuthenticatedUserController {
 	 * url: PUT localhost:8080/api/authenticated-user/updatePersonalInformation
 	 * HTTP Request for updating personal information
 	*/
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "/updatePersonalInformation", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserUpdateDTO> updatePersonalInformation(@Valid @RequestBody UserUpdateDTO userUpdateDTO) {
