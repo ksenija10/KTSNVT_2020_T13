@@ -47,6 +47,7 @@ public class CulturalSiteRepositoryIntegrationTest {
 		
 		assertEquals(5, filteredSitesPageable.getContent().size());
 	}
+
  	*/
 	@Test
 	public void testFindAllBySubscribedUsersIdPageableLong() {

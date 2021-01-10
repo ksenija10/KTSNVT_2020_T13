@@ -66,6 +66,7 @@ public class CulturalSiteRepositoryUnitTest {
 		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase(pageable, categoryName, typeName, name, city);
 		
 		assertEquals(5, filteredSitesPageable.getContent().size());
+
 	}
 	*/
 	@Test

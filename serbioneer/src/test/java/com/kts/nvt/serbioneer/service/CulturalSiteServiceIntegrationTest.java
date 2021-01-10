@@ -294,6 +294,7 @@ public class CulturalSiteServiceIntegrationTest {
 		assertTrue(filteredSitesPage.getContent().get(0).getCity().contains(DB_FILTER_CITY_NAME));
 		assertTrue(filteredSitesPage.getContent().get(0).getName().contains(DB_FILTER_SITE_NAME));
 	}
+
 */
 	@Test
 	public void testFindAllCities() {
