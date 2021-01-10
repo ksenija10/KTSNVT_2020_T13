@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NewAdminComponent } from './components/admin/new-admin/new-admin.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { LoginComponent } from './components/login-register/login/login.component';
@@ -14,42 +15,50 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 
 const routes: Routes = [
   //login guard ne dozvoljava ulogovanom korisniku da opet pristupi login strani
-  { 
-    path: '', 
-    redirectTo: '/login-register/login', 
-    pathMatch: 'full'
+  {
+    path: '',
+    redirectTo: '/login-register/login',
+    pathMatch: 'full',
   },
-  { 
+  {
     path: 'homepage',
-    component: HomepageComponent
+    component: HomepageComponent,
   },
-  { path: 'login-register', 
-    component: LoginRegisterComponent, 
+  {
+    path: 'login-register',
+    component: LoginRegisterComponent,
     children: [
-      { 
-        path: '', 
-        redirectTo: 'login', 
-        pathMatch: 'full'
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
       },
-      { 
-        path: 'login', 
+      {
+        path: 'login',
         component: LoginComponent,
-        canActivate: [LoginGuard]
+        canActivate: [LoginGuard],
       },
-      { 
-        path: 'register', 
-        component: RegisterComponent
-      }
-  ] },
-  { 
-    path: 'pending-comments', 
+      {
+        path: 'register',
+        component: RegisterComponent,
+      },
+    ],
+  },
+  {
+    path: 'pending-comments',
     component: PendingCommentsComponent,
     canActivate: [RoleGuard],
-    data: { expectedRoles: 'ROLE_ADMIN'}
+    data: { expectedRoles: 'ROLE_ADMIN' },
   },
-  { 
-    path: 'new-news-article', 
-    component: NewNewsArticleComponent
+  {
+    path: 'new-news-article',
+    component: NewNewsArticleComponent,
+  },
+  {
+    path: 'new-admin',
+    component: NewAdminComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' },
   },
   { 
     path: 'my-profile', 
@@ -71,6 +80,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
