@@ -9,8 +9,10 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { LoginGuard } from './guards/login-guard.service';
 import { RoleGuard } from './guards/role-guard.service';
-//import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
 import { ViewAdminComponent } from './components/admin/view-admin/view-admin.component';
+import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
   //login guard ne dozvoljava ulogovanom korisniku da opet pristupi login strani
@@ -68,7 +70,22 @@ const routes: Routes = [
   {
     path: '**',
     component: PageNotFoundComponent,
+  { 
+    path: 'my-profile', 
+    component: MyProfileComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN|ROLE_USER'}
   },
+  { 
+    path: 'change-password', 
+    component: ChangePasswordComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN|ROLE_USER'}
+  },
+  { 
+    path: '**', 
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({

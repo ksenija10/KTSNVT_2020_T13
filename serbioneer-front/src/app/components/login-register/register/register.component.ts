@@ -55,7 +55,6 @@ export class RegisterComponent implements OnInit {
     this.authenticationService.register(authUser)
       .subscribe(
         response => {
-          console.log(response);
           this.toastr.success('Confirmation mail sent!');
           this.registerForm.reset();
           this.router.navigate(['login-register/login']);

@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { UserLogin } from "../model/user-login.model";
 import { environment } from "../../environments/environment";
 import { AuthenticatedUser } from '../model/authenticated-user.model';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +19,18 @@ export class AuthenticationService {
     login(userLoginDto: UserLogin): Observable<any> {
         return this.http.post('http://localhost:8080/login', userLoginDto, 
             {headers: this.headers, observe: 'response'})
+    }
+
+    loggedInUser() {
+        const token = localStorage.getItem('jwtToken');
+        const jwt: JwtHelperService = new JwtHelperService();
+
+        if(!token) {
+            return '';
+        }
+
+        const info = jwt.decodeToken(token);
+        return info.authorities[0].authority;
     }
 
     register(authUserDto: AuthenticatedUser): Observable<any> {
