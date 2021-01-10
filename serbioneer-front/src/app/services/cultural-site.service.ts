@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
@@ -5,6 +6,16 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CulturalSite } from '../model/cultural-site.model';
 import { FilterDTO } from '../model/filter-cultural-site.model';
+=======
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, throwError } from "rxjs";
+import { catchError, map } from "rxjs/operators";
+import { environment } from "src/environments/environment";
+import { CulturalSite } from "../model/cultural-site.model";
+import { FilterDTO } from "../model/filter-cultural-site.model";
+import { NewsDTO } from "../model/news.model";
+>>>>>>> main
 
 export interface CulturalSiteData {
   content: CulturalSite[];
@@ -67,4 +78,18 @@ export class CulturalSiteService {
         catchError((err) => throwError(err))
       );
   }
+<<<<<<< HEAD
 }
+=======
+
+  createNews(news : NewsDTO, culturalSiteId = 0){
+    let params = new HttpParams();
+
+    params = params.append('cultural-site-id', String(culturalSiteId));
+
+    return this.http.put<NewsDTO>(environment.apiEndpoint + 'cultural-site/' + culturalSiteId + '/approval', news).pipe(
+      catchError(err => throwError(err))
+  );
+  }
+}
+>>>>>>> main

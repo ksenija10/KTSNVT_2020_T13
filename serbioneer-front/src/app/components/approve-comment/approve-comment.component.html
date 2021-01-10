@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-10">
+      <div class="comment-item">
+        <div class="vertical-viewport">
+          <div class="author">{{comment.name}} {{ comment.surname}}:</div>
+          <div>{{comment.culturalSiteName}}</div>
+          <div>{{comment.text}}</div>
+          <div *ngIf="comment.images.length > 0">
+            <cdk-virtual-scroll-viewport itemSize="50" orientation="horizontal">
+              <div *cdkVirtualFor="let image of comment.images" >
+                <img src="data:image/png;base64,{{image.content}}" class="example-item" id="image._id"/>
+              </div>
+            </cdk-virtual-scroll-viewport>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col comment-button">
+      <button mat-icon-button (click)="approveComment($event)">
+        <mat-icon class="green-icon">done</mat-icon>
+      </button>
+    </div>
+    <div class="col comment-button">
+      <button mat-icon-button color="warn" (click)="declineComment($event)">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-divider class="comment-divider"></mat-divider>

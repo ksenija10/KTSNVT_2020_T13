@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsMapper implements MapperInterface<News, NewsDTO>{
+	
+	private ImageMapper imageMapper = new ImageMapper();
+	
     @Override
     public News toEntity(NewsDTO dto) {
         return new News(dto.getInformation());
@@ -17,7 +20,7 @@ public class NewsMapper implements MapperInterface<News, NewsDTO>{
     @Override
     public NewsDTO toDto(News entity) {
         return new NewsDTO(entity.getId(), entity.getInformation(), entity.getDateTime(),
-                entity.getCulturalSite().getName());
+                entity.getCulturalSite().getName(), imageMapper.toDtoList(new ArrayList<>(entity.getImages())));
     }
 
     @Override

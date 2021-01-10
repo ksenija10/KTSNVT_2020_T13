@@ -99,3 +99,16 @@ insert into sites_users(site_id, user_id) values (4, 2);
 --Isidor je ocenio biblioteku sabacku sa 3
 insert into rating (value, user_id, site_id, is_active) values (3, 2, 1, true);
 
+insert into image (id, is_active, name, path, comment) values (1, true, 'name1', 'src/main/resources/images/comment/1/name1.jpg', 1);
+insert into image (id, is_active, name, path, comment) values (2, true, 'name2', 'src/main/resources/images/comment/1/name2.png', 1);
+insert into image (id, is_active, name, path, comment) values (3, true, 'name3', 'src/main/resources/images/comment/1/name3.png', 1);
+insert into image (id, is_active, name, path, comment) values (4, true, 'name4', 'src/main/resources/images/comment/1/name4.png', 1);
+insert into image (id, is_active, name, path, comment) values (5, true, 'name5', 'src/main/resources/images/comment/1/name5.png', 1);
+insert into image (id, is_active, name, path, comment) values (6, true, 'name6', 'src/main/resources/images/comment/1/name6.png', 1);
+insert into image (id, is_active, name, path, comment) values (7, true, 'name7', 'src/main/resources/images/comment/1/name7.png', 1);
+insert into image (id, is_active, name, path, comment) values (8, true, 'name8', 'src/main/resources/images/comment/1/name8.png', 1);
+insert into image (id, is_active, name, path, comment) values (9, true, 'name9', 'src/main/resources/images/comment/1/name9.png', 1);
+insert into image (id, is_active, name, path, comment) values (10, true, 'name10', 'src/main/resources/images/comment/1/name10.png', 1);
+insert into image (id, is_active, name, path, comment) values (11, true, 'name11', 'src/main/resources/images/comment/1/name11.png', 1);
+insert into image (id, is_active, name, path, comment) values (12, true, 'name12', 'src/main/resources/images/comment/1/name12.png', 1);
+insert into image (id, is_active, name, path, comment) values (13, true, 'name13', 'src/main/resources/images/comment/1/name13.png', 1);

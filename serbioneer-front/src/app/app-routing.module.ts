@@ -6,8 +6,10 @@ import { LoginRegisterComponent } from './components/login-register/login-regist
 import { LoginComponent } from './components/login-register/login/login.component';
 import { RegisterComponent } from './components/login-register/register/register.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { LoginGuard } from './guards/login-guard.service';
 import { RoleGuard } from './guards/role-guard.service';
+import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
 
 const routes: Routes = [
   //login guard ne dozvoljava ulogovanom korisniku da opet pristupi login strani
@@ -39,6 +41,16 @@ const routes: Routes = [
         component: RegisterComponent,
       },
     ],
+  },
+  {
+    path: 'pending-comments',
+    component: PendingCommentsComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' },
+  },
+  {
+    path: 'new-news-article',
+    component: NewNewsArticleComponent,
   },
   {
     path: 'new-admin',

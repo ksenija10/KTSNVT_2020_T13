@@ -19,6 +19,7 @@ export class RoleGuard implements CanActivate {
 
         if(!token) {
             this.router.navigate(['login-register/login']);
+            this.toastr.error('401 Unauthorized access')
             return false;
         }
 
@@ -27,7 +28,7 @@ export class RoleGuard implements CanActivate {
 
         if(roles.indexOf(info.authorities[0].authority) === -1) {
             this.router.navigate(['homepage']);
-            this.toastr.error('401 Unauthorized acces')
+            this.toastr.error('401 Unauthorized access')
             return false;
         }
         return true;

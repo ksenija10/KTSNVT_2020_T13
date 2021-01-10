@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,6 +56,7 @@ public class CommentController {
       url: GET localhost:8080/api/comment/unapproved/by-page
       HTTP request for getting all unapproved comments by page
    */
+    @CrossOrigin(origins = "http://localhost:8080")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/unapproved/by-page")
     public ResponseEntity<Page<CommentDTO>> getAllUnapprovedComments(Pageable pageable){

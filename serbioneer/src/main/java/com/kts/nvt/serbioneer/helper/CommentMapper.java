@@ -1,25 +1,30 @@
 package com.kts.nvt.serbioneer.helper;
 
-import com.kts.nvt.serbioneer.dto.CommentDTO;
-import com.kts.nvt.serbioneer.model.Comment;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import com.kts.nvt.serbioneer.helper.ImageMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+
+import com.kts.nvt.serbioneer.dto.CommentDTO;
+import com.kts.nvt.serbioneer.model.Comment;
+
 public class CommentMapper implements MapperInterface<Comment, CommentDTO>{
 
+	private ImageMapper imageMapper = new ImageMapper();
+	
     @Override
     public Comment toEntity(CommentDTO dto) {
         return new Comment(dto.getText());
     }
-
+    
     @Override
     public CommentDTO toDto(Comment entity) {
         return new CommentDTO(entity.getId(), entity.getText(), entity.getAuthenticatedUser().getName(),
                 entity.getAuthenticatedUser().getSurname(), entity.getAuthenticatedUser().getEmail(),
-                entity.getCulturalSite().getName(), entity.isApproved());
+                entity.getCulturalSite().getName(), entity.isApproved(), imageMapper.toDtoList(new ArrayList<>(entity.getImages())));
     }
 
     @Override
