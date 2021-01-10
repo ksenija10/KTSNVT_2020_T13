@@ -103,6 +103,7 @@ public class AuthenticatedUserController {
 	 * url: PUT localhost:8080/api/authenticated/updatePassword
 	 * HTTP Request for updating password
 	 */
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<PasswordDTO> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {

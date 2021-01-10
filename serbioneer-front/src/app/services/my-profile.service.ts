@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { AuthenticatedUser } from "../model/authenticated-user.model";
+import { PasswordDTO } from "../model/password-dto.model";
 import { UserUpdateDTO } from "../model/user-update-dto.mpdel";
 import { AuthenticationService } from "./authentication.service";
 
@@ -37,6 +38,14 @@ export class MyProfileService{
         return this.http.get<AuthenticatedUser>(
             environment.apiEndpoint + this.userApi + 'view-profile',
             { headers: this.headers}
+        )
+    }
+
+    updatePassword(passwordDto: PasswordDTO) {
+        return this.http.put<PasswordDTO>(
+            environment.apiEndpoint + this.userApi + 'updatePassword',
+            passwordDto,
+            { headers: this.headers }
         )
     }
 }

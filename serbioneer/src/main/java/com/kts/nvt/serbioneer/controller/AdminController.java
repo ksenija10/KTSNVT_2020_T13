@@ -113,6 +113,7 @@ public class AdminController {
 	 * url: PUT localhost:8080/api/admin/updatePassword
 	 * HTTP Request for updating password
 	 */
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<PasswordDTO> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
