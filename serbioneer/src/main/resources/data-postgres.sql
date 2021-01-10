@@ -1,7 +1,7 @@
 -- korisnici
 -- password = admin
-insert into users (type, name, surname, email, password, is_active) 
-values ('Admin', 'Ksenija', 'Prcic', 'admin@admin.com', '$2a$04$SwzgBrIJZhfnzOw7KFcdzOTiY6EFVwIpG7fkF/D1w26G1.fWsi.aK', true);
+insert into users (type, name, surname, email, password, is_active, birthday)
+values ('Admin', 'Ksenija', 'Prcic', 'admin@admin.com', '$2a$04$SwzgBrIJZhfnzOw7KFcdzOTiY6EFVwIpG7fkF/D1w26G1.fWsi.aK', true, '2016-06-23');
 
 -- password = user
 insert into users (type, name, surname, email, password, activated, is_active)
@@ -17,6 +17,10 @@ values ('AuthenticatedUser', 'Katarina', 'Donalnov', 'dolanovkatarina@gmail.com'
 
 insert into users (type, name, surname, email, password, is_active) 
 values ('Admin', 'Ksenija', 'Prcic', 'admin2@admin.com', '$2y$12$gUay6OjlceRVx93A/bhMXekaalqkDavEEzUG43h9E9XiF0kwUXxe2', true);
+insert into users (type, name, surname, email, password, is_active)
+values ('Admin', 'Timi', 'Timic', 'admin3@admin.com', '$2y$12$gUay6OjlceRVx93A/bhMXekaalqkDavEEzUG43h9E9XiF0kwUXxe2', true);
+insert into users (type, name, surname, email, password, is_active)
+values ('Admin', 'Timika', 'Timikic', 'admin4@admin.com', '$2y$12$gUay6OjlceRVx93A/bhMXekaalqkDavEEzUG43h9E9XiF0kwUXxe2', true);
 
 insert into authority (name) values ('ROLE_ADMIN');
 insert into authority (name) values ('ROLE_USER');

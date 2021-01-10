@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Admin } from '../model/admin.model';
 
@@ -25,5 +26,19 @@ export class AdminService {
       headers: this.headers,
       observe: 'response',
     });
+  }
+
+  findAllByPage(page: number, size: number): Observable<AdminData> {
+    let params = new HttpParams();
+
+    params = params.append('page', String(page));
+    params = params.append('size', String(size));
+
+    return this.http
+      .get<AdminData>(environment.apiEndpoint + 'admin/by-page', { params })
+      .pipe(
+        map((adminData: AdminData) => adminData),
+        catchError((err) => throwError(err))
+      );
   }
 }
