@@ -293,7 +293,7 @@ public class CulturalSiteServiceUnitTest {
 				pageable, categoryName, typeName, name, city);
 		assertEquals(1, filteredSitesPageable.getContent().size());
 	}
-
+*/
 	@Test
 	public void testFindAllCities() {
 		List<String> cityNames = culturalSiteService.findAllCities();
@@ -313,6 +313,6 @@ public class CulturalSiteServiceUnitTest {
 		
 		verify(culturalSiteRepository, times(1)).findAllBySubscribedUsersId(pageable, SUBSCRIBED_USER_ID);
 		assertEquals(PAGEABLE_TOTAL_ELEMENTS, subscribedSites.getContent().size());
-	}*/
+	}
 
 }

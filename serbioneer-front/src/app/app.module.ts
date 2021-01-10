@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +20,7 @@ import { LoginComponent } from './components/login-register/login/login.componen
 import { RegisterComponent } from './components/login-register/register/register.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { NewAdminComponent } from './components/admin/new-admin/new-admin.component';
 import { ViewAdminComponent } from './components/admin/view-admin/view-admin.component';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -55,6 +58,7 @@ import { MatDividerModule } from '@angular/material/divider';
     PendingCommentsComponent,
     ApproveCommentComponent,
     //NewNewsArticleComponent,
+    NewAdminComponent,
     ViewAdminComponent,
   ],
   imports: [
@@ -79,6 +83,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatListModule,
     ScrollingModule,
     MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     {

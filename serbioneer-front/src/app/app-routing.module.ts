@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NewAdminComponent } from './components/admin/new-admin/new-admin.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { LoginComponent } from './components/login-register/login/login.component';
@@ -48,10 +49,16 @@ const routes: Routes = [
     canActivate: [RoleGuard],
     data: { expectedRoles: 'ROLE_ADMIN' },
   },
+
   /*{
     path: 'new-news-article',
     component: NewNewsArticleComponent,
-  },*/
+  }*/ {
+    path: 'new-admin',
+    component: NewAdminComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' },
+  },
   {
     path: 'view-admin',
     component: ViewAdminComponent,

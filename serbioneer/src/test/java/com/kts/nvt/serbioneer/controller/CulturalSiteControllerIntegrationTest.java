@@ -379,5 +379,8 @@ public class CulturalSiteControllerIntegrationTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     	assertNotNull(responseEntity.getBody());
     	assertEquals(FILTER_NO_NUM, responseEntity.getBody().getTotalElements());
-    }*/
+
+    }
+    */
+
 }
