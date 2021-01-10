@@ -50,6 +50,7 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Choose a date</mat-label>
                     <input matInput formControlName="dateOfBirth" [matDatepicker]="dateOfBirth">
+                    <mat-error *ngIf="newAdminForm.get('dateOfBirth')?.invalid">{{getRequiredFieldErrorMessage('dateOfBirth')}}</mat-error>
                     <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
                     <mat-datepicker #dateOfBirth></mat-datepicker>
                 </mat-form-field>
