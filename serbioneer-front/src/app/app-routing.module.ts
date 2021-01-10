@@ -51,11 +51,11 @@ const routes: Routes = [
     canActivate: [RoleGuard],
     data: { expectedRoles: 'ROLE_ADMIN' },
   },
-
-  /*{
+  {
     path: 'new-news-article',
     component: NewNewsArticleComponent,
-  }*/ {
+  },
+  {
     path: 'new-admin',
     component: NewAdminComponent,
     canActivate: [RoleGuard],
@@ -64,28 +64,25 @@ const routes: Routes = [
   {
     path: 'view-admin',
     component: ViewAdminComponent,
-    //canActivate: [RoleGuard],
-    //data: { expectedRoles: 'ROLE_ADMIN'}
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' },
+  },
+  {
+    path: 'my-profile',
+    component: MyProfileComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN|ROLE_USER' },
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN|ROLE_USER' },
   },
   {
     path: '**',
     component: PageNotFoundComponent,
-  { 
-    path: 'my-profile', 
-    component: MyProfileComponent,
-    canActivate: [RoleGuard],
-    data: { expectedRoles: 'ROLE_ADMIN|ROLE_USER'}
   },
-  { 
-    path: 'change-password', 
-    component: ChangePasswordComponent,
-    canActivate: [RoleGuard],
-    data: { expectedRoles: 'ROLE_ADMIN|ROLE_USER'}
-  },
-  { 
-    path: '**', 
-    component: PageNotFoundComponent
-  }
 ];
 
 @NgModule({

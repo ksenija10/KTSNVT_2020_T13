@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {
   ConfirmPasswordMatcher,
@@ -24,7 +25,8 @@ export class NewAdminComponent implements OnInit {
 
   constructor(
     private adminService: AdminService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.newAdminForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -64,7 +66,8 @@ export class NewAdminComponent implements OnInit {
 
     this.adminService.createAdmin(admin).subscribe(
       (response) => {
-        this.toastr.success('Logged in successfully!');
+        this.toastr.success('Successfully added new admin');
+        this.router.navigate(['/view-admin']);
       },
       (error) => {
         if (error.error.message) {

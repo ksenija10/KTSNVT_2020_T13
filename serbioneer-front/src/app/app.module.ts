@@ -30,7 +30,7 @@ import { MapViewComponent } from './components/homepage/map-view/map-view.compon
 import { CulturalSitesTableComponent } from './components/homepage/table-view/cultural-sites-table/cultural-sites-table.component';
 import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { ApproveCommentComponent } from './components/approve-comment/approve-comment.component';
-//import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
+import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
@@ -61,7 +61,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ApproveCommentComponent,
     NewNewsArticleComponent,
     MyProfileComponent,
-    ChangePasswordComponen,
+    ChangePasswordComponent,
     NewAdminComponent,
     ViewAdminComponent,
   ],
