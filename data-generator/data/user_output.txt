@@ -1,0 +1,30 @@
+--email = krsmanija.bačkalić@email.com password = 2491
+insert into users (type, name, surname, email, password, is_active, birthday) values ('Admin', 'Krsmanija', 'Bačkalić', 'krsmanija.bačkalić@email.com', '$2b$12$6gylwlgAEOFS5qfKxgD45uSk66f.b2N9.ymRN1IRYuEcdszEie/ye', 'true', '1975-09-20');
+
+--email = isidor.zličić@email.com password = 6400
+insert into users (type, name, surname, email, password, is_active, birthday) values ('Admin', 'Isidor', 'Zličić', 'isidor.zličić@email.com', '$2b$12$XT76lgSCg.F6WMkKtYexIuU6NCoc9HDIRx6C2ytD5SkXyPv8VMa2W', 'true', '1914-10-18');
+
+--email = adam.zavišić@email.com password = 1407
+insert into users (type, name, surname, email, password, is_active, birthday) values ('Admin', 'Adam', 'Zavišić', 'adam.zavišić@email.com', '$2b$12$MR8t.6ZKTc2W48tve9lxferv0gGJ1IpVEXKOBoP44SdJ0oO.xcJv2', 'true', '1992-07-10');
+
+--email = slobodan.čičulić@email.com password = 5706
+insert into users (type, name, surname, email, password, is_active, birthday) values ('Admin', 'Slobodan', 'Čičulić', 'slobodan.čičulić@email.com', '$2b$12$T9Byl9eIzv1nzFm164b8aeP7pwqAkMsHubr6baNVlnF7p4IeVph72', 'true', '1961-12-18');
+
+--email = svetislava.predić@email.com password = 8519
+insert into users (type, name, surname, email, password, is_active, birthday) values ('Admin', 'Svetislava', 'Predić', 'svetislava.predić@email.com', '$2b$12$lmbtXk7iZ0HPhyhH47EBqeRE4oqtKcKjxIoKh9iSRTuEgD48j6gFa', 'true', '1930-12-24');
+
+--email = stamena.čiplić@email.com password = 5142
+insert into users (type, name, surname, email, password, is_active, birthday) values ('AuthenticatedUser', 'Stamena', 'Čiplić', 'stamena.čiplić@email.com', '$2b$12$tND/RLYkVS17KE6tg7x13uj1AYi5vTgBkDcrLG6LjxCcKV7PHSpSC', 'true', 'true');
+
+--email = sibinka.porobić@email.com password = 3809
+insert into users (type, name, surname, email, password, is_active, birthday) values ('AuthenticatedUser', 'Sibinka', 'Porobić', 'sibinka.porobić@email.com', '$2b$12$wQeb1mfKuqzqLBxbCS0BL.Lpm2akcUJCjbzbMYoHJRSjpoCR.6tOW', 'true', 'true');
+
+--email = strahinja.parivodić@email.com password = 4667
+insert into users (type, name, surname, email, password, is_active, birthday) values ('AuthenticatedUser', 'Strahinja', 'Parivodić', 'strahinja.parivodić@email.com', '$2b$12$Z1He7COPx1MvY3DpyBY2BecSArVdrmy0sGsKycwf6a/2LiQJOA3rO', 'true', 'true');
+
+--email = gabrijela.radišić@email.com password = 7821
+insert into users (type, name, surname, email, password, is_active, birthday) values ('AuthenticatedUser', 'Gabrijela', 'Radišić', 'gabrijela.radišić@email.com', '$2b$12$Ax3..cmU1M/sdnOjPnenu./WtH9okTMHhbKxSMAtEs/RLO7PBiwRe', 'true', 'true');
+
+--email = negomir.gilić@email.com password = 3464
+insert into users (type, name, surname, email, password, is_active, birthday) values ('AuthenticatedUser', 'Negomir', 'Gilić', 'negomir.gilić@email.com', '$2b$12$zDhBvVLOlspz77jFOtQrO.wi8WVKhGK8MWpgC6Yf9qiWX8zMdlAHq', 'true', 'true');
+
