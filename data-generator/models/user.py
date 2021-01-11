@@ -33,7 +33,7 @@ class User:
         for char in self.surname:
             ascii_surname += from_utf8_to_ascii(char)
 
-        email = self.name + "." + self.surname + "@email.com"
+        email = ascii_name + "." + ascii_surname + "@email.com"
         return email.lower()
 
     def encode_password(self):

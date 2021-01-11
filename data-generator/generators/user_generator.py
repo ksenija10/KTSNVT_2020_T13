@@ -25,7 +25,7 @@ class UserGenerator:
             output_text += admin.generate_insert()+"\n\n"
         for i in range(50, len(people)):
             user = User("users", "AuthenticatedUser", people[i][0], people[i][1], str(random.randint(1000, 9999)),
-                        "true", "true")
+                        "true", None, "true")
             output_text += user.generate_insert()+"\n\n"
 
         output_file = open(self.output_path, "w", encoding="utf-8")

@@ -15,7 +15,7 @@ insert into users (type, name, surname, email, password, activated, is_active)
 -- katarina1! gmail
 values ('AuthenticatedUser', 'Katarina', 'Donalnov', 'dolanovkatarina@gmail.com', '$2y$12$SIXeGBUz6VbA1LkQYp/U2uqqs5Ss0paG3KP4wuVEdFq9N30hXO94a', true, true);
 
-insert into users (type, name, surname, email, password, is_active) 
+insert into users (type, name, surname, email, password, is_active)
 values ('Admin', 'Ksenija', 'Prcic', 'admin2@admin.com', '$2y$12$gUay6OjlceRVx93A/bhMXekaalqkDavEEzUG43h9E9XiF0kwUXxe2', true);
 insert into users (type, name, surname, email, password, is_active)
 values ('Admin', 'Timi', 'Timic', 'admin3@admin.com', '$2y$12$gUay6OjlceRVx93A/bhMXekaalqkDavEEzUG43h9E9XiF0kwUXxe2', true);
@@ -116,3 +116,35 @@ insert into image (id, is_active, name, path, comment) values (10, true, 'name10
 insert into image (id, is_active, name, path, comment) values (11, true, 'name11', 'src/main/resources/images/comment/1/name11.png', 1);
 insert into image (id, is_active, name, path, comment) values (12, true, 'name12', 'src/main/resources/images/comment/1/name12.png', 1);
 insert into image (id, is_active, name, path, comment) values (13, true, 'name13', 'src/main/resources/images/comment/1/name13.png', 1);
+
+
+--email = krsmanija.bačkalić@email.com password = 6383
+insert into users (type, name, surname, email, password, is_active, birthday) values ('Admin', 'Krsmanija', 'Bačkalić', 'krsmanija.bačkalić@email.com', '$2b$12$CtJ4hMFe562zCCEdpjl9XO45Ky2jlhO9g5Rmc3VqqLX/l5xBbu8ji', 'true', '1955-07-23');
+
+--email = isidor.zličić@email.com password = 8447
+insert into users (type, name, surname, email, password, is_active, birthday) values ('Admin', 'Isidor', 'Zličić', 'isidor.zličić@email.com', '$2b$12$gAg3V2m1aRj4GrFUTmCwiO.8kHyVJxbeFOY.gVsRhi2iDidJXJmE2', 'true', '1973-01-06');
+
+--email = adam.zavišić@email.com password = 1286
+insert into users (type, name, surname, email, password, is_active, birthday) values ('Admin', 'Adam', 'Zavišić', 'adam.zavišić@email.com', '$2b$12$3s1VUTdkUhJh3HvJqPOlB.H8UsVbH8oRpbB33EzP.lwKesI8pBbXC', 'true', '1990-11-13');
+
+--email = slobodan.čičulić@email.com password = 3810
+insert into users (type, name, surname, email, password, is_active, birthday) values ('Admin', 'Slobodan', 'Čičulić', 'slobodan.čičulić@email.com', '$2b$12$DbzcCK7YU/lay2jL9Px28OfxxcvKiVGnU/R7UN3tCDPARswldC1Bi', 'true', '1932-06-17');
+
+--email = svetislava.predić@email.com password = 6190
+insert into users (type, name, surname, email, password, is_active, birthday) values ('Admin', 'Svetislava', 'Predić', 'svetislava.predić@email.com', '$2b$12$2IqCBWgveXoyqAtZ4WEU8uliwUh0ErYXshxjzg8BbXrxIEOi8Xuc2', 'true', '1926-09-09');
+
+--email = stamena.čiplić@email.com password = 4967
+insert into users (type, name, surname, email, password, is_active, activated) values ('AuthenticatedUser', 'Stamena', 'Čiplić', 'stamena.čiplić@email.com', '$2b$12$n3g/8UBaZ.6ExxFVhlYRLej7ZicNMw3FATDU83SJ7PTnqSbTZ9DL6', 'true', 'true');
+
+--email = sibinka.porobić@email.com password = 4634
+insert into users (type, name, surname, email, password, is_active, activated) values ('AuthenticatedUser', 'Sibinka', 'Porobić', 'sibinka.porobić@email.com', '$2b$12$torU7DnE74EgQMuEUYAcfu/tZxFLjxuJ2MR4XiHJ1VdY/52JfFgr6', 'true', 'true');
+
+--email = strahinja.parivodić@email.com password = 8825
+insert into users (type, name, surname, email, password, is_active, activated) values ('AuthenticatedUser', 'Strahinja', 'Parivodić', 'strahinja.parivodić@email.com', '$2b$12$53W9MnITqL/v7bp268G/zelMW.GsrFYUGH/kA/0mA4cmjvduRmTpi', 'true', 'true');
+
+--email = gabrijela.radišić@email.com password = 5100
+insert into users (type, name, surname, email, password, is_active, activated) values ('AuthenticatedUser', 'Gabrijela', 'Radišić', 'gabrijela.radišić@email.com', '$2b$12$9IGCrBfZ5Z3HTkoT6/B8GOYeVVVWBcVcW3FOeGTHfjVOzLLHeT7DO', 'true', 'true');
+
+--email = negomir.gilić@email.com password = 9422
+insert into users (type, name, surname, email, password, is_active, activated) values ('AuthenticatedUser', 'Negomir', 'Gilić', 'negomir.gilić@email.com', '$2b$12$N1KxSxC/mWRknv.F6iefpO021xZwm.YEwuTZmZ614aX4A7xuOaMAC', 'true', 'true');
+
