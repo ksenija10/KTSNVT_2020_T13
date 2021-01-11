@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { UserLogin } from '../model/user-login.model';
 import { environment } from '../../environments/environment';
 import { AuthenticatedUser } from '../model/authenticated-user.model';
@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthenticationService {
+
+  public role: Subject<string> = new Subject<string>();
+
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -26,9 +29,10 @@ export class AuthenticationService {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('expiresIn');
     this.router.navigate(['login-register/login']);
+    this.role.next('');
   }
 
-  loggedInUser() {
+  loggedInUser(): string {
     const token = localStorage.getItem('jwtToken');
     const jwt: JwtHelperService = new JwtHelperService();
 

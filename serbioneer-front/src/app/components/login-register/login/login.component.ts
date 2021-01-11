@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
           // preusmerenje
           this.router.navigate(['homepage']);
+          this.authService.role.next(this.authService.loggedInUser());
         },
         (error) => {
           if(error.error.message) {
@@ -68,6 +69,8 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
         }
       )
+    
+      
   }
 
   getEmailErrorMessage() {

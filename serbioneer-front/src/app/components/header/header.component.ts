@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -9,7 +10,11 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+
+  role: string = '';
+  subscription!: Subscription;
+
   constructor(
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
@@ -25,7 +30,13 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(
+  ): void {
+    this.subscription = this.authenticationService.role
+        .subscribe(role => {
+          this.role = role;
+        })
+  }
 
   onHome(): void {
     this.router.navigate(['homepage']);
@@ -33,5 +44,13 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.authenticationService.logout();
+  }
+
+  onClick(path: string) {
+    this.router.navigate([path]);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

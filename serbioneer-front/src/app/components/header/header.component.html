@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <button mat-icon-button aria-label="Home icon-button with logo"
+    <button mat-icon-button class="home" aria-label="Home icon-button with logo"
         (click)="onHome()">
     <a>
         <span class="flag red">Serb</span>
@@ -9,9 +9,24 @@
     </a>
         <mat-icon svgIcon="logo"></mat-icon>
     </button>
+    
     <span class="logout-span"></span>
-    <button mat-raised-button color="primary" type="button" (click)="logout()">Logout</button>
+    <div class="button-container" *ngIf = "role==='ROLE_USER'">
+        <button mat-raised-button type="button" (click)="onClick('newsfeed')">Newsfeed</button>
+        <button mat-raised-button type="button" (click)="onClick('homepage')">Cultural sites</button> 
+        <button mat-raised-button  type="button" (click)="onClick('subscribed')">Subscribed</button>
+    </div>
+
+    <div class="button-container" *ngIf = "role==='ROLE_ADMIN'">
+        <button mat-raised-button type="button" (click)="onClick('homepage')">Cultural sites</button> 
+        <button mat-raised-button  type="button" (click)="onClick('add-site')">Add site</button>
+        <button mat-raised-button  type="button" (click)="onClick('categories')">Categories</button>
+        <button mat-raised-button  type="button" (click)="onClick('pending-comments')">Pending comments</button>
+        <button mat-raised-button  type="button" (click)="onClick('view-admin')">View admins</button>
+    </div>
     
-    
+
+    <span class="logout-span"></span>
+    <button *ngIf = "role!==''"mat-raised-button color="primary" type="button" (click)="logout()">Logout</button>
     
 </mat-toolbar>
