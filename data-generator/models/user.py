@@ -14,15 +14,18 @@ class User:
         self.birthday = birthday
 
     def generate_insert(self):
-        query = "--email = " + self.email + " password = " + self.password + "\n"
+        query = "--email = {} password = {} \n".format(self.email, self.password)
         if self.birthday is None:
-            query += "insert into " + self.table_name + " (type, name, surname, email, password, is_active, activated) "
-            query += "values ('" + self.user_type + "', '" + self.name + "', '" + self.surname + "', '" + self.email + "', '" + self.encode_password() \
-                     + "', '" + self.is_active + "', '" + self.activated + "');"
+            query += "insert into {} (type, name, surname, email, password, is_active, activated) \nvalues ('{}', " \
+                     "'{}', '{}', '{}', '{}', '{}', '{}');".format(self.table_name, self.user_type, self.name,
+                                                                   self.surname, self.email, self.password,
+                                                                   self.is_active, self.activated)
         else:
-            query += "insert into " + self.table_name + " (type, name, surname, email, password, is_active, birthday) "
-            query += "values ('" + self.user_type + "', '" + self.name + "', '" + self.surname + "', '" + self.email + "', '" + self.encode_password() \
-                     + "', '" + self.is_active + "', '" + str(self.birthday) + "');"
+            query += "insert into {} (type, name, surname, email, password, is_active,, birthday) \nvalues ('{}', " \
+                     "'{}', '{}', '{}', '{}', '{}', '{}');".format(self.table_name, self.user_type, self.name,
+                                                                   self.surname, self.email, self.password,
+                                                                   self.is_active, str(self.birthday))
+
         return query
 
     def generate_email(self):

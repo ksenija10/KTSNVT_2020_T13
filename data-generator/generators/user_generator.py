@@ -22,15 +22,19 @@ class UserGenerator:
         for i in range(50):
             admin = User("users", "Admin", people[i][0], people[i][1], str(random.randint(1000, 9999)),
                          "true", generate_date())
-            output_text += admin.generate_insert()+"\n\n"
+            output_text += admin.generate_insert() + "\n" + generate_authority(7 + i, 1) + "\n\n"
         for i in range(50, len(people)):
             user = User("users", "AuthenticatedUser", people[i][0], people[i][1], str(random.randint(1000, 9999)),
                         "true", None, "true")
-            output_text += user.generate_insert()+"\n\n"
+            output_text += user.generate_insert() + "\n" + generate_authority(7 + i, 2) + "\n\n"
 
         output_file = open(self.output_path, "w", encoding="utf-8")
         output_file.write(output_text)
         output_file.close()
+
+
+def generate_authority(user_id, authority_id):
+    return "insert into user_authority (user_id, authority_id) values ({}, {})".format(user_id, authority_id)
 
 
 def generate_date():
