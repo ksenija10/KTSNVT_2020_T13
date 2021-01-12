@@ -34,7 +34,7 @@ class UserGenerator:
 
 
 def generate_authority(user_id, authority_id):
-    return "insert into user_authority (user_id, authority_id) values ({}, {})".format(user_id, authority_id)
+    return "insert into user_authority (user_id, authority_id) values ({}, {});".format(user_id, authority_id)
 
 
 def generate_date():

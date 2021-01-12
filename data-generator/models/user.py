@@ -18,12 +18,12 @@ class User:
         if self.birthday is None:
             query += "insert into {} (type, name, surname, email, password, is_active, activated) \nvalues ('{}', " \
                      "'{}', '{}', '{}', '{}', '{}', '{}');".format(self.table_name, self.user_type, self.name,
-                                                                   self.surname, self.email, self.password,
+                                                                   self.surname, self.email, self.encode_password(),
                                                                    self.is_active, self.activated)
         else:
-            query += "insert into {} (type, name, surname, email, password, is_active,, birthday) \nvalues ('{}', " \
+            query += "insert into {} (type, name, surname, email, password, is_active, birthday) \nvalues ('{}', " \
                      "'{}', '{}', '{}', '{}', '{}', '{}');".format(self.table_name, self.user_type, self.name,
-                                                                   self.surname, self.email, self.password,
+                                                                   self.surname, self.email, self.encode_password(),
                                                                    self.is_active, str(self.birthday))
 
         return query
