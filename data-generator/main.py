@@ -3,6 +3,7 @@ from generators.cultural_category_generator import CulturalCategoryGenerator
 from generators.category_type_generator import CategoryTypeGenerator
 from generators.cultural_site_generator import CulturalSiteGenerator
 from generators.comment_generator import CommentGenerator
+from generators.news_generator import NewsGenerator
 import time
 
 
@@ -72,13 +73,22 @@ def generate_comments(users, sites):
     return comments
 
 
+def generate_news(sites):
+    news_generator = NewsGenerator("./data/output/news_output.txt", sites)
+    print("Start generating news")
+    start = time.time()
+    news = news_generator.generate()
+    end = time.time()
+    print("Finished generating news")
+    print(end - start, "\n")
+    return news
+
+
 if __name__ == '__main__':
     category_dictionary = generate_categories()
     category_types_dictionary = generate_types(category_dictionary)
     cultural_sites_dictionary = generate_cultural_sites(category_types_dictionary)
+    # users_dictionary = generate_users_test()
+    # comment_dictionary = generate_comments(users_dictionary, cultural_sites_dictionary)
+    news_dictionary = generate_news(cultural_sites_dictionary)
 
-    users_dictionary = generate_users_test()
-
-    comment_dictionary = generate_comments(users_dictionary, cultural_sites_dictionary)
-    print(len(comment_dictionary))
-    print(comment_dictionary)
