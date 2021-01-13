@@ -1,0 +1,375 @@
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 8, 703, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 8, 565, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 8, 215, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 8, 173, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 8, 551, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 9, 1091, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 9, 818, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 9, 925, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 9, 202, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 9, 1028, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 10, 168, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 10, 996, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 10, 968, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 10, 601, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 10, 742, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 11, 343, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 11, 286, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 11, 693, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 11, 323, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 11, 1126, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 12, 34, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 12, 265, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 12, 166, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 12, 141, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 12, 404, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 13, 315, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 13, 129, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 13, 1162, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 13, 105, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 13, 856, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 14, 1077, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 14, 723, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 14, 295, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 14, 297, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 14, 779, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 15, 1071, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 15, 561, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 15, 812, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 15, 328, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 15, 604, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 16, 871, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 16, 917, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 16, 59, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 16, 582, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 16, 709, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 17, 524, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 17, 971, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 17, 451, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 17, 488, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 17, 116, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 18, 912, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 18, 440, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 18, 1174, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 18, 160, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 18, 747, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 19, 928, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 19, 212, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 19, 729, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 19, 811, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 19, 553, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 20, 1036, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 20, 306, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 20, 1100, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 20, 646, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 20, 120, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 21, 197, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 21, 17, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 21, 573, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 21, 762, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 21, 219, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 22, 635, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 22, 769, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 22, 957, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 22, 463, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 22, 182, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 23, 726, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 23, 179, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 23, 1143, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 23, 617, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 23, 553, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 24, 207, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 24, 36, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 24, 445, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 24, 153, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 24, 852, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 25, 657, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 25, 1113, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 25, 622, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 25, 800, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 25, 572, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 26, 988, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 26, 1146, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 26, 886, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 26, 1112, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 26, 622, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 27, 651, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 27, 701, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 27, 39, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 27, 908, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 27, 231, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 28, 525, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 28, 320, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 28, 644, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 28, 309, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 28, 741, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 29, 933, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 29, 1189, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 29, 393, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 29, 1090, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 29, 11, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 30, 720, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 30, 196, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 30, 641, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 30, 441, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 30, 316, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 31, 346, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 31, 627, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 31, 606, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 31, 1035, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 31, 924, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 32, 707, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 32, 88, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 32, 151, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 32, 1128, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 32, 599, true);
+

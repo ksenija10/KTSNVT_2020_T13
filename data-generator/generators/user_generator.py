@@ -10,28 +10,55 @@ class UserGenerator(Generator):
         self.data_path = "./data/imena.txt"
 
     def generate(self):
-        input_file = open(self.data_path, 'r', encoding="utf-8")
-        people = []
-        line = input_file.readline()
-        while line != "":
-            people.append((line.split(" ")[0], line.split(" ")[1].rstrip("\n")))
+        with open(self.data_path, 'r', encoding="utf-8") as input_file:
+            people = []
             line = input_file.readline()
-        input_file.close()
+            while line != "":
+                people.append((line.split(" ")[0], line.split(" ")[1].rstrip("\n")))
+                line = input_file.readline()
 
+        users_dictionary = {}
         output_text = ""
         for i in range(50):
             admin = User("users", "true", "Admin", people[i][0], people[i][1], str(random.randint(1000, 9999)),
                          generate_date())
+            users_dictionary[i + 1 + 7] = admin
             output_text += admin.generate_insert() + "\n" + generate_authority(7 + i, 1) + "\n\n"
         for i in range(50, len(people)):
             user = User("users", "true", "AuthenticatedUser", people[i][0], people[i][1],
                         str(random.randint(1000, 9999)),
                         None, "true")
+            users_dictionary[i + 1 + 7] = user
             output_text += user.generate_insert() + "\n" + generate_authority(7 + i, 2) + "\n\n"
 
-        output_file = open(self.output_path, "w", encoding="utf-8")
-        output_file.write(output_text)
-        output_file.close()
+        with open(self.output_path, "w", encoding="utf-8") as output_file:
+            output_file.write(output_text)
+
+        return users_dictionary
+
+    def generate_test(self):
+        with open(self.data_path, 'r', encoding="utf-8") as input_file:
+            people = []
+            line = input_file.readline()
+            while line != "":
+                people.append((line.split(" ")[0], line.split(" ")[1].rstrip("\n")))
+                line = input_file.readline()
+
+        users_dictionary = {}
+        output_text = ""
+        for i in range(5):
+            admin = User("users", "true", "Admin", people[i][0], people[i][1], str(random.randint(1000, 9999)),
+                         generate_date())
+            users_dictionary[i + 1 + 7] = admin
+            output_text += admin.generate_insert() + "\n" + generate_authority(7 + i, 1) + "\n\n"
+        for i in range(5, 25):
+            user = User("users", "true", "AuthenticatedUser", people[i][0], people[i][1],
+                        str(random.randint(1000, 9999)),
+                        None, "true")
+            users_dictionary[i + 1 + 7] = user
+            output_text += user.generate_insert() + "\n" + generate_authority(7 + i, 2) + "\n\n"
+        # print(output_text)
+        return users_dictionary
 
 
 def generate_authority(user_id, authority_id):

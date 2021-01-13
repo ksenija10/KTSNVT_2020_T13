@@ -36,11 +36,58 @@ insert into cultural_category (name, is_active) values ('Manifestacija', true);
 insert into cultural_category (name, is_active) values ('Kulturno nasledje', true);
 
 -- tipovi kategorije
-insert into category_type (name, category_id, is_active) values ('Biblioteka', 1, true);
-insert into category_type (name, category_id, is_active) values ('Pozorište', 1, true);
-insert into category_type (name, category_id, is_active) values ('Festival', 2, true);
-insert into category_type (name, category_id, is_active) values ('Sajam', 2, true);
-insert into category_type (name, category_id, is_active) values ('Spomenik', 3, true);
+insert into category_type (name, category_id, is_active)
+values ('Biblioteka', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Pozorište', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Muzej', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Univerzitet', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Bioskop', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Galerija', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Koncertna dvorana', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Kulturni centar', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Festival', 2, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Sajam', 2, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Izložba', 2, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Karneval', 2, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Vašar', 2, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Tvrđava', 3, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Zadužbina', 3, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Manastir', 3, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Arheološko nalazište', 3, true);
+
+
 
 -- kulturna dobra
 insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
@@ -15113,4 +15160,5174 @@ insert into user_authority (user_id, authority_id) values (3005, 2);
 insert into users (type, name, surname, email, password, is_active, activated)
 values ('AuthenticatedUser', 'Selena', 'Knežić', 'selena.knezic@email.com', '$2b$12$IwUT8Pjm3Hc.PifG5l6HG.1qaB5mIwWA8ZYvXB72FuI5ZnPyERONq', 'true', 'true');
 insert into user_authority (user_id, authority_id) values (3006, 2);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Kornelije Tačić', 44.093202, 21.443975, 'Ulica Darko Galetić 70', 'Despotovac',
+'', 3.6, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Rekovac', 43.860913, 21.095774, 'Ulica Njegovan Nastasić 107', 'Rekovac',
+'', 4.0, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Leskovac', 42.997558, 21.944496, 'Ulica Hristina Čalić 119', 'Leskovac',
+'', 2.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Ljubo Đujić', 45.941516, 20.146023, 'Ulica Obradin Gačić 111', 'Čoka',
+'', 2.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Sečanj', 45.367638, 20.773205, 'Ulica Milentije Jelisić 41', 'Sečanj',
+'', 4.5, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Batočina', 44.154749, 21.07991, 'Ulica Stojmen Bijanić 50', 'Batočina',
+'', 3.0, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Koceljeva', 44.468716, 19.82139, 'Ulica Željka Bakić 108', 'Koceljeva',
+'', 4.1, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Laza Erić', 44.010876, 20.909029, 'Ulica Soka Đuretić 43', 'Kragujevac',
+'', 4.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Obrenovac', 44.653889, 20.2, 'Ulica Aran|el Brezonić 3', 'Obrenovac',
+'', 2.0, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Cviko Jovelić', 43.998702, 19.907859, 'Ulica Draginja Vučić 91', 'Kosjerić',
+'', 2.5, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Žabari', 44.356169, 21.214256, 'Ulica Ranka Lotić 92', 'Žabari',
+'', 4.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Vukosava Krezić', 44.652912, 21.630772, 'Ulica Srđan Kojdić 36', 'Golubac',
+'', 3.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Žagubica', 44.197863, 21.790196, 'Ulica Filotej Vojičić 17', 'Žagubica',
+'', 3.2, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Irena Tičić', 45.229228, 21.123827, 'Ulica Antonije Jevrić 117', 'Plandište',
+'', 4.6, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Srbobran', 45.548098, 19.795377, 'Ulica Selimir Podraščić 32', 'Srbobran',
+'', 2.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Višeslav Košprdić', 43.28595, 20.613515, 'Ulica Tugomir Vasiljkić 69', 'Raška',
+'', 4.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Đurica Dostičić', 44.081885, 22.096673, 'Ulica Fema Mirčić 86', 'Bor',
+'', 2.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Svilajnac', 44.238271, 21.196994, 'Ulica Mojsilo Piljagić 91', 'Svilajnac',
+'', 2.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Ratimir Spasić', 45.206014, 20.294882, 'Ulica Varvara Balšić 8', 'Titel',
+'', 4.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Đurđija Lejić', 44.271955, 19.887437, 'Ulica Zlatibor Bondžić 96', 'Valjevo',
+'', 2.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Irig', 45.100148, 19.860301, 'Ulica Vladeta Motičić 67', 'Irig',
+'', 2.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Valerija Vučenić', 43.460026, 19.811677, 'Ulica Ranka Lotić 87', 'Nova Varoš',
+'', 3.6, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Bač', 45.392276, 19.236684, 'Ulica Sibin Buckić 59', 'Bač',
+'', 4.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Luka Balotić', 43.860816, 20.138434, 'Ulica Teodora Mosić 116', 'Lučani',
+'', 2.5, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Snežana Melentić', 45.802655, 20.128509, 'Ulica Vasilija Glavendekić 94', 'Ada',
+'', 3.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Njegosava Šalinić', 45.610866, 19.527391, 'Ulica Božidarka Joldić 9', 'Kula',
+'', 4.2, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Njegoš Jojkić', 44.901485, 21.423394, 'Ulica Željka Bakić 14', 'Bela Crkva',
+'', 4.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Stanija Pusulić', 45.392276, 19.236684, 'Ulica Aleksa Vuksić 88', 'Bač',
+'', 2.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Vojin Ludajić', 44.252423, 20.081707, 'Ulica Željka Žurkić 21', 'Mionica',
+'', 4.5, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Aran|el Bjeletić', 45.374078, 20.0707, 'Ulica Petar Pljakić 98', 'Žabalj',
+'', 2.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Radul Strinić', 43.845852, 20.036774, 'Ulica Anđelka Budinčić 89', 'Požega',
+'', 3.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Živadinka Dašić', 43.294312, 22.009906, 'Ulica Anđelija Tanasić 21', 'Niška Banja',
+'', 4.0, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Kojadin Jovanikić', 45.127597, 19.226675, 'Ulica Mira Marodić 78', 'Šid',
+'', 2.5, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Kladovo', 44.607292, 22.615474, 'Ulica Sretenka Bačkalić 24', 'Kladovo',
+'', 2.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Kojadin Jovanikić', 43.719517, 21.371223, 'Ulica Stojadinka Barajić 58', 'Varvarin',
+'', 2.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Barajevo', 44.579011, 20.417895, 'Ulica Todora Stavrić 55', 'Barajevo',
+'', 2.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Želimir Konculić', 44.531179, 19.242668, 'Ulica Đurđija Lejić 95', 'Loznica',
+'', 3.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Kostolac', 44.713559, 21.169287, 'Ulica Milojka Bačkalić 60', 'Kostolac',
+'', 2.9, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Petruška Drinić', 44.367619, 19.36327, 'Ulica Miodrag Mileusnić 9', 'Krupanj',
+'', 4.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Uroš Bosiljkić', 44.332338, 21.075132, 'Ulica Stojadinka Barajić 92', 'Velika Plana',
+'', 4.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Krupanj', 44.367619, 19.36327, 'Ulica Vlastimir Koljenšić 119', 'Krupanj',
+'', 3.2, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Kanjiža', 46.063472, 20.050403, 'Ulica Krsmanija Dančejić 64', 'Kanjiža',
+'', 2.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Stojiljko Nišavić', 43.273545, 20.000368, 'Ulica Ristivoj Eskić 105', 'Sjenica',
+'', 2.6, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Spasoje Kosanić', 44.44184, 20.697007, 'Ulica Njegosava Šalinić 9', 'Mladenovac',
+'', 2.9, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Spasoje Miljanić', 45.007858, 19.817096, 'Ulica Šiško Malečić 112', 'Ruma',
+'', 3.9, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Borisav Tominčić', 42.997558, 21.944496, 'Ulica Ljiljana Baltić 20', 'Leskovac',
+'', 3.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Radojko Stanarčić', 45.927334, 20.078859, 'Ulica Prvoslav Bogatić 49', 'Senta',
+'', 2.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Smederevska Palanka', 44.365381, 20.962273, 'Ulica Olja Klisurić 24', 'Smederevska Palanka',
+'', 2.6, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Ratimir Spasić', 42.307058, 21.650034, 'Ulica Marinko Trošić 56', 'Preševo',
+'', 2.0, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Sojka Grozdanić', 43.541667, 21.707778, 'Ulica Buda Mejić 84', 'Aleksinac',
+'', 2.2, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Valjevo', 44.271955, 19.887437, 'Ulica Aleksija Zaradić 58', 'Valjevo',
+'', 2.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Valjevo', 44.271955, 19.887437, 'Ulica Ilija Pajić 44', 'Valjevo',
+'', 2.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Sopot', 44.519348, 20.575785, 'Ulica Leonora Pašajlić 101', 'Sopot',
+'', 3.6, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Gruja Opojevlić', 43.296964, 21.272727, 'Ulica Čeda Jojić 16', 'Blace',
+'', 2.1, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Gvozden Smikić', 45.374078, 20.0707, 'Ulica Jelenko Džekulić 102', 'Žabalj',
+'', 3.9, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Zorica Anđić', 44.307663, 20.561163, 'Ulica Stojadinka Barajić 55', 'Aranđelovac',
+'', 2.9, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Golubac', 44.652912, 21.630772, 'Ulica Svetoje Hadži Jovančić 37', 'Golubac',
+'', 3.6, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Olja Prelić', 43.845852, 20.036774, 'Ulica Cane Raulić 105', 'Požega',
+'', 4.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Leskovac', 42.997558, 21.944496, 'Ulica Đokica Čeleketić 38', 'Leskovac',
+'', 3.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Sombor', 45.774239, 19.115068, 'Ulica Đukan Sofijanić 47', 'Sombor',
+'', 4.5, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Grocka', 44.67204, 20.715286, 'Ulica Đurđevka Kojčić 69', 'Grocka',
+'', 3.1, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Svrljig', 43.412867, 22.125209, 'Ulica Grozdan Vujetić 7', 'Svrljig',
+'', 2.1, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Radoš Budurić', 42.708202, 22.066365, 'Ulica Svetoje Hadži Jovančić 39', 'Vladičin Han',
+'', 3.9, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Merošina', 43.281278, 21.721834, 'Ulica Julija Purišić 5', 'Merošina',
+'', 2.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Radenko Skakić', 43.28595, 20.613515, 'Ulica Stanojlo Cvikić 91', 'Raška',
+'', 3.9, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Ćićevac', 43.719967, 21.443617, 'Ulica Zagorka Čeleketić 53', 'Ćićevac',
+'', 3.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Srbobran', 45.548098, 19.795377, 'Ulica Julija Purišić 41', 'Srbobran',
+'', 2.0, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Beočin', 45.191649, 19.724962, 'Ulica Velibor Cajić 24', 'Beočin',
+'', 3.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Suncica Lupikić', 44.976389, 19.612222, 'Ulica Metodije Bekić 3', 'Sremska Mitrovica',
+'', 3.0, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Veliko Gradište', 44.763811, 21.516251, 'Ulica Glorija Nikolčić 4', 'Veliko Gradište',
+'', 2.6, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Veliko Gradište', 44.763811, 21.516251, 'Ulica Veroslava Bukilić 2', 'Veliko Gradište',
+'', 4.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Zvezdana Ulardžić', 43.860816, 20.138434, 'Ulica Ivko Peričić 98', 'Lučani',
+'', 4.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Teodora Mosić', 42.555997, 21.900236, 'Ulica Ceca Mirotić 89', 'Vranje',
+'', 3.6, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Zemun', 44.840696, 20.397853, 'Ulica Golub Timilić 86', 'Zemun',
+'', 2.6, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Pančevo', 44.87131, 20.644304, 'Ulica Borisav Grumić 19', 'Pančevo',
+'', 3.2, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Petrovac na Mlavi', 44.377283, 21.41976, 'Ulica Tadija Aćimić 119', 'Petrovac na Mlavi',
+'', 3.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Aranđelovac', 44.307663, 20.561163, 'Ulica Goran Ljubičić 46', 'Aranđelovac',
+'', 2.5, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Darko Ugrčić', 44.367619, 19.36327, 'Ulica Irena Tičić 66', 'Krupanj',
+'', 3.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Nemanja Krstić', 44.615776, 19.784303, 'Ulica Aleksandra Šabeljić 77', 'Vladimirci',
+'', 4.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Boljevac', 43.832131, 21.960899, 'Ulica Anđelija Koljančić 15', 'Boljevac',
+'', 2.0, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Žagubica', 44.197863, 21.790196, 'Ulica Cane Raulić 95', 'Žagubica',
+'', 4.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Aranđelovac', 44.307663, 20.561163, 'Ulica Aksentije Kusonić 46', 'Aranđelovac',
+'', 3.1, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Jagodina', 43.97913, 21.258311, 'Ulica Metodije Bekić 46', 'Jagodina',
+'', 3.0, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Bajina Bašta', 43.970917, 19.565524, 'Ulica Pantelija Divić 89', 'Bajina Bašta',
+'', 3.2, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Batočina', 44.154749, 21.07991, 'Ulica Ćile Bogičić 31', 'Batočina',
+'', 3.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Inđija', 45.048162, 20.081647, 'Ulica Hristina Čalić 38', 'Inđija',
+'', 3.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Stojmen Žikelić', 44.197863, 21.790196, 'Ulica Vitomir Radetić 36', 'Žagubica',
+'', 4.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Suncica Lupikić', 43.222289, 22.033287, 'Ulica Milivoj Pavlekić 109', 'Gadžin Han',
+'', 4.3, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Ljiljana Baltić', 43.16165, 22.58713, 'Ulica Ranka Lotić 37', 'Pirot',
+'', 3.0, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Sandra Kovjenić', 43.674425, 21.549205, 'Ulica Tugomir Budinčić 22', 'Ražanj',
+'', 2.6, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Babušnica', 43.067962, 22.411508, 'Ulica Nićifor Kulić 85', 'Babušnica',
+'', 4.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Leonora Pašajlić', 44.367619, 19.36327, 'Ulica Obradinka Vajagić 58', 'Krupanj',
+'', 3.1, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Kragujevac', 44.010876, 20.909029, 'Ulica Simeon Ananić 76', 'Kragujevac',
+'', 3.2, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Rumenka Bunić', 43.222289, 22.033287, 'Ulica Stojmen Bijanić 111', 'Gadžin Han',
+'', 4.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Novi Bečej', 45.601466, 20.136361, 'Ulica Prvoslavka Garčić 116', 'Novi Bečej',
+'', 2.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Hristina Čalić', 43.901871, 22.275511, 'Ulica Stojanka Irić 103', 'Zaječar',
+'', 3.2, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Sokobanja', 43.645293, 21.869178, 'Ulica Stanojlo Drapić 64', 'Sokobanja',
+'', 4.4, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Đurica Dostičić', 43.16165, 22.58713, 'Ulica Obrad Ćosić 6', 'Pirot',
+'', 3.0, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Borislav Čembić', 44.652912, 21.630772, 'Ulica Sofronije Jasnić 28', 'Golubac',
+'', 2.8, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Biblioteka Jagodina', 43.97913, 21.258311, 'Ulica Jovan Đuketić 69', 'Jagodina',
+'', 4.7, 1, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Beočin', 45.191649, 19.724962, 'Ulica Ljubo Bokić 77', 'Beočin',
+'', 2.3, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Golub Timilić', 44.794368, 20.278136, 'Ulica Glorija Nikolčić 111', 'Surčin',
+'', 2.7, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Gruja Glumičić', 44.356169, 21.214256, 'Ulica Prvoslavka Garčić 101', 'Žabari',
+'', 2.7, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Gradimirka Špoljić', 45.007858, 19.817096, 'Ulica Kirilo Barnić 44', 'Ruma',
+'', 2.3, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Fema Mirčić', 44.840696, 20.397853, 'Ulica Čeda Jojić 25', 'Zemun',
+'', 3.6, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Željka Uverić', 44.25442, 20.682437, 'Ulica Stojmen Žikelić 49', 'Topola',
+'', 3.7, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Bogatić', 44.8376, 19.480699, 'Ulica Bogoljub Stikić 93', 'Bogatić',
+'', 2.2, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Ljubovija', 44.189574, 19.378486, 'Ulica Ivanka Perutić 34', 'Ljubovija',
+'', 4.2, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Rača', 44.22685, 20.978954, 'Ulica Fotije Dančejić 74', 'Rača',
+'', 4.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Vukica Kodžopeljić', 44.67204, 20.715286, 'Ulica Vladimir Čaprnjić 82', 'Grocka',
+'', 4.3, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Milojka Bačkalić', 45.191649, 19.724962, 'Ulica Dušica Tejić 59', 'Beočin',
+'', 4.1, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Kovin', 44.748222, 20.976599, 'Ulica Tina Dabarčić 61', 'Kovin',
+'', 4.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Liza Kljutić', 43.860913, 21.095774, 'Ulica Stojanka Krsmanić 25', 'Rekovac',
+'', 4.0, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Kojadin Jovanikić', 45.251876, 19.391649, 'Ulica Đurica Dostičić 108', 'Bačka Palanka',
+'', 3.0, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Lazarevac', 44.379722, 20.263889, 'Ulica Prvoslavka Garčić 5', 'Lazarevac',
+'', 2.0, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Kovin', 44.748222, 20.976599, 'Ulica Ognjen Cvišić 54', 'Kovin',
+'', 2.7, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Niš', 43.323356, 21.901779, 'Ulica Čeda Jojić 15', 'Niš',
+'', 3.6, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Sremski Karlovci', 45.202095, 19.932455, 'Ulica Radojka Bavrlić 42', 'Sremski Karlovci',
+'', 4.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Pajka Bajić', 42.460618, 21.766552, 'Ulica Dragana Pirivatrić 16', 'Bujanovac',
+'', 4.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Leontijr Canić', 43.384599, 21.028883, 'Ulica Mateja Kesić 9', 'Brus',
+'', 4.2, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Obradin Gačić', 44.713559, 21.169287, 'Ulica Jana Žmurić 14', 'Kostolac',
+'', 4.1, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Manojlo Josić', 43.928388, 21.374491, 'Ulica Ristivoj Eskić 28', 'Ćuprija',
+'', 2.0, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Osečina', 44.372836, 19.600976, 'Ulica Antonije Jevrić 100', 'Osečina',
+'', 3.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Stojanka Irić', 43.860816, 20.138434, 'Ulica Tihomir Bizumić 119', 'Lučani',
+'', 4.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Zemun', 44.840696, 20.397853, 'Ulica Vasilije Kljutić 105', 'Zemun',
+'', 2.8, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Latinka Mickić', 42.842007, 21.585811, 'Ulica Zlatomir Aćimić 81', 'Medveđa',
+'', 4.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Maksim Pušeljić', 43.460895, 21.053911, 'Ulica Pelagija Sretić 65', 'Aleksandrovac',
+'', 2.0, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Čajetina', 43.749736, 19.714951, 'Ulica Vukica Kodžopeljić 60', 'Čajetina',
+'', 4.5, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Koviljka Čkrkić', 43.323356, 21.901779, 'Ulica Vladeta Bogdanić 99', 'Niš',
+'', 3.0, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Mašinka Pop Lazić', 45.802655, 20.128509, 'Ulica Maksim Pušeljić 63', 'Ada',
+'', 2.7, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Šiško Malečić', 44.154749, 21.07991, 'Ulica Spasoje Miljanić 55', 'Batočina',
+'', 4.6, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Ranđa Džajić', 42.807114, 22.324661, 'Ulica Anđelija Tanasić 103', 'Crna Trava',
+'', 2.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Aleksa Prekogačić', 43.281278, 21.721834, 'Ulica Anđelija Koljančić 13', 'Merošina',
+'', 4.3, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Tugomir Budinčić', 42.917129, 21.729449, 'Ulica Dušica Tejić 48', 'Lebane',
+'', 3.9, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Aleksinac', 43.541667, 21.707778, 'Ulica Dragica Kiklić 17', 'Aleksinac',
+'', 4.6, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Evica Plazinić', 45.007858, 19.817096, 'Ulica Kirilo Mačkić 103', 'Ruma',
+'', 2.2, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Vladeta Bogdanić', 43.294312, 22.009906, 'Ulica Cane Igić 120', 'Niška Banja',
+'', 2.6, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Doljevac', 43.196833, 21.833398, 'Ulica Vasilija Glavendekić 108', 'Doljevac',
+'', 2.2, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Odžaci', 45.50763, 19.260601, 'Ulica Stefan Borongić 9', 'Odžaci',
+'', 4.1, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Golub Timilić', 42.965907, 22.127178, 'Ulica Taško Smilić 89', 'Vlasotince',
+'', 4.5, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Lebane', 42.917129, 21.729449, 'Ulica Oliver Radanić 68', 'Lebane',
+'', 3.2, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Nova Crnja', 45.668517, 20.604206, 'Ulica Sofronije Jasnić 57', 'Nova Crnja',
+'', 4.8, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Emil Timilić', 43.859155, 21.41191, 'Ulica Stanojlo Sretić 61', 'Paraćin',
+'', 2.1, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Žabari', 44.356169, 21.214256, 'Ulica Fema Mirčić 118', 'Žabari',
+'', 4.5, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Čoka', 45.941516, 20.146023, 'Ulica Ilija Tiragić 5', 'Čoka',
+'', 3.9, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Jovan Đuketić', 44.8376, 19.480699, 'Ulica Milisav Drinčić 72', 'Bogatić',
+'', 2.1, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Sremski Karlovci', 45.202095, 19.932455, 'Ulica Gruja Glumičić 79', 'Sremski Karlovci',
+'', 2.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Kornelije Tačić', 44.422847, 21.935837, 'Ulica Marinko Trošić 50', 'Majdanpek',
+'', 3.0, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Miodrag Mileusnić', 44.87131, 20.644304, 'Ulica Slavoljub Rusalić 25', 'Pančevo',
+'', 3.9, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Milica Pirivatrić', 44.748222, 20.976599, 'Ulica Persida Zjačić 50', 'Kovin',
+'', 4.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Teodosije Radisavić', 42.3514, 22.092091, 'Ulica Manojlo Josić 7', 'Trgovište',
+'', 3.0, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Ivica Tomišić', 44.22685, 20.978954, 'Ulica Ranka Lotić 88', 'Rača',
+'', 4.3, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Šabac', 44.753841, 19.687569, 'Ulica Jelika Opojevlić 60', 'Šabac',
+'', 2.3, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Titel', 45.206014, 20.294882, 'Ulica Dragana Pirivatrić 24', 'Titel',
+'', 4.6, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Zagorka Čeleketić', 45.67092, 18.984344, 'Ulica Srećko Čupić 101', 'Apatin',
+'', 2.2, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Smederevo', 44.651575, 20.925777, 'Ulica Simeon Ananić 75', 'Smederevo',
+'', 4.8, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Knjaževac', 43.566696, 22.25393, 'Ulica Sava Taricić 30', 'Knjaževac',
+'', 4.6, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Sibin Buckić', 43.845852, 20.036774, 'Ulica Njegoslav Oparušić 107', 'Požega',
+'', 2.2, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Lebane', 42.917129, 21.729449, 'Ulica Katica Magdelinić 28', 'Lebane',
+'', 4.8, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Kragujevac', 44.010876, 20.909029, 'Ulica Njegoslav Mirkić 113', 'Kragujevac',
+'', 4.3, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Ratiborka Kebeljić', 45.367638, 20.773205, 'Ulica Stanojlo Dejanić 85', 'Sečanj',
+'', 4.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Niška Banja', 43.294312, 22.009906, 'Ulica Grujica Maćić 38', 'Niška Banja',
+'', 3.9, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Ćile Bogičić', 44.457197, 20.076242, 'Ulica Mojsilo Piljagić 105', 'Ub',
+'', 3.3, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Paun Matušić', 42.690358, 22.170416, 'Ulica Živojin Potulić 101', 'Surdulica',
+'', 2.5, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Đoka Misić', 46.063472, 20.050403, 'Ulica Stamenija Pribić 43', 'Kanjiža',
+'', 4.6, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Bojnik', 43.014188, 21.717967, 'Ulica Ognjen Cvišić 21', 'Bojnik',
+'', 3.1, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Cvetomir Stakić', 44.379722, 20.263889, 'Ulica Sandra Kovjenić 94', 'Lazarevac',
+'', 3.2, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Obradin Jondić', 44.25442, 20.682437, 'Ulica Jelenko Strojić 19', 'Topola',
+'', 2.2, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Radoš Budurić', 42.965907, 22.127178, 'Ulica Valerija Vučenić 28', 'Vlasotince',
+'', 3.8, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Apatin', 45.67092, 18.984344, 'Ulica Đurica Bisić 11', 'Apatin',
+'', 4.5, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Mitar Talpešić', 43.384599, 21.028883, 'Ulica Gruja Stevlić 36', 'Brus',
+'', 2.8, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Teodora Mosić', 43.845852, 20.036774, 'Ulica Stanojlo Sretić 93', 'Požega',
+'', 3.3, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Ivanka Perutić', 45.202095, 19.932455, 'Ulica Jelka Mikarić 99', 'Sremski Karlovci',
+'', 4.5, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Dušica Tejić', 45.078874, 20.968205, 'Ulica Sava Taricić 111', 'Alibunar',
+'', 2.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Mojsilo Piljagić', 43.582043, 20.228379, 'Ulica Njegoš Jojkić 33', 'Ivanjica',
+'', 3.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Vidak Mrkonjić', 43.281278, 21.721834, 'Ulica Tatomir Šobić 18', 'Merošina',
+'', 4.6, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Dalibor Đurašić', 43.412867, 22.125209, 'Ulica Đorđe Đuzić 17', 'Svrljig',
+'', 4.9, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Hranislavka Selenić', 43.067962, 22.411508, 'Ulica Julka Hadži Ristić 84', 'Babušnica',
+'', 4.0, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Milivoj Čolanić', 43.196833, 21.833398, 'Ulica Cvetko Najdić 3', 'Doljevac',
+'', 4.5, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Trstenik', 43.616944, 21.0025, 'Ulica Fema Mirčić 34', 'Trstenik',
+'', 2.9, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Drgorad Zorić', 43.583611, 19.525833, 'Ulica Stojiljko Nišavić 94', 'Priboj',
+'', 2.1, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Alibunar', 45.078874, 20.968205, 'Ulica Vukica Kodžopeljić 117', 'Alibunar',
+'', 4.8, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Sremski Karlovci', 45.202095, 19.932455, 'Ulica Obradin Gačić 67', 'Sremski Karlovci',
+'', 3.0, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Ratimir Spasić', 42.460618, 21.766552, 'Ulica Metodije Bekić 119', 'Bujanovac',
+'', 3.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Žagubica', 44.197863, 21.790196, 'Ulica Žika Krkobabić 94', 'Žagubica',
+'', 2.5, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Lazarevac', 44.379722, 20.263889, 'Ulica Vladeta Motičić 21', 'Lazarevac',
+'', 4.7, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Pančevo', 44.87131, 20.644304, 'Ulica Njegoslav Mirkić 68', 'Pančevo',
+'', 3.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Željka Žurkić', 44.238271, 21.196994, 'Ulica Gruja Opojevlić 96', 'Svilajnac',
+'', 4.2, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Čačak', 43.888017, 20.344023, 'Ulica Ratka Vulić 115', 'Čačak',
+'', 3.1, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Alibunar', 45.078874, 20.968205, 'Ulica Veljko Levnajić 51', 'Alibunar',
+'', 2.5, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Draginja Vučić', 42.965907, 22.127178, 'Ulica Mašinka Pop Lazić 46', 'Vlasotince',
+'', 2.0, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Mali Iđoš', 45.709191, 19.666261, 'Ulica Marijan Savelić 27', 'Mali Iđoš',
+'', 2.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Lučani', 43.860816, 20.138434, 'Ulica Borisav Grumić 81', 'Lučani',
+'', 4.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Aksentije Kusonić', 43.015455, 22.77759, 'Ulica Aleksandra Šabeljić 119', 'Dimitrovgrad',
+'', 2.7, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Merošina', 43.281278, 21.721834, 'Ulica Varvara Balšić 54', 'Merošina',
+'', 3.5, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Bosilegrad', 42.500482, 22.472784, 'Ulica Luka Balotić 98', 'Bosilegrad',
+'', 4.4, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Aleksandrovac', 43.460895, 21.053911, 'Ulica Živan Gazibarić 33', 'Aleksandrovac',
+'', 4.9, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Goran Ljubičić', 45.229228, 21.123827, 'Ulica Stojadin Šipčić 28', 'Plandište',
+'', 3.1, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Novi Kneževac', 46.041039, 20.09584, 'Ulica Đoka Misić 36', 'Novi Kneževac',
+'', 3.1, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pozorište Krupanj', 44.367619, 19.36327, 'Ulica Latinka Mickić 90', 'Krupanj',
+'', 2.3, 2, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Bisenija Šalinić', 44.794368, 20.278136, 'Ulica Obrad Ćosić 103', 'Surčin',
+'', 2.1, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Poljka Nogulić', 44.093202, 21.443975, 'Ulica Petar Eskić 111', 'Despotovac',
+'', 3.6, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Metodije Bekić', 43.860913, 21.095774, 'Ulica Stojan Gerzić 93', 'Rekovac',
+'', 4.0, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Luka Balotić', 43.238315, 21.593192, 'Ulica Ristivoj Eskić 30', 'Prokuplje',
+'', 3.0, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Novi Sad', 45.259272, 19.829056, 'Ulica Željka Uverić 78', 'Novi Sad',
+'', 2.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Zlatko Adžić', 44.238271, 21.196994, 'Ulica Ranđa Džajić 35', 'Svilajnac',
+'', 4.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Sofronije Jasnić', 43.219622, 22.314048, 'Ulica Dragana Pirivatrić 100', 'Bela Palanka',
+'', 2.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Belgrade', 44.818611, 20.468056, 'Ulica Olja Klisurić 107', 'Belgrade',
+'', 3.4, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Spasenija Bosančić', 44.25442, 20.682437, 'Ulica Leposava Glodić 72', 'Topola',
+'', 2.8, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Laza Erić', 43.196833, 21.833398, 'Ulica Borislav Čembić 76', 'Doljevac',
+'', 4.6, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Milisav Drinčić', 44.252423, 20.081707, 'Ulica Aleksandra Šabeljić 61', 'Mionica',
+'', 2.8, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Sjenica', 43.273545, 20.000368, 'Ulica Svetislavka Aksić 41', 'Sjenica',
+'', 4.5, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Radul Strinić', 44.8376, 19.480699, 'Ulica Tihomir Bizumić 99', 'Bogatić',
+'', 3.8, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Irig', 45.100148, 19.860301, 'Ulica Radenko Skakić 6', 'Irig',
+'', 3.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Žaklina Dragušić', 42.500482, 22.472784, 'Ulica Goran Ljubičić 48', 'Bosilegrad',
+'', 2.0, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Kruna Borišić', 44.226611, 20.239352, 'Ulica Slavenka Šabeljić 104', 'Ljig',
+'', 3.0, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Vukan Kojičić', 43.296964, 21.272727, 'Ulica Ratka Vulić 25', 'Blace',
+'', 3.0, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Apatin', 45.67092, 18.984344, 'Ulica Vukosava Krezić 13', 'Apatin',
+'', 4.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Grozdan Vujetić', 44.794368, 20.278136, 'Ulica Marijan Savelić 50', 'Surčin',
+'', 2.8, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Velika Plana', 44.332338, 21.075132, 'Ulica Ratiborka Jelašić 100', 'Velika Plana',
+'', 4.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Sečanj', 45.367638, 20.773205, 'Ulica Naum Androbić 31', 'Sečanj',
+'', 4.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Surčin', 44.794368, 20.278136, 'Ulica Zlatibor Bondžić 120', 'Surčin',
+'', 3.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Vranje', 42.555997, 21.900236, 'Ulica Emil Timilić 118', 'Vranje',
+'', 2.4, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Nemanja Krstić', 44.081885, 22.096673, 'Ulica Zlatomir Aćimić 18', 'Bor',
+'', 4.6, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Raška', 43.28595, 20.613515, 'Ulica Cvetomir Protić 113', 'Raška',
+'', 3.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Radovan Trivundić', 43.901871, 22.275511, 'Ulica Damjan Čamagić 91', 'Zaječar',
+'', 2.0, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Stojadinka Palić', 43.28595, 20.613515, 'Ulica Božana Mrakić 107', 'Raška',
+'', 2.8, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Radovan Trivundić', 44.468716, 19.82139, 'Ulica Miodrag Mileusnić 9', 'Koceljeva',
+'', 4.5, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Lazarevac', 44.379722, 20.263889, 'Ulica Rumenka Bunić 58', 'Lazarevac',
+'', 4.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Arilje', 43.754987, 20.097004, 'Ulica Leonora Pašajlić 37', 'Arilje',
+'', 3.8, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Stanika Runić', 45.259272, 19.829056, 'Ulica Miloš Mesulić 83', 'Novi Sad',
+'', 4.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Dobroslavka Šešić', 46.100972, 19.668233, 'Ulica Golub Cekić 74', 'Subotica',
+'', 3.5, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Ćićevac', 43.719967, 21.443617, 'Ulica Gorica Gambelić 97', 'Ćićevac',
+'', 3.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Bogoljub Stikić', 43.541667, 21.707778, 'Ulica Prerad Bubonjić 40', 'Aleksinac',
+'', 3.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Željka Utvić', 44.794368, 20.278136, 'Ulica Leonida Pržić 93', 'Surčin',
+'', 4.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Kosjerić', 43.998702, 19.907859, 'Ulica Petar Eskić 103', 'Kosjerić',
+'', 2.4, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Radoslava Žiletić', 43.616944, 21.0025, 'Ulica Zorica Anđić 110', 'Trstenik',
+'', 4.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Borko Tvrdišić', 44.356169, 21.214256, 'Ulica Sava Taricić 86', 'Žabari',
+'', 4.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Cvetko Najdić', 45.367638, 20.773205, 'Ulica Jelenko Džekulić 114', 'Sečanj',
+'', 4.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Vlastimir Koljenšić', 44.271955, 19.887437, 'Ulica Zorica Florić 107', 'Valjevo',
+'', 2.3, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Vršac', 45.117501, 21.298315, 'Ulica Gligorije Kamenčić 88', 'Vršac',
+'', 3.3, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Gruja Stevlić', 44.226389, 22.530833, 'Ulica Živadin Đorić 33', 'Negotin',
+'', 2.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Lajkovac', 44.370041, 20.164425, 'Ulica Stojanka Krsmanić 26', 'Lajkovac',
+'', 2.6, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Toša Kovjenić', 43.541667, 21.707778, 'Ulica Zorica Florić 94', 'Aleksinac',
+'', 4.4, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Dušanka Miodanić', 43.928388, 21.374491, 'Ulica Vukota Spurnić 51', 'Ćuprija',
+'', 4.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Ristivoj Vrugić', 44.748222, 20.976599, 'Ulica Teodosije Radisavić 31', 'Kovin',
+'', 3.0, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Merošina', 43.281278, 21.721834, 'Ulica Despot Stamenčić 80', 'Merošina',
+'', 3.4, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Osečina', 44.372836, 19.600976, 'Ulica Nevenka Kolobarić 27', 'Osečina',
+'', 4.6, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Vukosav Vukošić', 45.202095, 19.932455, 'Ulica Paun Matušić 56', 'Sremski Karlovci',
+'', 3.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Vladimir Lišančić', 45.117501, 21.298315, 'Ulica Stanojka Šunkić 82', 'Vršac',
+'', 4.4, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Paraćin', 43.859155, 21.41191, 'Ulica Danilo Nogulić 80', 'Paraćin',
+'', 4.5, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Radoman Kovandžić', 43.832131, 21.960899, 'Ulica Vlastimir Koljenšić 43', 'Boljevac',
+'', 2.3, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Sokobanja', 43.645293, 21.869178, 'Ulica Gorica Gambelić 22', 'Sokobanja',
+'', 3.5, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Smederevo', 44.651575, 20.925777, 'Ulica Nada Patrnogić 44', 'Smederevo',
+'', 2.0, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Aranđelovac', 44.307663, 20.561163, 'Ulica Razumenka Kipić 79', 'Aranđelovac',
+'', 2.5, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Dimitrovgrad', 43.015455, 22.77759, 'Ulica Petar Pljakić 11', 'Dimitrovgrad',
+'', 3.0, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Požega', 43.845852, 20.036774, 'Ulica Želimir Konculić 10', 'Požega',
+'', 4.8, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Vladimir Kučparić', 45.409464, 19.89112, 'Ulica Leonora Pašajlić 26', 'Temerin',
+'', 4.5, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Blaženka Tepić', 45.570426, 19.647857, 'Ulica Fotije Dančejić 67', 'Vrbas',
+'', 3.1, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Vrnjačka Banja', 43.622328, 20.89561, 'Ulica Gavrilo Stingić 62', 'Vrnjačka Banja',
+'', 2.3, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Slobodan Velišić', 42.690358, 22.170416, 'Ulica Hranislava Ležajić 79', 'Surdulica',
+'', 4.4, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Njegosava Šalinić', 43.222289, 22.033287, 'Ulica Prvoslavka Trivalić 109', 'Gadžin Han',
+'', 3.3, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Barajevo', 44.579011, 20.417895, 'Ulica Ranđa Džajić 12', 'Barajevo',
+'', 4.1, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Koceljeva', 44.468716, 19.82139, 'Ulica Bogdanka Čabrić 78', 'Koceljeva',
+'', 4.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Niška Banja', 43.294312, 22.009906, 'Ulica Hranislava Ležajić 22', 'Niška Banja',
+'', 4.5, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Ljubo Bokić', 44.422847, 21.935837, 'Ulica Spasoje Miljanić 91', 'Majdanpek',
+'', 3.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Svetislavka Aksić', 45.191649, 19.724962, 'Ulica Jovan Đuketić 17', 'Beočin',
+'', 3.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Stanojlo Cvikić', 44.8376, 19.480699, 'Ulica Stanojlo Drapić 110', 'Bogatić',
+'', 4.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Kuzman Vanucić', 43.970917, 19.565524, 'Ulica Petruška Drinić 22', 'Bajina Bašta',
+'', 4.1, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Emil Timilić', 45.127597, 19.226675, 'Ulica Šana Pavelkić 55', 'Šid',
+'', 2.3, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Čajetina', 43.749736, 19.714951, 'Ulica Đoka Misić 104', 'Čajetina',
+'', 4.3, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Miodrag Vulikić', 44.713559, 21.169287, 'Ulica Stanojlo Sretić 110', 'Kostolac',
+'', 2.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Kučevo', 44.476729, 21.671183, 'Ulica Spasoje Kosanić 109', 'Kučevo',
+'', 2.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Gavrilo Marčetić', 43.860816, 20.138434, 'Ulica Sojka Grozdanić 116', 'Lučani',
+'', 4.6, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Goran Ljubičić', 45.117501, 21.298315, 'Ulica Ljubo Bokić 56', 'Vršac',
+'', 2.6, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Knić', 43.92696, 20.719695, 'Ulica Novko Čališić 1', 'Knić',
+'', 2.1, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Pančevo', 44.87131, 20.644304, 'Ulica Stojmen Žikelić 66', 'Pančevo',
+'', 2.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Olja Klisurić', 43.754987, 20.097004, 'Ulica Timotije Budimčić 43', 'Arilje',
+'', 3.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Nadežda Miletić', 44.307663, 20.561163, 'Ulica Angelina Krejić 108', 'Aranđelovac',
+'', 4.1, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Mionica', 44.252423, 20.081707, 'Ulica Časlavka Dostinić 60', 'Mionica',
+'', 3.3, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Sandra Kovjenić', 42.989993, 20.333372, 'Ulica Cvetomir Protić 30', 'Tutin',
+'', 2.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Veliko Gradište', 44.763811, 21.516251, 'Ulica Čubrilo Lolić 26', 'Veliko Gradište',
+'', 2.5, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Alibunar', 45.078874, 20.968205, 'Ulica Koviljka Čkrkić 14', 'Alibunar',
+'', 3.3, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Pajka Bajić', 44.44184, 20.697007, 'Ulica Damjan Čamagić 65', 'Mladenovac',
+'', 3.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Ćirka Mandarić', 45.709191, 19.666261, 'Ulica Jordan Pernić 52', 'Mali Iđoš',
+'', 2.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Tutin', 42.989993, 20.333372, 'Ulica Vukica Kodžopeljić 112', 'Tutin',
+'', 2.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Žika Krkobabić', 44.365381, 20.962273, 'Ulica Joviša Lugonjić 40', 'Smederevska Palanka',
+'', 3.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Niš', 43.323356, 21.901779, 'Ulica Vladislav Porobić 57', 'Niš',
+'', 2.6, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Nedeljka Karaulić', 43.460895, 21.053911, 'Ulica Ivica Tomišić 45', 'Aleksandrovac',
+'', 3.4, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Smiljana Kalinčić', 44.307663, 20.561163, 'Ulica Ivko Peričić 40', 'Aranđelovac',
+'', 2.6, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Majdanpek', 44.422847, 21.935837, 'Ulica Ratka Vulić 22', 'Majdanpek',
+'', 3.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Topola', 44.25442, 20.682437, 'Ulica Danilo Nogulić 8', 'Topola',
+'', 4.2, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Arilje', 43.754987, 20.097004, 'Ulica Ljiljana Pajdić 2', 'Arilje',
+'', 3.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Zrenjanin', 45.38182, 20.395396, 'Ulica Cane Raulić 92', 'Zrenjanin',
+'', 2.9, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Vlasotince', 42.965907, 22.127178, 'Ulica Gorica Gambelić 63', 'Vlasotince',
+'', 2.7, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Jelenko Šušnjić', 45.206014, 20.294882, 'Ulica Višeslav Košprdić 73', 'Titel',
+'', 3.0, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Živadin Đorić', 43.622328, 20.89561, 'Ulica Uroš Bosiljkić 71', 'Vrnjačka Banja',
+'', 3.8, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Merošina', 43.281278, 21.721834, 'Ulica Njegoslav Vojvodić 89', 'Merošina',
+'', 4.3, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Bečej', 45.619602, 20.039983, 'Ulica Žaklina Dragušić 33', 'Bečej',
+'', 4.6, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Muzej Brus', 43.384599, 21.028883, 'Ulica Despot Budalić 30', 'Brus',
+'', 4.3, 3, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Rača', 44.22685, 20.978954, 'Ulica Krunoslava Raljić 31', 'Rača',
+'', 4.3, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Leskovac', 42.997558, 21.944496, 'Ulica Novko Čališić 107', 'Leskovac',
+'', 4.4, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Vukosav Vukošić', 43.725908, 20.689577, 'Ulica Bojana Piljikić 87', 'Kraljevo',
+'', 3.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Prijepolje', 43.390327, 19.65061, 'Ulica Pajka Bajić 119', 'Prijepolje',
+'', 3.6, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Vladičin Han', 42.708202, 22.066365, 'Ulica Miladinka Skakić 45', 'Vladičin Han',
+'', 3.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Nova Varoš', 43.460026, 19.811677, 'Ulica Cviko Cajić 16', 'Nova Varoš',
+'', 4.3, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Žika Krkobabić', 45.206014, 20.294882, 'Ulica Gabrijela Jeftić 12', 'Titel',
+'', 4.5, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Anđa Epifanić', 44.093202, 21.443975, 'Ulica Maksim Kavalić 90', 'Despotovac',
+'', 4.6, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Grujica Drmonjić', 43.719517, 21.371223, 'Ulica Đukan Moskovlić 69', 'Varvarin',
+'', 4.6, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Bojan Pauškić', 45.610866, 19.527391, 'Ulica Grozdan Vujetić 74', 'Kula',
+'', 3.6, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Lučani', 43.860816, 20.138434, 'Ulica Kirilo Barnić 32', 'Lučani',
+'', 2.3, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Radivoj Ristanić', 44.377283, 21.41976, 'Ulica Borko Tvrdišić 101', 'Petrovac na Mlavi',
+'', 4.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Veroslava Bukilić', 44.713559, 21.169287, 'Ulica Višnja Mikičić 13', 'Kostolac',
+'', 3.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Živadinka Stajčić', 43.998702, 19.907859, 'Ulica Persida Galčić 105', 'Kosjerić',
+'', 3.3, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Aran|el Brezonić', 45.774239, 19.115068, 'Ulica Maksim Kavalić 100', 'Sombor',
+'', 2.7, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Đukan Moskovlić', 45.610866, 19.527391, 'Ulica Cvetana Rakinić 61', 'Kula',
+'', 2.3, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Titel', 45.206014, 20.294882, 'Ulica Jasmina Zisić 31', 'Titel',
+'', 2.4, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Nebojša Pualić', 45.392276, 19.236684, 'Ulica Dušica Tejić 4', 'Bač',
+'', 4.7, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Čoka', 45.941516, 20.146023, 'Ulica Timotije Budimčić 120', 'Čoka',
+'', 4.0, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Leontijr Canić', 43.901871, 22.275511, 'Ulica Gabrijela Jeftić 13', 'Zaječar',
+'', 4.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Gornji Milanovac', 44.024504, 20.458646, 'Ulica Nikolija Denkić 99', 'Gornji Milanovac',
+'', 3.2, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Aleksija Zaradić', 45.815206, 19.636943, 'Ulica Radul Lotić 8', 'Bačka Topola',
+'', 3.0, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Stara Pazova', 44.986131, 20.159731, 'Ulica Bogdanka Čabrić 4', 'Stara Pazova',
+'', 2.0, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Grujica Drmonjić', 43.139047, 21.273508, 'Ulica Đoka Misić 84', 'Kuršumlija',
+'', 3.0, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Bela Crkva', 44.901485, 21.423394, 'Ulica Antonije Jevrić 69', 'Bela Crkva',
+'', 2.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Vojin Ludajić', 43.832131, 21.960899, 'Ulica Spasoje Miljanić 98', 'Boljevac',
+'', 4.1, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Dragan Bakalić', 44.22685, 20.978954, 'Ulica Stanojlo Drapić 104', 'Rača',
+'', 3.8, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Aleksandra Šabeljić', 45.601466, 20.136361, 'Ulica Stanka Rogulić 93', 'Novi Bečej',
+'', 2.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Nova Crnja', 45.668517, 20.604206, 'Ulica Njegoslav Oparušić 34', 'Nova Crnja',
+'', 3.7, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Slavenko Raonić', 45.229228, 21.123827, 'Ulica Zagorka Čeleketić 107', 'Plandište',
+'', 4.8, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Požarevac', 44.622213, 21.182589, 'Ulica Borisav Tominčić 8', 'Požarevac',
+'', 3.6, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Ivko Peričić', 43.845852, 20.036774, 'Ulica Teodosije Radisavić 51', 'Požega',
+'', 2.5, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Ćana Gatarić', 43.901871, 22.275511, 'Ulica Sandra Lažetić 33', 'Zaječar',
+'', 4.2, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Prerad Bubonjić', 43.998702, 19.907859, 'Ulica Cane Raulić 42', 'Kosjerić',
+'', 4.4, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Miroljub Šunjevarić', 44.238271, 21.196994, 'Ulica Cane Igić 77', 'Svilajnac',
+'', 3.7, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Ljig', 44.226611, 20.239352, 'Ulica Šiško Malečić 94', 'Ljig',
+'', 4.7, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Ilija Pajić', 43.067962, 22.411508, 'Ulica Stojadinka Barajić 45', 'Babušnica',
+'', 3.0, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Tugomir Vasiljkić', 45.601466, 20.136361, 'Ulica Radivoj Ristanić 52', 'Novi Bečej',
+'', 4.2, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Žabari', 44.356169, 21.214256, 'Ulica Nevenka Kolobarić 101', 'Žabari',
+'', 2.8, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Željka Utvić', 43.754987, 20.097004, 'Ulica Peladija Jakšić 110', 'Arilje',
+'', 3.2, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Mionica', 44.252423, 20.081707, 'Ulica Julijan Patrić 103', 'Mionica',
+'', 4.1, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Bogdan Simonić', 45.392276, 19.236684, 'Ulica Hristivoje Eremić 104', 'Bač',
+'', 2.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Babušnica', 43.067962, 22.411508, 'Ulica Jevrem Malavrazić 25', 'Babušnica',
+'', 3.8, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Miladinka Skakić', 45.127597, 19.226675, 'Ulica Sandra Lažetić 31', 'Šid',
+'', 4.7, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Surčin', 44.794368, 20.278136, 'Ulica Đurđe Medurić 3', 'Surčin',
+'', 4.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Subotica', 46.100972, 19.668233, 'Ulica Jovan Đuketić 76', 'Subotica',
+'', 4.5, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Selimir Podraščić', 44.422847, 21.935837, 'Ulica Ratiborka Kebeljić 37', 'Majdanpek',
+'', 2.2, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Stojan Gerzić', 44.377283, 21.41976, 'Ulica Kornelije Tačić 84', 'Petrovac na Mlavi',
+'', 4.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Kraljevo', 43.725908, 20.689577, 'Ulica Ognjen Cvišić 31', 'Kraljevo',
+'', 2.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Živadinka Dašić', 43.541667, 21.707778, 'Ulica Milijan Kuić 22', 'Aleksinac',
+'', 2.6, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Aksentije Kusonić', 43.58105, 21.335174, 'Ulica Despot Stamenčić 36', 'Kruševac',
+'', 3.8, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Priboj', 43.583611, 19.525833, 'Ulica Vladeta Motičić 55', 'Priboj',
+'', 4.8, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Stojiljko Nišavić', 44.986131, 20.159731, 'Ulica Snežana Melentić 38', 'Stara Pazova',
+'', 4.3, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Šid', 45.127597, 19.226675, 'Ulica Jovan Đuketić 10', 'Šid',
+'', 3.6, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Hranislavka Selenić', 44.307663, 20.561163, 'Ulica Miladinka Radulić 72', 'Aranđelovac',
+'', 2.1, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Batočina', 44.154749, 21.07991, 'Ulica Vukota Spurnić 47', 'Batočina',
+'', 4.7, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Stefan Borongić', 44.607292, 22.615474, 'Ulica Dobrivoj Trivunčić 41', 'Kladovo',
+'', 4.6, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Dimitrovgrad', 43.015455, 22.77759, 'Ulica Tihomir Bizumić 107', 'Dimitrovgrad',
+'', 2.2, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Uranko Delojkić', 45.048162, 20.081647, 'Ulica Mitar Talpešić 2', 'Inđija',
+'', 3.4, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Anđa Kulić', 45.191649, 19.724962, 'Ulica Trajanka Đuketić 60', 'Beočin',
+'', 4.0, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Milanko Vulić', 45.259272, 19.829056, 'Ulica Vitomir Radetić 104', 'Novi Sad',
+'', 4.5, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Jelka Mikarić', 43.719517, 21.371223, 'Ulica Gruja Opojevlić 52', 'Varvarin',
+'', 3.1, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Časlavka Dostinić', 43.015455, 22.77759, 'Ulica Toša Kovjenić 9', 'Dimitrovgrad',
+'', 4.1, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Sokobanja', 43.645293, 21.869178, 'Ulica Zagorka Čeleketić 61', 'Sokobanja',
+'', 2.8, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Rača', 44.22685, 20.978954, 'Ulica Aksentije Kusonić 66', 'Rača',
+'', 4.0, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Vrbas', 45.570426, 19.647857, 'Ulica Grujica Maćić 29', 'Vrbas',
+'', 4.1, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Blagoje Nocić', 45.619602, 20.039983, 'Ulica Jelika Puslojić 33', 'Bečej',
+'', 4.5, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Antonina Zjalić', 43.219622, 22.314048, 'Ulica Ristivoje Piperčić 17', 'Bela Palanka',
+'', 2.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Aleksinac', 43.541667, 21.707778, 'Ulica Vladeta Rajčetić 67', 'Aleksinac',
+'', 3.3, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Nićifor Kulić', 44.226389, 22.530833, 'Ulica Njegoslav Mirkić 59', 'Negotin',
+'', 4.0, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Trgovište', 42.3514, 22.092091, 'Ulica Julijan Patrić 45', 'Trgovište',
+'', 4.7, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Hristivoje Eremić', 44.468716, 19.82139, 'Ulica Zagorka Čeleketić 19', 'Koceljeva',
+'', 2.1, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Bajina Bašta', 43.970917, 19.565524, 'Ulica Persida Zjačić 101', 'Bajina Bašta',
+'', 2.3, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Jagodina', 43.97913, 21.258311, 'Ulica Hristivoje Eremić 11', 'Jagodina',
+'', 2.5, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Zaviša Vucelić', 43.645293, 21.869178, 'Ulica Obrad Ćosić 8', 'Sokobanja',
+'', 3.4, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Olja Klisurić', 43.460026, 19.811677, 'Ulica Slavica Matušić 60', 'Nova Varoš',
+'', 2.4, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Čoka', 45.941516, 20.146023, 'Ulica Krsmanija Dančejić 48', 'Čoka',
+'', 4.1, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Zaviša Brešić', 42.307058, 21.650034, 'Ulica Bisenija Stojšić 69', 'Preševo',
+'', 3.4, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Srbobran', 45.548098, 19.795377, 'Ulica Radoman Čojić 16', 'Srbobran',
+'', 3.4, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Đurđija Lejić', 45.610866, 19.527391, 'Ulica Sofronije Jasnić 24', 'Kula',
+'', 3.6, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Višnja Treskić', 44.024504, 20.458646, 'Ulica Đukan Moskovlić 84', 'Gornji Milanovac',
+'', 4.0, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Dragiša Kalčić', 43.616944, 21.0025, 'Ulica Ćana Gatarić 82', 'Trstenik',
+'', 3.1, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Kostolac', 44.713559, 21.169287, 'Ulica Višnja Treskić 59', 'Kostolac',
+'', 3.6, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Tina Dabarčić', 43.384599, 21.028883, 'Ulica Zagorka Čeleketić 94', 'Brus',
+'', 4.0, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Radivoj Ristanić', 44.818611, 20.468056, 'Ulica Rumenka Bunić 62', 'Belgrade',
+'', 3.0, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Ražanj', 43.674425, 21.549205, 'Ulica Stanojka Džonić 49', 'Ražanj',
+'', 3.8, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Svetislavka Aksić', 44.468716, 19.82139, 'Ulica Koviljka Čkrkić 71', 'Koceljeva',
+'', 4.3, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Gavrilo Stingić', 45.409464, 19.89112, 'Ulica Stanica Ćitić 111', 'Temerin',
+'', 2.5, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Velika Plana', 44.332338, 21.075132, 'Ulica Filipinka Škrbić 101', 'Velika Plana',
+'', 4.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Trajanka Đuketić', 45.367638, 20.773205, 'Ulica Blagica Punišić 29', 'Sečanj',
+'', 4.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Prvoslavka Trivalić', 43.622328, 20.89561, 'Ulica Anđa Epifanić 58', 'Vrnjačka Banja',
+'', 4.9, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Ceca Kretić', 42.989993, 20.333372, 'Ulica Bojana Piljikić 35', 'Tutin',
+'', 2.3, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Ćuprija', 43.928388, 21.374491, 'Ulica Jevrem Malavrazić 98', 'Ćuprija',
+'', 2.8, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Sremski Karlovci', 45.202095, 19.932455, 'Ulica Željko Krivačić 96', 'Sremski Karlovci',
+'', 3.4, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Aran|el Brezonić', 43.860816, 20.138434, 'Ulica Dragiša Kalčić 98', 'Lučani',
+'', 4.1, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Niška Banja', 43.294312, 22.009906, 'Ulica Jordan Pernić 61', 'Niška Banja',
+'', 4.6, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Nova Crnja', 45.668517, 20.604206, 'Ulica Željka Bakić 37', 'Nova Crnja',
+'', 4.4, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Bečej', 45.619602, 20.039983, 'Ulica Koviljka Čkrkić 115', 'Bečej',
+'', 4.2, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Nova Varoš', 43.460026, 19.811677, 'Ulica Obradinka Vajagić 72', 'Nova Varoš',
+'', 4.2, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Univerzitet Hranislava Ležajić', 44.367619, 19.36327, 'Ulica Angelina Krejić 43', 'Krupanj',
+'', 4.3, 4, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Sokobanja', 43.645293, 21.869178, 'Ulica Blagica Punišić 27', 'Sokobanja',
+'', 2.3, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Barajevo', 44.579011, 20.417895, 'Ulica Antonina Zjalić 111', 'Barajevo',
+'', 2.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Aleksandrovac', 43.460895, 21.053911, 'Ulica Sima Disić 34', 'Aleksandrovac',
+'', 3.8, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Stojadinka Palić', 44.476729, 21.671183, 'Ulica Srđan Kojdić 51', 'Kučevo',
+'', 4.7, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Miomir Gavrić', 45.485384, 20.550725, 'Ulica Dobrica Galečić 31', 'Žitište',
+'', 3.3, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Fotije Dančejić', 43.97913, 21.258311, 'Ulica Nedeljka Karaulić 67', 'Jagodina',
+'', 3.4, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Svrljig', 43.412867, 22.125209, 'Ulica Milanko Vulić 7', 'Svrljig',
+'', 4.7, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Jelena Tomčić', 44.307663, 20.561163, 'Ulica Daliborka Kruškonjić 72', 'Aranđelovac',
+'', 4.8, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Pirot', 43.16165, 22.58713, 'Ulica Sandra Lažetić 59', 'Pirot',
+'', 4.4, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Aranđelovac', 44.307663, 20.561163, 'Ulica Ranđa Džajić 13', 'Aranđelovac',
+'', 4.5, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Grozdan Vujetić', 44.307663, 20.561163, 'Ulica Čubrilo Lolić 64', 'Aranđelovac',
+'', 2.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Blaženka Tepić', 44.986131, 20.159731, 'Ulica Liza Kljutić 13', 'Stara Pazova',
+'', 2.4, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Temerin', 45.409464, 19.89112, 'Ulica Radivoj Ristanić 41', 'Temerin',
+'', 3.9, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Jerotije Jovelić', 43.719967, 21.443617, 'Ulica Miladinka Nikotić 79', 'Ćićevac',
+'', 2.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Sombor', 45.774239, 19.115068, 'Ulica Emil Timilić 108', 'Sombor',
+'', 2.4, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Sokobanja', 43.645293, 21.869178, 'Ulica Jeremije Veličić 16', 'Sokobanja',
+'', 4.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Višnja Treskić', 45.374078, 20.0707, 'Ulica Emil Timilić 35', 'Žabalj',
+'', 2.5, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Bor', 44.081885, 22.096673, 'Ulica Julka Hadži Ristić 111', 'Bor',
+'', 3.4, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Nebojša Pualić', 44.579011, 20.417895, 'Ulica Mira Marodić 111', 'Barajevo',
+'', 3.0, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Dragan Bakalić', 44.607292, 22.615474, 'Ulica Jelika Puslojić 11', 'Kladovo',
+'', 4.9, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Velika Plana', 44.332338, 21.075132, 'Ulica Radoš Budurić 73', 'Velika Plana',
+'', 4.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Živan Gazibarić', 44.372836, 19.600976, 'Ulica Peladija Jakšić 110', 'Osečina',
+'', 3.3, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Sremska Mitrovica', 44.976389, 19.612222, 'Ulica Ristivoj Eskić 30', 'Sremska Mitrovica',
+'', 4.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Požarevac', 44.622213, 21.182589, 'Ulica Despot Budalić 19', 'Požarevac',
+'', 3.5, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Mira Marodić', 44.986131, 20.159731, 'Ulica Naum Androbić 47', 'Stara Pazova',
+'', 4.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Sanja Albijanić', 42.3514, 22.092091, 'Ulica Jelenko Šušnjić 96', 'Trgovište',
+'', 4.0, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Toma Kosnić', 43.622328, 20.89561, 'Ulica Dalibor Đurašić 6', 'Vrnjačka Banja',
+'', 4.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Obrenovac', 44.653889, 20.2, 'Ulica Ćirka Mandarić 78', 'Obrenovac',
+'', 3.5, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Dobrica Galečić', 45.052172, 20.431343, 'Ulica Živadin Koljajić 9', 'Opovo',
+'', 2.3, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Irena Tičić', 44.399176, 19.121431, 'Ulica Angelina Krejić 63', 'Mali Zvornik',
+'', 4.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Aran|el Bjeletić', 45.36157, 19.591981, 'Ulica Prerad Bubonjić 11', 'Bački Petrovac',
+'', 2.3, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Bač', 45.392276, 19.236684, 'Ulica Svetislavka Aksić 111', 'Bač',
+'', 4.4, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Radoslava Žiletić', 44.307663, 20.561163, 'Ulica Borisav Tominčić 13', 'Aranđelovac',
+'', 4.9, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Ćićevac', 43.719967, 21.443617, 'Ulica Bisenija Kalinucić 62', 'Ćićevac',
+'', 2.4, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Stanojlo Drapić', 43.190209, 21.713413, 'Ulica Kornelije Tačić 117', 'Žitorađa',
+'', 3.3, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Antonije Jevrić', 45.832292, 20.468191, 'Ulica Jevrem Malavrazić 81', 'Kikinda',
+'', 4.2, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Leposava Glodić', 45.007858, 19.817096, 'Ulica Liza Kljutić 46', 'Ruma',
+'', 4.8, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Ristivoje Piperčić', 44.753841, 19.687569, 'Ulica Persida Zjačić 86', 'Šabac',
+'', 2.2, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Paun Matušić', 43.58105, 21.335174, 'Ulica Nastasija Kričkić 79', 'Kruševac',
+'', 3.5, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Šabac', 44.753841, 19.687569, 'Ulica Vladimir Kučparić 76', 'Šabac',
+'', 2.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Gligorije Kamenčić', 44.252423, 20.081707, 'Ulica Filotej Vojičić 28', 'Mionica',
+'', 3.2, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Anđelka Budinčić', 45.815206, 19.636943, 'Ulica Tomka Lolić 114', 'Bačka Topola',
+'', 4.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Dobrivoj Trivunčić', 44.901485, 21.423394, 'Ulica Jana Žmurić 9', 'Bela Crkva',
+'', 2.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Sečanj', 45.367638, 20.773205, 'Ulica Darko Ugrčić 115', 'Sečanj',
+'', 3.7, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Bač', 45.392276, 19.236684, 'Ulica Vojin Ludajić 40', 'Bač',
+'', 3.0, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Lapovo', 44.187731, 21.09687, 'Ulica Ivko Peričić 99', 'Lapovo',
+'', 2.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Žitorađa', 43.190209, 21.713413, 'Ulica Dalibor Đurašić 57', 'Žitorađa',
+'', 2.7, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Čajetina', 43.749736, 19.714951, 'Ulica Đurđe Medurić 1', 'Čajetina',
+'', 3.0, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Vladimir Kučparić', 42.500482, 22.472784, 'Ulica Obradin Jondić 50', 'Bosilegrad',
+'', 2.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Olivera Miovčić', 45.709191, 19.666261, 'Ulica Maksim Kavalić 112', 'Mali Iđoš',
+'', 4.0, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Velika Plana', 44.332338, 21.075132, 'Ulica Tihomir Bizumić 16', 'Velika Plana',
+'', 4.5, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Prijepolje', 43.390327, 19.65061, 'Ulica Spasoje Miljanić 11', 'Prijepolje',
+'', 4.5, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Kladovo', 44.607292, 22.615474, 'Ulica Zlatomir Aćimić 99', 'Kladovo',
+'', 4.5, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Hristivoje Eremić', 44.818611, 20.468056, 'Ulica Vukosav Vukošić 69', 'Belgrade',
+'', 2.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Kovačica', 45.110931, 20.623601, 'Ulica Vera Jeremić 27', 'Kovačica',
+'', 4.2, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Preševo', 42.307058, 21.650034, 'Ulica Golub Timilić 54', 'Preševo',
+'', 3.2, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Naum Androbić', 44.8376, 19.480699, 'Ulica Emil Timilić 2', 'Bogatić',
+'', 4.7, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Niš', 43.323356, 21.901779, 'Ulica Zlatibor Košarčić 93', 'Niš',
+'', 4.5, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Titel', 45.206014, 20.294882, 'Ulica Prvoslavka Garčić 71', 'Titel',
+'', 3.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Željka Utvić', 45.601466, 20.136361, 'Ulica Damjan Čamagić 35', 'Novi Bečej',
+'', 2.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Cvetana Rakinić', 45.941516, 20.146023, 'Ulica Fema Mirčić 118', 'Čoka',
+'', 3.7, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Blaženka Tepić', 43.384599, 21.028883, 'Ulica Krunoslava Raljić 2', 'Brus',
+'', 2.2, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Srbobran', 45.548098, 19.795377, 'Ulica Hranislava Žeravić 75', 'Srbobran',
+'', 3.9, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Sombor', 45.774239, 19.115068, 'Ulica Ilija Tiragić 10', 'Sombor',
+'', 4.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Mali Iđoš', 45.709191, 19.666261, 'Ulica Krsmanija Dančejić 19', 'Mali Iđoš',
+'', 2.8, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Novko Čališić', 43.219622, 22.314048, 'Ulica Filotej Ležaić 95', 'Bela Palanka',
+'', 4.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Anđelija Tanasić', 43.196833, 21.833398, 'Ulica Predrag Dinkić 2', 'Doljevac',
+'', 3.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Jelisaveta Krkelić', 44.579011, 20.417895, 'Ulica Toša Kovjenić 96', 'Barajevo',
+'', 3.2, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Paraćin', 43.859155, 21.41191, 'Ulica Cajka Kiklić 3', 'Paraćin',
+'', 3.9, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Persida Galčić', 45.202095, 19.932455, 'Ulica Živadinka Stajčić 39', 'Sremski Karlovci',
+'', 2.7, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Stojmen Žikelić', 45.601466, 20.136361, 'Ulica Goca Krstajić 20', 'Novi Bečej',
+'', 2.4, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Njegoš Jojkić', 43.384599, 21.028883, 'Ulica Spasoje Miljanić 63', 'Brus',
+'', 3.0, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Šiško Malečić', 45.392276, 19.236684, 'Ulica Bogomir Krajšić 93', 'Bač',
+'', 4.3, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Kostolac', 44.713559, 21.169287, 'Ulica Stojadin Šipčić 37', 'Kostolac',
+'', 2.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Kanjiža', 46.063472, 20.050403, 'Ulica Irena Tičić 26', 'Kanjiža',
+'', 2.8, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Krsmanija Dančejić', 44.753841, 19.687569, 'Ulica Antonina Zjalić 35', 'Šabac',
+'', 4.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Ruma', 45.007858, 19.817096, 'Ulica Ratko Saveljić 97', 'Ruma',
+'', 3.3, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Temerin', 45.409464, 19.89112, 'Ulica Stanojlo Cvikić 61', 'Temerin',
+'', 2.9, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Kragujevac', 44.010876, 20.909029, 'Ulica Stojanka Irić 16', 'Kragujevac',
+'', 3.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Zlatibor Košarčić', 44.197863, 21.790196, 'Ulica Ljuban Bogičić 21', 'Žagubica',
+'', 3.7, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Natalija Tumarić', 44.372836, 19.600976, 'Ulica Stanica Ćitić 4', 'Osečina',
+'', 4.0, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Lidija Orlandić', 44.794368, 20.278136, 'Ulica Cvetana Rakinić 72', 'Surčin',
+'', 4.8, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Dobrivoj Trivunčić', 44.607292, 22.615474, 'Ulica Snežana Melentić 80', 'Kladovo',
+'', 2.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Lučani', 43.860816, 20.138434, 'Ulica Tadija Aćimić 18', 'Lučani',
+'', 3.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Cvetana Rakinić', 44.901485, 21.423394, 'Ulica Leonora Pašajlić 5', 'Bela Crkva',
+'', 3.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Snežana Melentić', 43.858185, 19.844087, 'Ulica Gavrilo Stingić 52', 'Užice',
+'', 3.8, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Žagubica', 44.197863, 21.790196, 'Ulica Božana Rogljić 82', 'Žagubica',
+'', 2.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Danojlo Belić', 44.081885, 22.096673, 'Ulica Bojan Pleskonjić 72', 'Bor',
+'', 3.4, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Zlatko Adžić', 43.566696, 22.25393, 'Ulica Uranko Delojkić 73', 'Knjaževac',
+'', 3.7, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Šid', 45.127597, 19.226675, 'Ulica Dušica Tejić 48', 'Šid',
+'', 4.3, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Kruševac', 43.58105, 21.335174, 'Ulica Miodrag Vulikić 110', 'Kruševac',
+'', 4.6, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Željka Bakić', 43.858185, 19.844087, 'Ulica Petar Pljakić 111', 'Užice',
+'', 2.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Žagubica', 44.197863, 21.790196, 'Ulica Borislav Čembić 116', 'Žagubica',
+'', 2.8, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Spasoje Kosanić', 46.063472, 20.050403, 'Ulica Cajka Kiklić 34', 'Kanjiža',
+'', 3.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Mionica', 44.252423, 20.081707, 'Ulica Ratiborka Kebeljić 120', 'Mionica',
+'', 2.1, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Damjan Čamagić', 43.970917, 19.565524, 'Ulica Milojka Bačkalić 13', 'Bajina Bašta',
+'', 2.3, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Svilajnac', 44.238271, 21.196994, 'Ulica Radul Lotić 119', 'Svilajnac',
+'', 4.8, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Priboj', 43.583611, 19.525833, 'Ulica Latinka Mickić 20', 'Priboj',
+'', 4.3, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Stojanka Krsmanić', 44.67204, 20.715286, 'Ulica Olja Prelić 101', 'Grocka',
+'', 4.2, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Bioskop Rača', 44.22685, 20.978954, 'Ulica Dušica Tejić 67', 'Rača',
+'', 3.7, 5, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Željko Krivačić', 45.048162, 20.081647, 'Ulica Anđelija Tanasić 70', 'Inđija',
+'', 3.1, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Sjenica', 43.273545, 20.000368, 'Ulica Ranka Lotić 103', 'Sjenica',
+'', 4.7, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Jagodina', 43.97913, 21.258311, 'Ulica Želimir Konculić 64', 'Jagodina',
+'', 3.0, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Požega', 43.845852, 20.036774, 'Ulica Milivoj Čolanić 76', 'Požega',
+'', 4.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Trgovište', 42.3514, 22.092091, 'Ulica Lidija Orlandić 76', 'Trgovište',
+'', 2.7, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Mojsilo Lakić', 43.014188, 21.717967, 'Ulica Šiško Malečić 66', 'Bojnik',
+'', 3.6, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Mojsilo Lakić', 44.8376, 19.480699, 'Ulica Spasenija Bosančić 11', 'Bogatić',
+'', 3.7, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Ćuprija', 43.928388, 21.374491, 'Ulica Branimir Glamočić 62', 'Ćuprija',
+'', 4.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Aleksandrovac', 43.460895, 21.053911, 'Ulica Ristivoje Piperčić 55', 'Aleksandrovac',
+'', 2.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Rumenka Bunić', 42.989993, 20.333372, 'Ulica Milentije Kosnić 94', 'Tutin',
+'', 3.7, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Smederevska Palanka', 44.365381, 20.962273, 'Ulica Aleksa Prekogačić 67', 'Smederevska Palanka',
+'', 3.9, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Cvijan Žunić', 43.014188, 21.717967, 'Ulica Teodosije Radisavić 23', 'Bojnik',
+'', 2.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Jordan Pernić', 44.307663, 20.561163, 'Ulica Konstantin Mirjanić 25', 'Aranđelovac',
+'', 2.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Slavica Matušić', 44.226611, 20.239352, 'Ulica Radoje Garetić 9', 'Ljig',
+'', 2.0, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Stanojlo Sretić', 44.908889, 19.966389, 'Ulica Krsmanija Fotić 119', 'Pećinci',
+'', 2.0, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Knić', 43.92696, 20.719695, 'Ulica Bisenija Stojšić 3', 'Knić',
+'', 2.2, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Poljka Krainčanić', 43.294312, 22.009906, 'Ulica Dobrica Galečić 47', 'Niška Banja',
+'', 3.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Temerin', 45.409464, 19.89112, 'Ulica Stamenko Šorgić 24', 'Temerin',
+'', 2.2, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Zorica Florić', 44.226389, 22.530833, 'Ulica Sofronije Jasnić 35', 'Negotin',
+'', 2.2, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Veljko Levnajić', 43.390327, 19.65061, 'Ulica Emil Timilić 75', 'Prijepolje',
+'', 3.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Kragujevac', 44.010876, 20.909029, 'Ulica Kruna Borišić 15', 'Kragujevac',
+'', 3.6, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Temerin', 45.409464, 19.89112, 'Ulica Miomir Gavrić 6', 'Temerin',
+'', 3.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Žitište', 45.485384, 20.550725, 'Ulica Bisenija Kalinucić 60', 'Žitište',
+'', 2.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Novi Sad', 45.259272, 19.829056, 'Ulica Krsmanija Fotić 49', 'Novi Sad',
+'', 2.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Nada Patrnogić', 44.615776, 19.784303, 'Ulica Goca Krstajić 59', 'Vladimirci',
+'', 4.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Vukosav Vukošić', 45.774239, 19.115068, 'Ulica Radoš Budurić 80', 'Sombor',
+'', 4.9, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Tutin', 42.989993, 20.333372, 'Ulica Persida Galčić 112', 'Tutin',
+'', 2.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Koceljeva', 44.468716, 19.82139, 'Ulica Hranislava Ležajić 85', 'Koceljeva',
+'', 2.1, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Anđa Kulić', 45.927334, 20.078859, 'Ulica Slobodan Velišić 102', 'Senta',
+'', 2.9, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Gruja Glumičić', 43.196833, 21.833398, 'Ulica Božana Mrakić 62', 'Doljevac',
+'', 3.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Stamenko Šorgić', 45.052172, 20.431343, 'Ulica Đurica Bisić 118', 'Opovo',
+'', 3.1, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Topola', 44.25442, 20.682437, 'Ulica Božana Rogljić 1', 'Topola',
+'', 3.7, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Željka Utvić', 43.390327, 19.65061, 'Ulica Radoman Kovandžić 90', 'Prijepolje',
+'', 2.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Beočin', 45.191649, 19.724962, 'Ulica Željka Utvić 96', 'Beočin',
+'', 2.6, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Svilajnac', 44.238271, 21.196994, 'Ulica Damjan Čamagić 118', 'Svilajnac',
+'', 2.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Medveđa', 42.842007, 21.585811, 'Ulica Krsmanija Dančejić 97', 'Medveđa',
+'', 4.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Stanka Rogulić', 44.607292, 22.615474, 'Ulica Radojlo Tajdić 29', 'Kladovo',
+'', 3.6, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Mali Iđoš', 45.709191, 19.666261, 'Ulica Ristivoj Vrugić 68', 'Mali Iđoš',
+'', 2.1, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Žagubica', 44.197863, 21.790196, 'Ulica Julka Hadži Ristić 22', 'Žagubica',
+'', 4.9, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Željka Žurkić', 44.370041, 20.164425, 'Ulica Čeda Jojić 104', 'Lajkovac',
+'', 2.1, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Kuzman Vanucić', 45.229228, 21.123827, 'Ulica Filotej Vojičić 20', 'Plandište',
+'', 4.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Vladimir Lišančić', 46.063472, 20.050403, 'Ulica Maksim Pušeljić 5', 'Kanjiža',
+'', 2.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Drgorad Zorić', 42.917129, 21.729449, 'Ulica Golub Timilić 99', 'Lebane',
+'', 3.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Paraćin', 43.859155, 21.41191, 'Ulica Branimir Glamočić 14', 'Paraćin',
+'', 4.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Veljko Levnajić', 45.774239, 19.115068, 'Ulica Gorica Gambelić 44', 'Sombor',
+'', 2.0, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Prijepolje', 43.390327, 19.65061, 'Ulica Aleksandra Šabeljić 21', 'Prijepolje',
+'', 2.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Miladin Veličić', 43.294312, 22.009906, 'Ulica Ranđa Budimić 23', 'Niška Banja',
+'', 4.9, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Veliko Gradište', 44.763811, 21.516251, 'Ulica Zvezdana Šundić 89', 'Veliko Gradište',
+'', 3.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Leposava Glodić', 45.485384, 20.550725, 'Ulica Darko Galetić 13', 'Žitište',
+'', 2.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Aleksinac', 43.541667, 21.707778, 'Ulica Stevka Bastajić 16', 'Aleksinac',
+'', 3.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Vladimirci', 44.615776, 19.784303, 'Ulica Spasoje Kosanić 33', 'Vladimirci',
+'', 2.1, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Leskovac', 42.997558, 21.944496, 'Ulica Đulijana Dželebdžić 80', 'Leskovac',
+'', 2.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Sergije Kureljušić', 44.753841, 19.687569, 'Ulica Magdalena Balačikić 4', 'Šabac',
+'', 2.2, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Fema Mirčić', 44.622213, 21.182589, 'Ulica Krsmanija Fotić 62', 'Požarevac',
+'', 3.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Bogatić', 44.8376, 19.480699, 'Ulica Sandra Kovjenić 58', 'Bogatić',
+'', 4.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Aleksandrovac', 43.460895, 21.053911, 'Ulica Najdan Ćeklić 90', 'Aleksandrovac',
+'', 2.6, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Obradinka Vajagić', 44.356169, 21.214256, 'Ulica Sretenka Nežić 50', 'Žabari',
+'', 2.7, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Šid', 45.127597, 19.226675, 'Ulica Miroljub Šunjevarić 110', 'Šid',
+'', 4.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Želimir Očinić', 43.901871, 22.275511, 'Ulica Liza Kljutić 64', 'Zaječar',
+'', 3.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Temerin', 45.409464, 19.89112, 'Ulica Jelka Mikarić 47', 'Temerin',
+'', 3.1, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Vladičin Han', 42.708202, 22.066365, 'Ulica Damjan Čamagić 116', 'Vladičin Han',
+'', 2.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Uranko Delojkić', 43.384599, 21.028883, 'Ulica Stanojka Šunkić 118', 'Brus',
+'', 2.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Đurđevka Kojčić', 43.384599, 21.028883, 'Ulica Đurđe Medurić 55', 'Brus',
+'', 4.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Vasilija Glavendekić', 43.901871, 22.275511, 'Ulica Nićifor Vagić 42', 'Zaječar',
+'', 4.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Jelika Lović', 43.719967, 21.443617, 'Ulica Bisenija Šalinić 118', 'Ćićevac',
+'', 4.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Svrljig', 43.412867, 22.125209, 'Ulica Ljubinka Subotić 44', 'Svrljig',
+'', 4.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Nova Varoš', 43.460026, 19.811677, 'Ulica Ljubo Bokić 98', 'Nova Varoš',
+'', 3.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Bisenija Šalinić', 43.622328, 20.89561, 'Ulica Stojka Tufonić 54', 'Vrnjačka Banja',
+'', 3.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Čoka', 45.941516, 20.146023, 'Ulica Laza Erić 31', 'Čoka',
+'', 3.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Goran Ljubičić', 44.468716, 19.82139, 'Ulica Miladin Veličić 82', 'Koceljeva',
+'', 4.6, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Vrnjačka Banja', 43.622328, 20.89561, 'Ulica Želimir Batinić 13', 'Vrnjačka Banja',
+'', 4.7, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Marinko Trošić', 45.601466, 20.136361, 'Ulica Olja Klisurić 76', 'Novi Bečej',
+'', 2.9, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Ceca Kretić', 44.379722, 20.263889, 'Ulica Gradimirka Špoljić 20', 'Lazarevac',
+'', 4.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Đulijana Brujić', 43.384599, 21.028883, 'Ulica Dalibor Đurašić 39', 'Brus',
+'', 3.2, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Hranislava Žeravić', 43.970917, 19.565524, 'Ulica Ilija Pajić 87', 'Bajina Bašta',
+'', 3.9, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Šid', 45.127597, 19.226675, 'Ulica Aleksandra Šabeljić 95', 'Šid',
+'', 4.7, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Višeslava Grumić', 46.100972, 19.668233, 'Ulica Ranđa Budimić 85', 'Subotica',
+'', 2.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Kula', 45.610866, 19.527391, 'Ulica Smilja Bešić 49', 'Kula',
+'', 2.2, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Ratimir Spasić', 44.67204, 20.715286, 'Ulica Gradiša Potrebić 5', 'Grocka',
+'', 3.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Višnja Mikičić', 44.87131, 20.644304, 'Ulica Vukica Kodžopeljić 97', 'Pančevo',
+'', 2.6, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Bogdana Šošić', 45.251876, 19.391649, 'Ulica Janko Stolić 9', 'Bačka Palanka',
+'', 2.1, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Grocka', 44.67204, 20.715286, 'Ulica Stojanka Irić 70', 'Grocka',
+'', 3.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Dobroslavka Pavlić', 44.748222, 20.976599, 'Ulica Drgorad Zorić 28', 'Kovin',
+'', 2.1, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Priboj', 43.583611, 19.525833, 'Ulica Veliborka Tripić 106', 'Priboj',
+'', 2.2, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Apatin', 45.67092, 18.984344, 'Ulica Žaklina Dragušić 7', 'Apatin',
+'', 2.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Miodrag Vulikić', 44.560257, 21.290565, 'Ulica Antonina Zjalić 71', 'Malo Crniće',
+'', 3.8, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Brus', 43.384599, 21.028883, 'Ulica Jagoš Pericić 65', 'Brus',
+'', 2.0, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Đulijana Brujić', 43.832131, 21.960899, 'Ulica Božana Rogljić 17', 'Boljevac',
+'', 2.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Goran Ljubičić', 45.619602, 20.039983, 'Ulica Ivko Peričić 39', 'Bečej',
+'', 2.0, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Užice', 43.858185, 19.844087, 'Ulica Isak Ćujić 4', 'Užice',
+'', 2.2, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Zaječar', 43.901871, 22.275511, 'Ulica Miomir Gavrić 98', 'Zaječar',
+'', 3.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Radivoj Ristanić', 44.652912, 21.630772, 'Ulica Stojanka Irić 75', 'Golubac',
+'', 3.5, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Atanasije Šepić', 45.007858, 19.817096, 'Ulica Bisenija Stojšić 100', 'Ruma',
+'', 2.9, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Doljevac', 43.196833, 21.833398, 'Ulica Miomir Gavrić 90', 'Doljevac',
+'', 2.4, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Sokobanja', 43.645293, 21.869178, 'Ulica Jelenko Strojić 2', 'Sokobanja',
+'', 3.2, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Vlasotince', 42.965907, 22.127178, 'Ulica Dobrilo Talić 51', 'Vlasotince',
+'', 4.2, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Sremska Mitrovica', 44.976389, 19.612222, 'Ulica Stojanka Rasulić 19', 'Sremska Mitrovica',
+'', 4.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Kanjiža', 46.063472, 20.050403, 'Ulica Gorica Gambelić 109', 'Kanjiža',
+'', 4.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Topola', 44.25442, 20.682437, 'Ulica Srđan Kojdić 63', 'Topola',
+'', 3.3, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Galerija Dimitrovgrad', 43.015455, 22.77759, 'Ulica Ljubinka Subotić 106', 'Dimitrovgrad',
+'', 4.7, 6, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Kostolac', 44.713559, 21.169287, 'Ulica Obradin Gačić 71', 'Kostolac',
+'', 3.1, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Živadin Koljajić', 44.081885, 22.096673, 'Ulica Milica Pirivatrić 50', 'Bor',
+'', 4.1, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Loznica', 44.531179, 19.242668, 'Ulica Milijana Popčić 28', 'Loznica',
+'', 4.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Prijepolje', 43.390327, 19.65061, 'Ulica Milentije Kosnić 111', 'Prijepolje',
+'', 3.3, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Slavica Mirosavić', 43.219622, 22.314048, 'Ulica Radinka Gnjidić 84', 'Bela Palanka',
+'', 2.8, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ivica Tomišić', 44.67204, 20.715286, 'Ulica Borisav Tominčić 116', 'Grocka',
+'', 4.8, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Kučevo', 44.476729, 21.671183, 'Ulica Blagica Punišić 36', 'Kučevo',
+'', 3.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Konstantin Mirjanić', 45.374078, 20.0707, 'Ulica Zlatibor Bondžić 95', 'Žabalj',
+'', 2.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Belgrade', 44.818611, 20.468056, 'Ulica Lepomir Stupić 76', 'Belgrade',
+'', 3.5, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Malo Crniće', 44.560257, 21.290565, 'Ulica Paun Matušić 31', 'Malo Crniće',
+'', 4.0, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Liza Kljutić', 44.8376, 19.480699, 'Ulica Njegoslav Vojvodić 24', 'Bogatić',
+'', 2.4, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Tugomir Vasiljkić', 44.67204, 20.715286, 'Ulica Blaženka Tepić 50', 'Grocka',
+'', 4.0, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Đokica Čeleketić', 43.014188, 21.717967, 'Ulica Hranislava Ležajić 88', 'Bojnik',
+'', 2.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Katica Magdelinić', 44.010876, 20.909029, 'Ulica Damjan Čamagić 18', 'Kragujevac',
+'', 4.3, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ranđa Budimić', 45.709191, 19.666261, 'Ulica Stanojka Šunkić 93', 'Mali Iđoš',
+'', 3.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Subotica', 46.100972, 19.668233, 'Ulica Gorica Gambelić 84', 'Subotica',
+'', 3.1, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Sokobanja', 43.645293, 21.869178, 'Ulica Pajka Bajić 97', 'Sokobanja',
+'', 4.3, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Rafailo Stepandić', 43.859155, 21.41191, 'Ulica Smilja Koranjić 40', 'Paraćin',
+'', 4.5, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Pirot', 43.16165, 22.58713, 'Ulica Živkica Bukilić 37', 'Pirot',
+'', 2.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ćićevac', 43.719967, 21.443617, 'Ulica Svetoje Hadži Jovančić 47', 'Ćićevac',
+'', 4.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Borisav Tominčić', 46.100972, 19.668233, 'Ulica Damjan Čamagić 23', 'Subotica',
+'', 4.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Golubac', 44.652912, 21.630772, 'Ulica Jovan Đuketić 92', 'Golubac',
+'', 2.5, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Raška', 43.28595, 20.613515, 'Ulica Damjan Čamagić 50', 'Raška',
+'', 3.5, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Zrenjanin', 45.38182, 20.395396, 'Ulica Varvara Jevrić 9', 'Zrenjanin',
+'', 2.7, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Marinko Trošić', 44.189574, 19.378486, 'Ulica Gruja Stevlić 83', 'Ljubovija',
+'', 4.4, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Titel', 45.206014, 20.294882, 'Ulica Kojadin Jovanikić 50', 'Titel',
+'', 2.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Petruška Drinić', 45.048162, 20.081647, 'Ulica Taško Smilić 53', 'Inđija',
+'', 4.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Drgorad Miškić', 45.815206, 19.636943, 'Ulica Jagoš Pericić 93', 'Bačka Topola',
+'', 4.2, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Rača', 44.22685, 20.978954, 'Ulica Toma Kosnić 51', 'Rača',
+'', 3.5, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Topola', 44.25442, 20.682437, 'Ulica Fema Mirčić 69', 'Topola',
+'', 2.1, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Novi Pazar', 43.137514, 20.514905, 'Ulica Ćana Gatarić 114', 'Novi Pazar',
+'', 2.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Nedeljka Karaulić', 44.579011, 20.417895, 'Ulica Prvoslav Bogatić 66', 'Barajevo',
+'', 2.0, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ub', 44.457197, 20.076242, 'Ulica Sretenka Nežić 82', 'Ub',
+'', 4.2, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Dragan Bakalić', 43.583611, 19.525833, 'Ulica Stanija Pusulić 22', 'Priboj',
+'', 3.5, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Poljka Colić', 43.273545, 20.000368, 'Ulica Konstantin Mirjanić 63', 'Sjenica',
+'', 2.1, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Sofronije Jasnić', 45.802655, 20.128509, 'Ulica Jelenko Strojić 16', 'Ada',
+'', 3.2, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Gvozden Smikić', 43.196833, 21.833398, 'Ulica Snežana Marotić 4', 'Doljevac',
+'', 2.1, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Novka Golić', 44.652912, 21.630772, 'Ulica Nemanja Krstić 60', 'Golubac',
+'', 3.0, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Draško Novčić', 43.583611, 19.525833, 'Ulica Milisav Drinčić 91', 'Priboj',
+'', 4.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Srećko Čupić', 44.908889, 19.966389, 'Ulica Vukašin Čokić 87', 'Pećinci',
+'', 3.1, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ljubovija', 44.189574, 19.378486, 'Ulica Najdan Ćeklić 82', 'Ljubovija',
+'', 4.3, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ratka Vulić', 44.189574, 19.378486, 'Ulica Nebojša Pualić 37', 'Ljubovija',
+'', 4.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Čačak', 43.888017, 20.344023, 'Ulica Filotej Ležaić 65', 'Čačak',
+'', 2.0, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ruma', 45.007858, 19.817096, 'Ulica Rafailo Stepandić 86', 'Ruma',
+'', 4.5, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Radoš Budurić', 44.154749, 21.07991, 'Ulica Blagica Punišić 7', 'Batočina',
+'', 2.2, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Petruška Drinić', 45.259272, 19.829056, 'Ulica Dobrivoj Trivunčić 16', 'Novi Sad',
+'', 2.7, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Bojana Piljikić', 44.653889, 20.2, 'Ulica Radiša Sušić 94', 'Obrenovac',
+'', 3.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Živojin Potulić', 43.137514, 20.514905, 'Ulica Radinka Gnjidić 75', 'Novi Pazar',
+'', 2.2, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Vladeta Rajčetić', 43.460026, 19.811677, 'Ulica Blaženka Sabljić 100', 'Nova Varoš',
+'', 2.1, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Aranđelovac', 44.307663, 20.561163, 'Ulica Bogdan Simonić 110', 'Aranđelovac',
+'', 3.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Đurica Bisić', 43.719517, 21.371223, 'Ulica Emil Timilić 118', 'Varvarin',
+'', 3.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Dobrivoj Trivunčić', 43.719967, 21.443617, 'Ulica Krsmanija Fotić 42', 'Ćićevac',
+'', 2.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Radoslavka Nevenić', 43.390327, 19.65061, 'Ulica Aksentije Kusonić 104', 'Prijepolje',
+'', 2.2, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Priboj', 43.583611, 19.525833, 'Ulica Dragiša Kalčić 54', 'Priboj',
+'', 4.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Emilijan Topličić', 43.014188, 21.717967, 'Ulica Poljka Nogulić 99', 'Bojnik',
+'', 3.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Aranđelovac', 44.307663, 20.561163, 'Ulica Hristina Čalić 106', 'Aranđelovac',
+'', 4.7, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Anđa Epifanić', 45.367638, 20.773205, 'Ulica Srđan Kojdić 18', 'Sečanj',
+'', 3.3, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Čajetina', 43.749736, 19.714951, 'Ulica Slavenka Grubješić 115', 'Čajetina',
+'', 3.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Kragujevac', 44.010876, 20.909029, 'Ulica Petar Eskić 79', 'Kragujevac',
+'', 3.7, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Gadžin Han', 43.222289, 22.033287, 'Ulica Petronije Badrkić 39', 'Gadžin Han',
+'', 3.5, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Čoka', 45.941516, 20.146023, 'Ulica Đulijana Brujić 44', 'Čoka',
+'', 3.7, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Zrenjanin', 45.38182, 20.395396, 'Ulica Kirilo Mačkić 79', 'Zrenjanin',
+'', 3.0, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ozrenka Verić', 42.807114, 22.324661, 'Ulica Časlavka Dostinić 58', 'Crna Trava',
+'', 3.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Trgovište', 42.3514, 22.092091, 'Ulica Despot Budalić 50', 'Trgovište',
+'', 4.7, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Tina Dabarčić', 43.725908, 20.689577, 'Ulica Darko Ugrčić 32', 'Kraljevo',
+'', 2.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Nebojša Pualić', 44.67204, 20.715286, 'Ulica Smiljana Kalinčić 113', 'Grocka',
+'', 3.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Borisav Grumić', 43.928388, 21.374491, 'Ulica Stojadinka Palić 111', 'Ćuprija',
+'', 4.7, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Stevan Rubežić', 43.219622, 22.314048, 'Ulica Koviljka Čkrkić 68', 'Bela Palanka',
+'', 2.8, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Anđelija Ravić', 44.25442, 20.682437, 'Ulica Ljubivoje Narandžić 81', 'Topola',
+'', 2.6, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Marjan Sabljić', 44.763811, 21.516251, 'Ulica Teodosije Radisavić 80', 'Veliko Gradište',
+'', 2.4, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Požega', 43.845852, 20.036774, 'Ulica Stojiljko Nišavić 8', 'Požega',
+'', 4.3, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Nadežda Miletić', 45.774239, 19.115068, 'Ulica Bogdanka Čabrić 4', 'Sombor',
+'', 2.4, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Stara Pazova', 44.986131, 20.159731, 'Ulica Miladin Veličić 22', 'Stara Pazova',
+'', 4.7, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Slavenka Grubješić', 44.367619, 19.36327, 'Ulica Novka Golić 34', 'Krupanj',
+'', 2.8, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Valjevo', 44.271955, 19.887437, 'Ulica Slobodan Velišić 97', 'Valjevo',
+'', 2.8, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ruma', 45.007858, 19.817096, 'Ulica Maksim Kavalić 3', 'Ruma',
+'', 2.8, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Bečej', 45.619602, 20.039983, 'Ulica Ljubinka Subotić 31', 'Bečej',
+'', 4.2, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Kučevo', 44.476729, 21.671183, 'Ulica Radovan Trivundić 33', 'Kučevo',
+'', 3.3, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Vladeta Motičić', 43.645293, 21.869178, 'Ulica Anđelka Budinčić 44', 'Sokobanja',
+'', 2.7, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Lazarevac', 44.379722, 20.263889, 'Ulica Gordana Katanić 2', 'Lazarevac',
+'', 3.4, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Bogomir Krajšić', 43.970917, 19.565524, 'Ulica Šiško Malečić 71', 'Bajina Bašta',
+'', 2.5, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ćirka Pačkić', 43.719967, 21.443617, 'Ulica Dobrivoj Trivunčić 43', 'Ćićevac',
+'', 2.7, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ćuprija', 43.928388, 21.374491, 'Ulica Vasilije Kljutić 109', 'Ćuprija',
+'', 4.2, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Latinka Mickić', 43.888017, 20.344023, 'Ulica Stanojka Šunkić 25', 'Čačak',
+'', 3.4, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Kojadin Jovanikić', 43.92696, 20.719695, 'Ulica Krsmanija Fotić 21', 'Knić',
+'', 3.3, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Marjan Sabljić', 45.117501, 21.298315, 'Ulica Vera Jeremić 50', 'Vršac',
+'', 2.5, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Dimitrovgrad', 43.015455, 22.77759, 'Ulica Blaženka Tepić 13', 'Dimitrovgrad',
+'', 3.2, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Gornji Milanovac', 44.024504, 20.458646, 'Ulica Vukan Kojičić 17', 'Gornji Milanovac',
+'', 2.5, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Kula', 45.610866, 19.527391, 'Ulica Zlatica Aperlić 1', 'Kula',
+'', 4.4, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Bački Petrovac', 45.36157, 19.591981, 'Ulica Stojanka Irić 91', 'Bački Petrovac',
+'', 2.1, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Fotije Dančejić', 44.8376, 19.480699, 'Ulica Sergije Kureljušić 73', 'Bogatić',
+'', 3.2, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Stanojka Džonić', 45.409464, 19.89112, 'Ulica Spridon Stopić 28', 'Temerin',
+'', 2.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Batočina', 44.154749, 21.07991, 'Ulica Radoslavka Nevenić 71', 'Batočina',
+'', 3.0, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Draginja Vučić', 45.570426, 19.647857, 'Ulica Sergije Kureljušić 33', 'Vrbas',
+'', 3.8, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Ristivoj Eskić', 43.616944, 21.0025, 'Ulica Dobroslavka Pavlić 62', 'Trstenik',
+'', 2.3, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Sečanj', 45.367638, 20.773205, 'Ulica Radojlo Tajdić 27', 'Sečanj',
+'', 4.8, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Vukašin Čokić', 44.238271, 21.196994, 'Ulica Razumenka Pekić 98', 'Svilajnac',
+'', 2.9, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Opovo', 45.052172, 20.431343, 'Ulica Uroš Bosiljkić 10', 'Opovo',
+'', 3.2, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Prvoslavka Trivalić', 44.976389, 19.612222, 'Ulica Danojlo Belić 32', 'Sremska Mitrovica',
+'', 4.3, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Koncertna dvorana Bač', 45.392276, 19.236684, 'Ulica Dobrilo Talić 8', 'Bač',
+'', 3.8, 7, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Blace', 43.296964, 21.272727, 'Ulica Toma Kosnić 33', 'Blace',
+'', 4.2, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Smederevska Palanka', 44.365381, 20.962273, 'Ulica Nikolija Denkić 10', 'Smederevska Palanka',
+'', 2.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Fotije Dančejić', 44.081885, 22.096673, 'Ulica Cane Raulić 116', 'Bor',
+'', 4.2, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Mali Zvornik', 44.399176, 19.121431, 'Ulica Jasmina Zisić 42', 'Mali Zvornik',
+'', 2.9, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Đurica Dostičić', 45.485384, 20.550725, 'Ulica Emilijan Topličić 91', 'Žitište',
+'', 4.3, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Malo Crniće', 44.560257, 21.290565, 'Ulica Anđelija Ravić 86', 'Malo Crniće',
+'', 2.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Žagubica', 44.197863, 21.790196, 'Ulica Njegovan Nastasić 21', 'Žagubica',
+'', 4.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Bački Petrovac', 45.36157, 19.591981, 'Ulica Ratiborka Kebeljić 61', 'Bački Petrovac',
+'', 2.5, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Cajka Kiklić', 43.566696, 22.25393, 'Ulica Jevrem Malavrazić 49', 'Knjaževac',
+'', 3.5, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Evica Plazinić', 45.709191, 19.666261, 'Ulica Radiša Sušić 90', 'Mali Iđoš',
+'', 3.5, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Časlavka Čolanić', 45.36157, 19.591981, 'Ulica Slavenka Šabeljić 32', 'Bački Petrovac',
+'', 4.8, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Brus', 43.384599, 21.028883, 'Ulica Oliver Radanić 111', 'Brus',
+'', 4.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Milentije Jelisić', 46.063472, 20.050403, 'Ulica Manojlo Josić 31', 'Kanjiža',
+'', 4.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Grocka', 44.67204, 20.715286, 'Ulica Aran|el Bjeletić 6', 'Grocka',
+'', 2.3, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Bor', 44.081885, 22.096673, 'Ulica Čubrilo Lolić 94', 'Bor',
+'', 4.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Blagoje Nocić', 42.460618, 21.766552, 'Ulica Đukan Sofijanić 2', 'Bujanovac',
+'', 4.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Doris Biserić', 45.202095, 19.932455, 'Ulica Paun Matušić 7', 'Sremski Karlovci',
+'', 4.8, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Pantelija Divić', 44.399176, 19.121431, 'Ulica Radojka Bavrlić 79', 'Mali Zvornik',
+'', 4.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Pančevo', 44.87131, 20.644304, 'Ulica Sergije Kureljušić 67', 'Pančevo',
+'', 3.5, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Blace', 43.296964, 21.272727, 'Ulica Radoslava Žiletić 49', 'Blace',
+'', 3.7, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Rača', 44.22685, 20.978954, 'Ulica Cviko Cajić 95', 'Rača',
+'', 4.5, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Manojlo Josić', 44.372836, 19.600976, 'Ulica Živadinka Stajčić 3', 'Osečina',
+'', 4.5, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Vukosav Vukošić', 45.815206, 19.636943, 'Ulica Vukica Kodžopeljić 63', 'Bačka Topola',
+'', 3.4, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Radiša Sušić', 44.753841, 19.687569, 'Ulica Mojsilo Piljagić 40', 'Šabac',
+'', 2.2, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Gornji Milanovac', 44.024504, 20.458646, 'Ulica Slavica Matušić 114', 'Gornji Milanovac',
+'', 3.8, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Radojlo Tajdić', 43.970917, 19.565524, 'Ulica Evica Đuračić 12', 'Bajina Bašta',
+'', 4.7, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Novi Bečej', 45.601466, 20.136361, 'Ulica Nastasija Kričkić 64', 'Novi Bečej',
+'', 2.3, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Žitište', 45.485384, 20.550725, 'Ulica Kojadin Jovanikić 100', 'Žitište',
+'', 4.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Apatin', 45.67092, 18.984344, 'Ulica Kirilo Barnić 84', 'Apatin',
+'', 4.3, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Rafailo Stepandić', 44.653889, 20.2, 'Ulica Vukota Spurnić 56', 'Obrenovac',
+'', 3.2, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Sopot', 44.519348, 20.575785, 'Ulica Ljubo Bokić 31', 'Sopot',
+'', 4.4, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Magdalena Balačikić', 43.390327, 19.65061, 'Ulica Stanojlo Dejanić 10', 'Prijepolje',
+'', 4.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Anđelka Budinčić', 45.774239, 19.115068, 'Ulica Vlastimir Koljenšić 37', 'Sombor',
+'', 3.5, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Šid', 45.127597, 19.226675, 'Ulica Poljka Nogulić 39', 'Šid',
+'', 3.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Vladimirci', 44.615776, 19.784303, 'Ulica Slavenko Raonić 120', 'Vladimirci',
+'', 4.4, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Gavrilo Marčetić', 42.460618, 21.766552, 'Ulica Emil Timilić 7', 'Bujanovac',
+'', 2.4, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Gruja Glumičić', 43.832131, 21.960899, 'Ulica Sima Disić 23', 'Boljevac',
+'', 2.4, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Stamenko Šorgić', 43.390327, 19.65061, 'Ulica Stanojlo Drapić 118', 'Prijepolje',
+'', 3.2, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Miloš Mesulić', 44.652912, 21.630772, 'Ulica Suncica Lupikić 15', 'Golubac',
+'', 2.3, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Koviljka Čkrkić', 43.901871, 22.275511, 'Ulica Ranko Lekanić 95', 'Zaječar',
+'', 2.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Dobroslavka Šešić', 46.041039, 20.09584, 'Ulica Bogdan Simonić 41', 'Novi Kneževac',
+'', 4.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Veliko Gradište', 44.763811, 21.516251, 'Ulica Julija Purišić 12', 'Veliko Gradište',
+'', 3.7, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Vršac', 45.117501, 21.298315, 'Ulica Simeon Voštinić 85', 'Vršac',
+'', 2.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Pančevo', 44.87131, 20.644304, 'Ulica Miodrag Mileusnić 115', 'Pančevo',
+'', 3.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Stefan Borongić', 46.100972, 19.668233, 'Ulica Julka Hadži Ristić 13', 'Subotica',
+'', 3.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Novi Pazar', 43.137514, 20.514905, 'Ulica Petruška Drinić 43', 'Novi Pazar',
+'', 4.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Šabac', 44.753841, 19.687569, 'Ulica Goran Ljubičić 18', 'Šabac',
+'', 2.2, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Milanko Vulić', 44.093202, 21.443975, 'Ulica Sima Disić 73', 'Despotovac',
+'', 3.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Kosjerić', 43.998702, 19.907859, 'Ulica Hristina Čalić 52', 'Kosjerić',
+'', 2.8, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Petronije Badrkić', 44.840696, 20.397853, 'Ulica Radiša Sušić 13', 'Zemun',
+'', 3.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Ćirka Mandarić', 42.708202, 22.066365, 'Ulica Blagoje Nocić 20', 'Vladičin Han',
+'', 2.9, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Puriša Tovljanić', 45.048162, 20.081647, 'Ulica Gordana Katanić 38', 'Inđija',
+'', 4.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Ljubovija', 44.189574, 19.378486, 'Ulica Tomka Lolić 107', 'Ljubovija',
+'', 2.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Mali Zvornik', 44.399176, 19.121431, 'Ulica Gradimirka Špoljić 87', 'Mali Zvornik',
+'', 4.5, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Topola', 44.25442, 20.682437, 'Ulica Želimir Očinić 92', 'Topola',
+'', 3.4, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Julka Hadži Ristić', 44.25442, 20.682437, 'Ulica Drgorad Zorić 70', 'Topola',
+'', 4.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Buda Mejić', 44.560257, 21.290565, 'Ulica Todora Stavrić 3', 'Malo Crniće',
+'', 2.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Pirot', 43.16165, 22.58713, 'Ulica Veljko Levnajić 108', 'Pirot',
+'', 3.9, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Senta', 45.927334, 20.078859, 'Ulica Stanojlo Dejanić 39', 'Senta',
+'', 2.3, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Jelika Puslojić', 43.296964, 21.272727, 'Ulica Miodrag Vulikić 58', 'Blace',
+'', 4.9, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Ub', 44.457197, 20.076242, 'Ulica Aleksa Vuksić 49', 'Ub',
+'', 2.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Aleksandrovac', 43.460895, 21.053911, 'Ulica Bisenija Šalinić 11', 'Aleksandrovac',
+'', 2.7, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Novi Pazar', 43.137514, 20.514905, 'Ulica Božana Rogljić 99', 'Novi Pazar',
+'', 2.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Novi Bečej', 45.601466, 20.136361, 'Ulica Fanija Bušić 115', 'Novi Bečej',
+'', 2.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Bajina Bašta', 43.970917, 19.565524, 'Ulica Stojadin Bulutić 18', 'Bajina Bašta',
+'', 3.4, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Mitar Talpešić', 45.409464, 19.89112, 'Ulica Jelika Puslojić 53', 'Temerin',
+'', 3.9, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Ljubovija', 44.189574, 19.378486, 'Ulica Gradimirka Špoljić 40', 'Ljubovija',
+'', 2.8, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Belgrade', 44.818611, 20.468056, 'Ulica Dragica Kiklić 41', 'Belgrade',
+'', 3.3, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Zemun', 44.840696, 20.397853, 'Ulica Novko Čališić 78', 'Zemun',
+'', 4.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Pirot', 43.16165, 22.58713, 'Ulica Sojka Grozdanić 87', 'Pirot',
+'', 2.8, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Merošina', 43.281278, 21.721834, 'Ulica Borisav Grumić 53', 'Merošina',
+'', 4.7, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Ada', 45.802655, 20.128509, 'Ulica Hranislavka Selenić 28', 'Ada',
+'', 3.9, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Kraljevo', 43.725908, 20.689577, 'Ulica Leonida Pržić 67', 'Kraljevo',
+'', 3.8, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Slavenka Šabeljić', 44.457197, 20.076242, 'Ulica Natalija Tumarić 14', 'Ub',
+'', 4.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Ruma', 45.007858, 19.817096, 'Ulica Ristivoje Piperčić 33', 'Ruma',
+'', 3.3, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Bogdan Simonić', 45.38182, 20.395396, 'Ulica Tihomir Bizumić 116', 'Zrenjanin',
+'', 3.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Trajanka Đuketić', 43.97913, 21.258311, 'Ulica Vidak Mrkonjić 91', 'Jagodina',
+'', 2.2, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Ivanjica', 43.582043, 20.228379, 'Ulica Bogdana Šošić 16', 'Ivanjica',
+'', 2.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Subotica', 46.100972, 19.668233, 'Ulica Ristivoj Eskić 50', 'Subotica',
+'', 3.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Živadinka Dašić', 43.014188, 21.717967, 'Ulica Antonije Ugrinčić 14', 'Bojnik',
+'', 4.5, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Blagoje Nocić', 44.976389, 19.612222, 'Ulica Stanica Ćitić 23', 'Sremska Mitrovica',
+'', 2.4, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Irig', 45.100148, 19.860301, 'Ulica Zlatomir Aćimić 78', 'Irig',
+'', 2.2, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Mali Iđoš', 45.709191, 19.666261, 'Ulica Dušica Tejić 80', 'Mali Iđoš',
+'', 2.5, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Apatin', 45.67092, 18.984344, 'Ulica Mojsilo Piljagić 76', 'Apatin',
+'', 4.3, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Nova Varoš', 43.460026, 19.811677, 'Ulica Božana Mrakić 108', 'Nova Varoš',
+'', 4.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Emil Timilić', 44.422847, 21.935837, 'Ulica Natalija Tumarić 65', 'Majdanpek',
+'', 2.7, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Stojmen Žikelić', 43.860913, 21.095774, 'Ulica Ivica Tomišić 97', 'Rekovac',
+'', 3.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Gadžin Han', 43.222289, 22.033287, 'Ulica Đurica Dostičić 95', 'Gadžin Han',
+'', 2.7, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Petrovac na Mlavi', 44.377283, 21.41976, 'Ulica Pantelija Divić 83', 'Petrovac na Mlavi',
+'', 3.2, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Niška Banja', 43.294312, 22.009906, 'Ulica Prerad Bubonjić 35', 'Niška Banja',
+'', 2.8, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Damjanka Redžić', 44.226389, 22.530833, 'Ulica Manojlo Bosiočić 90', 'Negotin',
+'', 4.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Vlasotince', 42.965907, 22.127178, 'Ulica Katica Magdelinić 76', 'Vlasotince',
+'', 4.5, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Grocka', 44.67204, 20.715286, 'Ulica Bogdana Šošić 68', 'Grocka',
+'', 2.7, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Kučevo', 44.476729, 21.671183, 'Ulica Vladimir Lišančić 28', 'Kučevo',
+'', 3.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Jevrem Malavrazić', 42.965907, 22.127178, 'Ulica Janko Stolić 117', 'Vlasotince',
+'', 4.0, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Surčin', 44.794368, 20.278136, 'Ulica Antonije Radekić 45', 'Surčin',
+'', 2.9, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Jagoš Pericić', 43.832131, 21.960899, 'Ulica Zorica Florić 1', 'Boljevac',
+'', 2.1, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Laza Erić', 44.024504, 20.458646, 'Ulica Časlavka Čolanić 102', 'Gornji Milanovac',
+'', 4.3, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Kragujevac', 44.010876, 20.909029, 'Ulica Živadin Đorić 6', 'Kragujevac',
+'', 4.6, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Kulturni centar Kostolac', 44.713559, 21.169287, 'Ulica Petar Pljakić 47', 'Kostolac',
+'', 4.3, 8, 1, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Filotej Ležaić', 44.370041, 20.164425, 'Ulica Sandra Lažetić 7', 'Lajkovac',
+'', 3.5, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Vladičin Han lat: 42.708202, lng: 22.066365', 42.708202, 22.066365, 'Ulica Evica Đuračić 83', 'Vladičin Han',
+'', 2.3, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Kruševac lat: 43.58105, lng: 21.335174', 43.58105, 21.335174, 'Ulica Puriša Tovljanić 53', 'Kruševac',
+'', 2.9, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Sokobanja lat: 43.645293, lng: 21.869178', 43.645293, 21.869178, 'Ulica Jordan Pernić 97', 'Sokobanja',
+'', 4.6, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Živkica Bukilić', 44.67204, 20.715286, 'Ulica Vasilije Kljutić 90', 'Grocka',
+'', 3.9, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Zorica Florić', 45.229228, 21.123827, 'Ulica Daliborka Kruškonjić 37', 'Plandište',
+'', 2.5, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Petronije Badrkić', 45.409464, 19.89112, 'Ulica Simeon Voštinić 75', 'Temerin',
+'', 4.3, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Kula lat: 45.610866, lng: 19.527391', 45.610866, 19.527391, 'Ulica Smilja Koranjić 78', 'Kula',
+'', 2.4, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Zemun lat: 44.840696, lng: 20.397853', 44.840696, 20.397853, 'Ulica Jelka Mikarić 34', 'Zemun',
+'', 2.3, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Srboljub Karkalić', 44.653889, 20.2, 'Ulica Srđan Kojdić 59', 'Obrenovac',
+'', 4.3, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Doris Biserić', 43.58105, 21.335174, 'Ulica Ćile Bogičić 79', 'Kruševac',
+'', 3.3, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Čajetina lat: 43.749736, lng: 19.714951', 43.749736, 19.714951, 'Ulica Željka Uverić 70', 'Čajetina',
+'', 4.9, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Stanica Ćitić', 44.024504, 20.458646, 'Ulica Hranislavka Selenić 5', 'Gornji Milanovac',
+'', 4.4, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Gadžin Han lat: 43.222289, lng: 22.033287', 43.222289, 22.033287, 'Ulica Miladinka Nikotić 71', 'Gadžin Han',
+'', 2.0, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Kragujevac lat: 44.010876, lng: 20.909029', 44.010876, 20.909029, 'Ulica Damjanka Redžić 106', 'Kragujevac',
+'', 3.0, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Pećinci lat: 44.908889, lng: 19.966389', 44.908889, 19.966389, 'Ulica Čubrilo Lolić 37', 'Pećinci',
+'', 2.8, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Kornelije Tačić', 44.908889, 19.966389, 'Ulica Drgorad Miškić 87', 'Pećinci',
+'', 3.6, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Ruma lat: 45.007858, lng: 19.817096', 45.007858, 19.817096, 'Ulica Cvetomir Stakić 38', 'Ruma',
+'', 3.7, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Obrenovac lat: 44.653889, lng: 20.2', 44.653889, 20.2, 'Ulica Draško Novčić 5', 'Obrenovac',
+'', 4.4, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Pećinci lat: 44.908889, lng: 19.966389', 44.908889, 19.966389, 'Ulica Šana Pavelkić 1', 'Pećinci',
+'', 4.1, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Bela Crkva lat: 44.901485, lng: 21.423394', 44.901485, 21.423394, 'Ulica Bojan Pleskonjić 66', 'Bela Crkva',
+'', 3.2, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Doljevac lat: 43.196833, lng: 21.833398', 43.196833, 21.833398, 'Ulica Stojka Tufonić 66', 'Doljevac',
+'', 3.3, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Vladičin Han lat: 42.708202, lng: 22.066365', 42.708202, 22.066365, 'Ulica Cane Raulić 118', 'Vladičin Han',
+'', 2.0, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Helena Milišić', 43.390327, 19.65061, 'Ulica Nebojša Pualić 120', 'Prijepolje',
+'', 2.1, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Senta lat: 45.927334, lng: 20.078859', 45.927334, 20.078859, 'Ulica Sofronije Jasnić 120', 'Senta',
+'', 4.8, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Knić lat: 43.92696, lng: 20.719695', 43.92696, 20.719695, 'Ulica Đukan Moskovlić 34', 'Knić',
+'', 3.3, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Anđelka Budinčić', 42.3514, 22.092091, 'Ulica Fema Mirčić 24', 'Trgovište',
+'', 2.4, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Kladovo lat: 44.607292, lng: 22.615474', 44.607292, 22.615474, 'Ulica Latinka Mickić 84', 'Kladovo',
+'', 3.4, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Radojlo Tajdić', 43.281278, 21.721834, 'Ulica Luka Kodžić 60', 'Merošina',
+'', 3.1, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Damjanka Redžić', 44.024504, 20.458646, 'Ulica Milanko Vulić 83', 'Gornji Milanovac',
+'', 2.1, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Leposava Glodić', 45.668517, 20.604206, 'Ulica Krsmanija Fotić 82', 'Nova Crnja',
+'', 3.9, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Krunoslava Raljić', 45.048162, 20.081647, 'Ulica Šiško Malečić 61', 'Inđija',
+'', 2.6, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Pećinci lat: 44.908889, lng: 19.966389', 44.908889, 19.966389, 'Ulica Žika Krkobabić 13', 'Pećinci',
+'', 4.8, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Krsmanija Fotić', 43.97913, 21.258311, 'Ulica Prerad Bubonjić 108', 'Jagodina',
+'', 2.1, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Odžaci lat: 45.50763, lng: 19.260601', 45.50763, 19.260601, 'Ulica Fotije Dančejić 7', 'Odžaci',
+'', 3.9, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Bačka Palanka lat: 45.251876, lng: 19.391649', 45.251876, 19.391649, 'Ulica Stanojlo Drapić 17', 'Bačka Palanka',
+'', 3.5, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Lučani lat: 43.860816, lng: 20.138434', 43.860816, 20.138434, 'Ulica Vasilije Kljutić 56', 'Lučani',
+'', 4.1, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Aleksa Vuksić', 45.548098, 19.795377, 'Ulica Peladija Jakšić 66', 'Srbobran',
+'', 4.8, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Vladeta Motičić', 45.802655, 20.128509, 'Ulica Zorica Anđić 37', 'Ada',
+'', 2.7, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Festival Stara Pazova lat: 44.986131, lng: 20.159731', 44.986131, 20.159731, 'Ulica Jelenko Džekulić 33', 'Stara Pazova',
+'', 4.6, 1, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Kladovo', 44.607292, 22.615474, 'Ulica Gojko Caričić 68', 'Kladovo',
+'', 3.5, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Ub', 44.457197, 20.076242, 'Ulica Kuzman Vanucić 97', 'Ub',
+'', 4.0, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Ada', 45.802655, 20.128509, 'Ulica Laza Erić 25', 'Ada',
+'', 3.5, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Odžaci', 45.50763, 19.260601, 'Ulica Bogomir Krajšić 69', 'Odžaci',
+'', 4.0, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Velika Plana', 44.332338, 21.075132, 'Ulica Ristivoje Piperčić 97', 'Velika Plana',
+'', 3.4, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Vršac', 45.117501, 21.298315, 'Ulica Stanojlo Dejanić 50', 'Vršac',
+'', 4.0, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Koceljeva', 44.468716, 19.82139, 'Ulica Persida Zjačić 63', 'Koceljeva',
+'', 3.7, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Paraćin', 43.859155, 21.41191, 'Ulica Naum Androbić 120', 'Paraćin',
+'', 2.4, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Bosilegrad', 42.500482, 22.472784, 'Ulica Višeslava Grumić 24', 'Bosilegrad',
+'', 2.1, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Doljevac', 43.196833, 21.833398, 'Ulica Hranislava Ležajić 78', 'Doljevac',
+'', 3.0, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Sombor', 45.774239, 19.115068, 'Ulica Đukan Moskovlić 54', 'Sombor',
+'', 2.5, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Bojnik', 43.014188, 21.717967, 'Ulica Antonije Radekić 47', 'Bojnik',
+'', 4.0, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Crna Trava', 42.807114, 22.324661, 'Ulica Antonije Jevrić 80', 'Crna Trava',
+'', 2.1, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Kragujevac', 44.010876, 20.909029, 'Ulica Jevrem Malavrazić 94', 'Kragujevac',
+'', 4.1, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Zemun', 44.840696, 20.397853, 'Ulica Branimir Glamočić 19', 'Zemun',
+'', 2.8, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Aleksinac', 43.541667, 21.707778, 'Ulica Leonora Pašajlić 92', 'Aleksinac',
+'', 4.1, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Lapovo', 44.187731, 21.09687, 'Ulica Jelenko Strojić 56', 'Lapovo',
+'', 2.0, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Ćuprija', 43.928388, 21.374491, 'Ulica Stojadinka Barajić 82', 'Ćuprija',
+'', 2.4, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Bujanovac', 42.460618, 21.766552, 'Ulica Varvara Jevrić 90', 'Bujanovac',
+'', 4.8, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Barajevo', 44.579011, 20.417895, 'Ulica Predrag Dinkić 83', 'Barajevo',
+'', 4.6, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Belgrade', 44.818611, 20.468056, 'Ulica Vidak Mrkonjić 101', 'Belgrade',
+'', 4.2, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Trgovište', 42.3514, 22.092091, 'Ulica Zaviša Brešić 13', 'Trgovište',
+'', 3.3, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Barajevo', 44.579011, 20.417895, 'Ulica Dobroslavka Šešić 21', 'Barajevo',
+'', 3.0, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Priboj', 43.583611, 19.525833, 'Ulica Miladinka Radulić 15', 'Priboj',
+'', 2.6, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Bačka Palanka', 45.251876, 19.391649, 'Ulica Antonije Jevrić 48', 'Bačka Palanka',
+'', 2.3, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Vlasotince', 42.965907, 22.127178, 'Ulica Stojadinka Palić 119', 'Vlasotince',
+'', 2.8, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Svrljig', 43.412867, 22.125209, 'Ulica Milojka Bačkalić 53', 'Svrljig',
+'', 2.9, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Zrenjanin', 45.38182, 20.395396, 'Ulica Dragan Bakalić 91', 'Zrenjanin',
+'', 2.8, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Kovin', 44.748222, 20.976599, 'Ulica Milisav Drinčić 12', 'Kovin',
+'', 3.9, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Vladičin Han', 42.708202, 22.066365, 'Ulica Olja Klisurić 48', 'Vladičin Han',
+'', 3.8, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Leskovac', 42.997558, 21.944496, 'Ulica Ljiljana Ćirić 115', 'Leskovac',
+'', 4.2, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Trgovište', 42.3514, 22.092091, 'Ulica Pantelija Divić 89', 'Trgovište',
+'', 3.0, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Alibunar', 45.078874, 20.968205, 'Ulica Vojin Ludajić 97', 'Alibunar',
+'', 3.0, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Osečina', 44.372836, 19.600976, 'Ulica Grozdan Vujetić 48', 'Osečina',
+'', 3.5, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Sokobanja', 43.645293, 21.869178, 'Ulica Vukosava Krezić 7', 'Sokobanja',
+'', 3.0, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Inđija', 45.048162, 20.081647, 'Ulica Miladinka Nikotić 43', 'Inđija',
+'', 3.8, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Boljevac', 43.832131, 21.960899, 'Ulica Hristina Čalić 106', 'Boljevac',
+'', 3.6, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Osečina', 44.372836, 19.600976, 'Ulica Srećko Čupić 92', 'Osečina',
+'', 4.4, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Pančevo', 44.87131, 20.644304, 'Ulica Dragan Bakalić 25', 'Pančevo',
+'', 3.7, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sajam Zemun', 44.840696, 20.397853, 'Ulica Prohor Gajić 36', 'Zemun',
+'', 4.1, 2, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Metodije Bekić', 45.374078, 20.0707, 'Ulica Stojiljko Nišavić 91', 'Žabalj',
+'', 4.9, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Marijan Savelić', 43.901871, 22.275511, 'Ulica Smilja Koranjić 34', 'Zaječar',
+'', 3.1, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Draško Novčić', 43.860816, 20.138434, 'Ulica Bogoljub Stikić 101', 'Lučani',
+'', 3.7, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Anđa Kulić', 44.379722, 20.263889, 'Ulica Nikolija Denkić 84', 'Lazarevac',
+'', 2.8, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Srđan Kojdić', 44.986131, 20.159731, 'Ulica Ratko Saveljić 94', 'Stara Pazova',
+'', 4.4, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Gradimirka Špoljić', 44.652912, 21.630772, 'Ulica Ristivoj Vrugić 51', 'Golubac',
+'', 3.0, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Vukan Kojičić', 42.460618, 21.766552, 'Ulica Lidija Orlandić 14', 'Bujanovac',
+'', 3.0, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Slobodan Velišić', 45.548098, 19.795377, 'Ulica Žika Krkobabić 98', 'Srbobran',
+'', 2.1, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Milica Gverić', 43.28595, 20.613515, 'Ulica Radoš Budurić 11', 'Raška',
+'', 3.9, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Teodosije Radisavić', 44.622213, 21.182589, 'Ulica Kornelije Tačić 69', 'Požarevac',
+'', 3.1, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Njegoslav Dudunić', 44.753841, 19.687569, 'Ulica Leontijr Canić 84', 'Šabac',
+'', 3.7, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Aleksandra Šabeljić', 44.377283, 21.41976, 'Ulica Evica Plazinić 46', 'Petrovac na Mlavi',
+'', 4.1, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Cviko Jovelić', 43.645293, 21.869178, 'Ulica Njegovan Nastasić 33', 'Sokobanja',
+'', 4.6, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Darko Ugrčić', 44.615776, 19.784303, 'Ulica Prvoslavka Garčić 20', 'Vladimirci',
+'', 3.1, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Zaviša Brešić', 45.251876, 19.391649, 'Ulica Aleksa Prekogačić 84', 'Bačka Palanka',
+'', 2.6, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Jelenko Džekulić', 43.014188, 21.717967, 'Ulica Draginja Vučić 43', 'Bojnik',
+'', 2.8, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Milica Pirivatrić', 44.818611, 20.468056, 'Ulica Leontijr Canić 10', 'Belgrade',
+'', 3.1, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Makrena Rabadžić', 44.367619, 19.36327, 'Ulica Slavoljub Rusalić 36', 'Krupanj',
+'', 3.2, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Katica Magdelinić', 44.44184, 20.697007, 'Ulica Stanojlo Sretić 99', 'Mladenovac',
+'', 3.1, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Krunoslava Raljić', 42.555997, 21.900236, 'Ulica Gradiša Potrebić 17', 'Vranje',
+'', 4.3, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Cane Igić', 44.25442, 20.682437, 'Ulica Sandra Lažetić 110', 'Topola',
+'', 4.6, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Antonije Ugrinčić', 42.917129, 21.729449, 'Ulica Radojko Stanarčić 93', 'Lebane',
+'', 3.5, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Đukan Sofijanić', 44.651575, 20.925777, 'Ulica Dragiša Kalčić 48', 'Smederevo',
+'', 4.8, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Vukoje Banzić', 45.202095, 19.932455, 'Ulica Njegoslav Oparušić 48', 'Sremski Karlovci',
+'', 2.4, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Leposava Glodić', 44.457197, 20.076242, 'Ulica Angelina Krejić 103', 'Ub',
+'', 3.2, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Stanija Pusulić', 44.651575, 20.925777, 'Ulica Radoman Čojić 113', 'Smederevo',
+'', 2.6, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Julka Hadži Ristić', 44.332338, 21.075132, 'Ulica Slobodan Velišić 56', 'Velika Plana',
+'', 3.6, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Kornelije Tačić', 43.749736, 19.714951, 'Ulica Sandra Kovjenić 64', 'Čajetina',
+'', 3.5, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Olja Prelić', 44.372836, 19.600976, 'Ulica Zlatko Adžić 120', 'Osečina',
+'', 2.1, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Anđelija Ravić', 43.622328, 20.89561, 'Ulica Tugomir Budinčić 29', 'Vrnjačka Banja',
+'', 2.8, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Đurđija Lejić', 43.139047, 21.273508, 'Ulica Kuzman Vanucić 103', 'Kuršumlija',
+'', 2.4, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Željko Kvržić', 45.078874, 20.968205, 'Ulica Suncica Lupikić 96', 'Alibunar',
+'', 4.3, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Višeslava Grumić', 45.802655, 20.128509, 'Ulica Marinko Trošić 43', 'Ada',
+'', 3.3, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Lepomir Stupić', 43.566696, 22.25393, 'Ulica Ranđa Džajić 93', 'Knjaževac',
+'', 3.1, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Maksim Pušeljić', 43.616944, 21.0025, 'Ulica Viktor Pešukić 117', 'Trstenik',
+'', 3.0, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Višnja Mikičić', 42.989993, 20.333372, 'Ulica Vukoje Banzić 17', 'Tutin',
+'', 2.6, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Stanka Rogulić', 45.36157, 19.591981, 'Ulica Đulijana Dželebdžić 23', 'Bački Petrovac',
+'', 4.1, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Luka Kodžić', 45.802655, 20.128509, 'Ulica Smilja Koranjić 97', 'Ada',
+'', 4.8, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Blagica Punišić', 46.100972, 19.668233, 'Ulica Ristivoj Vrugić 56', 'Subotica',
+'', 3.4, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Izložba Gordana Katanić', 42.307058, 21.650034, 'Ulica Razumenka Kipić 50', 'Preševo',
+'', 2.2, 3, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Loznica', 44.531179, 19.242668, 'Ulica Stojadin Bulutić 48', 'Loznica',
+'', 4.7, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Beočin', 45.191649, 19.724962, 'Ulica Zorica Anđić 36', 'Beočin',
+'', 2.8, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Žabalj', 45.374078, 20.0707, 'Ulica Spasoje Miljanić 87', 'Žabalj',
+'', 4.2, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Doljevac', 43.196833, 21.833398, 'Ulica Stamenko Šorgić 11', 'Doljevac',
+'', 2.3, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Malo Crniće', 44.560257, 21.290565, 'Ulica Aleksija Zaradić 27', 'Malo Crniće',
+'', 2.4, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Kanjiža', 46.063472, 20.050403, 'Ulica Jelika Opojevlić 30', 'Kanjiža',
+'', 4.5, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Vladičin Han', 42.708202, 22.066365, 'Ulica Borisav Grumić 3', 'Vladičin Han',
+'', 2.9, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Kanjiža', 46.063472, 20.050403, 'Ulica Teodora Mosić 85', 'Kanjiža',
+'', 4.7, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Bela Palanka', 43.219622, 22.314048, 'Ulica Željko Krivačić 31', 'Bela Palanka',
+'', 3.7, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Preševo', 42.307058, 21.650034, 'Ulica Veljko Levnajić 98', 'Preševo',
+'', 2.1, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Subotica', 46.100972, 19.668233, 'Ulica Mijalko Epifanić 41', 'Subotica',
+'', 3.4, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Raška', 43.28595, 20.613515, 'Ulica Vladeta Rajčetić 104', 'Raška',
+'', 2.6, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Kovačica', 45.110931, 20.623601, 'Ulica Luka Kodžić 37', 'Kovačica',
+'', 4.0, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Mionica', 44.252423, 20.081707, 'Ulica Ognjen Cvišić 102', 'Mionica',
+'', 2.0, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Svilajnac', 44.238271, 21.196994, 'Ulica Željka Žurkić 11', 'Svilajnac',
+'', 2.4, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Rača', 44.22685, 20.978954, 'Ulica Ljuban Bogičić 118', 'Rača',
+'', 3.0, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Nova Varoš', 43.460026, 19.811677, 'Ulica Njegoslav Dudunić 31', 'Nova Varoš',
+'', 4.2, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Kanjiža', 46.063472, 20.050403, 'Ulica Caja Radosavljević 51', 'Kanjiža',
+'', 2.2, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Bač', 45.392276, 19.236684, 'Ulica Slavica Mirosavić 110', 'Bač',
+'', 2.0, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Kovin', 44.748222, 20.976599, 'Ulica Zlatibor Bondžić 107', 'Kovin',
+'', 4.3, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Svrljig', 43.412867, 22.125209, 'Ulica Željko Krivačić 78', 'Svrljig',
+'', 2.2, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Sokobanja', 43.645293, 21.869178, 'Ulica Miladinka Skakić 47', 'Sokobanja',
+'', 3.1, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Dimitrovgrad', 43.015455, 22.77759, 'Ulica Đulijana Dželebdžić 37', 'Dimitrovgrad',
+'', 4.1, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Surčin', 44.794368, 20.278136, 'Ulica Spridon Cajić 67', 'Surčin',
+'', 2.0, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Svilajnac', 44.238271, 21.196994, 'Ulica Radoslava Žiletić 84', 'Svilajnac',
+'', 3.5, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Vrbas', 45.570426, 19.647857, 'Ulica Stanika Runić 105', 'Vrbas',
+'', 2.7, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Belgrade', 44.818611, 20.468056, 'Ulica Drgorad Miškić 16', 'Belgrade',
+'', 4.5, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Blace', 43.296964, 21.272727, 'Ulica Paun Matušić 42', 'Blace',
+'', 3.8, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Svrljig', 43.412867, 22.125209, 'Ulica Živkica Bukilić 104', 'Svrljig',
+'', 2.7, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Kikinda', 45.832292, 20.468191, 'Ulica Vladeta Rajčetić 50', 'Kikinda',
+'', 2.7, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Koceljeva', 44.468716, 19.82139, 'Ulica Bogdanka Čabrić 87', 'Koceljeva',
+'', 3.8, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Malo Crniće', 44.560257, 21.290565, 'Ulica Zagorka Čeleketić 6', 'Malo Crniće',
+'', 2.9, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Novi Kneževac', 46.041039, 20.09584, 'Ulica Mateja Kesić 88', 'Novi Kneževac',
+'', 4.0, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Bojnik', 43.014188, 21.717967, 'Ulica Julka Hadži Ristić 71', 'Bojnik',
+'', 3.4, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Krupanj', 44.367619, 19.36327, 'Ulica Arsenije Ječmenić 26', 'Krupanj',
+'', 3.6, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Gadžin Han', 43.222289, 22.033287, 'Ulica Milijan Kuić 21', 'Gadžin Han',
+'', 3.8, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Svrljig', 43.412867, 22.125209, 'Ulica Milijan Kuić 61', 'Svrljig',
+'', 3.3, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Barajevo', 44.579011, 20.417895, 'Ulica Vukoje Banzić 43', 'Barajevo',
+'', 3.3, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Stara Pazova', 44.986131, 20.159731, 'Ulica Jelika Miljanić 61', 'Stara Pazova',
+'', 2.9, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karneval Paraćin', 43.859155, 21.41191, 'Ulica Selimir Podraščić 103', 'Paraćin',
+'', 2.9, 4, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Odžaci', 45.50763, 19.260601, 'Ulica Bisenija Kalinucić 16', 'Odžaci',
+'', 2.9, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Topola', 44.25442, 20.682437, 'Ulica Radoje Garetić 10', 'Topola',
+'', 2.8, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Inđija', 45.048162, 20.081647, 'Ulica Zorica Florić 26', 'Inđija',
+'', 4.7, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Veliko Gradište', 44.763811, 21.516251, 'Ulica Krsmanija Dančejić 29', 'Veliko Gradište',
+'', 2.9, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Inđija', 45.048162, 20.081647, 'Ulica Ljubo Bokić 111', 'Inđija',
+'', 3.5, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Merošina', 43.281278, 21.721834, 'Ulica Vukosav Vukošić 119', 'Merošina',
+'', 2.3, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Bač', 45.392276, 19.236684, 'Ulica Stanojlo Sretić 51', 'Bač',
+'', 3.4, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Mladenovac', 44.44184, 20.697007, 'Ulica Ristivoje Piperčić 9', 'Mladenovac',
+'', 4.6, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Nova Crnja', 45.668517, 20.604206, 'Ulica Ljiljana Baltić 97', 'Nova Crnja',
+'', 2.3, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Ćićevac', 43.719967, 21.443617, 'Ulica Kirilo Mačkić 27', 'Ćićevac',
+'', 3.3, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Bačka Palanka', 45.251876, 19.391649, 'Ulica Bisenija Šalinić 31', 'Bačka Palanka',
+'', 2.3, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Vlasotince', 42.965907, 22.127178, 'Ulica Naum Androbić 111', 'Vlasotince',
+'', 3.8, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Žabalj', 45.374078, 20.0707, 'Ulica Blaženka Tepić 29', 'Žabalj',
+'', 2.5, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Kula', 45.610866, 19.527391, 'Ulica Timotije Budimčić 61', 'Kula',
+'', 4.0, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Ražanj', 43.674425, 21.549205, 'Ulica Sandra Kovjenić 30', 'Ražanj',
+'', 4.5, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Kraljevo', 43.725908, 20.689577, 'Ulica Laza Erić 101', 'Kraljevo',
+'', 4.5, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Mali Iđoš', 45.709191, 19.666261, 'Ulica Ristivoj Eskić 26', 'Mali Iđoš',
+'', 4.5, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Kladovo', 44.607292, 22.615474, 'Ulica Tadija Aćimić 83', 'Kladovo',
+'', 4.8, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Kovin', 44.748222, 20.976599, 'Ulica Pajka Bajić 118', 'Kovin',
+'', 2.7, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Trgovište', 42.3514, 22.092091, 'Ulica Ćana Gatarić 74', 'Trgovište',
+'', 2.5, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Bajina Bašta', 43.970917, 19.565524, 'Ulica Anđelija Tanasić 51', 'Bajina Bašta',
+'', 3.6, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Čačak', 43.888017, 20.344023, 'Ulica Slavoljub Rusalić 115', 'Čačak',
+'', 2.4, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Ljig', 44.226611, 20.239352, 'Ulica Sojka Grozdanić 94', 'Ljig',
+'', 2.5, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Mladenovac', 44.44184, 20.697007, 'Ulica Stamenija Pribić 69', 'Mladenovac',
+'', 2.9, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Varvarin', 43.719517, 21.371223, 'Ulica Đokica Čeleketić 15', 'Varvarin',
+'', 3.6, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Senta', 45.927334, 20.078859, 'Ulica Vukica Kodžopeljić 94', 'Senta',
+'', 2.4, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Petrovac na Mlavi', 44.377283, 21.41976, 'Ulica Fanija Bušić 66', 'Petrovac na Mlavi',
+'', 4.7, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Inđija', 45.048162, 20.081647, 'Ulica Njegoslav Mirkić 1', 'Inđija',
+'', 3.4, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Ruma', 45.007858, 19.817096, 'Ulica Ćana Gatarić 80', 'Ruma',
+'', 3.7, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Kuršumlija', 43.139047, 21.273508, 'Ulica Živadin Đorić 35', 'Kuršumlija',
+'', 3.8, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Bujanovac', 42.460618, 21.766552, 'Ulica Gvozden Smikić 38', 'Bujanovac',
+'', 4.2, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Gornji Milanovac', 44.024504, 20.458646, 'Ulica Ljubivoje Narandžić 39', 'Gornji Milanovac',
+'', 4.6, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Niška Banja', 43.294312, 22.009906, 'Ulica Višeslava Grumić 1', 'Niška Banja',
+'', 2.6, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Brus', 43.384599, 21.028883, 'Ulica Miladin Veličić 36', 'Brus',
+'', 4.3, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Belgrade', 44.818611, 20.468056, 'Ulica Ivanka Perutić 107', 'Belgrade',
+'', 3.6, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Mionica', 44.252423, 20.081707, 'Ulica Antonije Ugrinčić 28', 'Mionica',
+'', 3.0, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Titel', 45.206014, 20.294882, 'Ulica Stanika Runić 107', 'Titel',
+'', 4.0, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Sokobanja', 43.645293, 21.869178, 'Ulica Timotije Budimčić 52', 'Sokobanja',
+'', 3.4, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Doljevac', 43.196833, 21.833398, 'Ulica Zvezdana Šundić 104', 'Doljevac',
+'', 3.4, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Vašar Paraćin', 43.859155, 21.41191, 'Ulica Stanka Rogulić 114', 'Paraćin',
+'', 4.7, 5, 2, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Požega', 43.845852, 20.036774, 'Ulica Sergije Kureljušić 80', 'Požega',
+'', 3.1, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Beočin', 45.191649, 19.724962, 'Ulica Anđelka Budinčić 51', 'Beočin',
+'', 3.1, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Kladovo', 44.607292, 22.615474, 'Ulica Krsmanija Jestrotić 30', 'Kladovo',
+'', 3.1, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Batočina', 44.154749, 21.07991, 'Ulica Mira Marodić 89', 'Batočina',
+'', 2.0, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Sremski Karlovci', 45.202095, 19.932455, 'Ulica Milijana Popčić 8', 'Sremski Karlovci',
+'', 2.7, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Kraljevo', 43.725908, 20.689577, 'Ulica Jelika Miljanić 105', 'Kraljevo',
+'', 3.9, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Senta', 45.927334, 20.078859, 'Ulica Smiljana Kalinčić 71', 'Senta',
+'', 3.5, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Šid', 45.127597, 19.226675, 'Ulica Radul Lotić 96', 'Šid',
+'', 4.1, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Niš', 43.323356, 21.901779, 'Ulica Radoje Garetić 85', 'Niš',
+'', 2.2, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Nova Crnja', 45.668517, 20.604206, 'Ulica Anđelija Tanasić 111', 'Nova Crnja',
+'', 4.4, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Žitorađa', 43.190209, 21.713413, 'Ulica Snežana Marotić 75', 'Žitorađa',
+'', 4.4, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Irig', 45.100148, 19.860301, 'Ulica Sojka Grozdanić 3', 'Irig',
+'', 3.9, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Ražanj', 43.674425, 21.549205, 'Ulica Njegoslav Purišić 53', 'Ražanj',
+'', 2.4, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Gornji Milanovac', 44.024504, 20.458646, 'Ulica Đurica Dostičić 11', 'Gornji Milanovac',
+'', 3.9, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Vlasotince', 42.965907, 22.127178, 'Ulica Danojlo Belić 57', 'Vlasotince',
+'', 2.9, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Novi Bečej', 45.601466, 20.136361, 'Ulica Angelina Krejić 47', 'Novi Bečej',
+'', 3.8, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Petrovaradin', 45.245449, 19.879344, 'Ulica Aran|el Brezonić 118', 'Petrovaradin',
+'', 4.0, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Golubac', 44.652912, 21.630772, 'Ulica Kornelije Tačić 88', 'Golubac',
+'', 2.3, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Prokuplje', 43.238315, 21.593192, 'Ulica Blagoje Nocić 19', 'Prokuplje',
+'', 3.6, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Požega', 43.845852, 20.036774, 'Ulica Evica Đuračić 23', 'Požega',
+'', 2.0, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Ivanjica', 43.582043, 20.228379, 'Ulica Stanika Runić 5', 'Ivanjica',
+'', 3.5, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Topola', 44.25442, 20.682437, 'Ulica Golub Cekić 44', 'Topola',
+'', 2.5, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Čačak', 43.888017, 20.344023, 'Ulica Razumenka Kipić 104', 'Čačak',
+'', 2.1, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Čoka', 45.941516, 20.146023, 'Ulica Magdalena Balačikić 66', 'Čoka',
+'', 3.5, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Kovačica', 45.110931, 20.623601, 'Ulica Đurđija Lejić 119', 'Kovačica',
+'', 4.9, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Knić', 43.92696, 20.719695, 'Ulica Gruja Stevlić 101', 'Knić',
+'', 3.3, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Kostolac', 44.713559, 21.169287, 'Ulica Jordan Pernić 88', 'Kostolac',
+'', 2.9, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Arilje', 43.754987, 20.097004, 'Ulica Zaviša Vucelić 93', 'Arilje',
+'', 3.3, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Dimitrovgrad', 43.015455, 22.77759, 'Ulica Mateja Kesić 27', 'Dimitrovgrad',
+'', 4.4, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Blace', 43.296964, 21.272727, 'Ulica Ratimir Spasić 63', 'Blace',
+'', 2.8, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Kovin', 44.748222, 20.976599, 'Ulica Stanislava Vakaricić 28', 'Kovin',
+'', 4.9, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Kula', 45.610866, 19.527391, 'Ulica Živadin Koljajić 76', 'Kula',
+'', 2.2, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Surdulica', 42.690358, 22.170416, 'Ulica Cviko Cajić 116', 'Surdulica',
+'', 4.6, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Požega', 43.845852, 20.036774, 'Ulica Olivera Miovčić 35', 'Požega',
+'', 3.4, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Pančevo', 44.87131, 20.644304, 'Ulica Dušica Tejić 22', 'Pančevo',
+'', 3.5, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Ražanj', 43.674425, 21.549205, 'Ulica Dragan Bakalić 68', 'Ražanj',
+'', 2.6, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Ivanjica', 43.582043, 20.228379, 'Ulica Ljubo Đujić 44', 'Ivanjica',
+'', 3.5, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Sopot', 44.519348, 20.575785, 'Ulica Vladimir Čaprnjić 26', 'Sopot',
+'', 3.4, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Bački Petrovac', 45.36157, 19.591981, 'Ulica Gorica Gambelić 20', 'Bački Petrovac',
+'', 2.4, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Užice', 43.858185, 19.844087, 'Ulica Manojlo Bosiočić 20', 'Užice',
+'', 2.8, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Bujanovac', 42.460618, 21.766552, 'Ulica Šana Pavelkić 27', 'Bujanovac',
+'', 3.5, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Bajina Bašta', 43.970917, 19.565524, 'Ulica Razumenka Kipić 36', 'Bajina Bašta',
+'', 2.3, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Bačka Topola', 45.815206, 19.636943, 'Ulica Leonida Pržić 40', 'Bačka Topola',
+'', 3.0, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Kovin', 44.748222, 20.976599, 'Ulica Jelenko Strojić 25', 'Kovin',
+'', 3.3, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Alibunar', 45.078874, 20.968205, 'Ulica Vukota Spurnić 10', 'Alibunar',
+'', 3.8, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Subotica', 46.100972, 19.668233, 'Ulica Žika Krkobabić 84', 'Subotica',
+'', 3.3, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Kanjiža', 46.063472, 20.050403, 'Ulica Nevenka Kolobarić 84', 'Kanjiža',
+'', 3.4, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Užice', 43.858185, 19.844087, 'Ulica Hristivoje Eremić 77', 'Užice',
+'', 2.3, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Stara Pazova', 44.986131, 20.159731, 'Ulica Živojin Potulić 113', 'Stara Pazova',
+'', 4.0, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Stara Pazova', 44.986131, 20.159731, 'Ulica Radoman Čojić 108', 'Stara Pazova',
+'', 2.4, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Bogatić', 44.8376, 19.480699, 'Ulica Milivoj Pavlekić 112', 'Bogatić',
+'', 2.8, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Ljubovija', 44.189574, 19.378486, 'Ulica Stamenko Šorgić 24', 'Ljubovija',
+'', 2.5, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Leskovac', 42.997558, 21.944496, 'Ulica Bojan Pauškić 5', 'Leskovac',
+'', 3.5, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Kruševac', 43.58105, 21.335174, 'Ulica Slavenka Šabeljić 16', 'Kruševac',
+'', 2.2, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Mladenovac', 44.44184, 20.697007, 'Ulica Spasoje Kosanić 93', 'Mladenovac',
+'', 4.0, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Rača', 44.22685, 20.978954, 'Ulica Živkica Bukilić 62', 'Rača',
+'', 2.8, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Kovačica', 45.110931, 20.623601, 'Ulica Julka Hadži Ristić 67', 'Kovačica',
+'', 3.1, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Boljevac', 43.832131, 21.960899, 'Ulica Anđelija Koljančić 38', 'Boljevac',
+'', 2.8, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Novi Pazar', 43.137514, 20.514905, 'Ulica Svetislavka Aksić 9', 'Novi Pazar',
+'', 3.4, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Tvrđava Kragujevac', 44.010876, 20.909029, 'Ulica Drgorad Miškić 114', 'Kragujevac',
+'', 3.5, 1, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Željka Žurkić', 43.566696, 22.25393, 'Ulica Rodoljub Žutinić 19', 'Knjaževac',
+'', 3.1, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Žika Krkobabić', 42.460618, 21.766552, 'Ulica Milisav Drinčić 116', 'Bujanovac',
+'', 4.0, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Dalibor Đurašić', 43.281278, 21.721834, 'Ulica Višnja Mikičić 85', 'Merošina',
+'', 3.7, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Živko Šarić', 44.87131, 20.644304, 'Ulica Nićifor Vagić 118', 'Pančevo',
+'', 4.7, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Ljuban Bogičić', 45.709191, 19.666261, 'Ulica Anđelka Budinčić 19', 'Mali Iđoš',
+'', 2.2, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Blagoje Nocić', 43.998702, 19.907859, 'Ulica Špiro Đaletić 85', 'Kosjerić',
+'', 3.0, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Srećko Čupić', 44.519348, 20.575785, 'Ulica Vladislav Porobić 105', 'Sopot',
+'', 4.4, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Jelenko Šušnjić', 43.28595, 20.613515, 'Ulica Kornelije Mandukić 113', 'Raška',
+'', 4.3, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Ignjat Jojić', 43.749736, 19.714951, 'Ulica Gruja Stevlić 11', 'Čajetina',
+'', 2.1, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Đurđevka Kojčić', 44.976389, 19.612222, 'Ulica Ljuban Bogičić 30', 'Sremska Mitrovica',
+'', 4.3, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Simeon Voštinić', 45.367638, 20.773205, 'Ulica Cane Igić 77', 'Sečanj',
+'', 3.6, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Petronije Badrkić', 43.858185, 19.844087, 'Ulica Srboljub Karkalić 64', 'Užice',
+'', 2.9, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Peladija Jakšić', 44.713559, 21.169287, 'Ulica Teodora Mosić 70', 'Kostolac',
+'', 2.2, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Blaženka Sabljić', 44.271955, 19.887437, 'Ulica Natalija Tumarić 21', 'Valjevo',
+'', 2.9, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Emil Timilić', 42.690358, 22.170416, 'Ulica Slobodan Velišić 10', 'Surdulica',
+'', 3.1, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Radojko Stanarčić', 45.117501, 21.298315, 'Ulica Evica Đuračić 73', 'Vršac',
+'', 4.5, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Leposava Glodić', 44.87131, 20.644304, 'Ulica Đurđevka Kojčić 118', 'Pančevo',
+'', 2.1, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Kirilo Barnić', 44.010876, 20.909029, 'Ulica Poljka Nogulić 57', 'Kragujevac',
+'', 4.4, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Mojsilo Lakić', 44.370041, 20.164425, 'Ulica Cvetomir Stakić 29', 'Lajkovac',
+'', 3.9, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Dobroslavka Pavlić', 45.110931, 20.623601, 'Ulica Sandra Lažetić 39', 'Kovačica',
+'', 4.1, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Mira Marodić', 42.997558, 21.944496, 'Ulica Miloš Mesulić 117', 'Leskovac',
+'', 4.8, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Ratka Vulić', 43.970917, 19.565524, 'Ulica Spasoje Kosanić 63', 'Bajina Bašta',
+'', 2.4, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Božana Vidačić', 44.976389, 19.612222, 'Ulica Srđan Kojdić 1', 'Sremska Mitrovica',
+'', 3.8, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Perunika Treskić', 45.941516, 20.146023, 'Ulica Viktor Pešukić 69', 'Čoka',
+'', 2.8, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Đurđevka Kojčić', 46.100972, 19.668233, 'Ulica Novko Čališić 43', 'Subotica',
+'', 2.6, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Ceca Kretić', 42.307058, 21.650034, 'Ulica Rafailo Stepandić 23', 'Preševo',
+'', 4.7, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Natalija Tumarić', 44.307663, 20.561163, 'Ulica Šiško Malečić 72', 'Aranđelovac',
+'', 2.2, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Ilija Dolinić', 44.010876, 20.909029, 'Ulica Jelika Opojevlić 51', 'Kragujevac',
+'', 3.2, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Đukan Sofijanić', 43.16165, 22.58713, 'Ulica Dobrivoj Trivunčić 89', 'Pirot',
+'', 2.4, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Bogdan Simonić', 44.531179, 19.242668, 'Ulica Ivanka Perutić 35', 'Loznica',
+'', 2.6, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Ranđa Budimić', 42.460618, 21.766552, 'Ulica Željka Žurkić 90', 'Bujanovac',
+'', 2.1, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Leonida Pržić', 42.307058, 21.650034, 'Ulica Stanojka Džonić 20', 'Preševo',
+'', 4.8, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Spridon Buloščić', 45.36157, 19.591981, 'Ulica Natalija Tumarić 108', 'Bački Petrovac',
+'', 4.9, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Zlatibor Košarčić', 43.566696, 22.25393, 'Ulica Draško Novčić 42', 'Knjaževac',
+'', 2.9, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Borko Tvrdišić', 43.16165, 22.58713, 'Ulica Spasoje Kosanić 34', 'Pirot',
+'', 3.1, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Đoka Misić', 43.137514, 20.514905, 'Ulica Vlastimir Koljenšić 9', 'Novi Pazar',
+'', 3.7, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Kornelije Mandukić', 45.485384, 20.550725, 'Ulica Vasilije Kljutić 15', 'Žitište',
+'', 4.7, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Zvezdana Šundić', 45.052172, 20.431343, 'Ulica Rumenka Bunić 94', 'Opovo',
+'', 3.3, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Đurđe Medurić', 43.296964, 21.272727, 'Ulica Sojka Grozdanić 54', 'Blace',
+'', 4.1, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Željka Uverić', 45.709191, 19.666261, 'Ulica Vukoje Banzić 50', 'Mali Iđoš',
+'', 2.7, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Poljka Krainčanić', 45.245449, 19.879344, 'Ulica Anđa Kulić 81', 'Petrovaradin',
+'', 2.3, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Stanica Ćitić', 45.619602, 20.039983, 'Ulica Damjan Čamagić 111', 'Bečej',
+'', 3.5, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Stojanka Krsmanić', 45.619602, 20.039983, 'Ulica Sava Taricić 96', 'Bečej',
+'', 3.3, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Spasoje Kosanić', 44.189574, 19.378486, 'Ulica Paun Matušić 50', 'Ljubovija',
+'', 3.1, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Janko Stolić', 44.379722, 20.263889, 'Ulica Miodrag Vulikić 10', 'Lazarevac',
+'', 3.9, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Radiša Sušić', 45.367638, 20.773205, 'Ulica Živojin Potulić 32', 'Sečanj',
+'', 3.4, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Zlatica Aperlić', 45.117501, 21.298315, 'Ulica Milijan Kuić 9', 'Vršac',
+'', 3.6, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Slobodan Velišić', 42.807114, 22.324661, 'Ulica Dušanka Miodanić 29', 'Crna Trava',
+'', 4.0, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Kuzman Vanucić', 42.807114, 22.324661, 'Ulica Želimir Konculić 8', 'Crna Trava',
+'', 2.8, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Višnja Treskić', 43.970917, 19.565524, 'Ulica Stamenko Šorgić 79', 'Bajina Bašta',
+'', 4.0, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Stanojka Džonić', 43.860816, 20.138434, 'Ulica Stojadin Šipčić 97', 'Lučani',
+'', 2.4, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Malina Golemić', 43.28595, 20.613515, 'Ulica Spasoje Kosanić 18', 'Raška',
+'', 3.4, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Fema Mirčić', 45.50763, 19.260601, 'Ulica Bogdan Simonić 62', 'Odžaci',
+'', 2.9, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Ljiljana Pajdić', 43.238315, 21.593192, 'Ulica Tugomir Vasiljkić 36', 'Prokuplje',
+'', 3.3, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Stojmen Bijanić', 43.139047, 21.273508, 'Ulica Vukašin Čokić 94', 'Kuršumlija',
+'', 2.9, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Nićifor Kulić', 43.754987, 20.097004, 'Ulica Antonije Jevrić 84', 'Arilje',
+'', 3.7, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Radojka Bavrlić', 44.476729, 21.671183, 'Ulica Tihomir Bizumić 5', 'Kučevo',
+'', 3.8, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Ljubivoje Narandžić', 43.674425, 21.549205, 'Ulica Višeslava Grumić 102', 'Ražanj',
+'', 4.0, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Đurđe Medurić', 43.412867, 22.125209, 'Ulica Katica Magdelinić 82', 'Svrljig',
+'', 3.1, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Zadužbina Leposava Glodić', 45.392276, 19.236684, 'Ulica Petronije Badrkić 38', 'Bač',
+'', 4.0, 2, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Zoran Kojanić', 44.976389, 19.612222, 'Ulica Zvezdana Šundić 4', 'Sremska Mitrovica',
+'', 4.3, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Isidora Gloginjić', 44.010876, 20.909029, 'Ulica Njegovan Nastasić 28', 'Kragujevac',
+'', 2.6, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Sojka Mišulić', 44.986131, 20.159731, 'Ulica Ilija Dolinić 15', 'Stara Pazova',
+'', 4.9, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Branko Kitić', 43.238315, 21.593192, 'Ulica Obradin Jondić 73', 'Prokuplje',
+'', 2.6, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Tijana Ničić', 45.251876, 19.391649, 'Ulica Julijan Patrić 30', 'Bačka Palanka',
+'', 2.2, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Radonja Milić', 43.296964, 21.272727, 'Ulica Nastasija Kričkić 91', 'Blace',
+'', 3.2, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Radiša Šarkić', 42.708202, 22.066365, 'Ulica Hranislava Žeravić 68', 'Vladičin Han',
+'', 3.4, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Caka Ćebić', 44.615776, 19.784303, 'Ulica Borisav Tominčić 77', 'Vladimirci',
+'', 2.9, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Ružica Bjelonić', 43.015455, 22.77759, 'Ulica Manojlo Josić 29', 'Dimitrovgrad',
+'', 2.8, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. David Solujić', 42.965907, 22.127178, 'Ulica Željka Uverić 4', 'Vlasotince',
+'', 4.3, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Alimpije Garalejić', 45.367638, 20.773205, 'Ulica Antonina Zjalić 26', 'Sečanj',
+'', 3.8, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Lucija Macurić', 45.048162, 20.081647, 'Ulica Ilija Dolinić 7', 'Inđija',
+'', 3.9, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Mila Purešić', 43.067962, 22.411508, 'Ulica Krunoslava Raljić 5', 'Babušnica',
+'', 4.0, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Kojadin Riboškić', 43.196833, 21.833398, 'Ulica Đoka Misić 103', 'Doljevac',
+'', 4.3, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Ratislav Trifić', 43.460026, 19.811677, 'Ulica Ranđa Džajić 80', 'Nova Varoš',
+'', 2.7, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Selimir Cvijetić', 43.674425, 21.549205, 'Ulica Rodoljub Žutinić 22', 'Ražanj',
+'', 2.6, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Hristivoj Miražić', 44.024504, 20.458646, 'Ulica Šale Raletić 84', 'Gornji Milanovac',
+'', 2.7, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Kirilo Bećić', 45.485384, 20.550725, 'Ulica Sibin Buckić 28', 'Žitište',
+'', 2.3, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Žarko Mandarić', 45.941516, 20.146023, 'Ulica Maksim Pušeljić 47', 'Čoka',
+'', 2.3, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Ivona Ljepavić', 44.753841, 19.687569, 'Ulica Stojadin Bulutić 67', 'Šabac',
+'', 3.6, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Žaklina Zatežić', 42.3514, 22.092091, 'Ulica Zvezdana Ulardžić 119', 'Trgovište',
+'', 4.3, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Stamenija Pješčić', 44.908889, 19.966389, 'Ulica Cvetomir Stakić 22', 'Pećinci',
+'', 2.0, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Radiša Sarić', 45.251876, 19.391649, 'Ulica Jelena Tomčić 53', 'Bačka Palanka',
+'', 4.1, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Novko Dravić', 45.832292, 20.468191, 'Ulica Gruja Opojevlić 112', 'Kikinda',
+'', 2.2, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Radojka Bosančić', 45.802655, 20.128509, 'Ulica Srboljub Karkalić 5', 'Ada',
+'', 2.0, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Slaven Saičić', 46.100972, 19.668233, 'Ulica Vladimir Kučparić 29', 'Subotica',
+'', 4.6, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Petrija Buričić', 45.619602, 20.039983, 'Ulica Radul Lotić 60', 'Bečej',
+'', 4.0, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Kostadinka Trindić', 43.674425, 21.549205, 'Ulica Mitar Talpešić 57', 'Ražanj',
+'', 2.1, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Dalibor Ružojčić', 44.010876, 20.909029, 'Ulica Mitar Talpešić 99', 'Kragujevac',
+'', 2.2, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Roksanda Nastasić', 44.365381, 20.962273, 'Ulica Teodora Mosić 119', 'Smederevska Palanka',
+'', 4.4, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Georgije Joknić', 45.007858, 19.817096, 'Ulica Prerad Bubonjić 5', 'Ruma',
+'', 2.9, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Oliver Dorongić', 44.189574, 19.378486, 'Ulica Jelika Puslojić 48', 'Ljubovija',
+'', 3.5, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Fedor Šuletić', 45.251876, 19.391649, 'Ulica Stamenko Šorgić 109', 'Bačka Palanka',
+'', 4.3, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Vuksan Bjelovitić', 44.753841, 19.687569, 'Ulica Radinka Gnjidić 116', 'Šabac',
+'', 4.1, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Cvijan Korasić', 45.206014, 20.294882, 'Ulica Njegoslav Mirkić 49', 'Titel',
+'', 3.2, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Stojadin Kusonić', 44.271955, 19.887437, 'Ulica Marijan Dostanić 118', 'Valjevo',
+'', 4.6, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Radivoj Gagričić', 43.622328, 20.89561, 'Ulica Miodrag Vulikić 63', 'Vrnjačka Banja',
+'', 2.9, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Cvetko Jerčić', 44.753841, 19.687569, 'Ulica Stanojlo Cvikić 103', 'Šabac',
+'', 4.3, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Sibin Kremić', 43.384599, 21.028883, 'Ulica Čedomir Folić 16', 'Brus',
+'', 2.0, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Kostadin Kokerić', 43.137514, 20.514905, 'Ulica Đoka Misić 40', 'Novi Pazar',
+'', 2.3, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Jelisije Kunjadić', 44.818611, 20.468056, 'Ulica Petar Vidarić 57', 'Belgrade',
+'', 3.1, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Jefimija Miletić', 44.468716, 19.82139, 'Ulica Sibin Buckić 72', 'Koceljeva',
+'', 3.5, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Alimpije Šašić', 42.307058, 21.650034, 'Ulica Despot Budalić 45', 'Preševo',
+'', 4.4, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Lidija Mićić', 44.332338, 21.075132, 'Ulica Đurica Dostičić 72', 'Velika Plana',
+'', 3.6, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Malina Ajdačić', 46.041039, 20.09584, 'Ulica Dušica Tejić 55', 'Novi Kneževac',
+'', 4.9, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Helena Grumić', 44.422847, 21.935837, 'Ulica Nemanja Krstić 8', 'Majdanpek',
+'', 3.5, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Zvezdana Cuparić', 43.273545, 20.000368, 'Ulica Ćana Gatarić 34', 'Sjenica',
+'', 4.8, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Ljubinka Grumić', 44.365381, 20.962273, 'Ulica Đurica Bisić 19', 'Smederevska Palanka',
+'', 2.5, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Hristivoje Karagić', 43.845852, 20.036774, 'Ulica Darko Galetić 27', 'Požega',
+'', 3.1, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Stojmen Marodić', 44.271955, 19.887437, 'Ulica Ranđa Džajić 37', 'Valjevo',
+'', 2.6, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Živadin Racić', 43.860913, 21.095774, 'Ulica Gavrilo Marčetić 62', 'Rekovac',
+'', 3.3, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Branko Kitić', 43.92696, 20.719695, 'Ulica Ilija Dolinić 104', 'Knić',
+'', 3.7, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Kostadin Kokerić', 44.901485, 21.423394, 'Ulica Mojsilo Piljagić 45', 'Bela Crkva',
+'', 4.3, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Negoslav Manasić', 43.901871, 22.275511, 'Ulica Mira Marodić 52', 'Zaječar',
+'', 3.6, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Živanka Cenkić', 43.196833, 21.833398, 'Ulica Jovan Đuketić 36', 'Doljevac',
+'', 2.0, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Svetislav Dančejić', 43.859155, 21.41191, 'Ulica Obradinka Vajagić 21', 'Paraćin',
+'', 2.4, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Alimpije Šašić', 43.137514, 20.514905, 'Ulica Đurica Bisić 81', 'Novi Pazar',
+'', 2.9, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Života Agić', 44.372836, 19.600976, 'Ulica Uranko Delojkić 28', 'Osečina',
+'', 3.5, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Kostadin Kokerić', 45.601466, 20.136361, 'Ulica Blaženka Sabljić 23', 'Novi Bečej',
+'', 4.6, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Manastir Sv. Ivko Orlandić', 45.110931, 20.623601, 'Ulica Jelika Opojevlić 113', 'Kovačica',
+'', 4.8, 3, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Beli breg', 44.67204, 20.715286, 'Ulica Ranka Lotić 35', 'Grocka',
+'', 2.8, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Mediana', 43.323356, 21.901779, 'Ulica Miladinka Nikotić 29', 'Niš',
+'', 3.3, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Caričin grad', 42.917129, 21.729449, 'Ulica Zlatibor Košarčić 84', 'Lebane',
+'', 2.3, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Nekropola stećaka', 43.970917, 19.565524, 'Ulica Ilija Tiragić 25', 'Bajina Bašta',
+'', 3.5, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Velika humka', 43.845852, 20.036774, 'Ulica Nikolija Denkić 23', 'Požega',
+'', 4.9, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Rudna Glava', 44.422847, 21.935837, 'Ulica Glorija Nikolčić 79', 'Majdanpek',
+'', 2.5, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Gamzigrad', 43.901871, 22.275511, 'Ulica Stojka Tufonić 23', 'Zaječar',
+'', 4.2, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Pontes', 44.607292, 22.615474, 'Ulica Peladija Jakšić 18', 'Kladovo',
+'', 3.1, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Lepenski Vir', 44.422847, 21.935837, 'Ulica Novko Čališić 111', 'Majdanpek',
+'', 3.3, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Karataš', 44.607292, 22.615474, 'Ulica Snežana Melentić 82', 'Kladovo',
+'', 3.4, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Starčevo', 44.87131, 20.644304, 'Ulica Obrad Ćosić 44', 'Pančevo',
+'', 3.3, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Basijana', 45.007858, 19.817096, 'Ulica Borko Tvrdišić 101', 'Ruma',
+'', 2.6, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Sirmijum', 44.976389, 19.612222, 'Ulica Leposava Glodić 35', 'Sremska Mitrovica',
+'', 3.5, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Židovar', 45.117501, 21.298315, 'Ulica Ratimir Spasić 21', 'Vršac',
+'', 2.7, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Gomolava', 45.007858, 19.817096, 'Ulica Viktor Pešukić 44', 'Ruma',
+'', 2.2, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Čelarevo', 45.251876, 19.391649, 'Ulica Miomir Gavrić 84', 'Bačka Palanka',
+'', 4.9, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Titelski plato', 45.206014, 20.294882, 'Ulica Bisenija Stojšić 112', 'Titel',
+'', 2.8, 4, 3, true);
+
+insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
+values ('Viminacium', 44.622213, 21.182589, 'Ulica Tomka Lolić 62', 'Požarevac',
+'', 3.2, 4, 3, true);
+
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 8, 703, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 8, 565, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 8, 215, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 8, 173, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 8, 551, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 9, 1091, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 9, 818, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 9, 925, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 9, 202, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 9, 1028, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 10, 168, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 10, 996, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 10, 968, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 10, 601, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 10, 742, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 11, 343, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 11, 286, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 11, 693, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 11, 323, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 11, 1126, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 12, 34, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 12, 265, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 12, 166, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 12, 141, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 12, 404, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 13, 315, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 13, 129, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 13, 1162, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 13, 105, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 13, 856, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 14, 1077, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 14, 723, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 14, 295, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 14, 297, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 14, 779, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 15, 1071, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 15, 561, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 15, 812, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 15, 328, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 15, 604, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 16, 871, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 16, 917, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 16, 59, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 16, 582, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 16, 709, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 17, 524, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 17, 971, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 17, 451, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 17, 488, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 17, 116, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 18, 912, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 18, 440, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 18, 1174, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 18, 160, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 18, 747, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 19, 928, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 19, 212, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 19, 729, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 19, 811, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 19, 553, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 20, 1036, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 20, 306, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 20, 1100, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 20, 646, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 20, 120, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 21, 197, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 21, 17, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 21, 573, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 21, 762, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 21, 219, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 22, 635, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 22, 769, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 22, 957, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 22, 463, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 22, 182, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 23, 726, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 23, 179, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 23, 1143, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 23, 617, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 23, 553, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 24, 207, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 24, 36, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 24, 445, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 24, 153, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 24, 852, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 25, 657, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 25, 1113, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 25, 622, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 25, 800, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 25, 572, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 26, 988, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 26, 1146, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 26, 886, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 26, 1112, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 26, 622, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 27, 651, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 27, 701, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 27, 39, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 27, 908, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 27, 231, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 28, 525, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 28, 320, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 28, 644, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 28, 309, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 28, 741, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 29, 933, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 29, 1189, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 29, 393, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 29, 1090, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 29, 11, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 30, 720, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 30, 196, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 30, 641, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 30, 441, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 30, 316, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 31, 346, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 31, 627, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 31, 606, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 31, 1035, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 31, 924, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 32, 707, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 32, 88, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 32, 151, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 32, 1128, true);
+
+insert into comment (text, approved, user_id, site_id, is_active)
+values ('random comment', true, 32, 599, true);
+
+
 

@@ -43,6 +43,9 @@ class User(Model):
         salt = bcrypt.gensalt()
         return bcrypt.hashpw(self.password.encode("utf-8"), salt).decode("utf-8")
 
+    def __repr__(self):
+        return "{} {} {}".format(self.user_type, self.name, self.surname)
+
 
 def from_utf8_to_ascii(char):
     if char == "Ć":

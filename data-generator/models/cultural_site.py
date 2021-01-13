@@ -28,3 +28,6 @@ class CulturalSite(Model):
                                                                                      self.type_id,
                                                                                      self.category_id,
                                                                                      self.is_active)
+
+    def __repr__(self):
+        return self.name
