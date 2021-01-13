@@ -31,10 +31,6 @@ export class CulturalSiteService {
         environment.apiEndpoint + 'cultural-site/by-page',
         { params }
       )
-      .pipe(
-        map((culturalSiteData: CulturalSiteData) => culturalSiteData),
-        catchError((err) => throwError(err))
-      );
   }
 
   //cultural-site/filter/by-page
@@ -54,19 +50,11 @@ export class CulturalSiteService {
         filterDto,
         { params }
       )
-      .pipe(
-        map((culturalSiteData: CulturalSiteData) => culturalSiteData),
-        catchError((err) => throwError(err))
-      );
   }
 
   findAllLocations() {
     return this.http
       .get<string[]>(environment.apiEndpoint + 'cultural-site/locations')
-      .pipe(
-        map((locationsData: string[]) => locationsData),
-        catchError((err) => throwError(err))
-      );
   }
 
   createNews(news: NewsDTO, culturalSiteId = 0) {
@@ -82,6 +70,5 @@ export class CulturalSiteService {
           '/approval',
         news
       )
-      .pipe(catchError((err) => throwError(err)));
   }
 }

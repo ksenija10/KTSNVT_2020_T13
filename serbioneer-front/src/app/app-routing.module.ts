@@ -13,6 +13,7 @@ import { ViewAdminComponent } from './components/admin/view-admin/view-admin.com
 import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
 
 const routes: Routes = [
   //login guard ne dozvoljava ulogovanom korisniku da opet pristupi login strani
@@ -64,6 +65,12 @@ const routes: Routes = [
   {
     path: 'view-admin',
     component: ViewAdminComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' },
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
     canActivate: [RoleGuard],
     data: { expectedRoles: 'ROLE_ADMIN' },
   },

@@ -1,4 +1,4 @@
-export class CulturalSiteCategory {
+export class CulturalCategoryType {
 
     constructor(
         public id: number,

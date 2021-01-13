@@ -44,6 +44,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { MatListModule } from '@angular/material/list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDividerModule } from '@angular/material/divider';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ChangePasswordComponent,
     NewAdminComponent,
     ViewAdminComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,

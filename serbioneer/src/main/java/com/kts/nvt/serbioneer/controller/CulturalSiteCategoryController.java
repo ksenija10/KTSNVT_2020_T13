@@ -32,6 +32,7 @@ import com.kts.nvt.serbioneer.service.CulturalCategoryTypeService;
 import com.kts.nvt.serbioneer.service.CulturalSiteCategoryService;
 
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "api/cultural-site-category", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CulturalSiteCategoryController {
