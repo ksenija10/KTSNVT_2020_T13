@@ -22,3 +22,5 @@ class SubscriptionGenerator(Generator):
 
         with open(self.output_path, "w", encoding="utf-8") as output_file:
             output_file.write(output_text)
+
+        return output_text

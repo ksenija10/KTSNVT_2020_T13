@@ -181,7 +181,7 @@ class CulturalSiteGenerator(Generator):
         output_file.write(output_text)
         output_file.close()
 
-        return sites_dictionary
+        return sites_dictionary, output_text
 
 
 class NameGenerator:

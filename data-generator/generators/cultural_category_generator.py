@@ -27,4 +27,4 @@ class CulturalCategoryGenerator(Generator):
         output_file = open(self.output_path, "w", encoding="utf-8")
         output_file.write(output_text)
         output_file.close()
-        return category_dictionary
+        return category_dictionary, output_text

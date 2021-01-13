@@ -26,7 +26,7 @@ class NewsGenerator(Generator):
         with open(self.output_path, "w", encoding="utf-8") as output_file:
             output_file.write(output_text)
 
-        return news_dictionary
+        return news_dictionary, output_text
 
 
 def generate_date_time():

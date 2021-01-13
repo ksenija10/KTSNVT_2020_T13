@@ -31,7 +31,7 @@ class CategoryTypeGenerator(Generator):
         output_file.write(output_text)
         output_file.close()
 
-        return types_dictionary
+        return types_dictionary, output_text
 
     def generate_institutions(self, category_id, output_text):
         input_file = open(self.institutions_path, 'r', encoding="utf-8")

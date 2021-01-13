@@ -34,7 +34,7 @@ class UserGenerator(Generator):
         with open(self.output_path, "w", encoding="utf-8") as output_file:
             output_file.write(output_text)
 
-        return users_dictionary
+        return users_dictionary, output_text
 
     def generate_test(self):
         with open(self.data_path, 'r', encoding="utf-8") as input_file:
@@ -58,7 +58,7 @@ class UserGenerator(Generator):
             users_dictionary[i + 1 + 7] = user
             output_text += user.generate_insert() + "\n" + generate_authority(7 + i, 2) + "\n\n"
         # print(output_text)
-        return users_dictionary
+        return users_dictionary, output_text
 
 
 def generate_authority(user_id, authority_id):

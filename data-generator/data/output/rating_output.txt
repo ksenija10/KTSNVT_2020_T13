@@ -1,200 +1,200 @@
-insert into rating (value, user_id, site_id, is_active) values (5, 13, 32, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 13, 949, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 13, 31, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 13, 1119, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 13, 462, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 13, 531, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 13, 695, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 13, 470, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 13, 472, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 13, 930, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 14, 251, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 14, 461, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 14, 1176, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 14, 757, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 14, 1088, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 14, 544, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 14, 820, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 14, 421, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 14, 382, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 14, 103, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 15, 229, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 15, 353, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 15, 1165, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 15, 426, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 15, 341, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 15, 445, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 15, 622, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 15, 924, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 15, 147, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 15, 1062, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 16, 239, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 16, 89, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 16, 153, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 16, 633, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 16, 515, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 16, 343, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 16, 720, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 16, 848, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 16, 700, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 16, 76, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 17, 254, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 17, 40, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 17, 157, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 17, 327, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 17, 441, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 17, 307, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 17, 210, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 17, 1204, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 17, 354, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 17, 1037, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 18, 296, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 18, 604, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 18, 736, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 18, 823, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 18, 450, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 18, 218, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 18, 64, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 18, 71, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 18, 38, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 18, 339, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 19, 1138, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 19, 85, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 19, 686, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 19, 775, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 19, 506, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 19, 394, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 19, 604, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 19, 313, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 19, 737, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 19, 1186, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 20, 708, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 20, 1166, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 20, 315, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 20, 868, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 20, 670, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 20, 58, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 20, 279, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 20, 355, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 20, 1017, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 20, 691, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 21, 355, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 21, 1051, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 21, 898, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 21, 451, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 21, 163, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 21, 780, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 21, 211, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 21, 662, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 21, 544, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 21, 910, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 22, 949, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 22, 764, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 22, 594, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 22, 447, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 22, 668, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 22, 333, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 22, 710, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 22, 181, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 22, 1026, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 22, 247, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 23, 20, true);
 
 insert into rating (value, user_id, site_id, is_active) values (3, 23, 793, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 23, 520, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 23, 360, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 23, 191, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 23, 1095, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 23, 856, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 23, 281, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 23, 861, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 24, 905, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 24, 237, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 24, 632, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 24, 50, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 24, 1012, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 24, 447, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 24, 458, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 24, 141, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 24, 985, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 24, 973, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 25, 608, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 25, 1161, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 25, 673, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 25, 914, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 25, 107, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 25, 772, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 25, 794, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 25, 849, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 25, 658, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 25, 938, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 26, 266, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 26, 200, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 26, 321, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 26, 983, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 26, 763, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 26, 427, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 26, 181, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 26, 1016, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 26, 1038, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 26, 1102, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 27, 100, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 27, 339, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 27, 169, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 27, 195, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 27, 1192, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 27, 77, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 27, 800, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 27, 1008, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 27, 844, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 27, 1130, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 28, 848, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 28, 541, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 28, 742, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 28, 349, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 28, 829, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 28, 238, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 28, 204, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 28, 1098, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 28, 27, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 28, 1023, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 29, 527, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 29, 170, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 29, 228, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 29, 768, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 29, 176, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 29, 827, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 29, 32, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 29, 1184, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 29, 697, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 29, 710, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 30, 962, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 30, 851, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 30, 720, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 30, 624, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 30, 835, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 30, 126, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 30, 491, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 30, 571, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 30, 793, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 30, 269, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 31, 684, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 31, 786, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 31, 659, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 31, 742, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 31, 1168, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 31, 1133, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 31, 1059, true);
 
-insert into rating (value, user_id, site_id, is_active) values (5, 31, 275, true);
+insert into rating (value, user_id, site_id, is_active) values (3, 31, 273, true);
 
-insert into rating (value, user_id, site_id, is_active) values (4, 31, 681, true);
+insert into rating (value, user_id, site_id, is_active) values (4, 32, 341, true);
 
-insert into rating (value, user_id, site_id, is_active) values (3, 32, 802, true);
+insert into rating (value, user_id, site_id, is_active) values (5, 32, 821, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 32, 919, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 32, 86, true);
 
 insert into rating (value, user_id, site_id, is_active) values (3, 32, 1173, true);
-
-insert into rating (value, user_id, site_id, is_active) values (4, 32, 1128, true);
-
-insert into rating (value, user_id, site_id, is_active) values (5, 32, 823, true);
-
-insert into rating (value, user_id, site_id, is_active) values (5, 32, 366, true);
 

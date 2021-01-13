@@ -29,4 +29,4 @@ class CommentGenerator(Generator):
             output_file.write(output_text)
 
         # print(output_text)
-        return comments_dictionary
+        return comments_dictionary, output_text
