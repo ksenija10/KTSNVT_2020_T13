@@ -1,15 +1,15 @@
 import bcrypt
+from models.model import Model
 
 
-class User:
-    def __init__(self, table_name, user_type, name, surname, password, is_active, birthday=None, activated=None):
-        self.table_name = table_name
+class User(Model):
+    def __init__(self, table_name, is_active, user_type, name, surname, password, birthday=None, activated=None):
+        super(User, self).__init__(table_name, is_active)
         self.user_type = user_type
         self.name = name
         self.surname = surname
         self.email = self.generate_email()
         self.password = password
-        self.is_active = is_active
         self.activated = activated
         self.birthday = birthday
 
@@ -17,14 +17,14 @@ class User:
         query = "--email = {} password = {} \n".format(self.email, self.password)
         if self.birthday is None:
             query += "insert into {} (type, name, surname, email, password, is_active, activated) \nvalues ('{}', " \
-                     "'{}', '{}', '{}', '{}', '{}', '{}');".format(self.table_name, self.user_type, self.name,
-                                                                   self.surname, self.email, self.encode_password(),
-                                                                   self.is_active, self.activated)
+                     "'{}', '{}', '{}', '{}', {}, '{}');".format(self.table_name, self.user_type, self.name,
+                                                                 self.surname, self.email, self.encode_password(),
+                                                                 self.is_active, self.activated)
         else:
             query += "insert into {} (type, name, surname, email, password, is_active, birthday) \nvalues ('{}', " \
-                     "'{}', '{}', '{}', '{}', '{}', '{}');".format(self.table_name, self.user_type, self.name,
-                                                                   self.surname, self.email, self.encode_password(),
-                                                                   self.is_active, str(self.birthday))
+                     "'{}', '{}', '{}', '{}', {}, '{}');".format(self.table_name, self.user_type, self.name,
+                                                                 self.surname, self.email, self.encode_password(),
+                                                                 self.is_active, str(self.birthday))
 
         return query
 

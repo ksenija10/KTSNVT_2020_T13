@@ -1,13 +1,13 @@
 from models.user import User
-import bcrypt
+from models.generator import Generator
 import random
 import datetime
 
 
-class UserGenerator:
-    def __init__(self, data_path, output_path):
-        self.data_path = data_path
-        self.output_path = output_path
+class UserGenerator(Generator):
+    def __init__(self, output_path):
+        super(UserGenerator, self).__init__(output_path)
+        self.data_path = "./data/imena.txt"
 
     def generate(self):
         input_file = open(self.data_path, 'r', encoding="utf-8")
@@ -20,12 +20,13 @@ class UserGenerator:
 
         output_text = ""
         for i in range(50):
-            admin = User("users", "Admin", people[i][0], people[i][1], str(random.randint(1000, 9999)),
-                         "true", generate_date())
+            admin = User("users", "true", "Admin", people[i][0], people[i][1], str(random.randint(1000, 9999)),
+                         generate_date())
             output_text += admin.generate_insert() + "\n" + generate_authority(7 + i, 1) + "\n\n"
         for i in range(50, len(people)):
-            user = User("users", "AuthenticatedUser", people[i][0], people[i][1], str(random.randint(1000, 9999)),
-                        "true", None, "true")
+            user = User("users", "true", "AuthenticatedUser", people[i][0], people[i][1],
+                        str(random.randint(1000, 9999)),
+                        None, "true")
             output_text += user.generate_insert() + "\n" + generate_authority(7 + i, 2) + "\n\n"
 
         output_file = open(self.output_path, "w", encoding="utf-8")

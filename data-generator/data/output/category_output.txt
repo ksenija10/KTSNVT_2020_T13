@@ -1,0 +1,12 @@
+insert into cultural_category (name, is_active)
+values ('Institucija', true);
+
+insert into cultural_category (name, is_active)
+values ('Manifestacija', true);
+
+insert into cultural_category (name, is_active)
+values ('Kulturno nasleđe', true);
+
+insert into cultural_category (name, is_active)
+values ('Arheološko nalazište', true);
+
