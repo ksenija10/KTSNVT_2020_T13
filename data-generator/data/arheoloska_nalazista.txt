@@ -1,19 +1,18 @@
-Beli breg
-Mediana
-Caričin grad
-Nekropola stećaka
-Velika humka
-Rudna Glava
-Gamzigrad
-Pontes
-Lepenski Vir
-Karataš
-Grad-Starčevo
-Basijana
-Sirmijum
-Židovar
-Gomolava
-Čelarevo
-Titelski plato
-Ulpijana
-Viminacium
+Beli breg,Grocka
+Mediana,Niš
+Caričin grad,Lebane
+Nekropola stećaka,Bajina Bašta
+Velika humka,Požega
+Rudna Glava,Majdanpek
+Gamzigrad,Zaječar
+Pontes,Kladovo
+Lepenski Vir,Majdanpek
+Karataš,Kladovo
+Starčevo,Pančevo
+Basijana,Ruma
+Sirmijum,Sremska Mitrovica
+Židovar,Vršac
+Gomolava,Ruma
+Čelarevo,Bačka Palanka
+Titelski plato,Titel
+Viminacium,Požarevac

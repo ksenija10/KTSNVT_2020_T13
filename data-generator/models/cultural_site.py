@@ -17,14 +17,14 @@ class CulturalSite(Model):
 
     def generate_insert(self):
         return "insert into {} (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)" \
-               "\nvalues ('{}', {}, {}, '{}', '{}', '{}', {}, {}, {}, {});".format(self.table_name,
-                                                                                   self.name,
-                                                                                   self.lat,
-                                                                                   self.lng,
-                                                                                   self.address,
-                                                                                   self.city,
-                                                                                   self.description,
-                                                                                   self.rating,
-                                                                                   self.type_id,
-                                                                                   self.category_id,
-                                                                                   self.is_active)
+               "\nvalues ('{}', {}, {}, '{}', '{}', \n'{}', {}, {}, {}, {});".format(self.table_name,
+                                                                                     self.name,
+                                                                                     self.lat,
+                                                                                     self.lng,
+                                                                                     self.address,
+                                                                                     self.city,
+                                                                                     self.description,
+                                                                                     self.rating,
+                                                                                     self.type_id,
+                                                                                     self.category_id,
+                                                                                     self.is_active)

@@ -1,0 +1,51 @@
+insert into category_type (name, category_id, is_active)
+values ('Biblioteka', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Pozorište', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Muzej', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Univerzitet', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Bioskop', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Galerija', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Koncertna dvorana', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Kulturni centar', 1, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Festival', 2, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Sajam', 2, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Izložba', 2, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Karneval', 2, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Vašar', 2, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Tvrđava', 3, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Zadužbina', 3, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Manastir', 3, true);
+
+insert into category_type (name, category_id, is_active)
+values ('Arheološko nalazište', 3, true);
+
