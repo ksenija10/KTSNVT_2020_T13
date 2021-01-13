@@ -56269,4 +56269,704 @@ values('random information', '2020-01-22 11:00:00', 1205, true);
 insert into news (information, date_time, site_id, is_active)
 values('random information', '2018-03-16 16:00:00', 1205, true);
 
+insert into sites_users (site_id, user_id) values (343, 8);
+
+insert into sites_users (site_id, user_id) values (934, 8);
+
+insert into sites_users (site_id, user_id) values (880, 8);
+
+insert into sites_users (site_id, user_id) values (315, 8);
+
+insert into sites_users (site_id, user_id) values (780, 8);
+
+insert into sites_users (site_id, user_id) values (462, 8);
+
+insert into sites_users (site_id, user_id) values (941, 8);
+
+insert into sites_users (site_id, user_id) values (41, 8);
+
+insert into sites_users (site_id, user_id) values (516, 8);
+
+insert into sites_users (site_id, user_id) values (554, 8);
+
+insert into sites_users (site_id, user_id) values (714, 9);
+
+insert into sites_users (site_id, user_id) values (31, 9);
+
+insert into sites_users (site_id, user_id) values (319, 9);
+
+insert into sites_users (site_id, user_id) values (344, 9);
+
+insert into sites_users (site_id, user_id) values (1024, 9);
+
+insert into sites_users (site_id, user_id) values (34, 9);
+
+insert into sites_users (site_id, user_id) values (1115, 9);
+
+insert into sites_users (site_id, user_id) values (744, 9);
+
+insert into sites_users (site_id, user_id) values (1181, 9);
+
+insert into sites_users (site_id, user_id) values (439, 9);
+
+insert into sites_users (site_id, user_id) values (763, 10);
+
+insert into sites_users (site_id, user_id) values (896, 10);
+
+insert into sites_users (site_id, user_id) values (710, 10);
+
+insert into sites_users (site_id, user_id) values (273, 10);
+
+insert into sites_users (site_id, user_id) values (1150, 10);
+
+insert into sites_users (site_id, user_id) values (519, 10);
+
+insert into sites_users (site_id, user_id) values (37, 10);
+
+insert into sites_users (site_id, user_id) values (977, 10);
+
+insert into sites_users (site_id, user_id) values (869, 10);
+
+insert into sites_users (site_id, user_id) values (786, 10);
+
+insert into sites_users (site_id, user_id) values (576, 11);
+
+insert into sites_users (site_id, user_id) values (613, 11);
+
+insert into sites_users (site_id, user_id) values (159, 11);
+
+insert into sites_users (site_id, user_id) values (27, 11);
+
+insert into sites_users (site_id, user_id) values (740, 11);
+
+insert into sites_users (site_id, user_id) values (323, 11);
+
+insert into sites_users (site_id, user_id) values (506, 11);
+
+insert into sites_users (site_id, user_id) values (107, 11);
+
+insert into sites_users (site_id, user_id) values (924, 11);
+
+insert into sites_users (site_id, user_id) values (966, 11);
+
+insert into sites_users (site_id, user_id) values (980, 12);
+
+insert into sites_users (site_id, user_id) values (540, 12);
+
+insert into sites_users (site_id, user_id) values (236, 12);
+
+insert into sites_users (site_id, user_id) values (593, 12);
+
+insert into sites_users (site_id, user_id) values (733, 12);
+
+insert into sites_users (site_id, user_id) values (1040, 12);
+
+insert into sites_users (site_id, user_id) values (272, 12);
+
+insert into sites_users (site_id, user_id) values (389, 12);
+
+insert into sites_users (site_id, user_id) values (366, 12);
+
+insert into sites_users (site_id, user_id) values (606, 12);
+
+insert into sites_users (site_id, user_id) values (1059, 13);
+
+insert into sites_users (site_id, user_id) values (949, 13);
+
+insert into sites_users (site_id, user_id) values (974, 13);
+
+insert into sites_users (site_id, user_id) values (71, 13);
+
+insert into sites_users (site_id, user_id) values (247, 13);
+
+insert into sites_users (site_id, user_id) values (112, 13);
+
+insert into sites_users (site_id, user_id) values (1188, 13);
+
+insert into sites_users (site_id, user_id) values (704, 13);
+
+insert into sites_users (site_id, user_id) values (981, 13);
+
+insert into sites_users (site_id, user_id) values (953, 13);
+
+insert into sites_users (site_id, user_id) values (202, 14);
+
+insert into sites_users (site_id, user_id) values (592, 14);
+
+insert into sites_users (site_id, user_id) values (356, 14);
+
+insert into sites_users (site_id, user_id) values (88, 14);
+
+insert into sites_users (site_id, user_id) values (688, 14);
+
+insert into sites_users (site_id, user_id) values (494, 14);
+
+insert into sites_users (site_id, user_id) values (573, 14);
+
+insert into sites_users (site_id, user_id) values (1008, 14);
+
+insert into sites_users (site_id, user_id) values (626, 14);
+
+insert into sites_users (site_id, user_id) values (41, 14);
+
+insert into sites_users (site_id, user_id) values (796, 15);
+
+insert into sites_users (site_id, user_id) values (242, 15);
+
+insert into sites_users (site_id, user_id) values (877, 15);
+
+insert into sites_users (site_id, user_id) values (464, 15);
+
+insert into sites_users (site_id, user_id) values (942, 15);
+
+insert into sites_users (site_id, user_id) values (1194, 15);
+
+insert into sites_users (site_id, user_id) values (779, 15);
+
+insert into sites_users (site_id, user_id) values (337, 15);
+
+insert into sites_users (site_id, user_id) values (41, 15);
+
+insert into sites_users (site_id, user_id) values (1175, 15);
+
+insert into sites_users (site_id, user_id) values (65, 16);
+
+insert into sites_users (site_id, user_id) values (868, 16);
+
+insert into sites_users (site_id, user_id) values (497, 16);
+
+insert into sites_users (site_id, user_id) values (240, 16);
+
+insert into sites_users (site_id, user_id) values (614, 16);
+
+insert into sites_users (site_id, user_id) values (709, 16);
+
+insert into sites_users (site_id, user_id) values (361, 16);
+
+insert into sites_users (site_id, user_id) values (298, 16);
+
+insert into sites_users (site_id, user_id) values (376, 16);
+
+insert into sites_users (site_id, user_id) values (13, 16);
+
+insert into sites_users (site_id, user_id) values (608, 17);
+
+insert into sites_users (site_id, user_id) values (951, 17);
+
+insert into sites_users (site_id, user_id) values (401, 17);
+
+insert into sites_users (site_id, user_id) values (1076, 17);
+
+insert into sites_users (site_id, user_id) values (635, 17);
+
+insert into sites_users (site_id, user_id) values (1175, 17);
+
+insert into sites_users (site_id, user_id) values (195, 17);
+
+insert into sites_users (site_id, user_id) values (563, 17);
+
+insert into sites_users (site_id, user_id) values (1165, 17);
+
+insert into sites_users (site_id, user_id) values (676, 17);
+
+insert into sites_users (site_id, user_id) values (61, 18);
+
+insert into sites_users (site_id, user_id) values (234, 18);
+
+insert into sites_users (site_id, user_id) values (928, 18);
+
+insert into sites_users (site_id, user_id) values (267, 18);
+
+insert into sites_users (site_id, user_id) values (1175, 18);
+
+insert into sites_users (site_id, user_id) values (686, 18);
+
+insert into sites_users (site_id, user_id) values (20, 18);
+
+insert into sites_users (site_id, user_id) values (1048, 18);
+
+insert into sites_users (site_id, user_id) values (1071, 18);
+
+insert into sites_users (site_id, user_id) values (979, 18);
+
+insert into sites_users (site_id, user_id) values (1153, 19);
+
+insert into sites_users (site_id, user_id) values (927, 19);
+
+insert into sites_users (site_id, user_id) values (805, 19);
+
+insert into sites_users (site_id, user_id) values (528, 19);
+
+insert into sites_users (site_id, user_id) values (595, 19);
+
+insert into sites_users (site_id, user_id) values (319, 19);
+
+insert into sites_users (site_id, user_id) values (150, 19);
+
+insert into sites_users (site_id, user_id) values (1170, 19);
+
+insert into sites_users (site_id, user_id) values (1019, 19);
+
+insert into sites_users (site_id, user_id) values (636, 19);
+
+insert into sites_users (site_id, user_id) values (818, 20);
+
+insert into sites_users (site_id, user_id) values (991, 20);
+
+insert into sites_users (site_id, user_id) values (391, 20);
+
+insert into sites_users (site_id, user_id) values (84, 20);
+
+insert into sites_users (site_id, user_id) values (857, 20);
+
+insert into sites_users (site_id, user_id) values (1019, 20);
+
+insert into sites_users (site_id, user_id) values (564, 20);
+
+insert into sites_users (site_id, user_id) values (567, 20);
+
+insert into sites_users (site_id, user_id) values (410, 20);
+
+insert into sites_users (site_id, user_id) values (393, 20);
+
+insert into sites_users (site_id, user_id) values (853, 21);
+
+insert into sites_users (site_id, user_id) values (529, 21);
+
+insert into sites_users (site_id, user_id) values (613, 21);
+
+insert into sites_users (site_id, user_id) values (989, 21);
+
+insert into sites_users (site_id, user_id) values (861, 21);
+
+insert into sites_users (site_id, user_id) values (475, 21);
+
+insert into sites_users (site_id, user_id) values (675, 21);
+
+insert into sites_users (site_id, user_id) values (843, 21);
+
+insert into sites_users (site_id, user_id) values (1187, 21);
+
+insert into sites_users (site_id, user_id) values (526, 21);
+
+insert into sites_users (site_id, user_id) values (793, 22);
+
+insert into sites_users (site_id, user_id) values (511, 22);
+
+insert into sites_users (site_id, user_id) values (858, 22);
+
+insert into sites_users (site_id, user_id) values (125, 22);
+
+insert into sites_users (site_id, user_id) values (658, 22);
+
+insert into sites_users (site_id, user_id) values (770, 22);
+
+insert into sites_users (site_id, user_id) values (1109, 22);
+
+insert into sites_users (site_id, user_id) values (64, 22);
+
+insert into sites_users (site_id, user_id) values (878, 22);
+
+insert into sites_users (site_id, user_id) values (8, 22);
+
+insert into sites_users (site_id, user_id) values (747, 23);
+
+insert into sites_users (site_id, user_id) values (929, 23);
+
+insert into sites_users (site_id, user_id) values (778, 23);
+
+insert into sites_users (site_id, user_id) values (914, 23);
+
+insert into sites_users (site_id, user_id) values (379, 23);
+
+insert into sites_users (site_id, user_id) values (557, 23);
+
+insert into sites_users (site_id, user_id) values (521, 23);
+
+insert into sites_users (site_id, user_id) values (576, 23);
+
+insert into sites_users (site_id, user_id) values (1066, 23);
+
+insert into sites_users (site_id, user_id) values (994, 23);
+
+insert into sites_users (site_id, user_id) values (368, 24);
+
+insert into sites_users (site_id, user_id) values (244, 24);
+
+insert into sites_users (site_id, user_id) values (845, 24);
+
+insert into sites_users (site_id, user_id) values (376, 24);
+
+insert into sites_users (site_id, user_id) values (745, 24);
+
+insert into sites_users (site_id, user_id) values (232, 24);
+
+insert into sites_users (site_id, user_id) values (940, 24);
+
+insert into sites_users (site_id, user_id) values (60, 24);
+
+insert into sites_users (site_id, user_id) values (184, 24);
+
+insert into sites_users (site_id, user_id) values (1034, 24);
+
+insert into sites_users (site_id, user_id) values (903, 25);
+
+insert into sites_users (site_id, user_id) values (1127, 25);
+
+insert into sites_users (site_id, user_id) values (1195, 25);
+
+insert into sites_users (site_id, user_id) values (1134, 25);
+
+insert into sites_users (site_id, user_id) values (819, 25);
+
+insert into sites_users (site_id, user_id) values (46, 25);
+
+insert into sites_users (site_id, user_id) values (55, 25);
+
+insert into sites_users (site_id, user_id) values (343, 25);
+
+insert into sites_users (site_id, user_id) values (429, 25);
+
+insert into sites_users (site_id, user_id) values (802, 25);
+
+insert into sites_users (site_id, user_id) values (620, 26);
+
+insert into sites_users (site_id, user_id) values (304, 26);
+
+insert into sites_users (site_id, user_id) values (95, 26);
+
+insert into sites_users (site_id, user_id) values (988, 26);
+
+insert into sites_users (site_id, user_id) values (841, 26);
+
+insert into sites_users (site_id, user_id) values (431, 26);
+
+insert into sites_users (site_id, user_id) values (584, 26);
+
+insert into sites_users (site_id, user_id) values (673, 26);
+
+insert into sites_users (site_id, user_id) values (749, 26);
+
+insert into sites_users (site_id, user_id) values (534, 26);
+
+insert into sites_users (site_id, user_id) values (1169, 27);
+
+insert into sites_users (site_id, user_id) values (1038, 27);
+
+insert into sites_users (site_id, user_id) values (939, 27);
+
+insert into sites_users (site_id, user_id) values (821, 27);
+
+insert into sites_users (site_id, user_id) values (1156, 27);
+
+insert into sites_users (site_id, user_id) values (114, 27);
+
+insert into sites_users (site_id, user_id) values (606, 27);
+
+insert into sites_users (site_id, user_id) values (365, 27);
+
+insert into sites_users (site_id, user_id) values (1159, 27);
+
+insert into sites_users (site_id, user_id) values (479, 27);
+
+insert into sites_users (site_id, user_id) values (954, 28);
+
+insert into sites_users (site_id, user_id) values (131, 28);
+
+insert into sites_users (site_id, user_id) values (416, 28);
+
+insert into sites_users (site_id, user_id) values (913, 28);
+
+insert into sites_users (site_id, user_id) values (572, 28);
+
+insert into sites_users (site_id, user_id) values (850, 28);
+
+insert into sites_users (site_id, user_id) values (189, 28);
+
+insert into sites_users (site_id, user_id) values (243, 28);
+
+insert into sites_users (site_id, user_id) values (1200, 28);
+
+insert into sites_users (site_id, user_id) values (845, 28);
+
+insert into sites_users (site_id, user_id) values (539, 29);
+
+insert into sites_users (site_id, user_id) values (632, 29);
+
+insert into sites_users (site_id, user_id) values (236, 29);
+
+insert into sites_users (site_id, user_id) values (580, 29);
+
+insert into sites_users (site_id, user_id) values (1183, 29);
+
+insert into sites_users (site_id, user_id) values (399, 29);
+
+insert into sites_users (site_id, user_id) values (1137, 29);
+
+insert into sites_users (site_id, user_id) values (433, 29);
+
+insert into sites_users (site_id, user_id) values (454, 29);
+
+insert into sites_users (site_id, user_id) values (1115, 29);
+
+insert into sites_users (site_id, user_id) values (642, 30);
+
+insert into sites_users (site_id, user_id) values (857, 30);
+
+insert into sites_users (site_id, user_id) values (549, 30);
+
+insert into sites_users (site_id, user_id) values (173, 30);
+
+insert into sites_users (site_id, user_id) values (98, 30);
+
+insert into sites_users (site_id, user_id) values (579, 30);
+
+insert into sites_users (site_id, user_id) values (66, 30);
+
+insert into sites_users (site_id, user_id) values (1071, 30);
+
+insert into sites_users (site_id, user_id) values (1130, 30);
+
+insert into sites_users (site_id, user_id) values (1075, 30);
+
+insert into sites_users (site_id, user_id) values (378, 31);
+
+insert into sites_users (site_id, user_id) values (580, 31);
+
+insert into sites_users (site_id, user_id) values (175, 31);
+
+insert into sites_users (site_id, user_id) values (404, 31);
+
+insert into sites_users (site_id, user_id) values (934, 31);
+
+insert into sites_users (site_id, user_id) values (477, 31);
+
+insert into sites_users (site_id, user_id) values (357, 31);
+
+insert into sites_users (site_id, user_id) values (439, 31);
+
+insert into sites_users (site_id, user_id) values (292, 31);
+
+insert into sites_users (site_id, user_id) values (788, 31);
+
+insert into sites_users (site_id, user_id) values (463, 32);
+
+insert into sites_users (site_id, user_id) values (362, 32);
+
+insert into sites_users (site_id, user_id) values (882, 32);
+
+insert into sites_users (site_id, user_id) values (1007, 32);
+
+insert into sites_users (site_id, user_id) values (984, 32);
+
+insert into sites_users (site_id, user_id) values (719, 32);
+
+insert into sites_users (site_id, user_id) values (641, 32);
+
+insert into sites_users (site_id, user_id) values (554, 32);
+
+insert into sites_users (site_id, user_id) values (1174, 32);
+
+insert into sites_users (site_id, user_id) values (1128, 32);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 13, 32, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 13, 31, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 13, 462, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 13, 695, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 13, 472, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 14, 251, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 14, 1176, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 14, 1088, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 14, 820, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 14, 382, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 15, 229, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 15, 1165, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 15, 341, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 15, 622, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 15, 147, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 16, 239, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 16, 153, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 16, 515, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 16, 720, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 16, 700, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 17, 254, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 17, 157, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 17, 441, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 17, 210, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 17, 354, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 18, 296, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 18, 736, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 18, 450, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 18, 64, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 18, 38, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 19, 1138, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 19, 686, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 19, 506, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 19, 604, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 19, 737, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 20, 708, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 20, 315, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 20, 670, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 20, 279, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 20, 1017, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 21, 355, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 21, 898, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 21, 163, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 21, 211, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 21, 544, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 22, 949, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 22, 594, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 22, 668, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 22, 710, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 22, 1026, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 23, 793, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 23, 520, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 23, 191, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 23, 856, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 23, 861, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 24, 237, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 24, 50, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 24, 447, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 24, 141, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 24, 973, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 25, 1161, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 25, 914, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 25, 772, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 25, 849, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 25, 938, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 26, 200, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 26, 983, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 26, 427, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 26, 1016, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 26, 1102, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 27, 339, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 27, 195, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 27, 77, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 27, 1008, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 27, 1130, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 28, 541, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 28, 349, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 28, 238, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 28, 1098, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 28, 1023, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 29, 170, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 29, 768, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 29, 827, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 29, 1184, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 29, 710, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 30, 851, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 30, 624, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 30, 126, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 30, 571, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 30, 269, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 31, 786, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 31, 742, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 31, 1133, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 31, 275, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 31, 681, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 32, 802, true);
+
+insert into rating (value, user_id, site_id, is_active) values (3, 32, 1173, true);
+
+insert into rating (value, user_id, site_id, is_active) values (4, 32, 1128, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 32, 823, true);
+
+insert into rating (value, user_id, site_id, is_active) values (5, 32, 366, true);
+
 

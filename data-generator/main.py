@@ -5,6 +5,7 @@ from generators.cultural_site_generator import CulturalSiteGenerator
 from generators.comment_generator import CommentGenerator
 from generators.news_generator import NewsGenerator
 from generators.subscription_generator import SubscriptionGenerator
+from generators.rating_generator import RatingGenerator
 import time
 
 
@@ -87,20 +88,32 @@ def generate_news(sites):
 
 def generate_subscriptions(sites, users):
     subscription_generator = SubscriptionGenerator("./data/output/subscription_output.txt", sites, users)
-    print("Start generating news")
+    print("Start generating subscriptions")
     start = time.time()
     subscription_generator.generate()
     end = time.time()
-    print("Finished generating news")
+    print("Finished generating subscriptions")
     print(end - start, "\n")
+
+
+def generate_ratings(users, sites):
+    rating_generator = RatingGenerator("./data/output/rating_output.txt", users, sites)
+    print("Start generating ratings")
+    start = time.time()
+    ratings = rating_generator.generate()
+    end = time.time()
+    print("Finished generating ratings")
+    print(end - start, "\n")
+    return ratings
 
 
 if __name__ == '__main__':
     category_dictionary = generate_categories()
-    category_types_dictionary = generate_types(category_dictionary)
-    cultural_sites_dictionary = generate_cultural_sites(category_types_dictionary)
-    users_dictionary = generate_users_test()
-    comment_dictionary = generate_comments(users_dictionary, cultural_sites_dictionary)
-    news_dictionary = generate_news(cultural_sites_dictionary)
-    generate_subscriptions(cultural_sites_dictionary, users_dictionary)
+    category_type_dictionary = generate_types(category_dictionary)
+    cultural_site_dictionary = generate_cultural_sites(category_type_dictionary)
+    user_dictionary = generate_users_test()
+    comment_dictionary = generate_comments(user_dictionary, cultural_site_dictionary)
+    news_dictionary = generate_news(cultural_site_dictionary)
+    generate_subscriptions(cultural_site_dictionary, user_dictionary)
+    rating_dictionary = generate_ratings(user_dictionary, cultural_site_dictionary)
 
