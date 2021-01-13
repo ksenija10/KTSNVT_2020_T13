@@ -1,8 +1,75 @@
-<div class="row">
-    <div class="col-md-6">
-        <app-table-view></app-table-view>
-    </div>
-    <div class="col-md-6">
-        <app-map-view></app-map-view>
+<div class="row justify-content-md-center">
+    <div class="col-md-11">
+        <!-- Filtriranje kulturnih dobara -->
+        <!-- Po kategoriji kulturnog dobra -->
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field class="chip-list">
+                    <mat-label>Cultural site categories</mat-label>
+                    <mat-chip-list #chipList aria-label="Cultural site categories selection">
+                    <mat-chip
+                        *ngFor="let culturalSiteCategory of culturalSiteCategorys"
+                        [selectable]="selectable"
+                        [removable]="removable"
+                        (removed)="remove(culturalSiteCategory)">
+                        {{culturalSiteCategory}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                        placeholder="New cultural site category..."
+                        #culturalSiteCategorysInput
+                        [formControl]="culturalSiteCategoryCtrl"
+                        [matAutocomplete]="auto"
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let culturalSiteCategory of filteredCulturalSiteCategories | async" [value]="culturalSiteCategory">
+                        {{culturalSiteCategory}}
+                    </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <!-- Po imenu -->
+            <div class="col-md-3">
+                <mat-form-field appearance="fill" class="form-field max-width">
+                    <mat-label>Filter by name</mat-label>
+                    <input (keyup)="onKey($event)" matInput placeholder="Ex. Kulturno dobro">
+                </mat-form-field>
+            </div>
+            <!-- Po mestu -->
+            <div class="col-md-2">
+                <mat-form-field appearance="fill" class="form-field max-width">
+                    <mat-label>Filter by location</mat-label>
+                    <mat-select [(value)] = "location">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let location of allLocations" [value]="location">{{location}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- Dugme -->
+            <div class="col-md-1">
+                <button mat-raised-button color="primary" (click)=" appTableView.onFilter()">
+                    Filter
+                </button>
+            </div>
+        </div>
+        
+        <!-- Prikazi -->
+        <div class="row">
+            <!-- Tabelarni prikaz kulturnih dobara -->
+            <div class="col-md-6">
+                <app-table-view #appTableView
+                    [location] = "location"
+                    [name] = "name"
+                    [culturalSiteCategorys] = "culturalSiteCategorys"
+                ></app-table-view>
+            </div>
+            <!-- Prikaz na mapi kulturnih dobara -->
+            <div class="col-md-6">
+                <app-map-view></app-map-view>
+            </div>
+        </div>
     </div>
 </div>

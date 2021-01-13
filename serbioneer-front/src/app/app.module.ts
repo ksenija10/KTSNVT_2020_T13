@@ -27,7 +27,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { TableViewComponent } from './components/homepage/table-view/table-view.component';
 import { MapViewComponent } from './components/homepage/map-view/map-view.component';
-import { CulturalSitesTableComponent } from './components/homepage/table-view/cultural-sites-table/cultural-sites-table.component';
 import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { ApproveCommentComponent } from './components/approve-comment/approve-comment.component';
 import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
@@ -56,7 +55,6 @@ import { MatDividerModule } from '@angular/material/divider';
     HomepageComponent,
     TableViewComponent,
     MapViewComponent,
-    CulturalSitesTableComponent,
     PendingCommentsComponent,
     ApproveCommentComponent,
     NewNewsArticleComponent,
