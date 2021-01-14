@@ -23,6 +23,9 @@ public class LoginPage {
     @FindBy(id = "login-btn")
     private WebElement loginBtn;
 
+    @FindBy(xpath = "//*[@id=\"toast-container\"]//*[1]//*[1]")
+    private WebElement toast;
+
     public LoginPage(WebDriver driver ) { this.driver = driver; }
 
     public void ensureIsDisplayedLoginForm() {
@@ -34,6 +37,16 @@ public class LoginPage {
                         ExpectedConditions.visibilityOf(loginBtn)
                 )
         );
+    }
+
+    public void toastSuccess() {
+        (new WebDriverWait(driver, 10)).until(
+                ExpectedConditions.textToBePresentInElement(toast,"Logged in successfully!"));
+    }
+
+    public void toastError() {
+        (new WebDriverWait(driver, 10)).until(
+                ExpectedConditions.textToBePresentInElement(toast,"Incorrect email or password."));
     }
 
     public WebElement getLoginForm() {
