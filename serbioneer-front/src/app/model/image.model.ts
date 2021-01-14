@@ -10,3 +10,13 @@ export class Image {
 		this.content = obj && obj.content || null;
 	}
 }
+
+export class ImageDTO {
+    name?: string;
+	content?: any;
+	
+	constructor( name : string, content : any){
+		this.name = name;
+		this.content = content;
+	}
+}

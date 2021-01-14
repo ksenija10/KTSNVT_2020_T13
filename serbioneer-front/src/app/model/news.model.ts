@@ -4,7 +4,9 @@ export class NewsDTO{
 
     constructor(
         public information : string,
-        public images : Image[]
+        public dateTime : Date,
+        public culturalSiteName : string,
+        public images : Image[],
     ) { }
 
 }

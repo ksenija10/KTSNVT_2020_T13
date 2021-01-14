@@ -26,6 +26,7 @@ import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.Comment;
 import com.kts.nvt.serbioneer.service.CommentService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "api/comment", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CommentController {
