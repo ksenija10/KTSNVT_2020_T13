@@ -10,10 +10,10 @@ import { PendingCommentsComponent } from './components/pending-comments/pending-
 import { LoginGuard } from './guards/login-guard.service';
 import { RoleGuard } from './guards/role-guard.service';
 import { ViewAdminComponent } from './components/admin/view-admin/view-admin.component';
-import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
+import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
 
 const routes: Routes = [
   //login guard ne dozvoljava ulogovanom korisniku da opet pristupi login strani
@@ -53,10 +53,6 @@ const routes: Routes = [
     data: { expectedRoles: 'ROLE_ADMIN' },
   },
   {
-    path: 'new-news-article',
-    component: NewNewsArticleComponent,
-  },
-  {
     path: 'new-admin',
     component: NewAdminComponent,
     canActivate: [RoleGuard],
@@ -85,6 +81,10 @@ const routes: Routes = [
     component: ChangePasswordComponent,
     canActivate: [RoleGuard],
     data: { expectedRoles: 'ROLE_ADMIN|ROLE_USER' },
+  },
+  { 
+    path: 'cultural-site', 
+    component: ViewCulturalSiteComponent
   },
   {
     path: '**',

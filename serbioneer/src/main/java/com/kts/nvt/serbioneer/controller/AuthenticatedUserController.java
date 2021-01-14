@@ -30,6 +30,7 @@ import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "api/authenticated-user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthenticatedUserController {
@@ -59,7 +60,6 @@ public class AuthenticatedUserController {
 	 * url: GET localhost:8080/api/authenticated-user/view-profile
 	 * HTTP Request for viewing pesonal information
 	*/
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/view-profile")
 	public ResponseEntity<AuthenticatedUserDTO> getCurrentAuthenticatedUser() {
@@ -86,7 +86,6 @@ public class AuthenticatedUserController {
 	 * url: PUT localhost:8080/api/authenticated-user/updatePersonalInformation
 	 * HTTP Request for updating personal information
 	*/
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "/updatePersonalInformation", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserUpdateDTO> updatePersonalInformation(@Valid @RequestBody UserUpdateDTO userUpdateDTO) {
@@ -103,7 +102,6 @@ public class AuthenticatedUserController {
 	 * url: PUT localhost:8080/api/authenticated/updatePassword
 	 * HTTP Request for updating password
 	 */
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<PasswordDTO> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {

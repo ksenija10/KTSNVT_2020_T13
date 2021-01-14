@@ -25,9 +25,6 @@ export class ApproveCommentComponent implements OnInit {
     this.commentService.aproveComment(this.comment.id).subscribe(
       res => {
         this.pendingComments.fetchComments();
-      },
-      err => {
-        console.log(err.message)
       }
     )
   }
@@ -36,9 +33,6 @@ export class ApproveCommentComponent implements OnInit {
     this.commentService.declineComment(this.comment.id).subscribe(
       res => {
         this.pendingComments.fetchComments();
-      },
-      err => {
-        console.log(err.message)
       }
     )
   }

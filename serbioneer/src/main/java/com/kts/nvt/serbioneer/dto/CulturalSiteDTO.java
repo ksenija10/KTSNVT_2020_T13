@@ -1,12 +1,18 @@
 package com.kts.nvt.serbioneer.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.kts.nvt.serbioneer.model.Image;
+
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 public class CulturalSiteDTO {
@@ -42,6 +48,8 @@ public class CulturalSiteDTO {
 	private String description;
 
 	private double rating;
+	
+	private List<ImageDTO> images;
 
 	public CulturalSiteDTO(Long id,
 			@NotBlank(message = "Cultural site name cannot be empty.") String name,
@@ -64,5 +72,23 @@ public class CulturalSiteDTO {
 		this.city = city;
 		this.description = description;
 		this.rating = rating;
+	}
+
+	public CulturalSiteDTO(Long id2, @NonNull String name2, Long id3, @NonNull String name3, Long id4,
+			@NonNull String name4, double lat2, double lng2, @NonNull String address2, @NonNull String city2,
+			String description2, double rating2, List<ImageDTO> dtoList) {
+		this.id = id2;
+		this.name = name2;
+		this.categoryId = id3;
+		this.category = name3;
+		this.categoryTypeId = id4;
+		this.categoryType = name4;
+		this.lat = lat2;
+		this.lng = lng2;
+		this.address = address2;
+		this.city = city2;
+		this.description = description2;
+		this.rating = rating2;
+		this.images = dtoList;
 	}
 }

@@ -166,4 +166,12 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 		return culturalSiteRepository.findAllBySubscribedUsersId(user.getId());
 	}
 	
+	public boolean subscribedCulturalSite(Long siteId, String userEmail) {
+		CulturalSite culturalSite = culturalSiteRepository.findOneByIdAndSubscribedUsersEmailContaining(siteId, userEmail);
+		if(culturalSite == null) {
+			return false;
+		}
+		return true;
+	}
+	
 }
