@@ -51,4 +51,14 @@ export class CommentService {
             catchError(err => throwError(err))
         );
     }
+
+    updateComment(id : number, updatedComment : Comment){
+        return this.http.put<Comment>(environment.apiEndpoint + 'comment/' + id, updatedComment).pipe(
+            catchError(err => throwError(err))
+        );
+    }
+
+    deleteComment(id : number){
+        return this.http.delete<void>(environment.apiEndpoint + 'comment/' + id);
+    }
 }

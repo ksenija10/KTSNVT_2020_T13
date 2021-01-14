@@ -24,7 +24,6 @@ export class PendingCommentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchComments();
-    console.log(this.commentsData.content)
   }
 
   fetchComments() : void {

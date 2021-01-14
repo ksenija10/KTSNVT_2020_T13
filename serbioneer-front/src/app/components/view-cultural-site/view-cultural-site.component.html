@@ -1,0 +1,116 @@
+<div class="row view-cultural-site">
+    <div class="col">
+        <div class="row">
+            <div class="col-8">{{culturalSite.name}}</div>
+            <div class="col">
+                <div class="row rating">
+                    <div>{{culturalSite.rating}}  </div>
+                    <mat-icon>grade</mat-icon>
+                </div>
+            </div>
+            <div class="col" *ngIf="adminIsLogged">
+                <button type="submit" mat-raised-button (click)="addImages()">
+                    Add images
+                </button>
+            </div>
+            <div class="col" *ngIf="userIsLogged">
+                <button type="submit" mat-raised-button (click)="onChangeSubscription($event)">
+                    {{buttonValue}}
+                </button>
+            </div>
+            <div class="col" *ngIf="adminIsLogged">
+                <button mat-raised-button (click)="openDialog()">
+                    {{buttonValue}}
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">{{culturalSite.address}}, {{culturalSite.city}}</div>
+        </div>
+        <div class="row" *ngIf="userIsLogged">
+            <div>Rate {{culturalSite.name}}!</div>
+            <ngb-rating [max]="5" [(rate)]="starRating.value" [readonly]="false" (rateChange)="onRatingChange()"></ngb-rating>
+        </div>
+        <div class="row" *ngIf="culturalSite!.images!.length > 0">
+            <cdk-virtual-scroll-viewport itemSize="50" orientation="horizontal">
+                <div *cdkVirtualFor="let image of culturalSite.images" >
+                  <img src="data:image/png;base64,{{image.content}}" class="example-item" id="image.id"/>
+                </div>
+            </cdk-virtual-scroll-viewport>
+        </div>
+        <div class="row">
+            {{culturalSite.description}}
+        </div>
+        <mat-divider></mat-divider>
+        <div *ngIf="news!.content!.length > 0">
+            <div class="row" *ngFor="let oneNews of news.content">
+                <app-news-article [news]="oneNews"></app-news-article>
+            </div>
+            <mat-paginator 
+                [length]="news.totalElements" 
+                [pageSize]="news.size" 
+                [pageSizeOptions]="[1,2,5,10]"
+                (page)="pageEventNews = $event; onPaginateChangeNews($event)">
+            </mat-paginator>
+        </div>
+        <mat-divider *ngIf="news!.content!.length > 0"></mat-divider>
+        <div class="row">
+            <div>Reviews</div>
+            <button *ngIf="userIsLogged" type="submit" mat-raised-button (click)="addComments()">
+                <mat-icon>comment</mat-icon>
+            </button>
+        </div>
+        <div *ngIf="comments!.content!.length > 0">
+            <div class="row" *ngFor="let comment of comments.content">
+                <app-comment [comment]="comment" [culturalSiteId]="culturalSite.id"></app-comment>
+            </div>
+            <mat-paginator 
+                [length]="comments.totalElements" 
+                [pageSize]="comments.size" 
+                [pageSizeOptions]="[1,2,5,10]"
+                (page)="pageEventComments = $event; onPaginateChangeComments($event)">
+            </mat-paginator>
+        </div>
+        <mat-divider *ngIf="comments!.content!.length > 0"></mat-divider>
+        <div class="row" *ngIf="addNewComment">
+            <form [formGroup]="myForm" (ngSubmit)="submit($event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Share your experience of {{culturalSite.name}}" class="type-comment"
+                        name="newCommentText" formControlName="text"/>
+                </div>
+               
+                <div class="form-group">
+                    <label for="file">File</label>
+                    <input 
+                        formControlName="file"
+                        id="file" 
+                        type="file" 
+                        class="form-control"
+                        multiple="" 
+                        (change)="onFileChange($event)">
+                </div>
+                <img *ngFor='let url of images'  [src]="url" class="image-preview"> <br/>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="row" *ngIf="addNewImages">
+            <form [formGroup]="myForm" (ngSubmit)="submitImages($event)">
+                <div class="form-group">
+                    <label for="file">File</label>
+                    <input 
+                        formControlName="file"
+                        id="file" 
+                        type="file" 
+                        class="form-control"
+                        multiple="" 
+                        (change)="onNewImageChange($event)">
+                </div>
+                <img *ngFor='let url of newImages'  [src]="url" class="image-preview"> <br/>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-4">
+        <app-map-cultural-site></app-map-cultural-site>
+    </div>
+</div>

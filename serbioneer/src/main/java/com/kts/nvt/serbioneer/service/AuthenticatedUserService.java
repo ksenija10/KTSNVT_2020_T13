@@ -55,6 +55,14 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 	public AuthenticatedUser findOneById(Long id) {
 		return authenticatedUserRepository.findById(id).orElse(null);
 	}
+	
+	public AuthenticatedUser findOneByEmail(String email) throws ExistentFieldValueException {
+		AuthenticatedUser user = authenticatedUserRepository.findOneByEmail(email);
+		if(user==null) {
+			throw new ExistentFieldValueException("User", "email");
+		}
+		return user;
+	}
 
 	public AuthenticatedUser create(AuthenticatedUser entity) throws Exception {
 		//enkripcija lozinke

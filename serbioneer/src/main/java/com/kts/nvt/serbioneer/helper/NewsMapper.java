@@ -1,11 +1,13 @@
 package com.kts.nvt.serbioneer.helper;
 
 import com.kts.nvt.serbioneer.dto.NewsDTO;
+import com.kts.nvt.serbioneer.model.Image;
 import com.kts.nvt.serbioneer.model.News;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class NewsMapper implements MapperInterface<News, NewsDTO>{
@@ -19,6 +21,9 @@ public class NewsMapper implements MapperInterface<News, NewsDTO>{
 
     @Override
     public NewsDTO toDto(News entity) {
+    	if(entity.getImages() == null) {
+    		entity.setImages(new HashSet<Image>());
+    	}
         return new NewsDTO(entity.getId(), entity.getInformation(), entity.getDateTime(),
                 entity.getCulturalSite().getName(), imageMapper.toDtoList(new ArrayList<>(entity.getImages())));
     }

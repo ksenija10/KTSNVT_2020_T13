@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +31,6 @@ import { MapViewComponent } from './components/homepage/map-view/map-view.compon
 import { CulturalSitesTableComponent } from './components/homepage/table-view/cultural-sites-table/cultural-sites-table.component';
 import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { ApproveCommentComponent } from './components/approve-comment/approve-comment.component';
-import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
@@ -44,6 +44,14 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { MatListModule } from '@angular/material/list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDividerModule } from '@angular/material/divider';
+import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
+import { MapCulturalSiteComponent } from './components/view-cultural-site/map-cultural-site/map-cultural-site.component';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NewsArticleComponent } from './components/news-article/news-article.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddNewsArticleComponent } from './components/add-news-article/add-news-article.component';
 
 @NgModule({
   declarations: [
@@ -59,11 +67,15 @@ import { MatDividerModule } from '@angular/material/divider';
     CulturalSitesTableComponent,
     PendingCommentsComponent,
     ApproveCommentComponent,
-    NewNewsArticleComponent,
     MyProfileComponent,
     ChangePasswordComponent,
     NewAdminComponent,
     ViewAdminComponent,
+    ViewCulturalSiteComponent,
+    MapCulturalSiteComponent,
+    NewsArticleComponent,
+    CommentComponent,
+    AddNewsArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +101,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatDividerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgbModule,
+    MatDialogModule
   ],
   providers: [
     {
@@ -99,5 +113,6 @@ import { MatDividerModule } from '@angular/material/divider';
     },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [AddNewsArticleComponent]
 })
 export class AppModule {}

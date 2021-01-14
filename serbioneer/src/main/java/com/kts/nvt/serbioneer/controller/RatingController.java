@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,10 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kts.nvt.serbioneer.dto.RatingDTO;
+import com.kts.nvt.serbioneer.dto.UserRatingForCulturalSiteDTO;
 import com.kts.nvt.serbioneer.helper.RatingMapper;
+import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.model.Rating;
 import com.kts.nvt.serbioneer.service.RatingService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "api/rating", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RatingController {
@@ -46,6 +50,14 @@ public class RatingController {
 			@PathVariable("cultural-site-id") Long culturalSiteId) {
 		Page<Rating> ratings = ratingService.findAllByCulturalSiteId(pageable, culturalSiteId);
 		return new ResponseEntity<>(ratingMapper.toDtoPage(ratings), HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PostMapping(value = "/user-site-rating")
+	public ResponseEntity<RatingDTO> getUserRatingForCulturalSite(@Valid @RequestBody UserRatingForCulturalSiteDTO dto) throws ExistentFieldValueException {
+		
+		RatingDTO ratingDto = ratingService.findUserCulturalSiteRating(dto.getCulturalSiteId(), dto.getAuthenticatedUserEmail());
+		return new ResponseEntity<>(ratingDto, HttpStatus.OK);
 	}
 
 	/*

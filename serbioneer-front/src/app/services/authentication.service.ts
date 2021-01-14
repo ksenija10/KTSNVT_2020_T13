@@ -101,4 +101,23 @@ export class AuthenticationService {
       return null;
     }
   }
+
+  loggedInUserEmail() {
+    const token = localStorage.getItem('jwtToken');
+    const jwt : JwtHelperService = new JwtHelperService();
+
+    if(!token){
+        return '';
+    }
+    const info = jwt.decodeToken(token);
+    return info.sub;
+}
+
+  subscribe(id : number){
+    return this.http.post<void>(environment.apiEndpoint + 'authenticated-user/subscribe/' + id, null);
+  }
+
+  unsubscribe(id : number){
+    return this.http.post<void>(environment.apiEndpoint + 'authenticated-user/unsubscribe/' + id, null);
+  }
 }

@@ -20,4 +20,6 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
 	
 	Page<Rating> findAllByAuthenticatedUserId(Pageable pageable, Long authenticatedUserId);
 	
+	Rating findOneByCulturalSiteIdAndAuthenticatedUserId(Long culturalSiteId, Long authenticatedUserId);
+	
 }
