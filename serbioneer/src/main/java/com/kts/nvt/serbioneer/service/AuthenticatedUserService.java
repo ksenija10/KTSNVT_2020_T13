@@ -76,18 +76,17 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
 			return saved;
 		} else {
 			if (userToCreate instanceof Admin) {
-				throw new ExistentFieldValueException("Admin", "email");
+				throw new ExistentFieldValueException("User", "email");
 			}
 			AuthenticatedUser authenticatedUserToCreate = (AuthenticatedUser) userToCreate;
 			if (authenticatedUserToCreate.isActivated()) {
-				throw new ExistentFieldValueException(this.type, "email");
+				throw new ExistentFieldValueException("User", "email");
 			} else {
 				//postoji u bazi ali je neaktivan jer nije pratio link
 				VerificationToken token = verificationTokenRepository.findByUser(authenticatedUserToCreate);
 				if (token.isExpired()) {
 					//istekao je moze da se registruje ponovo
 					verificationTokenRepository.delete(token);
-					System.out.println(authenticatedUserToCreate.getId());
 					return authenticatedUserToCreate;
 				} else {
 					throw new Exception("Please check your email for the verification link!");

@@ -6,6 +6,8 @@ import com.kts.nvt.serbioneer.e2e.pages.LoginPage;
 import org.junit.After;
 import org.junit.Before;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -49,9 +51,13 @@ public class LoginE2ETest {
 
         loginPage.ensureIsDisplayedLoginForm();
 
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
         loginPage.getEmail().sendKeys("admin@admin.com");
 
         loginPage.getPassword().sendKeys("admin");
+
+        assertTrue(loginPage.getLoginBtn().isEnabled());
 
         justWait();
 
@@ -77,9 +83,13 @@ public class LoginE2ETest {
 
         loginPage.ensureIsDisplayedLoginForm();
 
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
         loginPage.getEmail().sendKeys("prvi@user.com");
 
         loginPage.getPassword().sendKeys("user");
+
+        assertTrue(loginPage.getLoginBtn().isEnabled());
 
         justWait();
 
@@ -105,9 +115,13 @@ public class LoginE2ETest {
 
         loginPage.ensureIsDisplayedLoginForm();
 
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
         loginPage.getEmail().sendKeys("greska@email.com");
 
         loginPage.getPassword().sendKeys("admin");
+
+        assertTrue(loginPage.getLoginBtn().isEnabled());
 
         justWait();
 
@@ -131,9 +145,13 @@ public class LoginE2ETest {
 
         loginPage.ensureIsDisplayedLoginForm();
 
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
         loginPage.getEmail().sendKeys("greska@email.com");
 
         loginPage.getPassword().sendKeys("admin");
+
+        assertTrue(loginPage.getLoginBtn().isEnabled());
 
         justWait();
 

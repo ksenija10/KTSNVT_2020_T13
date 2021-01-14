@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -68,7 +69,7 @@ public class RegistrationController {
      * HTTP Request for confirming registration
      */
     @GetMapping("/registrationConfirm")
-    public ResponseEntity<AuthenticatedUserDTO> confirmRegistration
+    public RedirectView confirmRegistration
             (WebRequest request, @RequestParam("token") String token) {
 
         VerificationToken verificationToken = authenticatedUserService.getVerificationToken(token);
@@ -84,7 +85,6 @@ public class RegistrationController {
 
         user.setActivated(true);
         authenticatedUserService.saveRegisteredUser(user);
-        return new ResponseEntity<>(authenticatedUserMapper.toDto(user),
-                HttpStatus.CREATED);
+        return new RedirectView("http://localhost:4200/login-register/login");
     }
 }
