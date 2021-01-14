@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div id = "login-register" class="container-fluid">
     <!--<div class="row">
         <div class="col">
             <img src="../../assets/images/baner_pozadina.png" class="mx-auto d-block" alt="Serbioneer banner">
@@ -8,6 +8,7 @@
         <div class="col-7 mx-auto">
             <nav mat-tab-nav-bar mat-align-tabs="center">
                 <a mat-tab-link
+                id = "login-link"
                 [routerLink]="'login'"
                 (click)="activeLink = 'login'"
                 [active]="activeLink == 'login'"
@@ -15,6 +16,7 @@
                 Login
                 </a>
                 <a mat-tab-link
+                id = "register-link"
                 [routerLink]="'register'"
                 (click)="activeLink = 'register'"
                 [active]="activeLink == 'register'"
