@@ -1,10 +1,85 @@
-<div class="row">
-    <div class="col-md-6">
-        <div class="col-md-10">
-            <app-form-cultural-site></app-form-cultural-site>
+<form [formGroup] = "newCulturalSiteForm" (ngSubmit) = "onSubmit()">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="col-md-10">
+                <div class="form-group">
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Enter cultural site name</mat-label>
+                        <input matInput placeholder="Kulturno mesto" formControlName ="name">
+                        <mat-error *ngIf="newCulturalSiteForm.get('name')?.invalid">{{getRequiredFieldErrorMessage('name')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Enter cultural site address</mat-label>
+                        <input matInput placeholder="Ulica Ime 1" formControlName ="address">
+                        <mat-error *ngIf="newCulturalSiteForm.get('address')?.invalid">{{getRequiredFieldErrorMessage('address')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Enter cultural site description</mat-label>
+                        <textarea class="textBox" matInput placeholder="Opis" formControlName ="description"> </textarea>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Category</mat-label>
+                        <mat-select [(value)] = "category" formControlName="category">
+                            <mat-option *ngFor="let category of allCategories" [value]="category" (click)="categoryChange()">{{category}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="newCulturalSiteForm.get('category')?.invalid">{{getRequiredFieldErrorMessage('category')}}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>{{category}} type</mat-label>
+                        <mat-select [(value)] = "categoryType" formControlName = "categoryType">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let categoryType of allCategoryTypes" [value]="categoryType">{{categoryType}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="newCulturalSiteForm.get('categoryType')?.invalid">{{getRequiredFieldErrorMessage('categoryType')}}</mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
         </div>
     </div>
+    
     <div class="col-md-6">
-        <app-map-view></app-map-view>
+        <div class="col-md-10">
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Latitude</mat-label>
+                    <input matInput placeholder="45" formControlName ="lat">
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Longitude</mat-label>
+                    <input matInput placeholder="20.5" formControlName ="lng">
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>City</mat-label>
+                    <input matInput placeholder="City Name" formControlName ="city">
+                </mat-form-field>
+            </div>
+
+        </div>
     </div>
-</div>
+
+    <div>
+        <button
+            class="btn btn-theme"
+            type="submit"
+            [disabled] = "newCulturalSiteForm.invalid"
+        >
+            Submit
+        </button>
+    </div>
+</form>

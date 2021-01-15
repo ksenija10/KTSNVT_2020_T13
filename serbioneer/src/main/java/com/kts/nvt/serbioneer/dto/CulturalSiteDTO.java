@@ -12,9 +12,11 @@ import javax.validation.constraints.Pattern;
 import com.kts.nvt.serbioneer.model.Image;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Data
+@NoArgsConstructor
 public class CulturalSiteDTO {
 
 	private Long id;

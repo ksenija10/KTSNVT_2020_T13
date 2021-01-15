@@ -53,7 +53,6 @@ import { NewsArticleComponent } from './components/news-article/news-article.com
 import { CommentComponent } from './components/comment/comment.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddNewsArticleComponent } from './components/add-news-article/add-news-article.component';
-import { FormCulturalSiteComponent } from './components/new-cultural-site/form-cultural-site/form-cultural-site.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +78,6 @@ import { FormCulturalSiteComponent } from './components/new-cultural-site/form-c
     CommentComponent,
     AddNewsArticleComponent,
     NewCulturalSiteComponent,
-    FormCulturalSiteComponent,
   ],
   imports: [
     BrowserModule,
