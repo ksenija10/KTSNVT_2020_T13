@@ -48,10 +48,10 @@ export class CategoriesComponent implements OnInit {
     this.typePageEvent.pageIndex = 0;
     // forms
     this.addCategoryForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.pattern(this.namePattern)])
+      name: new FormControl('', [/*Validators.required,*/ Validators.pattern(this.namePattern)])
     })
     this.addTypeForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.pattern(this.namePattern)])
+      name: new FormControl('', [/*Validators.required,*/ Validators.pattern(this.namePattern)])
     })
   }
 
@@ -170,7 +170,7 @@ export class CategoriesComponent implements OnInit {
           return 'Cannot contain special characters or numbers'
         }
       }
-      return this.addCategoryForm.controls['name'].hasError('required') ? 'Required field' : '';
+      //return this.addCategoryForm.controls['name'].hasError('required') ? 'Required field' : '';
     }
     return '';
   }
@@ -184,7 +184,7 @@ export class CategoriesComponent implements OnInit {
           return 'Cannot contain special characters or numbers'
         }
       }
-      return this.addTypeForm.controls['name'].hasError('required') ? 'Required field' : '';
+      //return this.addTypeForm.controls['name'].hasError('required') ? 'Required field' : '';
     }
     return '';
   }

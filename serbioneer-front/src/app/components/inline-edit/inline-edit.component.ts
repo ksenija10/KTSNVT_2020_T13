@@ -1,6 +1,8 @@
 import { Component, Input, Optional, Host } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SatPopover } from '@ncstate/sat-popover';
 import { filter } from 'rxjs/operators';
+import { onlyContainsLettersAndSpaces } from 'src/app/util/util';
 
 @Component({
   selector: 'app-inline-edit',
@@ -28,7 +30,14 @@ export class InlineEditComponent {
   /** Form model for the input. */
   edit = '';
 
-  constructor(@Optional() @Host() public popover: SatPopover) { }
+  editForm: FormGroup;
+  namePattern = "([A-Z]{1}[a-z]*)( [a-z]*)*"
+
+  constructor(@Optional() @Host() public popover: SatPopover) {
+    this.editForm = new FormGroup({
+      editField: new FormControl('', [Validators.required, Validators.pattern(this.namePattern)])
+    })
+  }
 
   ngOnInit() {
     // subscribe to cancellations and reset form value
@@ -49,4 +58,15 @@ export class InlineEditComponent {
       this.popover.close();
     }
   }
+
+  getEditErrorMessage() {
+      if(this.editForm.controls['editField'].hasError('pattern')) {
+        if(onlyContainsLettersAndSpaces(this.editForm.controls['editField'].value)) {
+          return 'Must start with capital letter';
+        } else {
+          return 'Cannot contain special characters or numbers'
+        }
+      }
+      return this.editForm.controls['editField'].hasError('required') ? 'Required field' : '';
+    }
 }
