@@ -5,17 +5,17 @@
                 <mat-form-field appearance="fill" class="form-field">
                     <mat-label>Enter your email</mat-label>
                     <input id = "email-input" matInput placeholder="something@example.com" formControlName ="email">
-                    <mat-error *ngIf="loginForm.get('email')?.invalid">{{getEmailErrorMessage()}}</mat-error>
+                    <mat-error id = "email-error" *ngIf="loginForm.get('email')?.invalid">{{getEmailErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-group">
                 <mat-form-field appearance="fill" class="form-field">
                     <mat-label>Enter your password</mat-label>
                     <input id = "password-input" matInput [type]="hide ? 'password' : 'text'"  formControlName ="password">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <button id = "show-pass" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
-                    <mat-error *ngIf="loginForm.get('password')?.invalid">{{getRequiredFieldErrorMessage('password')}}</mat-error>
+                    <mat-error id = "password-error" *ngIf="loginForm.get('password')?.invalid">{{getRequiredFieldErrorMessage('password')}}</mat-error>
                 </mat-form-field>
             </div>
             <div>

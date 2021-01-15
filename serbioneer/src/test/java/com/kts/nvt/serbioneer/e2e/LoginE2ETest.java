@@ -57,9 +57,11 @@ public class LoginE2ETest {
 
         loginPage.getPassword().sendKeys("admin");
 
-        assertTrue(loginPage.getLoginBtn().isEnabled());
+        loginPage.getViewPass().click();
 
         justWait();
+
+        assertTrue(loginPage.getLoginBtn().isEnabled());
 
         loginPage.getLoginBtn().click();
 
@@ -89,6 +91,8 @@ public class LoginE2ETest {
 
         loginPage.getPassword().sendKeys("user");
 
+        loginPage.getViewPass().click();
+
         assertTrue(loginPage.getLoginBtn().isEnabled());
 
         justWait();
@@ -117,9 +121,11 @@ public class LoginE2ETest {
 
         assertFalse(loginPage.getLoginBtn().isEnabled());
 
-        loginPage.getEmail().sendKeys("greska@email.com");
+        loginPage.getEmail().sendKeys("invalid@email.com");
 
         loginPage.getPassword().sendKeys("admin");
+
+        loginPage.getViewPass().click();
 
         assertTrue(loginPage.getLoginBtn().isEnabled());
 
@@ -130,6 +136,8 @@ public class LoginE2ETest {
         justWait();
 
         loginPage.ensureIsDisplayedLoginForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
 
         loginPage.toastError();
 
@@ -147,9 +155,11 @@ public class LoginE2ETest {
 
         assertFalse(loginPage.getLoginBtn().isEnabled());
 
-        loginPage.getEmail().sendKeys("greska@email.com");
+        loginPage.getEmail().sendKeys("admin@admin.com");
 
-        loginPage.getPassword().sendKeys("admin");
+        loginPage.getPassword().sendKeys("invalid");
+
+        loginPage.getViewPass().click();
 
         assertTrue(loginPage.getLoginBtn().isEnabled());
 
@@ -161,7 +171,135 @@ public class LoginE2ETest {
 
         loginPage.ensureIsDisplayedLoginForm();
 
+        headerPage.ensureIsUnauthenticatedUser();
+
         loginPage.toastError();
+
+        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void LogInTestInvalidEmailFormat() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        loginPage.ensureIsDisplayedLoginForm();
+
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
+        loginPage.getEmail().sendKeys("invalidEmailFormat");
+
+        loginPage.getPassword().sendKeys("admin");
+
+        loginPage.getViewPass().click();
+
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
+        assertEquals(loginPage.getEmailError().getText(), "Not a valid email");
+
+        justWait();
+
+        justWait();
+
+        loginPage.ensureIsDisplayedLoginForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void LogInTestEmptyEmail() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        loginPage.ensureIsDisplayedLoginForm();
+
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
+        loginPage.getEmail().sendKeys("");
+
+        justWait();
+
+        loginPage.getPassword().sendKeys("admin");
+
+        loginPage.getViewPass().click();
+
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
+        assertEquals(loginPage.getEmailError().getText(), "Required field");
+
+        justWait();
+
+        loginPage.ensureIsDisplayedLoginForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void LogInTestEmptyPassword() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        loginPage.ensureIsDisplayedLoginForm();
+
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
+        loginPage.getEmail().sendKeys("admin@admin.com");
+
+        loginPage.getPassword().sendKeys("");
+
+        loginPage.getEmail().click();
+
+        justWait();
+
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
+        assertEquals(loginPage.getPasswordError().getText(), "Required field");
+
+        justWait();
+
+        loginPage.ensureIsDisplayedLoginForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void LogInTestEmptyEmailAndPassword() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        loginPage.ensureIsDisplayedLoginForm();
+
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
+        loginPage.getEmail().sendKeys("");
+
+        loginPage.getPassword().sendKeys("");
+
+        loginPage.getEmail().click();
+
+        justWait();
+
+        assertFalse(loginPage.getLoginBtn().isEnabled());
+
+        assertEquals(loginPage.getEmailError().getText(), "Required field");
+
+        assertEquals(loginPage.getPasswordError().getText(), "Required field");
+
+        justWait();
+
+        loginPage.ensureIsDisplayedLoginForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
 
         assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
     }

@@ -26,6 +26,15 @@ public class LoginPage {
     @FindBy(xpath = "//*[@id=\"toast-container\"]//*[1]//*[1]")
     private WebElement toast;
 
+    @FindBy(id = "email-error")
+    private WebElement emailError;
+
+    @FindBy(id = "password-error")
+    private WebElement passwordError;
+
+    @FindBy(id = "show-pass")
+    private WebElement viewPass;
+
     public LoginPage(WebDriver driver ) { this.driver = driver; }
 
     public void ensureIsDisplayedLoginForm() {
@@ -63,5 +72,17 @@ public class LoginPage {
 
     public WebElement getLoginBtn() {
         return loginBtn;
+    }
+
+    public WebElement getEmailError() {
+        return emailError;
+    }
+
+    public WebElement getPasswordError() {
+        return passwordError;
+    }
+
+    public WebElement getViewPass() {
+        return viewPass;
     }
 }
