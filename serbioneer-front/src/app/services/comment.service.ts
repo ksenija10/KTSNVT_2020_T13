@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { environment } from "../../environments/environment"
-import { Comment } from 'src/app/model/comment';
+import { Comment } from "src/app/model/comment.model"
 
 export interface CommentData {
     content: Comment[],

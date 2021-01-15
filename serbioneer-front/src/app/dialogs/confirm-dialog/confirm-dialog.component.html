@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>Confirm delete {{ data.entity }} {{ data.name }}</h1>
+<div mat-dialog-content>Are you sure you want to delete this {{ data.entity }}?</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onYes()">Yes</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="onNo()">No</button>
+</div>

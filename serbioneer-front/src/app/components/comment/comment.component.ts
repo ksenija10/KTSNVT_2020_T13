@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Comment } from 'src/app/model/comment';
+import { Comment } from 'src/app/model/comment.model';
 import { CommentService } from 'src/app/services/comment.service';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { map } from 'rxjs/operators';

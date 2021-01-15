@@ -53,6 +53,11 @@ import { NewsArticleComponent } from './components/news-article/news-article.com
 import { CommentComponent } from './components/comment/comment.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddNewsArticleComponent } from './components/add-news-article/add-news-article.component';
+import { ConfirmDeleteDialog } from './dialogs/confirm-dialog/confirm-dialog.component';
+
+// proba
+import { SatPopoverModule } from '@ncstate/sat-popover';
+import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +82,10 @@ import { AddNewsArticleComponent } from './components/add-news-article/add-news-
     MapCulturalSiteComponent,
     NewsArticleComponent,
     CommentComponent,
-    AddNewsArticleComponent
+    AddNewsArticleComponent,
+    ConfirmDeleteDialog,
+    // proba
+    InlineEditComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +112,9 @@ import { AddNewsArticleComponent } from './components/add-news-article/add-news-
     MatDatepickerModule,
     MatNativeDateModule,
     NgbModule,
-    MatDialogModule
+    MatDialogModule,
+    // proba
+    SatPopoverModule
   ],
   providers: [
     {

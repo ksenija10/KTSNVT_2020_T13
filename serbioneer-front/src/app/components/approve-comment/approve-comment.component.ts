@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { Comment } from '../../model/comment';
+import { Comment } from '../../model/comment.model';
 import { PendingCommentsComponent } from '../pending-comments/pending-comments.component';
 import { CommentService } from '../../services/comment.service';
 

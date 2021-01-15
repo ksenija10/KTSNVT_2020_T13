@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()">
+    <div class="mat-subheading-2">Edit {{ entity }} </div>
+    
+    <mat-form-field>
+      <input matInput name="edit" [(ngModel)]="edit">
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-button type="button" color="primary" (click)="onCancel()">Cancel</button>
+      <button mat-button type="submit" color="primary">Save</button>
+    </div>
+</form>

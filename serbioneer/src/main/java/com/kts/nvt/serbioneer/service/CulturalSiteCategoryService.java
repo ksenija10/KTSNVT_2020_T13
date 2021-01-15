@@ -23,7 +23,7 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
     private CulturalSiteCategoryRepository culturalSiteCategoryRepository;
 	
 	@Getter
-	private final String type = "Cultural category type";
+	private final String type = "Cultural site category";
 	private final String unique = "name";
 	
 	
