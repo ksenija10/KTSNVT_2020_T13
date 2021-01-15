@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
@@ -48,10 +48,10 @@ export class CategoriesComponent implements OnInit {
     this.typePageEvent.pageIndex = 0;
     // forms
     this.addCategoryForm = new FormGroup({
-      name: new FormControl('', [/*Validators.required,*/ Validators.pattern(this.namePattern)])
+      name: new FormControl('', [Validators.required, Validators.pattern(this.namePattern)])
     })
     this.addTypeForm = new FormGroup({
-      name: new FormControl('', [/*Validators.required,*/ Validators.pattern(this.namePattern)])
+      name: new FormControl('', [Validators.required, Validators.pattern(this.namePattern)])
     })
   }
 
@@ -103,7 +103,7 @@ export class CategoriesComponent implements OnInit {
 
   // add new category/type
 
-  onAddCategory() {
+  onAddCategory(categoryFormDirective: FormGroupDirective) {
     if(this.addCategoryForm.invalid) {
       return;
     }
@@ -118,6 +118,7 @@ export class CategoriesComponent implements OnInit {
           response => {
             this.toastr.success('Successfully added new category!');
             this.addCategoryForm.reset();
+            categoryFormDirective.resetForm();
           },
           error => {
             if(error.error.message){
@@ -126,10 +127,11 @@ export class CategoriesComponent implements OnInit {
               this.toastr.error('503 Server Unavailable');
             }
             this.addCategoryForm.reset();
+            categoryFormDirective.resetForm();
           })
   }
 
-  onAddType() {
+  onAddType(typeFormDirective: FormGroupDirective) {
     if(this.addTypeForm.invalid) {
       return;
     }
@@ -150,6 +152,7 @@ export class CategoriesComponent implements OnInit {
       response => {
         this.toastr.success('Successfully added new category type!');
         this.addTypeForm.reset();
+        typeFormDirective.resetForm();
       },
       error => {
         if(error.error.message){
@@ -158,6 +161,7 @@ export class CategoriesComponent implements OnInit {
           this.toastr.error('503 Server Unavailable');
         }
         this.addTypeForm.reset();
+        typeFormDirective.resetForm();
       })
   }
 
@@ -170,7 +174,7 @@ export class CategoriesComponent implements OnInit {
           return 'Cannot contain special characters or numbers'
         }
       }
-      //return this.addCategoryForm.controls['name'].hasError('required') ? 'Required field' : '';
+      return this.addCategoryForm.controls['name'].hasError('required') ? 'Required field' : '';
     }
     return '';
   }
@@ -184,7 +188,7 @@ export class CategoriesComponent implements OnInit {
           return 'Cannot contain special characters or numbers'
         }
       }
-      //return this.addTypeForm.controls['name'].hasError('required') ? 'Required field' : '';
+      return this.addTypeForm.controls['name'].hasError('required') ? 'Required field' : '';
     }
     return '';
   }

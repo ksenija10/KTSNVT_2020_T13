@@ -40,7 +40,7 @@
                     ></mat-paginator>
                 </div>
                 <div class="col-md-6">
-                    <form [formGroup]="addCategoryForm" (ngSubmit)="onAddCategory()">
+                    <form [formGroup]="addCategoryForm" #categoryFormDirective="ngForm" (ngSubmit)="onAddCategory(categoryFormDirective)">
                         <mat-form-field appearance="fill" class="form-field">
                             <mat-label>Add new cultural site category</mat-label>
                             <input matInput formControlName="name">
@@ -106,7 +106,7 @@
                     ></mat-paginator>
                 </div>
                 <div class="col-md-6">
-                    <form [formGroup]="addTypeForm" (ngSubmit)="onAddType()">
+                    <form [formGroup]="addTypeForm" #typeFormDirective="ngForm" (ngSubmit)="onAddType(typeFormDirective)">
                         <mat-form-field appearance="fill" class="form-field">
                             <mat-label>Add new cultural category type</mat-label>
                             <input matInput formControlName="name">
