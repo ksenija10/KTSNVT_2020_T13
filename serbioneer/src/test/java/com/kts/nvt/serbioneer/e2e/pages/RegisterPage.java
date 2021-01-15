@@ -34,6 +34,30 @@ public class RegisterPage {
     @FindBy(xpath = "//*[@id=\"toast-container\"]//*[1]//*[1]")
     private WebElement toast;
 
+    @FindBy(id = "email-error")
+    WebElement emailError;
+
+    @FindBy(id = "password-error")
+    WebElement passwordError;
+
+    @FindBy(id = "repeat-password-error")
+    WebElement repeatPasswordError;
+
+    @FindBy(id = "passwords-error")
+    WebElement passwordsDontMatchError;
+
+    @FindBy(id = "name-error")
+    WebElement nameError;
+
+    @FindBy(id = "surname-error")
+    WebElement surnameError;
+
+    @FindBy(id = "show-pass")
+    WebElement viewPass;
+
+    @FindBy(id = "show-repeat-pass")
+    WebElement viewRepeatPass;
+
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -88,5 +112,37 @@ public class RegisterPage {
 
     public WebElement getRegisterBtn() {
         return registerBtn;
+    }
+
+    public WebElement getEmailError() {
+        return emailError;
+    }
+
+    public WebElement getPasswordError() {
+        return passwordError;
+    }
+
+    public WebElement getRepeatPasswordError() {
+        return repeatPasswordError;
+    }
+
+    public WebElement getPasswordsDontMatchError() {
+        return passwordsDontMatchError;
+    }
+
+    public WebElement getNameError() {
+        return nameError;
+    }
+
+    public WebElement getSurnameError() {
+        return surnameError;
+    }
+
+    public WebElement getViewPass() {
+        return viewPass;
+    }
+
+    public WebElement getViewRepeatPass() {
+        return viewRepeatPass;
     }
 }

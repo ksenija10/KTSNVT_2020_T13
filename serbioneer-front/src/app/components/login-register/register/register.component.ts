@@ -16,8 +16,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  hide1 = true;
-  hide2 = true;
+  hide = true;
   namePattern = "[A-Z][a-z]*";
   confirmPasswordMatcher = new ConfirmPasswordMatcher();
 
@@ -71,6 +70,7 @@ export class RegisterComponent implements OnInit {
   }
 
   getEmailErrorMessage() {
+    //console.log(this.registerForm.value.get('password'))
     if(this.registerForm.controls['email'].touched) {
       if ( this.registerForm.controls['email'].hasError('required')) {
         return 'Required field';
@@ -81,8 +81,8 @@ export class RegisterComponent implements OnInit {
   }
 
   getRequiredFieldErrorMessage(fieldName: string) {
-    if(this.registerForm.controls[fieldName].touched) {
-      return this.registerForm.controls[fieldName].hasError('required') ? 'Required field' : '';
+    if(this.registerForm.controls.passwordGroup.get(fieldName)?.touched) {
+      return this.registerForm.controls.passwordGroup.get(fieldName)?.hasError('required') ? 'Required field' : '';
     }
     return '';
   }
