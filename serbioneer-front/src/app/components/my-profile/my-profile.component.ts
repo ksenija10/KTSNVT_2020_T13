@@ -65,7 +65,7 @@ export class MyProfileComponent implements OnInit {
       this.authenticatedUserService.updatePersonalInformation(userUpdateDTO)
         .subscribe(
           response => {
-            this.toastr.success('Personal information updated successfully')
+            this.toastr.success('Personal information updated successfully!')
           },
           error => {
             if(error.error.message){

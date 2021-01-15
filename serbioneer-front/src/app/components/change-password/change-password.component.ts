@@ -51,7 +51,7 @@ export class ChangePasswordComponent implements OnInit {
     this.myProfileService.updatePassword(passwordDto)
         .subscribe(
           response => {
-            this.toastr.success('Password updated successfully');
+            this.toastr.success('Password updated successfully!');
             this.changePasswordForm.reset();
             this.router.navigate(['homepage']);
           },
