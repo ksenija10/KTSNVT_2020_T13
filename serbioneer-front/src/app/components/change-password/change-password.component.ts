@@ -81,4 +81,11 @@ export class ChangePasswordComponent implements OnInit {
     return '';
   }
 
+  getPasswordRequiredFieldErrorMessage(fieldName: string) {
+    if(this.changePasswordForm.controls.passwordGroup.get(fieldName)?.touched) {
+      return this.changePasswordForm.controls.passwordGroup.get(fieldName)?.hasError('required') ? 'Required field' : '';
+    }
+    return '';
+  }
+
 }

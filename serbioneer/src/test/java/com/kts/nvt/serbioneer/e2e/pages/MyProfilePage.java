@@ -31,11 +31,20 @@ public class MyProfilePage {
     @FindBy(xpath = "//*[@id=\"toast-container\"]//*[1]//*[1]")
     private WebElement toast;
 
+    @FindBy(id = "name-error")
+    private WebElement nameError;
+
+    @FindBy(id = "surname-error")
+    private WebElement surnameError;
+
+    @FindBy(id = "date-error")
+    private WebElement dateError;
+
     public MyProfilePage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void ensureIsDisplayedMyProfileForm() {
+    public void ensureIsDisplayedMyProfileAdminForm() {
         (new WebDriverWait(driver, 10)).until(
                 ExpectedConditions.and(
                         ExpectedConditions.visibilityOf(myProfileForm),
@@ -43,6 +52,18 @@ public class MyProfilePage {
                         ExpectedConditions.visibilityOf(name),
                         ExpectedConditions.visibilityOf(surname),
                         ExpectedConditions.visibilityOf(date),
+                        ExpectedConditions.visibilityOf(saveBtn)
+                )
+        );
+    }
+
+    public void ensureIsDisplayedMyProfileAuthenticatedUserForm() {
+        (new WebDriverWait(driver, 10)).until(
+                ExpectedConditions.and(
+                        ExpectedConditions.visibilityOf(myProfileForm),
+                        ExpectedConditions.visibilityOf(email),
+                        ExpectedConditions.visibilityOf(name),
+                        ExpectedConditions.visibilityOf(surname),
                         ExpectedConditions.visibilityOf(saveBtn)
                 )
         );
@@ -75,5 +96,17 @@ public class MyProfilePage {
 
     public WebElement getSaveBtn() {
         return saveBtn;
+    }
+
+    public WebElement getNameError() {
+        return nameError;
+    }
+
+    public WebElement getSurnameError() {
+        return surnameError;
+    }
+
+    public WebElement getDateError() {
+        return dateError;
     }
 }

@@ -11,14 +11,14 @@
                 <mat-form-field appearance="fill" class="form-field">
                     <mat-label>Name</mat-label>
                     <input id ="name-input" matInput formControlName ="name">
-                    <mat-error *ngIf="myProfileForm.get('name')?.invalid">{{getNameErrorMessage('name')}}</mat-error>
+                    <mat-error id = "name-error" *ngIf="myProfileForm.get('name')?.invalid">{{getNameErrorMessage('name')}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-group">
                 <mat-form-field appearance="fill" class="form-field">
                     <mat-label>Surname</mat-label>
                     <input id ="surname-input" matInput formControlName ="surname">
-                    <mat-error *ngIf="myProfileForm.get('surname')?.invalid">{{getNameErrorMessage('surname')}}</mat-error>
+                    <mat-error id = "surname-error" *ngIf="myProfileForm.get('surname')?.invalid">{{getNameErrorMessage('surname')}}</mat-error>
                 </mat-form-field>
             </div>
             <div *ngIf = "role ==='ROLE_ADMIN'"class="form-group">
@@ -27,6 +27,7 @@
                     <input id ="date-input" matInput formControlName="dateOfBirth" [matDatepicker]="dateOfBirth">
                     <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
                     <mat-datepicker #dateOfBirth></mat-datepicker>
+                    <mat-error id = "date-error" *ngIf="myProfileForm.get('dateOfBirth')?.invalid">{{getDateErrorMessage('dateOfBirth')}}</mat-error>
                 </mat-form-field>
             </div>
             <div>

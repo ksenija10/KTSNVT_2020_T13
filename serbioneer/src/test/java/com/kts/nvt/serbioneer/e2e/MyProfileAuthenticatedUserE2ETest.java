@@ -4,18 +4,18 @@ import com.kts.nvt.serbioneer.e2e.pages.HeaderPage;
 import com.kts.nvt.serbioneer.e2e.pages.HomepagePage;
 import com.kts.nvt.serbioneer.e2e.pages.LoginPage;
 import com.kts.nvt.serbioneer.e2e.pages.MyProfilePage;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 
-public class MyProfileE2ETest {
+public class MyProfileAuthenticatedUserE2ETest {
 
     private WebDriver driver;
 
@@ -48,9 +48,9 @@ public class MyProfileE2ETest {
         //logovanje
         justWait();
 
-        loginPage.getEmail().sendKeys("admin@admin.com");
+        loginPage.getEmail().sendKeys("prvi@user.com");
 
-        loginPage.getPassword().sendKeys("admin");
+        loginPage.getPassword().sendKeys("user");
 
         justWait();
 
@@ -62,13 +62,13 @@ public class MyProfileE2ETest {
     }
 
     @Test
-    public void editProfileSuccess() throws InterruptedException {
+    public void editProfileTestSuccess() throws InterruptedException {
         //izmena licnih podataka
         justWait();
 
-        myProfilePage.ensureIsDisplayedMyProfileForm();
+        myProfilePage.ensureIsDisplayedMyProfileAuthenticatedUserForm();
 
-        headerPage.ensureIsAdmin();
+        headerPage.ensureIsAuthenticatedUser();
 
         assertTrue(myProfilePage.getSaveBtn().isEnabled());
 
@@ -78,8 +78,6 @@ public class MyProfileE2ETest {
         myProfilePage.getSurname().clear();
         myProfilePage.getSurname().sendKeys("Filipovic");
 
-        //promena datuma
-
         justWait();
 
         assertTrue(myProfilePage.getSaveBtn().isEnabled());
@@ -92,7 +90,7 @@ public class MyProfileE2ETest {
 
         homepagePage.ensureIsDisplayedHomepage();
 
-        headerPage.ensureIsAdmin();
+        headerPage.ensureIsAuthenticatedUser();
 
         assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
 
@@ -102,42 +100,25 @@ public class MyProfileE2ETest {
 
         justWait();
 
-        myProfilePage.ensureIsDisplayedMyProfileForm();
-
-        headerPage.ensureIsAdmin();
-
-        assertTrue(myProfilePage.getSaveBtn().isEnabled());
-
         myProfilePage.getName().clear();
-        myProfilePage.getName().sendKeys("Ksenija");
+        myProfilePage.getName().sendKeys("Isidor");
 
         myProfilePage.getSurname().clear();
-        myProfilePage.getSurname().sendKeys("Prcic");
+        myProfilePage.getSurname().sendKeys("Gavric");
 
-        //vracanje datuma na staro
-        //myProfilePage.getDate().sendKeys("2016-06-23 00:00:00");
         justWait();
-
-        assertTrue(myProfilePage.getSaveBtn().isEnabled());
 
         justWait();
 
         myProfilePage.getSaveBtn().click();
 
-        myProfilePage.toastSuccess();
-
-        homepagePage.ensureIsDisplayedHomepage();
-
-        headerPage.ensureIsAdmin();
-
         assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
     }
 
-    @After
-    public void cleanUp() {
-
-        driver.quit();
-
+    private void clearField(WebElement field, int backspaces) {
+        for(int i = 0; i <=backspaces; i++ ){
+            field.sendKeys(Keys.BACK_SPACE);
+        }
     }
 
     /*Omogucava cekanje da bi nam bile vidljivije promene tokom testa*/

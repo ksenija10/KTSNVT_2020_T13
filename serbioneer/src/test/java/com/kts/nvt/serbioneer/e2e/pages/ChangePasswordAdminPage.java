@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ChangePasswordPage {
+public class ChangePasswordAdminPage {
 
     WebDriver driver;
 
@@ -28,7 +28,22 @@ public class ChangePasswordPage {
     @FindBy(xpath = "//*[@id=\"toast-container\"]//*[1]//*[1]")
     private WebElement toast;
 
-    public ChangePasswordPage(WebDriver driver) {
+    @FindBy(id = "show-pass")
+    private WebElement viewPass;
+
+    @FindBy(id = "oldPass-error")
+    private WebElement oldPassError;
+
+    @FindBy(id = "newPass-error")
+    private WebElement newPassError;
+
+    @FindBy(id = "repeatPass-error")
+    private WebElement repeatPassError;
+
+    @FindBy(id = "passwords-error")
+    private WebElement passwordsDontMatchError;
+
+    public ChangePasswordAdminPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -49,6 +64,11 @@ public class ChangePasswordPage {
                 ExpectedConditions.textToBePresentInElement(toast,"Password updated successfully!"));
     }
 
+    public void toastError(String message) {
+        (new WebDriverWait(driver, 10)).until(
+                ExpectedConditions.textToBePresentInElement(toast,message));
+    }
+
     public WebElement getChangePasswordForm() {
         return changePasswordForm;
     }
@@ -67,5 +87,25 @@ public class ChangePasswordPage {
 
     public WebElement getChangePassBtn() {
         return changePassBtn;
+    }
+
+    public WebElement getViewPass() {
+        return viewPass;
+    }
+
+    public WebElement getOldPassError() {
+        return oldPassError;
+    }
+
+    public WebElement getNewPassError() {
+        return newPassError;
+    }
+
+    public WebElement getRepeatPassError() {
+        return repeatPassError;
+    }
+
+    public WebElement getPasswordsDontMatchError() {
+        return passwordsDontMatchError;
     }
 }

@@ -101,4 +101,11 @@ export class MyProfileComponent implements OnInit {
     return '';
   }
 
+  getDateErrorMessage(fieldName: string) {
+    if(this.myProfileForm.controls[fieldName].touched) {
+      return this.myProfileForm.controls[fieldName].invalid ? 'Invalid date format' : '';
+    }
+    return '';
+  }
+
 }
