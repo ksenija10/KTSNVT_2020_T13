@@ -1,32 +1,56 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { environment } from "src/environments/environment";
-import { CulturalSiteCategory } from "../model/cultural-site-category.model";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { CulturalSiteCategory } from '../model/cultural-site-category.model';
+import { CulturalCategoryType } from '../model/cultural-category-type.model';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
-export class CulturalSiteCategoryService{
+export class CulturalSiteCategoryService {
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    private headers = new HttpHeaders({'Content-Type': 'application/json'});
+  constructor(private http: HttpClient) {}
 
-    constructor(
-        private http: HttpClient
-    ) {}
+  getAllCulturalSiteCategorys(): Observable<any> {
+    return this.http
+      .get<CulturalSiteCategory[]>(
+        environment.apiEndpoint + 'cultural-site-category',
+        { headers: this.headers }
+      )
+      .pipe(
+        map((responseData) => {
+          //ovde treba jos jedna map
+          let names: string[] = [];
+          for (let culturalSite of responseData) {
+            names.push(culturalSite.name);
+          }
+          return names;
+        })
+      );
+  }
 
-    getAllCulturalSiteCategorys() : Observable<any> {
-        return this.http.get<CulturalSiteCategory[]>(environment.apiEndpoint + 'cultural-site-category',
-        {headers: this.headers})
-        .pipe(
-            map((responseData) => {
-                //ovde treba jos jedna map
-              let names: string[] = [];
-              for (let culturalSite of responseData) {
-                names.push(culturalSite.name);
-              }
-              return names;
-        }))
-    }
+  getAllCulturalCategoryTypes(category: string): Observable<any> {
+    return this.http
+      .get<CulturalCategoryType[]>(
+        environment.apiEndpoint +
+          'cultural-site-category/' +
+          category +
+          '/type/by-name',
+        { headers: this.headers }
+      )
+      .pipe(
+        map((responseData) => {
+          //ovde treba jos jedna map
+          let names: string[] = [];
+          for (let categoryType of responseData) {
+            names.push(categoryType.name);
+          }
+          return names;
+        }),
+        catchError((err) => throwError(err))
+      );
+  }
 }

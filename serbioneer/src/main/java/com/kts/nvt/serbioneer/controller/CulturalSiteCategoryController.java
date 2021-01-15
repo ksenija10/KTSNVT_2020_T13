@@ -142,11 +142,25 @@ public class CulturalSiteCategoryController {
 		url: GET localhost:8080/api/cultural-site-category/{category-id}/type
 		HTTP request for getting all category types of a cultural site category given by id
 	*/
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping(value = "/{category-id}/type")
 	public ResponseEntity<List<CulturalCategoryTypeDTO>> getAllCategoryTypes(@PathVariable("category-id") Long categoryId) {
 		try {
 			List<CulturalCategoryType> categoryTypes = culturalCategoryTypeService.findAll(categoryId);
+			return new ResponseEntity<>(culturalCategoryTypeMapper.toDtoList(categoryTypes), HttpStatus.OK);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
+
+
+	@CrossOrigin(origins = "http://localhost:4200")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping(value = "/{category-name}/type/by-name")
+	public ResponseEntity<List<CulturalCategoryTypeDTO>> getAllCategoryTypesByCategoryName(@PathVariable("category-name") String categoryName) {
+		try {
+			List<CulturalCategoryType> categoryTypes = culturalCategoryTypeService.findAllByCulturalSiteCategoryName(categoryName);
 			return new ResponseEntity<>(culturalCategoryTypeMapper.toDtoList(categoryTypes), HttpStatus.OK);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());

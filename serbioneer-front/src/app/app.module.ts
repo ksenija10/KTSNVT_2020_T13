@@ -23,6 +23,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { NewAdminComponent } from './components/admin/new-admin/new-admin.component';
 import { ViewAdminComponent } from './components/admin/view-admin/view-admin.component';
+import { NewCulturalSiteComponent } from './components/new-cultural-site/new-cultural-site.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
@@ -47,11 +48,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
 import { MapCulturalSiteComponent } from './components/view-cultural-site/map-cultural-site/map-cultural-site.component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NewsArticleComponent } from './components/news-article/news-article.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddNewsArticleComponent } from './components/add-news-article/add-news-article.component';
+import { FormCulturalSiteComponent } from './components/new-cultural-site/form-cultural-site/form-cultural-site.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { AddNewsArticleComponent } from './components/add-news-article/add-news-
     MapCulturalSiteComponent,
     NewsArticleComponent,
     CommentComponent,
-    AddNewsArticleComponent
+    AddNewsArticleComponent,
+    NewCulturalSiteComponent,
+    FormCulturalSiteComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,7 +106,7 @@ import { AddNewsArticleComponent } from './components/add-news-article/add-news-
     MatDatepickerModule,
     MatNativeDateModule,
     NgbModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [
     {
@@ -113,6 +117,6 @@ import { AddNewsArticleComponent } from './components/add-news-article/add-news-
     },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddNewsArticleComponent]
+  entryComponents: [AddNewsArticleComponent],
 })
 export class AppModule {}
