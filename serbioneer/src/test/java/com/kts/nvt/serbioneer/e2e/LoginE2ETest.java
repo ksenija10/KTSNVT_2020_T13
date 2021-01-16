@@ -44,17 +44,35 @@ public class LoginE2ETest {
 
     @Test
     public void LogInTestAdminSuccess() throws InterruptedException {
-        justWait();
+    	 justWait();
 
-        
+         headerPage.ensureIsUnauthenticatedUser();
 
-        homepagePage.ensureIsDisplayedHomepage();
+         loginPage.ensureIsDisplayedLoginForm();
+       
+         assertFalse(loginPage.getLoginBtn().isEnabled());
+       
+         loginPage.getEmail().sendKeys("admin@admin.com");
 
-        headerPage.ensureIsAdmin();
+         loginPage.getPassword().sendKeys("admin");
+       
+         loginPage.getViewPass().click();
 
-        loginPage.toastSuccess();
+         justWait();
 
-        assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
+         assertTrue(loginPage.getLoginBtn().isEnabled());
+
+         loginPage.getLoginBtn().click();
+
+         justWait();
+
+         homepagePage.ensureIsDisplayedHomepage();
+
+         headerPage.ensureIsAdmin();
+
+         loginPage.toastSuccess();
+
+         assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
     }
 
     @Test
