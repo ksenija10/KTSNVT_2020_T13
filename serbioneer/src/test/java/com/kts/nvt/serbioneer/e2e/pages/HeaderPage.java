@@ -22,6 +22,9 @@ public class HeaderPage {
 
     @FindBy(id = "logout-btn")
     private WebElement logoutBtn;
+    
+    @FindBy(id = "pending-comments")
+    private WebElement pendingCommentsBtn;
 
     public HeaderPage(WebDriver driver) { this.driver = driver; }
 
@@ -74,4 +77,12 @@ public class HeaderPage {
     public WebElement getLogoutBtn() {
         return logoutBtn;
     }
+    
+    public WebElement getPendingCommentsBtn() {
+		return pendingCommentsBtn;
+	}
+
+	public void setPendingCommentsBtn(WebElement pendingComments) {
+		this.pendingCommentsBtn = pendingComments;
+	}
 }
