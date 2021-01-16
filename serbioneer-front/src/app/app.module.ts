@@ -54,10 +54,9 @@ import { CommentComponent } from './components/comment/comment.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddNewsArticleComponent } from './components/add-news-article/add-news-article.component';
 import { ConfirmDeleteDialog } from './dialogs/confirm-dialog/confirm-dialog.component';
-
-// proba
 import { SatPopoverModule } from '@ncstate/sat-popover';
 import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
+import { TypesComponent } from './components/admin/categories/types/types.component';
 
 @NgModule({
   declarations: [
@@ -84,8 +83,8 @@ import { InlineEditComponent } from './components/inline-edit/inline-edit.compon
     CommentComponent,
     AddNewsArticleComponent,
     ConfirmDeleteDialog,
-    // proba
-    InlineEditComponent
+    InlineEditComponent,
+    TypesComponent
   ],
   imports: [
     BrowserModule,
@@ -113,8 +112,7 @@ import { InlineEditComponent } from './components/inline-edit/inline-edit.compon
     MatNativeDateModule,
     NgbModule,
     MatDialogModule,
-    // proba
-    SatPopoverModule
+    SatPopoverModule,
   ],
   providers: [
     {

@@ -84,12 +84,13 @@ export class CulturalSiteCategoryService{
         })
     }
     
-    updateCulturalSiteCategory(categoryId: number, updatedCategoryDto: CulturalSiteCategory): Observable<Object> {
+    updateCulturalSiteCategory(categoryId: number, updatedCategoryDto: CulturalSiteCategory): Observable<any> {
         return this.http.put(environment.apiEndpoint + 'cultural-site-category/' + categoryId, updatedCategoryDto, {
             headers: this.headers
         })
     }
-    updateCulturalCategoryType(typeId: number, updatedTypeDto: CulturalCategoryType): Observable<Object> {
+    // pitanje -> kako da vratim Observable<CulturalSiteCategory>
+    updateCulturalCategoryType(typeId: number, updatedTypeDto: CulturalCategoryType): Observable<any> {
         return this.http.put(environment.apiEndpoint + 'cultural-site-category/type/' + typeId, updatedTypeDto, {
             headers: this.headers
         })

@@ -50,7 +50,7 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 		if (culturalSiteCategoryService.findOneById(categoryId) == null) {
 			throw new NonexistentIdException(culturalSiteCategoryService.getType());
 		}
-		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(categoryId, pageable);
+		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryIdOrderByIdAsc(categoryId, pageable);
 	}
 
 	@Override

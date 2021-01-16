@@ -17,3 +17,11 @@ export function smoothScroll() {
         }
     }, 16);
 }
+
+export function calculateLastPage(totalElements: number, pageSize: number, pageIndex: number): number {
+    if (totalElements % pageSize !== 0) {
+        return pageIndex + 1
+    } else {
+        return pageIndex
+    }
+}

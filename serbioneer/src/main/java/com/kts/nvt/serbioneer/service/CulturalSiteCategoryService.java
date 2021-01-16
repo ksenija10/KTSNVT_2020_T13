@@ -33,7 +33,7 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
 	
 	@Override
 	public Page<CulturalSiteCategory> findAll(Pageable pageable) {
-		return culturalSiteCategoryRepository.findAll(pageable);
+		return culturalSiteCategoryRepository.findAllByOrderByIdAsc(pageable);
 	}
 
 	@Override

@@ -48,7 +48,7 @@ public class CulturalCategoryTypeRepositoryIntegrationTest {
 	@Test
 	public void testFindAllByCulturalSiteCategoryIdPageable() {
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
-		Page<CulturalCategoryType> allCategoriesPage = culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(DB_CATEGORY_ID, pageable);
+		Page<CulturalCategoryType> allCategoriesPage = culturalCategoryTypeRepository.findAllByCulturalSiteCategoryIdOrderByIdAsc(DB_CATEGORY_ID, pageable);
 	
 		assertEquals(PAGEABLE_TOTAL_ELEMENTS, allCategoriesPage.getContent().size());
 	}
