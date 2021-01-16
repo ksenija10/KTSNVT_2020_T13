@@ -46,25 +46,7 @@ public class LoginE2ETest {
     public void LogInTestAdminSuccess() throws InterruptedException {
         justWait();
 
-        headerPage.ensureIsUnauthenticatedUser();
-
-        loginPage.ensureIsDisplayedLoginForm();
-      
-        assertFalse(loginPage.getLoginBtn().isEnabled());
-      
-        loginPage.getEmail().sendKeys("admin@admin.com");
-
-        loginPage.getPassword().sendKeys("admin");
-      
-        loginPage.getViewPass().click();
-
-        justWait();
-
-        assertTrue(loginPage.getLoginBtn().isEnabled());
-
-        loginPage.getLoginBtn().click();
-
-        justWait();
+        
 
         homepagePage.ensureIsDisplayedHomepage();
 
