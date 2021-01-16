@@ -1,6 +1,7 @@
 package com.kts.nvt.serbioneer.helper;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -8,9 +9,12 @@ import org.springframework.data.domain.PageImpl;
 
 import com.kts.nvt.serbioneer.dto.CulturalSiteDTO;
 import com.kts.nvt.serbioneer.model.CulturalSite;
+import com.kts.nvt.serbioneer.model.Image;
 
 public class CulturalSiteMapper implements MapperInterface<CulturalSite, CulturalSiteDTO> {
 
+	private ImageMapper imageMapper = new ImageMapper();
+	
 	@Override
 	public CulturalSite toEntity(CulturalSiteDTO dto) {
 		return new CulturalSite(dto.getName(), dto.getLat(), dto.getLng(),
@@ -19,6 +23,9 @@ public class CulturalSiteMapper implements MapperInterface<CulturalSite, Cultura
 
 	@Override
 	public CulturalSiteDTO toDto(CulturalSite entity) {
+		if(entity.getImages() == null) {
+    		entity.setImages(new HashSet<Image>());
+    	}
 		return new CulturalSiteDTO(entity.getId(), entity.getName(),
 									entity.getCulturalSiteCategory().getId(), 
 									entity.getCulturalSiteCategory().getName(),
@@ -26,7 +33,8 @@ public class CulturalSiteMapper implements MapperInterface<CulturalSite, Cultura
 									entity.getCulturalCategoryType().getName(),
 									entity.getLat(), entity.getLng(),
 									entity.getAddress(), entity.getCity(),
-									entity.getDescription(), entity.getRating());
+									entity.getDescription(), entity.getRating(),
+									imageMapper.toDtoList(new ArrayList<>(entity.getImages())));
 	}
 
 	@Override

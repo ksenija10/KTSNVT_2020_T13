@@ -50,6 +50,15 @@ export class TableViewComponent implements OnInit {
       })
     //dobavljanje cultural site categories
     this.culturalSiteCategoryService.getAllCulturalSiteCategorys()
+      .pipe(
+        map((responseData) => {
+            //ovde treba jos jedna map
+          let names: string[] = [];
+          for (let culturalSiteCategory of responseData) {
+            names.push(culturalSiteCategory.name);
+          }
+          return names;
+      }))
       .subscribe((responseData) => {
         this.allCulturalSiteCategorys = responseData;
         //event da je doslo do promene u allculturalsitecategorys

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { UserLogin } from '../model/user-login.model';
 import { environment } from '../../environments/environment';
 import { AuthenticatedUser } from '../model/authenticated-user.model';
@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthenticationService {
+
+  public role: Subject<string> = new Subject<string>();
+
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -26,9 +29,11 @@ export class AuthenticationService {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('expiresIn');
     this.router.navigate(['login-register/login']);
+    this.role.next('');
+    this.stopRefreshTokenTimer()
   }
 
-  loggedInUser() {
+  loggedInUser(): string {
     const token = localStorage.getItem('jwtToken');
     const jwt: JwtHelperService = new JwtHelperService();
 
@@ -47,16 +52,10 @@ export class AuthenticationService {
   }
 
   private refreshToken() {
-    // interseptor bi trebao da dodaje na svaki rikvest (sem logina) u header jwt token
-    // pa ce se ovo izbaciti kada se interseptor doda
-    let refreshHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.refreshedToken,
-    });
     return this.http.post(
       environment.apiEndpoint + 'refresh',
       {},
-      { headers: refreshHeaders, observe: 'response' }
+      { observe: 'response' }
     );
   }
 
@@ -79,6 +78,8 @@ export class AuthenticationService {
           if (jwtTokenBearer) {
             let jwtToken = jwtTokenBearer.split(' ')[1];
             this.refreshedToken = jwtToken;
+            // postavljanje tokena
+            localStorage.setItem('jwtToken', this.refreshedToken);
           }
         }),
       timeout
@@ -96,5 +97,24 @@ export class AuthenticationService {
     } catch (e) {
       return null;
     }
+  }
+
+  loggedInUserEmail() {
+    const token = localStorage.getItem('jwtToken');
+    const jwt : JwtHelperService = new JwtHelperService();
+
+    if(!token){
+        return '';
+    }
+    const info = jwt.decodeToken(token);
+    return info.sub;
+}
+
+  subscribe(id : number){
+    return this.http.post<void>(environment.apiEndpoint + 'authenticated-user/subscribe/' + id, null);
+  }
+
+  unsubscribe(id : number){
+    return this.http.post<void>(environment.apiEndpoint + 'authenticated-user/unsubscribe/' + id, null);
   }
 }

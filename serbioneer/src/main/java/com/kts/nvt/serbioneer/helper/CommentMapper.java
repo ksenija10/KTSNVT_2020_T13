@@ -1,15 +1,16 @@
 package com.kts.nvt.serbioneer.helper;
 
-import com.kts.nvt.serbioneer.helper.ImageMapper;
-
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
 import com.kts.nvt.serbioneer.dto.CommentDTO;
+import com.kts.nvt.serbioneer.dto.ImageDTO;
 import com.kts.nvt.serbioneer.model.Comment;
+import com.kts.nvt.serbioneer.model.Image;
 
 public class CommentMapper implements MapperInterface<Comment, CommentDTO>{
 
@@ -22,6 +23,9 @@ public class CommentMapper implements MapperInterface<Comment, CommentDTO>{
     
     @Override
     public CommentDTO toDto(Comment entity) {
+    	if(entity.getImages() == null) {
+    		entity.setImages(new HashSet<Image>());
+    	}
         return new CommentDTO(entity.getId(), entity.getText(), entity.getAuthenticatedUser().getName(),
                 entity.getAuthenticatedUser().getSurname(), entity.getAuthenticatedUser().getEmail(),
                 entity.getCulturalSite().getName(), entity.isApproved(), imageMapper.toDtoList(new ArrayList<>(entity.getImages())));

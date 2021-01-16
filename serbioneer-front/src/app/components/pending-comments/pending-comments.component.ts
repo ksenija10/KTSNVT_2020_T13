@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Comment } from '../../model/comment';
+import { Comment } from '../../model/comment.model';
 import { map } from 'rxjs/operators';
 import { CommentService } from '../../services/comment.service';
 import { CommentData } from 'src/app/services/comment.service';
@@ -24,7 +24,6 @@ export class PendingCommentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchComments();
-    console.log(this.commentsData.content)
   }
 
   fetchComments() : void {

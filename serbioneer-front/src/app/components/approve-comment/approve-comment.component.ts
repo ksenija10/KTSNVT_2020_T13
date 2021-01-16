@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { Comment } from '../../model/comment';
+import { Comment } from '../../model/comment.model';
 import { PendingCommentsComponent } from '../pending-comments/pending-comments.component';
 import { CommentService } from '../../services/comment.service';
 
@@ -25,9 +25,6 @@ export class ApproveCommentComponent implements OnInit {
     this.commentService.aproveComment(this.comment.id).subscribe(
       res => {
         this.pendingComments.fetchComments();
-      },
-      err => {
-        console.log(err.message)
       }
     )
   }
@@ -36,9 +33,6 @@ export class ApproveCommentComponent implements OnInit {
     this.commentService.declineComment(this.comment.id).subscribe(
       res => {
         this.pendingComments.fetchComments();
-      },
-      err => {
-        console.log(err.message)
       }
     )
   }

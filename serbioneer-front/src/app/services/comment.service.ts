@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { environment } from "../../environments/environment"
-import { Comment } from 'src/app/model/comment';
+import { Comment } from "src/app/model/comment.model"
 
 export interface CommentData {
     content: Comment[],
@@ -50,5 +50,15 @@ export class CommentService {
         return this.http.delete(environment.apiEndpoint + 'comment/' + commentId + '/approval', {params}).pipe(
             catchError(err => throwError(err))
         );
+    }
+
+    updateComment(id : number, updatedComment : Comment){
+        return this.http.put<Comment>(environment.apiEndpoint + 'comment/' + id, updatedComment).pipe(
+            catchError(err => throwError(err))
+        );
+    }
+
+    deleteComment(id : number){
+        return this.http.delete<void>(environment.apiEndpoint + 'comment/' + id);
     }
 }

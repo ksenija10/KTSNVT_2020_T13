@@ -3,7 +3,7 @@
 
     <!-- Header -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onClickRow(row.id)"></tr>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">

@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +31,6 @@ import { MapViewComponent } from './components/homepage/map-view/map-view.compon
 import { CulturalSitesTableComponent } from './components/homepage/table-view/cultural-sites-table/cultural-sites-table.component';
 import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { ApproveCommentComponent } from './components/approve-comment/approve-comment.component';
-import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
 
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
@@ -45,6 +45,19 @@ import { MatSelectModule } from '@angular/material/select';
 import { NewsfeedComponent } from './components/newsfeed/newsfeed.component';
 import { NewsComponent } from './components/newsfeed/news/news.component';
 import { MatCardModule } from '@angular/material/card';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
+import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
+import { MapCulturalSiteComponent } from './components/view-cultural-site/map-cultural-site/map-cultural-site.component';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NewsArticleComponent } from './components/news-article/news-article.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddNewsArticleComponent } from './components/add-news-article/add-news-article.component';
+import { ConfirmDeleteDialog } from './dialogs/confirm-dialog/confirm-dialog.component';
+import { SatPopoverModule } from '@ncstate/sat-popover';
+import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
+import { TypesComponent } from './components/admin/categories/types/types.component';
 
 @NgModule({
   declarations: [
@@ -60,13 +73,21 @@ import { MatCardModule } from '@angular/material/card';
     CulturalSitesTableComponent,
     PendingCommentsComponent,
     ApproveCommentComponent,
-    NewNewsArticleComponent,
     MyProfileComponent,
     ChangePasswordComponent,
     NewAdminComponent,
     ViewAdminComponent,
     NewsfeedComponent,
     NewsComponent,
+    CategoriesComponent,
+    ViewCulturalSiteComponent,
+    MapCulturalSiteComponent,
+    NewsArticleComponent,
+    CommentComponent,
+    AddNewsArticleComponent,
+    ConfirmDeleteDialog,
+    InlineEditComponent,
+    TypesComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +114,9 @@ import { MatCardModule } from '@angular/material/card';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCardModule,
+    NgbModule,
+    MatDialogModule,
+    SatPopoverModule,
   ],
   providers: [
     {
@@ -104,5 +128,6 @@ import { MatCardModule } from '@angular/material/card';
     { provide: Window, useValue: window },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [AddNewsArticleComponent]
 })
 export class AppModule {}
