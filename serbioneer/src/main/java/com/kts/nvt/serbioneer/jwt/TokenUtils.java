@@ -89,7 +89,7 @@ public class TokenUtils {
 
     public boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
         final Date created = this.getIssuedAtDateFromToken(token);
-        return (!(this.isCreatedBeforeLastPasswordReset(created, lastPasswordReset))
+        return (this.isCreatedAfterLastPasswordReset(created, lastPasswordReset)
                 && (!(this.isTokenExpired(token)) || this.ignoreTokenExpiration(token)));
     }
 
@@ -100,7 +100,7 @@ public class TokenUtils {
         final Date created = getIssuedAtDateFromToken(token);
 
         return (username != null && username.equals(user.getEmail())
-                && !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate()));
+                && isCreatedAfterLastPasswordReset(created, user.getLastPasswordResetDate()));
     }
 
     public String getUsernameFromToken(String token) {
@@ -176,8 +176,16 @@ public class TokenUtils {
         return request.getHeader(AUTH_HEADER);
     }
 
-    private Boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) {
-        return (lastPasswordReset != null && (created.getTime() >= lastPasswordReset.getTime()));
+    private Boolean isCreatedAfterLastPasswordReset(Date created, Date lastPasswordReset) {
+    	if (lastPasswordReset == null) {
+    		return true;
+    	} else {
+    		String createdTimeString = (created.getTime()+"").substring(0, 10);
+    		String passwordTimeString = (lastPasswordReset.getTime()+"").substring(0, 10);
+    		int createdTime = Integer.parseInt(createdTimeString);
+    		int passwordTime = Integer.parseInt(passwordTimeString);
+    		return createdTime >= passwordTime;
+    	}
     }
 
     private Boolean isTokenExpired(String token) {

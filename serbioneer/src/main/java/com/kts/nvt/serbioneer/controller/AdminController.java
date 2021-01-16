@@ -4,8 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import com.kts.nvt.serbioneer.dto.UserLoginDTO;
-import com.kts.nvt.serbioneer.jwt.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,14 +12,22 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kts.nvt.serbioneer.dto.AdminDTO;
 import com.kts.nvt.serbioneer.dto.PasswordDTO;
 import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
 import com.kts.nvt.serbioneer.helper.AdminMapper;
+import com.kts.nvt.serbioneer.jwt.TokenUtils;
 import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.service.AdminService;
 
@@ -120,19 +126,12 @@ public class AdminController {
 	public ResponseEntity<Void> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO,
 														HttpServletRequest request,
 														HttpServletResponse response) {
-		UserLoginDTO userNewPassword;
 		try{
 			Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			user = adminService.updatePassword(passwordDTO, user);
-
 			// uspesno promenio sifru
-			userNewPassword = new UserLoginDTO(user.getUsername(), passwordDTO.getNewPassword());
 			String newToken = tokenUtils.generateToken(user.getUsername(), user.getAuthorities());
 			int expiresIn = tokenUtils.getExpiresIn();
-			System.out.println("========================================");
-			System.out.println(newToken);
-			System.out.println(tokenUtils.getIssuedAtDateFromToken(newToken));
-			System.out.println("========================================");
 			// postavljanje headera
 			response.addHeader(tokenUtils.getAuthHeader(), "Bearer " + newToken);
 			response.addHeader(tokenUtils.getExpHeader(), String.valueOf(expiresIn));
