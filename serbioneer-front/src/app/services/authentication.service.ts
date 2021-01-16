@@ -30,6 +30,7 @@ export class AuthenticationService {
     localStorage.removeItem('expiresIn');
     this.router.navigate(['login-register/login']);
     this.role.next('');
+    this.stopRefreshTokenTimer()
   }
 
   loggedInUser(): string {
@@ -51,16 +52,10 @@ export class AuthenticationService {
   }
 
   private refreshToken() {
-    // interseptor bi trebao da dodaje na svaki rikvest (sem logina) u header jwt token
-    // pa ce se ovo izbaciti kada se interseptor doda
-    let refreshHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.refreshedToken,
-    });
     return this.http.post(
       environment.apiEndpoint + 'refresh',
       {},
-      { headers: refreshHeaders, observe: 'response' }
+      { observe: 'response' }
     );
   }
 
@@ -83,6 +78,8 @@ export class AuthenticationService {
           if (jwtTokenBearer) {
             let jwtToken = jwtTokenBearer.split(' ')[1];
             this.refreshedToken = jwtToken;
+            // postavljanje tokena
+            localStorage.setItem('jwtToken', this.refreshedToken);
           }
         }),
       timeout
