@@ -116,3 +116,11 @@ insert into image (is_active, name, path, comment) values (true, 'name10', 'src/
 insert into image (is_active, name, path, comment) values (true, 'name11', 'src/main/resources/images/comment/1/name11.png', 1);
 insert into image (is_active, name, path, comment) values (true, 'name12', 'src/main/resources/images/comment/1/name12.png', 1);
 insert into image (is_active, name, path, comment) values (true, 'name13', 'src/main/resources/images/comment/1/name13.png', 1);
+
+-- slike za news
+insert into image (is_active, name, path, news) values (true, 'news1', 'src/main/resources/images/news/1/name1.jpg', 1);
+insert into image (is_active, name, path, news) values (true, 'news2', 'src/main/resources/images/news/1/name2.png', 1);
+insert into image (is_active, name, path, news) values (true, 'news3', 'src/main/resources/images/news/1/name3.png', 1);
+insert into image (is_active, name, path, news) values (true, 'news4', 'src/main/resources/images/news/2/name4.png', 2);
+insert into image (is_active, name, path, news) values (true, 'news5', 'src/main/resources/images/news/2/name5.png', 2);
+insert into image (is_active, name, path, news) values (true, 'news6', 'src/main/resources/images/news/3/name6.png', 3);

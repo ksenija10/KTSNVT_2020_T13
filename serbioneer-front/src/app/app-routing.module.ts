@@ -5,6 +5,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { LoginComponent } from './components/login-register/login/login.component';
 import { RegisterComponent } from './components/login-register/register/register.component';
+import { NewsfeedComponent } from './components/newsfeed/newsfeed.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { LoginGuard } from './guards/login-guard.service';
@@ -85,6 +86,12 @@ const routes: Routes = [
   { 
     path: 'cultural-site', 
     component: ViewCulturalSiteComponent
+  },
+  {
+    path: 'newsfeed',
+    component: NewsfeedComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_USER' },
   },
   {
     path: '**',

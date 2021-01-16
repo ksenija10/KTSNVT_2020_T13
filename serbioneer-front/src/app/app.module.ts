@@ -32,18 +32,19 @@ import { CulturalSitesTableComponent } from './components/homepage/table-view/cu
 import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { ApproveCommentComponent } from './components/approve-comment/approve-comment.component';
 
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSelectModule } from '@angular/material/select';
-import { from } from 'rxjs';
-
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { MatListModule } from '@angular/material/list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { NewsfeedComponent } from './components/newsfeed/newsfeed.component';
+import { NewsComponent } from './components/newsfeed/news/news.component';
+import { MatCardModule } from '@angular/material/card';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
 import { MapCulturalSiteComponent } from './components/view-cultural-site/map-cultural-site/map-cultural-site.component';
@@ -57,6 +58,11 @@ import { ConfirmDeleteDialog } from './dialogs/confirm-dialog/confirm-dialog.com
 import { SatPopoverModule } from '@ncstate/sat-popover';
 import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
 import { TypesComponent } from './components/admin/categories/types/types.component';
+
+// slike
+import { NgImageSliderModule } from 'ng-image-slider';
+// infinite scroll
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -76,6 +82,8 @@ import { TypesComponent } from './components/admin/categories/types/types.compon
     ChangePasswordComponent,
     NewAdminComponent,
     ViewAdminComponent,
+    NewsfeedComponent,
+    NewsComponent,
     CategoriesComponent,
     ViewCulturalSiteComponent,
     MapCulturalSiteComponent,
@@ -110,9 +118,14 @@ import { TypesComponent } from './components/admin/categories/types/types.compon
     MatDividerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCardModule,
     NgbModule,
     MatDialogModule,
     SatPopoverModule,
+    // slike
+    NgImageSliderModule,
+    // infinite scroll
+    InfiniteScrollModule
   ],
   providers: [
     {
@@ -121,6 +134,7 @@ import { TypesComponent } from './components/admin/categories/types/types.compon
       //ako multi nije true ovo bi bio jedini interceptor i pregazio bi sve defaultne interceptore
       multi: true,
     },
+    { provide: Window, useValue: window },
   ],
   bootstrap: [AppComponent],
   entryComponents: [AddNewsArticleComponent]
