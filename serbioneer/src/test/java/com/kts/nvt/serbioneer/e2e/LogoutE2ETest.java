@@ -29,7 +29,7 @@ public class LogoutE2ETest {
     private LoginRegisterPage loginRegisterPage;
 
     @Before
-    public void setUp() {
+    public void setUp() throws InterruptedException {
         //default-ni browser za selenium je firefox, pa ukoliko zelimo da koristimo chrome moramo da ubacimo
         //chrome ekstenziju i podesimo chrome kao default-ni driver
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
@@ -45,30 +45,22 @@ public class LogoutE2ETest {
 
         //redirekcija na pocetak interakcije tj na login page
         driver.get("http://localhost:4200/login-register/login");
-    }
-    
-    @Test
-    public void logoutSuccess() throws InterruptedException {
-    	justWait();
+        
+        justWait();
 
-        headerPage.ensureIsUnauthenticatedUser();
-
-        loginPage.ensureIsDisplayedLoginForm();
-      
-        assertFalse(loginPage.getLoginBtn().isEnabled());
-      
         loginPage.getEmail().sendKeys("admin@admin.com");
 
         loginPage.getPassword().sendKeys("admin");
-      
+
         loginPage.getViewPass().click();
 
         justWait();
 
-        assertTrue(loginPage.getLoginBtn().isEnabled());
-
         loginPage.getLoginBtn().click();
-
+    }
+    
+    @Test
+    public void logoutSuccess() throws InterruptedException {
         justWait();
 
         homepagePage.ensureIsDisplayedHomepage();
