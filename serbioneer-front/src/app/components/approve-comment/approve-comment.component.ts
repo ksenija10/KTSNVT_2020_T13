@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Comment } from '../../model/comment.model';
 import { PendingCommentsComponent } from '../pending-comments/pending-comments.component';
 import { CommentService } from '../../services/comment.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-approve-comment',
@@ -16,7 +17,8 @@ export class ApproveCommentComponent implements OnInit {
 
   constructor(@Inject(PendingCommentsComponent) 
         private pendingComments : PendingCommentsComponent,
-        private commentService: CommentService) { 
+        private commentService: CommentService,
+        private toastr: ToastrService) { 
         }
 
   ngOnInit(): void { }
@@ -25,6 +27,7 @@ export class ApproveCommentComponent implements OnInit {
     this.commentService.aproveComment(this.comment.id).subscribe(
       res => {
         this.pendingComments.fetchComments();
+        this.toastr.success('Comment approved successfully!');
       }
     )
   }
@@ -33,6 +36,7 @@ export class ApproveCommentComponent implements OnInit {
     this.commentService.declineComment(this.comment.id).subscribe(
       res => {
         this.pendingComments.fetchComments();
+        this.toastr.success('Comment rejected successfully!');
       }
     )
   }
