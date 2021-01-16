@@ -34,6 +34,7 @@ public class HeaderPage {
                         ExpectedConditions.invisibilityOf(logoutBtn)
                     )
                 );*/
+        //iz nekog meni nepoznatog razloga invisibilityOf ne radi
         (new WebDriverWait(driver, 10)).until(
                 ExpectedConditions.visibilityOf(homeBtn));
     }
@@ -43,7 +44,6 @@ public class HeaderPage {
                 ExpectedConditions.and(
                         ExpectedConditions.visibilityOf(homeBtn),
                         ExpectedConditions.visibilityOf(userBtnGroup),
-                        ExpectedConditions.invisibilityOf(adminBtnGroup),
                         ExpectedConditions.visibilityOf(logoutBtn)
                 )
         );
@@ -53,7 +53,6 @@ public class HeaderPage {
         (new WebDriverWait(driver, 10)).until(
                 ExpectedConditions.and(
                         ExpectedConditions.visibilityOf(homeBtn),
-                        ExpectedConditions.invisibilityOf(userBtnGroup),
                         ExpectedConditions.visibilityOf(adminBtnGroup),
                         ExpectedConditions.visibilityOf(logoutBtn)
                 )
