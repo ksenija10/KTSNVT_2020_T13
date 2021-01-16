@@ -42,7 +42,7 @@ public class RegisterE2ETest {
     }
 
     @Test
-    public void RegisterSuccess() throws InterruptedException {
+    public void RegisterTestSuccess() throws InterruptedException {
         justWait();
 
         headerPage.ensureIsUnauthenticatedUser();
@@ -51,15 +51,17 @@ public class RegisterE2ETest {
 
         assertFalse(registerPage.getRegisterBtn().isEnabled());
 
-        registerPage.getEmail().sendKeys("ksenija.prcic1998@gmail.com");
+        registerPage.getEmail().sendKeys("serbioneer@gmail.com");
 
         registerPage.getPassword().sendKeys("user");
 
         registerPage.getRepeatPassword().sendKeys("user");
 
-        registerPage.getName().sendKeys("Ksenija");
+        registerPage.getName().sendKeys("Dolanov");
 
-        registerPage.getSurname().sendKeys("Prcic");
+        registerPage.getSurname().sendKeys("Katarina");
+
+        registerPage.getViewPass().click();
 
         assertTrue(registerPage.getRegisterBtn().isEnabled());
 
@@ -71,6 +73,8 @@ public class RegisterE2ETest {
 
         loginPage.ensureIsDisplayedLoginForm();
 
+        headerPage.ensureIsUnauthenticatedUser();
+
         registerPage.toastSuccess();
 
         justWait();
@@ -80,7 +84,7 @@ public class RegisterE2ETest {
     }
 
     @Test
-    public void RegisterEmailNotVerified() throws InterruptedException {
+    public void RegisterTestEmailNotVerified() throws InterruptedException {
         //Uspesna registracija
         justWait();
 
@@ -99,6 +103,8 @@ public class RegisterE2ETest {
         registerPage.getName().sendKeys("Ksenija");
 
         registerPage.getSurname().sendKeys("Prcic");
+
+        registerPage.getViewPass().click();
 
         assertTrue(registerPage.getRegisterBtn().isEnabled());
 
@@ -138,6 +144,8 @@ public class RegisterE2ETest {
 
         registerPage.getSurname().sendKeys("Prcic");
 
+        registerPage.getViewPass().click();
+
         assertTrue(registerPage.getRegisterBtn().isEnabled());
 
         justWait();
@@ -148,6 +156,8 @@ public class RegisterE2ETest {
 
         registerPage.ensureIsVisibleRegisterForm();
 
+        headerPage.ensureIsUnauthenticatedUser();
+
         registerPage.toastError("Please check your email for the verification link!");
 
         justWait();
@@ -155,10 +165,8 @@ public class RegisterE2ETest {
         assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
-    //STA SE DESI AKO SE REGISTRUJE I POKUSA DA SE ULOGUJE SA ISTIM TIM MEJLOM PRE NEGO STO GA ODOBRI
-
     @Test
-    public void RegisterEmailAlreadyExists() throws InterruptedException {
+    public void RegisterTestEmailAlreadyExists() throws InterruptedException {
         justWait();
 
         headerPage.ensureIsUnauthenticatedUser();
@@ -177,6 +185,8 @@ public class RegisterE2ETest {
 
         registerPage.getSurname().sendKeys("Prcic");
 
+        registerPage.getViewPass().click();
+
         assertTrue(registerPage.getRegisterBtn().isEnabled());
 
         justWait();
@@ -187,9 +197,365 @@ public class RegisterE2ETest {
 
         registerPage.ensureIsVisibleRegisterForm();
 
+        headerPage.ensureIsUnauthenticatedUser();
+
         registerPage.toastError("User with given email already exists.");
 
         justWait();
+
+        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void RegisterTestInvalidEmailFormat() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        registerPage.getEmail().sendKeys("invalidEmailFormat");
+
+        registerPage.getPassword().sendKeys("user");
+
+        registerPage.getRepeatPassword().sendKeys("user");
+
+        registerPage.getName().sendKeys("Ksenija");
+
+        registerPage.getSurname().sendKeys("Prcic");
+
+        registerPage.getViewPass().click();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        justWait();
+
+        assertEquals(registerPage.getEmailError().getText(),"Not a valid email");
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void RegisterTestEmptyEmail() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        registerPage.getEmail().sendKeys("");
+
+        registerPage.getPassword().sendKeys("user");
+
+        registerPage.getRepeatPassword().sendKeys("user");
+
+        registerPage.getName().sendKeys("Ksenija");
+
+        registerPage.getSurname().sendKeys("Prcic");
+
+        registerPage.getViewPass().click();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        justWait();
+
+        assertEquals(registerPage.getEmailError().getText(),"Required field");
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void RegisterTestEmptyPassword() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        registerPage.getEmail().sendKeys("admin@admin.com");
+
+        registerPage.getPassword().sendKeys("");
+
+        registerPage.getRepeatPassword().sendKeys("user");
+
+        registerPage.getName().sendKeys("Ksenija");
+
+        registerPage.getSurname().sendKeys("Prcic");
+
+        registerPage.getViewPass().click();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        justWait();
+
+        assertEquals(registerPage.getPasswordError().getText(),"Required field");
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void RegisterTestEmptyRepeatPassword() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        registerPage.getEmail().sendKeys("admin@admin.com");
+
+        registerPage.getPassword().sendKeys("user");
+
+        registerPage.getRepeatPassword().sendKeys("");
+
+        registerPage.getName().sendKeys("Ksenija");
+
+        registerPage.getSurname().sendKeys("Prcic");
+
+        registerPage.getViewPass().click();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        justWait();
+
+        assertEquals(registerPage.getRepeatPasswordError().getText(),"Required field");
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void RegisterTestPasswordsDontMatch() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        registerPage.getEmail().sendKeys("admin@admin.com");
+
+        registerPage.getPassword().sendKeys("admin");
+
+        registerPage.getRepeatPassword().sendKeys("user");
+
+        registerPage.getName().sendKeys("Ksenija");
+
+        registerPage.getSurname().sendKeys("Prcic");
+
+        registerPage.getViewPass().click();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        justWait();
+
+        assertEquals(registerPage.getPasswordsDontMatchError().getText(),"Passwords must match");
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void RegisterTestEmptyName() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        registerPage.getEmail().sendKeys("admin@admin.com");
+
+        registerPage.getPassword().sendKeys("admin");
+
+        registerPage.getRepeatPassword().sendKeys("admin");
+
+        registerPage.getName().sendKeys("");
+
+        registerPage.getSurname().sendKeys("Prcic");
+
+        registerPage.getViewPass().click();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        justWait();
+
+        assertEquals(registerPage.getNameError().getText(),"Required field");
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void RegisterTestInvalidName() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        registerPage.getEmail().sendKeys("admin@admin.com");
+
+        registerPage.getPassword().sendKeys("admin");
+
+        registerPage.getRepeatPassword().sendKeys("admin");
+
+        registerPage.getName().sendKeys("K3%");
+
+        registerPage.getSurname().sendKeys("Prcic");
+
+        registerPage.getViewPass().click();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        justWait();
+
+        assertEquals(registerPage.getNameError().getText(),"Cannot contain special characters or numbers");
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void RegisterTestEmptySurname() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        registerPage.getEmail().sendKeys("admin@admin.com");
+
+        registerPage.getPassword().sendKeys("admin");
+
+        registerPage.getRepeatPassword().sendKeys("admin");
+
+        registerPage.getName().sendKeys("Ksenija");
+
+        registerPage.getSurname().sendKeys("");
+
+        registerPage.getViewPass().click();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        justWait();
+
+        assertEquals(registerPage.getSurnameError().getText(),"Required field");
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void RegisterTestInvalidSurname() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        registerPage.getEmail().sendKeys("admin@admin.com");
+
+        registerPage.getPassword().sendKeys("admin");
+
+        registerPage.getRepeatPassword().sendKeys("admin");
+
+        registerPage.getName().sendKeys("Ksenija");
+
+        registerPage.getSurname().sendKeys("prcic");
+
+        registerPage.getViewPass().click();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        justWait();
+
+        assertEquals(registerPage.getSurnameError().getText(),"Must start with capital letter");
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void RegisterTestEmptyAllFields() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        registerPage.getEmail().sendKeys("");
+
+        registerPage.getPassword().sendKeys("");
+
+        registerPage.getRepeatPassword().sendKeys("");
+
+        registerPage.getName().sendKeys("");
+
+        registerPage.getSurname().sendKeys("");
+
+        registerPage.getViewPass().click();
+
+        assertFalse(registerPage.getRegisterBtn().isEnabled());
+
+        justWait();
+
+        assertEquals(registerPage.getEmailError().getText(),"Required field");
+        assertEquals(registerPage.getPasswordError().getText(),"Required field");
+        assertEquals(registerPage.getRepeatPasswordError().getText(),"Required field");
+        assertEquals(registerPage.getNameError().getText(),"Required field");
+        assertEquals(registerPage.getSurnameError().getText(),"Required field");
+
+        registerPage.ensureIsVisibleRegisterForm();
+
+        headerPage.ensureIsUnauthenticatedUser();
 
         assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
