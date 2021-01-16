@@ -1,7 +1,10 @@
 package com.kts.nvt.serbioneer.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.kts.nvt.serbioneer.jwt.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,6 +40,9 @@ public class AuthenticatedUserController {
 
 	@Autowired
 	private AuthenticatedUserService authenticatedUserService;
+
+	@Autowired
+	private TokenUtils tokenUtils;
 	
 	private final AuthenticatedUserMapper authenticatedUserMapper;
 	
@@ -104,14 +110,25 @@ public class AuthenticatedUserController {
 	 */
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<PasswordDTO> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
+	public ResponseEntity<Void> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO,
+												HttpServletRequest request,
+												HttpServletResponse response) {
 		try{
 			AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			authenticatedUserService.updatePassword(passwordDTO, user);
+			user = authenticatedUserService.updatePassword(passwordDTO, user);
+			// uspesno promenio sifru
+			String newToken = tokenUtils.generateToken(user.getUsername(), user.getAuthorities());
+			int expiresIn = tokenUtils.getExpiresIn();
+			// postavljanje headera
+			response.addHeader(tokenUtils.getAuthHeader(), "Bearer " + newToken);
+			response.addHeader(tokenUtils.getExpHeader(), String.valueOf(expiresIn));
+			// prikaz heder-a na frontu, da bismo mogli da ih dobavimo
+			response.addHeader("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept, Authorization, Expires-In");
+			response.addHeader("Access-Control-Expose-Headers", "Authorization, Expires-In");
+			return new ResponseEntity<>(HttpStatus.OK);
 		}catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
-		return new ResponseEntity<>(passwordDTO, HttpStatus.OK);
 	}
 	
 	/*
