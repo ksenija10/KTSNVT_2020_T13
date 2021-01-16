@@ -177,7 +177,7 @@ public class TokenUtils {
     }
 
     private Boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) {
-        return (lastPasswordReset != null && !created.after(lastPasswordReset));
+        return (lastPasswordReset != null && (created.getTime() >= lastPasswordReset.getTime()));
     }
 
     private Boolean isTokenExpired(String token) {
