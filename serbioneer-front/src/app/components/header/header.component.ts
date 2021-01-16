@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private toastr : ToastrService
   ) {
     // dodavanje custom ikonice
     iconRegistry.addSvgIcon(
@@ -44,6 +46,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout(): void {
     this.authenticationService.logout();
+    this.toastr.success("Logged out successfully!");
   }
 
   onClick(path: string) {
