@@ -44,6 +44,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { MatListModule } from '@angular/material/list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDividerModule } from '@angular/material/divider';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
 import { MapCulturalSiteComponent } from './components/view-cultural-site/map-cultural-site/map-cultural-site.component';
 
@@ -52,6 +53,10 @@ import { NewsArticleComponent } from './components/news-article/news-article.com
 import { CommentComponent } from './components/comment/comment.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddNewsArticleComponent } from './components/add-news-article/add-news-article.component';
+import { ConfirmDeleteDialog } from './dialogs/confirm-dialog/confirm-dialog.component';
+import { SatPopoverModule } from '@ncstate/sat-popover';
+import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
+import { TypesComponent } from './components/admin/categories/types/types.component';
 
 @NgModule({
   declarations: [
@@ -71,11 +76,15 @@ import { AddNewsArticleComponent } from './components/add-news-article/add-news-
     ChangePasswordComponent,
     NewAdminComponent,
     ViewAdminComponent,
+    CategoriesComponent,
     ViewCulturalSiteComponent,
     MapCulturalSiteComponent,
     NewsArticleComponent,
     CommentComponent,
-    AddNewsArticleComponent
+    AddNewsArticleComponent,
+    ConfirmDeleteDialog,
+    InlineEditComponent,
+    TypesComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +111,8 @@ import { AddNewsArticleComponent } from './components/add-news-article/add-news-
     MatDatepickerModule,
     MatNativeDateModule,
     NgbModule,
-    MatDialogModule
+    MatDialogModule,
+    SatPopoverModule,
   ],
   providers: [
     {

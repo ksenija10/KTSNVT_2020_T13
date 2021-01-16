@@ -21,7 +21,7 @@ public class LoginE2ETest {
     private HeaderPage headerPage;
 
     private LoginPage loginPage;
-
+  
     private HomepagePage homepagePage;
 
     @Before
@@ -44,19 +44,18 @@ public class LoginE2ETest {
 
     @Test
     public void LogInTestAdminSuccess() throws InterruptedException {
-
         justWait();
 
         headerPage.ensureIsUnauthenticatedUser();
 
         loginPage.ensureIsDisplayedLoginForm();
-
+      
         assertFalse(loginPage.getLoginBtn().isEnabled());
-
+      
         loginPage.getEmail().sendKeys("admin@admin.com");
 
         loginPage.getPassword().sendKeys("admin");
-
+      
         loginPage.getViewPass().click();
 
         justWait();
@@ -100,7 +99,7 @@ public class LoginE2ETest {
         loginPage.getLoginBtn().click();
 
         justWait();
-
+      
         homepagePage.ensureIsDisplayedHomepage();
 
         headerPage.ensureIsAuthenticatedUser();

@@ -1,4 +1,4 @@
-export class CulturalSiteCategory {
+export class CulturalCategoryType {
 
     public id: number;
     public name: string;
@@ -7,5 +7,4 @@ export class CulturalSiteCategory {
         this.id = id || 0;
         this.name = name;
     }
-
 }

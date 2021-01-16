@@ -12,6 +12,7 @@ import { RoleGuard } from './guards/role-guard.service';
 import { ViewAdminComponent } from './components/admin/view-admin/view-admin.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
 
 const routes: Routes = [
@@ -60,6 +61,12 @@ const routes: Routes = [
   {
     path: 'view-admin',
     component: ViewAdminComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' },
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
     canActivate: [RoleGuard],
     data: { expectedRoles: 'ROLE_ADMIN' },
   },
