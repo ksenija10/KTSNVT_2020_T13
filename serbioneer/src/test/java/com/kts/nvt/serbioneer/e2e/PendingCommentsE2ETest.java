@@ -29,7 +29,7 @@ public class PendingCommentsE2ETest {
     private PendingCommentsPage pendingCommentsPage;
 	
 	@Before
-    public void setUp() {
+    public void setUp() throws InterruptedException {
         //default-ni browser za selenium je firefox, pa ukoliko zelimo da koristimo chrome moramo da ubacimo
         //chrome ekstenziju i podesimo chrome kao default-ni driver
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
@@ -45,18 +45,9 @@ public class PendingCommentsE2ETest {
 
         //redirekcija na pocetak interakcije tj na login page
         driver.get("http://localhost:4200/login-register/login");
-    }
-	
-	@Test
-	public void approveComment() throws InterruptedException {
-		justWait();
-		
-		headerPage.ensureIsUnauthenticatedUser();
 
-        loginPage.ensureIsDisplayedLoginForm();
-        
-        assertFalse(loginPage.getLoginBtn().isEnabled());
-        
+        justWait();
+
         loginPage.getEmail().sendKeys("admin@admin.com");
 
         loginPage.getPassword().sendKeys("admin");
@@ -65,19 +56,12 @@ public class PendingCommentsE2ETest {
 
         justWait();
 
-        assertTrue(loginPage.getLoginBtn().isEnabled());
-        
         loginPage.getLoginBtn().click();
+    }
+	
+	@Test
+	public void approveComment() throws InterruptedException {
 
-        justWait();
-
-        homepagePage.ensureIsDisplayedHomepage();
-
-        headerPage.ensureIsAdmin();
-
-        loginPage.toastSuccess();
-
-        assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
         
         justWait();
         
@@ -87,7 +71,7 @@ public class PendingCommentsE2ETest {
         
         
         assertEquals("http://localhost:4200/pending-comments", driver.getCurrentUrl());
-        //pendingCommentsPage.ensureIsDisplayedPendingComments();
+        pendingCommentsPage.ensureIsDisplayedPendingComments();
 
         int sizeBefore = Integer.parseInt(pendingCommentsPage.getPendingToasterPaginator().getAttribute("ng-reflect-length"));
         
@@ -100,6 +84,8 @@ public class PendingCommentsE2ETest {
         int sizeAfter = Integer.parseInt(pendingCommentsPage.getPendingToasterPaginator().getAttribute("ng-reflect-length"));
         
         assertEquals(sizeBefore-1, sizeAfter);
+
+        justWait();
 	}
 	
 	
@@ -113,7 +99,7 @@ public class PendingCommentsE2ETest {
     private void justWait() throws InterruptedException {
         synchronized (driver)
         {
-            driver.wait(2000);
+            driver.wait(3500);
         }
     }
 }

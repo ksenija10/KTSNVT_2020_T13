@@ -9,18 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class PendingCommentsPage {
 
 	private WebDriver driver;
-
-	@FindBy(id = "login-form")
-    private WebElement loginForm;
-	
-	@FindBy(id = "email-input")
-    private WebElement email;
-
-    @FindBy(id = "password-input")
-    private WebElement password;
-
-    @FindBy(id = "login-btn")
-    private WebElement loginBtn;
     
     @FindBy(id = "approve-comment-1")
     private WebElement approveCommentBtn;
@@ -33,7 +21,11 @@ public class PendingCommentsPage {
     
     @FindBy(id = "pending-comments-page")
     private WebElement pendingComments;
-    
+
+    public PendingCommentsPage(WebDriver driver) {
+		this.driver = driver;
+	}
+
     public void toastApproveSuccess() {
         (new WebDriverWait(driver, 10)).until(
                 ExpectedConditions.textToBePresentInElement(toast,"Comment approved successfully!"));
@@ -56,38 +48,6 @@ public class PendingCommentsPage {
 
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
-	}
-
-	public WebElement getLoginForm() {
-		return loginForm;
-	}
-
-	public void setLoginForm(WebElement loginForm) {
-		this.loginForm = loginForm;
-	}
-
-	public WebElement getEmail() {
-		return email;
-	}
-
-	public void setEmail(WebElement email) {
-		this.email = email;
-	}
-
-	public WebElement getPassword() {
-		return password;
-	}
-
-	public void setPassword(WebElement password) {
-		this.password = password;
-	}
-
-	public WebElement getLoginBtn() {
-		return loginBtn;
-	}
-
-	public void setLoginBtn(WebElement loginBtn) {
-		this.loginBtn = loginBtn;
 	}
 
 	public WebElement getToast() {
