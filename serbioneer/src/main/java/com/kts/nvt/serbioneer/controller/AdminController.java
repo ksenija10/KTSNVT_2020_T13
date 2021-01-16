@@ -1,7 +1,11 @@
 package com.kts.nvt.serbioneer.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.kts.nvt.serbioneer.dto.UserLoginDTO;
+import com.kts.nvt.serbioneer.jwt.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +31,9 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+
+	@Autowired
+	private TokenUtils tokenUtils;
 	
 	private final AdminMapper adminMapper = new AdminMapper();
 	
@@ -110,14 +117,31 @@ public class AdminController {
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<PasswordDTO> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
+	public ResponseEntity<Void> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO,
+														HttpServletRequest request,
+														HttpServletResponse response) {
+		UserLoginDTO userNewPassword;
 		try{
 			Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			user = adminService.updatePassword(passwordDTO, user);
+
+			// uspesno promenio sifru
+			userNewPassword = new UserLoginDTO(user.getUsername(), passwordDTO.getNewPassword());
+			String newToken = tokenUtils.generateToken(user.getUsername(), user.getAuthorities());
+			int expiresIn = tokenUtils.getExpiresIn();
+			System.out.println("========================================");
+			System.out.println(newToken);
+			System.out.println(tokenUtils.getIssuedAtDateFromToken(newToken));
+			System.out.println("========================================");
+			// postavljanje headera
+			response.addHeader(tokenUtils.getAuthHeader(), "Bearer " + newToken);
+			response.addHeader(tokenUtils.getExpHeader(), String.valueOf(expiresIn));
+			// prikaz heder-a na frontu, da bismo mogli da ih dobavimo
+			response.addHeader("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept, Authorization, Expires-In");
+			response.addHeader("Access-Control-Expose-Headers", "Authorization, Expires-In");
+			return new ResponseEntity<>(HttpStatus.OK);
 		}catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
-
-		return new ResponseEntity<>(passwordDTO, HttpStatus.OK);
 	}
 }

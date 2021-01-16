@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ChangePasswordAdminPage {
+public class ChangePasswordPage {
 
     WebDriver driver;
 
@@ -43,7 +43,7 @@ public class ChangePasswordAdminPage {
     @FindBy(id = "passwords-error")
     private WebElement passwordsDontMatchError;
 
-    public ChangePasswordAdminPage(WebDriver driver) {
+    public ChangePasswordPage(WebDriver driver) {
         this.driver = driver;
     }
 

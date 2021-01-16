@@ -12,13 +12,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-public class ChangePasswordE2ETest {
+public class ChangePasswordAdminE2ETest {
 
     private WebDriver driver;
 
     private HeaderPage headerPage;
 
-    private ChangePasswordAdminPage changePasswordPage;
+    private ChangePasswordPage changePasswordPage;
 
     private HomepagePage homepagePage;
 
@@ -35,7 +35,7 @@ public class ChangePasswordE2ETest {
         driver.manage().window().maximize();
         //instanciranje potrebnih page objekata
         headerPage = PageFactory.initElements(driver, HeaderPage.class);
-        changePasswordPage = PageFactory.initElements(driver, ChangePasswordAdminPage.class);
+        changePasswordPage = PageFactory.initElements(driver, ChangePasswordPage.class);
         homepagePage = PageFactory.initElements(driver, HomepagePage.class);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
 

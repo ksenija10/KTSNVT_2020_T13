@@ -25,6 +25,21 @@ export class AuthenticationService {
     });
   }
 
+  setLoggedInUser(response: any) {
+     // ekstrakcija tokena
+     let jwtTokenBearer = response.headers.get('Authorization');
+     let jwtToken = jwtTokenBearer.split(" ")[1];
+     let expiresIn = response.headers.get('Expires-In');
+     // proba
+     const jwtHelper: JwtHelperService = new JwtHelperService();
+     console.log(jwtHelper.decodeToken(jwtToken));
+     // postavljanje tokena
+     localStorage.setItem('jwtToken', jwtToken);
+     localStorage.setItem('expiresIn', expiresIn);
+     // pokretanje tajmera za refresh tokena
+     this.startRefreshTokenTimer(jwtToken);
+  }
+
   autoLogin() {
     const role = this.loggedInUser();
     this.role.next(role);
