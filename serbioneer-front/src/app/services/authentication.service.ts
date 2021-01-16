@@ -55,6 +55,7 @@ export class AuthenticationService {
     // token je validan, prosledimo rolu kao sledecu vrednost observable
     const role = this.getLoggedInUserAuthority();
     this.role.next(role);
+    // pokrenemo refresh
     return true;
   }
 
@@ -115,6 +116,7 @@ export class AuthenticationService {
 
   private refreshTokenTimeout: any;
   private refreshedToken: string = '';
+  private expiresInNum: number = 0;
 
   public startRefreshTokenTimer(token: string) {
     // parse json object from base64 encoded jwt token
@@ -142,7 +144,46 @@ export class AuthenticationService {
 
   // poziv pri logout-u
   public stopRefreshTokenTimer() {
-    clearTimeout(this.refreshTokenTimeout);
+    clearInterval(this.refreshTokenTimeout);
+  }
+
+  public startAutoLoginRefreshTokenTimer() {
+    const token = localStorage.getItem('jwtToken');
+    if (!token)
+      return
+    const expiresIn = localStorage.getItem('expiresIn');
+    if (!expiresIn) {
+      return
+    } else {
+      this.expiresInNum = <number><unknown>expiresIn;
+    }
+    // parse json object from base64 encoded jwt token
+    const jwtToken = this.jwtService.decodeToken(token);
+    // set a timeout to refresh the token a minute before it expires
+    const expires = new Date(jwtToken.exp * 1000);
+    const timeout = expires.getTime() - Date.now() - 60 * 1000
+
+    this.refreshedToken = token;
+    this.refreshTokenTimeout = setTimeout(
+      () => {
+        this.intervalFunction();
+        setInterval(
+          () => {
+            this.intervalFunction()
+          }, this.expiresInNum - 60 * 1000)
+      }, timeout);
+  }
+
+  private intervalFunction() {
+    this.refreshToken().subscribe((response) => {
+      let jwtTokenBearer = response.headers.get('Authorization');
+      if (jwtTokenBearer) {
+        let jwtToken = jwtTokenBearer.split(' ')[1];
+        this.refreshedToken = jwtToken;
+        // postavljanje tokena
+        localStorage.setItem('jwtToken', this.refreshedToken);
+      }
+    })
   }
 
 }
