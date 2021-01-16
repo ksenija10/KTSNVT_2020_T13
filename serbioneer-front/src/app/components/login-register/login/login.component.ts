@@ -45,15 +45,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (response) => {
           this.toastr.success('Logged in successfully!');
-          // ekstrakcija tokena
-          let jwtTokenBearer = response.headers.get('Authorization');
-          let jwtToken = jwtTokenBearer.split(" ")[1];
-          let expiresIn = response.headers.get('Expires-In');
-          // postavljanje tokena
-          localStorage.setItem('jwtToken', jwtToken);
-          localStorage.setItem('expiresIn', expiresIn);
-          // pokretanje tajmera za refresh tokena
-          this.authService.startRefreshTokenTimer(jwtToken);
+          // postavljanje u local storage
+          this.authService.setLoggedInUser(response)
           //reset forme
           this.loginForm.reset();
           // preusmerenje

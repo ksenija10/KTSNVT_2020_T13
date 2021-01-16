@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmPasswordMatcher, confirmPasswordValidator } from 'src/app/directives/confirm-password.directive';
 import { PasswordDTO } from 'src/app/model/password-dto.model';
+import { UserLogin } from 'src/app/model/user-login.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MyProfileService } from 'src/app/services/my-profile.service';
 
 @Component({
@@ -21,6 +23,7 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(
     private myProfileService: MyProfileService,
+    private authenticationService: AuthenticationService,
     private toastr: ToastrService,
     private router: Router
   ) { 
@@ -51,9 +54,18 @@ export class ChangePasswordComponent implements OnInit {
     this.myProfileService.updatePassword(passwordDto)
         .subscribe(
           response => {
-            this.toastr.success('Password updated successfully');
+            this.toastr.success('Password updated successfully!');
             this.changePasswordForm.reset();
             this.router.navigate(['homepage']);
+            this.authenticationService.setLoggedInUser(response)
+            /*const userLoginDto: UserLogin = new UserLogin(response.username, response.password)
+            this.authenticationService.login(userLoginDto).subscribe(
+              (response) => {
+                // postavljanje u local storage
+                this.authenticationService.setLoggedInUser(response)
+              }
+            )*/
+            
           },
           error => {
             if(error.error.message){
@@ -77,6 +89,13 @@ export class ChangePasswordComponent implements OnInit {
     if(this.changePasswordForm.controls.passwordGroup.get('password')?.touched
         && this.changePasswordForm.controls.passwordGroup.get('confirmPassword')?.touched) {
       return this.changePasswordForm.controls.passwordGroup.hasError('passwordsDontMatch') ? 'Passwords must match' : '';
+    }
+    return '';
+  }
+
+  getPasswordRequiredFieldErrorMessage(fieldName: string) {
+    if(this.changePasswordForm.controls.passwordGroup.get(fieldName)?.touched) {
+      return this.changePasswordForm.controls.passwordGroup.get(fieldName)?.hasError('required') ? 'Required field' : '';
     }
     return '';
   }

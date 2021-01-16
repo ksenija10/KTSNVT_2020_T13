@@ -65,7 +65,7 @@ export class MyProfileComponent implements OnInit {
       this.authenticatedUserService.updatePersonalInformation(userUpdateDTO)
         .subscribe(
           response => {
-            this.toastr.success('Personal information updated successfully')
+            this.toastr.success('Personal information updated successfully!')
           },
           error => {
             if(error.error.message){
@@ -97,6 +97,13 @@ export class MyProfileComponent implements OnInit {
         }
       }
       return this.myProfileForm.controls[fieldName].hasError('required') ? 'Required field' : '';
+    }
+    return '';
+  }
+
+  getDateErrorMessage(fieldName: string) {
+    if(this.myProfileForm.controls[fieldName].touched) {
+      return this.myProfileForm.controls[fieldName].invalid ? 'Invalid date format' : '';
     }
     return '';
   }

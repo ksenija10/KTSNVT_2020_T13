@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { AuthenticatedUser } from "../model/authenticated-user.model";
 import { PasswordDTO } from "../model/password-dto.model";
+import { UserLogin } from "../model/user-login.model";
 import { UserUpdateDTO } from "../model/user-update-dto.mpdel";
 import { AuthenticationService } from "./authentication.service";
 
@@ -42,10 +43,10 @@ export class MyProfileService{
     }
 
     updatePassword(passwordDto: PasswordDTO) {
-        return this.http.put<PasswordDTO>(
+        return this.http.put(
             environment.apiEndpoint + this.userApi + 'updatePassword',
             passwordDto,
-            { headers: this.headers }
+            { headers: this.headers, observe: 'response'}
         )
     }
 }

@@ -1,36 +1,38 @@
 <div class="card col-7 mx-auto">
     <div class="card-body">
-        <form [formGroup] = "myProfileForm" (ngSubmit) = "onSubmit()">
+        <form id = "my-profile-form" [formGroup] = "myProfileForm" (ngSubmit) = "onSubmit()">
             <div class="form-group">
                 <mat-form-field appearance="fill" class="form-field">
                     <mat-label>Enter your email</mat-label>
-                    <input matInput formControlName ="email">
+                    <input id ="email-input" matInput formControlName ="email">
                 </mat-form-field>
             </div>
             <div class="form-group">
                 <mat-form-field appearance="fill" class="form-field">
                     <mat-label>Name</mat-label>
-                    <input matInput formControlName ="name">
-                    <mat-error *ngIf="myProfileForm.get('name')?.invalid">{{getNameErrorMessage('name')}}</mat-error>
+                    <input id ="name-input" matInput formControlName ="name">
+                    <mat-error id = "name-error" *ngIf="myProfileForm.get('name')?.invalid">{{getNameErrorMessage('name')}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-group">
                 <mat-form-field appearance="fill" class="form-field">
                     <mat-label>Surname</mat-label>
-                    <input matInput formControlName ="surname">
-                    <mat-error *ngIf="myProfileForm.get('surname')?.invalid">{{getNameErrorMessage('surname')}}</mat-error>
+                    <input id ="surname-input" matInput formControlName ="surname">
+                    <mat-error id = "surname-error" *ngIf="myProfileForm.get('surname')?.invalid">{{getNameErrorMessage('surname')}}</mat-error>
                 </mat-form-field>
             </div>
             <div *ngIf = "role ==='ROLE_ADMIN'"class="form-group">
                 <mat-form-field appearance="fill">
                     <mat-label>Choose a date</mat-label>
-                    <input matInput formControlName="dateOfBirth" [matDatepicker]="dateOfBirth">
+                    <input id ="date-input" matInput formControlName="dateOfBirth" [matDatepicker]="dateOfBirth">
                     <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
                     <mat-datepicker #dateOfBirth></mat-datepicker>
+                    <mat-error id = "date-error" *ngIf="myProfileForm.get('dateOfBirth')?.invalid">{{getDateErrorMessage('dateOfBirth')}}</mat-error>
                 </mat-form-field>
             </div>
             <div>
                 <button
+                    id = "save-btn"
                     class="btn btn-theme"
                     type="submit"
                     [disabled] = "myProfileForm.invalid"
