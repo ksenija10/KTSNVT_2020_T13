@@ -1,19 +1,19 @@
-<div class="main-div">
-    <mat-card class="example-card">
+<div class="news">
+    <mat-card class="news-card">
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
+          <div mat-card-avatar><i class="material-icons avatar">room</i></div>
           <mat-card-title>{{ news.culturalSiteName }}</mat-card-title>
           <mat-card-subtitle>{{ news.dateTime | date:'medium'}}</mat-card-subtitle>
         </mat-card-header>
-        <cdk-virtual-scroll-viewport itemSize="100" orientation="horizontal">
-          <div *cdkVirtualFor="let image of news.images" >
-            <img src="data:image/png;base64,{{image.content}}" class="example-item" id="image._id" alt="proba">
+        <mat-card-content class="news-content">
+          {{ news.information }}
+          <div class="news-image-content">
+            <ng-image-slider
+              [images]="imageSlider"
+              [infinite]="false"
+              slideImage="1">
+            </ng-image-slider>
           </div>
-        </cdk-virtual-scroll-viewport>
-        <mat-card-content>
-          <p>
-            {{ news.information }}
-          </p>
         </mat-card-content>
     </mat-card>
 </div>

@@ -59,6 +59,11 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
 import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
 import { TypesComponent } from './components/admin/categories/types/types.component';
 
+// slike
+import { NgImageSliderModule } from 'ng-image-slider';
+// infinite scroll
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -117,6 +122,10 @@ import { TypesComponent } from './components/admin/categories/types/types.compon
     NgbModule,
     MatDialogModule,
     SatPopoverModule,
+    // slike
+    NgImageSliderModule,
+    // infinite scroll
+    InfiniteScrollModule
   ],
   providers: [
     {
