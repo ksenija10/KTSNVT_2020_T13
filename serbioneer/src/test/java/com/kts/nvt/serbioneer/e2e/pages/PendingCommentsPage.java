@@ -13,6 +13,9 @@ public class PendingCommentsPage {
     @FindBy(id = "approve-comment-1")
     private WebElement approveCommentBtn;
     
+    @FindBy(id = "reject-comment-3")
+    private WebElement rejectCommentBtn;
+    
     @FindBy(id = "pending-comments-paginator")
     private WebElement pendingToasterPaginator;
     
@@ -80,5 +83,13 @@ public class PendingCommentsPage {
 
 	public void setPendingToasterPaginator(WebElement pendingToasterPaginator) {
 		this.pendingToasterPaginator = pendingToasterPaginator;
+	}
+
+	public WebElement getRejectCommentBtn() {
+		return rejectCommentBtn;
+	}
+
+	public void setRejectCommentBtn(WebElement rejectCommentBtn) {
+		this.rejectCommentBtn = rejectCommentBtn;
 	}
 }

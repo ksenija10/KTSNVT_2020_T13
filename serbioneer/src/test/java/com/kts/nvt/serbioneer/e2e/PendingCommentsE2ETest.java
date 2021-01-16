@@ -61,14 +61,12 @@ public class PendingCommentsE2ETest {
 	
 	@Test
 	public void approveComment() throws InterruptedException {
-
         
         justWait();
         
         headerPage.getPendingCommentsBtn().click();
         
         justWait();
-        
         
         assertEquals("http://localhost:4200/pending-comments", driver.getCurrentUrl());
         pendingCommentsPage.ensureIsDisplayedPendingComments();
@@ -88,7 +86,32 @@ public class PendingCommentsE2ETest {
         justWait();
 	}
 	
-	
+	@Test
+	public void rejectComment() throws InterruptedException {
+        
+        justWait();
+        
+        headerPage.getPendingCommentsBtn().click();
+        
+        justWait();
+        
+        assertEquals("http://localhost:4200/pending-comments", driver.getCurrentUrl());
+        pendingCommentsPage.ensureIsDisplayedPendingComments();
+
+        int sizeBefore = Integer.parseInt(pendingCommentsPage.getPendingToasterPaginator().getAttribute("ng-reflect-length"));
+        
+        justWait();
+        
+        pendingCommentsPage.getRejectCommentBtn().click();
+        
+        pendingCommentsPage.toastRejectSuccess();
+        
+        int sizeAfter = Integer.parseInt(pendingCommentsPage.getPendingToasterPaginator().getAttribute("ng-reflect-length"));
+        
+        assertEquals(sizeBefore-1, sizeAfter);
+
+        justWait();
+	}
 	
 	@After
     public void cleanUp() {
