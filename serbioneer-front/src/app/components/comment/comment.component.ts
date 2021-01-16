@@ -61,7 +61,7 @@ export class CommentComponent implements OnInit {
   }
 
   usersComment(){
-    let email = this.authenticationService.loggedInUserEmail()
+    let email = this.authenticationService.getLoggedInUserEmail()
     if(this.comment.username == email){
       this.userComment = true;
     }

@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, ɵbypassSanitizationTrustResourceUrl } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { UserLogin } from '../model/user-login.model';
 import { environment } from '../../environments/environment';
@@ -16,7 +16,20 @@ export class AuthenticationService {
 
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(private http: HttpClient, private router: Router) {}
+  private jwtService: JwtHelperService;
+
+  constructor(
+    private http: HttpClient, 
+    private router: Router
+  ) {
+    this.jwtService = new JwtHelperService()
+  }
+
+  register(authUserDto: AuthenticatedUser): Observable<any> {
+    return this.http.post(environment.apiEndpoint + 'register', authUserDto, {
+      headers: this.headers,
+    });
+  }
 
   login(userLoginDto: UserLogin): Observable<any> {
     return this.http.post('http://localhost:8080/login', userLoginDto, {
@@ -25,24 +38,24 @@ export class AuthenticationService {
     });
   }
 
-  setLoggedInUser(response: any) {
-     // ekstrakcija tokena
-     let jwtTokenBearer = response.headers.get('Authorization');
-     let jwtToken = jwtTokenBearer.split(" ")[1];
-     let expiresIn = response.headers.get('Expires-In');
-     // proba
-     const jwtHelper: JwtHelperService = new JwtHelperService();
-     console.log(jwtHelper.decodeToken(jwtToken));
-     // postavljanje tokena
-     localStorage.setItem('jwtToken', jwtToken);
-     localStorage.setItem('expiresIn', expiresIn);
-     // pokretanje tajmera za refresh tokena
-     this.startRefreshTokenTimer(jwtToken);
-  }
-
-  autoLogin() {
-    const role = this.loggedInUser();
+  autoLogin(): boolean {
+    const user = this.getLoggedInUser()
+    // provera postojanja tokena
+    if (!user) {
+      return true;
+    }
+    // provera validnosti tokena
+    if (user.exp * 1000 < Date.now()) {
+      // token vise nije validan
+      localStorage.removeItem('jwtToken');
+      localStorage.removeItem('expiresIn');
+      this.router.navigate(['login-register/login']);
+      return false;
+    }
+    // token je validan, prosledimo rolu kao sledecu vrednost observable
+    const role = this.getLoggedInUserAuthority();
     this.role.next(role);
+    return true;
   }
 
   logout(): void {
@@ -53,24 +66,45 @@ export class AuthenticationService {
     this.stopRefreshTokenTimer()
   }
 
-  loggedInUser(): string {
-    const token = localStorage.getItem('jwtToken');
-    const jwt: JwtHelperService = new JwtHelperService();
+  // geteri i seteri
+  setLoggedInUser(response: any) {
+    // ekstrakcija tokena
+    let jwtTokenBearer = response.headers.get('Authorization');
+    let jwtToken = jwtTokenBearer.split(" ")[1];
+    let expiresIn = response.headers.get('Expires-In');
+    // postavljanje tokena
+    localStorage.setItem('jwtToken', jwtToken);
+    localStorage.setItem('expiresIn', expiresIn);
+    // pokretanje tajmera za refresh tokena
+    this.startRefreshTokenTimer(jwtToken);
+ }
 
+  getLoggedInUser() {
+    const token = localStorage.getItem('jwtToken');
     if (!token) {
       return '';
     }
-
-    const info = jwt.decodeToken(token);
-    return info.authorities[0].authority;
+    const info = this.jwtService.decodeToken(token);
+    return info;
   }
 
-  register(authUserDto: AuthenticatedUser): Observable<any> {
-    return this.http.post(environment.apiEndpoint + 'register', authUserDto, {
-      headers: this.headers,
-    });
+  getLoggedInUserAuthority(): string {
+    const info = this.getLoggedInUser();
+    if (info)
+      return info.authorities[0].authority;
+    else
+      return '';
   }
 
+  getLoggedInUserEmail() {
+    const info = this.getLoggedInUser();
+    if (info)
+      return info.sub;
+    else
+      return '';
+  }
+
+  // pomocne metode
   private refreshToken() {
     return this.http.post(
       environment.apiEndpoint + 'refresh',
@@ -84,7 +118,7 @@ export class AuthenticationService {
 
   public startRefreshTokenTimer(token: string) {
     // parse json object from base64 encoded jwt token
-    const jwtToken = this.parseJwt(token);
+    const jwtToken = this.jwtService.decodeToken(token);
     // set a timeout to refresh the token a minute before it expires
     const expires = new Date(jwtToken.exp * 1000);
     const timeout = expires.getTime() - Date.now() - 60 * 1000;
@@ -111,30 +145,4 @@ export class AuthenticationService {
     clearTimeout(this.refreshTokenTimeout);
   }
 
-  private parseJwt(jwtToken: string) {
-    try {
-      return JSON.parse(atob(jwtToken.split('.')[1]));
-    } catch (e) {
-      return null;
-    }
-  }
-
-  loggedInUserEmail() {
-    const token = localStorage.getItem('jwtToken');
-    const jwt : JwtHelperService = new JwtHelperService();
-
-    if(!token){
-        return '';
-    }
-    const info = jwt.decodeToken(token);
-    return info.sub;
-}
-
-  subscribe(id : number){
-    return this.http.post<void>(environment.apiEndpoint + 'authenticated-user/subscribe/' + id, null);
-  }
-
-  unsubscribe(id : number){
-    return this.http.post<void>(environment.apiEndpoint + 'authenticated-user/unsubscribe/' + id, null);
-  }
 }
