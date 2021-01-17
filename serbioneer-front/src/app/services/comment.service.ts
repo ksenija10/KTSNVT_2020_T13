@@ -34,20 +34,12 @@ export class CommentService {
     }
 
     aproveComment(commentId : number) {
-        let params = new HttpParams();
-
-        params = params.append('id', String(commentId));
-
         return this.http.put<Comment>(environment.apiEndpoint + 'comment/' + commentId + '/approval', {}).pipe(
             catchError(err => throwError(err))
         );
     }
 
     declineComment(commentId : number) {
-        let params = new HttpParams();
-
-        params = params.append('id', String(commentId));
-
         return this.http.delete<void>(environment.apiEndpoint + 'comment/' + commentId + '/approval').pipe(
             catchError(err => throwError(err))
         );

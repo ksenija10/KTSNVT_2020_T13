@@ -1,4 +1,4 @@
-/*import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import {HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { fakeAsync, flush, getTestBed, TestBed, tick } from "@angular/core/testing";
 import { Router } from "@angular/router";
@@ -311,4 +311,4 @@ describe('Authentication service', () => {
         expect(email).not.toBeNull();
         expect(email).toEqual('');
     })   
-})*/
+})

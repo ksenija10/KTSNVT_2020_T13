@@ -203,9 +203,4 @@ describe('Comment service', ()=>{
  
         tick();
      }))
-
-    /* deleteComment(id : number){
-        return this.http.delete<void>(environment.apiEndpoint + 'comment/' + id);
-    }
-    }*/
 })
