@@ -14,6 +14,8 @@ export class AuthenticationService {
 
   public role: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
+  role$ = this.role.asObservable();
+
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient, private router: Router) {}
