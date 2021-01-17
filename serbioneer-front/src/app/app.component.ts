@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from './services/authentication.service';
 
 @Component({
@@ -9,9 +10,16 @@ import { AuthenticationService } from './services/authentication.service';
 export class AppComponent {
   title = 'serbioneer';
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(
+    private authService: AuthenticationService,
+    private toastr: ToastrService
+    ) {}
 
   ngOnInit() {
-    this.authService.autoLogin();
+    if (!this.authService.autoLogin()) {
+      this.toastr.info("Please log in.")
+    } else {
+      this.authService.startAutoLoginRefreshTokenTimer()
+    }
   }
 }
