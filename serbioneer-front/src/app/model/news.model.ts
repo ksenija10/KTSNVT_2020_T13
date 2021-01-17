@@ -5,7 +5,7 @@ export class NewsDTO {
       public information : string,
       public dateTime : Date,
       public culturalSiteName : string,
-      public images : Image[],
+      public images?: Image[],
   ) {}
 }
 
