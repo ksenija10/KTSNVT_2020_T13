@@ -1,5 +1,7 @@
-<h1 class="newsfeed-title">Newsfeed</h1>
-<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+<div id="newsfeed-page">
+        <h1 class="newsfeed-title">Newsfeed</h1>
+        <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" id="scroll-div">
         <app-news *ngFor = "let news of dataSource" [news] = "news">
         </app-news>
+        </div>
 </div>

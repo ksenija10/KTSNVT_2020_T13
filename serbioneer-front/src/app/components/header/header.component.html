@@ -12,7 +12,7 @@
     
     <span class="logout-span"></span>
     <div id="user-btn-group" class="button-container" *ngIf = "role==='ROLE_USER'">
-        <button mat-raised-button type="button" (click)="onClick('newsfeed')">Newsfeed</button>
+        <button mat-raised-button type="button" (click)="onClick('newsfeed')" id="newsfeed-btn">Newsfeed</button>
         <button mat-raised-button type="button" (click)="onClick('homepage')">Cultural sites</button> 
         <button mat-raised-button  type="button" (click)="onClick('subscribed')">Subscribed</button>
     </div>
