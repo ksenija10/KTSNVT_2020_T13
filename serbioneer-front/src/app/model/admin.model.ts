@@ -4,6 +4,7 @@ export class Admin {
     public password: string,
     public name: string,
     public surname: string,
-    public dateOfBirth: Date
+    public dateOfBirth: Date,
+    public id?: number
   ) {}
 }
