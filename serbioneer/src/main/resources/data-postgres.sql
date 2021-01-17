@@ -87,6 +87,8 @@ insert into comment (text, approved, user_id, site_id, is_active)
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti za bibl', '2020-11-12', 1, true);
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti za bibl 2', '2020-11-14', 1, true);
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti pt2', '2020-11-11', 2, true);
+insert into news (information, date_time, site_id, is_active) values ('joj', '2020-11-14', 1, true);
+insert into news (information, date_time, site_id, is_active) values ('jojojojoj', '2020-11-11', 2, true);
 
 --subscribed cultural sites Biblioteka sabacka for user 2 Isidor Gavric
 insert into sites_users(site_id, user_id) values (1, 2);

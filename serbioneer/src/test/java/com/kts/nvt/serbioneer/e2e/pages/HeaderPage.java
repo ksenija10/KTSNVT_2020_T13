@@ -25,6 +25,9 @@ public class HeaderPage {
     
     @FindBy(id = "pending-comments")
     private WebElement pendingCommentsBtn;
+    
+    @FindBy(id = "newsfeed-btn")
+	private WebElement newsfeedBtn;
 
     public HeaderPage(WebDriver driver) { this.driver = driver; }
 
@@ -85,4 +88,13 @@ public class HeaderPage {
 	public void setPendingCommentsBtn(WebElement pendingComments) {
 		this.pendingCommentsBtn = pendingComments;
 	}
+
+	public WebElement getNewsfeedBtn() {
+		return newsfeedBtn;
+	}
+
+	public void setNewsfeedBtn(WebElement newsfeedBtn) {
+		this.newsfeedBtn = newsfeedBtn;
+	}
+	
 }
