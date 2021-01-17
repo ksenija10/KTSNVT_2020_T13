@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
+/*import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import {HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { fakeAsync, flush, getTestBed, TestBed, tick } from "@angular/core/testing";
 import { Router } from "@angular/router";
@@ -191,18 +191,6 @@ describe('Authentication service', () => {
         expect(response.body).toEqual('Incorrect email or password.');
     }))
 
-    /*it('autologin() should emit an event', fakeAsync(()=> {
-        let counter: number = 0;
-        authenticationService.role$.subscribe(() => counter++);
-
-        authenticationService.autoLogin();
-        tick();
-        authenticationService.autoLogin();
-        tick();
-
-        expect(counter).toBe(3);
-    }))*/
-
     it('should remove user from localStorage - logout', () => {
         localStorage.setItem('jwtToken', 'eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZXJiaW9uZWVyIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXVkIjoid2ViIiwiaWF0IjoxNjEwODc3NDc0LCJleHAiOjE2MTA4NzgzNzQsImF1dGhvcml0aWVzIjpbeyJpZCI6MSwibmFtZSI6IlJPTEVfQURNSU4iLCJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dfQ.RoEMkZsPoreFU-e4I9gA-AhOtBj1GVxT-SukIWkYNCYhomvzcjDMzgtOUIH5IGEh88FspdB2xcnf8C9vPFt5EQ');
         localStorage.setItem('expiresIn', '900000');
@@ -323,4 +311,4 @@ describe('Authentication service', () => {
         expect(email).not.toBeNull();
         expect(email).toEqual('');
     })   
-})
+})*/

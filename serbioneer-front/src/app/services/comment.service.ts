@@ -5,11 +5,12 @@ import { catchError, map } from "rxjs/operators";
 import { environment } from "../../environments/environment"
 import { Comment } from "src/app/model/comment.model"
 
-export interface CommentData {
-    content: Comment[],
-    totalPages: number,
-    totalElements: number,
-    size: number,
+export class CommentData {
+    constructor(
+        public content: Comment[], 
+        public totalPages: number, 
+        public totalElements: number, 
+        public size: number) {}
 };
 
 @Injectable({
@@ -37,7 +38,7 @@ export class CommentService {
 
         params = params.append('id', String(commentId));
 
-        return this.http.put(environment.apiEndpoint + 'comment/' + commentId + '/approval', {params}).pipe(
+        return this.http.put<Comment>(environment.apiEndpoint + 'comment/' + commentId + '/approval', {}).pipe(
             catchError(err => throwError(err))
         );
     }
@@ -47,7 +48,7 @@ export class CommentService {
 
         params = params.append('id', String(commentId));
 
-        return this.http.delete(environment.apiEndpoint + 'comment/' + commentId + '/approval', {params}).pipe(
+        return this.http.delete<void>(environment.apiEndpoint + 'comment/' + commentId + '/approval').pipe(
             catchError(err => throwError(err))
         );
     }
