@@ -13,6 +13,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { ImageService } from 'src/app/services/image.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddNewsArticleComponent } from '../add-news-article/add-news-article.component';
+import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
 
 @Component({
   selector: 'app-view-cultural-site',
@@ -51,6 +52,7 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
     private culturalSiteService: CulturalSiteService,
     private router: Router,
     private authenticationService : AuthenticationService,
+    private authUserService: AuthenticatedUserService,
     private ratingService : RatingService,
     private imageService : ImageService,
     private newsDialog : MatDialog) { 
@@ -101,7 +103,7 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
   }
 
   loggedUser(){
-    let role = this.authenticationService.loggedInUser()
+    let role = this.authenticationService.getLoggedInUserAuthority()
     if(role == 'ROLE_USER'){
       this.userIsLogged = true;
     }else if(role == 'ROLE_ADMIN'){
@@ -111,7 +113,7 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
   }
 
   loggedSubscribedUser(){
-    let email = this.authenticationService.loggedInUserEmail()
+    let email = this.authenticationService.getLoggedInUserEmail()
 
     this.fetchUserRating(this.culturalSite.id!, email);
 
@@ -143,11 +145,11 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
 
   onChangeSubscription(event : Event){
     if(this.buttonValue == "Subscribe"){
-      this.authenticationService.subscribe(this.culturalSite.id!).subscribe();
+      this.authUserService.subscribe(this.culturalSite.id!).subscribe();
       this.buttonValue = "Unsubscribe";
     }
     else{
-      this.authenticationService.unsubscribe(this.culturalSite.id!).subscribe();
+      this.authUserService.unsubscribe(this.culturalSite.id!).subscribe();
       this.buttonValue = "Subscribe";
     }
   }

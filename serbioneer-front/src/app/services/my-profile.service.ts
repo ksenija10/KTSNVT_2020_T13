@@ -22,7 +22,7 @@ export class MyProfileService{
         private authenticationService: AuthenticationService
     ) {
         this.userApi = 'authenticated-user/';
-        if( authenticationService.loggedInUser() === 'ROLE_ADMIN') {
+        if(this.authenticationService.getLoggedInUserAuthority() === 'ROLE_ADMIN') {
             this.userApi = 'admin/';
         }
     }

@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
           // preusmerenje
           this.router.navigate(['homepage']);
-          this.authService.role.next(this.authService.loggedInUser());
+          this.authService.role.next(this.authService.getLoggedInUserAuthority());
         },
         (error) => {
           if(error.status = 401) {
