@@ -30,6 +30,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
         '../../../assets/images/srbija_logo.svg'
       )
     );
+    iconRegistry.addSvgIcon(
+      'user',
+      sanitizer.bypassSecurityTrustResourceUrl(
+        '../../../assets/images/user_logo.svg'
+      )
+    );
   }
 
   ngOnInit(
@@ -46,7 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout(): void {
     this.authenticationService.logout();
-    this.toastr.success("Logged out successfully!");
+    this.toastr.info("Logged out successfully!");
   }
 
   onClick(path: string) {

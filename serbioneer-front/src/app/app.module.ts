@@ -107,7 +107,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MatIconModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: "toast-custom"}),
     MatAutocompleteModule,
     MatChipsModule,
     MatTableModule,

@@ -1,32 +1,71 @@
-<mat-toolbar>
-    <button id="home-btn" mat-icon-button class="home" aria-label="Home icon-button with logo"
-        (click)="onHome()">
-    <a>
+<nav id="navigation" class="navbar navbar-expand-lg navbar-light">
+    <!-- homepage btn -->
+    <a id="home-btn" class="navbar-brand nav-btn home btn" tabindex="0" role="button" 
+        (click)="onHome()" (keyup.enter)="onHome()">
         <span class="flag red">Serb</span>
         <span class="flag blue">io</span>
         <span class="flag white">neer</span>
         <span class="logo">s</span>
-    </a>
         <mat-icon svgIcon="logo"></mat-icon>
-    </button>
-    
-    <span class="logout-span"></span>
-    <div id="user-btn-group" class="button-container" *ngIf = "role==='ROLE_USER'">
-        <button mat-raised-button type="button" (click)="onClick('newsfeed')">Newsfeed</button>
-        <button mat-raised-button type="button" (click)="onClick('homepage')">Cultural sites</button> 
-        <button mat-raised-button  type="button" (click)="onClick('subscribed')">Subscribed</button>
+    </a>
+    <!-- auth user btn group -->
+    <div id="user-btn-group" class="navbar-nav mr-auto" *ngIf="role==='ROLE_USER'">
+        <a id="newsfeed-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('newsfeed')" (keyup.enter)="onClick('newsfeed')">
+            Newsfeed
+        </a>
+        <a id="homepage-btn-auth" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('homepage')" (keyup.enter)="onClick('homepage')">
+            Cultural sites
+        </a>
+        <a id="subscribed-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0"
+            (click)="onClick('subscribed')" (keyup.enter)="onClick('subscribed')">
+            Subscribed
+        </a>
     </div>
-
-    <div id="admin-btn-group" class="button-container" *ngIf = "role==='ROLE_ADMIN'">
-        <button mat-raised-button type="button" (click)="onClick('homepage')">Cultural sites</button> 
-        <button mat-raised-button  type="button" (click)="onClick('add-site')">Add site</button>
-        <button mat-raised-button  type="button" (click)="onClick('categories')">Categories</button>
-        <button mat-raised-button  type="button" (click)="onClick('pending-comments')" id="pending-comments">Pending comments</button>
-        <button mat-raised-button  type="button" (click)="onClick('view-admin')">View admins</button>
+    <!-- admin btn group -->
+    <div id="admin-btn-group" class="navbar-nav mr-auto" *ngIf="role==='ROLE_ADMIN'">
+        <a id="homepage-btn-admin" class="nav-item nav-link nav-btn btn" role="button" tabindex="0"
+            (click)="onClick('homepage')" (keyup.enter)="onClick('homepage')">
+            Cultural sites
+        </a>
+        <a id="add-site-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('add-site')" (keyup.enter)="onClick('add-site')">
+            Add site
+        </a>
+        <a id="categories-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('categories')" (keyup.enter)="onClick('categories')">
+            Categories
+        </a>
+        <a id="pending-comments-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('pending-comments')" (keyup.enter)="onClick('pending-comments')">
+            Pending comments
+        </a>
+        <a id="view-admin-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('view-admin')" (keyup.enter)="onClick('view-admin')">
+            View admins
+        </a>
     </div>
-    
-
-    <span class="logout-span"></span>
-    <button id="logout-btn" *ngIf = "role!==''"mat-raised-button color="primary" type="button" (click)="logout()">Logout</button>
-    
-</mat-toolbar>
+    <!-- user dropdown -->
+    <ul id="user-dropdown" class="navbar-nav" *ngIf="role!==''">
+        <li class="nav-item dropdown">
+            <a class="nav-link nav-btn dropdown-toggle btn" role="button" tabindex="0">
+                <mat-icon svgIcon="user"></mat-icon>
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                    (click)="onClick('my-profile')" (keyup.enter)="onClick('my-profile')">
+                    My profile
+                </a>
+                <a class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                    (click)="onClick('change-password')" (keyup.enter)="onClick('change-password')">
+                    Change password
+            </a>
+                <a class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                    (click)="logout()" (keyup.enter)="logout()">
+                    Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>

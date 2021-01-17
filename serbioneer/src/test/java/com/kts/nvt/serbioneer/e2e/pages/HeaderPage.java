@@ -23,7 +23,7 @@ public class HeaderPage {
     @FindBy(id = "logout-btn")
     private WebElement logoutBtn;
     
-    @FindBy(id = "pending-comments")
+    @FindBy(id = "pending-comments-btn")
     private WebElement pendingCommentsBtn;
 
     public HeaderPage(WebDriver driver) { this.driver = driver; }
