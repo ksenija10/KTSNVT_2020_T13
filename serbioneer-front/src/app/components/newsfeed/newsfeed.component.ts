@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsDTOInterface } from 'src/app/model/news.model';
+import { NewsDTO } from 'src/app/model/news.model';
 import { NewsService } from 'src/app/services/news.service';
 
 @Component({
@@ -9,14 +9,14 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class NewsfeedComponent implements OnInit {
 
-  dataSource: NewsDTOInterface[] = [];
+  dataSource: NewsDTO[] = [];
   page: number = 0;
 
   constructor(private newsService: NewsService, private window: Window) {}
 
   ngOnInit(): void {
-    //neka za pocetak po defaultu dobavlja 2 novosti da bih videla da li infinite scroll radi
-    this.newsService.getAllSubscribedNews(0, 2)
+    //neka za pocetak po defaultu dobavlja 3 novosti da bih videla da li infinite scroll radi
+    this.newsService.getAllSubscribedNews(0, 3)
       .subscribe((responseData) => {
         this.dataSource = this.dataSource.concat(responseData.content)
     });

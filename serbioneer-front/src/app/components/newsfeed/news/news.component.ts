@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NewsDTOInterface } from 'src/app/model/news.model';
+import { NewsDTO } from 'src/app/model/news.model';
 
 @Component({
   selector: 'app-news',
@@ -7,7 +7,7 @@ import { NewsDTOInterface } from 'src/app/model/news.model';
   styleUrls: ['./news.component.sass'],
 })
 export class NewsComponent implements OnInit {
-  @Input() news!: NewsDTOInterface;
+  @Input() news!: NewsDTO;
 
   imageSlider: Array<object> = []
   /* {
