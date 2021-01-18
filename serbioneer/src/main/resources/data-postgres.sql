@@ -56,7 +56,7 @@ values ('Srpsko narodno pozorište', 45.2553797, 19.8429706, 'Pozorišni trg 1',
 'Srpsko narodno pozorište je osnovano 16/28. jula 1861. godine u Novom Sadu, u tadašnjoj Carevini Austriji (od 1867. Austrougarska monarhija).', 0, 2, 1, true);
 
 insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
-values ('SLF', 44.7556269, 19.6923025, 'Sabacka Tvrdjava, Kralja Aleksandra', 'Šabac',
+values ('SLF', 44.764226, 19.703700, 'Sabacka Tvrdjava, Kralja Aleksandra', 'Šabac',
 'Prvi Šabački letnji festival („ŠLF“) je održan 2003. godine. Naslednik je projekta „Move” koji je na neki način bio preteča današnjeg Šabačkog festivala.', 0, 3, 2, true);
 
 insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
