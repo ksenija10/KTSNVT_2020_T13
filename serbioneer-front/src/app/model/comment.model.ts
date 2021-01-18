@@ -8,7 +8,7 @@ export class Comment {
     culturalSiteName: string;
     text: string;
 	approved: boolean;
-	images?: Image[]
+	images: Image[]
 
 	constructor(obj?: any){
 		this.id = obj && obj.id || null;
@@ -18,5 +18,6 @@ export class Comment {
 		this.culturalSiteName = obj && obj.culturalSiteName || null;
 		this.text = obj && obj.text || null;
 		this.approved = obj && obj.country || null;
+		this.images = obj && obj.images || [];
 	}
 }

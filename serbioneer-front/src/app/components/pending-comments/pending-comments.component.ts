@@ -12,7 +12,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 })
 export class PendingCommentsComponent implements OnInit {
 
-  commentsData! : CommentData;
+  commentsData : CommentData = {content: [], totalElements: 0, totalPages: 0, size: 0};
   pageEvent: PageEvent = new PageEvent();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
