@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -13,6 +14,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
+  activeLink: string = '';
   role: string = '';
   subscription!: Subscription;
 
@@ -20,6 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
     private router: Router,
+    private location: Location,
     private authenticationService: AuthenticationService,
     private toastr : ToastrService
   ) {
@@ -38,16 +41,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit(
-  ): void {
+  ngOnInit(): void {
+    // preuzimanje trenutne rute
+    this.activeLink = this.location.path().substr(1)
+    // subscribe
     this.subscription = this.authenticationService.role
         .subscribe(role => {
           this.role = role;
         })
-  }
-
-  onHome(): void {
-    this.router.navigate(['homepage']);
   }
 
   logout(): void {
@@ -56,6 +57,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onClick(path: string) {
+    this.activeLink = path;
     this.router.navigate([path]);
   }
 
