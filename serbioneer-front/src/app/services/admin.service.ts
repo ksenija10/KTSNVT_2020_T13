@@ -21,10 +21,9 @@ export class AdminService {
   constructor(private http: HttpClient) {}
 
   createAdmin(admin: Admin): Observable<any> {
-    console.log('createAdmin');
+    
     return this.http.post<Admin>(environment.apiEndpoint + 'admin', admin, {
-      headers: this.headers,
-      observe: 'response',
+      headers: this.headers
     });
   }
 
@@ -39,6 +38,6 @@ export class AdminService {
       .pipe(
         map((adminData: AdminData) => adminData),
         catchError((err) => throwError(err))
-      );
+    );
   }
 }
