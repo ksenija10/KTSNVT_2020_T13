@@ -59,7 +59,7 @@ export class MyProfileComponent implements OnInit {
       new UserUpdateDTO(
         this.myProfileForm.value.name,
         this.myProfileForm.value.surname,
-        this.myProfileForm.value.dateOfBirth
+        new Date(this.myProfileForm.value.dateOfBirth)
       )
     
       this.myProfileService.updatePersonalInformation(userUpdateDTO)

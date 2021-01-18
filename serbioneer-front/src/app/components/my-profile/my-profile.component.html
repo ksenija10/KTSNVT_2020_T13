@@ -8,14 +8,14 @@
                 </mat-form-field>
             </div>
             <div class="form-group">
-                <mat-form-field appearance="fill" class="form-field">
+                <mat-form-field id = "name-form-field" appearance="fill" class="form-field">
                     <mat-label>Name</mat-label>
                     <input id ="name-input" matInput formControlName ="name">
                     <mat-error id = "name-error" *ngIf="myProfileForm.get('name')?.invalid">{{getNameErrorMessage('name')}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-group">
-                <mat-form-field appearance="fill" class="form-field">
+                <mat-form-field id = "surname-form-field" appearance="fill" class="form-field">
                     <mat-label>Surname</mat-label>
                     <input id ="surname-input" matInput formControlName ="surname">
                     <mat-error id = "surname-error" *ngIf="myProfileForm.get('surname')?.invalid">{{getNameErrorMessage('surname')}}</mat-error>
