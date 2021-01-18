@@ -20,7 +20,6 @@ export class NewsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.news);
     this.imageSlider = []
     this.news.images.map(
       imageModel => {

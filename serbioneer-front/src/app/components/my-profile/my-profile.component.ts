@@ -32,7 +32,7 @@ export class MyProfileComponent implements OnInit {
       surname: new FormControl('', [Validators.required, Validators.pattern(this.namePattern)]),
       dateOfBirth: new FormControl('')
     })
-    this.role = authenticationService.loggedInUser();
+    this.role = authenticationService.getLoggedInUserAuthority();
    }
 
   ngOnInit(): void {

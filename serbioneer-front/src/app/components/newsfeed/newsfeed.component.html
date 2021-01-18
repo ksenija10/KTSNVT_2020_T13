@@ -1,5 +1,23 @@
-<h1 class="newsfeed-title">Newsfeed</h1>
-<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
-        <app-news *ngFor = "let news of dataSource" [news] = "news">
-        </app-news>
+<div id="newsfeed-page">
+        <h1 class="newsfeed-title">Newsfeed</h1>
+        <div *ngIf="dataSource.length > 0; then newsfeed else emptyNewsfeed"></div>
+        <ng-template #newsfeed>
+                <div infiniteScroll 
+                [infiniteScrollDistance]="2" 
+                [infiniteScrollThrottle]="50" 
+                (scrolled)="onScroll()" id="scroll-div">
+                        <app-news *ngFor="let news of dataSource" [news] = "news">
+                        </app-news>
+                </div>
+        </ng-template>
+        <ng-template #emptyNewsfeed>
+                <mat-card>
+                        <mat-card-content class="empty-newsfeed">
+                                <h3>
+                                You are not subscribed to any cultural sites.<br>
+                                To view news, try subscribing to some cultural sites!
+                                </h3>
+                        </mat-card-content>
+                </mat-card>
+        </ng-template>
 </div>

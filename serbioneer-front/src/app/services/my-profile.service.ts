@@ -4,7 +4,6 @@ import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { AuthenticatedUser } from "../model/authenticated-user.model";
 import { PasswordDTO } from "../model/password-dto.model";
-import { UserLogin } from "../model/user-login.model";
 import { UserUpdateDTO } from "../model/user-update-dto.mpdel";
 import { AuthenticationService } from "./authentication.service";
 
@@ -49,7 +48,7 @@ export class MyProfileService{
     }
 
     private checkRole() {
-        if(this.authenticationService.loggedInUser() === 'ROLE_ADMIN') {
+        if(this.authenticationService.getLoggedInUserAuthority() === 'ROLE_ADMIN') {
             this.userApi = 'admin/';
         } else {
             this.userApi = 'authenticated-user/';

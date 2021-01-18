@@ -18,6 +18,6 @@ export class Comment {
 		this.culturalSiteName = obj && obj.culturalSiteName || null;
 		this.text = obj && obj.text || null;
 		this.approved = obj && obj.country || null;
-		this.images = obj && obj.images || null;
+		this.images = obj && obj.images || [];
 	}
 }
