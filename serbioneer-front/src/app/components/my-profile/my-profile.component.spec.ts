@@ -226,6 +226,30 @@ describe('MyProfileComponent', () => {
         expect(await surnameFormField.getTextErrors()).toEqual(['Must start with capital letter'])
     })
 
+    it('should get name and surname field error message - special charater', async() => {
+        // popunjavanje forme
+        const namelInput = await loader.getHarness(MatInputHarness.with({selector: '#name-input'}))
+        await namelInput.setValue('K8senija')
+        const surnameInput = await loader.getHarness(MatInputHarness.with({selector: '#surname-input'}))
+        await surnameInput.setValue('P%rcic')
+        const dateInput = await loader.getHarness(MatInputHarness.with({selector: '#date-input'}))
+        await dateInput.setValue('2016-06-23');
+        
+        // pozivanje metode KOJA IMA POVRATNU VREDNOST -> sacuvamo povratnu vrednost *tinkr tinkr*
+        let returned = component.getNameErrorMessage('name');
+        // sta ocekujemo da je povratna vrednost
+        expect(returned).toEqual('Cannot contain special characters or numbers');
+
+        const nameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#name-form-field'}))
+        expect(await nameFormField.getTextErrors()).toEqual(['Cannot contain special characters or numbers'])
+
+        returned = component.getNameErrorMessage('surname');
+        expect(returned).toEqual('Cannot contain special characters or numbers');
+
+        const surnameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#surname-form-field'}))
+        expect(await surnameFormField.getTextErrors()).toEqual(['Cannot contain special characters or numbers'])
+    })
+
     it('should get date field error message - valid field', async() => {
         // popunjavanje forme
         const dateInput = await loader.getHarness(MatInputHarness.with({selector: '#date-input'}))

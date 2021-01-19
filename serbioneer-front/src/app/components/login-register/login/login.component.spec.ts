@@ -93,9 +93,9 @@ describe('LoginComponent', () => {
 
     it('should get email error message - required', async() => {
         // popunjavanje login forme
-        const passwordInput = await loader.getHarness(MatInputHarness.with({selector: '#email-input'}));
-        await passwordInput.setValue('');
-        await passwordInput.blur();
+        const emailInput = await loader.getHarness(MatInputHarness.with({selector: '#email-input'}));
+        await emailInput.setValue('');
+        await emailInput.blur();
 
         // "pozivamo" metodu
         let errorMessage = component.getEmailErrorMessage();
@@ -103,15 +103,15 @@ describe('LoginComponent', () => {
         // ocekujemo povratne vrednosti
         expect(errorMessage).toEqual('Required field');
         // proveravamo html
-        const passwordFoemField = await loader.getHarness(MatFormFieldHarness.with({selector: '#email-form-field'}));
-        expect(await passwordFoemField.getTextErrors()).toEqual(['Required field']);
+        const emailFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#email-form-field'}));
+        expect(await emailFormField.getTextErrors()).toEqual(['Required field']);
     })
 
     it('should get email error message - invalid email', async() => {
         // popunjavanje login forme
-        const passwordInput = await loader.getHarness(MatInputHarness.with({selector: '#email-input'}));
-        await passwordInput.setValue('slb');
-        await passwordInput.blur();
+        const emailInput = await loader.getHarness(MatInputHarness.with({selector: '#email-input'}));
+        await emailInput.setValue('slb');
+        await emailInput.blur();
 
         // "pozivamo" metodu
         let errorMessage = component.getEmailErrorMessage();
@@ -119,15 +119,15 @@ describe('LoginComponent', () => {
         // ocekujemo povratne vrednosti
         expect(errorMessage).toEqual('Not a valid email');
         // proveravamo html
-        const passwordFoemField = await loader.getHarness(MatFormFieldHarness.with({selector: '#email-form-field'}));
-        expect(await passwordFoemField.getTextErrors()).toEqual(['Not a valid email']);
+        const emailFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#email-form-field'}));
+        expect(await emailFormField.getTextErrors()).toEqual(['Not a valid email']);
     })
 
     it('should get email error message - valid', async() => {
         // popunjavanje login forme
-        const passwordInput = await loader.getHarness(MatInputHarness.with({selector: '#password-input'}));
-        await passwordInput.setValue('admin@admin.com');
-        await passwordInput.blur();
+        const emailInput = await loader.getHarness(MatInputHarness.with({selector: '#email-input'}));
+        await emailInput.setValue('admin@admin.com');
+        await emailInput.blur();
 
         // "pozivamo" metodu
         let errorMessage = component.getEmailErrorMessage();
@@ -135,8 +135,8 @@ describe('LoginComponent', () => {
         // ocekujemo povratne vrednosti
         expect(errorMessage).toEqual('');
         // proveravamo html
-        const passwordFoemField = await loader.getHarness(MatFormFieldHarness.with({selector: '#email-form-field'}));
-        expect(await passwordFoemField.getTextErrors()).toEqual([]);
+        const emailFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#email-form-field'}));
+        expect(await emailFormField.getTextErrors()).toEqual([]);
     })
 
     it('should get required field error message - required', async() => {
@@ -151,8 +151,8 @@ describe('LoginComponent', () => {
         // ocekujemo povratne vrednosti
         expect(errorMessage).toEqual('Required field');
         // proveravamo html
-        const passwordFoemField = await loader.getHarness(MatFormFieldHarness.with({selector: '#password-form-field'}));
-        expect(await passwordFoemField.getTextErrors()).toEqual(['Required field']);
+        const passwordFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#password-form-field'}));
+        expect(await passwordFormField.getTextErrors()).toEqual(['Required field']);
     })
 
     it('should get required field error message - valid', async() => {
@@ -167,9 +167,8 @@ describe('LoginComponent', () => {
         // ocekujemo povratne vrednosti
         expect(errorMessage).toEqual('');
         // proveravamo html
-        const passwordFoemField = await loader.getHarness(MatFormFieldHarness.with({selector: '#password-form-field'}));
-        expect(await passwordFoemField.getTextErrors()).toEqual([]);
+        const passwordFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#password-form-field'}));
+        expect(await passwordFormField.getTextErrors()).toEqual([]);
     })
-
 
 })
