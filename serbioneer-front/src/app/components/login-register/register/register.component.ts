@@ -70,7 +70,6 @@ export class RegisterComponent implements OnInit {
   }
 
   getEmailErrorMessage() {
-    //console.log(this.registerForm.value.get('password'))
     if(this.registerForm.controls['email'].touched) {
       if ( this.registerForm.controls['email'].hasError('required')) {
         return 'Required field';
