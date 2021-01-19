@@ -20,7 +20,6 @@ export class PendingCommentsComponent implements OnInit {
   };
 
   pageEvent: PageEvent = new PageEvent();
-  //@ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype)
 
   constructor(private commentService: CommentService) { 
     this.pageEvent.pageSize = 1;

@@ -17,11 +17,12 @@ export class MyProfileComponent implements OnInit {
 
   myProfileForm!: FormGroup;
   namePattern = "[A-Z][a-z]*";
+  datePattern = "[0-9]";
   loggedInUser!: UserUpdateDTO;
   role!: string;
 
   constructor(
-    private authenticatedUserService: MyProfileService,
+    private myProfileService: MyProfileService,
     private toastr: ToastrService,
     private router: Router,
     private authenticationService: AuthenticationService
@@ -32,11 +33,11 @@ export class MyProfileComponent implements OnInit {
       surname: new FormControl('', [Validators.required, Validators.pattern(this.namePattern)]),
       dateOfBirth: new FormControl('')
     })
-    this.role = authenticationService.getLoggedInUserAuthority();
+    this.role = this.authenticationService.getLoggedInUserAuthority();
    }
 
   ngOnInit(): void {
-    this.authenticatedUserService.getCurrentAuthenticatedUser()
+    this.myProfileService.getCurrentAuthenticatedUser()
     .subscribe(
       response => {
         this.loggedInUser = response;
@@ -56,13 +57,12 @@ export class MyProfileComponent implements OnInit {
 
     const userUpdateDTO: UserUpdateDTO = 
       new UserUpdateDTO(
-        this.myProfileForm.value.email,
         this.myProfileForm.value.name,
         this.myProfileForm.value.surname,
-        this.myProfileForm.value.dateOfBirth
+        new Date(this.myProfileForm.value.dateOfBirth)
       )
     
-      this.authenticatedUserService.updatePersonalInformation(userUpdateDTO)
+      this.myProfileService.updatePersonalInformation(userUpdateDTO)
         .subscribe(
           response => {
             this.toastr.success('Personal information updated successfully!')
@@ -78,13 +78,6 @@ export class MyProfileComponent implements OnInit {
       
       this.myProfileForm.reset();
       this.router.navigate(['homepage']);
-  }
-
-  getRequiredFieldErrorMessage(fieldName: string) {
-    if(this.myProfileForm.controls[fieldName].touched) {
-      return this.myProfileForm.controls[fieldName].hasError('required') ? 'Required field' : '';
-    }
-    return '';
   }
 
   getNameErrorMessage(fieldName: string) {

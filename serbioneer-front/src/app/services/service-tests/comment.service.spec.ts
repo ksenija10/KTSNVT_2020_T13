@@ -42,7 +42,8 @@ describe('Comment service', ()=>{
                 username: "marko.markovic@email.com",
                 culturalSiteName: "Biblioteka šabačka",
                 text: "Ponosan sam što sam iz Šapca",
-                approved: false
+                approved: false,
+                images: []
             },
             {
                 id: 2,
@@ -51,7 +52,8 @@ describe('Comment service', ()=>{
                 username: "jjovanovic@email.com",
                 culturalSiteName: "Srpsko narodno pozorište",
                 text: "Vrhunske predstave mladih srpskih glumaca me svaki put ostave bez daha!",
-                approved: false
+                approved: false,
+                images: []
             }
         ];
         
@@ -107,7 +109,8 @@ describe('Comment service', ()=>{
             username: "marko.markovic@email.com",
             culturalSiteName: "Biblioteka šabačka",
             text: "Ponosan sam što sam iz Šapca",
-            approved: false
+            approved: false,
+            images: []
         }
 
         let mockComment: Comment = {
@@ -117,7 +120,8 @@ describe('Comment service', ()=>{
             username: "marko.markovic@email.com",
             culturalSiteName: "Biblioteka šabačka",
             text: "Ponosan sam što sam iz Šapca",
-            approved: true
+            approved: true,
+            images: []
         }
 
         commentService.aproveComment(1).subscribe(data => {
@@ -160,7 +164,8 @@ describe('Comment service', ()=>{
            username: "marko.markovic@email.com",
            culturalSiteName: "Biblioteka šabačka",
            text: "Ponosan sam što sam iz Šapca",
-           approved: true
+           approved: true,
+           images: []
        }
 
        let mockComment: Comment = {
@@ -170,7 +175,8 @@ describe('Comment service', ()=>{
            username: "marko.markovic@email.com",
            culturalSiteName: "Biblioteka šabačka",
            text: "Ponosan sam što sam iz Šapca",
-           approved: true
+           approved: true,
+           images: []
        }
 
        commentService.updateComment(1, comment).subscribe(data => {

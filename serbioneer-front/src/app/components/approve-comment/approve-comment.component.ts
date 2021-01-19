@@ -13,15 +13,25 @@ export class ApproveCommentComponent implements OnInit {
 
   @Input() comment:Comment = new Comment();
   public noImages = true;
+  // vaj iz dis hir
   public fileReader : FileReader = new FileReader();
+  
+  imageSlider: Array<object> = []
 
-  constructor(@Inject(PendingCommentsComponent) 
+  constructor(/*olso dis*/@Inject(PendingCommentsComponent) 
         private pendingComments : PendingCommentsComponent,
         private commentService: CommentService,
         private toastr: ToastrService) { 
         }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.imageSlider = []
+    this.comment.images.map(
+      imageModel => {
+        this.imageSlider.push({image: "data:image/jpg;base64,"+imageModel.content, thumbImage: "data:image/jpg;base64,"+imageModel.content, title: imageModel.name})
+      }
+    )
+  }
 
   public approveComment(event : Event) : void {
     this.commentService.aproveComment(this.comment.id).subscribe(

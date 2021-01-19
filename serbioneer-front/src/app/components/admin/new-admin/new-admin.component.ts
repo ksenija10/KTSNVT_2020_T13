@@ -21,6 +21,7 @@ export class NewAdminComponent implements OnInit {
 
   hide = true;
   namePattern = '[A-Z][a-z]*';
+  datePattern = '[0-9]{1,2}/[0-9]{2}/[0-9]{4}';
   confirmPasswordMatcher = new ConfirmPasswordMatcher();
 
   constructor(
@@ -93,8 +94,15 @@ export class NewAdminComponent implements OnInit {
   }
 
   getRequiredFieldErrorMessage(fieldName: string) {
-    if (this.newAdminForm.controls[fieldName].touched) {
-      return this.newAdminForm.controls[fieldName].hasError('required')
+    if (this.newAdminForm.controls.passwordGroup.get(fieldName)?.touched) {
+      return this.newAdminForm.controls.passwordGroup
+        .get(fieldName)
+        ?.hasError('required')
+        ? 'Required field'
+        : '';
+    }
+    if (this.newAdminForm.controls[fieldName]?.touched) {
+      return this.newAdminForm.controls[fieldName]?.hasError('required')
         ? 'Required field'
         : '';
     }
