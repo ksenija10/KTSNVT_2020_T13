@@ -58,14 +58,6 @@ export class ChangePasswordComponent implements OnInit {
             this.changePasswordForm.reset();
             this.router.navigate(['homepage']);
             this.authenticationService.setLoggedInUser(response)
-            /*const userLoginDto: UserLogin = new UserLogin(response.username, response.password)
-            this.authenticationService.login(userLoginDto).subscribe(
-              (response) => {
-                // postavljanje u local storage
-                this.authenticationService.setLoggedInUser(response)
-              }
-            )*/
-            
           },
           error => {
             if(error.error.message){
