@@ -1,7 +1,5 @@
-import { DebugElement } from "@angular/core";
 import { ComponentFixture, fakeAsync, TestBed, tick } from "@angular/core/testing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { By } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { of } from "rxjs";
@@ -10,10 +8,12 @@ import { MyProfileService } from "src/app/services/my-profile.service";
 import { MyProfileComponent } from "./my-profile.component";
 import {HarnessLoader} from '@angular/cdk/testing';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
-import {MatButtonHarness} from '@angular/material/button/testing';
 import {MatInputHarness} from '@angular/material/input/testing';
 import { UserUpdateDTO } from "src/app/model/user-update-dto.mpdel";
-import {MatFormFieldHarness} from '@angular/material/form-field/testing';
+import { MatFormFieldHarness} from '@angular/material/form-field/testing';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MyProfileComponent', () =>{
     let component: MyProfileComponent;
@@ -70,7 +70,10 @@ describe('MyProfileComponent', () =>{
             ],
             imports: [
                 ReactiveFormsModule,
-                FormsModule
+                FormsModule,
+                MatFormFieldModule,
+                MatInputModule,
+                BrowserAnimationsModule
             ]
         }).compileComponents();
 
@@ -154,7 +157,7 @@ describe('MyProfileComponent', () =>{
         expect(router.navigate).toHaveBeenCalledWith(['homepage']);
     })
 
-    it('should get required name and surname field error message - valid field', async() => {
+    it('should not get name and surname field error message - valid field', async() => {
         // popunjavanje forme
         const namelInput = await loader.getHarness(MatInputHarness.with({selector: '#name-input'}))
         await namelInput.setValue('Ksenija')
@@ -170,60 +173,71 @@ describe('MyProfileComponent', () =>{
 
         returned = component.getNameErrorMessage('surname');
         expect(returned).toEqual('');
+
         const surnameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#surname-form-field'}))
         expect(await surnameFormField.getTextErrors()).toEqual([])
     })
 
-    /*it('should get required name and surname field error message - empty field', fakeAsync(() => {
-        // PIPNEMO FORMU
-        component.myProfileForm.markAllAsTouched();
+    it('should get name and surname field error message - empty field', async() => {
         // popunjavanje forme
-        component.myProfileForm.controls['name'].setValue('');
-        component.myProfileForm.controls['surname'].setValue('');
+        const namelInput = await loader.getHarness(MatInputHarness.with({selector: '#name-input'}))
+        await namelInput.setValue('')
+        const surnameInput = await loader.getHarness(MatInputHarness.with({selector: '#surname-input'}))
+        await surnameInput.setValue('')
+        const dateInput = await loader.getHarness(MatInputHarness.with({selector: '#date-input'}))
+        await dateInput.setValue('2016-06-23');
+        
         // pozivanje metode KOJA IMA POVRATNU VREDNOST -> sacuvamo povratnu vrednost *tinkr tinkr*
         let returned = component.getNameErrorMessage('name');
         // sta ocekujemo da je povratna vrednost
         expect(returned).toEqual('Required field');
 
+        const nameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#name-form-field'}))
+        expect(await nameFormField.getTextErrors()).toEqual(['Required field'])
+
         returned = component.getNameErrorMessage('surname');
         expect(returned).toEqual('Required field');
-    }))
 
-    it('should get required name and surname field error message - not capitalized', fakeAsync(() => {
+        const surnameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#surname-form-field'}))
+        expect(await surnameFormField.getTextErrors()).toEqual(['Required field'])
+    })
+
+    it('should get name and surname field error message - not capitalized', async() => {
         // popunjavanje forme
-        component.myProfileForm.markAllAsTouched();
-        component.myProfileForm.controls['name'].setValue('ksenija');
-        component.myProfileForm.controls['surname'].setValue('jankovic');
+        const namelInput = await loader.getHarness(MatInputHarness.with({selector: '#name-input'}))
+        await namelInput.setValue('ksenija')
+        const surnameInput = await loader.getHarness(MatInputHarness.with({selector: '#surname-input'}))
+        await surnameInput.setValue('prcic')
+        const dateInput = await loader.getHarness(MatInputHarness.with({selector: '#date-input'}))
+        await dateInput.setValue('2016-06-23');
+        
         // pozivanje metode KOJA IMA POVRATNU VREDNOST -> sacuvamo povratnu vrednost *tinkr tinkr*
         let returned = component.getNameErrorMessage('name');
         // sta ocekujemo da je povratna vrednost
         expect(returned).toEqual('Must start with capital letter');
 
+        const nameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#name-form-field'}))
+        expect(await nameFormField.getTextErrors()).toEqual(['Must start with capital letter'])
+
         returned = component.getNameErrorMessage('surname');
         expect(returned).toEqual('Must start with capital letter');
-    }))
-    
-    it('should get required name and surname field error message - special characters', fakeAsync(() => {
-        // popunjavanje forme
-        component.myProfileForm.markAllAsTouched();
-        component.myProfileForm.controls['name'].setValue('K8');
-        component.myProfileForm.controls['surname'].setValue('J%');
-        // pozivanje metode KOJA IMA POVRATNU VREDNOST -> sacuvamo povratnu vrednost *tinkr tinkr*
-        let returned = component.getNameErrorMessage('name');
-        // sta ocekujemo da je povratna vrednost
-        expect(returned).toEqual('Cannot contain special characters or numbers');
 
-        returned = component.getNameErrorMessage('surname');
-        expect(returned).toEqual('Cannot contain special characters or numbers');
-    }))
+        const surnameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#surname-form-field'}))
+        expect(await surnameFormField.getTextErrors()).toEqual(['Must start with capital letter'])
+    })
 
-    it('should get required date field error message - valid field', fakeAsync(() => {
+    it('should get date field error message - valid field', async() => {
         // popunjavanje forme
-        component.myProfileForm.markAllAsTouched();
-        component.myProfileForm.controls['dateOfBirth'].setValue(new Date('2016-06-23'));
+        const dateInput = await loader.getHarness(MatInputHarness.with({selector: '#date-input'}))
+        await dateInput.setValue('2016-06-23');
+        const namelInput = await loader.getHarness(MatInputHarness.with({selector: '#name-input'}))
+        await namelInput.setValue('Ksenija')
+        const surnameInput = await loader.getHarness(MatInputHarness.with({selector: '#surname-input'}))
+        await surnameInput.setValue('Prcic')
+        
         // pozivanje metode KOJA IMA POVRATNU VREDNOST -> sacuvamo povratnu vrednost *tinkr tinkr*
         let returned = component.getDateErrorMessage('dateOfBirth');
         // sta ocekujemo da je povratna vrednost
         expect(returned).toEqual('');
-    }))*/
+    })
 })
