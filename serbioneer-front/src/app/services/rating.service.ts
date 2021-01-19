@@ -4,11 +4,14 @@ import { catchError, map } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { environment } from "../../environments/environment"
 
-export interface RatingDTO {
-    id: number,
-    value: number,
-    culturalSiteId: number,
-    authenticatedUserId: number,
+export class RatingDTO {
+
+    constructor(
+        public id: number,
+        public value: number,
+        public culturalSiteId: number,
+        public authenticatedUserId: number
+    ){}
 };
 
 export class RatingBackDTO {
