@@ -21,6 +21,8 @@ export class CommentComponent implements OnInit {
   inputText = "";
   userComment : boolean = true;
 
+  commentImageSlider: Array<object> = []
+
   constructor(
     private culturalSiteService : CulturalSiteService,
     private commentService : CommentService,
@@ -31,6 +33,12 @@ export class CommentComponent implements OnInit {
   ngOnInit(): void {
     this.inputText = this.comment.text;
     this.usersComment();
+    this.commentImageSlider = []
+    this.comment.images.map(
+      imageModel => {
+        this.commentImageSlider.push({image: "data:image/jpg;base64,"+imageModel.content, thumbImage: "data:image/jpg;base64,"+imageModel.content, title: imageModel.name})
+      }
+    )
   }
 
   editComment(){

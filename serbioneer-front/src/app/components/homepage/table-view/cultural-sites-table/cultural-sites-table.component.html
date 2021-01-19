@@ -1,0 +1,46 @@
+<div>
+<table mat-table [dataSource]="dataSource.content">
+
+    <!-- Header -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onClickRow(row.id)"></tr>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+    <td mat-cell *matCellDef="let row"> {{row.category}} </td>
+    </ng-container>
+
+    <!-- CategoryType Column -->
+    <ng-container matColumnDef="categoryType">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Category Type </th>
+    <td mat-cell *matCellDef="let row"> {{row.categoryType}} </td>
+    </ng-container>
+
+    <!-- Address Column -->
+    <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+    <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+    </ng-container>
+
+    <!-- City Column -->
+    <ng-container matColumnDef="city">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+    <td mat-cell *matCellDef="let row"> {{row.city}} </td>
+    </ng-container>
+
+</table>
+
+<mat-paginator 
+        [length]="dataSource.totalElements" 
+        [pageSize]="dataSource.size" 
+        [pageSizeOptions]="[2,5,10]"
+        (page)="pageEvent = $event; onPaginateChange($event)"
+></mat-paginator>
+</div>

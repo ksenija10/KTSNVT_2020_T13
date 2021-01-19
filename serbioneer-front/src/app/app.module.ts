@@ -11,7 +11,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,7 +45,6 @@ import { NewsComponent } from './components/newsfeed/news/news.component';
 import { MatCardModule } from '@angular/material/card';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
-import { MapCulturalSiteComponent } from './components/view-cultural-site/map-cultural-site/map-cultural-site.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NewsArticleComponent } from './components/news-article/news-article.component';
@@ -62,6 +60,8 @@ import { TypesComponent } from './components/admin/categories/types/types.compon
 import { NgImageSliderModule } from 'ng-image-slider';
 // infinite scroll
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -84,7 +84,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     NewsComponent,
     CategoriesComponent,
     ViewCulturalSiteComponent,
-    MapCulturalSiteComponent,
     NewsArticleComponent,
     CommentComponent,
     AddNewsArticleComponent,
@@ -125,7 +124,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     // slike
     NgImageSliderModule,
     // infinite scroll
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MatExpansionModule
   ],
   providers: [
     {

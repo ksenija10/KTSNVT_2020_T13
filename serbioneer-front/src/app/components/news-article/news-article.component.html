@@ -1,17 +1,12 @@
-<div class="row">
-    <div class="col">
-      <div class="comment-item">
-        <div class="vertical-viewport">
-          <div>{{news.dateTime | date:'medium'}}:</div>
-          <div>{{news.information}}</div>
-          <div *ngIf="news.images.length > 0">
-            <cdk-virtual-scroll-viewport itemSize="50" orientation="horizontal">
-              <div *cdkVirtualFor="let image of news.images" >
-                <img src="data:image/png;base64,{{image.content}}" class="example-item" id="image._id"/>
-              </div>
-            </cdk-virtual-scroll-viewport>
-          </div>
-        </div>
-      </div>
+<div class="news">
+  <div class="news-title">{{news.dateTime | date:'medium'}}:</div>
+    <div class="news-info">{{news.information}}</div>
+    <div class="news-images" *ngIf="news.images.length > 0">
+      <ng-image-slider
+        [images]="newsImageSlider"
+        [infinite]="false"
+        slideImage="1">
+      </ng-image-slider>
     </div>
+    <mat-divider></mat-divider>
 </div>

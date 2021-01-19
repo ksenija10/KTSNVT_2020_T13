@@ -41,8 +41,13 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
   addNewImages : boolean = false;
   addNewComment : boolean = false;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  // map div id
+  mapCulturalSite: string = "map-cultural-site"
+  // images array
+  siteImageSlider: Array<object> = []
+
+/*  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort; */
   pageEventNews: PageEvent = new PageEvent();
   pageEventComments: PageEvent = new PageEvent();
   page : number = 0;
@@ -79,12 +84,21 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
     this.culturalSiteService.getCulturalSite(this.culturalSiteService.getData()).pipe(
       map((culturalSite: CulturalSiteView) => {
         this.culturalSite = culturalSite;
+        // ubacivanje svih slika u listu slika kulturnog dobra
+        if(culturalSite.images) {
+          culturalSite.images.map((image: Image) => {
+            this.siteImageSlider.push({
+              image: "data:image/jpg;base64,"+image.content, 
+              thumbImage: "data:image/jpg;base64,"+image.content, 
+              title: image.name})
+          })
+        }
         if(this.userIsLogged){
           this.loggedSubscribedUser();
         }
         // dobavljamo sve news
         this.fetchNews(this.culturalSite.id!);
-        //dobavi komentare
+        // dobavi komentare
         this.fetchComments(this.culturalSite.id!);
       })
     ).subscribe();
@@ -278,6 +292,10 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
             this.newImageFiles = []
             this.addNewImages = false;
             this.culturalSite.images?.push(image)
+            this.siteImageSlider.push({
+              image: "data:image/jpg;base64,"+image.content, 
+              thumbImage: "data:image/jpg;base64,"+image.content, 
+              title: image.name})
           }
         )).subscribe()
       }
