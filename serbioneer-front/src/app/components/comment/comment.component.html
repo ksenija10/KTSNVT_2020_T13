@@ -23,7 +23,7 @@
               </button>
             </form>
           </div>
-          <div *ngIf="comment.images.length > 0">
+          <div *ngIf="comment.images!.length > 0">
             <cdk-virtual-scroll-viewport itemSize="50" orientation="horizontal">
               <div *cdkVirtualFor="let image of comment.images" >
                 <img src="data:image/png;base64,{{image.content}}" class="example-item" id="image.id"/>

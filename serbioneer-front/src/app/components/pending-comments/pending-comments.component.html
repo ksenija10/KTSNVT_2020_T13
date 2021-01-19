@@ -4,11 +4,13 @@
       <div class="page-title">Reviews</div>
       <mat-icon class="page-title" color="black">comment</mat-icon>
     </div>
-    <mat-list-item *ngFor="let comment of commentsData.content">
-      <app-approve-comment [comment]="comment"></app-approve-comment>
-    </mat-list-item>
+    <div id="pending-comments-list">
+      <mat-list-item *ngFor="let comment of commentsData.content">
+        <app-approve-comment [comment]="comment"></app-approve-comment>
+      </mat-list-item>
+    </div>
     <!--pomeriti paginator gore mozda?-->
-    <mat-paginator id="pending-comments-paginator"
+    <mat-paginator id="pending-comments-paginator" matPaginator class=".mat-paginator"
         [length]="commentsData.totalElements" 
         [pageSize]="commentsData.size" 
         [pageSizeOptions]="[1,5,10]"
