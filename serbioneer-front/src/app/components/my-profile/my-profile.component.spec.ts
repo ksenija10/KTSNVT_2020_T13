@@ -15,7 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('MyProfileComponent', () =>{
+describe('MyProfileComponent', () => {
     let component: MyProfileComponent;
     let fixture: ComponentFixture<MyProfileComponent>;
     // injektovani servisi i ostalo
