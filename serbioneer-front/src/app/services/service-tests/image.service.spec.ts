@@ -64,4 +64,54 @@ describe('Image service', () => {
     expect(responseImage.content).toEqual(1);
     expect(responseImage.name).toEqual('name');
   }));
+
+  it('should create new image for news', fakeAsync(() => {
+    let newId: number = 1;
+    let newFile: any = 1;
+
+    let responseImage: Image = { _id: 0, name: '', content: 0 };
+    let mockImage: Image = { _id: 1, name: 'name', content: 1 };
+
+    imageService.createForNews(newId, newFile).subscribe((data) => {
+      responseImage = data;
+    });
+
+    const request = httpMock.expectOne(
+      'http://localhost:8080/api/image/news/1'
+    );
+    expect(request.request.method).toBe('POST');
+    request.flush(mockImage);
+
+    tick();
+
+    expect(responseImage).toBeDefined();
+    expect(responseImage._id).toEqual(1);
+    expect(responseImage.content).toEqual(1);
+    expect(responseImage.name).toEqual('name');
+  }));
+
+  it('should create new image for cultural site', fakeAsync(() => {
+    let newId: number = 1;
+    let newFile: any = 1;
+
+    let responseImage: Image = { _id: 0, name: '', content: 0 };
+    let mockImage: Image = { _id: 1, name: 'name', content: 1 };
+
+    imageService.createForCulturalSite(newId, newFile).subscribe((data) => {
+      responseImage = data;
+    });
+
+    const request = httpMock.expectOne(
+      'http://localhost:8080/api/image/cultural-site/1'
+    );
+    expect(request.request.method).toBe('POST');
+    request.flush(mockImage);
+
+    tick();
+
+    expect(responseImage).toBeDefined();
+    expect(responseImage._id).toEqual(1);
+    expect(responseImage.content).toEqual(1);
+    expect(responseImage.name).toEqual('name');
+  }));
 });
