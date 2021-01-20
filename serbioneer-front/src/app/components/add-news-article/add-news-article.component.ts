@@ -9,7 +9,8 @@ import { Image, ImageDTO } from "src/app/model/image.model";
 
 @Component({
   selector: 'app-add-news-article',
-  templateUrl: 'add-news-article.component.html'
+  templateUrl: 'add-news-article.component.html',
+  styleUrls: ['./add-news-article.component.sass']
 })
 export class AddNewsArticleComponent{
 
@@ -17,7 +18,8 @@ export class AddNewsArticleComponent{
   images : any = [];
   files : any = [];
 
-  constructor( public dialogRef: MatDialogRef<AddNewsArticleComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<AddNewsArticleComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private culturalSiteService : CulturalSiteService,
     private imageService : ImageService)
@@ -54,7 +56,7 @@ export class AddNewsArticleComponent{
           this.dialogRef.close();
         }
       }
-    )).subscribe()
+    )).subscribe(() => this.files = []);
   }
 
   cancelForm(event : Event){
