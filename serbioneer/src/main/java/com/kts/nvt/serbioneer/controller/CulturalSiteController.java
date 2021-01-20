@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -55,8 +56,8 @@ public class CulturalSiteController {
 
     @Autowired
     private NewsService newsService;
-    
-    @Autowired
+	
+	@Autowired
     ApplicationEventPublisher eventPublisher;
 
     private final CulturalSiteMapper culturalSiteMapper;
@@ -220,15 +221,22 @@ public class CulturalSiteController {
         try {
             news = newsService.create(culturalSiteId, news);
             //slanje mejla svim pretplacenim korisnicam prilikom kreiranja novosti
-            String appUrl = request.getContextPath();
-            eventPublisher.publishEvent(new OnNewsCreatedEvent(news,
-                    request.getLocale(), appUrl, news.getCulturalSite().getSubscribedUsers()));
+            newsService.sendNewsNotification(news);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
 
         return new ResponseEntity<>(newsMapper.toDto(news), HttpStatus.CREATED);
     }
+    
+    /*
+	 * postavljeno u servisu kako bi se asinhrono pozvalo slanje mejla 
+	 */
+	@Async
+	public void sendMail(News news, HttpServletRequest request) {
+		eventPublisher.publishEvent(new OnNewsCreatedEvent(news,
+                request.getLocale(), request.getContextPath(), news.getCulturalSite().getSubscribedUsers()));
+	}
     
     /*
 		url: POST localhost:8080/api/cultural-site/filter/by-page
