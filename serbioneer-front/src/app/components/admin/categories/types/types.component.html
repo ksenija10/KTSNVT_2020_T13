@@ -7,7 +7,7 @@
 </ng-template>
 <div class="row">
     <div class="col-md-7">
-        <table mat-table [dataSource]="typeDataSource.content" class="mat-elevation-z8">
+        <table mat-table [dataSource]="typeDataSource.content">
             <!-- No data row -->
             <tr class="mat-row" *matNoDataRow>
                 <div *ngIf="chosenCategory; then categoryChosen else noCategory"></div>
@@ -41,7 +41,7 @@
                 </td>
             </ng-container>
         </table>
-        <mat-paginator class="mat-elevation-z8" showFirstLastButtons
+        <mat-paginator showFirstLastButtons
             [length]="typeDataSource.totalElements" 
             [pageSize]="typeDataSource.size" 
             [pageSizeOptions]="[2,5,10]"
@@ -55,7 +55,7 @@
                 <input matInput formControlName="name">
                 <mat-error *ngIf="addTypeForm.get('name')?.invalid">{{ getTypeNameErrorMessage() }}</mat-error>
             </mat-form-field>
-            <button mat-raised-button [disabled]="addTypeForm.invalid" class="btn btn-theme">
+            <button mat-raised-button [disabled]="addTypeForm.invalid" class="btn btn-purple">
                 Add type
             </button>
         </form>

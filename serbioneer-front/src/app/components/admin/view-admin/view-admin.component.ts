@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { AdminData, AdminService } from 'src/app/services/admin.service';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-admin',
@@ -15,7 +16,10 @@ export class ViewAdminComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private adminService: AdminService) {
+  constructor(
+    private adminService: AdminService,
+    private router: Router
+  ) {
     this.pageEvent.pageIndex = 0;
     this.pageEvent.pageSize = 2;
   }
@@ -33,16 +37,17 @@ export class ViewAdminComponent implements OnInit {
 
   onPaginateChange(event: PageEvent) {
     this.pageEvent = event;
-    console.log('On Paginate Change');
     this.getNewPage(this.pageEvent.pageIndex, this.pageEvent.pageSize);
   }
 
   getNewPage(index: number, size: number) {
-    console.log('getNewPage');
-    console.log(index, size);
     this.adminService
       .findAllByPage(index, size)
       .pipe(map((adminData: AdminData) => (this.dataSource = adminData)))
       .subscribe();
+  }
+
+  addAdmin() {
+    this.router.navigate(['new-admin'])
   }
 }

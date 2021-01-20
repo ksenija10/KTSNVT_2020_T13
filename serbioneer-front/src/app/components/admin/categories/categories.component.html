@@ -4,7 +4,7 @@
             <h2 class="title">Cultural site categories</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <table mat-table [dataSource]="categoryDataSource.content" class="mat-elevation-z8">
+                    <table mat-table [dataSource]="categoryDataSource.content">
                         <!-- No data row -->
                         <tr class="mat-row" *matNoDataRow>
                             <td class="mat-cell" colspan="2">No existing categories.</td>
@@ -32,7 +32,7 @@
                             </td>
                         </ng-container>
                     </table>
-                    <mat-paginator class="mat-elevation-z8" showFirstLastButtons
+                    <mat-paginator showFirstLastButtons
                         [length]="categoryDataSource.totalElements" 
                         [pageSize]="categoryDataSource.size" 
                         [pageSizeOptions]="[2,5,10]"
@@ -46,7 +46,7 @@
                             <input matInput formControlName="name">
                             <mat-error *ngIf="addCategoryForm.get('name')?.invalid">{{ getCategoryNameErrorMessage() }}</mat-error>
                         </mat-form-field>
-                        <button mat-raised-button [disabled]="addCategoryForm.invalid" class="btn btn-theme">
+                        <button mat-raised-button [disabled]="addCategoryForm.invalid" class="btn btn-purple">
                             Add category
                         </button>
                     </form>
