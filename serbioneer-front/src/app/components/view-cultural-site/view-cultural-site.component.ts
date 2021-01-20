@@ -22,6 +22,7 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
   })
   export class ViewCulturalSiteComponent implements OnInit {
 
+  culturalSiteId: number;
   culturalSite! : CulturalSiteView;
   starRating! : RatingCreateDTO;
   initialStarRating = 0;
@@ -56,10 +57,8 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
     private ratingService : RatingService,
     private imageService : ImageService,
     private newsDialog : MatDialog) { 
-      let id = this.culturalSiteService.getData();
-      if(id == undefined){
-        this.router.navigate(['homepage']);
-      }
+      let siteUrl = this.router.url.split('/')
+      this.culturalSiteId = <number><unknown>siteUrl[siteUrl.length - 1]
       this.loggedUser();
   }
 
@@ -76,7 +75,7 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
   }
 
   ngOnInit(): void {
-    this.culturalSiteService.getCulturalSite(this.culturalSiteService.getData()).pipe(
+    this.culturalSiteService.getCulturalSite(this.culturalSiteId).pipe(
       map((culturalSite: CulturalSiteView) => {
         this.culturalSite = culturalSite;
         if(this.userIsLogged){
@@ -87,7 +86,15 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
         //dobavi komentare
         this.fetchComments(this.culturalSite.id!);
       })
-    ).subscribe();
+    ).subscribe(
+      response => {
+        console.log('ne trebam im kao sto mojoj babi ne treba (nesto smesno)');
+      },
+      error => {
+        //TODO: toastr
+        this.router.navigate(['homepage']);
+      }
+    );
   }
 
   onPaginateChangeNews(event : PageEvent){
