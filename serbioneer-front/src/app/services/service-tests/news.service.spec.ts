@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { getTestBed, TestBed } from "@angular/core/testing";
-import { NewsDTO } from "src/app/model/news.model";
+import { NewsDTO } from "../../model/news.model";
 import { NewsDataByPage, NewsService } from "../news.service";
 
 describe('News service', () => {
@@ -36,12 +36,14 @@ describe('News service', () => {
             {
                 information: 'Djoaki Rosini, Seviljski berberin. Subota, 23. januar u 19.00, scena Jovan Djordjevic',
                 dateTime: new Date('2021-01-16'),
-                culturalSiteName: 'Srpsko narodno pozoriste'
+                culturalSiteName: 'Srpsko narodno pozoriste',
+                images: []
             },
             {
                 information: 'Premijera gostujuce predstave Amateri. Petak, 29. januar u 19.00, scena Pera Dobrinovic',
                 dateTime: new Date('2021-01-12'),
-                culturalSiteName: 'Srpsko narodno pozoriste'
+                culturalSiteName: 'Srpsko narodno pozoriste',
+                images: []
             }
         ]
 
