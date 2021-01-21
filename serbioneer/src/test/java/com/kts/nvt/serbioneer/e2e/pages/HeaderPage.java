@@ -46,6 +46,9 @@ public class HeaderPage {
 
     @FindBy(id = "logout-btn")
     private WebElement logoutBtn;
+    
+    @FindBy(id = "subscribed-btn")
+    private WebElement subscribedBtn;
 
     public HeaderPage(WebDriver driver) { this.driver = driver; }
 
@@ -98,16 +101,8 @@ public class HeaderPage {
 		return pendingCommentsBtn;
 	}
 
-	public void setPendingCommentsBtn(WebElement pendingComments) {
-		this.pendingCommentsBtn = pendingComments;
-	}
-
 	public WebElement getNewsfeedBtn() {
 		return newsfeedBtn;
-	}
-
-	public void setNewsfeedBtn(WebElement newsfeedBtn) {
-		this.newsfeedBtn = newsfeedBtn;
 	}
 
     public WebElement getLoginHeaderBtn() {
@@ -132,5 +127,9 @@ public class HeaderPage {
 
     public WebElement getViewAdminBtn() {
         return viewAdminBtn;
+    }
+    
+    public WebElement getSubscribedBtn() {
+    	return subscribedBtn;
     }
 }

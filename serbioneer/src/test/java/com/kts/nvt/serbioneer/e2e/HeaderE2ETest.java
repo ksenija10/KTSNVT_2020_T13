@@ -32,6 +32,8 @@ public class HeaderE2ETest {
     private PendingCommentsPage pendingCommentsPage;
 
     private ViewAdminPage viewAdminPage;
+    
+    private SubscribedSitesPage subscribedSitesPage;
 
     @Before
     public void setUp() throws InterruptedException {
@@ -52,6 +54,7 @@ public class HeaderE2ETest {
         categoriesPage = PageFactory.initElements(driver, CategoriesPage.class);
         pendingCommentsPage = PageFactory.initElements(driver, PendingCommentsPage.class);
         viewAdminPage = PageFactory.initElements(driver, ViewAdminPage.class);
+        subscribedSitesPage = PageFactory.initElements(driver, SubscribedSitesPage.class);
 
         //redirekcija na pocetak interakcije tj na login
         driver.get("http://localhost:4200/login-register/login");
@@ -120,7 +123,13 @@ public class HeaderE2ETest {
 
         justWait();
 
-        //TODO provera da li klikom na subscribed ide na subscribed
+        //provera da li klikom na subscribed ide na subscribed
+        headerPage.getSubscribedBtn().click();
+        headerPage.ensureIsAuthenticatedUser();
+        subscribedSitesPage.ensureIsDisplayed();
+        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/subscribed");
+        
+        justWait();
 
         //provera da li klikom na my profile ide na my profile
         Actions a= new Actions(driver);
