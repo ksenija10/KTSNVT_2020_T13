@@ -1,7 +1,7 @@
-<div class="row view-cultural-site">
+<div id = "cultural-site-view" class="row view-cultural-site">
     <div class="col">
         <div class="row">
-            <div class="col-7"><h2 class="site-title">{{culturalSite.name}}</h2></div>
+            <div id = "cultural-site-name" class="col-7"><h2 class="site-title">{{culturalSite.name}}</h2></div>
             <div class="col-1">
                 <div class="row rating">
                     <div>{{culturalSite.rating}}</div>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col"><h5>{{culturalSite.address}}, {{culturalSite.city}}</h5></div>
+            <div id = "cultural-site-address" class="col"><h5>{{culturalSite.address}}, {{culturalSite.city}}</h5></div>
         </div>
         <div class="row rate-site-div" *ngIf="userIsLogged">
             <div class="rate-site">Rate {{culturalSite.name}}!</div>
@@ -47,7 +47,7 @@
         <!-- News & Comments -->
         <mat-accordion>
             <!-- News -->
-            <mat-expansion-panel hideToggle>
+            <mat-expansion-panel id = "news-panel" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <h4 class="site-subtitle">
@@ -77,7 +77,7 @@
                 </ng-template>
             </mat-expansion-panel>
             <!-- Comments -->
-            <mat-expansion-panel hideToggle>
+            <mat-expansion-panel id = "comments-panel" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <h4 class="site-subtitle">
@@ -154,7 +154,7 @@
     </div>
     <div class="col-4">
         <!-- Map -->
-        <app-map-view
+        <app-map-view id = "map-view"
             [divId]="mapCulturalSite"
             [dataSource]="[culturalSite]"
         ></app-map-view>
