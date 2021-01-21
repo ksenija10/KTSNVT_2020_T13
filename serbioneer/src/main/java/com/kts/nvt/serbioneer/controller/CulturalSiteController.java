@@ -255,13 +255,28 @@ public class CulturalSiteController {
 		url: GET localhost:8080/api/cultural-site/subscribed/by-page
 		HTTP request for getting subscribed cultural sites by page
 	 */
+    @CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/subscribed/by-page")
-	public ResponseEntity<Page<CulturalSiteDTO>> getAllSubscribedCulturalSites(Pageable pageable){
+	public ResponseEntity<Page<CulturalSiteDTO>> getAllSubscribedCulturalSites(Pageable pageable, @RequestParam String userEmail){
 		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Page<CulturalSite> page = culturalSiteService.findAllSubscribed(pageable, user.getId());
 	    return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
 	}
+	
+	/*
+	url: POST localhost:8080/api/cultural-site/subscribed/filter/by-page
+	HTTP request for filtering cultural sites
+	*/
+	@CrossOrigin(origins = "http://localhost:4200")
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PostMapping(value = "/subscribed/filter/by-page", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Page<CulturalSiteDTO>> filterCulturalSitesSubscribed(Pageable pageable, 
+									@Valid @RequestBody CulturalSiteFilterDTO filterDTO, @RequestParam String userEmail) {
+		Page<CulturalSite> page = culturalSiteService.filterCulturalSitesSubscribed(pageable, filterDTO, userEmail);
+		return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
+	}
+	
 	
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "/locations")
@@ -269,17 +284,5 @@ public class CulturalSiteController {
         List<String> locations = culturalSiteService.findAllCities();
         return new ResponseEntity<>(locations, HttpStatus.OK);
     }
-	
-	/*
-	url: POST localhost:8080/api/cultural-site/filter/by-page
-	HTTP request for filtering cultural sites
-	*/
-	@CrossOrigin(origins = "http://localhost:4200")
-	@PostMapping(value = "/filter-subscribed/by-page", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Page<CulturalSiteDTO>> filterCulturalSitesSubscribed(Pageable pageable, 
-									@Valid @RequestBody CulturalSiteFilterDTO filterDTO, @RequestParam String userEmail) {
-		Page<CulturalSite> page = culturalSiteService.filterCulturalSitesSubscribed(pageable, filterDTO, userEmail);
-		return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
-	}
 
 }

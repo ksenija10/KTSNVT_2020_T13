@@ -105,7 +105,7 @@ import { ToastrService } from 'ngx-toastr';
         console.log('ne trebam im kao sto mojoj babi ne treba (nesto smesno)');
       },
       error => {
-        //TODO: toastr
+        this.toastr.error('Requested cultural site does not exist.');
         this.router.navigate(['homepage']);
       }
     );
