@@ -1,36 +1,31 @@
-<div class="row" *ngIf="activeComment">
-    <div class="col-12">
-      <div class="comment-item">
-        <div class="vertical-viewport">
-          <div class="row">
-            <div class="col">{{comment.name}} {{ comment.surname}}:</div>
-            <div class="col" *ngIf="activeComment && userComment"> <!--*ngif="userComment"-->
-              <button mat-icon-button color="primary" (click)="editComment()">
-                <mat-icon>create</mat-icon>
-              </button>
-              <button mat-icon-button color="warn" (click)="deleteComment()">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
-          </div>
-          <div>{{comment.culturalSiteName}}</div>
-          <div *ngIf="!editing">{{comment.text}}</div>
-          <div *ngIf="editing">
-            <form (ngSubmit)="saveComment($event)">
-              <input type="text" [value]="inputText" name="inputText">
-              <button mat-icon-button type="submit">
-                <mat-icon>rate_review</mat-icon>
-              </button>
-            </form>
-          </div>
-          <div *ngIf="comment.images!.length > 0">
-            <cdk-virtual-scroll-viewport itemSize="50" orientation="horizontal">
-              <div *cdkVirtualFor="let image of comment.images" >
-                <img src="data:image/png;base64,{{image.content}}" class="example-item" id="image.id"/>
-              </div>
-            </cdk-virtual-scroll-viewport>
-          </div>
-        </div>
-      </div>
+<div class="comment" *ngIf="activeComment">
+  <div class="row">
+    <div class="col comment-author">{{comment.name}} {{comment.surname}}:</div>
+    <div class="col" *ngIf="activeComment && userComment">
+      <button mat-icon-button color="primary" (click)="editComment()">
+        <mat-icon>create</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteComment()">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
+  </div>
+  <div class="comment-about">about {{comment.culturalSiteName}}</div>
+  <div class="comment-text" *ngIf="!editing">{{comment.text}}</div>
+  <div *ngIf="editing">
+    <form (ngSubmit)="saveComment($event)">
+      <input type="text" [value]="inputText" name="inputText">
+      <button mat-icon-button type="submit">
+        <mat-icon>save</mat-icon>
+      </button>
+    </form>
+  </div>
+  <div class="comment-images" *ngIf="comment.images.length > 0">
+    <ng-image-slider
+      [images]="commentImageSlider"
+      [infinite]="false"
+      slideImage="1">
+    </ng-image-slider>
+  </div>
+  <mat-divider></mat-divider>
 </div>

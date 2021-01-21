@@ -20,7 +20,8 @@ import { Router } from '@angular/router';
 })
 export class MapViewComponent implements AfterViewInit {
   
-  @Input() dataSource: CulturalSiteData = {content: [], size: 0, totalElements: 0, totalPages: 0};
+  @Input() dataSource: CulturalSite[] = [];
+  @Input() divId: string = '';
   
   //iterableDiffer: IterableDiffer<any>;
 
@@ -53,7 +54,7 @@ export class MapViewComponent implements AfterViewInit {
     });
     // inicijalizacija mape
     this.map = new Map({
-      target: 'map',
+      target: this.divId,
       layers: [rasterLayer, this.vectorLayer],
       view: new View({
         center: [0, 0],
@@ -95,7 +96,7 @@ export class MapViewComponent implements AfterViewInit {
 
   private addMarkers(): Feature[] {
     let markers: Feature[] = []
-    this.dataSource.content.map(
+    this.dataSource.map(
       (culturalSite: CulturalSite) => {
         if (culturalSite.lat && culturalSite.lng && culturalSite.id) {
           markers.push(this.createMarker(culturalSite.lat, culturalSite.lng, culturalSite.id))

@@ -6,10 +6,12 @@ import { NewsDTO } from 'src/app/model/news.model';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { ImageService, NewsDto } from 'src/app/services/image.service';
 import { Image, ImageDTO } from "src/app/model/image.model";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-news-article',
-  templateUrl: 'add-news-article.component.html'
+  templateUrl: 'add-news-article.component.html',
+  styleUrls: ['./add-news-article.component.sass']
 })
 export class AddNewsArticleComponent{
 
@@ -17,10 +19,12 @@ export class AddNewsArticleComponent{
   images : any = [];
   files : any = [];
 
-  constructor( public dialogRef: MatDialogRef<AddNewsArticleComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<AddNewsArticleComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private culturalSiteService : CulturalSiteService,
-    private imageService : ImageService)
+    private imageService : ImageService,
+    private toastr: ToastrService)
     {
       this.newsForm = new FormGroup({
         text: new FormControl('', [Validators.required])
@@ -54,7 +58,20 @@ export class AddNewsArticleComponent{
           this.dialogRef.close();
         }
       }
-    )).subscribe()
+    )).subscribe(
+      response => {
+        this.toastr.success('Successfully added news for cultural site!');
+        this.files = [];
+      },
+      error => {
+        if(error.error.message){
+          this.toastr.error(error.error.message);
+          this.files = [];
+        } else {
+          this.toastr.error('503 Server Unavailable');
+          this.files = [];
+        }
+      });
   }
 
   cancelForm(event : Event){
