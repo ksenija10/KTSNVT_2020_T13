@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -260,5 +261,17 @@ public class CulturalSiteController {
         List<String> locations = culturalSiteService.findAllCities();
         return new ResponseEntity<>(locations, HttpStatus.OK);
     }
+	
+	/*
+	url: POST localhost:8080/api/cultural-site/filter/by-page
+	HTTP request for filtering cultural sites
+	*/
+	@CrossOrigin(origins = "http://localhost:4200")
+	@PostMapping(value = "/filter-subscribed/by-page", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Page<CulturalSiteDTO>> filterCulturalSitesSubscribed(Pageable pageable, 
+									@Valid @RequestBody CulturalSiteFilterDTO filterDTO, @RequestParam String userEmail) {
+		Page<CulturalSite> page = culturalSiteService.filterCulturalSitesSubscribed(pageable, filterDTO, userEmail);
+		return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
+	}
 
 }
