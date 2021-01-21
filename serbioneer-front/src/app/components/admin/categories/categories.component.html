@@ -4,7 +4,7 @@
             <h2 class="title">Cultural site categories</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <table mat-table [dataSource]="categoryDataSource.content">
+                    <table id = "category-table" mat-table [dataSource]="categoryDataSource.content">
                         <!-- No data row -->
                         <tr class="mat-row" *matNoDataRow>
                             <td class="mat-cell" colspan="2">No existing categories.</td>
@@ -39,7 +39,7 @@
                             </td>
                         </ng-container>
                     </table>
-                    <mat-paginator showFirstLastButtons
+                    <mat-paginator id = "category-paginator" showFirstLastButtons
                         [length]="categoryDataSource.totalElements" 
                         [pageSize]="categoryDataSource.size" 
                         [pageSizeOptions]="[2,5,10]"
@@ -50,10 +50,10 @@
                     <form [formGroup]="addCategoryForm" #categoryFormDirective="ngForm" (ngSubmit)="onAddCategory(categoryFormDirective)">
                         <mat-form-field appearance="fill" class="form-field">
                             <mat-label>Add new cultural site category</mat-label>
-                            <input matInput formControlName="name">
-                            <mat-error *ngIf="addCategoryForm.get('name')?.invalid">{{ getCategoryNameErrorMessage() }}</mat-error>
+                            <input id = "cultural-category-name-input" matInput formControlName="name">
+                            <mat-error id = "category-name-error" *ngIf="addCategoryForm.get('name')?.invalid">{{ getCategoryNameErrorMessage() }}</mat-error>
                         </mat-form-field>
-                        <button mat-raised-button [disabled]="addCategoryForm.invalid" class="btn btn-purple">
+                        <button id = "cultural-category-add-btn" mat-raised-button [disabled]="addCategoryForm.invalid" class="btn btn-purple">
                             Add category
                         </button>
                     </form>
