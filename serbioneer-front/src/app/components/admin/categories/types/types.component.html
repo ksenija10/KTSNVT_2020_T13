@@ -1,13 +1,13 @@
 <div *ngIf="chosenCategory; then categoryTitle else noCategoryTitle"></div>
 <ng-template #categoryTitle>
-    <h2 class="title">{{ chosenCategory.name }} types</h2>
+    <h2 id = "chosen-category-name"  class="title">{{ chosenCategory.name }} types</h2>
 </ng-template>
 <ng-template #noCategoryTitle>
-    <h2 class="title">Choose a category</h2>
+    <h2 id = "no-category-chosen" class="title">Choose a category</h2>
 </ng-template>
-<div class="row">
+<div id = "category-type-div" class="row">
     <div class="col-md-7">
-        <table mat-table [dataSource]="typeDataSource.content">
+        <table id ="category-type-table" mat-table [dataSource]="typeDataSource.content">
             <!-- No data row -->
             <tr class="mat-row" *matNoDataRow>
                 <div *ngIf="chosenCategory; then categoryChosen else noCategory"></div>
@@ -41,7 +41,7 @@
                 </td>
             </ng-container>
         </table>
-        <mat-paginator showFirstLastButtons
+        <mat-paginator id ="types-paginator" showFirstLastButtons
             [length]="typeDataSource.totalElements" 
             [pageSize]="typeDataSource.size" 
             [pageSizeOptions]="[2,5,10]"
@@ -52,10 +52,10 @@
         <form [formGroup]="addTypeForm" #typeFormDirective="ngForm" (ngSubmit)="onAddType(typeFormDirective)">
             <mat-form-field appearance="fill" class="form-field">
                 <mat-label>Add new cultural category type</mat-label>
-                <input matInput formControlName="name">
-                <mat-error *ngIf="addTypeForm.get('name')?.invalid">{{ getTypeNameErrorMessage() }}</mat-error>
+                <input id = "type-name-input" matInput formControlName="name">
+                <mat-error id = "type-name-error" *ngIf="addTypeForm.get('name')?.invalid">{{ getTypeNameErrorMessage() }}</mat-error>
             </mat-form-field>
-            <button mat-raised-button [disabled]="addTypeForm.invalid" class="btn btn-purple">
+            <button id ="type-add-btn" mat-raised-button [disabled]="addTypeForm.invalid" class="btn btn-purple">
                 Add type
             </button>
         </form>
