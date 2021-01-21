@@ -84,7 +84,7 @@ const routes: Routes = [
     data: { expectedRoles: 'ROLE_ADMIN|ROLE_USER' },
   },
   { 
-    path: 'cultural-site', 
+    path: 'cultural-site/:id', 
     component: ViewCulturalSiteComponent
   },
   {
