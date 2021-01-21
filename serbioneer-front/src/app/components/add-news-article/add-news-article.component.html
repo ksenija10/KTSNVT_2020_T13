@@ -17,7 +17,12 @@
                 (change)="onFileChange($event)">
         </div>
         <img *ngFor='let url of images'  [src]="url" class="image-preview"> <br/>
-        <button mat-raised-button class="btn btn-purple" type="submit">Create</button>
+        <button 
+            mat-raised-button class="btn btn-purple" 
+            type="submit"
+            [disabled]="newsForm.invalid">
+            Create
+        </button>
         <button mat-raised-button class="btn btn-purple separate" (click)="close()" type="button">Cancel</button>
     </form>
 </mat-dialog-content>

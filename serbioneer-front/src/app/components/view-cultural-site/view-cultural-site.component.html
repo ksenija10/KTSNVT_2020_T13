@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col"><h5>{{culturalSite.address}}, {{culturalSite.city}}</h5></div>
         </div>
-        <div class="row" *ngIf="userIsLogged">
+        <div class="row rate-site-div" *ngIf="userIsLogged">
             <div class="rate-site">Rate {{culturalSite.name}}!</div>
             <ngb-rating [max]="5" [(rate)]="starRating.value" [readonly]="false" (rateChange)="onRatingChange()"></ngb-rating>
         </div>
@@ -105,29 +105,52 @@
                     <h6>But be sure to check soon!</h6>
                     <h6 *ngIf="userIsLogged">Or try adding some yourself!</h6>
                 </ng-template>
+                <div class="row comment-div" *ngIf="userIsLogged">
+                    <div class="comment-write">Leave your review:</div>
+                    <button 
+                        type="submit" class="btn comment-btn" 
+                        matTooltip="Click to review"
+                        matTooltipPosition="right"
+                        (click)="addComments()">
+                        <mat-icon>comment</mat-icon>
+                    </button>
+                </div>
+                <!-- Add review -->
+                <div class="col-7 add-box" *ngIf="addNewComment">
+                    <form [formGroup]="myForm" (ngSubmit)="submit()">
+                        <div class="form-group comment-group">
+                            <mat-form-field id="new-comment-form-field" appearance="fill" class="form-field">
+                                <mat-label>Comment</mat-label>
+                                <input 
+                                    type="text" id="new-comment-input" class="type-comment" name="newCommentText"
+                                    placeholder="Share your experience of {{culturalSite.name}}"
+                                    matInput formControlName="text">
+                                <mat-error id="new-comment-error" *ngIf="myForm.get('text')?.invalid">{{getTextErrorMessage()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group file-group">
+                            <label for="file" class="file-title">Images</label>
+                            <input 
+                                formControlName="file"
+                                id="file" 
+                                type="file" 
+                                class="form-control"
+                                multiple="" 
+                                (change)="onFileChange($event)">
+                        </div>
+                        <div>
+                            <img *ngFor='let url of images'  [src]="url" class="image-preview">
+                        </div>
+                        <button 
+                            mat-raised-button class="btn btn-purple" 
+                            type="submit"
+                            [disabled]="myForm.invalid">
+                            Review
+                        </button>
+                    </form>
+                </div>
             </mat-expansion-panel>
         </mat-accordion>
-        <!-- Add review -->
-        <div class="row" *ngIf="addNewComment">
-            <form [formGroup]="myForm" (ngSubmit)="submit($event)">
-                <div class="form-group">
-                    <input type="text" placeholder="Share your experience of {{culturalSite.name}}" class="type-comment"
-                        name="newCommentText" formControlName="text"/>
-                </div>
-                <div class="form-group">
-                    <label for="file">File</label>
-                    <input 
-                        formControlName="file"
-                        id="file" 
-                        type="file" 
-                        class="form-control"
-                        multiple="" 
-                        (change)="onFileChange($event)">
-                </div>
-                <img *ngFor='let url of images'  [src]="url" class="image-preview"> <br/>
-                <button class="btn btn-primary" type="submit">Submit</button>
-            </form>
-        </div>
     </div>
     <div class="col-4">
         <!-- Map -->
@@ -136,21 +159,30 @@
             [dataSource]="[culturalSite]"
         ></app-map-view>
         <!-- Add image -->
-        <div class="row file-form" *ngIf="addNewImages">
-            <form [formGroup]="myForm" (ngSubmit)="submitImages($event)">
-                <div class="form-group">
-                    <label for="file" class="file-title">File</label>
-                    <input 
-                        formControlName="file"
-                        id="file" 
-                        type="file" 
-                        class="form-control"
-                        multiple="" 
-                        (change)="onNewImageChange($event)">
-                </div>
-                <img *ngFor='let url of newImages'  [src]="url" class="image-preview">
-                <button mat-raised-button class="btn btn-purple" type="submit">Submit</button>
-            </form>
+        <div class="divide">
+            <div class="row file-group add-box" *ngIf="addNewImages">
+                <form [formGroup]="myForm" (ngSubmit)="submitImages()">
+                    <div class="form-group">
+                        <label for="file" class="file-title">Images</label>
+                        <input 
+                            formControlName="file"
+                            id="file" 
+                            type="file" 
+                            class="form-control"
+                            multiple="" 
+                            (change)="onNewImageChange($event)">
+                    </div>
+                    <div>
+                        <img *ngFor='let url of newImages'  [src]="url" class="image-preview">
+                    </div>
+                    <button 
+                        mat-raised-button class="btn btn-purple" 
+                        type="submit"
+                        [disabled]="!(newImageFiles.length>0)">
+                        Submit
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

@@ -62,6 +62,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -125,7 +126,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     NgImageSliderModule,
     // infinite scroll
     InfiniteScrollModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTooltipModule
   ],
   providers: [
     {

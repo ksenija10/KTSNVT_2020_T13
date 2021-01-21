@@ -15,7 +15,14 @@
                         <!-- Dinamicke kolone (ime) -->
                         <ng-container matColumnDef="name">
                             <th mat-header-cell *matHeaderCellDef> Category name </th>
-                            <td mat-cell *matCellDef="let category" (click)="chooseCategory(category)" class="choose-cat"> {{ category.name }} </td>
+                            <td 
+                                matTooltip="Click to choose category"
+                                matTooltipPosition="above"
+                                mat-cell *matCellDef="let category" 
+                                (click)="chooseCategory(category)" 
+                                class="choose-cat"> 
+                                {{ category.name }} 
+                            </td>
                         </ng-container>
                         <!-- Staticke kolone (akcije) -->
                         <ng-container matColumnDef="actions">

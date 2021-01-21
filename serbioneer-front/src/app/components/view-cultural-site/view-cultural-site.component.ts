@@ -14,6 +14,7 @@ import { ImageService } from 'src/app/services/image.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddNewsArticleComponent } from '../add-news-article/add-news-article.component';
 import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-cultural-site',
@@ -32,9 +33,9 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
   files: any = [];
   newImageFiles : any = [];
   myForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    file: new FormControl('', [Validators.required]),
-    fileSource: new FormControl('', [Validators.required])});
+    text: new FormControl('', [Validators.required]),
+    file: new FormControl(''),
+    fileSource: new FormControl('')});
   buttonValue! : string;
   userIsLogged : boolean = false;
   adminIsLogged : boolean = false;
@@ -46,8 +47,6 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
   // images array
   siteImageSlider: Array<object> = []
 
-/*  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort; */
   pageEventNews: PageEvent = new PageEvent();
   pageEventComments: PageEvent = new PageEvent();
   page : number = 0;
@@ -56,6 +55,7 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
   constructor(
     private culturalSiteService: CulturalSiteService,
     private router: Router,
+    private toastr: ToastrService,
     private authenticationService : AuthenticationService,
     private authUserService: AuthenticatedUserService,
     private ratingService : RatingService,
@@ -159,12 +159,34 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
 
   onChangeSubscription(event : Event){
     if(this.buttonValue == "Subscribe"){
-      this.authUserService.subscribe(this.culturalSite.id!).subscribe();
-      this.buttonValue = "Unsubscribe";
+      this.authUserService.subscribe(this.culturalSite.id!)
+        .subscribe(
+          response => {
+            this.toastr.success('Successfully subscribed to cultural site!');
+            this.buttonValue = "Unsubscribe";
+          },
+          error => {
+            if(error.error.message){
+              this.toastr.error(error.error.message);
+            } else {
+              this.toastr.error('503 Server Unavailable');
+            }
+        });
     }
     else{
-      this.authUserService.unsubscribe(this.culturalSite.id!).subscribe();
-      this.buttonValue = "Subscribe";
+      this.authUserService.unsubscribe(this.culturalSite.id!)
+        .subscribe(
+          response => {
+            this.toastr.info('Successfully unsubscribed from cultural site. Sad to see you leave.');
+            this.buttonValue = "Subscribe";
+          },
+          error => {
+            if(error.error.message){
+              this.toastr.error(error.error.message);
+            } else {
+              this.toastr.error('503 Server Unavailable');
+            }
+        });
     }
   }
 
@@ -218,14 +240,13 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
             fileSource: this.images
           });
         }
-
         reader.readAsDataURL(event.target.files[i]);
       }
     }
   }
 
-  submit(event: any){
-    let commentText = event!.target.newCommentText.value;
+  submit(){
+    let commentText = this.myForm.get('text')?.value;
     this.culturalSiteService.createComment(this.culturalSite.id!, commentText).pipe(map(
       (newComment : CommentDto) => {
         //provera da li je lista slika prazna
@@ -243,7 +264,22 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
           }
         }
       }
-    )).subscribe()
+    )).subscribe(
+      // zavrsio kreiranje komentara
+      response => {
+        this.toastr.success('Successfully reviewed cultural site!\n' +
+                            'Your review will be visible after approval.');
+        this.addNewComment = false;
+        this.myForm.reset();
+      },
+      error => {
+        if(error.error.message){
+          this.toastr.error(error.error.message);
+        } else {
+          this.toastr.error('503 Server Unavailable');
+        }
+      }
+    )
   }
 
   openDialog(){
@@ -258,11 +294,15 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
   }
 
   addImages(){
-    this.addNewImages = true;
+    this.addNewImages = !this.addNewImages;
+    this.newImageFiles = [];
+    this.newImages = [];
   }
 
   addComments(){
-    this.addNewComment = true;
+    this.addNewComment = !this.addNewComment;
+    this.images = [];
+    this.myForm.reset();
   }
 
   onNewImageChange(event : any) {
@@ -281,7 +321,7 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
     }
   }
 
-  submitImages(event : any){
+  submitImages(){
     //provera da li je lista slika prazna
     if(this.newImageFiles.length > 0){
       //ako nije onda dodajemo jedan po jedan fajl
@@ -297,10 +337,30 @@ import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
               thumbImage: "data:image/jpg;base64,"+image.content, 
               title: image.name})
           }
-        )).subscribe()
+        )).subscribe(
+          response => {
+            this.toastr.success('Successfully added image for cultural site!')
+          },
+          error => {
+            if(error.error.message){
+              this.toastr.error(error.error.message);
+            } else {
+              this.toastr.error('503 Server Unavailable');
+            }
+          }
+        )
       }
     }
     
+  }
+
+  getTextErrorMessage() {
+    if(this.myForm.controls['text'].touched) {
+        if ( this.myForm.controls['text'].hasError('required')) {
+        return 'Required field';
+        }
+    }
+    return '';
   }
 }
 
