@@ -20,29 +20,42 @@ public class HeaderPage {
     @FindBy(id = "admin-btn-group")
     private WebElement adminBtnGroup;
 
-    @FindBy(id = "logout-btn")
-    private WebElement logoutBtn;
+    @FindBy(id = "user-dropdown")
+    private WebElement userDropDown;
+
+    @FindBy(id = "login-header-btn")
+    private WebElement loginHeaderBtn;
     
     @FindBy(id = "pending-comments-btn")
     private WebElement pendingCommentsBtn;
+
+    @FindBy(id = "view-admin-btn")
+    private WebElement viewAdminBtn;
     
     @FindBy(id = "newsfeed-btn")
 	private WebElement newsfeedBtn;
 
+    @FindBy(id = "categories-btn")
+    private WebElement categoriesBtn;
+
+    @FindBy(id = "my-profile-btn")
+    private WebElement myProfileBtn;
+
+    @FindBy(id = "change-password-btn")
+    private WebElement changePasswordBtn;
+
+    @FindBy(id = "logout-btn")
+    private WebElement logoutBtn;
+
     public HeaderPage(WebDriver driver) { this.driver = driver; }
 
     public void ensureIsUnauthenticatedUser() {
-        /*(new WebDriverWait(driver, 10)).until(
+        (new WebDriverWait(driver, 10)).until(
                 ExpectedConditions.and(
                         ExpectedConditions.visibilityOf(homeBtn),
-                        ExpectedConditions.invisibilityOf(userBtnGroup),
-                        ExpectedConditions.invisibilityOf(adminBtnGroup),
-                        ExpectedConditions.invisibilityOf(logoutBtn)
-                    )
-                );*/
-        //iz nekog meni nepoznatog razloga invisibilityOf ne radi
-        (new WebDriverWait(driver, 10)).until(
-                ExpectedConditions.visibilityOf(homeBtn));
+                        ExpectedConditions.visibilityOf(loginHeaderBtn)
+                )
+        );
     }
 
     public void ensureIsAuthenticatedUser() {
@@ -50,7 +63,7 @@ public class HeaderPage {
                 ExpectedConditions.and(
                         ExpectedConditions.visibilityOf(homeBtn),
                         ExpectedConditions.visibilityOf(userBtnGroup),
-                        ExpectedConditions.visibilityOf(logoutBtn)
+                        ExpectedConditions.visibilityOf(userDropDown)
                 )
         );
     }
@@ -60,7 +73,7 @@ public class HeaderPage {
                 ExpectedConditions.and(
                         ExpectedConditions.visibilityOf(homeBtn),
                         ExpectedConditions.visibilityOf(adminBtnGroup),
-                        ExpectedConditions.visibilityOf(logoutBtn)
+                        ExpectedConditions.visibilityOf(userDropDown)
                 )
         );
     }
@@ -77,8 +90,8 @@ public class HeaderPage {
         return adminBtnGroup;
     }
 
-    public WebElement getLogoutBtn() {
-        return logoutBtn;
+    public WebElement getUserDropDown() {
+        return userDropDown;
     }
     
     public WebElement getPendingCommentsBtn() {
@@ -96,5 +109,28 @@ public class HeaderPage {
 	public void setNewsfeedBtn(WebElement newsfeedBtn) {
 		this.newsfeedBtn = newsfeedBtn;
 	}
-	
+
+    public WebElement getLoginHeaderBtn() {
+        return loginHeaderBtn;
+    }
+
+    public WebElement getMyProfileBtn() {
+        return myProfileBtn;
+    }
+
+    public WebElement getChangePasswordBtn() {
+        return changePasswordBtn;
+    }
+
+    public WebElement getLogoutBtn() {
+        return logoutBtn;
+    }
+
+    public WebElement getCategoriesBtn() {
+        return categoriesBtn;
+    }
+
+    public WebElement getViewAdminBtn() {
+        return viewAdminBtn;
+    }
 }

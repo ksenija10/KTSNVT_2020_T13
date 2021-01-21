@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class HomepageE2ETest {
 
     private HomepagePage homepagePage;
 
-    private LoginPage loginPage;
+    private CulturalSiteViewPage culturalSiteViewPage;
 
     @Before
     public void setUp() throws InterruptedException {
@@ -41,7 +42,7 @@ public class HomepageE2ETest {
         headerPage = PageFactory.initElements(driver, HeaderPage.class);
         tableViewPage = PageFactory.initElements(driver, TableViewPage.class);
         homepagePage = PageFactory.initElements(driver, HomepagePage.class);
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
+        culturalSiteViewPage = PageFactory.initElements(driver, CulturalSiteViewPage.class);
 
         //redirekcija na pocetak interakcije tj na homepage
         driver.get("http://localhost:4200/homepage");
@@ -50,6 +51,8 @@ public class HomepageE2ETest {
     @Test
     public void filterByCategoryTestSuccess() throws InterruptedException {
         justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
 
         homepagePage.ensureIsDisplayedHomepage();
 
@@ -85,6 +88,8 @@ public class HomepageE2ETest {
     public void filterByNameTestSuccess() throws InterruptedException {
         justWait();
 
+        headerPage.ensureIsUnauthenticatedUser();
+
         homepagePage.ensureIsDisplayedHomepage();
 
         tableViewPage.ensureIsDisplayedTableView();
@@ -118,6 +123,8 @@ public class HomepageE2ETest {
     public void filterByLocationTestSuccess() throws InterruptedException {
         justWait();
 
+        headerPage.ensureIsUnauthenticatedUser();
+
         homepagePage.ensureIsDisplayedHomepage();
 
         tableViewPage.ensureIsDisplayedTableView();
@@ -150,6 +157,8 @@ public class HomepageE2ETest {
     @Test
     public void filterByCategoryAndLocationAndNameTestSuccess() throws InterruptedException {
         justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
 
         homepagePage.ensureIsDisplayedHomepage();
 
@@ -189,6 +198,8 @@ public class HomepageE2ETest {
     public void filterByCategoryAndLocationAndNameTestNoMatchSuccess() throws InterruptedException {
         justWait();
 
+        headerPage.ensureIsUnauthenticatedUser();
+
         homepagePage.ensureIsDisplayedHomepage();
 
         tableViewPage.ensureIsDisplayedTableView();
@@ -207,6 +218,37 @@ public class HomepageE2ETest {
         List<WebElement> rows = tableViewPage.getCulturalSiteTable().findElements(By.tagName("tr"));
 
         assertEquals(rows.get(1).getText(), "No existing cultural sites.");
+    }
+
+    @Test
+    public void clickOnCulturalSiteForDetailedViewTestSuccess() throws InterruptedException {
+        justWait();
+
+        headerPage.ensureIsUnauthenticatedUser();
+
+        homepagePage.ensureIsDisplayedHomepage();
+
+        tableViewPage.ensureIsDisplayedTableView();
+
+        justWait();
+
+        List<WebElement> rows = tableViewPage.getCulturalSiteTable().findElements(By.tagName("tr"));
+
+        List<WebElement> data = tableViewPage.getCulturalSiteTable().findElements(By.tagName("td"));
+
+        String name = data.get(0).getText();
+        String address = data.get(3).getText() + ", " + data.get(4).getText();
+
+        rows.get(1).click();
+
+        culturalSiteViewPage.ensureIsDisplayedUnauthenticatedUser();
+
+        justWait();
+
+        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/cultural-site/1");
+        assertEquals(name, culturalSiteViewPage.getCulturalSiteName().getText());
+        assertEquals(address, culturalSiteViewPage.getCulturalSiteAddress().getText());
+
     }
     
     @After
