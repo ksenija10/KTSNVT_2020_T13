@@ -24,6 +24,9 @@ public class LoginRegisterPage {
 
     @FindBy(id = "register-form")
     WebElement registerForm;
+    
+    @FindBy(xpath = "//*[@id=\"toast-container\"]//*[1]//*[1]")
+    private WebElement toast;
 
     public LoginRegisterPage(WebDriver driver) {
         this.driver = driver;
@@ -61,5 +64,10 @@ public class LoginRegisterPage {
 
     public WebElement getRegisterLink() {
         return registerLink;
+    }
+    
+    public void toastSuccessLogout() {
+        (new WebDriverWait(driver, 10)).until(
+                ExpectedConditions.textToBePresentInElement(toast,"Logged out successfully!"));
     }
 }

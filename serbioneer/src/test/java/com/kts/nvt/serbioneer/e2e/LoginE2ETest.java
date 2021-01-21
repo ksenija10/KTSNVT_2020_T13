@@ -21,7 +21,7 @@ public class LoginE2ETest {
     private HeaderPage headerPage;
 
     private LoginPage loginPage;
-
+  
     private HomepagePage homepagePage;
 
     @Before
@@ -44,36 +44,35 @@ public class LoginE2ETest {
 
     @Test
     public void LogInTestAdminSuccess() throws InterruptedException {
+    	 justWait();
 
-        justWait();
+         headerPage.ensureIsUnauthenticatedUser();
 
-        headerPage.ensureIsUnauthenticatedUser();
+         loginPage.ensureIsDisplayedLoginForm();
+       
+         assertFalse(loginPage.getLoginBtn().isEnabled());
+       
+         loginPage.getEmail().sendKeys("admin@admin.com");
 
-        loginPage.ensureIsDisplayedLoginForm();
+         loginPage.getPassword().sendKeys("admin");
+       
+         loginPage.getViewPass().click();
 
-        assertFalse(loginPage.getLoginBtn().isEnabled());
+         justWait();
 
-        loginPage.getEmail().sendKeys("admin@admin.com");
+         assertTrue(loginPage.getLoginBtn().isEnabled());
 
-        loginPage.getPassword().sendKeys("admin");
+         loginPage.getLoginBtn().click();
 
-        loginPage.getViewPass().click();
+         justWait();
 
-        justWait();
+         homepagePage.ensureIsDisplayedHomepage();
 
-        assertTrue(loginPage.getLoginBtn().isEnabled());
+         headerPage.ensureIsAdmin();
 
-        loginPage.getLoginBtn().click();
+         loginPage.toastSuccess();
 
-        justWait();
-
-        homepagePage.ensureIsDisplayedHomepage();
-
-        headerPage.ensureIsAdmin();
-
-        loginPage.toastSuccess();
-
-        assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
+         assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
     }
 
     @Test
@@ -100,7 +99,7 @@ public class LoginE2ETest {
         loginPage.getLoginBtn().click();
 
         justWait();
-
+      
         homepagePage.ensureIsDisplayedHomepage();
 
         headerPage.ensureIsAuthenticatedUser();

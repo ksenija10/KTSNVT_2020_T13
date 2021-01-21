@@ -16,6 +16,8 @@ public interface CulturalCategoryTypeRepository extends JpaRepository<CulturalCa
 	List<CulturalCategoryType> findAllByCulturalSiteCategoryName(String categoryName);
 	
 	Page<CulturalCategoryType> findAllByCulturalSiteCategoryId(Long categoryId, Pageable pageable);
+
+	Page<CulturalCategoryType> findAllByCulturalSiteCategoryIdOrderByIdAsc(Long categoryId, Pageable pageable);
 	
 	CulturalCategoryType findOneByName(String name);
 	

@@ -51,7 +51,11 @@ public class RatingController {
 		Page<Rating> ratings = ratingService.findAllByCulturalSiteId(pageable, culturalSiteId);
 		return new ResponseEntity<>(ratingMapper.toDtoPage(ratings), HttpStatus.OK);
 	}
-	
+
+	/*
+	 * url: POST localhost:8080/api/rating/user-site-rating
+	 * HTTP request for getting user rating for a specific cultural site
+	 */
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping(value = "/user-site-rating")
 	public ResponseEntity<RatingDTO> getUserRatingForCulturalSite(@Valid @RequestBody UserRatingForCulturalSiteDTO dto) throws ExistentFieldValueException {

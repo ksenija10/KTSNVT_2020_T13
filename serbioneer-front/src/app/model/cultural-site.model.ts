@@ -21,10 +21,6 @@ export class SubscribedCulturalSiteDTO {
     public userEmail: string,
     public culturalSiteId: number
   ) {}
-
-  isSubscribed() {
-    return this.subscribed;
-  }
 }
 
 export class CulturalSite implements CulturalSite {

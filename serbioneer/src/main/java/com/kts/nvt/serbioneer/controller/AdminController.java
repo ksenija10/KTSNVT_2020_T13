@@ -1,5 +1,7 @@
 package com.kts.nvt.serbioneer.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +12,22 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kts.nvt.serbioneer.dto.AdminDTO;
 import com.kts.nvt.serbioneer.dto.PasswordDTO;
 import com.kts.nvt.serbioneer.dto.UserUpdateDTO;
 import com.kts.nvt.serbioneer.helper.AdminMapper;
+import com.kts.nvt.serbioneer.jwt.TokenUtils;
 import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.service.AdminService;
 
@@ -27,6 +37,9 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+
+	@Autowired
+	private TokenUtils tokenUtils;
 	
 	private final AdminMapper adminMapper = new AdminMapper();
 	
@@ -110,14 +123,24 @@ public class AdminController {
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<PasswordDTO> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
+	public ResponseEntity<Void> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO,
+														HttpServletRequest request,
+														HttpServletResponse response) {
 		try{
 			Admin user = (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			user = adminService.updatePassword(passwordDTO, user);
+			// uspesno promenio sifru
+			String newToken = tokenUtils.generateToken(user.getUsername(), user.getAuthorities());
+			int expiresIn = tokenUtils.getExpiresIn();
+			// postavljanje headera
+			response.addHeader(tokenUtils.getAuthHeader(), "Bearer " + newToken);
+			response.addHeader(tokenUtils.getExpHeader(), String.valueOf(expiresIn));
+			// prikaz heder-a na frontu, da bismo mogli da ih dobavimo
+			response.addHeader("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept, Authorization, Expires-In");
+			response.addHeader("Access-Control-Expose-Headers", "Authorization, Expires-In");
+			return new ResponseEntity<>(HttpStatus.OK);
 		}catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
-
-		return new ResponseEntity<>(passwordDTO, HttpStatus.OK);
 	}
 }

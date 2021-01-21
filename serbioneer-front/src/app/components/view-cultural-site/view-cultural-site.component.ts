@@ -13,6 +13,8 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { ImageService } from 'src/app/services/image.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddNewsArticleComponent } from '../add-news-article/add-news-article.component';
+import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-cultural-site',
@@ -21,6 +23,7 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
   })
   export class ViewCulturalSiteComponent implements OnInit {
 
+  culturalSiteId: number;
   culturalSite! : CulturalSiteView;
   starRating! : RatingCreateDTO;
   initialStarRating = 0;
@@ -31,17 +34,20 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
   files: any = [];
   newImageFiles : any = [];
   myForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    file: new FormControl('', [Validators.required]),
-    fileSource: new FormControl('', [Validators.required])});
+    text: new FormControl('', [Validators.required]),
+    file: new FormControl(''),
+    fileSource: new FormControl('')});
   buttonValue! : string;
   userIsLogged : boolean = false;
   adminIsLogged : boolean = false;
   addNewImages : boolean = false;
   addNewComment : boolean = false;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  // map div id
+  mapCulturalSite: string = "map-cultural-site"
+  // images array
+  siteImageSlider: Array<object> = []
+
   pageEventNews: PageEvent = new PageEvent();
   pageEventComments: PageEvent = new PageEvent();
   page : number = 0;
@@ -50,14 +56,14 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
   constructor(
     private culturalSiteService: CulturalSiteService,
     private router: Router,
+    private toastr: ToastrService,
     private authenticationService : AuthenticationService,
+    private authUserService: AuthenticatedUserService,
     private ratingService : RatingService,
     private imageService : ImageService,
     private newsDialog : MatDialog) { 
-      let id = this.culturalSiteService.getData();
-      if(id == undefined){
-        this.router.navigate(['homepage']);
-      }
+      let siteUrl = this.router.url.split('/')
+      this.culturalSiteId = <number><unknown>siteUrl[siteUrl.length - 1]
       this.loggedUser();
   }
 
@@ -74,34 +80,51 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
   }
 
   ngOnInit(): void {
-    this.culturalSiteService.getCulturalSite(this.culturalSiteService.getData()).pipe(
+    this.culturalSiteService.getCulturalSite(this.culturalSiteId).pipe(
       map((culturalSite: CulturalSiteView) => {
         this.culturalSite = culturalSite;
+        // ubacivanje svih slika u listu slika kulturnog dobra
+        if(culturalSite.images) {
+          culturalSite.images.map((image: Image) => {
+            this.siteImageSlider.push({
+              image: "data:image/jpg;base64,"+image.content, 
+              thumbImage: "data:image/jpg;base64,"+image.content, 
+              title: image.name})
+          })
+        }
         if(this.userIsLogged){
           this.loggedSubscribedUser();
         }
         // dobavljamo sve news
         this.fetchNews(this.culturalSite.id!);
-        //dobavi komentare
+        // dobavi komentare
         this.fetchComments(this.culturalSite.id!);
       })
-    ).subscribe();
+    ).subscribe(
+      response => {
+        console.log('ne trebam im kao sto mojoj babi ne treba (nesto smesno)');
+      },
+      error => {
+        this.toastr.error('Requested cultural site does not exist.');
+        this.router.navigate(['homepage']);
+      }
+    );
   }
 
   onPaginateChangeNews(event : PageEvent){
     this.page = this.pageEventNews.pageIndex;
     this.size = this.pageEventNews.pageSize;
-    this.fetchNews(this.culturalSiteService.getData());
+    this.fetchNews(this.culturalSite.id!);
   }
 
   onPaginateChangeComments(event : PageEvent){
     this.page = this.pageEventComments.pageIndex;
     this.size = this.pageEventComments.pageSize;
-    this.fetchComments(this.culturalSiteService.getData());
+    this.fetchComments(this.culturalSite.id!);
   }
 
   loggedUser(){
-    let role = this.authenticationService.loggedInUser()
+    let role = this.authenticationService.getLoggedInUserAuthority()
     if(role == 'ROLE_USER'){
       this.userIsLogged = true;
     }else if(role == 'ROLE_ADMIN'){
@@ -111,7 +134,7 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
   }
 
   loggedSubscribedUser(){
-    let email = this.authenticationService.loggedInUserEmail()
+    let email = this.authenticationService.getLoggedInUserEmail()
 
     this.fetchUserRating(this.culturalSite.id!, email);
 
@@ -143,12 +166,34 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
 
   onChangeSubscription(event : Event){
     if(this.buttonValue == "Subscribe"){
-      this.authenticationService.subscribe(this.culturalSite.id!).subscribe();
-      this.buttonValue = "Unsubscribe";
+      this.authUserService.subscribe(this.culturalSite.id!)
+        .subscribe(
+          response => {
+            this.toastr.success('Successfully subscribed to cultural site!');
+            this.buttonValue = "Unsubscribe";
+          },
+          error => {
+            if(error.error.message){
+              this.toastr.error(error.error.message);
+            } else {
+              this.toastr.error('503 Server Unavailable');
+            }
+        });
     }
     else{
-      this.authenticationService.unsubscribe(this.culturalSite.id!).subscribe();
-      this.buttonValue = "Subscribe";
+      this.authUserService.unsubscribe(this.culturalSite.id!)
+        .subscribe(
+          response => {
+            this.toastr.info('Successfully unsubscribed from cultural site. Sad to see you leave.');
+            this.buttonValue = "Subscribe";
+          },
+          error => {
+            if(error.error.message){
+              this.toastr.error(error.error.message);
+            } else {
+              this.toastr.error('503 Server Unavailable');
+            }
+        });
     }
   }
 
@@ -202,14 +247,13 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
             fileSource: this.images
           });
         }
-
         reader.readAsDataURL(event.target.files[i]);
       }
     }
   }
 
-  submit(event: any){
-    let commentText = event!.target.newCommentText.value;
+  submit(){
+    let commentText = this.myForm.get('text')?.value;
     this.culturalSiteService.createComment(this.culturalSite.id!, commentText).pipe(map(
       (newComment : CommentDto) => {
         //provera da li je lista slika prazna
@@ -227,7 +271,22 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
           }
         }
       }
-    )).subscribe()
+    )).subscribe(
+      // zavrsio kreiranje komentara
+      response => {
+        this.toastr.success('Successfully reviewed cultural site!\n' +
+                            'Your review will be visible after approval.');
+        this.addNewComment = false;
+        this.myForm.reset();
+      },
+      error => {
+        if(error.error.message){
+          this.toastr.error(error.error.message);
+        } else {
+          this.toastr.error('503 Server Unavailable');
+        }
+      }
+    )
   }
 
   openDialog(){
@@ -242,11 +301,15 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
   }
 
   addImages(){
-    this.addNewImages = true;
+    this.addNewImages = !this.addNewImages;
+    this.newImageFiles = [];
+    this.newImages = [];
   }
 
   addComments(){
-    this.addNewComment = true;
+    this.addNewComment = !this.addNewComment;
+    this.images = [];
+    this.myForm.reset();
   }
 
   onNewImageChange(event : any) {
@@ -265,7 +328,7 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
     }
   }
 
-  submitImages(event : any){
+  submitImages(){
     //provera da li je lista slika prazna
     if(this.newImageFiles.length > 0){
       //ako nije onda dodajemo jedan po jedan fajl
@@ -276,11 +339,35 @@ import { AddNewsArticleComponent } from '../add-news-article/add-news-article.co
             this.newImageFiles = []
             this.addNewImages = false;
             this.culturalSite.images?.push(image)
+            this.siteImageSlider.push({
+              image: "data:image/jpg;base64,"+image.content, 
+              thumbImage: "data:image/jpg;base64,"+image.content, 
+              title: image.name})
           }
-        )).subscribe()
+        )).subscribe(
+          response => {
+            this.toastr.success('Successfully added image for cultural site!')
+          },
+          error => {
+            if(error.error.message){
+              this.toastr.error(error.error.message);
+            } else {
+              this.toastr.error('503 Server Unavailable');
+            }
+          }
+        )
       }
     }
     
+  }
+
+  getTextErrorMessage() {
+    if(this.myForm.controls['text'].touched) {
+        if ( this.myForm.controls['text'].hasError('required')) {
+        return 'Required field';
+        }
+    }
+    return '';
   }
 }
 

@@ -56,7 +56,7 @@ values ('Srpsko narodno pozorište', 45.2553797, 19.8429706, 'Pozorišni trg 1',
 'Srpsko narodno pozorište je osnovano 16/28. jula 1861. godine u Novom Sadu, u tadašnjoj Carevini Austriji (od 1867. Austrougarska monarhija).', 0, 2, 1, true);
 
 insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
-values ('SLF', 44.7556269, 19.6923025, 'Sabacka Tvrdjava, Kralja Aleksandra', 'Šabac',
+values ('SLF', 44.764226, 19.703700, 'Sabacka Tvrdjava, Kralja Aleksandra', 'Šabac',
 'Prvi Šabački letnji festival („ŠLF“) je održan 2003. godine. Naslednik je projekta „Move” koji je na neki način bio preteča današnjeg Šabačkog festivala.', 0, 3, 2, true);
 
 insert into cultural_site (name, lat, lng, address, city, description, rating, type_id, category_id, is_active)
@@ -87,6 +87,8 @@ insert into comment (text, approved, user_id, site_id, is_active)
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti za bibl', '2020-11-12', 1, true);
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti za bibl 2', '2020-11-14', 1, true);
 insert into news (information, date_time, site_id, is_active) values ('Neke novosti pt2', '2020-11-11', 2, true);
+insert into news (information, date_time, site_id, is_active) values ('joj', '2020-11-14', 1, true);
+insert into news (information, date_time, site_id, is_active) values ('jojojojoj', '2020-11-11', 2, true);
 
 --subscribed cultural sites Biblioteka sabacka for user 2 Isidor Gavric
 insert into sites_users(site_id, user_id) values (1, 2);
@@ -116,3 +118,11 @@ insert into image (is_active, name, path, comment) values (true, 'name10', 'src/
 insert into image (is_active, name, path, comment) values (true, 'name11', 'src/main/resources/images/comment/1/name11.png', 1);
 insert into image (is_active, name, path, comment) values (true, 'name12', 'src/main/resources/images/comment/1/name12.png', 1);
 insert into image (is_active, name, path, comment) values (true, 'name13', 'src/main/resources/images/comment/1/name13.png', 1);
+
+-- slike za news
+insert into image (is_active, name, path, news) values (true, 'news1', 'src/main/resources/images/news/1/name1.jpg', 1);
+insert into image (is_active, name, path, news) values (true, 'news2', 'src/main/resources/images/news/1/name2.png', 1);
+insert into image (is_active, name, path, news) values (true, 'news3', 'src/main/resources/images/news/1/name3.png', 1);
+insert into image (is_active, name, path, news) values (true, 'news4', 'src/main/resources/images/news/2/name4.png', 2);
+insert into image (is_active, name, path, news) values (true, 'news5', 'src/main/resources/images/news/2/name5.png', 2);
+insert into image (is_active, name, path, news) values (true, 'news6', 'src/main/resources/images/news/3/name6.png', 3);

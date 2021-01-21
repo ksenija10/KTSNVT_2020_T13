@@ -26,12 +26,14 @@ import com.kts.nvt.serbioneer.dto.CulturalCategoryTypeDTO;
 import com.kts.nvt.serbioneer.dto.CulturalSiteCategoryDTO;
 import com.kts.nvt.serbioneer.helper.CulturalCategoryTypeMapper;
 import com.kts.nvt.serbioneer.helper.CulturalSiteCategoryMapper;
+import com.kts.nvt.serbioneer.helper.exception.ForeignKeyException;
 import com.kts.nvt.serbioneer.model.CulturalCategoryType;
 import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
 import com.kts.nvt.serbioneer.service.CulturalCategoryTypeService;
 import com.kts.nvt.serbioneer.service.CulturalSiteCategoryService;
 
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "api/cultural-site-category", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CulturalSiteCategoryController {
@@ -131,6 +133,8 @@ public class CulturalSiteCategoryController {
 	public ResponseEntity<Void> deleteCulturalSiteCategory(@PathVariable("id") Long id) {
 		try {
 			culturalSiteCategoryService.delete(id);
+		} catch (ForeignKeyException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
@@ -242,6 +246,8 @@ public class CulturalSiteCategoryController {
 	public ResponseEntity<Void> deleteCategoryType(@PathVariable("id") Long typeId) {
 		try {
 			culturalCategoryTypeService.delete(typeId);
+		} catch (ForeignKeyException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}

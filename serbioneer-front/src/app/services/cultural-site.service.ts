@@ -71,10 +71,20 @@ export class CulturalSiteService {
         environment.apiEndpoint + 'cultural-site/by-page',
         { params }
       )
-      .pipe(
-        map((culturalSiteData: CulturalSiteData) => culturalSiteData),
-        catchError((err) => throwError(err))
-      );
+  }
+
+  findAllSubscribedByPage(page: number, size: number, email: string): Observable<CulturalSiteData> {
+    let params = new HttpParams();
+
+    params = params.append('page', String(page));
+    params = params.append('size', String(size));
+    params = params.append('userEmail', email);
+
+    return this.http
+      .get<CulturalSiteData>(
+        environment.apiEndpoint + 'cultural-site/subscribed/by-page',
+        { params }
+      )
   }
 
   //cultural-site/filter/by-page
@@ -94,19 +104,31 @@ export class CulturalSiteService {
         filterDto,
         { params }
       )
-      .pipe(
-        map((culturalSiteData: CulturalSiteData) => culturalSiteData),
-        catchError((err) => throwError(err))
-      );
+  }
+
+  filterSubscribedByPage(
+    page: number,
+    size: number,
+    email: string,
+    filterDto: FilterDTO
+  ): Observable<CulturalSiteData> {
+    let params = new HttpParams();
+
+    params = params.append('page', String(page));
+    params = params.append('size', String(size));
+    params = params.append('userEmail', email);
+
+    return this.http
+      .post<CulturalSiteData>(
+        environment.apiEndpoint + 'cultural-site/subscribed/filter/by-page',
+        filterDto,
+        { params }
+      )
   }
 
   findAllLocations() {
     return this.http
       .get<string[]>(environment.apiEndpoint + 'cultural-site/locations')
-      .pipe(
-        map((locationsData: string[]) => locationsData),
-        catchError((err) => throwError(err))
-      );
   }
 
   createNews(news: NewsDTO, culturalSiteId: number) {

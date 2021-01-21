@@ -1,6 +1,14 @@
-<div class='ng-container'>
-    <div>
-        <table mat-table [dataSource]="dataSource.content">
+<div class="row justify-content-md-center divide" id="view-admin-page">
+    <div class="col-md-11">
+        <h5 class="lonely">Feeling lonely? Try adding another admin!</h5>
+        <button mat-raised-button class="btn btn-purple" (click)="addAdmin()">
+            Add admin
+        </button>
+    </div>
+</div>
+<div class="ng-container row justify-content-md-center">
+    <div class="col-md-11">
+        <table mat-table [dataSource]="dataSource.content" id="admin-table">
             
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

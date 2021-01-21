@@ -11,7 +11,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,30 +28,42 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { TableViewComponent } from './components/homepage/table-view/table-view.component';
 import { MapViewComponent } from './components/homepage/map-view/map-view.component';
-import { CulturalSitesTableComponent } from './components/homepage/table-view/cultural-sites-table/cultural-sites-table.component';
 import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { ApproveCommentComponent } from './components/approve-comment/approve-comment.component';
-
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSelectModule } from '@angular/material/select';
-import { from } from 'rxjs';
 
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { MatListModule } from '@angular/material/list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { NewsfeedComponent } from './components/newsfeed/newsfeed.component';
+import { NewsComponent } from './components/newsfeed/news/news.component';
+import { MatCardModule } from '@angular/material/card';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
-import { MapCulturalSiteComponent } from './components/view-cultural-site/map-cultural-site/map-cultural-site.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NewsArticleComponent } from './components/news-article/news-article.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddNewsArticleComponent } from './components/add-news-article/add-news-article.component';
+import { ConfirmDeleteDialog } from './dialogs/confirm-dialog/confirm-dialog.component';
+import { SatPopoverModule } from '@ncstate/sat-popover';
+import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
+import { TypesComponent } from './components/admin/categories/types/types.component';
+
+// slike
+import { NgImageSliderModule } from 'ng-image-slider';
+// infinite scroll
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -65,19 +76,23 @@ import { AddNewsArticleComponent } from './components/add-news-article/add-news-
     HomepageComponent,
     TableViewComponent,
     MapViewComponent,
-    CulturalSitesTableComponent,
     PendingCommentsComponent,
     ApproveCommentComponent,
     MyProfileComponent,
     ChangePasswordComponent,
     NewAdminComponent,
     ViewAdminComponent,
+    NewsfeedComponent,
+    NewsComponent,
+    CategoriesComponent,
     ViewCulturalSiteComponent,
-    MapCulturalSiteComponent,
     NewsArticleComponent,
     CommentComponent,
     AddNewsArticleComponent,
     NewCulturalSiteComponent,
+    ConfirmDeleteDialog,
+    InlineEditComponent,
+    TypesComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +107,9 @@ import { AddNewsArticleComponent } from './components/add-news-article/add-news-
     MatIconModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: "toast-custom",
+      timeOut: 2500}),
     MatAutocompleteModule,
     MatChipsModule,
     MatTableModule,
@@ -103,8 +120,16 @@ import { AddNewsArticleComponent } from './components/add-news-article/add-news-
     MatDividerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCardModule,
     NgbModule,
     MatDialogModule,
+    SatPopoverModule,
+    // slike
+    NgImageSliderModule,
+    // infinite scroll
+    InfiniteScrollModule,
+    MatExpansionModule,
+    MatTooltipModule
   ],
   providers: [
     {
@@ -113,6 +138,7 @@ import { AddNewsArticleComponent } from './components/add-news-article/add-news-
       //ako multi nije true ovo bi bio jedini interceptor i pregazio bi sve defaultne interceptore
       multi: true,
     },
+    { provide: Window, useValue: window },
   ],
   bootstrap: [AppComponent],
   entryComponents: [AddNewsArticleComponent],
