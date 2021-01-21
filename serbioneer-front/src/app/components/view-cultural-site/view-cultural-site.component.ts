@@ -114,13 +114,13 @@ import { ToastrService } from 'ngx-toastr';
   onPaginateChangeNews(event : PageEvent){
     this.page = this.pageEventNews.pageIndex;
     this.size = this.pageEventNews.pageSize;
-    this.fetchNews(this.culturalSiteService.getData());
+    this.fetchNews(this.culturalSite.id!);
   }
 
   onPaginateChangeComments(event : PageEvent){
     this.page = this.pageEventComments.pageIndex;
     this.size = this.pageEventComments.pageSize;
-    this.fetchComments(this.culturalSiteService.getData());
+    this.fetchComments(this.culturalSite.id!);
   }
 
   loggedUser(){
