@@ -40,7 +40,7 @@ public class ChangePasswordAdminE2ETest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
 
         //redirekcija na pocetak interakcije tj na log in page
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
 
         //logovanje
         justWait();
@@ -55,7 +55,7 @@ public class ChangePasswordAdminE2ETest {
 
         justWait();
 
-        driver.get("http://localhost:4200/change-password");
+        driver.get("https://localhost:4200/change-password");
     }
 
     @Test

@@ -25,7 +25,7 @@ import com.kts.nvt.serbioneer.helper.ImageMapper;
 import com.kts.nvt.serbioneer.model.Image;
 import com.kts.nvt.serbioneer.service.ImageService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 @RestController
 @RequestMapping(value = "api/image", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ImageController {

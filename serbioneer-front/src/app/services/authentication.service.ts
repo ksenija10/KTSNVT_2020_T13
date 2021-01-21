@@ -34,7 +34,7 @@ export class AuthenticationService {
   }
 
   login(userLoginDto: UserLogin): Observable<any> {
-    return this.http.post('http://localhost:8080/login', userLoginDto, {
+    return this.http.post('https://localhost:8080/login', userLoginDto, {
       headers: this.headers,
       observe: 'response',
     });

@@ -44,7 +44,7 @@ import com.kts.nvt.serbioneer.service.CommentService;
 import com.kts.nvt.serbioneer.service.CulturalSiteService;
 import com.kts.nvt.serbioneer.service.NewsService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 @RestController
 @RequestMapping(value = "api/cultural-site", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CulturalSiteController {
@@ -124,7 +124,6 @@ public class CulturalSiteController {
 		url: GET localhost:8080/api/cultural-site/{id}
 		HTTP request for getting a specific cultural site given by id
 	 */
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CulturalSiteDTO> getCulturalSite(@PathVariable("id") Long id) {
 		CulturalSite culturalSite = culturalSiteService.findOneById(id);
@@ -243,7 +242,6 @@ public class CulturalSiteController {
 		url: POST localhost:8080/api/cultural-site/filter/by-page
 		HTTP request for filtering cultural sites
 	*/
-    @CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value = "/filter/by-page", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Page<CulturalSiteDTO>> filterCulturalSites(Pageable pageable, 
 									@Valid @RequestBody CulturalSiteFilterDTO filterDTO) {
@@ -255,7 +253,6 @@ public class CulturalSiteController {
 		url: GET localhost:8080/api/cultural-site/subscribed/by-page
 		HTTP request for getting subscribed cultural sites by page
 	 */
-    @CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/subscribed/by-page")
 	public ResponseEntity<Page<CulturalSiteDTO>> getAllSubscribedCulturalSites(Pageable pageable, @RequestParam String userEmail){
@@ -268,7 +265,6 @@ public class CulturalSiteController {
 	url: POST localhost:8080/api/cultural-site/subscribed/filter/by-page
 	HTTP request for filtering cultural sites
 	*/
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping(value = "/subscribed/filter/by-page", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Page<CulturalSiteDTO>> filterCulturalSitesSubscribed(Pageable pageable, 
@@ -278,7 +274,6 @@ public class CulturalSiteController {
 	}
 	
 	
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "/locations")
 	public ResponseEntity<List<String>> getAllCulturalSiteLocations(){
         List<String> locations = culturalSiteService.findAllCities();

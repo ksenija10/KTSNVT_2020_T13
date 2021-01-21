@@ -16,6 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<start-class>com.baeldung.ssl.HttpsEnabledApplication</start-class>
 	</properties>
 
 	<dependencies>
@@ -120,5 +121,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
