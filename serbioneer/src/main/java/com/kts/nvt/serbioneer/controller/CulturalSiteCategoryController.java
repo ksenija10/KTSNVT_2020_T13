@@ -157,19 +157,6 @@ public class CulturalSiteCategoryController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
-
-
-	@CrossOrigin(origins = "http://localhost:4200")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@GetMapping(value = "/{category-name}/type/by-name")
-	public ResponseEntity<List<CulturalCategoryTypeDTO>> getAllCategoryTypesByCategoryName(@PathVariable("category-name") String categoryName) {
-		try {
-			List<CulturalCategoryType> categoryTypes = culturalCategoryTypeService.findAllByCulturalSiteCategoryName(categoryName);
-			return new ResponseEntity<>(culturalCategoryTypeMapper.toDtoList(categoryTypes), HttpStatus.OK);
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
-	}
 	
 	/*
 		url: GET localhost:8080/api/cultural-site-category/{category-id}/type/by-page

@@ -1,6 +1,5 @@
 package com.kts.nvt.serbioneer.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.DecimalMax;
@@ -8,8 +7,6 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
-import com.kts.nvt.serbioneer.model.Image;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

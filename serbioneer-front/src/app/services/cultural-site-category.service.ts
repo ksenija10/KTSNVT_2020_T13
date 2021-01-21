@@ -28,32 +28,8 @@ export class CulturalSiteCategoryService {
 
   constructor(private http: HttpClient) {}
 
-  // TODO
-  getAllCulturalCategoryTypes(category: string): Observable<any> {
-    return this.http
-      .get<CulturalCategoryType[]>(
-        environment.apiEndpoint +
-          'cultural-site-category/' +
-          category +
-          '/type/by-name',
-        { headers: this.headers }
-      )
-      .pipe(
-        map((responseData) => {
-          //ovde treba jos jedna map
-          let names: string[] = [];
-          for (let categoryType of responseData) {
-            names.push(categoryType.name);
-          }
-          return names;
-        }),
-        catchError((err) => throwError(err))
-      );
-  }
-
   getAllCulturalSiteCategorys() : Observable<any> {
-      return this.http.get<CulturalSiteCategory[]>(environment.apiEndpoint + 'cultural-site-category',)
-      /*{headers: this.headers})*/
+      return this.http.get<CulturalSiteCategory[]>(environment.apiEndpoint + 'cultural-site-category')
   }
 
   getAllByPage(page: number, size: number): Observable<CulturalSiteCategoryData> {
@@ -67,6 +43,13 @@ export class CulturalSiteCategoryService {
               environment.apiEndpoint + 'cultural-site-category/by-page',
               {params: params}
           )
+  }
+
+  getAllCategoryTypes(categoryId: number): Observable<CulturalCategoryType[]> {
+    return this.http
+    .get<CulturalCategoryType[]>(
+        environment.apiEndpoint + 'cultural-site-category/' + categoryId + "/type",
+    )
   }
 
   getAllCategoryTypesByPage(categoryId: number, page: number, size: number): Observable<CulturalCategoryTypeData> {

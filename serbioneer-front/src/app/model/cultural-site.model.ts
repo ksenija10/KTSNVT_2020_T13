@@ -15,15 +15,7 @@ export interface CulturalSite {
   rating?: number;
 }
 
-export class SubscribedCulturalSiteDTO {
-  constructor(
-    public subscribed: boolean,
-    public userEmail: string,
-    public culturalSiteId: number
-  ) {}
-}
-
-export class CulturalSite implements CulturalSite {
+export class CulturalSiteDTO implements CulturalSite {
   constructor(
     public id?: number,
     public name?: string,
@@ -37,6 +29,14 @@ export class CulturalSite implements CulturalSite {
     public city?: string,
     public description?: string,
     public rating?: number
+  ) {}
+}
+
+export class SubscribedCulturalSiteDTO {
+  constructor(
+    public subscribed: boolean,
+    public userEmail: string,
+    public culturalSiteId: number
   ) {}
 }
 

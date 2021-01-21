@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CulturalSite } from 'src/app/model/cultural-site.model';
+import { map } from 'rxjs/operators';
+import { CulturalCategoryType } from 'src/app/model/cultural-category-type.model';
+import { CulturalSiteCategory } from 'src/app/model/cultural-site-category.model';
+import { CulturalSite, CulturalSiteDTO } from 'src/app/model/cultural-site.model';
 import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 
@@ -14,13 +17,18 @@ import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 export class NewCulturalSiteComponent implements OnInit {
   newCulturalSiteForm: FormGroup;
 
+  allCategoriesModel: CulturalSiteCategory[] = [];
+  allCategoryTypesModel: CulturalCategoryType[] = [];
+  categoryModel: CulturalSiteCategory = {id: -1, name: ''};
+  categoryTypeModel: CulturalCategoryType = {id: -1, name: ''};
+
   allCategories: string[] = [];
 
   allCategoryTypes: string[] = [];
 
   category: string = '';
 
-  categoryType: string = '';
+  //categoryType: string = '';
 
   constructor(
     private culturalSiteService: CulturalSiteService,
@@ -34,19 +42,18 @@ export class NewCulturalSiteComponent implements OnInit {
       description: new FormControl('', []),
       category: new FormControl('', [Validators.required]),
       categoryType: new FormControl('', [Validators.required]),
-      lat: new FormControl('', []),
-      lng: new FormControl('', []),
-      city: new FormControl('', []),
+      lat: new FormControl({value: '', disabled: true}, []),
+      lng: new FormControl({value: '', disabled: true}, []),
+      // city: new FormControl('', []),
     });
-
-    var a = 1;
 
     this.culturalSiteCategoryService
       .getAllCulturalSiteCategorys()
       .subscribe((responseData) => {
-        this.allCategories = responseData;
-        this.category = this.allCategories[0];
-        this.categoryChange();
+        this.allCategoriesModel = responseData;
+        this.categoryModel = new CulturalSiteCategory(responseData[0].name, responseData[0].id);
+        this.newCulturalSiteForm.get('category')?.setValue(this.categoryModel.id);
+        this.categoryChange(null);
       });
   }
 
@@ -61,19 +68,27 @@ export class NewCulturalSiteComponent implements OnInit {
     return '';
   }
 
-  categoryChange() {
-    this.culturalSiteCategoryService
-      .getAllCulturalCategoryTypes(this.category)
-      .subscribe((responseData) => {
-        this.allCategoryTypes = responseData;
-      });
+  categoryChange(event: any) {
+    if(event) {
+      this.categoryModel.id = event.value;
+      this.categoryModel.name = event.source.triggerValue;
+    }
+    this.culturalSiteCategoryService.getAllCategoryTypes(this.categoryModel.id)
+    .subscribe((responseData) => {
+      this.allCategoryTypesModel = responseData;
+    })
   }
 
   onSubmit() {
     if (this.newCulturalSiteForm.invalid) {
       return;
     }
-    const culturalSite: CulturalSite = new CulturalSite(
+
+    let addressElems = this.newCulturalSiteForm.value.address.split(',');
+    let address = addressElems.join(', ');
+    let city = addressElems[addressElems.length - 1];
+
+    const culturalSite: CulturalSite = new CulturalSiteDTO(
       -1,
       this.newCulturalSiteForm.value.name,
       this.allCategories.indexOf(this.newCulturalSiteForm.value.category) + 1,
@@ -84,8 +99,8 @@ export class NewCulturalSiteComponent implements OnInit {
       this.newCulturalSiteForm.value.categoryType,
       this.newCulturalSiteForm.value.lat,
       this.newCulturalSiteForm.value.lng,
-      this.newCulturalSiteForm.value.address,
-      this.newCulturalSiteForm.value.city,
+      address,
+      city,
       this.newCulturalSiteForm.value.description,
       0
     );
@@ -93,7 +108,7 @@ export class NewCulturalSiteComponent implements OnInit {
 
     this.culturalSiteService.createCulturalSite(culturalSite).subscribe(
       (response) => {
-        this.toastr.success('Successfully added new cultural site');
+        this.toastr.success('Successfully added new cultural site!');
         this.router.navigate(['/cultural-site']);
       },
       (error) => {
