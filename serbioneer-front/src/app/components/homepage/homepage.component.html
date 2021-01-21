@@ -57,13 +57,13 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <app-table-view id = "table-view"
+            <app-table-view id="table-view"
                 [dataSource]="dataSource"
                 (pageChanged)="onPageChange($event)"
             ></app-table-view>
         </div>
         <div class="col-md-6">
-            <app-map-view
+            <app-map-view id="map-view"
                 [divId]="mapHomepage"
                 [dataSource]="dataSource.content"
             ></app-map-view>
