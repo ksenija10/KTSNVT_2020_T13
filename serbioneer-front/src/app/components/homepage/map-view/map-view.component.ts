@@ -11,6 +11,7 @@ import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
 import IconAnchorUnits from 'ol/style/IconAnchorUnits';
 import { CulturalSite } from 'src/app/model/cultural-site.model';
 import { transform } from 'ol/proj';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map-view',
@@ -19,7 +20,8 @@ import { transform } from 'ol/proj';
 })
 export class MapViewComponent implements AfterViewInit {
   
-  @Input() dataSource: CulturalSiteData = {content: [], size: 0, totalElements: 0, totalPages: 0};
+  @Input() dataSource: CulturalSite[] = [];
+  @Input() divId: string = '';
   
   //iterableDiffer: IterableDiffer<any>;
 
@@ -38,7 +40,9 @@ export class MapViewComponent implements AfterViewInit {
     })
   })
 
-  constructor() {}
+  constructor(
+    private router: Router
+  ) {}
 
   ngAfterViewInit() {
     this.createVectorLayer();
@@ -50,13 +54,26 @@ export class MapViewComponent implements AfterViewInit {
     });
     // inicijalizacija mape
     this.map = new Map({
-      target: 'map',
+      target: this.divId,
       layers: [rasterLayer, this.vectorLayer],
       view: new View({
         center: [0, 0],
         zoom: 2
       })
     });
+
+    const that = this;
+    this.map.on('click', function(evt) {
+      const pixel = evt.pixel;
+      that.map.forEachFeatureAtPixel(pixel, function(feature : any, layer : any) {
+        that.onFeatureClicked(feature.values_.name)
+      });
+    });
+  }
+
+  onFeatureClicked(id: number){
+    //navigacija na cultural site posle klika na row
+    this.router.navigate(['cultural-site/'+id]);
   }
 
   ngOnChanges() {
@@ -79,7 +96,7 @@ export class MapViewComponent implements AfterViewInit {
 
   private addMarkers(): Feature[] {
     let markers: Feature[] = []
-    this.dataSource.content.map(
+    this.dataSource.map(
       (culturalSite: CulturalSite) => {
         if (culturalSite.lat && culturalSite.lng && culturalSite.id) {
           markers.push(this.createMarker(culturalSite.lat, culturalSite.lng, culturalSite.id))

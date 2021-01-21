@@ -12,7 +12,9 @@ export class NewsfeedComponent implements OnInit {
   dataSource: NewsDTO[] = [];
   page: number = 0;
 
-  constructor(private newsService: NewsService, private window: Window) {}
+  constructor(
+    private newsService: NewsService
+    ) {}
 
   ngOnInit(): void {
     //neka za pocetak po defaultu dobavlja 3 novosti da bih videla da li infinite scroll radi

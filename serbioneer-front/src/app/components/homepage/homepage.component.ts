@@ -41,6 +41,9 @@ export class HomepageComponent implements OnInit {
   // pageEvent tabele
   pageEvent: PageEvent = new PageEvent();
 
+  // map div id
+  mapHomepage: string = "map-homepage"
+
   @ViewChild('culturalSiteCategorysInput') culturalSiteCategorysInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
 

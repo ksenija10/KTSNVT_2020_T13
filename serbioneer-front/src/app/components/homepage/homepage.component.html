@@ -63,8 +63,9 @@
             ></app-table-view>
         </div>
         <div class="col-md-6">
-            <app-map-view id = "map-view"
-                [dataSource]="dataSource"
+            <app-map-view
+                [divId]="mapHomepage"
+                [dataSource]="dataSource.content"
             ></app-map-view>
         </div>
     </div>

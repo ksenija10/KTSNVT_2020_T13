@@ -19,6 +19,7 @@ import { onlyContainsLetters } from 'src/app/util/util';
 export class NewAdminComponent implements OnInit {
   newAdminForm: FormGroup;
 
+  today: Date = new Date();
   hide = true;
   namePattern = '[A-Z][a-z]*';
   datePattern = '[0-9]{1,2}/[0-9]{2}/[0-9]{4}';
@@ -63,12 +64,13 @@ export class NewAdminComponent implements OnInit {
       this.newAdminForm.value.surname,
       this.newAdminForm.value.dateOfBirth
     );
-    console.log(admin);
 
     this.adminService.createAdmin(admin).subscribe(
       (response) => {
         this.toastr.success('Successfully added new admin');
+        this.newAdminForm.reset();
         this.router.navigate(['/view-admin']);
+        this.newAdminForm.reset();
       },
       (error) => {
         if (error.error.message) {
