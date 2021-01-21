@@ -44,9 +44,7 @@ export class TableViewComponent implements OnInit  {
   }
 
   onClickRow(id:number) {
-    //sharing service for sibling communication
-    this.culturalSiteService.setData(id);
     //navigacija na cultural site posle klika na row
-    this.router.navigate(['cultural-site']);
+    this.router.navigate(['cultural-site/'+id]);
   }
 }
