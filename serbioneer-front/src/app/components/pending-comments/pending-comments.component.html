@@ -7,7 +7,7 @@
     <div *ngIf="commentsData.content.length > 0; then showComments else noComments"></div>
     <ng-template #showComments>
       <mat-list-item *ngFor="let comment of commentsData.content">
-        <app-approve-comment [comment]="comment"></app-approve-comment>
+        <app-approve-comment [comment]="comment" (commentSaidFetch)="fetchComments()"></app-approve-comment>
       </mat-list-item>
       <!--pomeriti paginator gore mozda?-->
       <mat-paginator id="pending-comments-paginator"

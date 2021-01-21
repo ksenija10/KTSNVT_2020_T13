@@ -11,6 +11,7 @@ import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
 import IconAnchorUnits from 'ol/style/IconAnchorUnits';
 import { CulturalSite } from 'src/app/model/cultural-site.model';
 import { transform } from 'ol/proj';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map-view',
@@ -39,7 +40,9 @@ export class MapViewComponent implements AfterViewInit {
     })
   })
 
-  constructor() {}
+  constructor(
+    private router: Router
+  ) {}
 
   ngAfterViewInit() {
     this.createVectorLayer();
@@ -58,6 +61,19 @@ export class MapViewComponent implements AfterViewInit {
         zoom: 2
       })
     });
+
+    const that = this;
+    this.map.on('click', function(evt) {
+      const pixel = evt.pixel;
+      that.map.forEachFeatureAtPixel(pixel, function(feature : any, layer : any) {
+        that.onFeatureClicked(feature.values_.name)
+      });
+    });
+  }
+
+  onFeatureClicked(id: number){
+    //navigacija na cultural site posle klika na row
+    this.router.navigate(['cultural-site/'+id]);
   }
 
   ngOnChanges() {

@@ -68,6 +68,7 @@ export class NewAdminComponent implements OnInit {
     this.adminService.createAdmin(admin).subscribe(
       (response) => {
         this.toastr.success('Successfully added new admin');
+        this.newAdminForm.reset();
         this.router.navigate(['/view-admin']);
         this.newAdminForm.reset();
       },

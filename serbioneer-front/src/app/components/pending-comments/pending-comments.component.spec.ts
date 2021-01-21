@@ -11,6 +11,8 @@ import {MatListItemHarness} from '@angular/material/list/testing';
 import { MatListModule } from "@angular/material/list";
 import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ApproveCommentComponent } from "../approve-comment/approve-comment.component";
+import { MatIcon, MatIconModule } from "@angular/material/icon";
 
 describe('PendingCommentsComponent', () => {
     let component: PendingCommentsComponent;
@@ -53,7 +55,8 @@ describe('PendingCommentsComponent', () => {
         imports: [
           MatListModule,
           MatPaginatorModule,
-          BrowserAnimationsModule
+          BrowserAnimationsModule,
+          MatIconModule
         ]
       }).compileComponents();
   
@@ -78,7 +81,7 @@ describe('PendingCommentsComponent', () => {
               fixture.debugElement.queryAll(By.css('mat-list-item'));
           expect(elements.length).toBe(4);
           // paginator
-          const paginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#pusi-kurac-paginator'}))
+          const paginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#pending-comments-paginator'}))
           const label = await paginator.getRangeLabel();
           expect(label).toEqual('1 – 2 of 4');
         });
