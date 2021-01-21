@@ -28,6 +28,14 @@ const routes: Routes = [
     component: HomepageComponent,
   },
   {
+    path: 'subscribed',
+    component: HomepageComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_USER',
+            subscribedView: true,
+            subscribedMap: 'map-subscribed' },
+  },
+  {
     path: 'login-register',
     component: LoginRegisterComponent,
     children: [

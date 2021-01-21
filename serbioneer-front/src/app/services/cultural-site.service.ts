@@ -67,6 +67,20 @@ export class CulturalSiteService {
       )
   }
 
+  findAllSubscribedByPage(page: number, size: number, email: string): Observable<CulturalSiteData> {
+    let params = new HttpParams();
+
+    params = params.append('page', String(page));
+    params = params.append('size', String(size));
+    params = params.append('userEmail', email);
+
+    return this.http
+      .get<CulturalSiteData>(
+        environment.apiEndpoint + 'cultural-site/subscribed/by-page',
+        { params }
+      )
+  }
+
   //cultural-site/filter/by-page
   filterByPage(
     page: number,
@@ -81,6 +95,26 @@ export class CulturalSiteService {
     return this.http
       .post<CulturalSiteData>(
         environment.apiEndpoint + 'cultural-site/filter/by-page',
+        filterDto,
+        { params }
+      )
+  }
+
+  filterSubscribedByPage(
+    page: number,
+    size: number,
+    email: string,
+    filterDto: FilterDTO
+  ): Observable<CulturalSiteData> {
+    let params = new HttpParams();
+
+    params = params.append('page', String(page));
+    params = params.append('size', String(size));
+    params = params.append('userEmail', email);
+
+    return this.http
+      .post<CulturalSiteData>(
+        environment.apiEndpoint + 'cultural-site/subscribed/filter/by-page',
         filterDto,
         { params }
       )
