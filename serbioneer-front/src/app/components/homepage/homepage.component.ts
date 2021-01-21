@@ -10,6 +10,8 @@ import { map, startWith } from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { PageEvent } from '@angular/material/paginator';
 import { FilterDTO } from 'src/app/model/filter-cultural-site.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -44,14 +46,30 @@ export class HomepageComponent implements OnInit {
   // map div id
   mapHomepage: string = "map-homepage"
 
+  // zatrazen subscribed view
+  isSubscribedSitesView: boolean = false;
+
+  // user email, if there is one
+  userEmail: string;
+
   @ViewChild('culturalSiteCategorysInput') culturalSiteCategorysInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
 
   constructor(
+    private route: ActivatedRoute,
+    private authenticationService: AuthenticationService,
     private culturalSiteCategoryService: CulturalSiteCategoryService,
     private culturalSiteService: CulturalSiteService,
     private toastr: ToastrService
   ) {
+    // da li je zatrazen subscribed prikaz?
+    this.isSubscribedSitesView = this.route.snapshot.data['subscribedView'] || false;
+    let subscribedMap = this.route.snapshot.data['subscribedMap'];
+    if (subscribedMap) {
+      this.mapHomepage = subscribedMap;
+    }
+    // dobavljanje ulogovanog korisnika, ako postoji, ako ne -> userEmail=''
+    this.userEmail = this.authenticationService.getLoggedInUserEmail();
     // prvobitni pageEvent
     this.pageEvent.pageIndex = 0;
     this.pageEvent.pageSize = 5;
@@ -83,11 +101,21 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initDataSource();
+    if (!this.isSubscribedSitesView) {
+      this.initDataSource();
+    } else {
+      this.initSubscribedDataSource();
+    }
   }
 
   initDataSource() {
     this.culturalSiteService.findAllByPage(0, 5).pipe(
+      map((culturalSiteData: CulturalSiteData) => this.dataSource = culturalSiteData)
+    ).subscribe();
+  }
+
+  initSubscribedDataSource() {
+    this.culturalSiteService.findAllSubscribedByPage(0, 5, this.userEmail).pipe(
       map((culturalSiteData: CulturalSiteData) => this.dataSource = culturalSiteData)
     ).subscribe();
   }
@@ -101,9 +129,15 @@ export class HomepageComponent implements OnInit {
     let page = this.pageEvent.pageIndex;
     let size = this.pageEvent.pageSize;
     let filterDto: FilterDTO = new FilterDTO(this.culturalSiteCategorys, this.name, this.location);
-    this.culturalSiteService.filterByPage(page, size, filterDto).pipe(
-      map((filteredCulturalSiteData: CulturalSiteData) => this.dataSource = filteredCulturalSiteData)
-    ).subscribe();
+    if(!this.isSubscribedSitesView) {
+      this.culturalSiteService.filterByPage(page, size, filterDto).pipe(
+        map((filteredCulturalSiteData: CulturalSiteData) => this.dataSource = filteredCulturalSiteData)
+      ).subscribe();
+    } else {
+      this.culturalSiteService.filterSubscribedByPage(page, size, this.userEmail, filterDto).pipe(
+        map((filteredCulturalSiteData: CulturalSiteData) => this.dataSource = filteredCulturalSiteData)
+      ).subscribe();
+    }
   }
 
   add(event: MatChipInputEvent): void {
