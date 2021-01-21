@@ -20,7 +20,7 @@ public class HeaderPage {
     @FindBy(id = "admin-btn-group")
     private WebElement adminBtnGroup;
 
-    @FindBy(id = "logout-btn")
+    @FindBy(id = "user-dropdown")
     private WebElement logoutBtn;
     
     @FindBy(id = "pending-comments-btn")

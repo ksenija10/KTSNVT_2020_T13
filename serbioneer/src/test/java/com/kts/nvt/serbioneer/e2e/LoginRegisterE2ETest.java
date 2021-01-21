@@ -1,19 +1,15 @@
 package com.kts.nvt.serbioneer.e2e;
 
-import static org.junit.Assert.assertEquals;
-
+import com.kts.nvt.serbioneer.e2e.pages.HeaderPage;
+import com.kts.nvt.serbioneer.e2e.pages.HomepagePage;
+import com.kts.nvt.serbioneer.e2e.pages.LoginRegisterPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
-
-import com.kts.nvt.serbioneer.e2e.pages.HeaderPage;
-import com.kts.nvt.serbioneer.e2e.pages.HomepagePage;
-import com.kts.nvt.serbioneer.e2e.pages.LoginRegisterPage;
+import static org.junit.Assert.assertEquals;
 
 public class LoginRegisterE2ETest {
 
@@ -25,15 +21,12 @@ public class LoginRegisterE2ETest {
 
     private HomepagePage homepagePage;
 
-    @SuppressWarnings("deprecation")
-	@Before
+    @Before
     public void setUp() {
         //default-ni browser za selenium je firefox, pa ukoliko zelimo da koristimo chrome moramo da ubacimo
         //chrome ekstenziju i podesimo chrome kao default-ni driver
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        DesiredCapabilities handlSSLErr = DesiredCapabilities.chrome();
-        handlSSLErr.setCapability (CapabilityType.ACCEPT_SSL_CERTS, true);
-        driver = new ChromeDriver(handlSSLErr);
+        driver = new ChromeDriver();
 
         //prosirenje prozora za bolji pregled
         driver.manage().window().maximize();
