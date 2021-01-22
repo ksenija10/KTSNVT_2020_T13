@@ -219,4 +219,15 @@ export class CulturalSiteService {
       }
     );
   }
+
+  updateCulturalSite(culturalSiteId: number, culturalSite: CulturalSite): Observable<CulturalSite> {
+    return this.http.put<CulturalSite>(
+      environment.apiEndpoint + 'cultural-site/' + culturalSiteId,
+      culturalSite
+    )
+  }
+
+  deleteCulturalSite(culturalSiteId: number) {
+    return this.http.delete<void>(environment.apiEndpoint + 'cultural-site/' + culturalSiteId);
+  }
 }

@@ -1,7 +1,7 @@
 <form [formGroup] = "newCulturalSiteForm" (ngSubmit) = "onSubmit()">
     <div class="row justify-content-md-center">
         <div class="col-md-8 add-box">
-            <h2>Add new cultural site</h2>
+            <h2>{{ title }}</h2>
             <div class="row justify-content-md-center">
                 <div class="col-md-5">
                     <div class="form-group">
@@ -84,7 +84,7 @@
                     type="submit"
                     [disabled] = "newCulturalSiteForm.invalid"
                 >
-                    Create
+                    {{ btnTitle }}
                 </button>
             </div>
         </div>

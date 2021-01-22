@@ -103,6 +103,12 @@ const routes: Routes = [
     data: { expectedRoles: 'ROLE_ADMIN' }
   },
   {
+    path: 'edit-cultural-site/:id',
+    component: NewCulturalSiteComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' }
+  },
+  {
     path: 'newsfeed',
     component: NewsfeedComponent,
     canActivate: [RoleGuard],
