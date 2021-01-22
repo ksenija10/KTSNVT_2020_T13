@@ -21,7 +21,7 @@ export class NewAdminComponent implements OnInit {
 
   today: Date = new Date();
   hide = true;
-  namePattern = '[A-Z][a-z]*';
+  namePattern = '[A-ZŠĐČĆŽ][a-zšđčćž]*';
   datePattern = '[0-9]{1,2}/[0-9]{2}/[0-9]{4}';
   confirmPasswordMatcher = new ConfirmPasswordMatcher();
 

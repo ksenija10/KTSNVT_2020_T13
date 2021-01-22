@@ -210,14 +210,12 @@ export class CulturalSiteService {
       );
   }
 
-  createCulturalSite(culturalSite: CulturalSite): Observable<any> {
-    console.log('Create cultural site');
+  createCulturalSite(culturalSite: CulturalSite): Observable<CulturalSite> {
     return this.http.post<CulturalSite>(
       environment.apiEndpoint + 'cultural-site',
       culturalSite,
       {
-        headers: this.headers,
-        observe: 'response',
+        headers: this.headers
       }
     );
   }

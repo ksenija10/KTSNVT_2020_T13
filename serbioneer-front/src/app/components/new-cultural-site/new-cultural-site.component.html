@@ -14,7 +14,14 @@
                     <div class="form-group">
                         <mat-form-field appearance="fill" class="form-field">
                             <mat-label>Cultural site address</mat-label>
-                            <input matInput placeholder="Ex. Vojvode Mišića 23, Šabac" formControlName ="address">
+                            <input 
+                                ngx-google-places-autocomplete
+                                [options]="autocompleteOptions"
+                                (onAddressChange)="addressChange($event)"
+                                matInput 
+                                placeholder="Ex. Vojvode Mišića 23, Šabac" 
+                                formControlName="address"
+                            >
                             <mat-error *ngIf="newCulturalSiteForm.get('address')?.invalid">{{getRequiredFieldErrorMessage('address')}}</mat-error>
                         </mat-form-field>
                     </div>
@@ -25,7 +32,19 @@
                         </mat-form-field>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5 justify-content-md-center">
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="form-field">
+                            <mat-label>Latitude</mat-label>
+                            <input matInput placeholder="Ex. 45" formControlName="lat">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="form-field">
+                            <mat-label>Longitude</mat-label>
+                            <input matInput placeholder="Ex. 20.5" formControlName="lng">
+                        </mat-form-field>
+                    </div>
                     <div class="form-group">
                         <mat-form-field appearance="fill" class="form-field">
                             <mat-label>Cultural site category</mat-label>
@@ -36,42 +55,32 @@
                             <mat-error *ngIf="newCulturalSiteForm.get('category')?.invalid">{{getRequiredFieldErrorMessage('category')}}</mat-error>
                         </mat-form-field>
                     </div>
-
                     <div class="form-group">
                         <mat-form-field appearance="fill" class="form-field">
-                            <mat-label>{{categoryModel.name}} type</mat-label>
+                            <mat-label>{{categoryModel.name}} types</mat-label>
                             <mat-select formControlName="categoryType">
                                 <mat-option *ngFor="let categoryType of allCategoryTypesModel" [value]="categoryType.id">{{categoryType.name}}</mat-option>
                             </mat-select>
                             <mat-error *ngIf="newCulturalSiteForm.get('categoryType')?.invalid">{{getRequiredFieldErrorMessage('categoryType')}}</mat-error>
                         </mat-form-field>
                     </div>
-
-                    <div class="form-group">
-                        <mat-form-field appearance="fill" class="form-field">
-                            <mat-label>Latitude</mat-label>
-                            <input matInput placeholder="Ex. 45" formControlName ="lat">
-                        </mat-form-field>
+                    <div class="form-group file-group">
+                        <label for="file">Cultural site images</label>
+                        <input 
+                            id="file" 
+                            type="file" 
+                            class="form-control file-input"
+                            multiple="" 
+                            (change)="onFileChange($event)">
                     </div>
-
-                    <div class="form-group">
-                        <mat-form-field appearance="fill" class="form-field">
-                            <mat-label>Longitude</mat-label>
-                            <input matInput placeholder="Ex. 20.5" formControlName ="lng">
-                        </mat-form-field>
+                    <div>
+                        <img *ngFor='let url of images'  [src]="url" class="image-preview">
                     </div>
-
-                    <!-- <div class="form-group">
-                        <mat-form-field appearance="fill" class="form-field">
-                            <mat-label>City</mat-label>
-                            <input matInput placeholder="Ex. Niš" formControlName ="city">
-                        </mat-form-field>
-                    </div> -->
                 </div>
             </div>
             <div class="row justify-content-md-center">
                 <button
-                    class="btn btn-theme"
+                    class="btn btn-purple"
                     type="submit"
                     [disabled] = "newCulturalSiteForm.invalid"
                 >

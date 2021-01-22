@@ -64,6 +64,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
@@ -129,7 +130,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     // infinite scroll
     InfiniteScrollModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    // autokomplit
+    GooglePlaceModule
   ],
   providers: [
     {
