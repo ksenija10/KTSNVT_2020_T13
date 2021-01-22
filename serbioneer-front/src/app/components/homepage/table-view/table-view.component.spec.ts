@@ -75,8 +75,7 @@ describe('TableViewComponent', () => {
   it('should set data when row is clicked', () => {
     const number = 1;
     component.onClickRow(number);
-    expect(culturalSiteService.setData).toHaveBeenCalledWith(number);
-    expect(router.navigate).toHaveBeenCalledWith(['cultural-site'])
+    expect(router.navigate).toHaveBeenCalledWith(['cultural-site/1'])
   })
 
 });
