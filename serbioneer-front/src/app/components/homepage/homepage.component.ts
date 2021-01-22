@@ -82,7 +82,6 @@ export class HomepageComponent implements OnInit {
     this.culturalSiteCategoryService.getAllCulturalSiteCategorys()
       .pipe(
         map((responseData) => {
-            //ovde treba jos jedna map
           let names: string[] = [];
           for (let culturalSiteCategory of responseData) {
             names.push(culturalSiteCategory.name);

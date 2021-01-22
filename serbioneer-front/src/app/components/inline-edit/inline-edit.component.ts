@@ -31,7 +31,7 @@ export class InlineEditComponent {
   edit = '';
 
   editForm: FormGroup;
-  namePattern = "([A-Z]{1}[a-z]*)( [a-z]*)*"
+  namePattern = "([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*"
 
   constructor(@Optional() @Host() public popover: SatPopover) {
     this.editForm = new FormGroup({

@@ -30,7 +30,7 @@ import { ToastrService } from 'ngx-toastr';
   news! : NewsData;
   comments! : CommentData;
   images : any = [];
-  newImages: any = []
+  newImages: any = [];
   files: any = [];
   newImageFiles : any = [];
   myForm = new FormGroup({
@@ -101,9 +101,7 @@ import { ToastrService } from 'ngx-toastr';
         this.fetchComments(this.culturalSite.id!);
       })
     ).subscribe(
-      response => {
-        console.log('ne trebam im kao sto mojoj babi ne treba (nesto smesno)');
-      },
+      response => {},
       error => {
         this.toastr.error('Requested cultural site does not exist.');
         this.router.navigate(['homepage']);
@@ -262,8 +260,8 @@ import { ToastrService } from 'ngx-toastr';
           for (let i = 0; i < this.files.length; i++) {
             this.imageService.createForComment(newComment.id!, this.files[i]).pipe(map(
               (image : Image) => {
-                this.images = []
-                this.files = []
+                this.images = [];
+                this.files = [];
                 this.addNewComment = false;
                 this.fetchComments(this.culturalSite.id!);
               }
@@ -359,6 +357,20 @@ import { ToastrService } from 'ngx-toastr';
       }
     }
     
+  }
+
+  editCulturalSite() {
+    // TODO
+    // redirekcija na formu
+    // pa sa forme nazad ovamo
+    alert("TODO")
+  }
+  
+  deleteCulturalSite() {
+    // TODO
+    // pokretanje dijaloga za potvrdu
+    // redirekcija na homepage (mozda iz dijaloga)
+    alert("TODO")
   }
 
   getTextErrorMessage() {
