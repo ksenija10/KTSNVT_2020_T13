@@ -6,6 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatTableHarness } from '@angular/material/table/testing';
 
 import { AdminService } from 'src/app/services/admin.service';
 import { ViewAdminComponent } from './view-admin.component';
@@ -15,6 +16,7 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { ToastrService } from 'ngx-toastr';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { DebugElement } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
 
 describe('ViewAdminComponent', () => {
   let component: ViewAdminComponent;
@@ -55,6 +57,7 @@ describe('ViewAdminComponent', () => {
         MatPaginatorModule,
         BrowserAnimationsModule,
         MatIconModule,
+        MatTableModule,
       ],
     }).compileComponents();
 
@@ -74,10 +77,12 @@ describe('ViewAdminComponent', () => {
     fixture.whenStable().then(async () => {
       expect(component.dataSource.content.length).toBe(4);
       fixture.detectChanges();
-      let elements: DebugElement[] = fixture.debugElement.queryAll(
-        By.css('mat-list-item')
+
+      let table = await loader.getHarness(
+        MatTableHarness.with({ selector: '#admin-table' })
       );
-      expect(elements.length).toBe(4);
+
+      expect((await table.getRows()).length).toBe(4);
       // paginator
       const paginator = await loader.getHarness(
         MatPaginatorHarness.with({ selector: '#admins-paginator' })
