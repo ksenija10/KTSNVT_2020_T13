@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   hide = true;
-  namePattern = "[A-Z][a-z]*";
+  namePattern = "[A-ZŠĐČĆŽ][a-zšđčćž]*";
   confirmPasswordMatcher = new ConfirmPasswordMatcher();
 
   constructor(

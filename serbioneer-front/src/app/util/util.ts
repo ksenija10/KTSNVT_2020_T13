@@ -1,10 +1,10 @@
 
 export function onlyContainsLetters(myString: string) {
-    return /^[a-zA-Z]+$/.test(myString);
+    return /^[a-zšđčćžA-ZŠĐČĆŽ]+$/.test(myString);
 }
 
 export function onlyContainsLettersAndSpaces(myString: string) {
-    return /^[a-zA-Z' ']+$/.test(myString);
+    return /^[a-zšđčćžA-ZŠĐČĆŽ' ']+$/.test(myString);
 }
 
 export function smoothScroll() {

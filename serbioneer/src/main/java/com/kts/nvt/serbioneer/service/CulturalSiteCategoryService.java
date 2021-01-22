@@ -78,4 +78,7 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
         return culturalSiteCategoryRepository.save(culturalSiteCategoryToUpdate);
 	}
 
+	public CulturalSiteCategory findOneByName(String categoryName) {
+		return culturalSiteCategoryRepository.findOneByName(categoryName);
+	}
 }
