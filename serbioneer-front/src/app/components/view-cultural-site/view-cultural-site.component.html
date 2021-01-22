@@ -4,22 +4,22 @@
             <div id = "cultural-site-name" class="col-7"><h2 class="site-title">{{culturalSite.name}}</h2></div>
             <div class="col-1">
                 <div class="row rating">
-                    <div>{{culturalSite.rating}}</div>
+                    <div id="cultural-site-rating">{{culturalSite.rating}}</div>
                     <mat-icon>grade</mat-icon>
                 </div>
             </div>
             <div class="col-2" *ngIf="adminIsLogged">
-                <button mat-raised-button class="btn btn-purple" (click)="addImages()">
+                <button id = "add-image-btn" mat-raised-button class="btn btn-purple" (click)="addImages()">
                     Add images
                 </button>
             </div>
             <div class="col-2" *ngIf="userIsLogged">
-                <button mat-raised-button class="btn btn-purple" (click)="onChangeSubscription($event)">
+                <button id = "subscribe-btn" mat-raised-button class="btn btn-purple" (click)="onChangeSubscription($event)">
                     {{buttonValue}}
                 </button>
             </div>
             <div class="col-2" *ngIf="adminIsLogged">
-                <button mat-raised-button class="btn btn-purple" (click)="openDialog()">
+                <button id = "add-news-btn" mat-raised-button class="btn btn-purple" (click)="openDialog()">
                     Add news
                 </button>
             </div>
@@ -94,6 +94,7 @@
                         <app-comment [comment]="comment" [culturalSiteId]="culturalSite.id"></app-comment>
                     </div>
                     <mat-paginator 
+                        showFirstLastButtons
                         [length]="comments.totalElements" 
                         [pageSize]="comments.size" 
                         [pageSizeOptions]="[1,2,5,10]"
@@ -108,6 +109,7 @@
                 <div class="row comment-div" *ngIf="userIsLogged">
                     <div class="comment-write">Leave your review:</div>
                     <button 
+                        id = "leave-review-btn"
                         type="submit" class="btn comment-btn" 
                         matTooltip="Click to review"
                         matTooltipPosition="right"
@@ -142,6 +144,7 @@
                             <img *ngFor='let url of images'  [src]="url" class="image-preview">
                         </div>
                         <button 
+                            id = "add-comment-btn"
                             mat-raised-button class="btn btn-purple" 
                             type="submit"
                             [disabled]="myForm.invalid">
@@ -164,7 +167,7 @@
                 <form [formGroup]="myForm" (ngSubmit)="submitImages()">
                     <div class="form-group">
                         <label for="file" class="file-title">Images</label>
-                        <input 
+                        <input
                             formControlName="file"
                             id="file" 
                             type="file" 
@@ -176,6 +179,7 @@
                         <img *ngFor='let url of newImages'  [src]="url" class="image-preview">
                     </div>
                     <button 
+                        id = "submit-new-image-btn"
                         mat-raised-button class="btn btn-purple" 
                         type="submit"
                         [disabled]="!(newImageFiles.length>0)">

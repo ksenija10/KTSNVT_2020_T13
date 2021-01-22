@@ -10,7 +10,9 @@
         <app-approve-comment [comment]="comment" (commentSaidFetch)="fetchComments()"></app-approve-comment>
       </mat-list-item>
       <!--pomeriti paginator gore mozda?-->
-      <mat-paginator id="pending-comments-paginator"
+      <mat-paginator 
+          showFirstLastButtons
+          id="pending-comments-paginator"
           [length]="commentsData.totalElements" 
           [pageSize]="commentsData.size" 
           [pageSizeOptions]="[2,5,10]"
