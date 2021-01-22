@@ -16,10 +16,7 @@ export class ViewAdminComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(
-    private adminService: AdminService,
-    private router: Router
-  ) {
+  constructor(private adminService: AdminService, private router: Router) {
     this.pageEvent.pageIndex = 0;
     this.pageEvent.pageSize = 2;
   }
@@ -48,6 +45,6 @@ export class ViewAdminComponent implements OnInit {
   }
 
   addAdmin() {
-    this.router.navigate(['new-admin'])
+    this.router.navigate(['new-admin']);
   }
 }

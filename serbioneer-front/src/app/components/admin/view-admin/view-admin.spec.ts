@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { MatPaginatorHarness } from '@angular/material/paginator/testing';
-import { MatListItemHarness } from '@angular/material/list/testing';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,13 +9,11 @@ import { MatTableHarness } from '@angular/material/table/testing';
 
 import { AdminService } from 'src/app/services/admin.service';
 import { ViewAdminComponent } from './view-admin.component';
-import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { HarnessLoader } from '@angular/cdk/testing';
-import { ToastrService } from 'ngx-toastr';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { DebugElement } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonHarness } from '@angular/material/button/testing';
 
 describe('ViewAdminComponent', () => {
   let component: ViewAdminComponent;
@@ -105,5 +102,19 @@ describe('ViewAdminComponent', () => {
 
     expect(adminService.findAllByPage).toHaveBeenCalled();
     expect(component.pageEvent.pageIndex).toEqual(1);
+  });
+
+  it('should go to new admin page', async () => {
+    component.ngOnInit();
+    expect(adminService.findAllByPage).toHaveBeenCalled();
+
+    const button = await loader.getHarness(
+      MatButtonHarness.with({ selector: '#add-admin-button' })
+    );
+
+    await button.click();
+
+    expect(component.addAdmin).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['new-admin']);
   });
 });
