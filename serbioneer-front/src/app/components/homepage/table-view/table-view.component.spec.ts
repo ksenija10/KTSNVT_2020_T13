@@ -20,30 +20,26 @@ describe('TableViewComponent', () => {
 
   beforeEach(() => {
     let culturalSiteServiceMock = {
-      setData: jasmine.createSpy('setData')
-    }
+      setData: jasmine.createSpy('setData'),
+    };
 
     let routerMock = {
-      navigate: jasmine.createSpy('navigate')
-    }
+      navigate: jasmine.createSpy('navigate'),
+    };
 
     TestBed.configureTestingModule({
       declarations: [TableViewComponent],
       providers: [
         { provide: Router, useValue: routerMock },
-        { provide: CulturalSiteService, useValue: culturalSiteServiceMock }
+        { provide: CulturalSiteService, useValue: culturalSiteServiceMock },
       ],
-      imports: [
-        BrowserAnimationsModule,
-        MatTableModule,
-        MatPaginatorModule
-      ]
+      imports: [BrowserAnimationsModule, MatTableModule, MatPaginatorModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TableViewComponent);
     component = fixture.componentInstance;
     culturalSiteService = TestBed.inject(CulturalSiteService);
-    router = TestBed.inject(Router)
+    router = TestBed.inject(Router);
     loader = TestbedHarnessEnvironment.loader(fixture);
 
     //event emiter for page changed
@@ -60,23 +56,22 @@ describe('TableViewComponent', () => {
       'category',
       'categoryType',
       'address',
-      'city'
+      'city',
     ]);
   });
 
   it('emit event on paginate change', () => {
     const pageEvent = new PageEvent();
     //'pozivamo' metodu koju testiramo
-    component.onPaginateChange(pageEvent)
+    component.onPaginateChange(pageEvent);
     //provera da li se emitovao event
     expect(component.pageChanged.emit).toHaveBeenCalledWith(pageEvent);
-  })
+  });
 
   it('should set data when row is clicked', () => {
     const number = 1;
     component.onClickRow(number);
-    expect(culturalSiteService.setData).toHaveBeenCalledWith(number);
-    expect(router.navigate).toHaveBeenCalledWith(['cultural-site'])
-  })
-
+    // expect(culturalSiteService.setData).toHaveBeenCalledWith(number);
+    expect(router.navigate).toHaveBeenCalledWith(['cultural-site/' + number]);
+  });
 });
