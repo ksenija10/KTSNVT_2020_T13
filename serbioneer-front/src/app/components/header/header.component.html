@@ -61,15 +61,15 @@
                 <mat-icon svgIcon="user"></mat-icon>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                <a id = "my-profile-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
                     (click)="onClick('my-profile')" (keyup.enter)="onClick('my-profile')">
                     My profile
                 </a>
-                <a class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                <a id = "change-password-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
                     (click)="onClick('change-password')" (keyup.enter)="onClick('change-password')">
                     Change password
-            </a>
-                <a class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                </a>
+                <a id = "logout-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
                     (click)="logout()" (keyup.enter)="logout()">
                     Logout
                 </a>

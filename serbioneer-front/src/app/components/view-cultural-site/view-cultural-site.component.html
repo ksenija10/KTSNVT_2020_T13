@@ -1,15 +1,15 @@
-<div class="row view-cultural-site">
+<div id = "cultural-site-view" class="row view-cultural-site">
     <div class="col">
         <div class="row">
-            <div class="col-7"><h2 class="site-title">{{culturalSite.name}}</h2></div>
+            <div id = "cultural-site-name" class="col-7"><h2 class="site-title">{{culturalSite.name}}</h2></div>
             <div class="col-1">
                 <div class="row rating">
-                    <div>{{culturalSite.rating}}</div>
+                    <div id="cultural-site-rating">{{culturalSite.rating}}</div>
                     <mat-icon>grade</mat-icon>
                 </div>
             </div>
             <div class="col-2" *ngIf="adminIsLogged">
-                <button mat-raised-button class="btn btn-purple" (click)="addImages()">
+                <button id = "add-image-btn" mat-raised-button class="btn btn-purple" (click)="addImages()">
                     Add images
                 </button>
             </div>
@@ -19,7 +19,7 @@
                 </button>
             </div>
             <div class="col-2" *ngIf="userIsLogged">
-                <button mat-raised-button class="btn btn-purple" (click)="onChangeSubscription($event)">
+                <button id = "subscribe-btn" mat-raised-button class="btn btn-purple" (click)="onChangeSubscription($event)">
                     {{buttonValue}}
                 </button>
             </div>
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col"><h5>{{culturalSite.address}}, {{culturalSite.city}}</h5></div>
+            <div id = "cultural-site-address" class="col"><h5>{{culturalSite.address}}, {{culturalSite.city}}</h5></div>
         </div>
         <div class="row rate-site-div" *ngIf="userIsLogged">
             <div class="rate-site">Rate {{culturalSite.name}}!</div>
@@ -57,7 +57,7 @@
         <!-- News & Comments -->
         <mat-accordion>
             <!-- News -->
-            <mat-expansion-panel hideToggle>
+            <mat-expansion-panel id = "news-panel" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <h4 class="site-subtitle">
@@ -87,7 +87,7 @@
                 </ng-template>
             </mat-expansion-panel>
             <!-- Comments -->
-            <mat-expansion-panel hideToggle>
+            <mat-expansion-panel id = "comments-panel" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <h4 class="site-subtitle">
@@ -104,6 +104,7 @@
                         <app-comment [comment]="comment" [culturalSiteId]="culturalSite.id"></app-comment>
                     </div>
                     <mat-paginator 
+                        showFirstLastButtons
                         [length]="comments.totalElements" 
                         [pageSize]="comments.size" 
                         [pageSizeOptions]="[1,2,5,10]"
@@ -118,6 +119,7 @@
                 <div class="row comment-div" *ngIf="userIsLogged">
                     <div class="comment-write">Leave your review:</div>
                     <button 
+                        id = "leave-review-btn"
                         type="submit" class="btn comment-btn" 
                         matTooltip="Click to review"
                         matTooltipPosition="right"
@@ -152,6 +154,7 @@
                             <img *ngFor='let url of images'  [src]="url" class="image-preview">
                         </div>
                         <button 
+                            id = "add-comment-btn"
                             mat-raised-button class="btn btn-purple" 
                             type="submit"
                             [disabled]="myForm.invalid">
@@ -164,7 +167,7 @@
     </div>
     <div class="col-4">
         <!-- Map -->
-        <app-map-view
+        <app-map-view id = "map-view"
             [divId]="mapCulturalSite"
             [dataSource]="[culturalSite]"
         ></app-map-view>
@@ -174,7 +177,7 @@
                 <form [formGroup]="myForm" (ngSubmit)="submitImages()">
                     <div class="form-group">
                         <label for="file" class="file-title">Images</label>
-                        <input 
+                        <input
                             formControlName="file"
                             id="file" 
                             type="file" 
@@ -186,6 +189,7 @@
                         <img *ngFor='let url of newImages'  [src]="url" class="image-preview">
                     </div>
                     <button 
+                        id = "submit-new-image-btn"
                         mat-raised-button class="btn btn-purple" 
                         type="submit"
                         [disabled]="!(newImageFiles.length>0)">

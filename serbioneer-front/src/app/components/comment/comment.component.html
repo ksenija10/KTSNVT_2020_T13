@@ -14,8 +14,8 @@
   <div class="comment-text" *ngIf="!editing">{{comment.text}}</div>
   <div *ngIf="editing">
     <form (ngSubmit)="saveComment($event)">
-      <input type="text" [value]="inputText" name="inputText">
-      <button mat-icon-button type="submit">
+      <input id = "edit-comment-input" type="text" [value]="inputText" name="inputText">
+      <button id = "save-comment" mat-icon-button type="submit">
         <mat-icon>save</mat-icon>
       </button>
     </form>

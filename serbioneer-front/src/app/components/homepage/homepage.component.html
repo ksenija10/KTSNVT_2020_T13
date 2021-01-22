@@ -1,6 +1,6 @@
 <div id = "homepage">
-    <!-- Category chips -->
     <div class="row">
+        <!-- Category chips -->
         <div class="col-md-6">
             <mat-form-field class="chip-list">
             <mat-label>Cultural site categories</mat-label>
@@ -13,7 +13,7 @@
                 {{culturalSiteCategory}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
-                <input
+                <input id = "category-chips"
                 placeholder="Cultural site category..."
                 #culturalSiteCategorysInput
                 [formControl]="culturalSiteCategoryCtrl"
@@ -34,7 +34,7 @@
             <div class="form-group">
                 <mat-form-field appearance="fill" class="form-field">
                     <mat-label>Filter by name</mat-label>
-                    <input (keyup)="onKey($event)" matInput placeholder="Ex. Exit">
+                    <input id = "cultural-site-name-input" (keyup)="onKey($event)" matInput placeholder="Ex. Exit">
                 </mat-form-field>
             </div>
         </div>
@@ -42,7 +42,7 @@
         <div class="col-md-2">
             <mat-form-field appearance="fill" class="form-field">
                 <mat-label>Filter by location</mat-label>
-                <mat-select [(value)]="location">
+                <mat-select id = "cultural-site-location-select" [(value)]="location">
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let location of allLocations" [value]="location">{{location}}</mat-option>
                 </mat-select>
@@ -50,20 +50,20 @@
         </div>
         <!-- Filter -->
         <div class="col-md-2">
-            <button mat-raised-button color="primary" class="align" (click)="onFilter()">
+            <button id = "filter-btn" mat-raised-button color="primary" class="align" (click)="onFilter()">
                 Filter sites
             </button>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <app-table-view
+            <app-table-view id="table-view"
                 [dataSource]="dataSource"
                 (pageChanged)="onPageChange($event)"
             ></app-table-view>
         </div>
         <div class="col-md-6">
-            <app-map-view
+            <app-map-view id="map-view"
                 [divId]="mapHomepage"
                 [dataSource]="dataSource.content"
             ></app-map-view>
