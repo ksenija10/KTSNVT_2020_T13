@@ -1,7 +1,7 @@
 <div class="row justify-content-md-center divide" id="view-admin-page">
     <div class="col-md-11">
         <h5 class="lonely">Feeling lonely? Try adding another admin!</h5>
-        <button mat-raised-button class="btn btn-purple" (click)="addAdmin()">
+        <button id="add-admin-button" mat-raised-button class="btn btn-purple" (click)="addAdmin()">
             Add admin
         </button>
     </div>
@@ -36,6 +36,7 @@
         </table>
 
         <mat-paginator 
+            id="admins-paginator"
             [length]="dataSource.totalElements" 
             [pageSize]="dataSource.size" 
             [pageSizeOptions]="[2,5,10]"
