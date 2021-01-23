@@ -85,6 +85,6 @@ public class RegistrationController {
 
         user.setActivated(true);
         authenticatedUserService.saveRegisteredUser(user);
-        return new RedirectView("http://localhost:4200/login-register/login");
+        return new RedirectView("https://localhost:4200/login-register/login");
     }
 }

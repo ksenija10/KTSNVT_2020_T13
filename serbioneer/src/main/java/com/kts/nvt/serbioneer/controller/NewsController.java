@@ -26,6 +26,7 @@ import com.kts.nvt.serbioneer.helper.NewsMapper;
 import com.kts.nvt.serbioneer.model.News;
 import com.kts.nvt.serbioneer.service.NewsService;
 
+@CrossOrigin(origins = "https://localhost:4200")
 @RestController
 @RequestMapping(value = "api/news", produces = MediaType.APPLICATION_JSON_VALUE)
 public class NewsController {
@@ -104,7 +105,6 @@ public class NewsController {
        url: GET localhost:8080/api/news/subscribed/by-page
        HTTP request for getting all subscribed news
     */
-    @CrossOrigin(origins = "http://localhost:4200")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/subscribed/by-page")
     public ResponseEntity<Page<NewsDTO>> getAllSubscribedNews(Pageable pageable) {

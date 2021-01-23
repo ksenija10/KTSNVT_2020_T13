@@ -46,7 +46,7 @@ public class NewsListener implements ApplicationListener<OnNewsCreatedEvent> {
 		mailSender.setUsername(env.getProperty("spring.mail.username"));
 		mailSender.setPassword(env.getProperty("spring.mail.password"));
 
-		String url = "http://localhost:8080" + "/api/cultural-site/" + 
+		String url = "https://localhost:8080" + "/api/cultural-site/" + 
 												event.getNews().getCulturalSite().getId();
 		
 		String subject = "News about " + event.getNews().getCulturalSite().getName();

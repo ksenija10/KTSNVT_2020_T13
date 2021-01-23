@@ -44,7 +44,7 @@ public class LogoutE2ETest {
         loginRegisterPage = PageFactory.initElements(driver, LoginRegisterPage.class);
 
         //redirekcija na pocetak interakcije tj na login page
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
         
         justWait();
 
@@ -69,7 +69,7 @@ public class LogoutE2ETest {
 
         loginPage.toastSuccess();
 
-        assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/homepage", driver.getCurrentUrl());
         
         justWait();
         
@@ -81,7 +81,7 @@ public class LogoutE2ETest {
         
         loginRegisterPage.ensureIsVisibleLoginRegisterDiv();
         
-        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/login", driver.getCurrentUrl());
     }
     
     @After

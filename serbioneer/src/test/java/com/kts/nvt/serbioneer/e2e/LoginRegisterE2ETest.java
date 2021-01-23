@@ -38,7 +38,7 @@ public class LoginRegisterE2ETest {
 
     @Test
     public void redirectToLoginSuccess() throws InterruptedException {
-        driver.get("http://localhost:4200/login-register/register");
+        driver.get("https://localhost:4200/login-register/register");
 
         justWait();
 
@@ -48,12 +48,12 @@ public class LoginRegisterE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/login", driver.getCurrentUrl());
     }
 
     @Test
     public void redirectToRegisterSuccess() throws InterruptedException {
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
 
         justWait();
 
@@ -63,12 +63,12 @@ public class LoginRegisterE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
     public void redirectToHomeSuccess() throws InterruptedException {
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
 
         justWait();
 
@@ -80,7 +80,7 @@ public class LoginRegisterE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/homepage", driver.getCurrentUrl());
     }
 
     @After

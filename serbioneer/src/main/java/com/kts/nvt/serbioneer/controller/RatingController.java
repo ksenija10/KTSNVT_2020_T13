@@ -26,7 +26,7 @@ import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.model.Rating;
 import com.kts.nvt.serbioneer.service.RatingService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 @RestController
 @RequestMapping(value = "api/rating", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RatingController {

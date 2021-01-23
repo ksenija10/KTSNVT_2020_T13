@@ -33,7 +33,7 @@ import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 @RestController
 @RequestMapping(value = "api/authenticated-user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthenticatedUserController {

@@ -31,6 +31,7 @@ import com.kts.nvt.serbioneer.jwt.TokenUtils;
 import com.kts.nvt.serbioneer.model.Admin;
 import com.kts.nvt.serbioneer.service.AdminService;
 
+@CrossOrigin(origins = "https://localhost:4200")
 @RestController
 @RequestMapping(value = "api/admin", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminController {
@@ -47,7 +48,6 @@ public class AdminController {
 	 * url: GET localhost:8080/api/admin/by-page
 	 * HTTP Request for getting all admins
 	*/
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/by-page")
 	public ResponseEntity<Page<AdminDTO>> getAllAdmins(Pageable pageable) {
@@ -59,7 +59,6 @@ public class AdminController {
 	 * url: GET localhost:8080/api/admin/view-profile
 	 * HTTP Request for viewing pesonal information
 	*/
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/view-profile")
 	public ResponseEntity<AdminDTO> getCurrentAdmin() {
@@ -102,7 +101,6 @@ public class AdminController {
 	 * url: PUT localhost:8080/api/admin/updatePersonalInformation
 	 * HTTP Request for updating personal information
 	*/
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping(value = "/updatePersonalInformation", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserUpdateDTO> updatePersonalInformation(@Valid @RequestBody UserUpdateDTO userUpdateDTO) {
@@ -120,7 +118,6 @@ public class AdminController {
 	 * url: PUT localhost:8080/api/admin/updatePassword
 	 * HTTP Request for updating password
 	 */
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO,
