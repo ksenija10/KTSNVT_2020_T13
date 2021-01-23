@@ -80,6 +80,11 @@ public class NewCulturalSitePage {
                 ExpectedConditions.textToBePresentInElement(toast, "Successfully added new cultural site!"));
     }
 
+    public void toastSuccessEdit() {
+        (new WebDriverWait(driver, 10)).until(
+                ExpectedConditions.textToBePresentInElement(toast, "Successfully edited cultural site!"));
+    }
+
     public void toastError(String message) {
         (new WebDriverWait(driver, 10)).until(
                 ExpectedConditions.textToBePresentInElement(toast, message)
