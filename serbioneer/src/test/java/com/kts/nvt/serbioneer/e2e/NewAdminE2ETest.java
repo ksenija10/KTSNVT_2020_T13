@@ -78,8 +78,6 @@ public class NewAdminE2ETest {
 
         justWait();
 
-        // Fali prikaz nove strane
-
         newAdminPage.toastSuccess();
 
         justWait();
