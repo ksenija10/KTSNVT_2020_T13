@@ -73,7 +73,7 @@
                     <div class="site-news" *ngFor="let oneNews of news.content">
                         <app-news-article [news]="oneNews"></app-news-article>
                     </div>
-                    <mat-paginator 
+                    <mat-paginator showFirstLastButtons
                         [length]="news.totalElements" 
                         [pageSize]="news.size" 
                         [pageSizeOptions]="[1,2,5,10]"
@@ -103,8 +103,7 @@
                     <div class="row" *ngFor="let comment of comments.content">
                         <app-comment [comment]="comment" [culturalSiteId]="culturalSite.id"></app-comment>
                     </div>
-                    <mat-paginator 
-                        showFirstLastButtons
+                    <mat-paginator showFirstLastButtons
                         [length]="comments.totalElements" 
                         [pageSize]="comments.size" 
                         [pageSizeOptions]="[1,2,5,10]"
