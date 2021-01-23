@@ -46,7 +46,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NewsArticleComponent } from './components/news-article/news-article.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -90,7 +90,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     AddNewsArticleComponent,
     ConfirmDeleteDialog,
     InlineEditComponent,
-    TypesComponent
+    TypesComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,8 +106,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass: "toast-custom",
-      timeOut: 2500}),
+      positionClass: 'toast-custom',
+      timeOut: 2500,
+    }),
     MatAutocompleteModule,
     MatChipsModule,
     MatTableModule,
@@ -127,7 +128,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     // infinite scroll
     InfiniteScrollModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   providers: [
     {
@@ -139,6 +140,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     { provide: Window, useValue: window },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddNewsArticleComponent]
+  entryComponents: [AddNewsArticleComponent],
 })
 export class AppModule {}
