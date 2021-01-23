@@ -48,7 +48,7 @@ public class CommentRepositoryUnitTest {
     @Test
     public void testFindAllByApprovedPageable() {
         Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
-        Page<Comment> allApprovedCommentsByPage = commentRepository.findAllByApproved(pageable, UNAPPROVED);
+        Page<Comment> allApprovedCommentsByPage = commentRepository.findAllByApprovedOrderByIdAsc(pageable, UNAPPROVED);
 
         assertEquals(UNAPPROVED_COMMENTS_SIZE, allApprovedCommentsByPage.getContent().size());
     }
@@ -57,7 +57,7 @@ public class CommentRepositoryUnitTest {
     public void testFindAllByCulturalSiteIdAndApprovedPageable() {
         Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
         Page<Comment> allApprovedCommentsByPageOnCulturalSite = commentRepository.
-                findAllByCulturalSiteIdAndApproved(pageable, EXISTING_CULTURAL_SITE_ID, APPROVED);
+                findAllByCulturalSiteIdAndApprovedOrderByIdAsc(pageable, EXISTING_CULTURAL_SITE_ID, APPROVED);
 
         assertEquals(APPROVED_COMMENTS_SIZE_AFTER_ADD_CULTURAL_SITE_2, allApprovedCommentsByPageOnCulturalSite.getContent().size());
     }
