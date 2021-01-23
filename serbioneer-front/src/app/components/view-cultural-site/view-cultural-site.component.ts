@@ -15,6 +15,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddNewsArticleComponent } from '../add-news-article/add-news-article.component';
 import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-view-cultural-site',
@@ -61,9 +62,10 @@ import { ToastrService } from 'ngx-toastr';
     private authUserService: AuthenticatedUserService,
     private ratingService : RatingService,
     private imageService : ImageService,
-    private newsDialog : MatDialog) { 
+    private newsDialog : MatDialog,
+    private confirmDeleteDialog : MatDialog) { 
       let siteUrl = this.router.url.split('/')
-      this.culturalSiteId = <number><unknown>siteUrl[siteUrl.length - 1]
+      this.culturalSiteId = +siteUrl[siteUrl.length - 1]
       this.loggedUser();
   }
 
@@ -360,17 +362,39 @@ import { ToastrService } from 'ngx-toastr';
   }
 
   editCulturalSite() {
-    // TODO
-    // redirekcija na formu
-    // pa sa forme nazad ovamo
-    alert("TODO")
+    this.router.navigate(['edit-cultural-site/'+this.culturalSiteId])
   }
   
   deleteCulturalSite() {
-    // TODO
-    // pokretanje dijaloga za potvrdu
-    // redirekcija na homepage (mozda iz dijaloga)
-    alert("TODO")
+    // confirm delete dialog
+    const dialogRef = this.confirmDeleteDialog.open(ConfirmDeleteDialog, {
+      data: {
+        entity: 'cultural site',
+        name: this.culturalSite.name
+      }
+    })
+
+    dialogRef.afterClosed()
+      .subscribe(
+        response => {
+          if(response) {
+            this.culturalSiteService.deleteCulturalSite(this.culturalSite.id!)
+              .subscribe(
+                response => {
+                  this.toastr.success('Successfully deleted cultural site!');
+                  // redirekcija na stranicu sa svim kulturnim dobrima
+                  this.router.navigate(['homepage']);
+                },
+                error => {
+                  if(error.error.message){
+                    this.toastr.error(error.error.message);
+                  } else {
+                    this.toastr.error('503 Server Unavailable');
+                  }
+                })
+          }
+        }
+      )
   }
 
   getTextErrorMessage() {
