@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Add news about {{data.culturalSite.name}}</h2>
 
 <mat-dialog-content>
-    <form [formGroup]="newsForm" (ngSubmit)="onSubmit($event)">
+    <form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
         <mat-form-field id="text-input" appearance="fill" class="form-field">
             <mat-label>News content</mat-label>
             <input type="text" id="text-input-field" matInput formControlName="text" placeholder="Input content...">
@@ -14,6 +14,7 @@
                 type="file" 
                 class="form-control"
                 multiple="" 
+                formControlName="photos"
                 (change)="onFileChange($event)">
         </div>
         <img *ngFor='let url of images'  [src]="url" class="image-preview"> <br/>
