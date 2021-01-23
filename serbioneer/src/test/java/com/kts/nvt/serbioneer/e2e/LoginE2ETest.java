@@ -32,7 +32,6 @@ public class LoginE2ETest {
         //chrome ekstenziju i podesimo chrome kao default-ni driver
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         ChromeOptions option= new ChromeOptions();
-        option.addArguments("headless");
         option.addArguments("ignore-certificate-errors");
         driver = new ChromeDriver(option);
 
