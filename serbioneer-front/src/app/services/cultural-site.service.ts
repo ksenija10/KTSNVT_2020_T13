@@ -50,16 +50,6 @@ export class CulturalSiteService {
 
   constructor(private http: HttpClient) {}
 
-  private data!: number;
-
-  setData(data: number) {
-    this.data = data;
-  }
-
-  getData(): number {
-    return this.data;
-  }
-
   findAllByPage(page: number, size: number): Observable<CulturalSiteData> {
     let params = new HttpParams();
 

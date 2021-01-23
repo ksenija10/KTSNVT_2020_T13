@@ -66,10 +66,8 @@ export class CommentComponent implements OnInit {
             .subscribe(
               response => {
                 this.toastr.success('Successfully deleted comment!');
-                //sharing service for sibling communication
-                this.culturalSiteService.setData(this.culturalSiteId);
                 //navigacija na cultural site posle klika na row
-                this.router.navigate(['cultural-site']);
+                this.router.navigate(['cultural-site/'+this.culturalSiteId]);
                 this.activeComment = false;
               },
               error => {
