@@ -88,7 +88,7 @@ describe('MyProfileComponent', () => {
 
     afterEach(() => {
         component.myProfileForm.reset();
-        fixture.detectChanges()
+        fixture.detectChanges();
     })
 
     it('should fetch currently logged in user', async () => {

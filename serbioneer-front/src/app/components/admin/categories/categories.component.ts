@@ -49,8 +49,6 @@ export class CategoriesComponent implements OnInit {
 
   initDataSource() {
     // inicijalizacija category tabele
-/*     this.categoryDataSource = new CategoriesDataSource(this.culturalSiteCategoryService);
-    this.categoryDataSource.loadCategories(); */
     this.culturalSiteCategoryService.getAllByPage(0, 2).pipe(
       map((culturalSiteCategoryData: CulturalSiteCategoryData) => 
         this.categoryDataSource = culturalSiteCategoryData
@@ -93,12 +91,7 @@ export class CategoriesComponent implements OnInit {
             this.toastr.success('Successfully added new category!');
             this.addCategoryForm.reset();
             categoryFormDirective.resetForm();
-            // reload tabele
-            let lastPageIndex = calculateLastPage(this.categoryPageEvent.length + 1, this.categoryPageEvent.pageSize, this.categoryPageEvent.pageIndex)
-            //this.categoryPageEvent.previousPageIndex = this.categoryPageEvent.pageIndex
-            //this.categoryPageEvent.pageIndex = lastPageIndex;
-            //this.categoryPageEvent.length += 1;
-            this.onCategoryPaginateChange(this.categoryPageEvent)
+            this.onCategoryPaginateChange(this.categoryPageEvent);
           },
           error => {
             if(error.error.message){
