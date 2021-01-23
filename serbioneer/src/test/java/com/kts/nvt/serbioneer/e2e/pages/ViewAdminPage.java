@@ -18,6 +18,9 @@ public class ViewAdminPage {
     @FindBy(id = "admin-table")
     private WebElement adminTable;
 
+    @FindBy(id = "add-admin-button")
+    private WebElement addAdminBtn;
+
     public ViewAdminPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -41,5 +44,9 @@ public class ViewAdminPage {
 
     public WebElement getAdminTable() {
         return adminTable;
+    }
+
+    public WebElement getAddAdminBtn() {
+        return addAdminBtn;
     }
 }

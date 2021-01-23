@@ -49,7 +49,7 @@ public class CulturalSiteViewPage {
     @FindBy(id = "new-comment-error")
     private WebElement newCommentError;
 
-    @FindBy(xpath = "(//*[@aria-label=\"Last page\"])[1]")
+    @FindBy(xpath = "(//*[@aria-label=\"Last page\"])[2]")
     private WebElement lastPageComment;
 
     @FindBy(xpath = "(//*[@color=\"warn\"])[last()]")

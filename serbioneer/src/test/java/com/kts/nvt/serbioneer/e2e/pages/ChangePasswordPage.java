@@ -22,7 +22,7 @@ public class ChangePasswordPage {
     @FindBy(id = "repeat-password")
     WebElement repeatPassword;
 
-    @FindBy(id = "change-password-btn")
+    @FindBy(id = "save-password-btn")
     WebElement changePassBtn;
 
     @FindBy(xpath = "//*[@id=\"toast-container\"]//*[1]//*[1]")
