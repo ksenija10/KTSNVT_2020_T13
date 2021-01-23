@@ -40,7 +40,7 @@ public class CommentService{
 		return commentRepository.findAllByApproved(approved);
 	}
 	public Page<Comment> findAllByApproved(Pageable pageable, Boolean approved) {
-		return commentRepository.findAllByApproved(pageable, approved);
+		return commentRepository.findAllByApprovedOrderByIdAsc(pageable, approved);
 	}
 
 	// neophodno za potrebe testiranja
@@ -49,7 +49,7 @@ public class CommentService{
 	}
 	
 	public Page<Comment> findAllByCulturalSiteIdAndApproved(Pageable pageable, Long culturalSiteId, Boolean approved) {
-		return commentRepository.findAllByCulturalSiteIdAndApproved(pageable, culturalSiteId, approved);
+		return commentRepository.findAllByCulturalSiteIdAndApprovedOrderByIdAsc(pageable, culturalSiteId, approved);
 	}
 
 	public Comment findOneById(Long id) {

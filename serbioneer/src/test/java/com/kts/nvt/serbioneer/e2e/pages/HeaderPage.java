@@ -50,6 +50,9 @@ public class HeaderPage {
     @FindBy(id = "subscribed-btn")
     private WebElement subscribedBtn;
 
+    @FindBy( id = "new-cultural-site-btn")
+    private WebElement addCulturalSiteBtn;
+
     public HeaderPage(WebDriver driver) { this.driver = driver; }
 
     public void ensureIsUnauthenticatedUser() {
@@ -131,5 +134,9 @@ public class HeaderPage {
     
     public WebElement getSubscribedBtn() {
     	return subscribedBtn;
+    }
+
+    public WebElement getAddCulturalSiteBtn() {
+        return addCulturalSiteBtn;
     }
 }

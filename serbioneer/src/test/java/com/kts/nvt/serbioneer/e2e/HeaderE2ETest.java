@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
@@ -35,12 +36,16 @@ public class HeaderE2ETest {
     
     private SubscribedSitesPage subscribedSitesPage;
 
+    private NewCulturalSitePage newCulturalSitePage;
+
     @Before
     public void setUp() throws InterruptedException {
         //default-ni browser za selenium je firefox, pa ukoliko zelimo da koristimo chrome moramo da ubacimo
         //chrome ekstenziju i podesimo chrome kao default-ni driver
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        ChromeOptions option= new ChromeOptions();
+        option.addArguments("ignore-certificate-errors");
+        driver = new ChromeDriver(option);
 
         //prosirenje prozora za bolji pregled
         driver.manage().window().maximize();
@@ -55,9 +60,10 @@ public class HeaderE2ETest {
         pendingCommentsPage = PageFactory.initElements(driver, PendingCommentsPage.class);
         viewAdminPage = PageFactory.initElements(driver, ViewAdminPage.class);
         subscribedSitesPage = PageFactory.initElements(driver, SubscribedSitesPage.class);
+        newCulturalSitePage = PageFactory.initElements(driver, NewCulturalSitePage.class);
 
         //redirekcija na pocetak interakcije tj na login
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
     }
 
     @After
@@ -79,7 +85,7 @@ public class HeaderE2ETest {
         headerPage.getHomeBtn().click();
         headerPage.ensureIsUnauthenticatedUser();
         homepagePage.ensureIsDisplayedHomepage();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/homepage");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/homepage");
 
         justWait();
 
@@ -87,7 +93,7 @@ public class HeaderE2ETest {
         headerPage.getLoginHeaderBtn().click();
         headerPage.ensureIsUnauthenticatedUser();
         loginPage.ensureIsDisplayedLoginForm();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/login-register/login");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/login-register/login");
 
         justWait();
     }
@@ -111,7 +117,7 @@ public class HeaderE2ETest {
         //provera da li se nalazi na homepage
         headerPage.ensureIsAuthenticatedUser();
         homepagePage.ensureIsDisplayedHomepage();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/homepage");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/homepage");
 
         justWait();
 
@@ -119,7 +125,7 @@ public class HeaderE2ETest {
         headerPage.getNewsfeedBtn().click();
         headerPage.ensureIsAuthenticatedUser();
         newsfeedPage.ensureIsDisplayedNewsfeed();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/newsfeed");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/newsfeed");
 
         justWait();
 
@@ -127,7 +133,7 @@ public class HeaderE2ETest {
         headerPage.getSubscribedBtn().click();
         headerPage.ensureIsAuthenticatedUser();
         subscribedSitesPage.ensureIsDisplayed();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/subscribed");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/subscribed");
         
         justWait();
 
@@ -137,7 +143,7 @@ public class HeaderE2ETest {
         headerPage.getMyProfileBtn().click();
         headerPage.ensureIsAuthenticatedUser();
         myProfilePage.ensureIsDisplayedMyProfileAuthenticatedUserForm();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/my-profile");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/my-profile");
 
         justWait();
 
@@ -146,7 +152,7 @@ public class HeaderE2ETest {
         headerPage.getChangePasswordBtn().click();
         headerPage.ensureIsAuthenticatedUser();
         changePasswordPage.ensureIsDisplayedChangePasswordForm();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/change-password");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/change-password");
 
         justWait();
 
@@ -155,7 +161,7 @@ public class HeaderE2ETest {
         headerPage.getLogoutBtn().click();
         headerPage.ensureIsUnauthenticatedUser();
         loginPage.ensureIsDisplayedLoginForm();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/login-register/login");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/login-register/login");
 
         justWait();
     }
@@ -179,17 +185,23 @@ public class HeaderE2ETest {
         //provera da li se nalazi na homepage
         headerPage.ensureIsAdmin();
         homepagePage.ensureIsDisplayedHomepage();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/homepage");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/homepage");
 
         justWait();
 
-        //TODO provera da li klikom na add site ide na add site
+        //provera da klikom na add site ide na add site
+        headerPage.getAddCulturalSiteBtn().click();
+        headerPage.ensureIsAdmin();
+        newCulturalSitePage.ensureIsVisibleNewCulturalSiteForm();
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/new-cultural-site");
+
+        justWait();
 
         //provera da klikom na categories ide na categories
         headerPage.getCategoriesBtn().click();
         headerPage.ensureIsAdmin();
         categoriesPage.ensureIsDisplayed();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/categories");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/categories");
 
         justWait();
 
@@ -197,7 +209,7 @@ public class HeaderE2ETest {
         headerPage.getPendingCommentsBtn().click();
         headerPage.ensureIsAdmin();
         pendingCommentsPage.ensureIsDisplayedPendingComments();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/pending-comments");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/pending-comments");
 
         justWait();
 
@@ -205,7 +217,7 @@ public class HeaderE2ETest {
         headerPage.getViewAdminBtn().click();
         headerPage.ensureIsAdmin();
         viewAdminPage.ensureIsDisplayedAdmins();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/view-admin");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/view-admin");
 
         justWait();
 
@@ -215,7 +227,7 @@ public class HeaderE2ETest {
         headerPage.getMyProfileBtn().click();
         headerPage.ensureIsAdmin();
         myProfilePage.ensureIsDisplayedMyProfileAuthenticatedUserForm();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/my-profile");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/my-profile");
 
         justWait();
 
@@ -224,7 +236,7 @@ public class HeaderE2ETest {
         headerPage.getChangePasswordBtn().click();
         headerPage.ensureIsAdmin();
         changePasswordPage.ensureIsDisplayedChangePasswordForm();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/change-password");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/change-password");
 
         justWait();
 
@@ -233,7 +245,7 @@ public class HeaderE2ETest {
         headerPage.getLogoutBtn().click();
         headerPage.ensureIsUnauthenticatedUser();
         loginPage.ensureIsDisplayedLoginForm();
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/login-register/login");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/login-register/login");
 
         justWait();
     }

@@ -11,6 +11,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
@@ -31,7 +32,9 @@ public class NewCulturalSiteE2ETEst {
     @Before
     public void setUp() throws InterruptedException{
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        ChromeOptions option= new ChromeOptions();
+        option.addArguments("ignore-certificate-errors");
+        driver = new ChromeDriver(option);
 
         driver.manage().window().maximize();
 
@@ -39,7 +42,7 @@ public class NewCulturalSiteE2ETEst {
         newCulturalSitePage = PageFactory.initElements(driver, NewCulturalSitePage.class);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
 
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
         justWait();
         loginPage.getEmail().sendKeys("admin@admin.com");
         loginPage.getPassword().sendKeys("admin");
@@ -47,7 +50,7 @@ public class NewCulturalSiteE2ETEst {
         loginPage.getLoginBtn().click();
         justWait();
 
-        driver.get("http://localhost:4200/new-cultural-site");
+        headerPage.getAddCulturalSiteBtn().click();
 
     }
 

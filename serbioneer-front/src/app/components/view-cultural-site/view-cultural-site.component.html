@@ -14,7 +14,7 @@
                 </button>
             </div>
             <div class="col-2" *ngIf="adminIsLogged">
-                <button mat-raised-button class="btn btn-purple" (click)="openDialog()">
+                <button id ="add-news-btn" mat-raised-button class="btn btn-purple" (click)="openDialog()">
                     Add news
                 </button>
             </div>
@@ -73,7 +73,7 @@
                     <div class="site-news" *ngFor="let oneNews of news.content">
                         <app-news-article [news]="oneNews"></app-news-article>
                     </div>
-                    <mat-paginator 
+                    <mat-paginator showFirstLastButtons
                         [length]="news.totalElements" 
                         [pageSize]="news.size" 
                         [pageSizeOptions]="[1,2,5,10]"

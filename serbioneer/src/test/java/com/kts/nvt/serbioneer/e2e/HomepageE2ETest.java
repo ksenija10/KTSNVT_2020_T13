@@ -9,6 +9,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.data.domain.Page;
 
@@ -34,7 +35,9 @@ public class HomepageE2ETest {
         //default-ni browser za selenium je firefox, pa ukoliko zelimo da koristimo chrome moramo da ubacimo
         //chrome ekstenziju i podesimo chrome kao default-ni driver
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        ChromeOptions option= new ChromeOptions();
+        option.addArguments("ignore-certificate-errors");
+        driver = new ChromeDriver(option);
 
         //prosirenje prozora za bolji pregled
         driver.manage().window().maximize();
@@ -45,7 +48,7 @@ public class HomepageE2ETest {
         culturalSiteViewPage = PageFactory.initElements(driver, CulturalSiteViewPage.class);
 
         //redirekcija na pocetak interakcije tj na homepage
-        driver.get("http://localhost:4200/homepage");
+        driver.get("https://localhost:4200/homepage");
     }
 
     @Test
@@ -207,7 +210,7 @@ public class HomepageE2ETest {
         homepagePage.getCategoryChips().sendKeys("Manifestacija");
         homepagePage.getCategoryChips().sendKeys(Keys.ENTER);
         homepagePage.getCulturalSiteLocationSelect().sendKeys("Novi Sad");
-        homepagePage.getCulturalSiteNameInput().sendKeys("sajam");
+        homepagePage.getCulturalSiteNameInput().sendKeys("invalid");
 
         justWait();
 
@@ -245,7 +248,7 @@ public class HomepageE2ETest {
 
         justWait();
 
-        assertEquals(driver.getCurrentUrl(), "http://localhost:4200/cultural-site/1");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/cultural-site/1");
         assertEquals(name, culturalSiteViewPage.getCulturalSiteName().getText());
         assertEquals(address, culturalSiteViewPage.getCulturalSiteAddress().getText());
 
