@@ -37,6 +37,9 @@
         <div class="row">
             <div id = "cultural-site-address" class="col"><h5>{{culturalSite.address}}, {{culturalSite.city}}</h5></div>
         </div>
+        <div class="row">
+            <div class="col"><h6>{{culturalSite.category}}, {{culturalSite.categoryType}}</h6></div>
+        </div>
         <div class="row rate-site-div" *ngIf="userIsLogged">
             <div class="rate-site">Rate {{culturalSite.name}}!</div>
             <ngb-rating [max]="5" [(rate)]="starRating.value" [readonly]="false" (rateChange)="onRatingChange()"></ngb-rating>
@@ -73,7 +76,7 @@
                     <div class="site-news" *ngFor="let oneNews of news.content">
                         <app-news-article [news]="oneNews"></app-news-article>
                     </div>
-                    <mat-paginator 
+                    <mat-paginator showFirstLastButtons
                         [length]="news.totalElements" 
                         [pageSize]="news.size" 
                         [pageSizeOptions]="[1,2,5,10]"
@@ -103,8 +106,7 @@
                     <div class="row" *ngFor="let comment of comments.content">
                         <app-comment [comment]="comment" [culturalSiteId]="culturalSite.id"></app-comment>
                     </div>
-                    <mat-paginator 
-                        showFirstLastButtons
+                    <mat-paginator showFirstLastButtons
                         [length]="comments.totalElements" 
                         [pageSize]="comments.size" 
                         [pageSizeOptions]="[1,2,5,10]"

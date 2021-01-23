@@ -85,6 +85,7 @@ import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dial
     this.culturalSiteService.getCulturalSite(this.culturalSiteId).pipe(
       map((culturalSite: CulturalSiteView) => {
         this.culturalSite = culturalSite;
+        this.culturalSite.rating = +(this.culturalSite.rating?.toFixed(1)!);
         // ubacivanje svih slika u listu slika kulturnog dobra
         if(culturalSite.images) {
           culturalSite.images.map((image: Image) => {
@@ -213,6 +214,7 @@ import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dial
           this.culturalSiteService.getCulturalSite(this.culturalSite.id!).pipe(
             map((culturalSite: CulturalSite) => {
               this.culturalSite = culturalSite;
+              this.culturalSite.rating = +(this.culturalSite.rating?.toFixed(1)!);
             })
           ).subscribe()
         }
@@ -227,6 +229,7 @@ import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dial
             this.culturalSiteService.getCulturalSite(this.culturalSite.id!).pipe(
               map((culturalSite: CulturalSite) => {
                 this.culturalSite = culturalSite;
+                this.culturalSite.rating = +(this.culturalSite.rating?.toFixed(1)!);
               })
             ).subscribe()
           }

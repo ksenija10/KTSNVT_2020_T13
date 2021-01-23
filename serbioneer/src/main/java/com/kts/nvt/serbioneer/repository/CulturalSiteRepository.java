@@ -19,20 +19,22 @@ public interface CulturalSiteRepository extends JpaRepository<CulturalSite, Long
 					(Pageable pageable, String cat, String type, String name, String city);*/
 	
 	// u slucaju da prosledi kategoriju
-	Page<CulturalSite> findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCase
+	Page<CulturalSite> findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc
 					(Pageable pageable, String[] categoryNames, String name, String city);
 	
 	// u slucaju da ne prosledi kategoriju
-	Page<CulturalSite> findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCase
+	Page<CulturalSite> findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc
 					(Pageable pageable, String name, String city);
 	
 	// u slucaju da prosledi kategoriju
-		Page<CulturalSite> findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContaining
+		Page<CulturalSite> findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc
 						(Pageable pageable, String[] categoryNames, String name, String city, String userEmail);
 		
-		// u slucaju da ne prosledi kategoriju
-		Page<CulturalSite> findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContaining
-						(Pageable pageable, String name, String city, String userEmail);
+	// u slucaju da ne prosledi kategoriju
+	Page<CulturalSite> findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc
+					(Pageable pageable, String name, String city, String userEmail);
+	
+	Page<CulturalSite> findAllByOrderByIdAsc(Pageable pageable);
 	
 	Page<CulturalSite> findAllBySubscribedUsersId(Pageable pageable, Long Id);
 	

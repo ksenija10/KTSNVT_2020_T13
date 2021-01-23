@@ -17,7 +17,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
-import com.kts.nvt.serbioneer.mailsender.OnNewsCreatedEvent;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.News;
