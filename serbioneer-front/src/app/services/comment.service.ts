@@ -3,13 +3,14 @@ import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { environment } from "../../environments/environment"
-import { Comment } from 'src/app/model/comment';
+import { Comment } from "src/app/model/comment.model"
 
-export interface CommentData {
-    content: Comment[],
-    totalPages: number,
-    totalElements: number,
-    size: number,
+export class CommentData {
+    constructor(
+        public content: Comment[], 
+        public totalPages: number, 
+        public totalElements: number, 
+        public size: number) {}
 };
 
 @Injectable({
@@ -33,22 +34,24 @@ export class CommentService {
     }
 
     aproveComment(commentId : number) {
-        let params = new HttpParams();
-
-        params = params.append('id', String(commentId));
-
-        return this.http.put(environment.apiEndpoint + 'comment/' + commentId + '/approval', {params}).pipe(
+        return this.http.put<Comment>(environment.apiEndpoint + 'comment/' + commentId + '/approval', {}).pipe(
             catchError(err => throwError(err))
         );
     }
 
     declineComment(commentId : number) {
-        let params = new HttpParams();
-
-        params = params.append('id', String(commentId));
-
-        return this.http.delete(environment.apiEndpoint + 'comment/' + commentId + '/approval', {params}).pipe(
+        return this.http.delete<void>(environment.apiEndpoint + 'comment/' + commentId + '/approval').pipe(
             catchError(err => throwError(err))
         );
+    }
+
+    updateComment(id : number, updatedComment : Comment){
+        return this.http.put<Comment>(environment.apiEndpoint + 'comment/' + id, updatedComment).pipe(
+            catchError(err => throwError(err))
+        );
+    }
+
+    deleteComment(id : number){
+        return this.http.delete<void>(environment.apiEndpoint + 'comment/' + id);
     }
 }

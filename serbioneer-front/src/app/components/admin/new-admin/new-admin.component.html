@@ -1,67 +1,68 @@
 <div class="card col-7 mx-auto">
     <div class="card-body">
-        <form [formGroup] = "newAdminForm" (ngSubmit) = "onSubmit()">
+        <form id="new-admin-form" [formGroup] = "newAdminForm" (ngSubmit) = "onSubmit()">
             <div class="form-group">
-                <mat-form-field appearance="fill" class="form-field">
+                <mat-form-field id="email-form-field" appearance="fill" class="form-field">
                     <mat-label>Enter your email</mat-label>
-                    <input matInput placeholder="something@example.com" formControlName ="email">
-                    <mat-error *ngIf="newAdminForm.get('email')?.invalid">{{getEmailErrorMessage()}}</mat-error>
+                    <input id="email-input" matInput placeholder="something@example.com" formControlName ="email">
+                    <mat-error id="email-error" *ngIf="newAdminForm.get('email')?.invalid">{{getEmailErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
             <div formGroupName="passwordGroup">
                 <div class="form-group">
-                    <mat-form-field appearance="fill" class="form-field">
+                    <mat-form-field id="password-form-field" appearance="fill" class="form-field">
                         <mat-label>Enter your password</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'"  formControlName ="password">
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <input id="password-input" matInput [type]="hide ? 'password' : 'text'"  formControlName ="password">
+                        <button id="show-password" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
-                        <mat-error *ngIf="newAdminForm.get('password')?.invalid">{{getRequiredFieldErrorMessage('password')}}</mat-error>
+                        <mat-error id="password-error" *ngIf="newAdminForm.controls.passwordGroup.get('password')?.invalid">{{getRequiredFieldErrorMessage('password')}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <mat-form-field appearance="fill" class="form-field">
+                    <mat-form-field id="confirm-password-form-field" appearance="fill" class="form-field">
                         <mat-label>Repeat entered password</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'"  formControlName ="confirmPassword"
+                        <input id="confirm-password-input" matInput [type]="hide ? 'password' : 'text'"  formControlName ="confirmPassword"
                             [errorStateMatcher]="confirmPasswordMatcher">
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <button id="shor-confirm-password" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
-                        <mat-error *ngIf="newAdminForm.get('confirmPassword')?.invalid">{{getRequiredFieldErrorMessage('confirmPassword')}}</mat-error>
-                        <mat-error *ngIf="newAdminForm.controls.passwordGroup.hasError('passwordsDontMatch')">{{getPasswordsMatch()}}</mat-error>
+                        <mat-error id="confirm-password-error" *ngIf="newAdminForm.controls.passwordGroup.get('confirmPassword')?.invalid">{{getRequiredFieldErrorMessage('confirmPassword')}}</mat-error>
+                        <mat-error id="passwords-error" *ngIf="newAdminForm.controls.passwordGroup.hasError('passwordsDontMatch')">{{getPasswordsMatch()}}</mat-error>
                     </mat-form-field>
                 </div>
             </div>
             <div class="form-group">
-                <mat-form-field appearance="fill" class="form-field">
+                <mat-form-field id="name-form-field" appearance="fill" class="form-field">
                     <mat-label>Name</mat-label>
-                    <input matInput formControlName ="name">
-                    <mat-error *ngIf="newAdminForm.get('name')?.invalid">{{getNameErrorMessage('name')}}</mat-error>
+                    <input id="name-input" matInput formControlName ="name">
+                    <mat-error id="name-error" *ngIf="newAdminForm.get('name')?.invalid">{{getNameErrorMessage('name')}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-group">
-                <mat-form-field appearance="fill" class="form-field">
+                <mat-form-field id="surname-form-field" appearance="fill" class="form-field">
                     <mat-label>Surname</mat-label>
-                    <input matInput formControlName ="surname">
-                    <mat-error *ngIf="newAdminForm.get('surname')?.invalid">{{getNameErrorMessage('surname')}}</mat-error>
+                    <input id="surname-input" matInput formControlName ="surname">
+                    <mat-error id="surname-error" *ngIf="newAdminForm.get('surname')?.invalid">{{getNameErrorMessage('surname')}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-group">
-                <mat-form-field appearance="fill">
+                <mat-form-field id="date-of-birth-form-field" appearance="fill">
                     <mat-label>Choose a date</mat-label>
-                    <input matInput formControlName="dateOfBirth" [matDatepicker]="dateOfBirth">
-                    <mat-error *ngIf="newAdminForm.get('dateOfBirth')?.invalid">{{getRequiredFieldErrorMessage('dateOfBirth')}}</mat-error>
+                    <input id="date-of-birth-input" matInput [max]="today" formControlName="dateOfBirth" [matDatepicker]="dateOfBirth">
+                    <mat-error id="date-of-birth-error" *ngIf="newAdminForm.get('dateOfBirth')?.invalid">{{getRequiredFieldErrorMessage('dateOfBirth')}}</mat-error>
                     <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
                     <mat-datepicker #dateOfBirth></mat-datepicker>
                 </mat-form-field>
             </div>
             <div>
                 <button
-                    class="btn btn-theme"
+                    class="btn btn-purple"
                     type="submit"
                     [disabled] = "newAdminForm.invalid"
+                    id="add-admin-button"
                 >
-                    Register
+                    Add admin
                 </button>
             </div>
         </form>

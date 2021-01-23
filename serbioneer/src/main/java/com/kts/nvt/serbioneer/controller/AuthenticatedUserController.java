@@ -1,7 +1,10 @@
 package com.kts.nvt.serbioneer.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.kts.nvt.serbioneer.jwt.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,12 +33,16 @@ import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
 
+@CrossOrigin(origins = "https://localhost:4200")
 @RestController
 @RequestMapping(value = "api/authenticated-user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthenticatedUserController {
 
 	@Autowired
 	private AuthenticatedUserService authenticatedUserService;
+
+	@Autowired
+	private TokenUtils tokenUtils;
 	
 	private final AuthenticatedUserMapper authenticatedUserMapper;
 	
@@ -59,7 +66,6 @@ public class AuthenticatedUserController {
 	 * url: GET localhost:8080/api/authenticated-user/view-profile
 	 * HTTP Request for viewing pesonal information
 	*/
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/view-profile")
 	public ResponseEntity<AuthenticatedUserDTO> getCurrentAuthenticatedUser() {
@@ -86,7 +92,6 @@ public class AuthenticatedUserController {
 	 * url: PUT localhost:8080/api/authenticated-user/updatePersonalInformation
 	 * HTTP Request for updating personal information
 	*/
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "/updatePersonalInformation", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserUpdateDTO> updatePersonalInformation(@Valid @RequestBody UserUpdateDTO userUpdateDTO) {
@@ -103,17 +108,27 @@ public class AuthenticatedUserController {
 	 * url: PUT localhost:8080/api/authenticated/updatePassword
 	 * HTTP Request for updating password
 	 */
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping(value = "/updatePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<PasswordDTO> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO) {
+	public ResponseEntity<Void> updatePassword (@Valid @RequestBody PasswordDTO passwordDTO,
+												HttpServletRequest request,
+												HttpServletResponse response) {
 		try{
 			AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			authenticatedUserService.updatePassword(passwordDTO, user);
+			user = authenticatedUserService.updatePassword(passwordDTO, user);
+			// uspesno promenio sifru
+			String newToken = tokenUtils.generateToken(user.getUsername(), user.getAuthorities());
+			int expiresIn = tokenUtils.getExpiresIn();
+			// postavljanje headera
+			response.addHeader(tokenUtils.getAuthHeader(), "Bearer " + newToken);
+			response.addHeader(tokenUtils.getExpHeader(), String.valueOf(expiresIn));
+			// prikaz heder-a na frontu, da bismo mogli da ih dobavimo
+			response.addHeader("Access-Control-Allow-Headers",  "Origin, X-Requested-With, Content-Type, Accept, Authorization, Expires-In");
+			response.addHeader("Access-Control-Expose-Headers", "Authorization, Expires-In");
+			return new ResponseEntity<>(HttpStatus.OK);
 		}catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
-		return new ResponseEntity<>(passwordDTO, HttpStatus.OK);
 	}
 	
 	/*

@@ -1,0 +1,63 @@
+<div *ngIf="chosenCategory; then categoryTitle else noCategoryTitle"></div>
+<ng-template #categoryTitle>
+    <h2 id = "chosen-category-name"  class="title">{{ chosenCategory.name }} types</h2>
+</ng-template>
+<ng-template #noCategoryTitle>
+    <h2 id = "no-category-chosen" class="title">Choose a category</h2>
+</ng-template>
+<div id = "category-type-div" class="row">
+    <div class="col-md-7">
+        <table id ="category-type-table" mat-table [dataSource]="typeDataSource.content">
+            <!-- No data row -->
+            <tr class="mat-row" *matNoDataRow>
+                <div *ngIf="chosenCategory; then categoryChosen else noCategory"></div>
+                <ng-template #categoryChosen>
+                    <td class="mat-cell" colspan="2">No existing types for chosen category.</td>
+                </ng-template>
+                <ng-template #noCategory>
+                    <td class="mat-cell" colspan="2">Please choose a category to view its types.</td>
+                </ng-template>
+            </tr>
+            <!-- Header tabele -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let type; columns: displayedColumns;"></tr>
+            <!-- Dinamicke kolone (ime) -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Type name </th>
+                <td mat-cell *matCellDef="let type"> {{ type.name }} </td>
+            </ng-container>
+            <!-- Staticke kolone (akcije) -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let type">
+                    <button class="btn" [satPopoverAnchor]="editPopover" (click)="editPopover.toggle()"><i class="material-icons">edit</i></button>
+                    <sat-popover #editPopover
+                        true
+                        xAlign="after"
+                        (closed)="updateType(type, $event)">
+                        <app-inline-edit [value]="type.name" [entity]="typeEntity"></app-inline-edit>
+                    </sat-popover>
+                    <button class="btn" (click)="confirmDeleteType(type)"><i class="material-icons">delete</i></button>
+                </td>
+            </ng-container>
+        </table>
+        <mat-paginator id ="types-paginator" showFirstLastButtons
+            [length]="typeDataSource.totalElements" 
+            [pageSize]="typeDataSource.size" 
+            [pageSizeOptions]="[2,5,10]"
+            (page)="typePageEvent = $event; onTypePaginateChange($event)"
+        ></mat-paginator>
+    </div>
+    <div class="col-md-5">
+        <form [formGroup]="addTypeForm" #typeFormDirective="ngForm" (ngSubmit)="onAddType(typeFormDirective)">
+            <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Add new cultural category type</mat-label>
+                <input id = "type-name-input" matInput formControlName="name">
+                <mat-error id = "type-name-error" *ngIf="addTypeForm.get('name')?.invalid">{{ getTypeNameErrorMessage() }}</mat-error>
+            </mat-form-field>
+            <button id ="type-add-btn" mat-raised-button [disabled]="addTypeForm.invalid" class="btn btn-purple">
+                Add type
+            </button>
+        </form>
+    </div>
+</div>

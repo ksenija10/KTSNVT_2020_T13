@@ -45,23 +45,16 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (response) => {
           this.toastr.success('Logged in successfully!');
-          // ekstrakcija tokena
-          let jwtTokenBearer = response.headers.get('Authorization');
-          let jwtToken = jwtTokenBearer.split(" ")[1];
-          let expiresIn = response.headers.get('Expires-In');
-          // postavljanje tokena
-          localStorage.setItem('jwtToken', jwtToken);
-          localStorage.setItem('expiresIn', expiresIn);
-          // pokretanje tajmera za refresh tokena
-          this.authService.startRefreshTokenTimer(jwtToken);
+          // postavljanje u local storage
+          this.authService.setLoggedInUser(response)
           //reset forme
           this.loginForm.reset();
           // preusmerenje
           this.router.navigate(['homepage']);
-          this.authService.role.next(this.authService.loggedInUser());
+          this.authService.role.next(this.authService.getLoggedInUserAuthority());
         },
         (error) => {
-          if(error.error.message) {
+          if(error.status = 401) {
             this.toastr.error("Incorrect email or password.");
           } else {
             this.toastr.error('503 Server Unavailable');

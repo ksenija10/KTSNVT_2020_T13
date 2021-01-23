@@ -23,7 +23,7 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
     private CulturalSiteCategoryRepository culturalSiteCategoryRepository;
 	
 	@Getter
-	private final String type = "Cultural category type";
+	private final String type = "Cultural site category";
 	private final String unique = "name";
 	
 	
@@ -33,7 +33,7 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
 	
 	@Override
 	public Page<CulturalSiteCategory> findAll(Pageable pageable) {
-		return culturalSiteCategoryRepository.findAll(pageable);
+		return culturalSiteCategoryRepository.findAllByOrderByIdAsc(pageable);
 	}
 
 	@Override
@@ -78,4 +78,7 @@ public class CulturalSiteCategoryService implements ServiceInterface<CulturalSit
         return culturalSiteCategoryRepository.save(culturalSiteCategoryToUpdate);
 	}
 
+	public CulturalSiteCategory findOneByName(String categoryName) {
+		return culturalSiteCategoryRepository.findOneByName(categoryName);
+	}
 }

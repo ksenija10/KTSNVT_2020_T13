@@ -26,7 +26,17 @@ public interface CulturalSiteRepository extends JpaRepository<CulturalSite, Long
 	Page<CulturalSite> findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCase
 					(Pageable pageable, String name, String city);
 	
+	// u slucaju da prosledi kategoriju
+		Page<CulturalSite> findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContaining
+						(Pageable pageable, String[] categoryNames, String name, String city, String userEmail);
+		
+		// u slucaju da ne prosledi kategoriju
+		Page<CulturalSite> findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContaining
+						(Pageable pageable, String name, String city, String userEmail);
+	
 	Page<CulturalSite> findAllBySubscribedUsersId(Pageable pageable, Long Id);
 	
 	List<CulturalSite> findAllBySubscribedUsersId(Long id);
+	
+	CulturalSite findOneByIdAndSubscribedUsersEmailContaining(Long cultualSiteId, String userEmail);
 }

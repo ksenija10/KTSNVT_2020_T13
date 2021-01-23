@@ -1,5 +1,14 @@
 $primary-font: Segoe UI, sans-serif
 $primary-background: #aae0f9
+$lighter-primary: rgb(170, 224, 249, 0.4)
+$light-primary: rgb(170, 224, 249, 0.2)
+$secondary-background: #b8d7d2
+$lighter-secondary: rgb(184, 215, 210, 0.4)
+$light-secondary: rgb(184, 215, 210, 0.06)
+$btn-color: #3f51b5
+
+body
+    background-color: $light-secondary !important
 
 .flag
     font-family: $primary-font
@@ -11,7 +20,11 @@ $primary-background: #aae0f9
         color: white
 
 .btn-theme
-    background-color: $primary-background
+    background-color: $primary-background !important
+
+.btn-purple
+    background-color: $btn-color !important
+    color: white !important
 
 button
     border-width: 0px !important
@@ -28,3 +41,35 @@ form
 .mat-tab-label, .mat-tab-link
     font-size: 18px
     font-weight: 550
+
+.toast-custom
+    top: 50px
+    right: 5px
+
+.row
+    margin: 0 !important
+
+/* Table formating */
+table
+  width: 100%
+
+.mat-header-row
+  background-color: $lighter-primary
+
+.mat-header-cell
+  font-size: 15px
+  font-weight: 600
+
+.mat-row:nth-child(even)
+  background-color: $light-primary
+
+.mat-icon-button
+  width: 30px
+
+td.mat-cell:last-of-type
+  padding-right: 24px !important
+td.mat-cell:first-of-type
+  padding-left: 24px !important
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap'

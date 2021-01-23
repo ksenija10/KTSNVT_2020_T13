@@ -1,0 +1,13 @@
+<form id = "inline-edit-form" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="mat-subheading-2">Edit {{ entity }} </div>
+    
+    <mat-form-field>
+      <input id = "inline-input" matInput formControlName="editField" name="edit" [(ngModel)]="edit">
+      <mat-error id = "inline-error" *ngIf="editForm.get('editField')?.invalid">{{ getEditErrorMessage() }}</mat-error>
+    </mat-form-field>
+
+    <div class="actions">
+      <button id = "inline-cancel" mat-button type="button" color="primary" (click)="onCancel()">Cancel</button>
+      <button id = "inline-save" mat-button type="submit" color="primary" [disabled]="editForm.invalid">Save</button>
+    </div>
+</form>

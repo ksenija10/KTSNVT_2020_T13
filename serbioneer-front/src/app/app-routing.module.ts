@@ -5,14 +5,17 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { LoginComponent } from './components/login-register/login/login.component';
 import { RegisterComponent } from './components/login-register/register/register.component';
+import { NewsfeedComponent } from './components/newsfeed/newsfeed.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PendingCommentsComponent } from './components/pending-comments/pending-comments.component';
 import { LoginGuard } from './guards/login-guard.service';
 import { RoleGuard } from './guards/role-guard.service';
 import { ViewAdminComponent } from './components/admin/view-admin/view-admin.component';
-import { NewNewsArticleComponent } from './components/new-news-article/new-news-article.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
+import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
+import { NewCulturalSiteComponent } from './components/new-cultural-site/new-cultural-site.component';
 
 const routes: Routes = [
   //login guard ne dozvoljava ulogovanom korisniku da opet pristupi login strani
@@ -24,6 +27,14 @@ const routes: Routes = [
   {
     path: 'homepage',
     component: HomepageComponent,
+  },
+  {
+    path: 'subscribed',
+    component: HomepageComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_USER',
+            subscribedView: true,
+            subscribedMap: 'map-subscribed' },
   },
   {
     path: 'login-register',
@@ -52,10 +63,6 @@ const routes: Routes = [
     data: { expectedRoles: 'ROLE_ADMIN' },
   },
   {
-    path: 'new-news-article',
-    component: NewNewsArticleComponent,
-  },
-  {
     path: 'new-admin',
     component: NewAdminComponent,
     canActivate: [RoleGuard],
@@ -64,6 +71,12 @@ const routes: Routes = [
   {
     path: 'view-admin',
     component: ViewAdminComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' },
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
     canActivate: [RoleGuard],
     data: { expectedRoles: 'ROLE_ADMIN' },
   },
@@ -78,6 +91,28 @@ const routes: Routes = [
     component: ChangePasswordComponent,
     canActivate: [RoleGuard],
     data: { expectedRoles: 'ROLE_ADMIN|ROLE_USER' },
+  },
+  { 
+    path: 'cultural-site/:id', 
+    component: ViewCulturalSiteComponent
+  },
+  {
+    path: 'new-cultural-site',
+    component: NewCulturalSiteComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' }
+  },
+  {
+    path: 'edit-cultural-site/:id',
+    component: NewCulturalSiteComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' }
+  },
+  {
+    path: 'newsfeed',
+    component: NewsfeedComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_USER' },
   },
   {
     path: '**',

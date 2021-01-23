@@ -5,23 +5,23 @@
           <div class="author">{{comment.name}} {{ comment.surname}}:</div>
           <div>{{comment.culturalSiteName}}</div>
           <div>{{comment.text}}</div>
-          <div *ngIf="comment.images.length > 0">
-            <cdk-virtual-scroll-viewport itemSize="50" orientation="horizontal">
-              <div *cdkVirtualFor="let image of comment.images" >
-                <img src="data:image/png;base64,{{image.content}}" class="example-item" id="image._id"/>
-              </div>
-            </cdk-virtual-scroll-viewport>
+          <div class="comment-image-content" *ngIf="comment.images.length > 0">
+            <ng-image-slider
+              [images]="imageSlider"
+              [infinite]="false"
+              slideImage="1">
+            </ng-image-slider>
           </div>
         </div>
       </div>
     </div>
     <div class="col comment-button">
-      <button mat-icon-button (click)="approveComment($event)">
+      <button mat-icon-button (click)="approveComment()" id="approve-comment-{{comment.id}}">
         <mat-icon class="green-icon">done</mat-icon>
       </button>
     </div>
     <div class="col comment-button">
-      <button mat-icon-button color="warn" (click)="declineComment($event)">
+      <button mat-icon-button color="warn" (click)="declineComment()" id = "reject-comment-{{comment.id}}">
         <mat-icon>clear</mat-icon>
       </button>
     </div>

@@ -1,20 +1,22 @@
 package com.kts.nvt.serbioneer.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.kts.nvt.serbioneer.dto.RatingDTO;
+import com.kts.nvt.serbioneer.helper.exception.ExistentFieldValueException;
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.Rating;
 import com.kts.nvt.serbioneer.model.User;
 import com.kts.nvt.serbioneer.repository.RatingRepository;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 public class RatingService implements ServiceInterface<Rating> {
@@ -119,6 +121,21 @@ public class RatingService implements ServiceInterface<Rating> {
 		culturalSiteService.updateRating(ratingToUpdate.getCulturalSite());
 
 		return ratingRepository.save(ratingToUpdate);
+	}
+	
+	public RatingDTO findUserCulturalSiteRating(Long culturalSiteId, String userEmail) throws ExistentFieldValueException {
+		AuthenticatedUser user = authenticatedUserService.findOneByEmail(userEmail);
+		RatingDTO ratingDto = new RatingDTO();
+		ratingDto.setAuthenticatedUserId(user.getId());
+		ratingDto.setCulturalSiteId(culturalSiteId);
+		Rating rating = ratingRepository.findOneByCulturalSiteIdAndAuthenticatedUserId(culturalSiteId, user.getId());
+		if(rating==null) {
+			ratingDto.setValue(0);
+		}else {
+			ratingDto.setId(rating.getId());
+			ratingDto.setValue(rating.getValue());
+		}
+		return ratingDto;
 	}
 
 }

@@ -2,6 +2,7 @@ package com.kts.nvt.serbioneer.service;
 
 import java.util.List;
 
+import com.kts.nvt.serbioneer.helper.exception.NonexistentNameException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -50,7 +51,7 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 		if (culturalSiteCategoryService.findOneById(categoryId) == null) {
 			throw new NonexistentIdException(culturalSiteCategoryService.getType());
 		}
-		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryId(categoryId, pageable);
+		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryIdOrderByIdAsc(categoryId, pageable);
 	}
 
 	@Override
@@ -105,4 +106,10 @@ public class CulturalCategoryTypeService implements ServiceInterface<CulturalCat
 		return culturalCategoryTypeRepository.findOneByIdAndCulturalSiteCategoryId(typeId, categoryId);
 	}
 
+	public List<CulturalCategoryType> findAllByCulturalSiteCategoryName(String categoryName) throws NonexistentNameException {
+		if (culturalSiteCategoryService.findOneByName(categoryName) == null) {
+			throw new NonexistentNameException(culturalSiteCategoryService.getType());
+		}
+		return culturalCategoryTypeRepository.findAllByCulturalSiteCategoryName(categoryName);
+	}
 }

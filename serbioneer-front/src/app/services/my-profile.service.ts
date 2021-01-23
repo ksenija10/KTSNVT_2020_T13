@@ -14,19 +14,15 @@ export class MyProfileService{
 
     private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-    private userApi: string;
+    private userApi: string = '';
 
     constructor(
         private http: HttpClient,
         private authenticationService: AuthenticationService
-    ) {
-        this.userApi = 'authenticated-user/';
-        if( authenticationService.loggedInUser() === 'ROLE_ADMIN') {
-            this.userApi = 'admin/';
-        }
-    }
+    ) {}
 
     updatePersonalInformation(userUpdateDto: UserUpdateDTO): Observable<any> {
+        this.checkRole();
         return this.http.put<UserUpdateDTO>(
             environment.apiEndpoint + this.userApi + 'updatePersonalInformation',
             userUpdateDto,
@@ -35,6 +31,7 @@ export class MyProfileService{
     }
 
     getCurrentAuthenticatedUser(): Observable<any> {
+        this.checkRole();
         return this.http.get<AuthenticatedUser>(
             environment.apiEndpoint + this.userApi + 'view-profile',
             { headers: this.headers}
@@ -42,10 +39,19 @@ export class MyProfileService{
     }
 
     updatePassword(passwordDto: PasswordDTO) {
-        return this.http.put<PasswordDTO>(
+        this.checkRole();
+        return this.http.put(
             environment.apiEndpoint + this.userApi + 'updatePassword',
             passwordDto,
-            { headers: this.headers }
+            { headers: this.headers, observe: 'response'}
         )
+    }
+
+    private checkRole() {
+        if(this.authenticationService.getLoggedInUserAuthority() === 'ROLE_ADMIN') {
+            this.userApi = 'admin/';
+        } else {
+            this.userApi = 'authenticated-user/';
+        }
     }
 }

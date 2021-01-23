@@ -1,0 +1,19 @@
+<div class="news">
+    <mat-card class="news-card">
+        <mat-card-header>
+          <div mat-card-avatar><i class="material-icons avatar">menu_book</i></div>
+          <mat-card-title>{{ news.culturalSiteName }}</mat-card-title>
+          <mat-card-subtitle>{{ news.dateTime | date:'medium'}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="news-content">
+          {{ news.information }}
+          <div class="news-image-content" *ngIf="news.images.length > 0">
+            <ng-image-slider
+              [images]="imageSlider"
+              [infinite]="false"
+              slideImage="1">
+            </ng-image-slider>
+          </div>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -29,6 +31,7 @@ import com.kts.nvt.serbioneer.dto.CommentDTO;
 import com.kts.nvt.serbioneer.dto.CulturalSiteDTO;
 import com.kts.nvt.serbioneer.dto.CulturalSiteFilterDTO;
 import com.kts.nvt.serbioneer.dto.NewsDTO;
+import com.kts.nvt.serbioneer.dto.SubscribedCulturalSiteDTO;
 import com.kts.nvt.serbioneer.helper.CommentMapper;
 import com.kts.nvt.serbioneer.helper.CulturalSiteMapper;
 import com.kts.nvt.serbioneer.helper.NewsMapper;
@@ -41,6 +44,7 @@ import com.kts.nvt.serbioneer.service.CommentService;
 import com.kts.nvt.serbioneer.service.CulturalSiteService;
 import com.kts.nvt.serbioneer.service.NewsService;
 
+@CrossOrigin(origins = "https://localhost:4200")
 @RestController
 @RequestMapping(value = "api/cultural-site", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CulturalSiteController {
@@ -53,8 +57,8 @@ public class CulturalSiteController {
 
     @Autowired
     private NewsService newsService;
-    
-    @Autowired
+	
+	@Autowired
     ApplicationEventPublisher eventPublisher;
 
     private final CulturalSiteMapper culturalSiteMapper;
@@ -68,15 +72,31 @@ public class CulturalSiteController {
     }
     
     /*
-		url: GET localhost:8080/api/cultural-site/by-page
+		url: GET localhost:8080/api/cultural-site/
+		HTTP request for getting if user is subscribed to a cultural site 
+	 */
+    @PreAuthorize("hasRole('ROLE_USER')")
+	@PostMapping(value = "/subsribed-on-site")
+	public ResponseEntity<SubscribedCulturalSiteDTO> getUserCulturalSite(
+			@Valid @RequestBody SubscribedCulturalSiteDTO subscribedCulturalSiteDto){
+    	SubscribedCulturalSiteDTO dto = new SubscribedCulturalSiteDTO(false, subscribedCulturalSiteDto.getUserEmail(),
+    			subscribedCulturalSiteDto.getCulturalSiteId());
+        if(culturalSiteService.subscribedCulturalSite(subscribedCulturalSiteDto.getCulturalSiteId(), 
+        												subscribedCulturalSiteDto.getUserEmail())) {
+        	dto.setSubscribed(true);
+        }
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+    
+    /*
+		url: GET localhost:8080/api/cultural-site/
 		HTTP request for getting cultural sites by page
 	 */
-    @CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "by-page")
 	public ResponseEntity<Page<CulturalSiteDTO>> getAllCulturalSites(Pageable pageable){
-        Page<CulturalSite> page = culturalSiteService.findAll(pageable);
-        return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
-    }
+	    Page<CulturalSite> page = culturalSiteService.findAll(pageable);
+	    return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
+	}
     
     /*
 		url: POST localhost:8080/api/cultural-site
@@ -201,9 +221,7 @@ public class CulturalSiteController {
         try {
             news = newsService.create(culturalSiteId, news);
             //slanje mejla svim pretplacenim korisnicam prilikom kreiranja novosti
-            String appUrl = request.getContextPath();
-            eventPublisher.publishEvent(new OnNewsCreatedEvent(news,
-                    request.getLocale(), appUrl, news.getCulturalSite().getSubscribedUsers()));
+            newsService.sendNewsNotification(news);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
@@ -212,10 +230,18 @@ public class CulturalSiteController {
     }
     
     /*
+	 * postavljeno u servisu kako bi se asinhrono pozvalo slanje mejla 
+	 */
+	@Async
+	public void sendMail(News news, HttpServletRequest request) {
+		eventPublisher.publishEvent(new OnNewsCreatedEvent(news,
+                request.getLocale(), request.getContextPath(), news.getCulturalSite().getSubscribedUsers()));
+	}
+    
+    /*
 		url: POST localhost:8080/api/cultural-site/filter/by-page
 		HTTP request for filtering cultural sites
 	*/
-    @CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value = "/filter/by-page", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Page<CulturalSiteDTO>> filterCulturalSites(Pageable pageable, 
 									@Valid @RequestBody CulturalSiteFilterDTO filterDTO) {
@@ -229,13 +255,25 @@ public class CulturalSiteController {
 	 */
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/subscribed/by-page")
-	public ResponseEntity<Page<CulturalSiteDTO>> getAllSubscribedCulturalSites(Pageable pageable){
+	public ResponseEntity<Page<CulturalSiteDTO>> getAllSubscribedCulturalSites(Pageable pageable, @RequestParam String userEmail){
 		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Page<CulturalSite> page = culturalSiteService.findAllSubscribed(pageable, user.getId());
 	    return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	/*
+	url: POST localhost:8080/api/cultural-site/subscribed/filter/by-page
+	HTTP request for filtering cultural sites
+	*/
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PostMapping(value = "/subscribed/filter/by-page", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Page<CulturalSiteDTO>> filterCulturalSitesSubscribed(Pageable pageable, 
+									@Valid @RequestBody CulturalSiteFilterDTO filterDTO, @RequestParam String userEmail) {
+		Page<CulturalSite> page = culturalSiteService.filterCulturalSitesSubscribed(pageable, filterDTO, userEmail);
+		return new ResponseEntity<>(culturalSiteMapper.toDtoPage(page), HttpStatus.OK);
+	}
+	
+	
 	@GetMapping(value = "/locations")
 	public ResponseEntity<List<String>> getAllCulturalSiteLocations(){
         List<String> locations = culturalSiteService.findAllCities();

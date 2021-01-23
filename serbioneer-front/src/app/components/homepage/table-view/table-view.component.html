@@ -1,63 +1,76 @@
-<div class="row">
-    <div class="col-md-8">
-        <mat-form-field class="chip-list">
-            <mat-label>Cultural site categories</mat-label>
-            <mat-chip-list #chipList aria-label="Cultural site categories selection">
-              <mat-chip
-                *ngFor="let culturalSiteCategory of culturalSiteCategorys"
-                [selectable]="selectable"
-                [removable]="removable"
-                (removed)="remove(culturalSiteCategory)">
-                {{culturalSiteCategory}}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-              </mat-chip>
-              <input
-                placeholder="New cultural site category..."
-                #culturalSiteCategorysInput
-                [formControl]="culturalSiteCategoryCtrl"
-                [matAutocomplete]="auto"
-                [matChipInputFor]="chipList"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                (matChipInputTokenEnd)="add($event)">
-            </mat-chip-list>
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-              <mat-option *ngFor="let culturalSiteCategory of filteredCulturalSiteCategories | async" [value]="culturalSiteCategory">
-                {{culturalSiteCategory}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-    </div>
+<div>
+    <table id = "cultural-site-table" mat-table [dataSource]="dataSource.content">
+        <!-- No data row -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="2">No existing cultural sites.</td>
+        </tr>
 
-    <!--Cultural sites table-->
-    <div class="col-md-10">
-      <app-cultural-sites-table #appCulturalSitesTable
-        [location] = "location"
-        [name] = "name"
-        [culturalSiteCategorys] = "culturalSiteCategorys"
-      ></app-cultural-sites-table>
-    </div>
+        <!-- Header -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onClickRow(row.id)">
+        </tr>
 
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td 
+            matTooltip="Click for detailed view"
+            matTooltipPosition="above"
+            mat-cell *matCellDef="let row"> 
+            {{row.name}} 
+        </td>
+        </ng-container>
 
-    <div class="col-md-5">
-      <div class="form-group">
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Filter by name</mat-label>
-          <input (keyup)="onKey($event)" matInput placeholder="Ex. Kulturno dobro">
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="col-md-5">
-      <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Filter by location</mat-label>
-        <mat-select [(value)] = "location">
-          <mat-option>None</mat-option>
-          <mat-option *ngFor="let location of allLocations" [value]="location">{{location}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="cold-md-2">
-      <button mat-raised-button color="primary" (click)=" appCulturalSitesTable.onFilter()">
-        Filter
-      </button>
-    </div>
+        <!-- Category Column -->
+        <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+        <td 
+            matTooltip="Click for detailed view"
+            matTooltipPosition="above"
+            mat-cell *matCellDef="let row"> 
+            {{row.category}} 
+        </td>
+        </ng-container>
+
+        <!-- CategoryType Column -->
+        <ng-container matColumnDef="categoryType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category Type </th>
+        <td 
+            matTooltip="Click for detailed view"
+            matTooltipPosition="above"
+            mat-cell *matCellDef="let row"> 
+            {{row.categoryType}} 
+        </td>
+        </ng-container>
+
+        <!-- Address Column -->
+        <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+        <td 
+            matTooltip="Click for detailed view"
+            matTooltipPosition="above"
+            mat-cell *matCellDef="let row"> 
+            {{row.address}} 
+        </td>
+        </ng-container>
+
+        <!-- City Column -->
+        <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+        <td 
+            matTooltip="Click for detailed view"
+            matTooltipPosition="above"
+            mat-cell *matCellDef="let row"> 
+            {{row.city}} 
+        </td>
+        </ng-container>
+
+    </table>
+
+    <mat-paginator id = "cultural-site-table-paginator"
+        [length]="dataSource.totalElements" 
+        [pageSize]="dataSource.size" 
+        [pageSizeOptions]="[2,5,10]"
+        (page)="onPaginateChange($event)"
+    ></mat-paginator>
 </div>

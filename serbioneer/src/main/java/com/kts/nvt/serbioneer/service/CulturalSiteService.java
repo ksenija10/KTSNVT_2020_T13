@@ -166,4 +166,27 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 		return culturalSiteRepository.findAllBySubscribedUsersId(user.getId());
 	}
 	
+	public boolean subscribedCulturalSite(Long siteId, String userEmail) {
+		CulturalSite culturalSite = culturalSiteRepository.findOneByIdAndSubscribedUsersEmailContaining(siteId, userEmail);
+		if(culturalSite == null) {
+			return false;
+		}
+		return true;
+	}
+	
+	public Page<CulturalSite> filterCulturalSitesSubscribed(Pageable pageable, CulturalSiteFilterDTO filterDTO, String userEmail) {
+		if (filterDTO.getCategoryNames().length == 0) {
+			// poziv "krace" metode
+			return culturalSiteRepository.findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContaining
+					(pageable, filterDTO.getCulturalSiteName(), filterDTO.getLocation(), userEmail);
+		}
+		return culturalSiteRepository.findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContaining
+				(pageable, filterDTO.getCategoryNames(), filterDTO.getCulturalSiteName(), filterDTO.getLocation(), userEmail);
+		//findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityIn
+		/*return culturalSiteRepository.
+				findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase
+			(pageable, filterDTO.getCategoryName(), filterDTO.getCategoryTypeName(), 
+					filterDTO.getCulturalSiteName(), filterDTO.getLocation());*/
+	}
+	
 }
