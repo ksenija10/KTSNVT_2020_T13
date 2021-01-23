@@ -22,6 +22,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { NewAdminComponent } from './components/admin/new-admin/new-admin.component';
 import { ViewAdminComponent } from './components/admin/view-admin/view-admin.component';
+import { NewCulturalSiteComponent } from './components/new-cultural-site/new-cultural-site.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
@@ -63,6 +64,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     NewsArticleComponent,
     CommentComponent,
     AddNewsArticleComponent,
+    NewCulturalSiteComponent,
     ConfirmDeleteDialog,
     InlineEditComponent,
     TypesComponent,
@@ -129,6 +132,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     InfiniteScrollModule,
     MatExpansionModule,
     MatTooltipModule,
+    // autokomplit
+    GooglePlaceModule
   ],
   providers: [
     {

@@ -15,6 +15,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { ViewCulturalSiteComponent } from './components/view-cultural-site/view-cultural-site.component';
+import { NewCulturalSiteComponent } from './components/new-cultural-site/new-cultural-site.component';
 
 const routes: Routes = [
   //login guard ne dozvoljava ulogovanom korisniku da opet pristupi login strani
@@ -94,6 +95,18 @@ const routes: Routes = [
   { 
     path: 'cultural-site/:id', 
     component: ViewCulturalSiteComponent
+  },
+  {
+    path: 'new-cultural-site',
+    component: NewCulturalSiteComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' }
+  },
+  {
+    path: 'edit-cultural-site/:id',
+    component: NewCulturalSiteComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_ADMIN' }
   },
   {
     path: 'newsfeed',

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.kts.nvt.serbioneer.model.CulturalSiteCategory;
 
+import java.util.Optional;
+
 @Repository
 public interface CulturalSiteCategoryRepository extends JpaRepository<CulturalSiteCategory, Long> {
 	

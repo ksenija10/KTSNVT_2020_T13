@@ -13,6 +13,9 @@ import com.kts.nvt.serbioneer.model.CulturalCategoryType;
 public interface CulturalCategoryTypeRepository extends JpaRepository<CulturalCategoryType, Long> {
 
 	List<CulturalCategoryType> findAllByCulturalSiteCategoryId(Long categoryId);
+	List<CulturalCategoryType> findAllByCulturalSiteCategoryName(String categoryName);
+	
+	Page<CulturalCategoryType> findAllByCulturalSiteCategoryId(Long categoryId, Pageable pageable);
 
 	Page<CulturalCategoryType> findAllByCulturalSiteCategoryIdOrderByIdAsc(Long categoryId, Pageable pageable);
 	

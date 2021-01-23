@@ -19,7 +19,7 @@ export class CategoriesComponent implements OnInit {
   // Common
   actions: string[] = ['edit', 'delete']
   displayedColumns: string[] = ['name', 'actions']
-  namePattern = "([A-Z]{1}[a-z]*)( [a-z]*)*"
+  namePattern = "([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*"
 
   // Category
   categoryDataSource: CulturalSiteCategoryData = {content: [], size: 0, totalElements: 0, totalPages: 0}

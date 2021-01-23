@@ -1,5 +1,6 @@
 <div class="card col-7 mx-auto">
-    <div class="card-body">
+    <div class="card-body align">
+        <h2>My profile</h2>
         <form id = "my-profile-form" [formGroup] = "myProfileForm" (ngSubmit) = "onSubmit()">
             <div class="form-group">
                 <mat-form-field appearance="fill" class="form-field">
@@ -33,7 +34,7 @@
             <div>
                 <button
                     id = "save-btn"
-                    class="btn btn-theme"
+                    class="btn btn-purple"
                     type="submit"
                     [disabled] = "myProfileForm.invalid"
                 >
