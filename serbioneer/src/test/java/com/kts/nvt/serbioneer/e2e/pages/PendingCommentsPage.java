@@ -25,6 +25,12 @@ public class PendingCommentsPage {
     @FindBy(id = "pending-comments-page")
     private WebElement pendingComments;
 
+    @FindBy(xpath = "(//*[@aria-label=\"Last page\"])[1]")
+	private WebElement lastPage;
+
+	@FindBy(xpath = "(//*[contains(@class, 'green-icon')])[last()]")
+	private WebElement acceptLastComm;
+
     public PendingCommentsPage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -91,5 +97,13 @@ public class PendingCommentsPage {
 
 	public void setRejectCommentBtn(WebElement rejectCommentBtn) {
 		this.rejectCommentBtn = rejectCommentBtn;
+	}
+
+	public WebElement getLastPage() {
+		return lastPage;
+	}
+
+	public WebElement getAcceptLastComm() {
+		return acceptLastComm;
 	}
 }

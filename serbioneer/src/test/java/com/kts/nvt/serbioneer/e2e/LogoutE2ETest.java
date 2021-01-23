@@ -73,7 +73,7 @@ public class LogoutE2ETest {
         
         justWait();
         
-        headerPage.getLogoutBtn().click();
+        //headerPage.getLogoutBtn().click();
         
         loginRegisterPage.toastSuccessLogout();
         

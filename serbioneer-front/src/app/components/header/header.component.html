@@ -33,9 +33,9 @@
             [ngClass]="{'active': activeLink==='homepage'}">
             Cultural sites
         </a>
-        <a id="add-site-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('add-site')" (keyup.enter)="onClick('add-site')"
-            [ngClass]="{'active': activeLink==='add-site'}">
+        <a id="new-cultural-site-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('new-cultural-site')" (keyup.enter)="onClick('new-cultural-site')"
+            [ngClass]="{'active': activeLink==='new-cultural-site'}">
             Add site
         </a>
         <a id="categories-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
@@ -61,15 +61,15 @@
                 <mat-icon svgIcon="user"></mat-icon>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                <a id = "my-profile-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
                     (click)="onClick('my-profile')" (keyup.enter)="onClick('my-profile')">
                     My profile
                 </a>
-                <a class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                <a id = "change-password-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
                     (click)="onClick('change-password')" (keyup.enter)="onClick('change-password')">
                     Change password
-            </a>
-                <a class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                </a>
+                <a id = "logout-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
                     (click)="logout()" (keyup.enter)="logout()">
                     Logout
                 </a>

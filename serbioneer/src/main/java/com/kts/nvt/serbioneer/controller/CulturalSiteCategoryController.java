@@ -145,6 +145,7 @@ public class CulturalSiteCategoryController {
 		url: GET localhost:8080/api/cultural-site-category/{category-id}/type
 		HTTP request for getting all category types of a cultural site category given by id
 	*/
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping(value = "/{category-id}/type")
 	public ResponseEntity<List<CulturalCategoryTypeDTO>> getAllCategoryTypes(@PathVariable("category-id") Long categoryId) {
