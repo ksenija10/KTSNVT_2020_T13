@@ -67,6 +67,9 @@ public class CulturalSiteViewPage {
     @FindBy(id = "add-news-btn")
     private WebElement addNewsBtn;
 
+    @FindBy(id = "edit-cultural-site")
+    private WebElement editBtn;
+
     public CulturalSiteViewPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -157,5 +160,9 @@ public class CulturalSiteViewPage {
 
     public WebElement getAddNewsBtn() {
         return addNewsBtn;
+    }
+
+    public WebElement getEditBtn() {
+        return editBtn;
     }
 }

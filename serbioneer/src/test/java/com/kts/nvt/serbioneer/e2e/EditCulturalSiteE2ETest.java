@@ -1,8 +1,6 @@
 package com.kts.nvt.serbioneer.e2e;
 
-import com.kts.nvt.serbioneer.e2e.pages.HeaderPage;
-import com.kts.nvt.serbioneer.e2e.pages.LoginPage;
-import com.kts.nvt.serbioneer.e2e.pages.NewCulturalSitePage;
+import com.kts.nvt.serbioneer.e2e.pages.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,6 +25,10 @@ public class EditCulturalSiteE2ETest {
 
     private LoginPage loginPage;
 
+    private TableViewPage tableViewPage;
+
+    private CulturalSiteViewPage culturalSiteViewPage;
+
     @Before
     public void setUp() throws InterruptedException{
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
@@ -39,6 +41,8 @@ public class EditCulturalSiteE2ETest {
         headerPage = PageFactory.initElements(driver, HeaderPage.class);
         newCulturalSitePage = PageFactory.initElements(driver, NewCulturalSitePage.class);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
+        tableViewPage = PageFactory.initElements(driver, TableViewPage.class);
+        culturalSiteViewPage = PageFactory.initElements(driver, CulturalSiteViewPage.class);
 
         driver.get("https://localhost:4200/login-register/login");
         justWait();
@@ -46,10 +50,21 @@ public class EditCulturalSiteE2ETest {
         loginPage.getPassword().sendKeys("admin");
         justWait();
         loginPage.getLoginBtn().click();
+
         justWait();
 
-        driver.get("https://localhost:4200/edit-cultural-site/1");
+        List<WebElement> rows = tableViewPage.getCulturalSiteTable().findElements(By.tagName("tr"));
 
+        List<WebElement> data = tableViewPage.getCulturalSiteTable().findElements(By.tagName("td"));
+
+        String name = data.get(0).getText();
+        String address = data.get(3).getText() + ", " + data.get(4).getText();
+
+        rows.get(3).click();
+
+        justWait();
+
+        culturalSiteViewPage.getEditBtn().click();
     }
 
     @Test
@@ -72,7 +87,7 @@ public class EditCulturalSiteE2ETest {
         justWait();
         newCulturalSitePage.toastSuccessEdit();
         justWait();
-        assertEquals("https://localhost:4200/cultural-site/1", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/cultural-site/3", driver.getCurrentUrl());
     }
 
     @After
