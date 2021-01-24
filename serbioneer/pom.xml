@@ -110,7 +110,16 @@
 			<artifactId>selenium-server</artifactId>
 			<version>3.141.59</version>
 		</dependency>
-    </dependencies>
+
+		<!-- https://mvnrepository.com/artifact/com.icegreen/greenmail -->
+		<dependency>
+			<groupId>com.icegreen</groupId>
+			<artifactId>greenmail</artifactId>
+			<version>1.6.1</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
 
 	<build>
 		<plugins>
