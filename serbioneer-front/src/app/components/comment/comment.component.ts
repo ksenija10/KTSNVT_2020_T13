@@ -27,7 +27,7 @@ export class CommentComponent implements OnInit {
   commentImageSlider: Array<object> = []
 
   constructor(
-    private culturalSiteService : CulturalSiteService,
+    //private culturalSiteService : CulturalSiteService,
     private commentService : CommentService,
     private router : Router,
     private authenticationService : AuthenticationService,

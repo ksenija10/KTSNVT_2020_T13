@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import static org.junit.Assert.assertEquals;
 
@@ -26,7 +27,9 @@ public class LoginRegisterE2ETest {
         //default-ni browser za selenium je firefox, pa ukoliko zelimo da koristimo chrome moramo da ubacimo
         //chrome ekstenziju i podesimo chrome kao default-ni driver
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        ChromeOptions option= new ChromeOptions();
+        option.addArguments("ignore-certificate-errors");
+        driver = new ChromeDriver(option);
 
         //prosirenje prozora za bolji pregled
         driver.manage().window().maximize();
@@ -38,7 +41,7 @@ public class LoginRegisterE2ETest {
 
     @Test
     public void redirectToLoginSuccess() throws InterruptedException {
-        driver.get("http://localhost:4200/login-register/register");
+        driver.get("https://localhost:4200/login-register/register");
 
         justWait();
 
@@ -48,12 +51,12 @@ public class LoginRegisterE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/login", driver.getCurrentUrl());
     }
 
     @Test
     public void redirectToRegisterSuccess() throws InterruptedException {
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
 
         justWait();
 
@@ -63,12 +66,12 @@ public class LoginRegisterE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
     public void redirectToHomeSuccess() throws InterruptedException {
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
 
         justWait();
 
@@ -80,7 +83,7 @@ public class LoginRegisterE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/homepage", driver.getCurrentUrl());
     }
 
     @After

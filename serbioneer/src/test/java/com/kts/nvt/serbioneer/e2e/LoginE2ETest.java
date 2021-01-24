@@ -1,18 +1,20 @@
 package com.kts.nvt.serbioneer.e2e;
 
-import com.kts.nvt.serbioneer.e2e.pages.HeaderPage;
-import com.kts.nvt.serbioneer.e2e.pages.HomepagePage;
-import com.kts.nvt.serbioneer.e2e.pages.LoginPage;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
+
+import com.kts.nvt.serbioneer.e2e.pages.HeaderPage;
+import com.kts.nvt.serbioneer.e2e.pages.HomepagePage;
+import com.kts.nvt.serbioneer.e2e.pages.LoginPage;
 
 public class LoginE2ETest {
 
@@ -29,7 +31,9 @@ public class LoginE2ETest {
         //default-ni browser za selenium je firefox, pa ukoliko zelimo da koristimo chrome moramo da ubacimo
         //chrome ekstenziju i podesimo chrome kao default-ni driver
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        ChromeOptions option= new ChromeOptions();
+        option.addArguments("ignore-certificate-errors");
+        driver = new ChromeDriver(option);
 
         //prosirenje prozora za bolji pregled
         driver.manage().window().maximize();
@@ -39,7 +43,7 @@ public class LoginE2ETest {
         homepagePage = PageFactory.initElements(driver, HomepagePage.class);
 
         //redirekcija na pocetak interakcije tj na login page
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
     }
 
     @Test
@@ -72,7 +76,7 @@ public class LoginE2ETest {
 
          loginPage.toastSuccess();
 
-         assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
+         assertEquals("https://localhost:4200/homepage", driver.getCurrentUrl());
     }
 
     @Test
@@ -106,7 +110,7 @@ public class LoginE2ETest {
 
         loginPage.toastSuccess();
 
-        assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/homepage", driver.getCurrentUrl());
     }
 
     @Test
@@ -140,7 +144,7 @@ public class LoginE2ETest {
 
         loginPage.toastError();
 
-        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/login", driver.getCurrentUrl());
     }
 
     @Test
@@ -174,7 +178,7 @@ public class LoginE2ETest {
 
         loginPage.toastError();
 
-        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/login", driver.getCurrentUrl());
     }
 
     @Test
@@ -205,7 +209,7 @@ public class LoginE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/login", driver.getCurrentUrl());
     }
 
     @Test
@@ -236,7 +240,7 @@ public class LoginE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/login", driver.getCurrentUrl());
     }
 
     @Test
@@ -267,7 +271,7 @@ public class LoginE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/login", driver.getCurrentUrl());
     }
 
     @Test
@@ -300,7 +304,7 @@ public class LoginE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/login", driver.getCurrentUrl());
     }
 
     @After

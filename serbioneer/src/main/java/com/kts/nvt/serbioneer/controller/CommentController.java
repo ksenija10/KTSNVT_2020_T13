@@ -26,7 +26,7 @@ import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.Comment;
 import com.kts.nvt.serbioneer.service.CommentService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 @RestController
 @RequestMapping(value = "api/comment", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CommentController {
@@ -57,7 +57,6 @@ public class CommentController {
       url: GET localhost:8080/api/comment/unapproved/by-page
       HTTP request for getting all unapproved comments by page
    */
-    @CrossOrigin(origins = "http://localhost:8080")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/unapproved/by-page")
     public ResponseEntity<Page<CommentDTO>> getAllUnapprovedComments(Pageable pageable){

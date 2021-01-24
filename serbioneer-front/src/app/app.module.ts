@@ -93,7 +93,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     NewCulturalSiteComponent,
     ConfirmDeleteDialog,
     InlineEditComponent,
-    TypesComponent
+    TypesComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,8 +109,9 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     MatButtonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass: "toast-custom",
-      timeOut: 2500}),
+      positionClass: 'toast-custom',
+      timeOut: 2500,
+    }),
     MatAutocompleteModule,
     MatChipsModule,
     MatTableModule,

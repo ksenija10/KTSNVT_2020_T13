@@ -35,7 +35,7 @@ export class AddNewsArticleComponent{
     this.dialogRef.close();
   }
 
-  onSubmit(event : any){
+  onSubmit(){
     if (this.newsForm.invalid) {
         return;
     }
@@ -74,10 +74,12 @@ export class AddNewsArticleComponent{
       });
   }
 
-  cancelForm(event : Event){
+  /*
+  cancelForm(){
     this.newsForm.reset();
     this.dialogRef.close();
   }
+  */
 
   getTextErrorMessage() {
     if(this.newsForm.controls['text'].touched) {

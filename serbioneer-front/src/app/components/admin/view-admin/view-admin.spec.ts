@@ -113,7 +113,6 @@ describe('ViewAdminComponent', () => {
     );
 
     await button.click();
-
     expect(router.navigate).toHaveBeenCalledWith(['new-admin']);
   });
 });

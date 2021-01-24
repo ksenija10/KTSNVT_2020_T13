@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -28,7 +29,9 @@ public class RegisterE2ETest {
         //default-ni browser za selenium je firefox, pa ukoliko zelimo da koristimo chrome moramo da ubacimo
         //chrome ekstenziju i podesimo chrome kao default-ni driver
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        ChromeOptions option= new ChromeOptions();
+        option.addArguments("ignore-certificate-errors");
+        driver = new ChromeDriver(option);
 
         //prosirenje prozora za bolji pregled
         driver.manage().window().maximize();
@@ -38,7 +41,7 @@ public class RegisterE2ETest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
 
         //redirekcija na pocetak interakcije tj na register page
-        driver.get("http://localhost:4200/login-register/register");
+        driver.get("https://localhost:4200/login-register/register");
     }
 
     @Test
@@ -79,7 +82,7 @@ public class RegisterE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/login", driver.getCurrentUrl());
 
     }
 
@@ -120,13 +123,13 @@ public class RegisterE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/login-register/login", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/login", driver.getCurrentUrl());
 
         justWait();
 
         //Redirekcija na registraciju i ponovni pokusaj iste bez da je prihvacen confirmation email
 
-        driver.get("http://localhost:4200/login-register/register");
+        driver.get("https://localhost:4200/login-register/register");
 
         headerPage.ensureIsUnauthenticatedUser();
 
@@ -152,8 +155,6 @@ public class RegisterE2ETest {
 
         registerPage.getRegisterBtn().click();
 
-        justWait();
-
         registerPage.ensureIsVisibleRegisterForm();
 
         headerPage.ensureIsUnauthenticatedUser();
@@ -162,7 +163,7 @@ public class RegisterE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
@@ -193,8 +194,6 @@ public class RegisterE2ETest {
 
         registerPage.getRegisterBtn().click();
 
-        justWait();
-
         registerPage.ensureIsVisibleRegisterForm();
 
         headerPage.ensureIsUnauthenticatedUser();
@@ -203,7 +202,7 @@ public class RegisterE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
@@ -238,7 +237,7 @@ public class RegisterE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
@@ -273,7 +272,7 @@ public class RegisterE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
@@ -308,7 +307,7 @@ public class RegisterE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
@@ -343,7 +342,7 @@ public class RegisterE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
@@ -378,7 +377,7 @@ public class RegisterE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
@@ -413,7 +412,7 @@ public class RegisterE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
@@ -448,7 +447,7 @@ public class RegisterE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
@@ -483,7 +482,7 @@ public class RegisterE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
@@ -518,7 +517,7 @@ public class RegisterE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @Test
@@ -557,7 +556,7 @@ public class RegisterE2ETest {
 
         headerPage.ensureIsUnauthenticatedUser();
 
-        assertEquals("http://localhost:4200/login-register/register", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/login-register/register", driver.getCurrentUrl());
     }
 
     @After

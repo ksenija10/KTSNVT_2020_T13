@@ -67,7 +67,8 @@
 
     </table>
 
-    <mat-paginator id = "cultural-site-table-paginator"
+    <mat-paginator showFirstLastButtons
+        id = "cultural-site-table-paginator"
         [length]="dataSource.totalElements" 
         [pageSize]="dataSource.size" 
         [pageSizeOptions]="[2,5,10]"

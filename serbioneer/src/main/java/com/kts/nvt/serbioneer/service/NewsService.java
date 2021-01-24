@@ -17,7 +17,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.kts.nvt.serbioneer.helper.exception.NonexistentIdException;
-import com.kts.nvt.serbioneer.mailsender.OnNewsCreatedEvent;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.CulturalSite;
 import com.kts.nvt.serbioneer.model.News;
@@ -115,7 +114,7 @@ public class NewsService implements ServiceInterface<News> {
 		mailSender.setUsername(env.getProperty("spring.mail.username"));
 		mailSender.setPassword(env.getProperty("spring.mail.password"));
 
-		String url = "http://localhost:8080" + "/api/cultural-site/" + 
+		String url = "https://localhost:8080" + "/api/cultural-site/" + 
 												news.getCulturalSite().getId();
 		
 		String subject = "News about " + news.getCulturalSite().getName();

@@ -6,7 +6,11 @@ import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { CulturalCategoryType } from 'src/app/model/cultural-category-type.model';
 import { CulturalSiteCategory } from 'src/app/model/cultural-site-category.model';
-import { CulturalSite, CulturalSiteDTO, CulturalSiteView } from 'src/app/model/cultural-site.model';
+import {
+  CulturalSite,
+  CulturalSiteDTO,
+  CulturalSiteView,
+} from 'src/app/model/cultural-site.model';
 import { Image } from 'src/app/model/image.model';
 import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
@@ -14,10 +18,7 @@ import { GeocodingService } from 'src/app/services/geocoding.service';
 import { ImageService } from 'src/app/services/image.service';
 
 export class Location {
-  constructor(
-    public lat: number,
-    public lng: number
-  ) {}
+  constructor(public lat: number, public lng: number) {}
 }
 
 @Component({
@@ -30,10 +31,12 @@ export class NewCulturalSiteComponent implements OnInit {
 
   allCategoriesModel: CulturalSiteCategory[] = [];
   allCategoryTypesModel: CulturalCategoryType[] = [];
-  categoryModel: CulturalSiteCategory = {id: 0, name: ''};
-  categoryTypeModel: CulturalCategoryType = {id: 0, name: ''};
+  categoryModel: CulturalSiteCategory = { id: 0, name: '' };
+  categoryTypeModel: CulturalCategoryType = { id: 0, name: '' };
 
-  autocompleteOptions: Options = new Options({componentRestrictions: { country: 'RS' }})
+  autocompleteOptions: Options = new Options({
+    componentRestrictions: { country: 'RS' },
+  });
 
   foundAddress: string = '';
   location: Location = new Location(0, 0);
@@ -63,12 +66,12 @@ export class NewCulturalSiteComponent implements OnInit {
       description: new FormControl('', []),
       category: new FormControl('', [Validators.required]),
       categoryType: new FormControl('', [Validators.required]),
-      lat: new FormControl({value: '', disabled: true}, []),
-      lng: new FormControl({value: '', disabled: true}, []),
-    })
+      lat: new FormControl({ value: '', disabled: true }, []),
+      lng: new FormControl({ value: '', disabled: true }, []),
+    });
     // ako je u edit modu, popuni formu
-    let siteUrl = this.router.url.split('/')
-    this.editCulturalSiteId = +siteUrl[siteUrl.length - 1]
+    let siteUrl = this.router.url.split('/');
+    this.editCulturalSiteId = +siteUrl[siteUrl.length - 1];
     if (!isNaN(this.editCulturalSiteId)) {
       // dobavi kulturno dobro i popuni formu
       this.title = 'Edit cultural site';
@@ -83,8 +86,13 @@ export class NewCulturalSiteComponent implements OnInit {
       .subscribe((responseData) => {
         this.allCategoriesModel = responseData;
         if (!this.editCulturalSite) {
-          this.categoryModel = new CulturalSiteCategory(responseData[0].name, responseData[0].id);
-          this.newCulturalSiteForm.get('category')?.setValue(this.categoryModel.id);
+          this.categoryModel = new CulturalSiteCategory(
+            responseData[0].name,
+            responseData[0].id
+          );
+          this.newCulturalSiteForm
+            .get('category')
+            ?.setValue(this.categoryModel.id);
           this.categoryChange(null);
         }
       });
@@ -130,24 +138,25 @@ export class NewCulturalSiteComponent implements OnInit {
   }
 
   categoryChange(event: any) {
-    if(event) {
+    if (event) {
       this.categoryModel.id = event.value;
       this.categoryModel.name = event.source.triggerValue;
     }
-    this.culturalSiteCategoryService.getAllCategoryTypes(this.categoryModel.id)
-    .subscribe((responseData) => {
-      this.allCategoryTypesModel = responseData;
-    })
+    this.culturalSiteCategoryService
+      .getAllCategoryTypes(this.categoryModel.id)
+      .subscribe((responseData) => {
+        this.allCategoryTypesModel = responseData;
+      });
   }
 
-  onFileChange(event : any) {
+  onFileChange(event: any) {
     if (event.target.files && event.target.files[0]) {
       for (let i = 0; i < event.target.files.length; i++) {
         var reader = new FileReader();
         this.files.push(event.target.files[i]);
-        reader.onload = (event:any) => {
+        reader.onload = (event: any) => {
           this.images.push(event.target.result);
-        }
+        };
         reader.readAsDataURL(event.target.files[i]);
       }
     }
@@ -156,15 +165,18 @@ export class NewCulturalSiteComponent implements OnInit {
   addressChange(address: any) { 
     //setting address from API to local variable 
     this.foundAddress = address.formatted_address;
-    this.geocodingService.getLatlong(this.foundAddress)
-    .subscribe(
-      response => {
-        this.location.lat = (response.results[0].geometry.location.lat);
-        this.location.lng = (response.results[0].geometry.location.lng);
-        this.newCulturalSiteForm.get('lat')?.setValue(this.location.lat.toFixed(3))
-        this.newCulturalSiteForm.get('lng')?.setValue(this.location.lng.toFixed(3))
-      }
-    );
+    this.geocodingService
+      .getLatlong(this.foundAddress)
+      .subscribe((response) => {
+        this.location.lat = response.results[0].geometry.location.lat;
+        this.location.lng = response.results[0].geometry.location.lng;
+        this.newCulturalSiteForm
+          .get('lat')
+          ?.setValue(this.location.lat.toFixed(3));
+        this.newCulturalSiteForm
+          .get('lng')
+          ?.setValue(this.location.lng.toFixed(3));
+      });
   }
 
   onSubmit() {
@@ -174,7 +186,7 @@ export class NewCulturalSiteComponent implements OnInit {
 
     let address;
     let city;
-    if(this.foundAddress) {
+    if (this.foundAddress) {
       let addressElems = this.foundAddress.split(', ');
       address = addressElems[0];
       city = addressElems[addressElems.length - 2];
@@ -203,19 +215,44 @@ export class NewCulturalSiteComponent implements OnInit {
     );
 
     // kreiranje ili updatovanje
-    if(this.editCulturalSiteId) {
-      this.culturalSiteService.updateCulturalSite(this.editCulturalSiteId, culturalSite).pipe(map(
-        (savedCulturalSite: CulturalSiteDTO) => {
-          //provera da li je lista slika prazna
-          if(this.files.length > 0){
-            //ako nije onda dodajemo jedan po jedan fajl
-            for (let i = 0; i < this.files.length; i++) {
-              this.imageService.createForCulturalSite(savedCulturalSite.id!, this.files[i]).pipe(map(
-                (image : Image) => {
-                  this.images = [];
-                  this.files = [];
-                }
-              )).subscribe()
+    if (this.editCulturalSiteId) {
+      this.culturalSiteService
+        .updateCulturalSite(this.editCulturalSiteId, culturalSite)
+        .pipe(
+          map((savedCulturalSite: CulturalSiteDTO) => {
+            //provera da li je lista slika prazna
+            if (this.files.length > 0) {
+              //ako nije onda dodajemo jedan po jedan fajl
+              for (let i = 0; i < this.files.length; i++) {
+                this.imageService
+                  .createForCulturalSite(savedCulturalSite.id!, this.files[i])
+                  .pipe(
+                    map((image: Image) => {
+                      this.images = [];
+                      this.files = [];
+                    })
+                  )
+                  .subscribe();
+              }
+            }
+            return savedCulturalSite;
+          })
+        )
+        .subscribe(
+          (response) => {
+            this.toastr.success('Successfully edited cultural site!');
+            this.router.navigate(['/cultural-site/' + response.id]);
+          },
+          (error) => {
+            if (error.error.message) {
+              this.toastr.error(error.error.message);
+            } else if (error.error.violations) {
+              this.toastr.error(error.error.violations[0].message);
+            } else {
+              this.toastr.error('503 Server Unavailable');
+            }
+            if (this.btnTitle == 'Create') {
+              this.newCulturalSiteForm.reset();
             }
           }
           return savedCulturalSite;
@@ -238,19 +275,42 @@ export class NewCulturalSiteComponent implements OnInit {
         }
       );
     } else {
-      this.culturalSiteService.createCulturalSite(culturalSite).pipe(map(
-        (savedCulturalSite: CulturalSiteDTO) => {
-          //provera da li je lista slika prazna
-          if(this.files.length > 0){
-            //ako nije onda dodajemo jedan po jedan fajl
-            for (let i = 0; i < this.files.length; i++) {
-              this.imageService.createForCulturalSite(savedCulturalSite.id!, this.files[i]).pipe(map(
-                (image : Image) => {
-                  this.images = [];
-                  this.files = [];
-                }
-              )).subscribe()
+      this.culturalSiteService
+        .createCulturalSite(culturalSite)
+        .pipe(
+          map((savedCulturalSite: CulturalSiteDTO) => {
+            //provera da li je lista slika prazna
+            if (this.files.length > 0) {
+              //ako nije onda dodajemo jedan po jedan fajl
+              for (let i = 0; i < this.files.length; i++) {
+                this.imageService
+                  .createForCulturalSite(savedCulturalSite.id!, this.files[i])
+                  .pipe(
+                    map((image: Image) => {
+                      this.images = [];
+                      this.files = [];
+                    })
+                  )
+                  .subscribe();
+              }
             }
+            return savedCulturalSite;
+          })
+        )
+        .subscribe(
+          (response) => {
+            this.toastr.success('Successfully added new cultural site!');
+            this.router.navigate(['/cultural-site/' + response.id]);
+          },
+          (error) => {
+            if (error.error.message) {
+              this.toastr.error(error.error.message);
+            } else if (error.error.violations) {
+              this.toastr.error(error.error.violations[0].message);
+            } else {
+              this.toastr.error('503 Server Unavailable');
+            }
+            this.newCulturalSiteForm.reset();
           }
           return savedCulturalSite;
         }

@@ -1,4 +1,4 @@
-<form [formGroup] = "newCulturalSiteForm" (ngSubmit) = "onSubmit()">
+<form id="cultural-site-form" [formGroup] = "newCulturalSiteForm" (ngSubmit) = "onSubmit()">
     <div class="row justify-content-md-center">
         <div class="col-md-8 add-box">
             <h2 id="cultural-site-form-title">{{ title }}</h2>
@@ -23,7 +23,7 @@
                                 placeholder="Ex. Vojvode Mišića 23, Šabac" 
                                 formControlName="address"
                             >
-                            <mat-error *ngIf="newCulturalSiteForm.get('address')?.invalid">{{getRequiredFieldErrorMessage('address')}}</mat-error>
+                            <mat-error id="address-error" *ngIf="newCulturalSiteForm.get('address')?.invalid">{{getRequiredFieldErrorMessage('address')}}</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="form-group">
@@ -53,7 +53,7 @@
                                 (selectionChange)="categoryChange($event)">
                                 <mat-option *ngFor="let category of allCategoriesModel" [value]="category.id">{{category.name}}</mat-option>
                             </mat-select>
-                            <mat-error *ngIf="newCulturalSiteForm.get('category')?.invalid">{{getRequiredFieldErrorMessage('category')}}</mat-error>
+                            <mat-error id="category-error" *ngIf="newCulturalSiteForm.get('category')?.invalid">{{getRequiredFieldErrorMessage('category')}}</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="form-group">
@@ -62,7 +62,7 @@
                             <mat-select id="category-type-select" formControlName="categoryType">
                                 <mat-option *ngFor="let categoryType of allCategoryTypesModel" [value]="categoryType.id">{{categoryType.name}}</mat-option>
                             </mat-select>
-                            <mat-error *ngIf="newCulturalSiteForm.get('categoryType')?.invalid">{{getRequiredFieldErrorMessage('categoryType')}}</mat-error>
+                            <mat-error id="type-error" *ngIf="newCulturalSiteForm.get('categoryType')?.invalid">{{getRequiredFieldErrorMessage('categoryType')}}</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="form-group file-group">
@@ -74,7 +74,7 @@
                             multiple="" 
                             (change)="onFileChange($event)">
                     </div>
-                    <div>
+                    <div id="files">
                         <img *ngFor='let url of images'  [src]="url" class="image-preview">
                     </div>
                 </div>

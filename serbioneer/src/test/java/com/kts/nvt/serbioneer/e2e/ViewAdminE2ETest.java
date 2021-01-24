@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
@@ -30,7 +31,9 @@ public class ViewAdminE2ETest {
     @Before
     public void setUp() throws InterruptedException{
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        ChromeOptions option= new ChromeOptions();
+        option.addArguments("ignore-certificate-errors");
+        driver = new ChromeDriver(option);
 
         jsExecutor = (JavascriptExecutor) driver;
 
@@ -40,7 +43,7 @@ public class ViewAdminE2ETest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
         viewAdminPage = PageFactory.initElements(driver, ViewAdminPage.class);
 
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
     }
 
     @Test
@@ -54,10 +57,10 @@ public class ViewAdminE2ETest {
         loginPage.getLoginBtn().click();
 
         justWait();
-        driver.get("http://localhost:4200/view-admin");
+        headerPage.getViewAdminBtn().click();
         justWait();
 
-        assertEquals("http://localhost:4200/view-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/view-admin", driver.getCurrentUrl());
 
         viewAdminPage.ensureIsDisplayedAdmins();
 

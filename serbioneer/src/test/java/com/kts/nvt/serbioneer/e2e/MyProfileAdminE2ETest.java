@@ -11,6 +11,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -33,7 +35,9 @@ public class MyProfileAdminE2ETest {
         //default-ni browser za selenium je firefox, pa ukoliko zelimo da koristimo chrome moramo da ubacimo
         //chrome ekstenziju i podesimo chrome kao default-ni driver
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        ChromeOptions option= new ChromeOptions();
+        option.addArguments("ignore-certificate-errors");
+        driver = new ChromeDriver(option);
 
         //prosirenje prozora za bolji pregled
         driver.manage().window().maximize();
@@ -44,7 +48,7 @@ public class MyProfileAdminE2ETest {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
 
         //redirekcija na pocetak interakcije tj na log in page
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
 
         //logovanje
         justWait();
@@ -59,7 +63,12 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        driver.get("http://localhost:4200/my-profile");
+        Actions a= new Actions(driver);
+        a.moveToElement(headerPage.getUserDropDown()).build().perform();
+
+        justWait();
+
+        headerPage.getMyProfileBtn().click();
     }
 
     @Test
@@ -96,11 +105,16 @@ public class MyProfileAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/homepage", driver.getCurrentUrl());
 
         //vracanje licnih podataka na staro zbog konzistentnosti baze
 
-        driver.get("http://localhost:4200/my-profile");
+        Actions a= new Actions(driver);
+        a.moveToElement(headerPage.getUserDropDown()).build().perform();
+
+        justWait();
+
+        headerPage.getMyProfileBtn().click();
 
         justWait();
 
@@ -119,7 +133,7 @@ public class MyProfileAdminE2ETest {
 
         myProfilePage.getSaveBtn().click();
 
-        assertEquals("http://localhost:4200/homepage", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/homepage", driver.getCurrentUrl());
     }
 
     @Test
@@ -148,7 +162,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
     }
 
     @Test
@@ -178,7 +192,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
     }
 
     @Test
@@ -208,7 +222,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
     }
 
     @Test
@@ -238,7 +252,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
     }
 
     @Test
@@ -267,7 +281,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
     }
 
     @Test
@@ -299,7 +313,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
     }
 
     @After

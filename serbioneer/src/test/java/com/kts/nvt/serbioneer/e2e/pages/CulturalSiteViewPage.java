@@ -49,7 +49,7 @@ public class CulturalSiteViewPage {
     @FindBy(id = "new-comment-error")
     private WebElement newCommentError;
 
-    @FindBy(xpath = "(//*[@aria-label=\"Last page\"])[1]")
+    @FindBy(xpath = "(//*[@aria-label=\"Last page\"])[2]")
     private WebElement lastPageComment;
 
     @FindBy(xpath = "(//*[@color=\"warn\"])[last()]")
@@ -66,6 +66,9 @@ public class CulturalSiteViewPage {
 
     @FindBy(id = "add-news-btn")
     private WebElement addNewsBtn;
+
+    @FindBy(id = "edit-cultural-site")
+    private WebElement editBtn;
 
     public CulturalSiteViewPage(WebDriver driver) {
         this.driver = driver;
@@ -157,5 +160,9 @@ public class CulturalSiteViewPage {
 
     public WebElement getAddNewsBtn() {
         return addNewsBtn;
+    }
+
+    public WebElement getEditBtn() {
+        return editBtn;
     }
 }

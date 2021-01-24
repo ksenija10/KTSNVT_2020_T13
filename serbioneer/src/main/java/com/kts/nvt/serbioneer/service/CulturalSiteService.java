@@ -43,7 +43,7 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 	
 	@Override
 	public Page<CulturalSite> findAll(Pageable pageable) {
-		return culturalSiteRepository.findAll(pageable);
+		return culturalSiteRepository.findAllByOrderByIdAsc(pageable);
 	}
 
 	@Override
@@ -133,10 +133,10 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 	public Page<CulturalSite> filterCulturalSites(Pageable pageable, CulturalSiteFilterDTO filterDTO) {
 		if (filterDTO.getCategoryNames().length == 0) {
 			// poziv "krace" metode
-			return culturalSiteRepository.findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCase
+			return culturalSiteRepository.findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc
 					(pageable, filterDTO.getCulturalSiteName(), filterDTO.getLocation());
 		}
-		return culturalSiteRepository.findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCase
+		return culturalSiteRepository.findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc
 				(pageable, filterDTO.getCategoryNames(), filterDTO.getCulturalSiteName(), filterDTO.getLocation());
 		//findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityIn
 		/*return culturalSiteRepository.
@@ -177,10 +177,10 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 	public Page<CulturalSite> filterCulturalSitesSubscribed(Pageable pageable, CulturalSiteFilterDTO filterDTO, String userEmail) {
 		if (filterDTO.getCategoryNames().length == 0) {
 			// poziv "krace" metode
-			return culturalSiteRepository.findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContaining
+			return culturalSiteRepository.findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc
 					(pageable, filterDTO.getCulturalSiteName(), filterDTO.getLocation(), userEmail);
 		}
-		return culturalSiteRepository.findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContaining
+		return culturalSiteRepository.findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc
 				(pageable, filterDTO.getCategoryNames(), filterDTO.getCulturalSiteName(), filterDTO.getLocation(), userEmail);
 		//findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityIn
 		/*return culturalSiteRepository.
