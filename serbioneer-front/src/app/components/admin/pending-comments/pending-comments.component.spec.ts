@@ -11,7 +11,7 @@ import {MatListItemHarness} from '@angular/material/list/testing';
 import { MatListModule } from "@angular/material/list";
 import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ApproveCommentComponent } from "../approve-comment/approve-comment.component";
+import { ApproveCommentComponent } from "./approve-comment/approve-comment.component";
 import { MatIcon, MatIconModule } from "@angular/material/icon";
 
 describe('PendingCommentsComponent', () => {

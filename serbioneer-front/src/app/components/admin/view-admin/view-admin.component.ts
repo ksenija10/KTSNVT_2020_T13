@@ -45,6 +45,6 @@ export class ViewAdminComponent implements OnInit {
   }
 
   addAdmin() {
-    this.router.navigate(['new-admin']);
+    this.router.navigate(['admin/new-admin']);
   }
 }

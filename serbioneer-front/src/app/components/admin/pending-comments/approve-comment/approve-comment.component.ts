@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
-import { Comment } from '../../model/comment.model';
-import { PendingCommentsComponent } from '../pending-comments/pending-comments.component';
-import { CommentService } from '../../services/comment.service';
+import { Comment } from '../../../../model/comment.model';
+import { PendingCommentsComponent } from '../pending-comments.component';
+import { CommentService } from '../../../../services/comment.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

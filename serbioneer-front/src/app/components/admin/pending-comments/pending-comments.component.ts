@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Comment } from '../../model/comment.model';
+import { Comment } from '../../../model/comment.model';
 import { map } from 'rxjs/operators';
-import { CommentService } from '../../services/comment.service';
+import { CommentService } from '../../../services/comment.service';
 import { CommentData } from 'src/app/services/comment.service';
 import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 

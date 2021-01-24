@@ -12,10 +12,10 @@ import { RatingCreateDTO, RatingDTO, RatingService } from 'src/app/services/rati
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { ImageService } from 'src/app/services/image.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AddNewsArticleComponent } from '../add-news-article/add-news-article.component';
+import { AddNewsArticleComponent } from './add-news-article/add-news-article.component';
 import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
 import { ToastrService } from 'ngx-toastr';
-import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dialog.component';
+import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-view-cultural-site',
@@ -365,7 +365,7 @@ import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dial
   }
 
   editCulturalSite() {
-    this.router.navigate(['edit-cultural-site/'+this.culturalSiteId])
+    this.router.navigate(['admin/edit-cultural-site/'+this.culturalSiteId])
   }
   
   deleteCulturalSite() {

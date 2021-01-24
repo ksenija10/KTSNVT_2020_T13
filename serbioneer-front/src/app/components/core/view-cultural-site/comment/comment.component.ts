@@ -5,7 +5,7 @@ import { CommentService } from 'src/app/services/comment.service';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dialog.component';
+import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/confirm-dialog.component';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 

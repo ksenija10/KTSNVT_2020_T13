@@ -114,7 +114,7 @@ describe('NewAdminComponent', () => {
 
     expect(adminService.createAdmin).toHaveBeenCalledWith(admin);
     expect(toastr.success).toHaveBeenCalledWith('Successfully added new admin');
-    expect(router.navigate).toHaveBeenCalledWith(['/view-admin']);
+    expect(router.navigate).toHaveBeenCalledWith(['admin/view-admin']);
 
     expect(await emailInput.getValue()).toEqual('');
     expect(await passwordInput.getValue()).toEqual('');
