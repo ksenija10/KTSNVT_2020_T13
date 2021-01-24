@@ -12,7 +12,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTableModule } from "@angular/material/table";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import { BrowserModule } from "@angular/platform-browser";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SatPopoverModule } from "@ncstate/sat-popover";
 import { NgImageSliderModule } from "ng-image-slider";
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
@@ -60,6 +60,7 @@ import { ViewAdminComponent } from "./view-admin/view-admin.component";
         MatListModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatProgressBarModule,
         SatPopoverModule
     ]
 })

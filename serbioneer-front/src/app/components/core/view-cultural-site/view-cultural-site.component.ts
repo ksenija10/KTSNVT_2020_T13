@@ -26,7 +26,7 @@ import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/conf
 
   culturalSiteId: number;
   culturalSite! : CulturalSiteView;
-  starRating! : RatingCreateDTO;
+  starRating : RatingCreateDTO = {id: 0, value: 0, culturalSiteId: 0, authenticatedUserId: 0};
   initialStarRating = 0;
   news! : NewsData;
   comments! : CommentData;

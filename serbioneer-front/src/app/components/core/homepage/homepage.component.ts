@@ -52,6 +52,9 @@ export class HomepageComponent implements OnInit {
   // user email, if there is one
   userEmail: string;
 
+  // loading bar
+  progressBar: boolean = true;
+
   @ViewChild('culturalSiteCategorysInput') culturalSiteCategorysInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
 
@@ -110,13 +113,13 @@ export class HomepageComponent implements OnInit {
   initDataSource() {
     this.culturalSiteService.findAllByPage(0, 5).pipe(
       map((culturalSiteData: CulturalSiteData) => this.dataSource = culturalSiteData)
-    ).subscribe();
+    ).subscribe(() => this.progressBar = false);
   }
 
   initSubscribedDataSource() {
     this.culturalSiteService.findAllSubscribedByPage(0, 5, this.userEmail).pipe(
       map((culturalSiteData: CulturalSiteData) => this.dataSource = culturalSiteData)
-    ).subscribe();
+    ).subscribe(() => this.progressBar = false);
   }
 
   onPageChange(event: PageEvent) {
@@ -125,17 +128,18 @@ export class HomepageComponent implements OnInit {
   }
 
   onFilter() {
+    this.progressBar = true;
     let page = this.pageEvent.pageIndex;
     let size = this.pageEvent.pageSize;
     let filterDto: FilterDTO = new FilterDTO(this.culturalSiteCategorys, this.name, this.location);
     if(!this.isSubscribedSitesView) {
       this.culturalSiteService.filterByPage(page, size, filterDto).pipe(
         map((filteredCulturalSiteData: CulturalSiteData) => this.dataSource = filteredCulturalSiteData)
-      ).subscribe();
+      ).subscribe(() => this.progressBar = false);
     } else {
       this.culturalSiteService.filterSubscribedByPage(page, size, this.userEmail, filterDto).pipe(
         map((filteredCulturalSiteData: CulturalSiteData) => this.dataSource = filteredCulturalSiteData)
-      ).subscribe();
+      ).subscribe(() => this.progressBar = false);
     }
   }
 

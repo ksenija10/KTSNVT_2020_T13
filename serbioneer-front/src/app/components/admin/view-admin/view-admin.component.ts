@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ViewAdminComponent implements OnInit {
   displayedColumns: string[] = ['name', 'surname', 'email', 'dateOfBirth'];
-  dataSource!: AdminData;
+  dataSource: AdminData = {content: [], totalElements: 0, totalPages:0, size: 0};
   pageEvent: PageEvent = new PageEvent();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

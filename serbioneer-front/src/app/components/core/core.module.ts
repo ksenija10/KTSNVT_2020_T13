@@ -15,7 +15,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import { BrowserModule } from "@angular/platform-browser";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgImageSliderModule } from "ng-image-slider";
@@ -76,6 +76,7 @@ import { ViewCulturalSiteComponent } from "./view-cultural-site/view-cultural-si
         MatButtonModule,
         MatTabsModule,
         MatDividerModule,
+        MatProgressBarModule,
         NgImageSliderModule,
         MatExpansionModule
     ],

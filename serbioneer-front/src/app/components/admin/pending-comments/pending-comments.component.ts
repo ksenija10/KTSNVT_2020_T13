@@ -21,6 +21,8 @@ export class PendingCommentsComponent implements OnInit {
 
   pageEvent: PageEvent = new PageEvent();
 
+  progressBar: boolean = true;
+
   constructor(private commentService: CommentService) { 
     this.pageEvent.pageSize = 1;
     this.pageEvent.pageIndex = 0;
@@ -33,7 +35,7 @@ export class PendingCommentsComponent implements OnInit {
   fetchComments() : void {
       this.commentService.getComments().pipe(
         map((commentData: CommentData) => this.commentsData = commentData)
-      ).subscribe();
+      ).subscribe(() => this.progressBar = false);
   }
 
   onPaginateChange(event : PageEvent){
@@ -42,10 +44,11 @@ export class PendingCommentsComponent implements OnInit {
   }  
 
   onGetNewPage() {
+    this.progressBar = true;
     let page = this.pageEvent.pageIndex;
     let size = this.pageEvent.pageSize;
     this.commentService.getComments(page, size).pipe(
       map((comments: CommentData) => this.commentsData = comments)
-    ).subscribe();
+    ).subscribe(() => this.progressBar = false);
   }
 }

@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
-import { BrowserModule } from "@angular/platform-browser";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from "@angular/router";
 import { NgImageSliderModule } from "ng-image-slider";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
@@ -27,6 +27,7 @@ import { NewsfeedComponent } from "./newsfeed/newsfeed.component";
           }),
         NgImageSliderModule,
         MatCardModule,
+        MatProgressBarModule,
         InfiniteScrollModule
     ]
 })
