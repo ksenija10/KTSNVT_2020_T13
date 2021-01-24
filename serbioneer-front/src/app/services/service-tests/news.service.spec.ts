@@ -65,7 +65,7 @@ describe('News service', () => {
             response = data;
         })
 
-        const req = httpMock.expectOne("http://localhost:8080/api/news/subscribed/by-page?page=0&size=2");
+        const req = httpMock.expectOne("https://localhost:8080/api/news/subscribed/by-page?page=0&size=2");
         expect(req.request.method).toBe('GET');
         req.flush(mockResponse);
 

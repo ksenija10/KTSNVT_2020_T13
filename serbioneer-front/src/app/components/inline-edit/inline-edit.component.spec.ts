@@ -58,7 +58,7 @@ describe('InlineEditComponent', () => {
   it(`namePattern has default value`, () => {
     InlineEditComponent.prototype.ngOnInit = () => {} // override ngOnInit
 
-    expect(component.namePattern).toEqual(`([A-Z]{1}[a-z]*)( [a-z]*)*`);
+    expect(component.namePattern).toEqual(`([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*`);
   
   });
 

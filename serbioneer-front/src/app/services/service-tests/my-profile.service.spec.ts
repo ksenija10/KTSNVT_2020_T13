@@ -60,7 +60,7 @@ describe('My profile service', () => {
                 user = data;
             })
 
-        const req = httpMock.expectOne('http://localhost:8080/api/authenticated-user/updatePersonalInformation');
+        const req = httpMock.expectOne('https://localhost:8080/api/authenticated-user/updatePersonalInformation');
         expect(req.request.method).toBe('PUT');
         req.flush(mockUser);
 
@@ -85,7 +85,7 @@ describe('My profile service', () => {
             })
 
 
-        const req = httpMock.expectOne('http://localhost:8080/api/authenticated-user/updatePassword');
+        const req = httpMock.expectOne('https://localhost:8080/api/authenticated-user/updatePassword');
         expect(req.request.method).toBe('PUT')
         req.flush({});
 

@@ -89,7 +89,7 @@ describe('Cultural site service', ()=>{
             }
         )
         
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/by-page?page=0&size=2");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/by-page?page=0&size=2");
         expect(req.request.method).toBe('GET');
         req.flush(mockSiteData);
 
@@ -162,7 +162,7 @@ describe('Cultural site service', ()=>{
             }
         )
         
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/subscribed/by-page?page=0&size=2&userEmail=prvi@user.com");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/subscribed/by-page?page=0&size=2&userEmail=prvi@user.com");
         expect(req.request.method).toBe('GET');
         req.flush(mockSiteData);
 
@@ -242,7 +242,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/filter/by-page?page=0&size=2");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/filter/by-page?page=0&size=2");
         expect(req.request.method).toBe('POST');
         req.flush(mockSiteData);
 
@@ -321,7 +321,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/filter/by-page?page=0&size=2");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/filter/by-page?page=0&size=2");
         expect(req.request.method).toBe('POST');
         req.flush(mockSiteData);
 
@@ -387,7 +387,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/filter/by-page?page=0&size=2");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/filter/by-page?page=0&size=2");
         expect(req.request.method).toBe('POST');
         req.flush(mockSiteData);
 
@@ -453,7 +453,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/subscribed/filter/by-page?page=0&size=2&userEmail=prvi@user.com");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/subscribed/filter/by-page?page=0&size=2&userEmail=prvi@user.com");
         expect(req.request.method).toBe('POST');
         req.flush(mockSiteData);
 
@@ -519,7 +519,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/subscribed/filter/by-page?page=0&size=2&userEmail=prvi@user.com");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/subscribed/filter/by-page?page=0&size=2&userEmail=prvi@user.com");
         expect(req.request.method).toBe('POST');
         req.flush(mockSiteData);
 
@@ -556,7 +556,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/locations");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/locations");
         expect(req.request.method).toBe('GET');
         req.flush(mockLocations);
 
@@ -593,7 +593,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/1/news");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/1/news");
         expect(req.request.method).toBe('POST');
         req.flush(mockNews);
 
@@ -642,7 +642,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/1");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/1");
         expect(req.request.method).toBe('GET');
         req.flush(mockCulturalSite);
 
@@ -699,7 +699,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/1/news/by-page?page=0&size=2");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/1/news/by-page?page=0&size=2");
         expect(req.request.method).toBe('GET');
         req.flush(mockNews);
 
@@ -762,7 +762,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/1/comment/by-page?page=0&size=2");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/1/comment/by-page?page=0&size=2");
         expect(req.request.method).toBe('GET');
         req.flush(mockComments);
 
@@ -814,7 +814,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/subsribed-on-site");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/subsribed-on-site");
         expect(req.request.method).toBe('POST');
         req.flush(mockUser);
 
@@ -853,7 +853,7 @@ describe('Cultural site service', ()=>{
             }
         )
 
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/1/comment");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/1/comment");
         expect(req.request.method).toBe('POST');
         req.flush(mockComment);
 
@@ -917,7 +917,7 @@ describe('Cultural site service', ()=>{
                 }
             )
         
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site");
         expect(req.request.method).toBe('POST');
         req.flush(mockCulturalSite);
 
@@ -984,7 +984,7 @@ describe('Cultural site service', ()=>{
                 }
             )
         
-        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/1");
+        const req = httpMock.expectOne("https://localhost:8080/api/cultural-site/1");
         expect(req.request.method).toBe('PUT');
         req.flush(mockCulturalSite);
 
@@ -1008,7 +1008,7 @@ describe('Cultural site service', ()=>{
             let response = data;
         })
  
-        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site/1');
+        const req = httpMock.expectOne('https://localhost:8080/api/cultural-site/1');
         expect(req.request.method).toBe('DELETE');
         req.flush({});
  
