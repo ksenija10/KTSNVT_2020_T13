@@ -50,16 +50,6 @@ export class CulturalSiteService {
 
   constructor(private http: HttpClient) {}
 
-  private data!: number;
-
-  setData(data: number) {
-    this.data = data;
-  }
-
-  getData(): number {
-    return this.data;
-  }
-
   findAllByPage(page: number, size: number): Observable<CulturalSiteData> {
     let params = new HttpParams();
 
@@ -126,12 +116,12 @@ export class CulturalSiteService {
       )
   }
 
-  findAllLocations() {
+  findAllLocations(): Observable<string[]> {
     return this.http
       .get<string[]>(environment.apiEndpoint + 'cultural-site/locations')
   }
 
-  createNews(news: NewsDTO, culturalSiteId: number) {
+  createNews(news: NewsDTO, culturalSiteId: number): Observable<NewsDto> {
     let params = new HttpParams();
 
     return this.http
@@ -142,7 +132,7 @@ export class CulturalSiteService {
       .pipe(catchError((err) => throwError(err)));
   }
 
-  getCulturalSite(id: number) {
+  getCulturalSite(id: number): Observable<CulturalSiteView> {
     return this.http
       .get<CulturalSiteView>(environment.apiEndpoint + 'cultural-site/' + id)
       .pipe(
@@ -151,7 +141,7 @@ export class CulturalSiteService {
       );
   }
 
-  getAllCulturalSiteNews(id: number, page = 0, size = 2) {
+  getAllCulturalSiteNews(id: number, page = 0, size = 2): Observable<NewsData> {
     let params = new HttpParams();
 
     params = params.append('page', String(page));
@@ -168,7 +158,7 @@ export class CulturalSiteService {
       );
   }
 
-  getAllCulturalSiteComments(id: number, page = 0, size = 2) {
+  getAllCulturalSiteComments(id: number, page = 0, size = 2): Observable<CommentData> {
     let params = new HttpParams();
 
     params = params.append('page', String(page));
@@ -185,7 +175,7 @@ export class CulturalSiteService {
       );
   }
 
-  getUserCulturalSite(subscribedCulturalSiteDTO: SubscribedCulturalSiteDTO) {
+  getUserCulturalSite(subscribedCulturalSiteDTO: SubscribedCulturalSiteDTO): Observable<SubscribedCulturalSiteDTO> {
     return this.http
       .post<SubscribedCulturalSiteDTO>(
         environment.apiEndpoint + 'cultural-site/subsribed-on-site',
@@ -197,7 +187,7 @@ export class CulturalSiteService {
       );
   }
 
-  createComment(siteId: number, text: string) {
+  createComment(siteId: number, text: string): Observable<CommentDto> {
     const comment = new CommentDto(text);
     return this.http
       .post<CommentDto>(
@@ -227,7 +217,7 @@ export class CulturalSiteService {
     )
   }
 
-  deleteCulturalSite(culturalSiteId: number) {
+  deleteCulturalSite(culturalSiteId: number): Observable<void> {
     return this.http.delete<void>(environment.apiEndpoint + 'cultural-site/' + culturalSiteId);
   }
 }

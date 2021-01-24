@@ -1,0 +1,90 @@
+<nav id="navigation" class="navbar navbar-expand-lg navbar-light">
+    <!-- homepage btn -->
+    <a id="home-btn" class="navbar-brand nav-btn home btn" tabindex="0" role="button" 
+        (click)="onClick('homepage')" (keyup.enter)="onClick('homepage')">
+        <span class="flag red">Serb</span>
+        <span class="flag blue">io</span>
+        <span class="flag white">neer</span>
+        <span class="logo">s</span>
+        <mat-icon svgIcon="logo"></mat-icon>
+    </a>
+    <!-- auth user btn group -->
+    <div id="user-btn-group" class="nav nav-pills mr-auto" *ngIf="role==='ROLE_USER'">
+        <a id="homepage-btn-auth" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('homepage')" (keyup.enter)="onClick('homepage')"
+            [ngClass]="{'active': activeLink==='homepage'}">
+            Cultural sites
+        </a>
+        <a id="newsfeed-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('auth/newsfeed')" (keyup.enter)="onClick('auth/newsfeed')"
+            [ngClass]="{'active': activeLink==='auth/newsfeed'}">
+            Newsfeed
+        </a>
+        <a id="subscribed-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0"
+            (click)="onClick('auth/subscribed')" (keyup.enter)="onClick('auth/subscribed')"
+            [ngClass]="{'active': activeLink==='auth/subscribed'}">
+            Subscribed
+        </a>
+    </div>
+    <!-- admin btn group -->
+    <div id="admin-btn-group" class="nav nav-pills mr-auto" *ngIf="role==='ROLE_ADMIN'">
+        <a id="homepage-btn-admin" class="nav-item nav-link nav-btn btn" role="button" tabindex="0"
+            (click)="onClick('homepage')" (keyup.enter)="onClick('homepage')"
+            [ngClass]="{'active': activeLink==='homepage'}">
+            Cultural sites
+        </a>
+        <a id="new-cultural-site-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('admin/new-cultural-site')" (keyup.enter)="onClick('admin/new-cultural-site')"
+            [ngClass]="{'active': activeLink==='admin/new-cultural-site'}">
+            Add site
+        </a>
+        <a id="categories-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('admin/categories')" (keyup.enter)="onClick('admin/categories')"
+            [ngClass]="{'active': activeLink==='admin/categories'}">
+            Categories
+        </a>
+        <a id="pending-comments-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('admin/pending-comments')" (keyup.enter)="onClick('admin/pending-comments')"
+            [ngClass]="{'active': activeLink==='admin/pending-comments'}">
+            Pending comments
+        </a>
+        <a id="view-admin-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('admin/view-admin')" (keyup.enter)="onClick('admin/view-admin')"
+            [ngClass]="{'active': activeLink==='admin/view-admin'}">
+            View admins
+        </a>
+    </div>
+    <!-- user dropdown -->
+    <ul id="user-dropdown" class="navbar-nav" *ngIf="role!==''">
+        <li class="nav-item dropdown">
+            <a class="nav-link nav-btn dropdown-toggle btn" role="button" tabindex="0">
+                <mat-icon svgIcon="user"></mat-icon>
+            </a>
+            <div class="dropdown-menu">
+                <a id = "my-profile-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                    (click)="onClick('profile/my-profile')" (keyup.enter)="onClick('profile/my-profile')">
+                    My profile
+                </a>
+                <a id = "change-password-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                    (click)="onClick('profile/change-password')" (keyup.enter)="onClick('profile/change-password')">
+                    Change password
+                </a>
+                <a id = "logout-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
+                    (click)="logout()" (keyup.enter)="logout()">
+                    Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+    <!-- login btn -->
+    <div class="navbar-nav mr-auto" *ngIf="role===''">
+    </div>
+    <a id="login-header-btn" *ngIf="role===''" class="nav-link nav-btn home btn" tabindex="0" role="button" 
+        (click)="onClick('login-register/login')" (keyup.enter)="onClick('login-register/login')">
+        <span class="flag red">Lo</span>
+        <span class="flag blue">gi</span>
+        <span class="flag white">n</span>
+        <span class="logo">s</span>
+        <mat-icon svgIcon="user"></mat-icon>
+    </a>
+</nav>

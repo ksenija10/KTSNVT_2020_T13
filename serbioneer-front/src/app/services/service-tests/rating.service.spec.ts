@@ -51,7 +51,7 @@ describe('Rating service', () => {
                 response = data;
             })
 
-        const req = httpMock.expectOne("http://localhost:8080/api/rating/user-site-rating/");
+        const req = httpMock.expectOne("https://localhost:8080/api/rating/user-site-rating/");
         expect(req.request.method).toBe('POST');
         req.flush(mockRating);
 
@@ -86,7 +86,7 @@ describe('Rating service', () => {
                 response = data;
             })
 
-        const req = httpMock.expectOne("http://localhost:8080/api/rating/cultural-site/1");
+        const req = httpMock.expectOne("https://localhost:8080/api/rating/cultural-site/1");
         expect(req.request.method).toBe('POST');
         req.flush(mockRating);
 
@@ -121,7 +121,7 @@ describe('Rating service', () => {
                 response = data;
             })
 
-        const req = httpMock.expectOne("http://localhost:8080/api/rating");
+        const req = httpMock.expectOne("https://localhost:8080/api/rating");
         expect(req.request.method).toBe('PUT');
         req.flush(mockRating);
 

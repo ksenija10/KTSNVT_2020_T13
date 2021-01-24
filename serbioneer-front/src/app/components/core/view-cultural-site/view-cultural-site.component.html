@@ -1,0 +1,206 @@
+<mat-progress-bar class="progress-bar" mode="indeterminate" 
+    *ngIf="(!culturalSite || !comments || !news)">
+</mat-progress-bar>
+<div id="cultural-site-view" class="row view-cultural-site" 
+    *ngIf="!(!culturalSite || !comments || !news)">
+    <div class="col">
+        <div class="row">
+            <div id = "cultural-site-name" class="col-7"><h2 class="site-title">{{culturalSite.name}}</h2></div>
+            <div class="col-1">
+                <div class="row rating">
+                    <div id="cultural-site-rating">{{culturalSite.rating}}</div>
+                    <mat-icon>grade</mat-icon>
+                </div>
+            </div>
+            <div class="col-2" *ngIf="adminIsLogged">
+                <button id = "add-image-btn" mat-raised-button class="btn btn-purple" (click)="addImages()">
+                    Add images
+                </button>
+            </div>
+            <div class="col-2" *ngIf="adminIsLogged">
+                <button id ="add-news-btn" mat-raised-button class="btn btn-purple" (click)="openDialog()">
+                    Add news
+                </button>
+            </div>
+            <div class="col-2" *ngIf="userIsLogged">
+                <button id = "subscribe-btn" mat-raised-button class="btn btn-purple" (click)="onChangeSubscription()">
+                    {{buttonValue}}
+                </button>
+            </div>
+        </div>
+        <div class="row join" *ngIf="adminIsLogged">
+            <div class="col">
+                <button id = "edit-cultural-site" mat-icon-button color="primary" (click)="editCulturalSite()">
+                    <mat-icon>create</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteCulturalSite()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div id = "cultural-site-address" class="col"><h5>{{culturalSite.address}}, {{culturalSite.city}}</h5></div>
+        </div>
+        <div class="row rate-site-div" *ngIf="userIsLogged">
+            <div class="rate-site">Rate {{culturalSite.name}}!</div>
+            <ngb-rating [max]="5" [(rate)]="starRating.value" [readonly]="false" (rateChange)="onRatingChange()"></ngb-rating>
+        </div>
+        <div class="row">
+            <div class="col site-description">
+                {{culturalSite.description}}
+            </div>
+        </div>
+        <div class="site-image-content" *ngIf="culturalSite!.images!.length > 0">
+            <ng-image-slider
+              [images]="siteImageSlider"
+              [infinite]="false"
+              slideImage="1">
+            </ng-image-slider>
+        </div>
+        <mat-divider class="divide"></mat-divider>
+        <!-- News & Comments -->
+        <mat-accordion>
+            <!-- News -->
+            <mat-expansion-panel id = "news-panel" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h4 class="site-subtitle">
+                            News about {{culturalSite.name}}:
+                        </h4>
+                    </mat-panel-title>
+                    <mat-panel-description class="subtitle-align-news">
+                        <mat-icon class="subtitle-icon">menu_book</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div *ngIf="news!.content!.length > 0; then showNews else noNews"></div>
+                <ng-template #showNews>
+                    <div class="site-news" *ngFor="let oneNews of news.content">
+                        <app-news-article [news]="oneNews"></app-news-article>
+                    </div>
+                    <mat-paginator showFirstLastButtons
+                        [length]="news.totalElements" 
+                        [pageSize]="news.size" 
+                        [pageSizeOptions]="[1,2,5,10]"
+                        (page)="onPaginateChangeNews($event)">
+                    </mat-paginator>
+                </ng-template>
+                <ng-template #noNews>
+                    <h6>There are no news for {{culturalSite.name}} at this time.</h6>
+                    <h6>But be sure to check soon!</h6>
+                    <h6 *ngIf="adminIsLogged">Or try adding some yourself.</h6>
+                </ng-template>
+            </mat-expansion-panel>
+            <!-- Comments -->
+            <mat-expansion-panel id = "comments-panel" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h4 class="site-subtitle">
+                            Reviews of {{culturalSite.name}}:
+                        </h4>
+                    </mat-panel-title>
+                    <mat-panel-description class="subtitle-align-comments">
+                        <mat-icon class="subtitle-icon">comment</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div *ngIf="comments!.content!.length > 0; then showComments else noComments"></div>
+                <ng-template #showComments>
+                    <div class="row" *ngFor="let comment of comments.content">
+                        <app-comment [comment]="comment" [culturalSiteId]="culturalSite.id"></app-comment>
+                    </div>
+                    <mat-paginator 
+                        showFirstLastButtons
+                        [length]="comments.totalElements" 
+                        [pageSize]="comments.size" 
+                        [pageSizeOptions]="[1,2,5,10]"
+                        (page)="onPaginateChangeComments($event)">
+                    </mat-paginator>
+                </ng-template>
+                <ng-template #noComments>
+                    <h6>There are no reviews of {{culturalSite.name}} at this time.</h6>
+                    <h6>But be sure to check soon!</h6>
+                    <h6 *ngIf="userIsLogged">Or try adding some yourself!</h6>
+                </ng-template>
+                <div class="row comment-div" *ngIf="userIsLogged">
+                    <div class="comment-write">Leave your review:</div>
+                    <button 
+                        id = "leave-review-btn"
+                        type="submit" class="btn comment-btn" 
+                        matTooltip="Click to review"
+                        matTooltipPosition="right"
+                        (click)="addComments()">
+                        <mat-icon>comment</mat-icon>
+                    </button>
+                </div>
+                <!-- Add review -->
+                <div class="col-7 add-box" *ngIf="addNewComment">
+                    <form [formGroup]="myForm" (ngSubmit)="submit()">
+                        <div class="form-group comment-group">
+                            <mat-form-field id="new-comment-form-field" appearance="fill" class="form-field">
+                                <mat-label>Comment</mat-label>
+                                <input 
+                                    matInput id="new-comment-input" class="type-comment" name="newCommentText"
+                                    placeholder="Share your experience of {{culturalSite.name}}"
+                                    formControlName="text">
+                                <mat-error id="new-comment-error" *ngIf="myForm.get('text')?.invalid">{{getTextErrorMessage()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group file-group">
+                            <label for="file" class="file-title">Images</label>
+                            <input 
+                                formControlName="file"
+                                id="file" 
+                                type="file" 
+                                class="form-control"
+                                multiple="" 
+                                (change)="onFileChange($event)">
+                        </div>
+                        <div>
+                            <img *ngFor='let url of images'  [src]="url" class="image-preview">
+                        </div>
+                        <button 
+                            id = "add-comment-btn"
+                            mat-raised-button class="btn btn-purple" 
+                            type="submit"
+                            [disabled]="myForm.invalid">
+                            Review
+                        </button>
+                    </form>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <div class="col-4">
+        <!-- Map -->
+        <app-map-view id = "map-view"
+            [divId]="mapCulturalSite"
+            [dataSource]="[culturalSite]"
+        ></app-map-view>
+        <!-- Add image -->
+        <div class="divide">
+            <div class="row file-group add-box" *ngIf="addNewImages">
+                <form [formGroup]="myForm" (ngSubmit)="submitImages()">
+                    <div class="form-group">
+                        <label for="file" class="file-title">Images</label>
+                        <input
+                            formControlName="file"
+                            id="file" 
+                            type="file" 
+                            class="form-control"
+                            multiple="" 
+                            (change)="onNewImageChange($event)">
+                    </div>
+                    <div>
+                        <img *ngFor='let url of newImages'  [src]="url" class="image-preview">
+                    </div>
+                    <button 
+                        id = "submit-new-image-btn"
+                        mat-raised-button class="btn btn-purple" 
+                        type="submit"
+                        [disabled]="!(newImageFiles.length>0)">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -36,7 +36,7 @@ describe('Authenticated user service', ()=>{
             let response = data;
         })
  
-        const req = httpMock.expectOne('http://localhost:8080/api/authenticated-user/subscribe/1');
+        const req = httpMock.expectOne('https://localhost:8080/api/authenticated-user/subscribe/1');
         expect(req.request.method).toBe('POST');
         req.flush({});
  
@@ -49,7 +49,7 @@ describe('Authenticated user service', ()=>{
             let response = data;
         })
  
-        const req = httpMock.expectOne('http://localhost:8080/api/authenticated-user/unsubscribe/1');
+        const req = httpMock.expectOne('https://localhost:8080/api/authenticated-user/unsubscribe/1');
         expect(req.request.method).toBe('POST');
         req.flush({});
  

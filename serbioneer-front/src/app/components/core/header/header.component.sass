@@ -1,0 +1,53 @@
+@import "../../../../styles.sass"
+
+mat-toolbar
+  background: $primary-background
+  margin-bottom: 23px
+
+span.logo
+  color: $primary-background
+
+button.home
+  font-size: larger
+
+.logout-span
+  flex: 1 1 auto !important
+
+.mat-icon
+  height: 40px
+  width: 40px
+  line-height: 40px
+  &[svgIcon="user"]
+    height: 35px
+    width: 35px
+    line-height: 35px
+
+.button-container
+  display: flex
+  justify-content: center
+
+// bootstrap
+#navigation
+  background-color: $primary-background
+  margin-bottom: 33px
+
+.home
+  font-weight: 600
+  line-height: 40px
+
+.nav-btn
+  cursor: pointer
+
+a
+  font-size: larger
+  &.dropdown-item
+    font-size: medium
+  &.active
+    background-color: #c7e8f7 !important
+    color: black !important
+
+.dropdown:hover .dropdown-menu
+  display: block
+
+.dropdown-menu
+  left: -120px

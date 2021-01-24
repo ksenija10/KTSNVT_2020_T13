@@ -3,11 +3,13 @@ package com.kts.nvt.serbioneer.e2e;
 import com.kts.nvt.serbioneer.e2e.pages.HeaderPage;
 import com.kts.nvt.serbioneer.e2e.pages.LoginPage;
 import com.kts.nvt.serbioneer.e2e.pages.NewAdminPage;
+import com.kts.nvt.serbioneer.e2e.pages.ViewAdminPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -23,18 +25,23 @@ public class NewAdminE2ETest {
 
     private LoginPage loginPage;
 
+    private ViewAdminPage viewAdminPage;
+
     @Before
     public void setUp() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        ChromeOptions option= new ChromeOptions();
+        option.addArguments("ignore-certificate-errors");
+        driver = new ChromeDriver(option);
 
         driver.manage().window().maximize();
 
         headerPage = PageFactory.initElements(driver, HeaderPage.class);
         newAdminPage = PageFactory.initElements(driver, NewAdminPage.class);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
+        viewAdminPage = PageFactory.initElements(driver, ViewAdminPage.class);
 
-        driver.get("http://localhost:4200/login-register/login");
+        driver.get("https://localhost:4200/login-register/login");
         justWait();
         loginPage.getEmail().sendKeys("admin@admin.com");
         loginPage.getPassword().sendKeys("admin");
@@ -42,8 +49,11 @@ public class NewAdminE2ETest {
         loginPage.getLoginBtn().click();
         justWait();
 
-        driver.get("http://localhost:4200/new-admin");
+        headerPage.getViewAdminBtn().click();
 
+        justWait();
+
+        viewAdminPage.getAddAdminBtn().click();
     }
 
     @Test
@@ -78,13 +88,11 @@ public class NewAdminE2ETest {
 
         justWait();
 
-        // Fali prikaz nove strane
-
         newAdminPage.toastSuccess();
 
         justWait();
 
-        assertEquals("http://localhost:4200/view-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/view-admin", driver.getCurrentUrl());
 
     }
 
@@ -128,7 +136,7 @@ public class NewAdminE2ETest {
 
         justWait();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -166,7 +174,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -204,7 +212,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -242,7 +250,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -280,7 +288,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -318,7 +326,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -356,7 +364,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -394,7 +402,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -432,7 +440,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -470,7 +478,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -508,7 +516,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -551,7 +559,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("http://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
 
     }
 

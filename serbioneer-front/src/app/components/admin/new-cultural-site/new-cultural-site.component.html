@@ -1,0 +1,94 @@
+<form id="cultural-site-form" [formGroup] = "newCulturalSiteForm" (ngSubmit) = "onSubmit()">
+    <div class="row justify-content-md-center">
+        <div class="col-md-8 add-box">
+            <h2 id="cultural-site-form-title">{{ title }}</h2>
+            <div class="row justify-content-md-center">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <mat-form-field id="name-form-field" appearance="fill" class="form-field">
+                            <mat-label>Cultural site name</mat-label>
+                            <input id="name-input" matInput placeholder="Ex. Exit" formControlName ="name">
+                            <mat-error id="name-error" *ngIf="newCulturalSiteForm.get('name')?.invalid">{{getRequiredFieldErrorMessage('name')}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field id="address-form-field" appearance="fill" class="form-field">
+                            <mat-label>Cultural site address</mat-label>
+                            <input 
+                                id="address-input"
+                                ngx-google-places-autocomplete
+                                [options]="autocompleteOptions"
+                                (onAddressChange)="addressChange($event)"
+                                matInput 
+                                placeholder="Ex. Vojvode Mišića 23, Šabac" 
+                                formControlName="address"
+                            >
+                            <mat-error id="address-error" *ngIf="newCulturalSiteForm.get('address')?.invalid">{{getRequiredFieldErrorMessage('address')}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="form-field">
+                            <mat-label>Cultural site description</mat-label>
+                            <textarea id="description-input" class="textBox" matInput placeholder="Description" formControlName="description"> </textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-5 justify-content-md-center">
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="form-field">
+                            <mat-label>Latitude</mat-label>
+                            <input id="lat-input" matInput placeholder="Ex. 45" formControlName="lat">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="form-field">
+                            <mat-label>Longitude</mat-label>
+                            <input id="lng-input" matInput placeholder="Ex. 20.5" formControlName="lng">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field id="category-form-field" appearance="fill" class="form-field">
+                            <mat-label>Cultural site category</mat-label>
+                            <mat-select id="category-select" formControlName="category"
+                                (selectionChange)="categoryChange($event)">
+                                <mat-option *ngFor="let category of allCategoriesModel" [value]="category.id">{{category.name}}</mat-option>
+                            </mat-select>
+                            <mat-error id="category-error" *ngIf="newCulturalSiteForm.get('category')?.invalid">{{getRequiredFieldErrorMessage('category')}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field id="category-type-form-field" appearance="fill" class="form-field">
+                            <mat-label>{{categoryModel.name}} types</mat-label>
+                            <mat-select id="category-type-select" formControlName="categoryType">
+                                <mat-option *ngFor="let categoryType of allCategoryTypesModel" [value]="categoryType.id">{{categoryType.name}}</mat-option>
+                            </mat-select>
+                            <mat-error id="type-error" *ngIf="newCulturalSiteForm.get('categoryType')?.invalid">{{getRequiredFieldErrorMessage('categoryType')}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group file-group">
+                        <label for="file">Cultural site images</label>
+                        <input 
+                            id="file" 
+                            type="file" 
+                            class="form-control file-input"
+                            multiple="" 
+                            (change)="onFileChange($event)">
+                    </div>
+                    <div id="files">
+                        <img *ngFor='let url of images'  [src]="url" class="image-preview">
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <button
+                    id="create-edit-site-btn"
+                    class="btn btn-purple"
+                    type="submit"
+                    [disabled] = "newCulturalSiteForm.invalid"
+                >
+                    {{ btnTitle }}
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
