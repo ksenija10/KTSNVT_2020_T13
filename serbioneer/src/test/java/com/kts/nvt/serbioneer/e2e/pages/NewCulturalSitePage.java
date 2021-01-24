@@ -13,25 +13,25 @@ public class NewCulturalSitePage {
     @FindBy(id = "cultural-site-form")
     private WebElement culturalSiteForm;
 
-    @FindBy(id = "name")
+    @FindBy(id = "name-input")
     private WebElement name;
 
-    @FindBy(id = "address")
+    @FindBy(id = "address-input")
     private WebElement address;
 
-    @FindBy(id = "description")
+    @FindBy(id = "description-input")
     private WebElement description;
 
-    @FindBy(id = "latitude")
+    @FindBy(id = "lat-input")
     private WebElement latituide;
 
-    @FindBy(id = "longitude")
+    @FindBy(id = "lng-input")
     private WebElement longitude;
 
-    @FindBy(id = "category")
+    @FindBy(id = "category-select")
     private WebElement category;
 
-    @FindBy(id = "category-type")
+    @FindBy(id = "category-type-select")
     private WebElement type;
 
     @FindBy(id = "files")
@@ -52,7 +52,7 @@ public class NewCulturalSitePage {
     @FindBy(id = "type-error")
     private WebElement typeError;
 
-    @FindBy(id = "add-button")
+    @FindBy(id = "create-edit-site-btn")
     private WebElement addButton;
 
     public NewCulturalSitePage(WebDriver driver){

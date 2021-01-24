@@ -99,53 +99,31 @@ export class NewCulturalSiteComponent implements OnInit {
   }
 
   loadCulturalSite() {
-    this.culturalSiteService
-      .getCulturalSite(this.editCulturalSiteId)
-      .pipe(
-        map((culturalSite: CulturalSiteView) => {
-          this.editCulturalSite = culturalSite;
-        })
-      )
-      .subscribe(
-        (response) => {
-          // popunjavanje forme
-          this.newCulturalSiteForm
-            .get('name')
-            ?.setValue(this.editCulturalSite.name);
-          this.newCulturalSiteForm
-            .get('address')
-            ?.setValue(
-              this.editCulturalSite.address +
-                ', ' +
-                this.editCulturalSite.city +
-                ', Serbia'
-            );
-          this.newCulturalSiteForm
-            .get('description')
-            ?.setValue(this.editCulturalSite.description);
-          this.newCulturalSiteForm
-            .get('category')
-            ?.setValue(this.editCulturalSite.categoryId);
-          this.newCulturalSiteForm
-            .get('categoryType')
-            ?.setValue(this.editCulturalSite.categoryTypeId);
-          this.newCulturalSiteForm
-            .get('lat')
-            ?.setValue(this.editCulturalSite.lat?.toFixed(3));
-          this.newCulturalSiteForm
-            .get('lng')
-            ?.setValue(this.editCulturalSite.lng?.toFixed(3));
-          // postavljanje postojece kategorije
-          this.categoryModel.id = this.editCulturalSite.categoryId!;
-          this.categoryModel.name = this.editCulturalSite.category!;
-          // dobavljanje svih tipova za kategoriju
-          this.categoryChange(null);
-        },
-        (error) => {
-          this.toastr.error('Requested cultural site does not exist.');
-          this.router.navigate(['homepage']);
-        }
-      );
+    this.culturalSiteService.getCulturalSite(this.editCulturalSiteId).pipe(
+      map((culturalSite: CulturalSiteView) => {
+        this.editCulturalSite = culturalSite;
+      })
+    ).subscribe(
+      response => {
+        // popunjavanje forme
+        this.newCulturalSiteForm.get('name')?.setValue(this.editCulturalSite.name);
+        this.newCulturalSiteForm.get('address')?.setValue(this.editCulturalSite.address + ', ' + this.editCulturalSite.city + ', Serbia');
+        this.newCulturalSiteForm.get('description')?.setValue(this.editCulturalSite.description);
+        this.newCulturalSiteForm.get('category')?.setValue(this.editCulturalSite.categoryId);
+        //this.newCulturalSiteForm.get('categoryType')?.setValue(this.editCulturalSite.categoryTypeId);
+        this.newCulturalSiteForm.get('lat')?.setValue(this.editCulturalSite.lat?.toFixed(3));
+        this.newCulturalSiteForm.get('lng')?.setValue(this.editCulturalSite.lng?.toFixed(3));
+        // postavljanje postojece kategorije
+        this.categoryModel.id = this.editCulturalSite.categoryId!;
+        this.categoryModel.name = this.editCulturalSite.category!;
+        // dobavljanje svih tipova za kategoriju
+        this.categoryChange(null);
+      },
+      error => {
+        this.toastr.error('Requested cultural site does not exist.');
+        this.router.navigate(['homepage']);
+      }
+    );
   }
 
   ngOnInit(): void {}
@@ -184,8 +162,8 @@ export class NewCulturalSiteComponent implements OnInit {
     }
   }
 
-  public addressChange(address: any) {
-    //setting address from API to local variable
+  addressChange(address: any) { 
+    //setting address from API to local variable 
     this.foundAddress = address.formatted_address;
     this.geocodingService
       .getLatlong(this.foundAddress)
@@ -238,23 +216,19 @@ export class NewCulturalSiteComponent implements OnInit {
 
     // kreiranje ili updatovanje
     if (this.editCulturalSiteId) {
-      this.culturalSiteService
-        .updateCulturalSite(this.editCulturalSiteId, culturalSite)
+      this.culturalSiteService.updateCulturalSite(this.editCulturalSiteId, culturalSite)
         .pipe(
           map((savedCulturalSite: CulturalSiteDTO) => {
             //provera da li je lista slika prazna
             if (this.files.length > 0) {
               //ako nije onda dodajemo jedan po jedan fajl
               for (let i = 0; i < this.files.length; i++) {
-                this.imageService
-                  .createForCulturalSite(savedCulturalSite.id!, this.files[i])
-                  .pipe(
+                this.imageService.createForCulturalSite(savedCulturalSite.id!, this.files[i]).pipe(
                     map((image: Image) => {
                       this.images = [];
                       this.files = [];
                     })
-                  )
-                  .subscribe();
+                  ).subscribe();
               }
             }
             return savedCulturalSite;
@@ -263,6 +237,7 @@ export class NewCulturalSiteComponent implements OnInit {
         .subscribe(
           (response) => {
             this.toastr.success('Successfully edited cultural site!');
+            this.newCulturalSiteForm.reset();
             this.router.navigate(['/cultural-site/' + response.id]);
           },
           (error) => {
@@ -277,25 +252,21 @@ export class NewCulturalSiteComponent implements OnInit {
               this.newCulturalSiteForm.reset();
             }
           }
-        );
+        )
     } else {
-      this.culturalSiteService
-        .createCulturalSite(culturalSite)
+      this.culturalSiteService.createCulturalSite(culturalSite)
         .pipe(
           map((savedCulturalSite: CulturalSiteDTO) => {
             //provera da li je lista slika prazna
             if (this.files.length > 0) {
               //ako nije onda dodajemo jedan po jedan fajl
               for (let i = 0; i < this.files.length; i++) {
-                this.imageService
-                  .createForCulturalSite(savedCulturalSite.id!, this.files[i])
-                  .pipe(
+                this.imageService.createForCulturalSite(savedCulturalSite.id!, this.files[i]).pipe(
                     map((image: Image) => {
                       this.images = [];
                       this.files = [];
                     })
-                  )
-                  .subscribe();
+                  ).subscribe();
               }
             }
             return savedCulturalSite;
@@ -303,7 +274,8 @@ export class NewCulturalSiteComponent implements OnInit {
         )
         .subscribe(
           (response) => {
-            this.toastr.success('Successfully added new cultural site!');
+            this.toastr.success('Successfully created new cultural site!');
+            this.newCulturalSiteForm.reset();
             this.router.navigate(['/cultural-site/' + response.id]);
           },
           (error) => {

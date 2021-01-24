@@ -74,7 +74,7 @@ describe('Authentication service', () => {
             }
         )
 
-        const req = httpMock.expectOne('http://localhost:8080/api/register');
+        const req = httpMock.expectOne('https://localhost:8080/api/register');
         expect(req.request.method).toBe('POST')
         req.flush(mockRegisteredUser);
 
@@ -104,7 +104,7 @@ describe('Authentication service', () => {
             }
         )
 
-        const req = httpMock.expectOne('http://localhost:8080/api/register');
+        const req = httpMock.expectOne('https://localhost:8080/api/register');
         expect(req.request.method).toBe('POST')
         req.flush(mockResponse);
 
@@ -130,7 +130,7 @@ describe('Authentication service', () => {
             response = data;
         })
 
-        const req = httpMock.expectOne('http://localhost:8080/login');
+        const req = httpMock.expectOne('https://localhost:8080/login');
         expect(req.request.method).toBe('POST');
         req.flush(mockResponse);
 
@@ -139,7 +139,7 @@ describe('Authentication service', () => {
         expect(response).toBeDefined();
         expect(response.status).toEqual(200);
         expect(response.statusText).toEqual("OK");
-        expect(response.url).toEqual('http://localhost:8080/login');
+        expect(response.url).toEqual('https://localhost:8080/login');
         expect(response.ok).toEqual(true);
     }))
 
@@ -157,7 +157,7 @@ describe('Authentication service', () => {
             response = data;
         })
 
-        const req = httpMock.expectOne('http://localhost:8080/login');
+        const req = httpMock.expectOne('https://localhost:8080/login');
         expect(req.request.method).toBe('POST');
         req.flush(mockResponse);
 
@@ -181,7 +181,7 @@ describe('Authentication service', () => {
             response = data;
         })
 
-        const req = httpMock.expectOne('http://localhost:8080/login');
+        const req = httpMock.expectOne('https://localhost:8080/login');
         expect(req.request.method).toBe('POST');
         req.flush(mockError);
 

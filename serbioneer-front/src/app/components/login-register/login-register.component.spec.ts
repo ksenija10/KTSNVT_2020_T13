@@ -22,7 +22,7 @@ describe('LoginRegisterComponent', () => {
         { provide: Router, useValue: 
           {
             url: "login-register/login",
-            events: of(new NavigationEnd(0, 'http://localhost:4200/login-register/register', 'http://localhost:4200/login-register/login'))
+            events: of(new NavigationEnd(0, 'https://localhost:4200/login-register/register', 'https://localhost:4200/login-register/login'))
           }
          }
       ]

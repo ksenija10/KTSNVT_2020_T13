@@ -52,7 +52,7 @@ describe('Image service', () => {
     });
 
     const request = httpMock.expectOne(
-      'http://localhost:8080/api/image/comment/1'
+      'https://localhost:8080/api/image/comment/1'
     );
     expect(request.request.method).toBe('POST');
     request.flush(mockImage);
@@ -77,7 +77,7 @@ describe('Image service', () => {
     });
 
     const request = httpMock.expectOne(
-      'http://localhost:8080/api/image/news/1'
+      'https://localhost:8080/api/image/news/1'
     );
     expect(request.request.method).toBe('POST');
     request.flush(mockImage);
@@ -102,7 +102,7 @@ describe('Image service', () => {
     });
 
     const request = httpMock.expectOne(
-      'http://localhost:8080/api/image/cultural-site/1'
+      'https://localhost:8080/api/image/cultural-site/1'
     );
     expect(request.request.method).toBe('POST');
     request.flush(mockImage);
