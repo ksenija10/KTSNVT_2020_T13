@@ -25,7 +25,7 @@ public class CulturalSiteRepositoryIntegrationTest {
 
 	@Autowired
 	private CulturalSiteRepository culturalSiteRepository;
-	/*
+	
 	@Test
 	public void testFindAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase() {
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
@@ -48,7 +48,6 @@ public class CulturalSiteRepositoryIntegrationTest {
 		assertEquals(5, filteredSitesPageable.getContent().size());
 	}
 
- 	*/
 	@Test
 	public void testFindAllBySubscribedUsersIdPageableLong() {
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
