@@ -90,11 +90,7 @@ export class TypesComponent implements OnInit {
         this.addTypeForm.reset();
         typeFormDirective.resetForm();
         // reload tabele
-        let lastPageIndex = calculateLastPage(this.typePageEvent.length + 1, this.typePageEvent.pageSize, this.typePageEvent.pageIndex)
-        //this.typePageEvent.previousPageIndex = this.typePageEvent.pageIndex
-        //this.typePageEvent.pageIndex = lastPageIndex;
-        //this.typePageEvent.length += 1;
-        this.onTypePaginateChange(this.typePageEvent)
+        this.onTypePaginateChange(this.typePageEvent);
       },
       error => {
         if(error.error.message){

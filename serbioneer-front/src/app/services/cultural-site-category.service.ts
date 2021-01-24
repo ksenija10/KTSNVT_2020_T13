@@ -28,7 +28,7 @@ export class CulturalSiteCategoryService {
 
   constructor(private http: HttpClient) {}
 
-  getAllCulturalSiteCategorys() : Observable<any> {
+  getAllCulturalSiteCategorys() : Observable<CulturalSiteCategory[]> {
       return this.http.get<CulturalSiteCategory[]>(environment.apiEndpoint + 'cultural-site-category')
   }
 
@@ -65,19 +65,19 @@ export class CulturalSiteCategoryService {
           )
   }
 
-  createCulturalSiteCategory(newCategoryDto: CulturalSiteCategory): Observable<Object> {
-      return this.http.post(environment.apiEndpoint + 'cultural-site-category', newCategoryDto, {
+  createCulturalSiteCategory(newCategoryDto: CulturalSiteCategory): Observable<CulturalSiteCategory> {
+      return this.http.post<CulturalSiteCategory>(environment.apiEndpoint + 'cultural-site-category', newCategoryDto, {
           headers: this.headers
       })
   }
-  createCulturalCategoryType(categoryId: number, newTypeDto: CulturalCategoryType): Observable<Object> {
-      return this.http.post(environment.apiEndpoint + 'cultural-site-category/' + categoryId + '/type', newTypeDto, {
+  createCulturalCategoryType(categoryId: number, newTypeDto: CulturalCategoryType): Observable<CulturalCategoryType> {
+      return this.http.post<CulturalCategoryType>(environment.apiEndpoint + 'cultural-site-category/' + categoryId + '/type', newTypeDto, {
           headers: this.headers
       })
   }
 
-  deleteCulturalSiteCategory(categoryId: number): Observable<Object> {
-      return this.http.delete(environment.apiEndpoint + 'cultural-site-category/' + categoryId, {
+  deleteCulturalSiteCategory(categoryId: number): Observable<void> {
+      return this.http.delete<void>(environment.apiEndpoint + 'cultural-site-category/' + categoryId, {
           headers: this.headers
       })
   }
@@ -87,14 +87,14 @@ export class CulturalSiteCategoryService {
       })
   }
   
-  updateCulturalSiteCategory(categoryId: number, updatedCategoryDto: CulturalSiteCategory): Observable<any> {
-      return this.http.put(environment.apiEndpoint + 'cultural-site-category/' + categoryId, updatedCategoryDto, {
+  updateCulturalSiteCategory(categoryId: number, updatedCategoryDto: CulturalSiteCategory): Observable<CulturalSiteCategory> {
+      return this.http.put<CulturalSiteCategory>(environment.apiEndpoint + 'cultural-site-category/' + categoryId, updatedCategoryDto, {
           headers: this.headers
       })
   }
 
-  updateCulturalCategoryType(typeId: number, updatedTypeDto: CulturalCategoryType): Observable<any> {
-      return this.http.put(environment.apiEndpoint + 'cultural-site-category/type/' + typeId, updatedTypeDto, {
+  updateCulturalCategoryType(typeId: number, updatedTypeDto: CulturalCategoryType): Observable<CulturalCategoryType> {
+      return this.http.put<CulturalCategoryType>(environment.apiEndpoint + 'cultural-site-category/type/' + typeId, updatedTypeDto, {
           headers: this.headers
       })
   }

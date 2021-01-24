@@ -124,6 +124,66 @@ describe('Cultural site service', ()=>{
         expect(response.content[1].rating).toEqual(3.0);
     }))
 
+    it('should find all subscribed by page', fakeAsync( () => {
+        let sites = [
+            {
+                id: 1,
+                name: "CulturalSite1",
+                categoryId: 1,
+                category: "Category1",
+                categoryTypeId: 1,
+                categoryType: "CategoryType1",
+                lat: 44.823028,
+                lng: 20.447694,
+                address: "Address1",
+                city: "City1",
+                description: "Description1",
+                rating: 4.5
+            }
+        ]
+
+        let mockSiteData : CulturalSiteData = {
+            content : sites,
+            totalPages: 1,
+            totalElements : 1,
+            size : 1
+        }
+
+        let response : CulturalSiteData = {
+            content : [],
+            totalPages: 0,
+            totalElements : 0,
+            size : 0
+        }
+
+        culturalSiteService.findAllSubscribedByPage(0,2, 'prvi@user.com').subscribe(
+            data => {
+                response = data;
+            }
+        )
+        
+        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/subscribed/by-page?page=0&size=2&userEmail=prvi@user.com");
+        expect(req.request.method).toBe('GET');
+        req.flush(mockSiteData);
+
+        tick();
+
+        expect(response.content.length).toEqual(1);
+
+        expect(response.content[0].id).toEqual(1);
+        expect(response.content[0].name).toEqual("CulturalSite1");
+        expect(response.content[0].categoryId).toEqual(1);
+        expect(response.content[0].category).toEqual("Category1");
+        expect(response.content[0].categoryTypeId).toEqual(1);
+        expect(response.content[0].categoryType).toEqual("CategoryType1");
+        expect(response.content[0].lat).toEqual(44.823028);
+        expect(response.content[0].lng).toEqual(20.447694);
+        expect(response.content[0].address).toEqual("Address1");
+        expect(response.content[0].city).toEqual("City1");
+        expect(response.content[0].description).toEqual("Description1");
+        expect(response.content[0].rating).toEqual(4.5);
+    }))
+
     it('should filter by category name', fakeAsync( () => {
         let sites = [
             {
@@ -328,6 +388,138 @@ describe('Cultural site service', ()=>{
         )
 
         const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/filter/by-page?page=0&size=2");
+        expect(req.request.method).toBe('POST');
+        req.flush(mockSiteData);
+
+        tick();
+
+        expect(response.content.length).toEqual(1);
+
+        expect(response.content[0].id).toEqual(2);
+        expect(response.content[0].name).toEqual("CulturalSite2");
+        expect(response.content[0].categoryId).toEqual(1);
+        expect(response.content[0].category).toEqual("Category1");
+        expect(response.content[0].categoryTypeId).toEqual(2);
+        expect(response.content[0].categoryType).toEqual("CategoryType2");
+        expect(response.content[0].lat).toEqual(43.823028);
+        expect(response.content[0].lng).toEqual(21.447694);
+        expect(response.content[0].address).toEqual("Address2");
+        expect(response.content[0].city).toEqual("City2");
+        expect(response.content[0].description).toEqual("Description2");
+        expect(response.content[0].rating).toEqual(3.0);
+    }))
+
+    it('should filter subscribed by cultural site name', fakeAsync( () => {
+        let sites = [
+            {
+                id: 1,
+                name: "CulturalSite1",
+                categoryId: 1,
+                category: "Category1",
+                categoryTypeId: 1,
+                categoryType: "CategoryType1",
+                lat: 44.823028,
+                lng: 20.447694,
+                address: "Address1",
+                city: "City1",
+                description: "Description1",
+                rating: 4.5
+            }
+        ]
+
+        let mockSiteData : CulturalSiteData = {
+            content : sites,
+            totalPages: 1,
+            totalElements : 1,
+            size : 2
+        }
+
+        let response : CulturalSiteData = {
+            content : [],
+            totalPages: 0,
+            totalElements : 0,
+            size : 0
+        }
+
+        let filterDto : FilterDTO = {
+            categoryNames : [],
+            culturalSiteName : "CulturalSite1",
+            location : ""
+        }
+
+        culturalSiteService.filterSubscribedByPage(0,2, "prvi@user.com", filterDto).subscribe(
+            data => {
+                response = data;
+            }
+        )
+
+        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/subscribed/filter/by-page?page=0&size=2&userEmail=prvi@user.com");
+        expect(req.request.method).toBe('POST');
+        req.flush(mockSiteData);
+
+        tick();
+
+        expect(response.content.length).toEqual(1);
+
+        expect(response.content[0].id).toEqual(1);
+        expect(response.content[0].name).toEqual("CulturalSite1");
+        expect(response.content[0].categoryId).toEqual(1);
+        expect(response.content[0].category).toEqual("Category1");
+        expect(response.content[0].categoryTypeId).toEqual(1);
+        expect(response.content[0].categoryType).toEqual("CategoryType1");
+        expect(response.content[0].lat).toEqual(44.823028);
+        expect(response.content[0].lng).toEqual(20.447694);
+        expect(response.content[0].address).toEqual("Address1");
+        expect(response.content[0].city).toEqual("City1");
+        expect(response.content[0].description).toEqual("Description1");
+        expect(response.content[0].rating).toEqual(4.5);
+    }))
+
+    it('should filter subscribed by location', fakeAsync( () => {
+        let sites = [
+            {
+                id: 2,
+                name: "CulturalSite2",
+                categoryId: 1,
+                category: "Category1",
+                categoryTypeId: 2,
+                categoryType: "CategoryType2",
+                lat: 43.823028,
+                lng: 21.447694,
+                address: "Address2",
+                city: "City2",
+                description: "Description2",
+                rating: 3.0
+            }
+        ]
+
+        let mockSiteData : CulturalSiteData = {
+            content : sites,
+            totalPages: 1,
+            totalElements : 2,
+            size : 2
+        }
+
+        let response : CulturalSiteData = {
+            content : [],
+            totalPages: 0,
+            totalElements : 0,
+            size : 0
+        }
+
+        let filterDto : FilterDTO = {
+            categoryNames : [],
+            culturalSiteName : "",
+            location : "City2"
+        }
+
+        culturalSiteService.filterSubscribedByPage(0,2, "prvi@user.com", filterDto).subscribe(
+            data => {
+                response = data;
+            }
+        )
+
+        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/subscribed/filter/by-page?page=0&size=2&userEmail=prvi@user.com");
         expect(req.request.method).toBe('POST');
         req.flush(mockSiteData);
 
@@ -597,7 +789,7 @@ describe('Cultural site service', ()=>{
         expect(response.content[1].images!.length).toEqual(0);
     }))
 
-    it('should  check if user is subscribed', fakeAsync( () => {
+    it('should  check if user is subscribed to cultural site', fakeAsync( () => {
         let userSubscription : SubscribedCulturalSiteDTO = {
             subscribed : false,
             userEmail : "user@user.com",
@@ -633,7 +825,7 @@ describe('Cultural site service', ()=>{
         expect(response.culturalSiteId).toEqual(1);
     }))
 
-    it('', fakeAsync( () => {
+    it('should create comment', fakeAsync( () => {
         let mockComment : CommentDto = 
         {
             id: 1,
@@ -675,4 +867,151 @@ describe('Cultural site service', ()=>{
         expect(response.approved).toEqual(true);
         expect(response.images!.length).toEqual(0);
     }))
+
+    it('should create cultural site', fakeAsync(() => {
+        let culturalSiteDto: CulturalSiteView = 
+        {
+            name: "Novo kulturno dobro",
+            categoryId: 1,
+            categoryTypeId: 1,
+            lat: 45,
+            lng: 20,
+            address: "Ilije Bircanina 45",
+            city: "Krusevac",
+            rating: 0,
+            images: []
+        }
+
+        let mockCulturalSite: CulturalSiteView = 
+        {
+            id: 1,
+            name: "Novo kulturno dobro",
+            categoryId: 1,
+            categoryTypeId: 1,
+            lat: 45,
+            lng: 20,
+            address: "Ilije Bircanina 45",
+            city: "Krusevac",
+            rating: 0,
+            images: []
+        }
+
+        let response: CulturalSiteView = 
+        {
+            id: 0,
+            name: "",
+            categoryId: 0,
+            categoryTypeId: 0,
+            lat: 0,
+            lng: 0,
+            address: "",
+            city: "",
+            rating: 0,
+            images: []
+        }
+
+        culturalSiteService.createCulturalSite(culturalSiteDto)
+            .subscribe(
+                (data: CulturalSiteView) => {
+                    response = data;
+                }
+            )
+        
+        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site");
+        expect(req.request.method).toBe('POST');
+        req.flush(mockCulturalSite);
+
+        tick();
+
+        expect(response.id).toEqual(1);
+        expect(response.name).toEqual("Novo kulturno dobro");
+        expect(response.categoryId).toEqual(1);
+        expect(response.categoryTypeId).toEqual(1);
+        expect(response.lat).toEqual(45);
+        expect(response.lng).toEqual(20);
+        expect(response.address).toEqual("Ilije Bircanina 45");
+        expect(response.city).toEqual("Krusevac");
+        expect(response.rating).toEqual(0);
+        expect(response.images?.length).toEqual(0);
+    }))
+
+    it('should update cultural site', fakeAsync(() => {
+        let updateCulturalSiteDto: CulturalSiteView = 
+        {
+            name: "Izmenjeno kulturno dobro",
+            categoryId: 1,
+            categoryTypeId: 1,
+            lat: 45,
+            lng: 20,
+            address: "Marije Antoanete 3",
+            city: "Zrenjanin",
+            rating: 3,
+            images: []
+        }
+
+        let mockCulturalSite: CulturalSiteView = 
+        {
+            id: 1,
+            name: "Izmenjeno kulturno dobro",
+            categoryId: 1,
+            categoryTypeId: 1,
+            lat: 45,
+            lng: 20,
+            address: "Marije Antoanete 3",
+            city: "Zrenjanin",
+            rating: 3,
+            images: []
+        }
+
+        let response: CulturalSiteView = 
+        {
+            id: 0,
+            name: "",
+            categoryId: 0,
+            categoryTypeId: 0,
+            lat: 0,
+            lng: 0,
+            address: "",
+            city: "",
+            rating: 0,
+            images: []
+        }
+
+        culturalSiteService.updateCulturalSite(1, updateCulturalSiteDto)
+            .subscribe(
+                (data: CulturalSiteView) => {
+                    response = data;
+                }
+            )
+        
+        const req = httpMock.expectOne("http://localhost:8080/api/cultural-site/1");
+        expect(req.request.method).toBe('PUT');
+        req.flush(mockCulturalSite);
+
+        tick();
+
+        expect(response.id).toEqual(1);
+        expect(response.name).toEqual("Izmenjeno kulturno dobro");
+        expect(response.categoryId).toEqual(1);
+        expect(response.categoryTypeId).toEqual(1);
+        expect(response.lat).toEqual(45);
+        expect(response.lng).toEqual(20);
+        expect(response.address).toEqual("Marije Antoanete 3");
+        expect(response.city).toEqual("Zrenjanin");
+        expect(response.rating).toEqual(3);
+        expect(response.images?.length).toEqual(0);
+    }))
+
+    it('should delete cultural site', fakeAsync(()=> {
+    
+        culturalSiteService.deleteCulturalSite(1).subscribe(data => {
+            let response = data;
+        })
+ 
+        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site/1');
+        expect(req.request.method).toBe('DELETE');
+        req.flush({});
+ 
+        tick();
+     }))
 })
