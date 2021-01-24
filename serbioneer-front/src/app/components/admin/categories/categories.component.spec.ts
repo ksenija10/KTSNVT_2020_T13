@@ -17,7 +17,7 @@ import { CulturalSiteCategory } from "src/app/model/cultural-site-category.model
 import { CulturalSiteCategoryService } from "src/app/services/cultural-site-category.service";
 import { CategoriesComponent } from "./categories.component"
 
-fdescribe('CategoriesComponent', () => {
+describe('CategoriesComponent', () => {
     let component: CategoriesComponent;
     let fixture: ComponentFixture<CategoriesComponent>;
     // injektovani servisi

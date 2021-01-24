@@ -75,7 +75,7 @@ describe('Comment service', ()=>{
             response = data;
         });
 
-        const req = httpMock.expectOne("http://localhost:8080/api/comment/unapproved/by-page?page=0&size=2");
+        const req = httpMock.expectOne("https://localhost:8080/api/comment/unapproved/by-page?page=0&size=2");
         expect(req.request.method).toBe('GET');
         req.flush(mockResponse);
 
@@ -128,7 +128,7 @@ describe('Comment service', ()=>{
             comment = data;
         })
 
-        const req = httpMock.expectOne('http://localhost:8080/api/comment/1/approval');
+        const req = httpMock.expectOne('https://localhost:8080/api/comment/1/approval');
         expect(req.request.method).toBe('PUT');
         req.flush(mockComment);
 
@@ -148,7 +148,7 @@ describe('Comment service', ()=>{
            let response = data;
        })
 
-       const req = httpMock.expectOne('http://localhost:8080/api/comment/1/approval');
+       const req = httpMock.expectOne('https://localhost:8080/api/comment/1/approval');
        expect(req.request.method).toBe('DELETE');
        req.flush({});
 
@@ -183,7 +183,7 @@ describe('Comment service', ()=>{
            comment = data;
        })
 
-       const req = httpMock.expectOne('http://localhost:8080/api/comment/1');
+       const req = httpMock.expectOne('https://localhost:8080/api/comment/1');
        expect(req.request.method).toBe('PUT');
        req.flush(mockComment);
 
@@ -203,7 +203,7 @@ describe('Comment service', ()=>{
             let response = data;
         })
  
-        const req = httpMock.expectOne('http://localhost:8080/api/comment/1');
+        const req = httpMock.expectOne('https://localhost:8080/api/comment/1');
         expect(req.request.method).toBe('DELETE');
         req.flush({});
  

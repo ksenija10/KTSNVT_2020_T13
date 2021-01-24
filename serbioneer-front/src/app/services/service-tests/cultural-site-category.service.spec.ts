@@ -53,7 +53,7 @@ describe('Cultural site category service', () => {
             }
         )
 
-        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site-category');
+        const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category');
         expect(req.request.method).toBe('GET');
         req.flush(mockCulturalSiteCategories);
 
@@ -99,7 +99,7 @@ describe('Cultural site category service', () => {
             }
         )
 
-        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site-category/by-page?page=0&size=2');
+        const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/by-page?page=0&size=2');
         expect(req.request.method).toBe('GET');
         req.flush(mockCategoriesData);
 
@@ -136,7 +136,7 @@ describe('Cultural site category service', () => {
             }
         )
 
-        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site-category/1/type');
+        const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/1/type');
         expect(req.request.method).toBe('GET');
         req.flush(mockTypes);
 
@@ -182,7 +182,7 @@ describe('Cultural site category service', () => {
             }
         )
 
-        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site-category/1/type/by-page?page=0&size=2');
+        const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/1/type/by-page?page=0&size=2');
         expect(req.request.method).toBe('GET');
         req.flush(mockCategoriesData);
 
@@ -221,7 +221,7 @@ describe('Cultural site category service', () => {
                 }
             )
         
-        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site-category');
+        const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category');
         expect(req.request.method).toBe('POST');
         req.flush(mockCulturalSiteCategory);
 
@@ -254,7 +254,7 @@ describe('Cultural site category service', () => {
                 }
             )
         
-        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site-category/1/type');
+        const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/1/type');
         expect(req.request.method).toBe('POST');
         req.flush(mockCulturalCategoryType);
 
@@ -270,7 +270,7 @@ describe('Cultural site category service', () => {
             let response = data;
         })
  
-        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site-category/1');
+        const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/1');
         expect(req.request.method).toBe('DELETE');
         req.flush({});
  
@@ -283,7 +283,7 @@ describe('Cultural site category service', () => {
             let response = data;
         })
  
-        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site-category/type/1');
+        const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/type/1');
         expect(req.request.method).toBe('DELETE');
         req.flush({});
  
@@ -316,7 +316,7 @@ describe('Cultural site category service', () => {
                 }
             )
         
-        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site-category/1');
+        const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/1');
         expect(req.request.method).toBe('PUT');
         req.flush(mockCulturalSiteCategory);
 
@@ -352,7 +352,7 @@ describe('Cultural site category service', () => {
                 }
             )
         
-        const req = httpMock.expectOne('http://localhost:8080/api/cultural-site-category/type/1');
+        const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/type/1');
         expect(req.request.method).toBe('PUT');
         req.flush(mockCulturalCategoryType);
 
