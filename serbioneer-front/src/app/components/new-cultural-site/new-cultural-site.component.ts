@@ -216,23 +216,19 @@ export class NewCulturalSiteComponent implements OnInit {
 
     // kreiranje ili updatovanje
     if (this.editCulturalSiteId) {
-      this.culturalSiteService
-        .updateCulturalSite(this.editCulturalSiteId, culturalSite)
+      this.culturalSiteService.updateCulturalSite(this.editCulturalSiteId, culturalSite)
         .pipe(
           map((savedCulturalSite: CulturalSiteDTO) => {
             //provera da li je lista slika prazna
             if (this.files.length > 0) {
               //ako nije onda dodajemo jedan po jedan fajl
               for (let i = 0; i < this.files.length; i++) {
-                this.imageService
-                  .createForCulturalSite(savedCulturalSite.id!, this.files[i])
-                  .pipe(
+                this.imageService.createForCulturalSite(savedCulturalSite.id!, this.files[i]).pipe(
                     map((image: Image) => {
                       this.images = [];
                       this.files = [];
                     })
-                  )
-                  .subscribe();
+                  ).subscribe();
               }
             }
             return savedCulturalSite;
@@ -241,6 +237,7 @@ export class NewCulturalSiteComponent implements OnInit {
         .subscribe(
           (response) => {
             this.toastr.success('Successfully edited cultural site!');
+            this.newCulturalSiteForm.reset();
             this.router.navigate(['/cultural-site/' + response.id]);
           },
           (error) => {
@@ -255,43 +252,21 @@ export class NewCulturalSiteComponent implements OnInit {
               this.newCulturalSiteForm.reset();
             }
           }
-          return savedCulturalSite;
-        }
-      )).subscribe(
-        (response) => {
-          this.toastr.success('Successfully edited cultural site!');
-          this.newCulturalSiteForm.reset();
-          this.router.navigate(['/cultural-site/'+response.id]);
-        },
-        (error) => {
-          if (error.error.message) {
-            this.toastr.error(error.error.message);
-          } else if (error.error.violations) {
-            this.toastr.error(error.error.violations[0].message)
-          } else {
-            this.toastr.error('503 Server Unavailable');
-          }
-          this.newCulturalSiteForm.reset();
-        }
-      );
+        )
     } else {
-      this.culturalSiteService
-        .createCulturalSite(culturalSite)
+      this.culturalSiteService.createCulturalSite(culturalSite)
         .pipe(
           map((savedCulturalSite: CulturalSiteDTO) => {
             //provera da li je lista slika prazna
             if (this.files.length > 0) {
               //ako nije onda dodajemo jedan po jedan fajl
               for (let i = 0; i < this.files.length; i++) {
-                this.imageService
-                  .createForCulturalSite(savedCulturalSite.id!, this.files[i])
-                  .pipe(
+                this.imageService.createForCulturalSite(savedCulturalSite.id!, this.files[i]).pipe(
                     map((image: Image) => {
                       this.images = [];
                       this.files = [];
                     })
-                  )
-                  .subscribe();
+                  ).subscribe();
               }
             }
             return savedCulturalSite;
@@ -299,7 +274,8 @@ export class NewCulturalSiteComponent implements OnInit {
         )
         .subscribe(
           (response) => {
-            this.toastr.success('Successfully added new cultural site!');
+            this.toastr.success('Successfully created new cultural site!');
+            this.newCulturalSiteForm.reset();
             this.router.navigate(['/cultural-site/' + response.id]);
           },
           (error) => {
@@ -312,26 +288,7 @@ export class NewCulturalSiteComponent implements OnInit {
             }
             this.newCulturalSiteForm.reset();
           }
-          return savedCulturalSite;
-        }
-      ))
-      .subscribe(
-        (response) => {
-          this.toastr.success('Successfully created new cultural site!');
-          this.newCulturalSiteForm.reset();
-          this.router.navigate(['/cultural-site/'+response.id]);
-        },
-        (error) => {
-          if (error.error.message) {
-            this.toastr.error(error.error.message);
-          } else if (error.error.violations) {
-            this.toastr.error(error.error.violations[0].message)
-          } else {
-            this.toastr.error('503 Server Unavailable');
-          }
-          this.newCulturalSiteForm.reset();
-        }
-      );
+        );
     }
   }
 }

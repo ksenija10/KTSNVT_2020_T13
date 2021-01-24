@@ -66,7 +66,7 @@ describe('Admin service', () => {
             }
         )
 
-        const req = httpMock.expectOne('http://localhost:8080/api/admin');
+        const req = httpMock.expectOne('https://localhost:8080/api/admin');
         expect(req.request.method).toBe('POST')
         req.flush(mockAdmin);
 
@@ -100,7 +100,7 @@ describe('Admin service', () => {
             }
         )
 
-        const req = httpMock.expectOne('http://localhost:8080/api/admin');
+        const req = httpMock.expectOne('https://localhost:8080/api/admin');
         expect(req.request.method).toBe('POST')
         req.flush(mockResponse);
 
@@ -149,7 +149,7 @@ describe('Admin service', () => {
             }
         )
 
-        const req = httpMock.expectOne('http://localhost:8080/api/admin/by-page?page=0&size=2');
+        const req = httpMock.expectOne('https://localhost:8080/api/admin/by-page?page=0&size=2');
         expect(req.request.method).toBe('GET')
         req.flush(mockResponse);
 
