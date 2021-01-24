@@ -102,7 +102,7 @@ export class NewCulturalSiteComponent implements OnInit {
         this.newCulturalSiteForm.get('address')?.setValue(this.editCulturalSite.address + ', ' + this.editCulturalSite.city + ', Serbia');
         this.newCulturalSiteForm.get('description')?.setValue(this.editCulturalSite.description);
         this.newCulturalSiteForm.get('category')?.setValue(this.editCulturalSite.categoryId);
-        this.newCulturalSiteForm.get('categoryType')?.setValue(this.editCulturalSite.categoryTypeId);
+        //this.newCulturalSiteForm.get('categoryType')?.setValue(this.editCulturalSite.categoryTypeId);
         this.newCulturalSiteForm.get('lat')?.setValue(this.editCulturalSite.lat?.toFixed(3));
         this.newCulturalSiteForm.get('lng')?.setValue(this.editCulturalSite.lng?.toFixed(3));
         // postavljanje postojece kategorije
@@ -153,7 +153,7 @@ export class NewCulturalSiteComponent implements OnInit {
     }
   }
 
-  public addressChange(address: any) { 
+  addressChange(address: any) { 
     //setting address from API to local variable 
     this.foundAddress = address.formatted_address;
     this.geocodingService.getLatlong(this.foundAddress)
@@ -223,6 +223,7 @@ export class NewCulturalSiteComponent implements OnInit {
       )).subscribe(
         (response) => {
           this.toastr.success('Successfully edited cultural site!');
+          this.newCulturalSiteForm.reset();
           this.router.navigate(['/cultural-site/'+response.id]);
         },
         (error) => {

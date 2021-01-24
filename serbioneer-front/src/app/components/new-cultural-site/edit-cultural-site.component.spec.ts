@@ -20,7 +20,7 @@ import { GeocodingService } from "src/app/services/geocoding.service";
 import { ImageService } from "src/app/services/image.service";
 import { NewCulturalSiteComponent } from "./new-cultural-site.component";
 
-describe('NewCulturalSiteComponent - Add Site', () => {
+describe('NewCulturalSiteComponent - Edit Site', () => {
     let component: NewCulturalSiteComponent;
     let fixture: ComponentFixture<NewCulturalSiteComponent>;
     // injektovani servisi
@@ -40,9 +40,9 @@ describe('NewCulturalSiteComponent - Add Site', () => {
                     name: 'Kulturno dobro',
                     address: 'Adresa 5',
                     city: 'Grad',
-                    category: 'Kategorija',
+                    category: 'Institucija',
                     categoryId: 1,
-                    type: 'Tip',
+                    type: 'Biblioteka',
                     typeId: 1,
                     lat: 42,
                     lng: 20,
@@ -136,7 +136,7 @@ describe('NewCulturalSiteComponent - Add Site', () => {
 
         let routerMock = {
             navigate: jasmine.createSpy('navigate'),
-            url: 'new-cultural-site'
+            url: 'edit-cultural-site/1'
         };
 
         TestBed.configureTestingModule({
@@ -178,12 +178,12 @@ describe('NewCulturalSiteComponent - Add Site', () => {
 
     it('should display correct title', () => {
         let formTitle = fixture.debugElement.query(By.css('#cultural-site-form-title'));
-        expect(formTitle.nativeElement.textContent).toEqual('Add new cultural site');
+        expect(formTitle.nativeElement.textContent).toEqual('Edit cultural site');
         let formBtn = fixture.debugElement.query(By.css('#create-edit-site-btn'));
-        expect(formBtn.nativeElement.textContent).toEqual(' Create ');
+        expect(formBtn.nativeElement.textContent).toEqual(' Save ');
     })
 
-    it('should load all cultural site categories', () => {
+    it('should load cultural site to be edited', () => {
         expect(culturalSiteCategoryService.getAllCulturalSiteCategorys).toHaveBeenCalled();
         expect(component.allCategoriesModel.length).toEqual(2);
         expect(component.allCategoriesModel[0].id).toEqual(1);
@@ -198,8 +198,24 @@ describe('NewCulturalSiteComponent - Add Site', () => {
         expect(component.allCategoryTypesModel[0].name).toEqual('Biblioteka');
         expect(component.allCategoryTypesModel[1].id).toEqual(2);
         expect(component.allCategoryTypesModel[1].name).toEqual('Pozoriste');
-        // nije dobavljao kulturno dobro (jer nije edit mode)
-        expect(culturalSiteService.getCulturalSite).toHaveBeenCalledTimes(0);
+        // jeste dobavljao kulturno dobro (jer jeste edit mode)
+        expect(culturalSiteService.getCulturalSite).toHaveBeenCalledWith(1);
+        // provera u html-u (da li su popunjeni svi podaci)
+        fixture.whenStable().then(async () => {
+            fixture.detectChanges();
+            const culturalSiteNameInput = await loader.getHarness(MatInputHarness.with({selector: '#name-input'}));
+            expect((await culturalSiteNameInput.getValue())).toEqual('Kulturno dobro');
+            const culturalSiteAddressInput = await loader.getHarness(MatInputHarness.with({selector: '#address-input'}));
+            expect((await culturalSiteAddressInput.getValue())).toEqual('Adresa 5, Grad, Serbia');
+            const culturalSiteDescriptionInput = await loader.getHarness(MatInputHarness.with({selector: '#description-input'}));
+            expect((await culturalSiteDescriptionInput.getValue())).toEqual('Opis');
+            const culturalSiteCategoryInput = await loader.getHarness(MatSelectHarness.with({selector: '#category-select'}));
+            expect((await culturalSiteCategoryInput.getValueText())).toEqual('Institucija');
+            const culturalSiteLatInput = await loader.getHarness(MatInputHarness.with({selector: '#lat-input'}));
+            expect((await culturalSiteLatInput.getValue())).toEqual('42.000');
+            const culturalSiteLngInput = await loader.getHarness(MatInputHarness.with({selector: '#lng-input'}));
+            expect((await culturalSiteLngInput.getValue())).toEqual('20.000');
+        })
     })
 
     it('should get required field error message - empty field', async() => {
@@ -282,27 +298,21 @@ describe('NewCulturalSiteComponent - Add Site', () => {
         expect(lng).toEqual('20.000');
     })
 
-    it('should create new cultural site', async() => {
+    it('should update loaded cultural site', async() => {
         expect(component.newCulturalSiteForm.invalid).toBeTruthy();
         // popunjavanje forme u htmlu
         const culturalSiteNameInput = await loader.getHarness(MatInputHarness.with({selector: '#name-input'}));
-        await culturalSiteNameInput.setValue('Novo kulturno dobro');
-        const culturalSiteAddressInput = await loader.getHarness(MatInputHarness.with({selector: '#address-input'}));
-        await culturalSiteAddressInput.setValue('Adresa 5');
+        await culturalSiteNameInput.setValue('Izmenjeno kulturno dobro');
         const culturalSiteCategoryInput = await loader.getHarness(MatSelectHarness.with({selector: '#category-select'}));
         await culturalSiteCategoryInput.clickOptions();// valjda odabere prvu
         const culturalSiteTypeInput = await loader.getHarness(MatSelectHarness.with({selector: '#category-type-select'}));
         await culturalSiteTypeInput.clickOptions();// valjda odabere prvu
         expect(component.newCulturalSiteForm.valid).toBeTruthy();
 
-        component.foundAddress = 'Adresa 5, Grad, Serbia';
-        component.location.lat = 42;
-        component.location.lng = 20;
-
         const newCulturalSiteDto: CulturalSiteDTO = 
             new CulturalSiteDTO(
                 undefined,
-                'Novo kulturno dobro',
+                'Izmenjeno kulturno dobro',
                 1,
                 undefined,
                 1,
@@ -311,15 +321,15 @@ describe('NewCulturalSiteComponent - Add Site', () => {
                 20,
                 'Adresa 5',
                 'Grad',
-                '',
+                'Opis',
                 0
             );
         
         component.onSubmit();
 
-        expect(culturalSiteService.createCulturalSite).toHaveBeenCalledWith(newCulturalSiteDto);
-        expect(toastr.success).toHaveBeenCalledWith('Successfully created new cultural site!');
-        expect(router.navigate).toHaveBeenCalledWith(['/cultural-site/2']);
+        expect(culturalSiteService.updateCulturalSite).toHaveBeenCalledWith(1, newCulturalSiteDto);
+        expect(toastr.success).toHaveBeenCalledWith('Successfully edited cultural site!');
+        expect(router.navigate).toHaveBeenCalledWith(['/cultural-site/1']);
         // provera da li je forma ociscena
         expect(await culturalSiteNameInput.getValue()).toEqual('');
     })
