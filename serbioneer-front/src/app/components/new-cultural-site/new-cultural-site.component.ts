@@ -256,7 +256,8 @@ export class NewCulturalSiteComponent implements OnInit {
       ))
       .subscribe(
         (response) => {
-          this.toastr.success('Successfully added new cultural site!');
+          this.toastr.success('Successfully created new cultural site!');
+          this.newCulturalSiteForm.reset();
           this.router.navigate(['/cultural-site/'+response.id]);
         },
         (error) => {

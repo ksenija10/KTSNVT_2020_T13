@@ -1,20 +1,21 @@
 <form [formGroup] = "newCulturalSiteForm" (ngSubmit) = "onSubmit()">
     <div class="row justify-content-md-center">
         <div class="col-md-8 add-box">
-            <h2>{{ title }}</h2>
+            <h2 id="cultural-site-form-title">{{ title }}</h2>
             <div class="row justify-content-md-center">
                 <div class="col-md-5">
                     <div class="form-group">
-                        <mat-form-field appearance="fill" class="form-field">
+                        <mat-form-field id="name-form-field" appearance="fill" class="form-field">
                             <mat-label>Cultural site name</mat-label>
-                            <input matInput placeholder="Ex. Exit" formControlName ="name">
+                            <input id="name-input" matInput placeholder="Ex. Exit" formControlName ="name">
                             <mat-error *ngIf="newCulturalSiteForm.get('name')?.invalid">{{getRequiredFieldErrorMessage('name')}}</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="form-group">
-                        <mat-form-field appearance="fill" class="form-field">
+                        <mat-form-field id="address-form-field" appearance="fill" class="form-field">
                             <mat-label>Cultural site address</mat-label>
                             <input 
+                                id="address-input"
                                 ngx-google-places-autocomplete
                                 [options]="autocompleteOptions"
                                 (onAddressChange)="addressChange($event)"
@@ -36,19 +37,19 @@
                     <div class="form-group">
                         <mat-form-field appearance="fill" class="form-field">
                             <mat-label>Latitude</mat-label>
-                            <input matInput placeholder="Ex. 45" formControlName="lat">
+                            <input id="lat-input" matInput placeholder="Ex. 45" formControlName="lat">
                         </mat-form-field>
                     </div>
                     <div class="form-group">
                         <mat-form-field appearance="fill" class="form-field">
                             <mat-label>Longitude</mat-label>
-                            <input matInput placeholder="Ex. 20.5" formControlName="lng">
+                            <input id="lng-input" matInput placeholder="Ex. 20.5" formControlName="lng">
                         </mat-form-field>
                     </div>
                     <div class="form-group">
-                        <mat-form-field appearance="fill" class="form-field">
+                        <mat-form-field id="category-form-field" appearance="fill" class="form-field">
                             <mat-label>Cultural site category</mat-label>
-                            <mat-select formControlName="category"
+                            <mat-select id="category-select" formControlName="category"
                                 (selectionChange)="categoryChange($event)">
                                 <mat-option *ngFor="let category of allCategoriesModel" [value]="category.id">{{category.name}}</mat-option>
                             </mat-select>
@@ -56,9 +57,9 @@
                         </mat-form-field>
                     </div>
                     <div class="form-group">
-                        <mat-form-field appearance="fill" class="form-field">
+                        <mat-form-field id="category-type-form-field" appearance="fill" class="form-field">
                             <mat-label>{{categoryModel.name}} types</mat-label>
-                            <mat-select formControlName="categoryType">
+                            <mat-select id="category-type-select" formControlName="categoryType">
                                 <mat-option *ngFor="let categoryType of allCategoryTypesModel" [value]="categoryType.id">{{categoryType.name}}</mat-option>
                             </mat-select>
                             <mat-error *ngIf="newCulturalSiteForm.get('categoryType')?.invalid">{{getRequiredFieldErrorMessage('categoryType')}}</mat-error>
@@ -80,6 +81,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <button
+                    id="create-edit-site-btn"
                     class="btn btn-purple"
                     type="submit"
                     [disabled] = "newCulturalSiteForm.invalid"
