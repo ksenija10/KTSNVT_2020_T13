@@ -112,15 +112,17 @@ import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dial
   }
 
   onPaginateChangeNews(event : PageEvent){
-    this.page = this.pageEventNews.pageIndex;
-    this.size = this.pageEventNews.pageSize;
-    this.fetchNews(this.culturalSite.id!);
+    this.pageEventNews = event;
+    this.page = event.pageIndex;
+    this.size = event.pageSize;
+    this.fetchNews(this.culturalSiteId);
   }
 
   onPaginateChangeComments(event : PageEvent){
-    this.page = this.pageEventComments.pageIndex;
-    this.size = this.pageEventComments.pageSize;
-    this.fetchComments(this.culturalSite.id!);
+    this.pageEventComments = event;
+    this.page = event.pageIndex;
+    this.size = event.pageSize;
+    this.fetchComments(this.culturalSiteId);
   }
 
   loggedUser(){
@@ -164,9 +166,9 @@ import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dial
     )).subscribe()
   }
 
-  onChangeSubscription(event : Event){
+  onChangeSubscription(){
     if(this.buttonValue == "Subscribe"){
-      this.authUserService.subscribe(this.culturalSite.id!)
+      this.authUserService.subscribe(this.culturalSiteId)
         .subscribe(
           response => {
             this.toastr.success('Successfully subscribed to cultural site!');
@@ -181,7 +183,7 @@ import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dial
         });
     }
     else{
-      this.authUserService.unsubscribe(this.culturalSite.id!)
+      this.authUserService.unsubscribe(this.culturalSiteId)
         .subscribe(
           response => {
             this.toastr.info('Successfully unsubscribed from cultural site. Sad to see you leave.');
@@ -195,13 +197,6 @@ import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dial
             }
         });
     }
-  }
-
-  isLogged() : boolean{
-    if(this.userIsLogged){
-      return true;
-    }
-    return false;
   }
 
   onRatingChange(){
