@@ -8,7 +8,7 @@
                         <mat-form-field id="name-form-field" appearance="fill" class="form-field">
                             <mat-label>Cultural site name</mat-label>
                             <input id="name-input" matInput placeholder="Ex. Exit" formControlName ="name">
-                            <mat-error *ngIf="newCulturalSiteForm.get('name')?.invalid">{{getRequiredFieldErrorMessage('name')}}</mat-error>
+                            <mat-error id="name-error" *ngIf="newCulturalSiteForm.get('name')?.invalid">{{getRequiredFieldErrorMessage('name')}}</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="form-group">
