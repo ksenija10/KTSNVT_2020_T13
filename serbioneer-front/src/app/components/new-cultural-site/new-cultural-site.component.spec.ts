@@ -254,13 +254,17 @@ describe('NewCulturalSiteComponent - Add Site', () => {
     })
 
     it('should read file', () => {
-        let button = fixture.debugElement.query(By.css('#file'));
-        spyOn(component, 'onFileChange');
-  
-        button.triggerEventHandler('change', {target: { files: [ {}, {} ] } })
-        
-        expect(component.onFileChange).toHaveBeenCalledWith({target: { files: [ {}, {} ]} });
-        //NE POZOVE METODU??? expect(component.images.length).toEqual(2);
+        let event = {
+            target: {
+                files: [
+                    new Blob([''], { type: 'text/html' }),
+                    new Blob([''], { type: 'text/html' })
+                ]
+            }
+        }
+        component.onFileChange(event);
+
+        expect(component.files.length).toEqual(2);
     })
 
     it('should set new lat and lng on address change', async() => {

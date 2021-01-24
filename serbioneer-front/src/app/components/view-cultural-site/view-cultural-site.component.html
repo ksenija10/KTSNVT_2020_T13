@@ -134,9 +134,9 @@
                             <mat-form-field id="new-comment-form-field" appearance="fill" class="form-field">
                                 <mat-label>Comment</mat-label>
                                 <input 
-                                    type="text" id="new-comment-input" class="type-comment" name="newCommentText"
+                                    matInput id="new-comment-input" class="type-comment" name="newCommentText"
                                     placeholder="Share your experience of {{culturalSite.name}}"
-                                    matInput formControlName="text">
+                                    formControlName="text">
                                 <mat-error id="new-comment-error" *ngIf="myForm.get('text')?.invalid">{{getTextErrorMessage()}}</mat-error>
                             </mat-form-field>
                         </div>

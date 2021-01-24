@@ -19,7 +19,7 @@ import { RatingCreateDTO, RatingService } from "src/app/services/rating.service"
 import { ViewCulturalSiteComponent } from "./view-cultural-site.component";
 import { MatInputHarness } from "@angular/material/input/testing";
 
-fdescribe('ViewCulturalSiteComponent', () => {
+describe('ViewCulturalSiteComponent', () => {
     let component: ViewCulturalSiteComponent;
     let fixture: ComponentFixture<ViewCulturalSiteComponent>;
     // injektovani servisi
@@ -409,21 +409,18 @@ fdescribe('ViewCulturalSiteComponent', () => {
         expect(component.newImageFiles.length).toEqual(2);
     }))
 
-    it('should add comments', ( () => {
+    fit('should add comments', (async() => {
         component.ngOnInit();
         component.addNewComment = false;
 
-        //TODO
-        /*const textInput = await loader.getHarness(
-            MatInputHarness.with({ selector: '#new-comment-input' })
-        );
-        await textInput.setValue('Previous comment');*/
-
         component.addComments();
 
+        const textInput = await loader.getHarness(
+            MatInputHarness.with({ selector: '#new-comment-input' })
+        );
         expect(component.addNewComment).toEqual(true);
         expect(component.images.length).toEqual(0);
-        //expect(await textInput.getValue()).toEqual('');
+        expect(await textInput.getValue()).toEqual('');
     }))
 
     it('should add images', ( async () => {
@@ -467,7 +464,6 @@ fdescribe('ViewCulturalSiteComponent', () => {
         expect(toastr.success).toHaveBeenCalledOnceWith('Successfully reviewed cultural site!\n' +
                                                         'Your review will be visible after approval.');
         expect(component.addNewComment).toEqual(false);
-        //TODO reset forme
     }))
 
     it('should emit event for loading added images for comment', ( async () => {
