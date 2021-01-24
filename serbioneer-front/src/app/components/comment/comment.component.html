@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col comment-author">{{comment.name}} {{comment.surname}}:</div>
     <div class="col" *ngIf="activeComment && userComment">
-      <button mat-icon-button color="primary" (click)="editComment()">
+      <button mat-icon-button color="primary" (click)="editComment()" id="edit-btn">
         <mat-icon>create</mat-icon>
       </button>
       <button mat-icon-button color="warn" (click)="deleteComment()">
