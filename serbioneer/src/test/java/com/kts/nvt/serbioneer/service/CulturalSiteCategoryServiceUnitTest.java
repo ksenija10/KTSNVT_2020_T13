@@ -75,7 +75,7 @@ public class CulturalSiteCategoryServiceUnitTest {
 		Page<CulturalSiteCategory> culturalSiteCategoryPage = new PageImpl<>(culturalSiteCategories, pageable, PAGEABLE_TOTAL_ELEMENTS);
 	
 		given(culturalSiteCategoryRepository.findAll()).willReturn(culturalSiteCategories);
-		given(culturalSiteCategoryRepository.findAll(pageable)).willReturn(culturalSiteCategoryPage);
+		given(culturalSiteCategoryRepository.findAllByOrderByIdAsc(pageable)).willReturn(culturalSiteCategoryPage);
 	
 		// for existing id
 		given(culturalSiteCategoryRepository.findById(CATEGORY_ID)).willReturn(Optional.of(category));
@@ -131,7 +131,7 @@ public class CulturalSiteCategoryServiceUnitTest {
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
 		Page<CulturalSiteCategory> categoriesPage = culturalSiteCategoryService.findAll(pageable);
 	
-		verify(culturalSiteCategoryRepository, times(1)).findAll(pageable);
+		verify(culturalSiteCategoryRepository, times(1)).findAllByOrderByIdAsc(pageable);
 		assertEquals(PAGEABLE_TOTAL_ELEMENTS, categoriesPage.getNumberOfElements());
 	}
 	

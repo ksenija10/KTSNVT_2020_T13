@@ -96,7 +96,7 @@ public class CulturalSiteCategoryControllerIntegrationTest {
 	}
 	
 	@Test
-	public void testGetAllCulturalSiteCategoriesAutorizationFail() {
+	public void testGetAllCulturalSiteCategoriesAutorizationFailPageable() {
 		// neophodna autorizacija
 		login(DB_USER_USERNAME, DB_USER_PASSWORD);
 		
@@ -106,7 +106,7 @@ public class CulturalSiteCategoryControllerIntegrationTest {
     	HttpEntity<Object> httpEntity = new HttpEntity<Object>(headers);
     	
     	ResponseEntity<Void> responseEntity = restTemplate.exchange(
-    			baseUrl, HttpMethod.GET, httpEntity, Void.class);
+    			baseUrl + "/by-page?page=0&size=2", HttpMethod.GET, httpEntity, Void.class);
 	
     	// provera statusa
     	assertEquals(HttpStatus.FORBIDDEN, responseEntity.getStatusCode());

@@ -295,7 +295,7 @@ public class CulturalSiteControllerIntegrationTest {
     	HttpEntity<Object> httpEntity = new HttpEntity<Object>(headers);
     	
     	ResponseEntity<HelperPage<CulturalSiteDTO>> responseEntity = restTemplate.exchange(
-    			baseURL + "/subscribed/by-page?page=0&size=3", 
+    			baseURL + "/subscribed/by-page?page=0&size=3&userEmail='bilosta'",
     			HttpMethod.GET, httpEntity, new ParameterizedTypeReference<HelperPage<CulturalSiteDTO>>() {});
     	assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     	assertEquals(NUM_OF_SUBSCRIBED, responseEntity.getBody().getTotalElements());

@@ -60,7 +60,7 @@ public class CulturalSiteServiceUnitTest {
 		// find all pageable
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
 		Page<CulturalSite> sitesPage = new PageImpl<>(allSites, pageable, PAGEABLE_TOTAL_ELEMENTS);
-		given(culturalSiteRepository.findAll(pageable)).willReturn(sitesPage);
+		given(culturalSiteRepository.findAllByOrderByIdAsc(pageable)).willReturn(sitesPage);
 		
 		// find by id
 		given(culturalSiteRepository.findById(CULTURAL_SITE_ID_1)).willReturn(Optional.of(CULTURAL_SITE_1));
@@ -125,7 +125,7 @@ public class CulturalSiteServiceUnitTest {
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
 		Page<CulturalSite> culturalSitesPageable = culturalSiteService.findAll(pageable);
 		
-		verify(culturalSiteRepository, times(1)).findAll(pageable);
+		verify(culturalSiteRepository, times(1)).findAllByOrderByIdAsc(pageable);
 		assertEquals(PAGEABLE_TOTAL_ELEMENTS, culturalSitesPageable.getContent().size());
 	}
 
