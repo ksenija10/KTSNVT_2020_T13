@@ -29,6 +29,8 @@ Admins can add new cultural sites, categories and types.
 -   Maven
 -   Selenium
 -   Balsamiq
+-   Jasmine
+-   Karma
 
 [Back To The Top](#serbioneer)
 
@@ -77,7 +79,7 @@ cd .\KTSNVT_2020_T13\serbioneer-front\
 To install dependencies run:
 
 ```
-npm install ngx-toastr @auth0/angular-jwt
+npm install
 ```
 
 To run frontend application run:
