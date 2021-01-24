@@ -372,7 +372,7 @@ describe('ViewCulturalSiteComponent', () => {
     it('should edit cultural site', ( async () => {
         component.editCulturalSite();
 
-        expect(router.navigate).toHaveBeenCalledWith(['edit-cultural-site/1']);
+        expect(router.navigate).toHaveBeenCalledWith(['admin/edit-cultural-site/1']);
     }))
 
     it('should submit images', ( async () => {
@@ -409,7 +409,7 @@ describe('ViewCulturalSiteComponent', () => {
         expect(component.newImageFiles.length).toEqual(2);
     }))
 
-    fit('should add comments', (async() => {
+    it('should add comments', (async() => {
         component.ngOnInit();
         component.addNewComment = false;
 

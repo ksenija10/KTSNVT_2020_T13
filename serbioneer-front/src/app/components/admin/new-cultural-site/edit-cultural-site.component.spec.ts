@@ -136,7 +136,7 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
 
         let routerMock = {
             navigate: jasmine.createSpy('navigate'),
-            url: 'edit-cultural-site/1'
+            url: 'admin/edit-cultural-site/1'
         };
 
         TestBed.configureTestingModule({
