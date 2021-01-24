@@ -8,6 +8,8 @@ import { MatFormFieldHarness } from "@angular/material/form-field/testing";
 import { MatInputModule } from "@angular/material/input";
 import { MatInputHarness } from "@angular/material/input/testing";
 import { PageEvent } from "@angular/material/paginator";
+import { MatPaginatorHarness } from "@angular/material/paginator/testing";
+import { MatTableHarness } from "@angular/material/table/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrService } from "ngx-toastr";
 import { of } from "rxjs";
@@ -24,7 +26,6 @@ fdescribe('CategoriesComponent', () => {
     let dialog: MatDialog;
     let loader: HarnessLoader;
 
-    //let dialogSpy: jasmine.Spy;
     let dialogRefSpyObject = jasmine.createSpyObj({
         afterClosed: of(true),
         close: null
@@ -96,11 +97,6 @@ fdescribe('CategoriesComponent', () => {
         loader = TestbedHarnessEnvironment.loader(fixture);
     })
 
-    afterEach(() => {
-        component.addCategoryForm.reset();
-        fixture.detectChanges();
-    })
-
     it('should load instance', () => {
         expect(component).toBeTruthy();
     });
@@ -117,6 +113,16 @@ fdescribe('CategoriesComponent', () => {
         expect(component.categoryDataSource.content[0].name).toEqual('Institucija');
         expect(component.categoryDataSource.content[1].id).toEqual(2);
         expect(component.categoryDataSource.content[1].name).toEqual('Manifestacija');
+
+        // provera u htmlu
+        fixture.whenStable().then(async () => {
+            fixture.detectChanges();
+            const categoriesTable = await loader.getHarness(MatTableHarness.with({selector: '#category-table'}));
+            expect((await categoriesTable.getRows()).length).toEqual(2);
+            const categoriesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#category-paginator'}));
+            const paginatorLabel = await categoriesPaginator.getRangeLabel();
+            expect(paginatorLabel).toEqual('1 – 2 of 2');
+        })
     })
 
     it('should choose category', () => {
@@ -166,6 +172,13 @@ fdescribe('CategoriesComponent', () => {
         expect(toastr.success).toHaveBeenCalledWith('Successfully added new category!');
         // provera da li je forma ociscena
         expect(await categoryNameInput.getValue()).toEqual('');
+        // provera u htmlu
+        fixture.whenStable().then(async () => {
+            fixture.detectChanges();
+            const categoriesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#category-paginator'}));
+            const paginatorLabel = await categoriesPaginator.getRangeLabel();
+            expect(paginatorLabel).toEqual('1 – 2 of 3');
+        })
     })
 
     it('should not get category name error message - valid field', async() => {
@@ -174,7 +187,6 @@ fdescribe('CategoriesComponent', () => {
         const categoryNameInput = await loader.getHarness(MatInputHarness.with({selector: '#cultural-category-name-input'}));
         await categoryNameInput.setValue('Nova kategorija');
 
-        // pozivanje metode KOJA IMA POVRATNU VREDNOST -> sacuvamo povratnu vrednost *tinkr tinkr*
         let returned = component.getCategoryNameErrorMessage();
         // sta ocekujemo da je povratna vrednost
         expect(returned).toEqual('');
@@ -198,6 +210,10 @@ fdescribe('CategoriesComponent', () => {
         const nameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#category-name-form-field'}));
         expect(await nameFormField.getTextErrors()).toEqual(['Must start with capital letter']);
         expect(component.addCategoryForm.invalid).toBeTruthy();
+
+        // reset forme
+        component.addCategoryForm.reset();
+        fixture.detectChanges();
     })
 
     it('should get category name error message - special character', async() => {
@@ -214,6 +230,10 @@ fdescribe('CategoriesComponent', () => {
         const nameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#category-name-form-field'}));
         expect(await nameFormField.getTextErrors()).toEqual(['Cannot contain special characters or numbers']);
         expect(component.addCategoryForm.invalid).toBeTruthy();
+
+        // reset forme
+        component.addCategoryForm.reset();
+        fixture.detectChanges();
     })
 
     it('should get category name error message - empty field', async() => {
@@ -230,6 +250,10 @@ fdescribe('CategoriesComponent', () => {
         const nameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#category-name-form-field'}));
         expect(await nameFormField.getTextErrors()).toEqual(['Required field']);
         expect(component.addCategoryForm.invalid).toBeTruthy();
+
+        // reset forme
+        component.addCategoryForm.reset();
+        fixture.detectChanges();
     })
 
     it('should delete category', () => {
@@ -249,6 +273,15 @@ fdescribe('CategoriesComponent', () => {
         expect(toastr.success).toHaveBeenCalledWith('Successfully deleted cultural site category!');
         // interno poziva se dobavljanje kategorija
         expect(culturalSiteCategoryService.getAllByPage).toHaveBeenCalledWith(pageEvent.pageIndex, pageEvent.pageSize);
+        // provera u htmlu
+        fixture.whenStable().then(async () => {
+            fixture.detectChanges();
+            const categoriesTable = await loader.getHarness(MatTableHarness.with({selector: '#category-table'}));
+            expect((await categoriesTable.getRows()).length).toEqual(1);
+            const categoriesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#category-paginator'}));
+            const paginatorLabel = await categoriesPaginator.getRangeLabel();
+            expect(paginatorLabel).toEqual('1 – 2 of 1');
+        })
     })
 
     it('should update category - changed name', () => {
@@ -271,6 +304,15 @@ fdescribe('CategoriesComponent', () => {
         expect(toastr.success).toHaveBeenCalledWith('Successfully updated cultural site category!');
         // interno poziva se dobavljanje kategorija
         expect(culturalSiteCategoryService.getAllByPage).toHaveBeenCalledWith(pageEvent.pageIndex, pageEvent.pageSize);
+        // provera u htmlu
+        fixture.whenStable().then(async () => {
+            fixture.detectChanges();
+            const categoriesTable = await loader.getHarness(MatTableHarness.with({selector: '#category-table'}));
+            expect((await categoriesTable.getRows()).length).toEqual(2);
+            const categoriesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#category-paginator'}));
+            const paginatorLabel = await categoriesPaginator.getRangeLabel();
+            expect(paginatorLabel).toEqual('1 – 2 of 2');
+        })
     })
 
     it('should update category - same name', () => {
@@ -288,5 +330,14 @@ fdescribe('CategoriesComponent', () => {
         component.updateCategory(categoryToUpdate, updatedCategoryName);
 
         expect(culturalSiteCategoryService.updateCulturalSiteCategory).toHaveBeenCalledTimes(0);
+        // provera u htmlu
+        fixture.whenStable().then(async () => {
+            fixture.detectChanges();
+            const categoriesTable = await loader.getHarness(MatTableHarness.with({selector: '#category-table'}));
+            expect((await categoriesTable.getRows()).length).toEqual(2);
+            const categoriesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#category-paginator'}));
+            const paginatorLabel = await categoriesPaginator.getRangeLabel();
+            expect(paginatorLabel).toEqual('1 – 2 of 2');
+        })
     })
 })
