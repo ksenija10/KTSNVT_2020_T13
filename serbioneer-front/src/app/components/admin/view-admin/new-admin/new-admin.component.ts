@@ -69,7 +69,7 @@ export class NewAdminComponent implements OnInit {
       (response) => {
         this.toastr.success('Successfully added new admin');
         this.newAdminForm.reset();
-        this.router.navigate(['/view-admin']);
+        this.router.navigate(['admin/view-admin']);
         this.newAdminForm.reset();
       },
       (error) => {

@@ -4,11 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
-import { ConfirmDeleteDialog } from 'src/app/dialogs/confirm-dialog/confirm-dialog.component';
+import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/confirm-dialog.component';
 import { CulturalCategoryType } from 'src/app/model/cultural-category-type.model';
 import { CulturalSiteCategory } from 'src/app/model/cultural-site-category.model';
 import { CulturalCategoryTypeData, CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
-import { calculateLastPage, onlyContainsLettersAndSpaces } from 'src/app/util/util';
+import { onlyContainsLettersAndSpaces } from 'src/app/util/util';
 
 @Component({
   selector: 'app-types',

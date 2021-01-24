@@ -1,4 +1,3 @@
-
 export function onlyContainsLetters(myString: string) {
     return /^[a-zšđčćžA-ZŠĐČĆŽ]+$/.test(myString);
 }
@@ -16,12 +15,4 @@ export function smoothScroll() {
             window.clearInterval(scrollToTop);
         }
     }, 16);
-}
-
-export function calculateLastPage(totalElements: number, pageSize: number, pageIndex: number): number {
-    if (totalElements % pageSize !== 0) {
-        return pageIndex + 1
-    } else {
-        return pageIndex
-    }
 }

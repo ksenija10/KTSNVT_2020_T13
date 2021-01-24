@@ -16,13 +16,13 @@
             Cultural sites
         </a>
         <a id="newsfeed-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('newsfeed')" (keyup.enter)="onClick('newsfeed')"
-            [ngClass]="{'active': activeLink==='newsfeed'}">
+            (click)="onClick('auth/newsfeed')" (keyup.enter)="onClick('auth/newsfeed')"
+            [ngClass]="{'active': activeLink==='auth/newsfeed'}">
             Newsfeed
         </a>
         <a id="subscribed-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0"
-            (click)="onClick('subscribed')" (keyup.enter)="onClick('subscribed')"
-            [ngClass]="{'active': activeLink==='subscribed'}">
+            (click)="onClick('auth/subscribed')" (keyup.enter)="onClick('auth/subscribed')"
+            [ngClass]="{'active': activeLink==='auth/subscribed'}">
             Subscribed
         </a>
     </div>
@@ -34,23 +34,23 @@
             Cultural sites
         </a>
         <a id="new-cultural-site-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('new-cultural-site')" (keyup.enter)="onClick('new-cultural-site')"
-            [ngClass]="{'active': activeLink==='new-cultural-site'}">
+            (click)="onClick('admin/new-cultural-site')" (keyup.enter)="onClick('admin/new-cultural-site')"
+            [ngClass]="{'active': activeLink==='admin/new-cultural-site'}">
             Add site
         </a>
         <a id="categories-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('categories')" (keyup.enter)="onClick('categories')"
-            [ngClass]="{'active': activeLink==='categories'}">
+            (click)="onClick('admin/categories')" (keyup.enter)="onClick('admin/categories')"
+            [ngClass]="{'active': activeLink==='admin/categories'}">
             Categories
         </a>
         <a id="pending-comments-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('pending-comments')" (keyup.enter)="onClick('pending-comments')"
-            [ngClass]="{'active': activeLink==='pending-comments'}">
+            (click)="onClick('admin/pending-comments')" (keyup.enter)="onClick('admin/pending-comments')"
+            [ngClass]="{'active': activeLink==='admin/pending-comments'}">
             Pending comments
         </a>
         <a id="view-admin-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('view-admin')" (keyup.enter)="onClick('view-admin')"
-            [ngClass]="{'active': activeLink==='view-admin'}">
+            (click)="onClick('admin/view-admin')" (keyup.enter)="onClick('admin/view-admin')"
+            [ngClass]="{'active': activeLink==='admin/view-admin'}">
             View admins
         </a>
     </div>
@@ -62,11 +62,11 @@
             </a>
             <div class="dropdown-menu">
                 <a id = "my-profile-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
-                    (click)="onClick('my-profile')" (keyup.enter)="onClick('my-profile')">
+                    (click)="onClick('profile/my-profile')" (keyup.enter)="onClick('profile/my-profile')">
                     My profile
                 </a>
                 <a id = "change-password-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
-                    (click)="onClick('change-password')" (keyup.enter)="onClick('change-password')">
+                    (click)="onClick('profile/change-password')" (keyup.enter)="onClick('profile/change-password')">
                     Change password
                 </a>
                 <a id = "logout-btn" class="dropdown-item nav-btn btn" role="button" tabindex="0"
