@@ -1,4 +1,8 @@
-<div id = "cultural-site-view" class="row view-cultural-site">
+<mat-progress-bar class="progress-bar" mode="indeterminate" 
+    *ngIf="(!culturalSite || !comments || !news)">
+</mat-progress-bar>
+<div id="cultural-site-view" class="row view-cultural-site" 
+    *ngIf="!(!culturalSite || !comments || !news)">
     <div class="col">
         <div class="row">
             <div id = "cultural-site-name" class="col-7"><h2 class="site-title">{{culturalSite.name}}</h2></div>

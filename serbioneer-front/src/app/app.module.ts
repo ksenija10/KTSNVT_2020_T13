@@ -61,10 +61,12 @@ import { TypesComponent } from './components/admin/categories/types/types.compon
 import { NgImageSliderModule } from 'ng-image-slider';
 // infinite scroll
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
+// autokomplit
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+// progres bar
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -133,7 +135,9 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     MatExpansionModule,
     MatTooltipModule,
     // autokomplit
-    GooglePlaceModule
+    GooglePlaceModule,
+    // progres bar
+    MatProgressBarModule
   ],
   providers: [
     {
