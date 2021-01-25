@@ -27,7 +27,7 @@ import { ConfirmDeleteDialogComponent } from 'src/app/components/core/confirm-di
   culturalSiteId: number;
   culturalSite!: CulturalSiteView;
   starRating: RatingCreateDTO = {id: 0, value: 0, culturalSiteId: 0, authenticatedUserId: 0};
-  initialStarRating: number = 0;
+  initialStarRating = 0;
   news!: NewsData;
   comments!: CommentData;
   images: any = [];
@@ -39,10 +39,10 @@ import { ConfirmDeleteDialogComponent } from 'src/app/components/core/confirm-di
     file: new FormControl(''),
     fileSource: new FormControl('')});
   buttonValue!: string;
-  userIsLogged: boolean = false;
-  adminIsLogged: boolean = false;
-  addNewImages: boolean = false;
-  addNewComment: boolean = false;
+  userIsLogged = false;
+  adminIsLogged = false;
+  addNewImages = false;
+  addNewComment = false;
 
   // map div id
   mapCulturalSite = 'map-cultural-site';
@@ -51,8 +51,8 @@ import { ConfirmDeleteDialogComponent } from 'src/app/components/core/confirm-di
 
   pageEventNews: PageEvent = new PageEvent();
   pageEventComments: PageEvent = new PageEvent();
-  page: number = 0;
-  size: number = 1;
+  page = 0;
+  size = 1;
 
   constructor(
     private culturalSiteService: CulturalSiteService,

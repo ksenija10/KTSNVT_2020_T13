@@ -10,7 +10,7 @@ import { NewsService } from 'src/app/services/news.service';
 export class NewsfeedComponent implements OnInit {
 
   dataSource: NewsDTO[] = [];
-  page: number = 0;
+  page = 0;
 
   constructor(
     private newsService: NewsService

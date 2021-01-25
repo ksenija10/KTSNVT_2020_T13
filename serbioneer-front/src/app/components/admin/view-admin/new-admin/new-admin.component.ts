@@ -19,9 +19,9 @@ export class NewAdminComponent implements OnInit {
   newAdminForm: FormGroup;
 
   today: Date = new Date();
-  hide: boolean = true;
-  namePattern: string = '[A-ZŠĐČĆŽ][a-zšđčćž]*';
-  datePattern: string = '[0-9]{1,2}/[0-9]{2}/[0-9]{4}';
+  hide = true;
+  namePattern = '[A-ZŠĐČĆŽ][a-zšđčćž]*';
+  datePattern = '[0-9]{1,2}/[0-9]{2}/[0-9]{4}';
   confirmPasswordMatcher = new ConfirmPasswordMatcher();
 
   constructor(

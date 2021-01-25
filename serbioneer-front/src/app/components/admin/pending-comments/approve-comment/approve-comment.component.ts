@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ApproveCommentComponent implements OnInit {
 
   @Input() comment: Comment = new Comment();
-  public noImages: boolean = true;
+  public noImages = true;
 
   @Output() commentSaidFetch: EventEmitter<void> = new EventEmitter<void>();
 

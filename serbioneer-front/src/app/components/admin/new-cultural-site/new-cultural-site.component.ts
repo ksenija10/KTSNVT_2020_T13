@@ -38,7 +38,7 @@ export class NewCulturalSiteComponent implements OnInit {
     componentRestrictions: { country: 'RS' },
   });
 
-  foundAddress: string = '';
+  foundAddress = '';
   location: Location = new Location(0, 0);
 
   // image import
@@ -49,8 +49,8 @@ export class NewCulturalSiteComponent implements OnInit {
   editCulturalSiteId: number;
   editCulturalSite!: CulturalSiteView;
 
-  title: string = 'Add new cultural site';
-  btnTitle: string = 'Create';
+  title = 'Add new cultural site';
+  btnTitle = 'Create';
 
   constructor(
     private culturalSiteService: CulturalSiteService,

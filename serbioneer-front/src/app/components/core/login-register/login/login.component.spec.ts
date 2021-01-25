@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoginComponent } from './login.component';
 import {HarnessLoader} from '@angular/cdk/testing';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
-import { of } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { UserLogin } from 'src/app/model/user-login.model';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
@@ -24,6 +24,8 @@ describe('LoginComponent', () => {
     let loader: HarnessLoader;
 
     beforeEach(() => {
+        const subjectMock = new BehaviorSubject<string>('ROLE_ADMIN');
+
         const authenticationServiceMock = {
             login: jasmine.createSpy('login')
                 .and.returnValue(of({
@@ -32,7 +34,8 @@ describe('LoginComponent', () => {
                 })),
             setLoggedInUser: jasmine.createSpy('setLoggedInUser'),
             getLoggedInUserAuthority: jasmine.createSpy('getLoggedInUserAuthority')
-                .and.returnValue('ROLE_ADMIN')
+                .and.returnValue('ROLE_ADMIN'),
+            role: subjectMock.asObservable()
         };
 
         const routerMock = {

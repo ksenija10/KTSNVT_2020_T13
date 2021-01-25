@@ -18,11 +18,11 @@ export class CommentComponent implements OnInit {
 
   @Input() culturalSiteId!: any;
   @Input() comment!: Comment;
-  editing: boolean = false;
+  editing = false;
   copyComment!: Comment;
-  activeComment: boolean = true;
-  inputText: string = '';
-  userComment: boolean = true;
+  activeComment = true;
+  inputText = '';
+  userComment = true;
 
   commentImageSlider: Array<object> = [];
 
@@ -38,7 +38,7 @@ export class CommentComponent implements OnInit {
   ) {
     this.editCommentForm = new FormGroup({
       text: new FormControl('', [Validators.required])
-    })
+    });
    }
 
   ngOnInit(): void {

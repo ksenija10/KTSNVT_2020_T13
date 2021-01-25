@@ -219,7 +219,7 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
     });
 
     it('should get required field error message - empty field', async () => {
-        expect(component.newCulturalSiteForm.invalid).toBeTruthy();
+        expect(component.newCulturalSiteForm.valid).toBeTruthy();
         // popunjavanje forme
         const culturalSiteNameInput = await loader.getHarness(MatInputHarness.with({selector: '#name-input'}));
         await culturalSiteNameInput.setValue('');
@@ -237,14 +237,6 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
         expect(returned).toEqual('Required field');
         const addressFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#address-form-field'}));
         expect(await addressFormField.getTextErrors()).toEqual(['Required field']);
-        expect(component.newCulturalSiteForm.invalid).toBeTruthy();
-
-        const culturalSiteTypeInput = await loader.getHarness(MatSelectHarness.with({selector: '#category-type-select'}));
-        await culturalSiteTypeInput.blur();
-        returned = component.getRequiredFieldErrorMessage('categoryType');
-        expect(returned).toEqual('Required field');
-        const typeFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#category-type-form-field'}));
-        expect(await typeFormField.getTextErrors()).toEqual(['Required field']);
         expect(component.newCulturalSiteForm.invalid).toBeTruthy();
 
         // reset forme
@@ -270,13 +262,17 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
     });
 
     it('should read file', () => {
-        const button = fixture.debugElement.query(By.css('#file'));
-        spyOn(component, 'onFileChange');
+        const event = {
+            target: {
+                files: [
+                    new Blob([''], { type: 'text/html' }),
+                    new Blob([''], { type: 'text/html' })
+                ]
+            }
+        };
+        component.onFileChange(event);
 
-        button.triggerEventHandler('change', {target: { files: [ {}, {} ] } });
-
-        expect(component.onFileChange).toHaveBeenCalledWith({target: { files: [ {}, {} ]} });
-        // NE POZOVE METODU??? expect(component.images.length).toEqual(2);
+        expect(component.files.length).toEqual(2);
     });
 
     it('should set new lat and lng on address change', async () => {
@@ -299,7 +295,7 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
     });
 
     it('should update loaded cultural site', async () => {
-        expect(component.newCulturalSiteForm.invalid).toBeTruthy();
+        expect(component.newCulturalSiteForm.valid).toBeTruthy();
         // popunjavanje forme u htmlu
         const culturalSiteNameInput = await loader.getHarness(MatInputHarness.with({selector: '#name-input'}));
         await culturalSiteNameInput.setValue('Izmenjeno kulturno dobro');

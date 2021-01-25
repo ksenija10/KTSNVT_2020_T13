@@ -20,13 +20,13 @@ export class TypesComponent implements OnInit, OnChanges {
   // Common
   actions: string[] = ['edit', 'delete'];
   displayedColumns: string[] = ['name', 'actions'];
-  namePattern: string = '([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*';
+  namePattern = '([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*';
 
   // Type
   typeDataSource: CulturalCategoryTypeData = {content: [], totalElements: 0, totalPages: 0, size: 0};
   typePageEvent: PageEvent = new PageEvent();
   addTypeForm: FormGroup;
-  typeEntity: string = 'cultural category type';
+  typeEntity = 'cultural category type';
 
   @Input() chosenCategory!: CulturalSiteCategory;
 

@@ -8,7 +8,7 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class LoginRegisterComponent implements OnInit {
 
-  activeLink: string = '';
+  activeLink = '';
 
   constructor(private router: Router) { }
 

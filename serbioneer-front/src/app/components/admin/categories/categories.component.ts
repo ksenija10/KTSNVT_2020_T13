@@ -19,13 +19,13 @@ export class CategoriesComponent implements OnInit {
   // Common
   actions: string[] = ['edit', 'delete'];
   displayedColumns: string[] = ['name', 'actions'];
-  namePattern: string = '([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*';
+  namePattern = '([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*';
 
   // Category
   categoryDataSource: CulturalSiteCategoryData = {content: [], size: 0, totalElements: 0, totalPages: 0};
   categoryPageEvent: PageEvent = new PageEvent();
   addCategoryForm: FormGroup;
-  categoryEntity: string = 'cultural site category';
+  categoryEntity = 'cultural site category';
 
   // Chosen category
   chosenCategory!: CulturalSiteCategory;
