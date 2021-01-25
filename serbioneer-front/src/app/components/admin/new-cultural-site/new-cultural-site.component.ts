@@ -110,7 +110,7 @@ export class NewCulturalSiteComponent implements OnInit {
         this.newCulturalSiteForm.get('address')?.setValue(this.editCulturalSite.address + ', ' + this.editCulturalSite.city + ', Serbia');
         this.newCulturalSiteForm.get('description')?.setValue(this.editCulturalSite.description);
         this.newCulturalSiteForm.get('category')?.setValue(this.editCulturalSite.categoryId);
-        // this.newCulturalSiteForm.get('categoryType')?.setValue(this.editCulturalSite.categoryTypeId);
+        this.newCulturalSiteForm.get('categoryType')?.setValue(this.editCulturalSite.categoryTypeId);
         this.newCulturalSiteForm.get('lat')?.setValue(this.editCulturalSite.lat?.toFixed(3));
         this.newCulturalSiteForm.get('lng')?.setValue(this.editCulturalSite.lng?.toFixed(3));
         // postavljanje postojece kategorije

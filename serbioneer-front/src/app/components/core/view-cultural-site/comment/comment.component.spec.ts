@@ -1,7 +1,13 @@
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatInputHarness } from '@angular/material/input/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { NgImageSliderModule } from 'ng-image-slider';
@@ -19,6 +25,7 @@ describe('CommentComponent', () => {
     let authenticationService: AuthenticationService;
     let router: Router;
     let dialog: MatDialog;
+    let loader: HarnessLoader;
     const dialogRefSpyObject = jasmine.createSpyObj({
         afterClosed: of(true),
         close: null
@@ -78,7 +85,11 @@ describe('CommentComponent', () => {
                 MatIconModule,
                 NgImageSliderModule,
                 MatDividerModule,
-                MatDialogModule
+                MatDialogModule,
+                ReactiveFormsModule,
+                FormsModule,
+                MatFormFieldModule,
+                MatInputModule
             ]
         }).compileComponents();
 
@@ -102,6 +113,7 @@ describe('CommentComponent', () => {
         toastrService = TestBed.inject(ToastrService);
         commentService = TestBed.inject(CommentService);
         authenticationService = TestBed.inject(AuthenticationService);
+        loader = TestbedHarnessEnvironment.loader(fixture);
       });
 
     it('should initialize component', ( () => {
@@ -134,10 +146,12 @@ describe('CommentComponent', () => {
     }));
 
     it('should update comment', ( async () => {
-
-        const event = {target: { inputText: { value: 'Some changed comment.'} } };
         component.editing = true;
-        component.saveComment(event);
+        const commentText = await loader.getHarness(MatInputHarness.with({selector: '#edit-comment-input'}));
+        await commentText.setValue('novi komentar');
+        await commentText.blur();
+
+        component.saveComment();
 
         expect(commentService.updateComment).toHaveBeenCalled();
         expect(component.editing).toEqual(false);

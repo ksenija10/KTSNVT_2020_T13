@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -25,6 +26,8 @@ export class CommentComponent implements OnInit {
 
   commentImageSlider: Array<object> = [];
 
+  editCommentForm: FormGroup;
+
   constructor(
     // private culturalSiteService : CulturalSiteService,
     private commentService: CommentService,
@@ -32,7 +35,11 @@ export class CommentComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private toastr: ToastrService,
     private dialog: MatDialog
-  ) { }
+  ) {
+    this.editCommentForm = new FormGroup({
+      text: new FormControl('', [Validators.required])
+    })
+   }
 
   ngOnInit(): void {
     this.inputText = this.comment.text;
@@ -51,6 +58,7 @@ export class CommentComponent implements OnInit {
 
   editComment(): void {
     this.editing = !this.editing;
+    this.editCommentForm.get('text')?.setValue(this.comment.text);
   }
 
   deleteComment(): void {
@@ -84,23 +92,22 @@ export class CommentComponent implements OnInit {
       });
   }
 
-  saveComment(event: any): void {
-    if (event) {
-      const newComment = event.target.inputText.value;
-      if (newComment !== this.comment.text){
-        this.comment.text = newComment;
-        this.commentService.updateComment(this.comment.id, this.comment).pipe(
-          map((updatedComment: Comment) => {
-            this.inputText = updatedComment.text;
-            this.comment = updatedComment;
-            this.editing = !this.editing;
-          })
-        ).subscribe();
-      } else {
-        this.editing = !this.editing;
-      }
-    } else {
+  saveComment(): void {
+    if (this.editCommentForm.invalid) {
       return;
+    }
+    const editCommentText = this.editCommentForm.get('text')?.value;
+    if (editCommentText !== this.comment.text){
+      this.comment.text = editCommentText;
+      this.commentService.updateComment(this.comment.id, this.comment).pipe(
+        map((updatedComment: Comment) => {
+          this.inputText = updatedComment.text;
+          this.comment = updatedComment;
+          this.editing = !this.editing;
+        })
+      ).subscribe();
+    } else {
+      this.editing = !this.editing;
     }
   }
 
@@ -112,5 +119,14 @@ export class CommentComponent implements OnInit {
     else{
       this.userComment = false;
     }
+  }
+
+  getTextErrorMessage(): string {
+    if (this.editCommentForm.controls.text.touched) {
+      if ( this.editCommentForm.controls.text.hasError('required')) {
+      return 'Required field';
+      }
+    }
+    return '';
   }
 }
