@@ -1,24 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ConfirmDeleteDialog } from './confirm-dialog.component';
+import { ConfirmDeleteDialogComponent } from './confirm-dialog.component';
 
-describe('ConfirmDeleteDialog', () => {
-  let component: ConfirmDeleteDialog;
-  let fixture: ComponentFixture<ConfirmDeleteDialog>;
-  let matDialogRef: MatDialogRef<ConfirmDeleteDialog>;
+describe('ConfirmDeleteDialogComponent', () => {
+  let component: ConfirmDeleteDialogComponent;
+  let fixture: ComponentFixture<ConfirmDeleteDialogComponent>;
+  let matDialogRef: MatDialogRef<ConfirmDeleteDialogComponent>;
 
   beforeEach(() => {
-    let matDialogRefMock = {
+    const matDialogRefMock = {
       close: jasmine.createSpy('close')
     };
 
-    let dialogDataMock = {
-      entity: "Cultural site",
-      name: "Srpsko narodno pozoriste"
-    }
+    const dialogDataMock = {
+      entity: 'Cultural site',
+      name: 'Srpsko narodno pozoriste'
+    };
 
     TestBed.configureTestingModule({
-      declarations: [ConfirmDeleteDialog],
+      declarations: [ConfirmDeleteDialogComponent],
       providers: [
         { provide: MatDialogRef, useValue: matDialogRefMock },
         { provide: MAT_DIALOG_DATA, useValue: dialogDataMock}],
@@ -26,7 +26,7 @@ describe('ConfirmDeleteDialog', () => {
         MatDialogModule
       ]
     }).compileComponents();
-    fixture = TestBed.createComponent(ConfirmDeleteDialog);
+    fixture = TestBed.createComponent(ConfirmDeleteDialogComponent);
     component = fixture.componentInstance;
     matDialogRef = TestBed.inject(MatDialogRef);
   });

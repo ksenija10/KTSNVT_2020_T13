@@ -38,7 +38,7 @@ export class NewCulturalSiteComponent implements OnInit {
     componentRestrictions: { country: 'RS' },
   });
 
-  foundAddress: string = '';
+  foundAddress = '';
   location: Location = new Location(0, 0);
 
   // image import
@@ -49,8 +49,8 @@ export class NewCulturalSiteComponent implements OnInit {
   editCulturalSiteId: number;
   editCulturalSite!: CulturalSiteView;
 
-  title: string = 'Add new cultural site';
-  btnTitle: string = 'Create';
+  title = 'Add new cultural site';
+  btnTitle = 'Create';
 
   constructor(
     private culturalSiteService: CulturalSiteService,
@@ -70,7 +70,7 @@ export class NewCulturalSiteComponent implements OnInit {
       lng: new FormControl({ value: '', disabled: true }, []),
     });
     // ako je u edit modu, popuni formu
-    let siteUrl = this.router.url.split('/');
+    const siteUrl = this.router.url.split('/');
     this.editCulturalSiteId = +siteUrl[siteUrl.length - 1];
     if (!isNaN(this.editCulturalSiteId)) {
       // dobavi kulturno dobro i popuni formu
@@ -98,7 +98,7 @@ export class NewCulturalSiteComponent implements OnInit {
       });
   }
 
-  loadCulturalSite() {
+  loadCulturalSite(): void {
     this.culturalSiteService.getCulturalSite(this.editCulturalSiteId).pipe(
       map((culturalSite: CulturalSiteView) => {
         this.editCulturalSite = culturalSite;
@@ -110,12 +110,12 @@ export class NewCulturalSiteComponent implements OnInit {
         this.newCulturalSiteForm.get('address')?.setValue(this.editCulturalSite.address + ', ' + this.editCulturalSite.city + ', Serbia');
         this.newCulturalSiteForm.get('description')?.setValue(this.editCulturalSite.description);
         this.newCulturalSiteForm.get('category')?.setValue(this.editCulturalSite.categoryId);
-        //this.newCulturalSiteForm.get('categoryType')?.setValue(this.editCulturalSite.categoryTypeId);
+        // this.newCulturalSiteForm.get('categoryType')?.setValue(this.editCulturalSite.categoryTypeId);
         this.newCulturalSiteForm.get('lat')?.setValue(this.editCulturalSite.lat?.toFixed(3));
         this.newCulturalSiteForm.get('lng')?.setValue(this.editCulturalSite.lng?.toFixed(3));
         // postavljanje postojece kategorije
-        this.categoryModel.id = this.editCulturalSite.categoryId!;
-        this.categoryModel.name = this.editCulturalSite.category!;
+        this.categoryModel.id = this.editCulturalSite.categoryId || 0;
+        this.categoryModel.name = this.editCulturalSite.category || '';
         // dobavljanje svih tipova za kategoriju
         this.categoryChange(null);
       },
@@ -128,7 +128,7 @@ export class NewCulturalSiteComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getRequiredFieldErrorMessage(fieldName: string) {
+  getRequiredFieldErrorMessage(fieldName: string): string {
     if (this.newCulturalSiteForm.controls[fieldName].touched) {
       return this.newCulturalSiteForm.controls[fieldName].hasError('required')
         ? 'Required field'
@@ -137,7 +137,7 @@ export class NewCulturalSiteComponent implements OnInit {
     return '';
   }
 
-  categoryChange(event: any) {
+  categoryChange(event: any): void {
     if (event) {
       this.categoryModel.id = event.value;
       this.categoryModel.name = event.source.triggerValue;
@@ -149,21 +149,21 @@ export class NewCulturalSiteComponent implements OnInit {
       });
   }
 
-  onFileChange(event: any) {
+  onFileChange(event: any): void {
     if (event.target.files && event.target.files[0]) {
-      for (let i = 0; i < event.target.files.length; i++) {
-        var reader = new FileReader();
-        this.files.push(event.target.files[i]);
-        reader.onload = (event: any) => {
-          this.images.push(event.target.result);
+      for (const file of event.target.files) {
+        const reader = new FileReader();
+        this.files.push(file);
+        reader.onload = (loadEvent: any) => {
+          this.images.push(loadEvent.target.result);
         };
-        reader.readAsDataURL(event.target.files[i]);
+        reader.readAsDataURL(file);
       }
     }
   }
 
-  addressChange(address: any) { 
-    //setting address from API to local variable 
+  addressChange(address: any): void {
+    // setting address from API to local variable
     this.foundAddress = address.formatted_address;
     this.geocodingService
       .getLatlong(this.foundAddress)
@@ -179,7 +179,7 @@ export class NewCulturalSiteComponent implements OnInit {
       });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.newCulturalSiteForm.invalid) {
       return;
     }
@@ -187,7 +187,7 @@ export class NewCulturalSiteComponent implements OnInit {
     let address;
     let city;
     if (this.foundAddress) {
-      let addressElems = this.foundAddress.split(', ');
+      const addressElems = this.foundAddress.split(', ');
       address = addressElems[0];
       city = addressElems[addressElems.length - 2];
       city = city.replace(/[0-9]/g, '').trim();
@@ -195,8 +195,8 @@ export class NewCulturalSiteComponent implements OnInit {
       // nije izmenjena adresa
       address = this.editCulturalSite.address;
       city = this.editCulturalSite.city;
-      this.location.lat = this.editCulturalSite.lat!;
-      this.location.lng = this.editCulturalSite.lng!;
+      this.location.lat = this.editCulturalSite.lat || 0;
+      this.location.lng = this.editCulturalSite.lng || 0;
     }
 
     const culturalSite: CulturalSite = new CulturalSiteDTO(
@@ -219,16 +219,16 @@ export class NewCulturalSiteComponent implements OnInit {
       this.culturalSiteService.updateCulturalSite(this.editCulturalSiteId, culturalSite)
         .pipe(
           map((savedCulturalSite: CulturalSiteDTO) => {
-            //provera da li je lista slika prazna
+            // provera da li je lista slika prazna
             if (this.files.length > 0) {
-              //ako nije onda dodajemo jedan po jedan fajl
-              for (let i = 0; i < this.files.length; i++) {
-                this.imageService.createForCulturalSite(savedCulturalSite.id!, this.files[i]).pipe(
-                    map((image: Image) => {
-                      this.images = [];
-                      this.files = [];
-                    })
-                  ).subscribe();
+              // ako nije onda dodajemo jedan po jedan fajl
+              for (const file of this.files) {
+                this.imageService.createForCulturalSite(savedCulturalSite.id || 0, file).pipe(
+                  map((image: Image) => {
+                    this.images = [];
+                    this.files = [];
+                  })
+                ).subscribe();
               }
             }
             return savedCulturalSite;
@@ -248,25 +248,25 @@ export class NewCulturalSiteComponent implements OnInit {
             } else {
               this.toastr.error('503 Server Unavailable');
             }
-            if (this.btnTitle == 'Create') {
+            if (this.btnTitle === 'Create') {
               this.newCulturalSiteForm.reset();
             }
           }
-        )
+        );
     } else {
       this.culturalSiteService.createCulturalSite(culturalSite)
         .pipe(
           map((savedCulturalSite: CulturalSiteDTO) => {
-            //provera da li je lista slika prazna
+            // provera da li je lista slika prazna
             if (this.files.length > 0) {
-              //ako nije onda dodajemo jedan po jedan fajl
-              for (let i = 0; i < this.files.length; i++) {
-                this.imageService.createForCulturalSite(savedCulturalSite.id!, this.files[i]).pipe(
-                    map((image: Image) => {
-                      this.images = [];
-                      this.files = [];
-                    })
-                  ).subscribe();
+              // ako nije onda dodajemo jedan po jedan fajl
+              for (const file of this.files) {
+                this.imageService.createForCulturalSite(savedCulturalSite.id || 0, file).pipe(
+                  map((image: Image) => {
+                    this.images = [];
+                    this.files = [];
+                  })
+                ).subscribe();
               }
             }
             return savedCulturalSite;

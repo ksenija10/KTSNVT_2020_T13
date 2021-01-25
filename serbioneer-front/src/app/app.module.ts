@@ -33,7 +33,7 @@ import { RouterModule } from '@angular/router';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
-      //ako multi nije true ovo bi bio jedini interceptor i pregazio bi sve defaultne interceptore
+      // ako multi nije true ovo bi bio jedini interceptor i pregazio bi sve defaultne interceptore
       multi: true,
     },
     { provide: Window, useValue: window },

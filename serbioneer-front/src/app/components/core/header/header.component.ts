@@ -1,8 +1,7 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -14,17 +13,16 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  activeLink: string = '';
-  role: string = '';
+  activeLink = '';
+  role = '';
   subscription!: Subscription;
 
   constructor(
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
     private router: Router,
-    private location: Location,
     private authenticationService: AuthenticationService,
-    private toastr : ToastrService
+    private toastr: ToastrService
   ) {
     // dodavanje custom ikonice
     iconRegistry.addSvgIcon(
@@ -43,20 +41,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // preuzimanje trenutne rute
-    this.activeLink = this.location.path().substr(1)
+    this.router.events.subscribe((val) => {
+      if ( val instanceof NavigationEnd) {
+        const routePaths = this.router.url.split('/');
+        this.activeLink = routePaths[routePaths.length - 1];
+      }
+    });
+
     // subscribe
     this.subscription = this.authenticationService.role
         .subscribe(role => {
           this.role = role;
-        })
+        });
   }
 
   logout(): void {
     this.authenticationService.logout();
-    this.toastr.info("Logged out successfully!");
+    this.toastr.info('Logged out successfully!');
   }
 
-  onClick(path: string) {
+  onClick(path: string): void {
     this.activeLink = path;
     this.router.navigate([path]);
   }

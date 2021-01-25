@@ -17,12 +17,12 @@
         </a>
         <a id="newsfeed-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('auth/newsfeed')" (keyup.enter)="onClick('auth/newsfeed')"
-            [ngClass]="{'active': activeLink==='auth/newsfeed'}">
+            [ngClass]="{'active': activeLink==='newsfeed'}">
             Newsfeed
         </a>
         <a id="subscribed-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0"
             (click)="onClick('auth/subscribed')" (keyup.enter)="onClick('auth/subscribed')"
-            [ngClass]="{'active': activeLink==='auth/subscribed'}">
+            [ngClass]="{'active': activeLink==='subscribed'}">
             Subscribed
         </a>
     </div>
@@ -35,22 +35,22 @@
         </a>
         <a id="new-cultural-site-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('admin/new-cultural-site')" (keyup.enter)="onClick('admin/new-cultural-site')"
-            [ngClass]="{'active': activeLink==='admin/new-cultural-site'}">
+            [ngClass]="{'active': activeLink==='new-cultural-site'}">
             Add site
         </a>
         <a id="categories-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('admin/categories')" (keyup.enter)="onClick('admin/categories')"
-            [ngClass]="{'active': activeLink==='admin/categories'}">
+            [ngClass]="{'active': activeLink==='categories'}">
             Categories
         </a>
         <a id="pending-comments-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('admin/pending-comments')" (keyup.enter)="onClick('admin/pending-comments')"
-            [ngClass]="{'active': activeLink==='admin/pending-comments'}">
+            [ngClass]="{'active': activeLink==='pending-comments'}">
             Pending comments
         </a>
         <a id="view-admin-btn" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('admin/view-admin')" (keyup.enter)="onClick('admin/view-admin')"
-            [ngClass]="{'active': activeLink==='admin/view-admin'}">
+            [ngClass]="{'active': activeLink==='view-admin'}">
             View admins
         </a>
     </div>

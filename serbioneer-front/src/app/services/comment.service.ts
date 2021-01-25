@@ -1,17 +1,17 @@
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { environment } from "../../environments/environment"
-import { Comment } from "src/app/model/comment.model"
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { Comment } from 'src/app/model/comment.model';
+import { environment } from '../../environments/environment';
 
 export class CommentData {
     constructor(
-        public content: Comment[], 
-        public totalPages: number, 
-        public totalElements: number, 
+        public content: Comment[],
+        public totalPages: number,
+        public totalElements: number,
         public size: number) {}
-};
+}
 
 @Injectable({
     providedIn: 'root'
@@ -33,25 +33,25 @@ export class CommentService {
         );
     }
 
-    aproveComment(commentId : number) {
+    aproveComment(commentId: number): Observable<Comment> {
         return this.http.put<Comment>(environment.apiEndpoint + 'comment/' + commentId + '/approval', {}).pipe(
             catchError(err => throwError(err))
         );
     }
 
-    declineComment(commentId : number) {
+    declineComment(commentId: number): Observable<void> {
         return this.http.delete<void>(environment.apiEndpoint + 'comment/' + commentId + '/approval').pipe(
             catchError(err => throwError(err))
         );
     }
 
-    updateComment(id : number, updatedComment : Comment){
+    updateComment(id: number, updatedComment: Comment): Observable<Comment> {
         return this.http.put<Comment>(environment.apiEndpoint + 'comment/' + id, updatedComment).pipe(
             catchError(err => throwError(err))
         );
     }
 
-    deleteComment(id : number){
+    deleteComment(id: number): Observable<void> {
         return this.http.delete<void>(environment.apiEndpoint + 'comment/' + id);
     }
 }

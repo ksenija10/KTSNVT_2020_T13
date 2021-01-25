@@ -1,3 +1,6 @@
+<mat-progress-bar class="progress-bar" mode="indeterminate" 
+    *ngIf="dataSource.content.length===0">
+</mat-progress-bar>
 <div class="row justify-content-md-center divide" id="view-admin-page">
     <div class="col-md-11">
         <h5 class="lonely">Feeling lonely? Try adding another admin!</h5>
@@ -9,7 +12,11 @@
 <div class="ng-container row justify-content-md-center">
     <div class="col-md-11">
         <table mat-table [dataSource]="dataSource.content" id="admin-table">
-            
+            <!-- No data row -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="2">No existing admins.</td>
+            </tr>
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 

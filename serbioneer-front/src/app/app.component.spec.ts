@@ -11,10 +11,10 @@ describe('AppComponent', () => {
   let toastr: ToastrService;
 
   beforeEach(() => {
-    let toastrMock = {
+    const toastrMock = {
       info: jasmine.createSpy('info'),
     };
-    let authenticationServiceMock = {
+    const authenticationServiceMock = {
       autoLogin: jasmine.createSpy('autoLogin')
         .and.returnValue(false),
       startAutoLoginRefreshTokenTimer: jasmine.createSpy('startAutoLoginRefreshTokenTimer')
@@ -49,5 +49,5 @@ describe('AppComponent', () => {
 
     expect(authService.autoLogin).toHaveBeenCalled();
     expect(toastr.info).toHaveBeenCalledWith('Please log in.');
-  })
+  });
 });

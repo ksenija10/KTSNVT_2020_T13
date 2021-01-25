@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormsModule, ValidatorFn } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmPasswordMatcher, confirmPasswordValidator } from 'src/app/directives/confirm-password.directive';
 import { AuthenticatedUser } from 'src/app/model/authenticated-user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { onlyContainsLetters } from 'src/app/util/util';
 
 @Component({
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   hide = true;
-  namePattern = "[A-ZŠĐČĆŽ][a-zšđčćž]*";
+  namePattern = '[A-ZŠĐČĆŽ][a-zšđčćž]*';
   confirmPasswordMatcher = new ConfirmPasswordMatcher();
 
   constructor(
@@ -39,18 +39,18 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.registerForm.invalid) {
       return;
     }
 
-    const authUser: AuthenticatedUser = 
+    const authUser: AuthenticatedUser =
       new AuthenticatedUser(
-        this.registerForm.value.email, 
-        this.registerForm.value.passwordGroup.password, 
-        this.registerForm.value.name, 
-        this.registerForm.value.surname, 
-        )
+        this.registerForm.value.email,
+        this.registerForm.value.passwordGroup.password,
+        this.registerForm.value.name,
+        this.registerForm.value.surname,
+        );
 
     this.authenticationService.register(authUser)
       .subscribe(
@@ -60,39 +60,39 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['login-register/login']);
         },
         error => {
-          if(error.error.message){
+          if (error.error.message){
             this.toastr.error(error.error.message);
           } else {
             this.toastr.error('503 Server Unavailable');
           }
           this.registerForm.reset();
-        })
+        });
   }
 
-  getEmailErrorMessage() {
-    if(this.registerForm.controls['email'].touched) {
-      if ( this.registerForm.controls['email'].hasError('required')) {
+  getEmailErrorMessage(): string {
+    if (this.registerForm.controls.email.touched) {
+      if ( this.registerForm.controls.email.hasError('required')) {
         return 'Required field';
       }
-      return this.registerForm.controls['email'].hasError('email') ? 'Not a valid email' : '';
+      return this.registerForm.controls.email.hasError('email') ? 'Not a valid email' : '';
     }
     return '';
   }
 
-  getRequiredFieldErrorMessage(fieldName: string) {
-    if(this.registerForm.controls.passwordGroup.get(fieldName)?.touched) {
+  getRequiredFieldErrorMessage(fieldName: string): string {
+    if (this.registerForm.controls.passwordGroup.get(fieldName)?.touched) {
       return this.registerForm.controls.passwordGroup.get(fieldName)?.hasError('required') ? 'Required field' : '';
     }
     return '';
   }
 
-  getNameErrorMessage(fieldName: string) {
-    if(this.registerForm.controls[fieldName].touched) {
-      if(this.registerForm.controls[fieldName].hasError('pattern')) {
-        if(onlyContainsLetters(this.registerForm.controls[fieldName].value)) {
+  getNameErrorMessage(fieldName: string): string {
+    if (this.registerForm.controls[fieldName].touched) {
+      if (this.registerForm.controls[fieldName].hasError('pattern')) {
+        if (onlyContainsLetters(this.registerForm.controls[fieldName].value)) {
           return 'Must start with capital letter';
         } else {
-          return 'Cannot contain special characters or numbers'
+          return 'Cannot contain special characters or numbers';
         }
       }
       return this.registerForm.controls[fieldName].hasError('required') ? 'Required field' : '';
@@ -100,8 +100,8 @@ export class RegisterComponent implements OnInit {
     return '';
   }
 
-  getPasswordsMatch() {
-    if(this.registerForm.controls.passwordGroup.get('password')?.touched
+  getPasswordsMatch(): string {
+    if (this.registerForm.controls.passwordGroup.get('password')?.touched
         && this.registerForm.controls.passwordGroup.get('confirmPassword')?.touched) {
       return this.registerForm.controls.passwordGroup.hasError('passwordsDontMatch') ? 'Passwords must match' : '';
     }

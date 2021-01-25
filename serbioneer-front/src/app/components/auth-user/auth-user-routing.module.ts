@@ -1,10 +1,10 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { RoleGuard } from "src/app/guards/role-guard.service";
-import { HomepageComponent } from "../core/homepage/homepage.component";
-import { NewsfeedComponent } from "./newsfeed/newsfeed.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { RoleGuard } from 'src/app/guards/role-guard.service';
+import { HomepageComponent } from '../core/homepage/homepage.component';
+import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 
-const routes : Routes = [
+const routes: Routes = [
     {
         path: 'newsfeed',
         component: NewsfeedComponent,
@@ -19,7 +19,7 @@ const routes : Routes = [
                 subscribedView: true,
                 subscribedMap: 'map-subscribed' },
     }
-]
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

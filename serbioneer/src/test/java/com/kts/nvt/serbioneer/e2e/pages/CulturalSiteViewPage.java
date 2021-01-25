@@ -69,6 +69,9 @@ public class CulturalSiteViewPage {
 
     @FindBy(id = "edit-cultural-site")
     private WebElement editBtn;
+    
+    @FindBy(id = "delete-cultural-site")
+    private WebElement deleteBtn;
 
     public CulturalSiteViewPage(WebDriver driver) {
         this.driver = driver;
@@ -164,5 +167,9 @@ public class CulturalSiteViewPage {
 
     public WebElement getEditBtn() {
         return editBtn;
+    }
+    
+    public WebElement getDeleteBtn() {
+        return deleteBtn;
     }
 }

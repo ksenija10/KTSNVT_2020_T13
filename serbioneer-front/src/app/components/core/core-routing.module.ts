@@ -1,12 +1,12 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { LoginGuard } from "src/app/guards/login-guard.service";
-import { HomepageComponent } from "./homepage/homepage.component";
-import { LoginRegisterComponent } from "./login-register/login-register.component";
-import { LoginComponent } from "./login-register/login/login.component";
-import { RegisterComponent } from "./login-register/register/register.component";
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { ViewCulturalSiteComponent } from "./view-cultural-site/view-cultural-site.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginGuard } from 'src/app/guards/login-guard.service';
+import { HomepageComponent } from './homepage/homepage.component';
+import { LoginRegisterComponent } from './login-register/login-register.component';
+import { LoginComponent } from './login-register/login/login.component';
+import { RegisterComponent } from './login-register/register/register.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ViewCulturalSiteComponent } from './view-cultural-site/view-cultural-site.component';
 
 const routes: Routes = [
     {
@@ -38,15 +38,15 @@ const routes: Routes = [
           },
         ],
     },
-    { 
-        path: 'cultural-site/:id', 
+    {
+        path: 'cultural-site/:id',
         component: ViewCulturalSiteComponent
     },
     {
         path: '**',
         component: PageNotFoundComponent,
     }
-]
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

@@ -1,5 +1,5 @@
 export class UserUpdateDTO {
-    
+
     constructor(
         public name?: string,
         public surname?: string,

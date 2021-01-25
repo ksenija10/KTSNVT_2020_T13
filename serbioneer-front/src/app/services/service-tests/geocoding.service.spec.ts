@@ -1,7 +1,7 @@
-import { HttpClient } from "@angular/common/http";
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { fakeAsync, getTestBed, TestBed, tick } from "@angular/core/testing";
-import { GeocodingService } from "../geocoding.service";
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { fakeAsync, getTestBed, TestBed, tick } from '@angular/core/testing';
+import { GeocodingService } from '../geocoding.service';
 
 describe('Geocoding service', () => {
 
@@ -22,26 +22,26 @@ describe('Geocoding service', () => {
         geocodingService = TestBed.inject(GeocodingService);
         httpClient = TestBed.inject(HttpClient);
         httpMock = TestBed.inject(HttpTestingController);
-    })
+    });
 
     afterEach(() => {
         httpMock.verify();
-    })
+    });
 
     it('should be created', () => {
         expect(geocodingService).toBeTruthy();
-    })
+    });
 
     it('should get latitude and longitude for address', fakeAsync(() => {
-        let address = "Ilije Bircanina 37 Novi Sad";
-        let mockLatLng = {};
+        const address = 'Ilije Bircanina 37 Novi Sad';
+        const mockLatLng = {};
         let latLng = null;
-        
+
         geocodingService.getLatlong(address).subscribe(
             data => {
                 latLng = data;
             }
-        )
+        );
 
         const req = httpMock.expectOne(
             'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/geocode/json?address=Ilije%20Bircanina%2037%20Novi%20Sad&key=AIzaSyBCtbTPTKPVG3w-mkIaB5PTczTaOhKXTfI');
@@ -51,5 +51,5 @@ describe('Geocoding service', () => {
         tick();
 
         expect(latLng).toBeTruthy();
-    }))
-})
+    }));
+});

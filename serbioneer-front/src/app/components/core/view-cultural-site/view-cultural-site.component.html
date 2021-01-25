@@ -1,4 +1,8 @@
-<div id = "cultural-site-view" class="row view-cultural-site">
+<mat-progress-bar class="progress-bar" mode="indeterminate" 
+    *ngIf="(!culturalSite || !comments || !news)">
+</mat-progress-bar>
+<div id="cultural-site-view" class="row view-cultural-site" 
+    *ngIf="!(!culturalSite || !comments || !news)">
     <div class="col">
         <div class="row">
             <div id = "cultural-site-name" class="col-7"><h2 class="site-title">{{culturalSite.name}}</h2></div>
@@ -26,16 +30,19 @@
         </div>
         <div class="row join" *ngIf="adminIsLogged">
             <div class="col">
-                <button id = "edit-cultural-site" mat-icon-button color="primary" (click)="editCulturalSite()">
+                <button id="edit-cultural-site" mat-icon-button color="primary" (click)="editCulturalSite()">
                     <mat-icon>create</mat-icon>
                 </button>
-                <button mat-icon-button color="warn" (click)="deleteCulturalSite()">
+                <button id="delete-cultural-site" mat-icon-button color="warn" (click)="deleteCulturalSite()">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
         </div>
         <div class="row">
             <div id = "cultural-site-address" class="col"><h5>{{culturalSite.address}}, {{culturalSite.city}}</h5></div>
+        </div>
+        <div class="row">
+            <div class="col"><h6>{{culturalSite.category}}, {{culturalSite.categoryType}}</h6></div>
         </div>
         <div class="row rate-site-div" *ngIf="userIsLogged">
             <div class="rate-site">Rate {{culturalSite.name}}!</div>

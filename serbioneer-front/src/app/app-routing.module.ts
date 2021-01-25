@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  //login guard ne dozvoljava ulogovanom korisniku da opet pristupi login strani
+  // login guard ne dozvoljava ulogovanom korisniku da opet pristupi login strani
   {
     path: '',
     loadChildren: () => import('./components/core/core.module').then(m => m.CoreModule),

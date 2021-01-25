@@ -20,8 +20,8 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  createAdmin(admin: Admin): Observable<any> {
-    
+  createAdmin(admin: Admin): Observable<Admin> {
+
     return this.http.post<Admin>(environment.apiEndpoint + 'admin', admin, {
       headers: this.headers
     });

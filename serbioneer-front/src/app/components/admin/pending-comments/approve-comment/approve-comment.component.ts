@@ -11,43 +11,47 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ApproveCommentComponent implements OnInit {
 
-  @Input() comment:Comment = new Comment();
+  @Input() comment: Comment = new Comment();
   public noImages = true;
 
   @Output() commentSaidFetch: EventEmitter<void> = new EventEmitter<void>();
-  
-  imageSlider: Array<object> = []
+
+  imageSlider: Array<object> = [];
 
   constructor(
         private commentService: CommentService,
-        private toastr: ToastrService) { 
+        private toastr: ToastrService) {
         }
 
-  ngOnInit(): void { 
-    this.imageSlider = []
+  ngOnInit(): void {
+    this.imageSlider = [];
     this.comment.images.map(
       imageModel => {
-        this.imageSlider.push({image: "data:image/jpg;base64,"+imageModel.content, thumbImage: "data:image/jpg;base64,"+imageModel.content, title: imageModel.name})
+        this.imageSlider.push({
+          image: 'data:image/jpg;base64,' + imageModel.content,
+          thumbImage: 'data:image/jpg;base64,' + imageModel.content,
+          title: imageModel.name
+        });
       }
-    )
+    );
   }
 
-  public approveComment() : void {
+  public approveComment(): void {
     this.commentService.aproveComment(this.comment.id).subscribe(
       res => {
-        this.commentSaidFetch.emit()
+        this.commentSaidFetch.emit();
         this.toastr.success('Comment approved successfully!');
       }
-    )
+    );
   }
 
-  public declineComment() : void {
+  public declineComment(): void {
     this.commentService.declineComment(this.comment.id).subscribe(
       res => {
-        this.commentSaidFetch.emit()
+        this.commentSaidFetch.emit();
         this.toastr.success('Comment rejected successfully!');
       }
-    )
+    );
   }
 
 }

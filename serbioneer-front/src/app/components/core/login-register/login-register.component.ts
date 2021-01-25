@@ -7,20 +7,20 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./login-register.component.sass']
 })
 export class LoginRegisterComponent implements OnInit {
-  
-  activeLink: string = '';
+
+  activeLink = '';
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     let routePaths: string[] = this.router.url.split('/');
-    this.activeLink = routePaths[routePaths.length-1];
+    this.activeLink = routePaths[routePaths.length - 1];
     this.router.events.subscribe((val) => {
-      if( val instanceof NavigationEnd) {
-        routePaths= this.router.url.split('/');
-        this.activeLink = routePaths[routePaths.length-1];
+      if ( val instanceof NavigationEnd) {
+        routePaths = this.router.url.split('/');
+        this.activeLink = routePaths[routePaths.length - 1];
       }
-    })
+    });
   }
 
 }

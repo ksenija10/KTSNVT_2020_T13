@@ -1,24 +1,24 @@
-import { HarnessLoader } from "@angular/cdk/testing";
-import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatFormFieldHarness } from "@angular/material/form-field/testing";
-import { MatInputModule } from "@angular/material/input";
-import { MatInputHarness } from "@angular/material/input/testing";
-import { MatSelectModule } from "@angular/material/select";
-import { MatSelectHarness } from "@angular/material/select/testing";
-import { By } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
-import { of } from "rxjs";
-import { CulturalSiteDTO, CulturalSiteView } from "src/app/model/cultural-site.model";
-import { CulturalSiteCategoryService } from "src/app/services/cultural-site-category.service";
-import { CulturalSiteService } from "src/app/services/cultural-site.service";
-import { GeocodingService } from "src/app/services/geocoding.service";
-import { ImageService } from "src/app/services/image.service";
-import { NewCulturalSiteComponent } from "./new-cultural-site.component";
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldHarness } from '@angular/material/form-field/testing';
+import { MatInputModule } from '@angular/material/input';
+import { MatInputHarness } from '@angular/material/input/testing';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSelectHarness } from '@angular/material/select/testing';
+import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
+import { CulturalSiteDTO, CulturalSiteView } from 'src/app/model/cultural-site.model';
+import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
+import { CulturalSiteService } from 'src/app/services/cultural-site.service';
+import { GeocodingService } from 'src/app/services/geocoding.service';
+import { ImageService } from 'src/app/services/image.service';
+import { NewCulturalSiteComponent } from './new-cultural-site.component';
 
 describe('NewCulturalSiteComponent - Add Site', () => {
     let component: NewCulturalSiteComponent;
@@ -33,7 +33,7 @@ describe('NewCulturalSiteComponent - Add Site', () => {
     let loader: HarnessLoader;
 
     beforeEach(() => {
-        let culturalSiteServiceMock = {
+        const culturalSiteServiceMock = {
             getCulturalSite: jasmine.createSpy('getCulturalSite')
                 .and.returnValue(of({
                     id: 1,
@@ -84,7 +84,7 @@ describe('NewCulturalSiteComponent - Add Site', () => {
                 }))
         };
 
-        let culturalSiteCategoryServiceMock = {
+        const culturalSiteCategoryServiceMock = {
             getAllCulturalSiteCategorys: jasmine.createSpy('getAllCulturalSiteCategorys')
                 .and.returnValue(of([
                     {
@@ -109,7 +109,7 @@ describe('NewCulturalSiteComponent - Add Site', () => {
                 ]))
         };
 
-        let imageServiceMock = {
+        const imageServiceMock = {
             createForCulturalSite: jasmine.createSpy('createForCulturalSite')
                 .and.returnValue(of({
                     id: 1,
@@ -117,10 +117,10 @@ describe('NewCulturalSiteComponent - Add Site', () => {
                 }))
         };
 
-        let location = {lat: 42, lng: 20};
-        let geometry = {location: location};
-        let results = {geometry: geometry};
-        let geocodingServiceMock = {
+        const location = {lat: 42, lng: 20};
+        const geometry = {location};
+        const results = {geometry};
+        const geocodingServiceMock = {
             getLatlong: jasmine.createSpy('getLatlong')
                 .and.returnValue(of({
                     results: [
@@ -129,12 +129,12 @@ describe('NewCulturalSiteComponent - Add Site', () => {
                 }))
         };
 
-        let toastrMock = {
+        const toastrMock = {
             success: jasmine.createSpy('success'),
             error: jasmine.createSpy('error')
         };
 
-        let routerMock = {
+        const routerMock = {
             navigate: jasmine.createSpy('navigate'),
             url: 'new-cultural-site'
         };
@@ -170,18 +170,18 @@ describe('NewCulturalSiteComponent - Add Site', () => {
         loader = TestbedHarnessEnvironment.loader(fixture);
         // izaziva inicijalni data binding
         fixture.detectChanges();
-    })
+    });
 
     it('should load instance', () => {
         expect(component).toBeTruthy();
     });
 
     it('should display correct title', () => {
-        let formTitle = fixture.debugElement.query(By.css('#cultural-site-form-title'));
+        const formTitle = fixture.debugElement.query(By.css('#cultural-site-form-title'));
         expect(formTitle.nativeElement.textContent).toEqual('Add new cultural site');
-        let formBtn = fixture.debugElement.query(By.css('#create-edit-site-btn'));
+        const formBtn = fixture.debugElement.query(By.css('#create-edit-site-btn'));
         expect(formBtn.nativeElement.textContent).toEqual(' Create ');
-    })
+    });
 
     it('should load all cultural site categories', () => {
         expect(culturalSiteCategoryService.getAllCulturalSiteCategorys).toHaveBeenCalled();
@@ -200,9 +200,9 @@ describe('NewCulturalSiteComponent - Add Site', () => {
         expect(component.allCategoryTypesModel[1].name).toEqual('Pozoriste');
         // nije dobavljao kulturno dobro (jer nije edit mode)
         expect(culturalSiteService.getCulturalSite).toHaveBeenCalledTimes(0);
-    })
+    });
 
-    it('should get required field error message - empty field', async() => {
+    it('should get required field error message - empty field', async () => {
         expect(component.newCulturalSiteForm.invalid).toBeTruthy();
         // popunjavanje forme
         const culturalSiteNameInput = await loader.getHarness(MatInputHarness.with({selector: '#name-input'}));
@@ -234,7 +234,7 @@ describe('NewCulturalSiteComponent - Add Site', () => {
         // reset forme
         component.newCulturalSiteForm.reset();
         fixture.detectChanges();
-    })
+    });
 
     it('should change category - default', () => {
         component.categoryChange(null);
@@ -244,32 +244,32 @@ describe('NewCulturalSiteComponent - Add Site', () => {
         expect(component.allCategoryTypesModel[0].name).toEqual('Biblioteka');
         expect(component.allCategoryTypesModel[1].id).toEqual(2);
         expect(component.allCategoryTypesModel[1].name).toEqual('Pozoriste');
-    })
+    });
 
     it('should change category - event', () => {
-        let source = {triggerValue: 'Manifestacija'};
-        let event = {value: 2, source: source};
+        const source = {triggerValue: 'Manifestacija'};
+        const event = {value: 2, source};
         component.categoryChange(event);
         expect(culturalSiteCategoryService.getAllCategoryTypes).toHaveBeenCalledWith(2);
-    })
+    });
 
     it('should read file', () => {
-        let event = {
+        const event = {
             target: {
                 files: [
                     new Blob([''], { type: 'text/html' }),
                     new Blob([''], { type: 'text/html' })
                 ]
             }
-        }
+        };
         component.onFileChange(event);
 
         expect(component.files.length).toEqual(2);
-    })
+    });
 
-    it('should set new lat and lng on address change', async() => {
-        let formattedAddess = 'Ulica Grad';
-        let address = {formatted_address: formattedAddess};
+    it('should set new lat and lng on address change', async () => {
+        const formattedAddess = 'Ulica Grad';
+        const address = {formatted_address: formattedAddess};
 
         component.addressChange(address);
 
@@ -279,14 +279,14 @@ describe('NewCulturalSiteComponent - Add Site', () => {
         expect(component.location.lng).toEqual(20);
         // provera u htmlu
         const culturalSiteLatInput = await loader.getHarness(MatInputHarness.with({selector: '#lat-input'}));
-        let lat = await culturalSiteLatInput.getValue();
+        const lat = await culturalSiteLatInput.getValue();
         const culturalSiteLngInput = await loader.getHarness(MatInputHarness.with({selector: '#lng-input'}));
-        let lng = await culturalSiteLngInput.getValue();
+        const lng = await culturalSiteLngInput.getValue();
         expect(lat).toEqual('42.000');
         expect(lng).toEqual('20.000');
-    })
+    });
 
-    it('should create new cultural site', async() => {
+    it('should create new cultural site', async () => {
         expect(component.newCulturalSiteForm.invalid).toBeTruthy();
         // popunjavanje forme u htmlu
         const culturalSiteNameInput = await loader.getHarness(MatInputHarness.with({selector: '#name-input'}));
@@ -294,16 +294,16 @@ describe('NewCulturalSiteComponent - Add Site', () => {
         const culturalSiteAddressInput = await loader.getHarness(MatInputHarness.with({selector: '#address-input'}));
         await culturalSiteAddressInput.setValue('Adresa 5');
         const culturalSiteCategoryInput = await loader.getHarness(MatSelectHarness.with({selector: '#category-select'}));
-        await culturalSiteCategoryInput.clickOptions();// valjda odabere prvu
+        await culturalSiteCategoryInput.clickOptions(); // valjda odabere prvu
         const culturalSiteTypeInput = await loader.getHarness(MatSelectHarness.with({selector: '#category-type-select'}));
-        await culturalSiteTypeInput.clickOptions();// valjda odabere prvu
+        await culturalSiteTypeInput.clickOptions(); // valjda odabere prvu
         expect(component.newCulturalSiteForm.valid).toBeTruthy();
 
         component.foundAddress = 'Adresa 5, Grad, Serbia';
         component.location.lat = 42;
         component.location.lng = 20;
 
-        const newCulturalSiteDto: CulturalSiteDTO = 
+        const newCulturalSiteDto: CulturalSiteDTO =
             new CulturalSiteDTO(
                 undefined,
                 'Novo kulturno dobro',
@@ -318,7 +318,7 @@ describe('NewCulturalSiteComponent - Add Site', () => {
                 '',
                 0
             );
-        
+
         component.onSubmit();
 
         expect(culturalSiteService.createCulturalSite).toHaveBeenCalledWith(newCulturalSiteDto);
@@ -326,5 +326,5 @@ describe('NewCulturalSiteComponent - Add Site', () => {
         expect(router.navigate).toHaveBeenCalledWith(['/cultural-site/2']);
         // provera da li je forma ociscena
         expect(await culturalSiteNameInput.getValue()).toEqual('');
-    })
-})
+    });
+});

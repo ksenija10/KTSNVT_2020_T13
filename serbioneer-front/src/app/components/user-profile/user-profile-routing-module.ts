@@ -1,8 +1,8 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { RoleGuard } from "src/app/guards/role-guard.service";
-import { ChangePasswordComponent } from "./change-password/change-password.component";
-import { MyProfileComponent } from "./my-profile/my-profile.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { RoleGuard } from 'src/app/guards/role-guard.service';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 const routes: Routes = [
     {
@@ -17,7 +17,7 @@ const routes: Routes = [
         canActivate: [RoleGuard],
         data: { expectedRoles: 'ROLE_ADMIN|ROLE_USER' },
     }
-]
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

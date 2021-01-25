@@ -1,21 +1,21 @@
-import { HarnessLoader } from "@angular/cdk/testing";
-import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { FormGroupDirective, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatFormFieldHarness } from "@angular/material/form-field/testing";
-import { MatInputModule } from "@angular/material/input";
-import { MatInputHarness } from "@angular/material/input/testing";
-import { PageEvent } from "@angular/material/paginator";
-import { MatPaginatorHarness } from "@angular/material/paginator/testing";
-import { MatTableHarness } from "@angular/material/table/testing";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ToastrService } from "ngx-toastr";
-import { of } from "rxjs";
-import { CulturalSiteCategory } from "src/app/model/cultural-site-category.model";
-import { CulturalSiteCategoryService } from "src/app/services/cultural-site-category.service";
-import { CategoriesComponent } from "./categories.component"
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldHarness } from '@angular/material/form-field/testing';
+import { MatInputModule } from '@angular/material/input';
+import { MatInputHarness } from '@angular/material/input/testing';
+import { PageEvent } from '@angular/material/paginator';
+import { MatPaginatorHarness } from '@angular/material/paginator/testing';
+import { MatTableHarness } from '@angular/material/table/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
+import { CulturalSiteCategory } from 'src/app/model/cultural-site-category.model';
+import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
+import { CategoriesComponent } from './categories.component';
 
 describe('CategoriesComponent', () => {
     let component: CategoriesComponent;
@@ -23,17 +23,16 @@ describe('CategoriesComponent', () => {
     // injektovani servisi
     let culturalSiteCategoryService: CulturalSiteCategoryService;
     let toastr: ToastrService;
-    let dialog: MatDialog;
     let loader: HarnessLoader;
 
-    let dialogRefSpyObject = jasmine.createSpyObj({
+    const dialogRefSpyObject = jasmine.createSpyObj({
         afterClosed: of(true),
         close: null
-    })
+    });
     dialogRefSpyObject.componentInstance = { body: '' };
 
     beforeEach(() => {
-        let culturalSiteCategoryServiceMock = {
+        const culturalSiteCategoryServiceMock = {
             getAllByPage: jasmine.createSpy('getAllByPage')
                 .and.returnValue(of({
                     content: [
@@ -62,17 +61,17 @@ describe('CategoriesComponent', () => {
                     id: 1,
                     name: 'Izmenjena kategorija'
                 }))
-        }
+        };
 
-        let toastrMock = {
+        const toastrMock = {
             success: jasmine.createSpy('success'),
             error: jasmine.createSpy('error')
-        }
+        };
 
-        let dialogMock = {
+        const dialogMock = {
             open: jasmine.createSpy('open')
                 .and.returnValue(dialogRefSpyObject)
-        }
+        };
 
         TestBed.configureTestingModule({
             declarations: [CategoriesComponent],
@@ -95,7 +94,7 @@ describe('CategoriesComponent', () => {
         culturalSiteCategoryService = TestBed.inject(CulturalSiteCategoryService);
         toastr = TestBed.inject(ToastrService);
         loader = TestbedHarnessEnvironment.loader(fixture);
-    })
+    });
 
     it('should load instance', () => {
         expect(component).toBeTruthy();
@@ -122,8 +121,8 @@ describe('CategoriesComponent', () => {
             const categoriesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#category-paginator'}));
             const paginatorLabel = await categoriesPaginator.getRangeLabel();
             expect(paginatorLabel).toEqual('1 – 2 of 2');
-        })
-    })
+        });
+    });
 
     it('should choose category', () => {
         component.chooseCategory({
@@ -133,10 +132,10 @@ describe('CategoriesComponent', () => {
 
         expect(component.chosenCategory.id).toEqual(1);
         expect(component.chosenCategory.name).toEqual('Odabrana kategorija');
-    })
+    });
 
     it('should change category table page', () => {
-        let pageEvent: PageEvent = new PageEvent();
+        const pageEvent: PageEvent = new PageEvent();
         pageEvent.pageIndex = 1;
         pageEvent.pageSize = 2;
         component.onCategoryPaginateChange(pageEvent);
@@ -152,20 +151,20 @@ describe('CategoriesComponent', () => {
         expect(component.categoryDataSource.content[0].name).toEqual('Institucija');
         expect(component.categoryDataSource.content[1].id).toEqual(2);
         expect(component.categoryDataSource.content[1].name).toEqual('Manifestacija');
-    })
+    });
 
-    it('should add new category - success', async() => {
+    it('should add new category - success', async () => {
         expect(component.addCategoryForm.invalid).toBeTruthy();
-        //popunjavanje forme u htmlu
+        // popunjavanje forme u htmlu
         const categoryNameInput = await loader.getHarness(MatInputHarness.with({selector: '#cultural-category-name-input'}));
         await categoryNameInput.setValue('Nova kategorija');
         expect(component.addCategoryForm.valid).toBeTruthy();
 
-        const newCategoryDto: CulturalSiteCategory = 
+        const newCategoryDto: CulturalSiteCategory =
             new CulturalSiteCategory(
                 'Nova kategorija'
             );
-        
+
         component.onAddCategory(new FormGroupDirective([], []));
 
         expect(culturalSiteCategoryService.createCulturalSiteCategory).toHaveBeenCalledWith(newCategoryDto);
@@ -178,33 +177,33 @@ describe('CategoriesComponent', () => {
             const categoriesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#category-paginator'}));
             const paginatorLabel = await categoriesPaginator.getRangeLabel();
             expect(paginatorLabel).toEqual('1 – 2 of 3');
-        })
-    })
+        });
+    });
 
-    it('should not get category name error message - valid field', async() => {
+    it('should not get category name error message - valid field', async () => {
         expect(component.addCategoryForm.invalid).toBeTruthy();
         // popunjavanje forme
         const categoryNameInput = await loader.getHarness(MatInputHarness.with({selector: '#cultural-category-name-input'}));
         await categoryNameInput.setValue('Nova kategorija');
 
-        let returned = component.getCategoryNameErrorMessage();
+        const returned = component.getCategoryNameErrorMessage();
         // sta ocekujemo da je povratna vrednost
         expect(returned).toEqual('');
 
         const nameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#category-name-form-field'}));
         expect(await nameFormField.getTextErrors()).toEqual([]);
         expect(component.addCategoryForm.valid).toBeTruthy();
-    })
+    });
 
-    it('should get category name error message - not capitalized', async() => {
+    it('should get category name error message - not capitalized', async () => {
         expect(component.addCategoryForm.invalid).toBeTruthy();
         // popunjavanje forme
         const categoryNameInput = await loader.getHarness(MatInputHarness.with({selector: '#cultural-category-name-input'}));
         await categoryNameInput.setValue('nova kategorija');
         await categoryNameInput.blur();
 
-        let returned = component.getCategoryNameErrorMessage();
-        
+        const returned = component.getCategoryNameErrorMessage();
+
         expect(returned).toEqual('Must start with capital letter');
 
         const nameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#category-name-form-field'}));
@@ -214,17 +213,17 @@ describe('CategoriesComponent', () => {
         // reset forme
         component.addCategoryForm.reset();
         fixture.detectChanges();
-    })
+    });
 
-    it('should get category name error message - special character', async() => {
+    it('should get category name error message - special character', async () => {
         expect(component.addCategoryForm.invalid).toBeTruthy();
         // popunjavanje forme
         const categoryNameInput = await loader.getHarness(MatInputHarness.with({selector: '#cultural-category-name-input'}));
         await categoryNameInput.setValue('n%');
         await categoryNameInput.blur();
 
-        let returned = component.getCategoryNameErrorMessage();
-        
+        const returned = component.getCategoryNameErrorMessage();
+
         expect(returned).toEqual('Cannot contain special characters or numbers');
 
         const nameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#category-name-form-field'}));
@@ -234,17 +233,17 @@ describe('CategoriesComponent', () => {
         // reset forme
         component.addCategoryForm.reset();
         fixture.detectChanges();
-    })
+    });
 
-    it('should get category name error message - empty field', async() => {
+    it('should get category name error message - empty field', async () => {
         expect(component.addCategoryForm.invalid).toBeTruthy();
         // popunjavanje forme
         const categoryNameInput = await loader.getHarness(MatInputHarness.with({selector: '#cultural-category-name-input'}));
         await categoryNameInput.setValue('');
         await categoryNameInput.blur();
 
-        let returned = component.getCategoryNameErrorMessage();
-        
+        const returned = component.getCategoryNameErrorMessage();
+
         expect(returned).toEqual('Required field');
 
         const nameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#category-name-form-field'}));
@@ -254,10 +253,10 @@ describe('CategoriesComponent', () => {
         // reset forme
         component.addCategoryForm.reset();
         fixture.detectChanges();
-    })
+    });
 
     it('should delete category', () => {
-        let pageEvent: PageEvent = new PageEvent();
+        const pageEvent: PageEvent = new PageEvent();
         pageEvent.pageIndex = 1;
         pageEvent.pageSize = 2;
         component.categoryPageEvent = pageEvent;
@@ -281,11 +280,11 @@ describe('CategoriesComponent', () => {
             const categoriesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#category-paginator'}));
             const paginatorLabel = await categoriesPaginator.getRangeLabel();
             expect(paginatorLabel).toEqual('1 – 2 of 1');
-        })
-    })
+        });
+    });
 
     it('should update category - changed name', () => {
-        let pageEvent: PageEvent = new PageEvent();
+        const pageEvent: PageEvent = new PageEvent();
         pageEvent.pageIndex = 1;
         pageEvent.pageSize = 2;
         component.categoryPageEvent = pageEvent;
@@ -312,11 +311,11 @@ describe('CategoriesComponent', () => {
             const categoriesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#category-paginator'}));
             const paginatorLabel = await categoriesPaginator.getRangeLabel();
             expect(paginatorLabel).toEqual('1 – 2 of 2');
-        })
-    })
+        });
+    });
 
     it('should update category - same name', () => {
-        let pageEvent: PageEvent = new PageEvent();
+        const pageEvent: PageEvent = new PageEvent();
         pageEvent.pageIndex = 1;
         pageEvent.pageSize = 2;
         component.categoryPageEvent = pageEvent;
@@ -338,6 +337,6 @@ describe('CategoriesComponent', () => {
             const categoriesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#category-paginator'}));
             const paginatorLabel = await categoriesPaginator.getRangeLabel();
             expect(paginatorLabel).toEqual('1 – 2 of 2');
-        })
-    })
-})
+        });
+    });
+});

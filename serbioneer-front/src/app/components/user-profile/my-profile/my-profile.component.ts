@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthenticatedUser } from 'src/app/model/authenticated-user.model';
 import { UserUpdateDTO } from 'src/app/model/user-update-dto.mpdel';
-import { MyProfileService } from 'src/app/services/my-profile.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { MyProfileService } from 'src/app/services/my-profile.service';
 import { onlyContainsLetters } from 'src/app/util/util';
 
 @Component({
@@ -16,8 +15,8 @@ import { onlyContainsLetters } from 'src/app/util/util';
 export class MyProfileComponent implements OnInit {
 
   myProfileForm!: FormGroup;
-  namePattern = "[A-ZŠĐČĆŽ][a-zšđčćž]*";
-  datePattern = "[0-9]";
+  namePattern = '[A-ZŠĐČĆŽ][a-zšđčćž]*';
+  datePattern = '[0-9]';
   loggedInUser!: UserUpdateDTO;
   role!: string;
 
@@ -32,7 +31,7 @@ export class MyProfileComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.pattern(this.namePattern)]),
       surname: new FormControl('', [Validators.required, Validators.pattern(this.namePattern)]),
       dateOfBirth: new FormControl('')
-    })
+    });
     this.role = this.authenticationService.getLoggedInUserAuthority();
    }
 
@@ -41,52 +40,52 @@ export class MyProfileComponent implements OnInit {
     .subscribe(
       response => {
         this.loggedInUser = response;
-        this.myProfileForm.controls['email'].setValue(this.loggedInUser.email);
-        this.myProfileForm.controls['name'].setValue(this.loggedInUser.name);
-        this.myProfileForm.controls['surname'].setValue(this.loggedInUser.surname);
-        this.myProfileForm.controls['dateOfBirth'].setValue(this.loggedInUser.dateOfBirth);
+        this.myProfileForm.controls.email.setValue(this.loggedInUser.email);
+        this.myProfileForm.controls.name.setValue(this.loggedInUser.name);
+        this.myProfileForm.controls.surname.setValue(this.loggedInUser.surname);
+        this.myProfileForm.controls.dateOfBirth.setValue(this.loggedInUser.dateOfBirth);
       }
-    )
+    );
   }
 
-  onSubmit() {
+  onSubmit(): void {
 
-    if(this.myProfileForm.invalid) {
+    if (this.myProfileForm.invalid) {
       return;
     }
 
-    const userUpdateDTO: UserUpdateDTO = 
+    const userUpdateDTO: UserUpdateDTO =
       new UserUpdateDTO(
         this.myProfileForm.value.name,
         this.myProfileForm.value.surname,
         new Date(this.myProfileForm.value.dateOfBirth)
-      )
-    
-      this.myProfileService.updatePersonalInformation(userUpdateDTO)
+      );
+
+    this.myProfileService.updatePersonalInformation(userUpdateDTO)
         .subscribe(
           response => {
-            this.toastr.success('Personal information updated successfully!')
+            this.toastr.success('Personal information updated successfully!');
           },
           error => {
-            if(error.error.message){
+            if (error.error.message){
               this.toastr.error(error.error.message);
             } else {
               this.toastr.error('503 Server Unavailable');
             }
           }
-        )
-      
-      this.myProfileForm.reset();
-      this.router.navigate(['homepage']);
+        );
+
+    this.myProfileForm.reset();
+    this.router.navigate(['homepage']);
   }
 
-  getNameErrorMessage(fieldName: string) {
-    if(this.myProfileForm.controls[fieldName].touched) {
-      if(this.myProfileForm.controls[fieldName].hasError('pattern')) {
-        if(onlyContainsLetters(this.myProfileForm.controls[fieldName].value)) {
+  getNameErrorMessage(fieldName: string): string {
+    if (this.myProfileForm.controls[fieldName].touched) {
+      if (this.myProfileForm.controls[fieldName].hasError('pattern')) {
+        if (onlyContainsLetters(this.myProfileForm.controls[fieldName].value)) {
           return 'Must start with capital letter';
         } else {
-          return 'Cannot contain special characters or numbers'
+          return 'Cannot contain special characters or numbers';
         }
       }
       return this.myProfileForm.controls[fieldName].hasError('required') ? 'Required field' : '';
@@ -94,8 +93,8 @@ export class MyProfileComponent implements OnInit {
     return '';
   }
 
-  getDateErrorMessage(fieldName: string) {
-    if(this.myProfileForm.controls[fieldName].touched) {
+  getDateErrorMessage(fieldName: string): string {
+    if (this.myProfileForm.controls[fieldName].touched) {
       return this.myProfileForm.controls[fieldName].invalid ? 'Invalid date format' : '';
     }
     return '';

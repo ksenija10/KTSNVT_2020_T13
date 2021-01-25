@@ -1,10 +1,10 @@
-import { HttpClient } from "@angular/common/http";
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { fakeAsync, getTestBed, TestBed, tick } from "@angular/core/testing";
-import { CulturalCategoryType } from "src/app/model/cultural-category-type.model";
-import { CulturalSiteCategory } from "src/app/model/cultural-site-category.model";
-import { environment } from "src/environments/environment";
-import { CulturalCategoryTypeData, CulturalSiteCategoryData, CulturalSiteCategoryService } from "../cultural-site-category.service";
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { fakeAsync, getTestBed, TestBed, tick } from '@angular/core/testing';
+import { CulturalCategoryType } from 'src/app/model/cultural-category-type.model';
+import { CulturalSiteCategory } from 'src/app/model/cultural-site-category.model';
+import { environment } from 'src/environments/environment';
+import { CulturalCategoryTypeData, CulturalSiteCategoryData, CulturalSiteCategoryService } from '../cultural-site-category.service';
 
 describe('Cultural site category service', () => {
     let injector;
@@ -16,24 +16,24 @@ describe('Cultural site category service', () => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
             providers: [CulturalSiteCategoryService]
-        })
+        });
 
         injector = getTestBed();
         culturalSiteCategoryService = TestBed.inject(CulturalSiteCategoryService);
         httpClient = TestBed.inject(HttpClient);
         httpMock = TestBed.inject(HttpTestingController);
-    })
+    });
 
     afterEach(() => {
         httpMock.verify();
-    })
+    });
 
     it('should be created', () => {
         expect(culturalSiteCategoryService).toBeTruthy();
-    })
+    });
 
     it('should get all cultural site categories', fakeAsync(() => {
-        let mockCulturalSiteCategories: CulturalSiteCategory[] =
+        const mockCulturalSiteCategories: CulturalSiteCategory[] =
             [
                 {
                     id: 1,
@@ -44,14 +44,14 @@ describe('Cultural site category service', () => {
                     name: 'Manifestacija'
                 }
             ];
-        
+
         let response: CulturalSiteCategory[] = [];
 
         culturalSiteCategoryService.getAllCulturalSiteCategorys().subscribe(
             data => {
                 response = data;
             }
-        )
+        );
 
         const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category');
         expect(req.request.method).toBe('GET');
@@ -64,10 +64,10 @@ describe('Cultural site category service', () => {
         expect(response[0].name).toEqual('Institucija');
         expect(response[1].id).toEqual(2);
         expect(response[1].name).toEqual('Manifestacija');
-    }))
+    }));
 
     it('should get all cultural site categories paged', fakeAsync(() => {
-        let categories: CulturalSiteCategory[] =
+        const categories: CulturalSiteCategory[] =
             [
                 {
                     id: 1,
@@ -78,13 +78,13 @@ describe('Cultural site category service', () => {
                     name: 'Manifestacija'
                 }
             ];
-        
-        let mockCategoriesData: CulturalSiteCategoryData = {
+
+        const mockCategoriesData: CulturalSiteCategoryData = {
             content: categories,
             totalPages: 1,
             totalElements: 2,
             size: 2
-        }
+        };
 
         let response: CulturalSiteCategoryData = {
             content: [],
@@ -97,7 +97,7 @@ describe('Cultural site category service', () => {
             data => {
                 response = data;
             }
-        )
+        );
 
         const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/by-page?page=0&size=2');
         expect(req.request.method).toBe('GET');
@@ -113,10 +113,10 @@ describe('Cultural site category service', () => {
         expect(response.content[0].name).toEqual('Institucija');
         expect(response.content[1].id).toEqual(2);
         expect(response.content[1].name).toEqual('Manifestacija');
-    }))
+    }));
 
     it('should get all category types for category given by id', fakeAsync(() => {
-        let mockTypes: CulturalCategoryType[] =
+        const mockTypes: CulturalCategoryType[] =
             [
                 {
                     id: 1,
@@ -134,7 +134,7 @@ describe('Cultural site category service', () => {
             data => {
                 response = data;
             }
-        )
+        );
 
         const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/1/type');
         expect(req.request.method).toBe('GET');
@@ -147,10 +147,10 @@ describe('Cultural site category service', () => {
         expect(response[0].name).toEqual('Biblioteka');
         expect(response[1].id).toEqual(2);
         expect(response[1].name).toEqual('Pozoriste');
-    }))
+    }));
 
     it('should get paged category types for category given by id', fakeAsync(() => {
-        let types: CulturalCategoryType[] =
+        const types: CulturalCategoryType[] =
             [
                 {
                     id: 1,
@@ -161,13 +161,13 @@ describe('Cultural site category service', () => {
                     name: 'Pozoriste'
                 }
             ];
-        
-        let mockCategoriesData: CulturalCategoryTypeData = {
+
+        const mockCategoriesData: CulturalCategoryTypeData = {
             content: types,
             totalPages: 1,
             totalElements: 2,
             size: 2
-        }
+        };
 
         let response: CulturalCategoryTypeData = {
             content: [],
@@ -180,7 +180,7 @@ describe('Cultural site category service', () => {
             data => {
                 response = data;
             }
-        )
+        );
 
         const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/1/type/by-page?page=0&size=2');
         expect(req.request.method).toBe('GET');
@@ -196,19 +196,19 @@ describe('Cultural site category service', () => {
         expect(response.content[0].name).toEqual('Biblioteka');
         expect(response.content[1].id).toEqual(2);
         expect(response.content[1].name).toEqual('Pozoriste');
-    }))
+    }));
 
     it('should create cultural site category', fakeAsync(() => {
-        let culturalSiteCategory: CulturalSiteCategory = 
+        const culturalSiteCategory: CulturalSiteCategory =
             new CulturalSiteCategory('Nova kateogrija');
-        
-        let mockCulturalSiteCategory: CulturalSiteCategory = 
+
+        const mockCulturalSiteCategory: CulturalSiteCategory =
         {
             id: 1,
             name: 'Nova kateogrija'
         };
 
-        let response: CulturalSiteCategory = 
+        let response: CulturalSiteCategory =
         {
             id: 0,
             name: ''
@@ -219,8 +219,8 @@ describe('Cultural site category service', () => {
                 (data: CulturalSiteCategory) => {
                     response = data;
                 }
-            )
-        
+            );
+
         const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category');
         expect(req.request.method).toBe('POST');
         req.flush(mockCulturalSiteCategory);
@@ -229,19 +229,19 @@ describe('Cultural site category service', () => {
 
         expect(response.id).toEqual(1);
         expect(response.name).toEqual('Nova kateogrija');
-    }))
+    }));
 
     it('should create cultural category type for category given by id', fakeAsync(() => {
-        let culturalCategoryType: CulturalCategoryType = 
+        const culturalCategoryType: CulturalCategoryType =
             new CulturalCategoryType('Novi tip');
-        
-        let mockCulturalCategoryType: CulturalCategoryType = 
+
+        const mockCulturalCategoryType: CulturalCategoryType =
         {
             id: 1,
             name: 'Novi tip'
         };
 
-        let response: CulturalCategoryType = 
+        let response: CulturalCategoryType =
         {
             id: 0,
             name: ''
@@ -252,8 +252,8 @@ describe('Cultural site category service', () => {
                 (data: CulturalCategoryType) => {
                     response = data;
                 }
-            )
-        
+            );
+
         const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/1/type');
         expect(req.request.method).toBe('POST');
         req.flush(mockCulturalCategoryType);
@@ -262,48 +262,48 @@ describe('Cultural site category service', () => {
 
         expect(response.id).toEqual(1);
         expect(response.name).toEqual('Novi tip');
-    }))
+    }));
 
-    it('should delete cultural site category', fakeAsync(()=> {
-    
+    it('should delete cultural site category', fakeAsync(() => {
+
         culturalSiteCategoryService.deleteCulturalSiteCategory(1).subscribe(data => {
-            let response = data;
-        })
- 
+            const response = data;
+        });
+
         const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/1');
         expect(req.request.method).toBe('DELETE');
         req.flush({});
- 
-        tick();
-    }))
 
-    it('should delete cultural category type', fakeAsync(()=> {
-    
+        tick();
+    }));
+
+    it('should delete cultural category type', fakeAsync(() => {
+
         culturalSiteCategoryService.deleteCulturalSiteType(1).subscribe(data => {
-            let response = data;
-        })
- 
+            const response = data;
+        });
+
         const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/type/1');
         expect(req.request.method).toBe('DELETE');
         req.flush({});
- 
+
         tick();
-    }))
+    }));
 
     it('should update cultural site category', fakeAsync(() => {
-        let updatedCulturalSiteCategory: CulturalSiteCategory = 
-        {
-            id: 1,
-            name: 'Izmenjena kategorija'
-        }
-        
-        let mockCulturalSiteCategory: CulturalSiteCategory = 
+        const updatedCulturalSiteCategory: CulturalSiteCategory =
         {
             id: 1,
             name: 'Izmenjena kategorija'
         };
 
-        let response: CulturalSiteCategory = 
+        const mockCulturalSiteCategory: CulturalSiteCategory =
+        {
+            id: 1,
+            name: 'Izmenjena kategorija'
+        };
+
+        let response: CulturalSiteCategory =
         {
             id: 0,
             name: ''
@@ -314,8 +314,8 @@ describe('Cultural site category service', () => {
                 (data: CulturalSiteCategory) => {
                     response = data;
                 }
-            )
-        
+            );
+
         const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/1');
         expect(req.request.method).toBe('PUT');
         req.flush(mockCulturalSiteCategory);
@@ -324,22 +324,22 @@ describe('Cultural site category service', () => {
 
         expect(response.id).toEqual(1);
         expect(response.name).toEqual('Izmenjena kategorija');
-    }))
+    }));
 
     it('should update cultural category type', fakeAsync(() => {
-        let updatedCulturalCategoryType: CulturalCategoryType = 
-        {
-            id: 1,
-            name: 'Izmenjeni tip'
-        }
-        
-        let mockCulturalCategoryType: CulturalCategoryType = 
+        const updatedCulturalCategoryType: CulturalCategoryType =
         {
             id: 1,
             name: 'Izmenjeni tip'
         };
 
-        let response: CulturalCategoryType = 
+        const mockCulturalCategoryType: CulturalCategoryType =
+        {
+            id: 1,
+            name: 'Izmenjeni tip'
+        };
+
+        let response: CulturalCategoryType =
         {
             id: 0,
             name: ''
@@ -350,8 +350,8 @@ describe('Cultural site category service', () => {
                 (data: CulturalCategoryType) => {
                     response = data;
                 }
-            )
-        
+            );
+
         const req = httpMock.expectOne('https://localhost:8080/api/cultural-site-category/type/1');
         expect(req.request.method).toBe('PUT');
         req.flush(mockCulturalCategoryType);
@@ -360,5 +360,5 @@ describe('Cultural site category service', () => {
 
         expect(response.id).toEqual(1);
         expect(response.name).toEqual('Izmenjeni tip');
-    }))
-})
+    }));
+});

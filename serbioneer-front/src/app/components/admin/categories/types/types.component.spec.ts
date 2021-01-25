@@ -1,23 +1,23 @@
-import { HarnessLoader } from "@angular/cdk/testing";
-import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
-import { DebugElement } from "@angular/core";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { FormGroupDirective, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatFormFieldHarness } from "@angular/material/form-field/testing";
-import { MatInputModule } from "@angular/material/input";
-import { MatInputHarness } from "@angular/material/input/testing";
-import { PageEvent } from "@angular/material/paginator";
-import { MatPaginatorHarness } from "@angular/material/paginator/testing";
-import { MatTableHarness } from "@angular/material/table/testing";
-import { By } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ToastrService } from "ngx-toastr";
-import { of } from "rxjs";
-import { CulturalCategoryType } from "src/app/model/cultural-category-type.model";
-import { CulturalSiteCategoryService } from "src/app/services/cultural-site-category.service";
-import { TypesComponent } from "./types.component";
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldHarness } from '@angular/material/form-field/testing';
+import { MatInputModule } from '@angular/material/input';
+import { MatInputHarness } from '@angular/material/input/testing';
+import { PageEvent } from '@angular/material/paginator';
+import { MatPaginatorHarness } from '@angular/material/paginator/testing';
+import { MatTableHarness } from '@angular/material/table/testing';
+import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
+import { CulturalCategoryType } from 'src/app/model/cultural-category-type.model';
+import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
+import { TypesComponent } from './types.component';
 
 describe('TypesComponent', () => {
     let component: TypesComponent;
@@ -25,17 +25,16 @@ describe('TypesComponent', () => {
     // injektovani servisi
     let culturalSiteCategoryService: CulturalSiteCategoryService;
     let toastr: ToastrService;
-    let dialog: MatDialog;
     let loader: HarnessLoader;
 
-    let dialogRefSpyObject = jasmine.createSpyObj({
+    const dialogRefSpyObject = jasmine.createSpyObj({
         afterClosed: of(true),
         close: null
-    })
+    });
     dialogRefSpyObject.componentInstance = { body: '' };
 
     beforeEach(() => {
-        let culturalSiteCategoryServiceMock = {
+        const culturalSiteCategoryServiceMock = {
             getAllCategoryTypesByPage: jasmine.createSpy('getAllByPage')
                 .and.returnValue(of({
                     content: [
@@ -64,19 +63,19 @@ describe('TypesComponent', () => {
                     id: 1,
                     name: 'Izmenjeni tip'
                 }))
-        }
+        };
 
-        let toastrMock = {
+        const toastrMock = {
             success: jasmine.createSpy('success'),
             error: jasmine.createSpy('error')
-        }
+        };
 
-        let dialogMock = {
+        const dialogMock = {
             open: jasmine.createSpy('open')
                 .and.returnValue(dialogRefSpyObject)
-        }
+        };
 
-        let inputCategoryMock = {
+        const inputCategoryMock = {
             id: 1,
             name: 'Institucija'
         };
@@ -105,16 +104,16 @@ describe('TypesComponent', () => {
         loader = TestbedHarnessEnvironment.loader(fixture);
         // izaziva inicijalni data binding
         fixture.detectChanges();
-    })
+    });
 
     it('should load instance', () => {
         expect(component).toBeTruthy();
     });
 
     it('should display correct category name', () => {
-        let categoryName = fixture.debugElement.query(By.css('#chosen-category-name'));
+        const categoryName = fixture.debugElement.query(By.css('#chosen-category-name'));
         expect(categoryName.nativeElement.textContent).toEqual('Institucija types');
-    })
+    });
 
     it('should change category types displayed', () => {
         component.ngOnChanges();
@@ -123,10 +122,10 @@ describe('TypesComponent', () => {
         expect(component.typePageEvent.pageSize).toEqual(2);
         expect(component.typePageEvent.pageIndex).toEqual(0);
         expect(culturalSiteCategoryService.getAllCategoryTypesByPage).toHaveBeenCalledWith(1, 0, 2);
-    })
+    });
 
     it('should change type table page', () => {
-        let pageEvent: PageEvent = new PageEvent();
+        const pageEvent: PageEvent = new PageEvent();
         pageEvent.pageIndex = 1;
         pageEvent.pageSize = 2;
 
@@ -147,7 +146,7 @@ describe('TypesComponent', () => {
         expect(component.typeDataSource.content[0].name).toEqual('Biblioteka');
         expect(component.typeDataSource.content[1].id).toEqual(2);
         expect(component.typeDataSource.content[1].name).toEqual('Pozoriste');
-    
+
         // provera u htmlu
         fixture.whenStable().then(async () => {
             fixture.detectChanges();
@@ -156,21 +155,21 @@ describe('TypesComponent', () => {
             const typesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#types-paginator'}));
             const paginatorLabel = await typesPaginator.getRangeLabel();
             expect(paginatorLabel).toEqual('1 – 2 of 2');
-        })
-    })
+        });
+    });
 
-    it('should add new type - success', async() => {
+    it('should add new type - success', async () => {
         expect(component.addTypeForm.invalid).toBeTruthy();
         // popunjavanje forme u htmlu
         const typeNameInput = await loader.getHarness(MatInputHarness.with({selector: '#type-name-input'}));
         await typeNameInput.setValue('Novi tip');
         expect(component.addTypeForm.valid).toBeTruthy();
 
-        const newTypeDto: CulturalCategoryType = 
+        const newTypeDto: CulturalCategoryType =
             new CulturalCategoryType(
                 'Novi tip'
             );
-        
+
         component.onAddType(new FormGroupDirective([], []));
 
         expect(culturalSiteCategoryService.createCulturalCategoryType).toHaveBeenCalledWith(1, newTypeDto);
@@ -183,32 +182,32 @@ describe('TypesComponent', () => {
             const typesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#types-paginator'}));
             const paginatorLabel = await typesPaginator.getRangeLabel();
             expect(paginatorLabel).toEqual('1 – 2 of 3');
-        })
-    })
+        });
+    });
 
-    it('should not get type name error message - valid field', async() => {
+    it('should not get type name error message - valid field', async () => {
         expect(component.addTypeForm.invalid).toBeTruthy();
         // popunjavanje forme
         const categoryNameInput = await loader.getHarness(MatInputHarness.with({selector: '#type-name-input'}));
         await categoryNameInput.setValue('Novi tip');
 
-        let returned = component.getTypeNameErrorMessage();
+        const returned = component.getTypeNameErrorMessage();
         // sta ocekujemo da je povratna vrednost
         expect(returned).toEqual('');
 
         const nameFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#type-name-form-field'}));
         expect(await nameFormField.getTextErrors()).toEqual([]);
         expect(component.addTypeForm.valid).toBeTruthy();
-    })
+    });
 
-    it('should get category name error message - not capitalized', async() => {
+    it('should get category name error message - not capitalized', async () => {
         expect(component.addTypeForm.invalid).toBeTruthy();
         // popunjavanje forme
         const categoryNameInput = await loader.getHarness(MatInputHarness.with({selector: '#type-name-input'}));
         await categoryNameInput.setValue('novi tip');
         await categoryNameInput.blur();
 
-        let returned = component.getTypeNameErrorMessage();
+        const returned = component.getTypeNameErrorMessage();
         // sta ocekujemo da je povratna vrednost
         expect(returned).toEqual('Must start with capital letter');
 
@@ -219,16 +218,16 @@ describe('TypesComponent', () => {
         // reset forme
         component.addTypeForm.reset();
         fixture.detectChanges();
-    })
+    });
 
-    it('should get category name error message - special character', async() => {
+    it('should get category name error message - special character', async () => {
         expect(component.addTypeForm.invalid).toBeTruthy();
         // popunjavanje forme
         const categoryNameInput = await loader.getHarness(MatInputHarness.with({selector: '#type-name-input'}));
         await categoryNameInput.setValue('N$');
         await categoryNameInput.blur();
 
-        let returned = component.getTypeNameErrorMessage();
+        const returned = component.getTypeNameErrorMessage();
         // sta ocekujemo da je povratna vrednost
         expect(returned).toEqual('Cannot contain special characters or numbers');
 
@@ -239,16 +238,16 @@ describe('TypesComponent', () => {
         // reset forme
         component.addTypeForm.reset();
         fixture.detectChanges();
-    })
+    });
 
-    it('should get category name error message - empty field', async() => {
+    it('should get category name error message - empty field', async () => {
         expect(component.addTypeForm.invalid).toBeTruthy();
         // popunjavanje forme
         const categoryNameInput = await loader.getHarness(MatInputHarness.with({selector: '#type-name-input'}));
         await categoryNameInput.setValue('');
         await categoryNameInput.blur();
 
-        let returned = component.getTypeNameErrorMessage();
+        const returned = component.getTypeNameErrorMessage();
         // sta ocekujemo da je povratna vrednost
         expect(returned).toEqual('Required field');
 
@@ -259,10 +258,10 @@ describe('TypesComponent', () => {
         // reset forme
         component.addTypeForm.reset();
         fixture.detectChanges();
-    })
+    });
 
     it('should delete type', () => {
-        let pageEvent: PageEvent = new PageEvent();
+        const pageEvent: PageEvent = new PageEvent();
         pageEvent.pageIndex = 1;
         pageEvent.pageSize = 2;
         component.typePageEvent = pageEvent;
@@ -284,11 +283,11 @@ describe('TypesComponent', () => {
             const typesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#types-paginator'}));
             const paginatorLabel = await typesPaginator.getRangeLabel();
             expect(paginatorLabel).toEqual('1 – 2 of 1');
-        })
-    })
+        });
+    });
 
     it('should update type - changed name', () => {
-        let pageEvent: PageEvent = new PageEvent();
+        const pageEvent: PageEvent = new PageEvent();
         pageEvent.pageIndex = 1;
         pageEvent.pageSize = 2;
         component.typePageEvent = pageEvent;
@@ -315,11 +314,11 @@ describe('TypesComponent', () => {
             const typesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#types-paginator'}));
             const paginatorLabel = await typesPaginator.getRangeLabel();
             expect(paginatorLabel).toEqual('1 – 2 of 2');
-        })
-    })
+        });
+    });
 
     it('should update type - same name', () => {
-        let pageEvent: PageEvent = new PageEvent();
+        const pageEvent: PageEvent = new PageEvent();
         pageEvent.pageIndex = 1;
         pageEvent.pageSize = 2;
         component.typePageEvent = pageEvent;
@@ -342,7 +341,7 @@ describe('TypesComponent', () => {
             const typesPaginator = await loader.getHarness(MatPaginatorHarness.with({selector: '#types-paginator'}));
             const paginatorLabel = await typesPaginator.getRangeLabel();
             expect(paginatorLabel).toEqual('1 – 2 of 2');
-        })
-    })
+        });
+    });
 
-})
+});

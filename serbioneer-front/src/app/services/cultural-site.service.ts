@@ -60,7 +60,7 @@ export class CulturalSiteService {
       .get<CulturalSiteData>(
         environment.apiEndpoint + 'cultural-site/by-page',
         { params }
-      )
+      );
   }
 
   findAllSubscribedByPage(page: number, size: number, email: string): Observable<CulturalSiteData> {
@@ -74,10 +74,10 @@ export class CulturalSiteService {
       .get<CulturalSiteData>(
         environment.apiEndpoint + 'cultural-site/subscribed/by-page',
         { params }
-      )
+      );
   }
 
-  //cultural-site/filter/by-page
+  // cultural-site/filter/by-page
   filterByPage(
     page: number,
     size: number,
@@ -93,7 +93,7 @@ export class CulturalSiteService {
         environment.apiEndpoint + 'cultural-site/filter/by-page',
         filterDto,
         { params }
-      )
+      );
   }
 
   filterSubscribedByPage(
@@ -113,16 +113,16 @@ export class CulturalSiteService {
         environment.apiEndpoint + 'cultural-site/subscribed/filter/by-page',
         filterDto,
         { params }
-      )
+      );
   }
 
   findAllLocations(): Observable<string[]> {
     return this.http
-      .get<string[]>(environment.apiEndpoint + 'cultural-site/locations')
+      .get<string[]>(environment.apiEndpoint + 'cultural-site/locations');
   }
 
   createNews(news: NewsDTO, culturalSiteId: number): Observable<NewsDto> {
-    let params = new HttpParams();
+    const params = new HttpParams();
 
     return this.http
       .post<NewsDto>(
@@ -214,7 +214,7 @@ export class CulturalSiteService {
     return this.http.put<CulturalSite>(
       environment.apiEndpoint + 'cultural-site/' + culturalSiteId,
       culturalSite
-    )
+    );
   }
 
   deleteCulturalSite(culturalSiteId: number): Observable<void> {

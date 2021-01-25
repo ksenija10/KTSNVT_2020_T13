@@ -1,9 +1,8 @@
-import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Comment } from '../../../model/comment.model';
+import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { map } from 'rxjs/operators';
-import { CommentService } from '../../../services/comment.service';
 import { CommentData } from 'src/app/services/comment.service';
-import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { CommentService } from '../../../services/comment.service';
 
 @Component({
   selector: 'app-pending-comments',
@@ -12,7 +11,7 @@ import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/pag
 })
 export class PendingCommentsComponent implements OnInit {
 
-  commentsData : CommentData = {
+  commentsData: CommentData = {
     content : [],
     totalPages: 0,
     totalElements: 0,
@@ -21,7 +20,9 @@ export class PendingCommentsComponent implements OnInit {
 
   pageEvent: PageEvent = new PageEvent();
 
-  constructor(private commentService: CommentService) { 
+  progressBar = true;
+
+  constructor(private commentService: CommentService) {
     this.pageEvent.pageSize = 1;
     this.pageEvent.pageIndex = 0;
   }
@@ -30,22 +31,23 @@ export class PendingCommentsComponent implements OnInit {
     this.fetchComments();
   }
 
-  fetchComments() : void {
+  fetchComments(): void {
       this.commentService.getComments().pipe(
         map((commentData: CommentData) => this.commentsData = commentData)
-      ).subscribe();
+      ).subscribe(() => this.progressBar = false);
   }
 
-  onPaginateChange(event : PageEvent){
+  onPaginateChange(event: PageEvent): void {
     this.pageEvent = event;
     this.onGetNewPage();
-  }  
+  }
 
-  onGetNewPage() {
-    let page = this.pageEvent.pageIndex;
-    let size = this.pageEvent.pageSize;
+  onGetNewPage(): void {
+    this.progressBar = true;
+    const page = this.pageEvent.pageIndex;
+    const size = this.pageEvent.pageSize;
     this.commentService.getComments(page, size).pipe(
       map((comments: CommentData) => this.commentsData = comments)
-    ).subscribe();
+    ).subscribe(() => this.progressBar = false);
   }
 }

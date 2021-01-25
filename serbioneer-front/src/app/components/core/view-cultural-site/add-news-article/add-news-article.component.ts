@@ -1,12 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { NewsDTO } from 'src/app/model/news.model';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { ImageService, NewsDto } from 'src/app/services/image.service';
-import { Image, ImageDTO } from "src/app/model/image.model";
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-news-article',
@@ -15,43 +14,43 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddNewsArticleComponent{
 
-  newsForm : FormGroup;
-  images : any = [];
-  files : any = [];
+  newsForm: FormGroup;
+  images: any = [];
+  files: any = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddNewsArticleComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private culturalSiteService : CulturalSiteService,
-    private imageService : ImageService,
+    private culturalSiteService: CulturalSiteService,
+    private imageService: ImageService,
     private toastr: ToastrService)
     {
       this.newsForm = new FormGroup({
         text: new FormControl('', [Validators.required])
-      })
+      });
     }
 
-  close() {
+  close(): void {
     this.dialogRef.close();
   }
 
-  onSubmit(){
+  onSubmit(): void {
     if (this.newsForm.invalid) {
         return;
     }
 
-    const newsDto: NewsDTO = 
-      new NewsDTO(this.newsForm.value.text,new Date(),'',[]);
-    
+    const newsDto: NewsDTO =
+      new NewsDTO(this.newsForm.value.text, new Date(), '', []);
+
     this.culturalSiteService.createNews(newsDto, this.data.culturalSite.id).pipe(map(
-      (newsDto : NewsDto) => {
-        if(this.files.length > 0){
-          for(let i = 0; i < this.files.length; i++){
-            this.imageService.createForNews(newsDto.id, this.files[i]).pipe(map(
+      (newNewsDto: NewsDto) => {
+        if (this.files.length > 0) {
+          for (const file of this.files) {
+            this.imageService.createForNews(newNewsDto.id, file).pipe(map(
               () => {
                 this.dialogRef.close();
               }
-            )).subscribe()
+            )).subscribe();
           }
         }
         else{
@@ -64,7 +63,7 @@ export class AddNewsArticleComponent{
         this.files = [];
       },
       error => {
-        if(error.error.message){
+        if (error.error.message){
           this.toastr.error(error.error.message);
           this.files = [];
         } else {
@@ -74,36 +73,27 @@ export class AddNewsArticleComponent{
       });
   }
 
-  /*
-  cancelForm(){
-    this.newsForm.reset();
-    this.dialogRef.close();
-  }
-  */
-
-  getTextErrorMessage() {
-    if(this.newsForm.controls['text'].touched) {
-        if ( this.newsForm.controls['text'].hasError('required')) {
+  getTextErrorMessage(): string {
+    if (this.newsForm.controls.text.touched) {
+        if ( this.newsForm.controls.text.hasError('required')) {
         return 'Required field';
         }
     }
     return '';
   }
 
-  onFileChange(event : any) {
+  onFileChange(event: any): void {
     if (event.target.files && event.target.files[0]) {
-      for (let i = 0; i < event.target.files.length; i++) {
-        //let name = event.target.files[i].name
-        var reader = new FileReader();
-        this.files.push(event.target.files[i]);
-        reader.onload = (event:any) => {
-          this.images.push(event.target.result);
+      const reader = new FileReader();
+      for (const file of event.target.files) {
+        this.files.push(file);
+        reader.onload = (loadEvent: any) => {
+          this.images.push(loadEvent.target.result);
           this.newsForm.patchValue({
             fileSource: this.images
           });
-        }
-
-        reader.readAsDataURL(event.target.files[i]);
+        };
+        reader.readAsDataURL(file);
       }
     }
   }

@@ -1,11 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {
   ConfirmPasswordMatcher,
-  confirmPasswordValidator,
+  confirmPasswordValidator
 } from 'src/app/directives/confirm-password.directive';
 import { Admin } from 'src/app/model/admin.model';
 import { AdminService } from 'src/app/services/admin.service';
@@ -53,7 +52,7 @@ export class NewAdminComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.newAdminForm.invalid) {
       return;
     }
@@ -83,19 +82,19 @@ export class NewAdminComponent implements OnInit {
     );
   }
 
-  getEmailErrorMessage() {
-    if (this.newAdminForm.controls['email'].touched) {
-      if (this.newAdminForm.controls['email'].hasError('required')) {
+  getEmailErrorMessage(): string {
+    if (this.newAdminForm.controls.email.touched) {
+      if (this.newAdminForm.controls.email.hasError('required')) {
         return 'Required field';
       }
-      return this.newAdminForm.controls['email'].hasError('email')
+      return this.newAdminForm.controls.email.hasError('email')
         ? 'Not a valid email'
         : '';
     }
     return '';
   }
 
-  getRequiredFieldErrorMessage(fieldName: string) {
+  getRequiredFieldErrorMessage(fieldName: string): string {
     if (this.newAdminForm.controls.passwordGroup.get(fieldName)?.touched) {
       return this.newAdminForm.controls.passwordGroup
         .get(fieldName)
@@ -111,7 +110,7 @@ export class NewAdminComponent implements OnInit {
     return '';
   }
 
-  getNameErrorMessage(fieldName: string) {
+  getNameErrorMessage(fieldName: string): string {
     if (this.newAdminForm.controls[fieldName].touched) {
       if (this.newAdminForm.controls[fieldName].hasError('pattern')) {
         if (onlyContainsLetters(this.newAdminForm.controls[fieldName].value)) {
@@ -127,7 +126,7 @@ export class NewAdminComponent implements OnInit {
     return '';
   }
 
-  getPasswordsMatch() {
+  getPasswordsMatch(): string {
     if (
       this.newAdminForm.controls.passwordGroup.get('password')?.touched &&
       this.newAdminForm.controls.passwordGroup.get('confirmPassword')?.touched

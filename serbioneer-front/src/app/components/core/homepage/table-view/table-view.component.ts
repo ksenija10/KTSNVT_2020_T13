@@ -1,10 +1,6 @@
-import { Component, Input, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { FilterDTO } from 'src/app/model/filter-cultural-site.model';
 import { CulturalSiteData, CulturalSiteService } from 'src/app/services/cultural-site.service';
 
 export interface CulturalSite {
@@ -27,24 +23,21 @@ export class TableViewComponent implements OnInit  {
   // emitujemo promenu paginatora
   @Output() pageChanged: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
-  //slanje id-ja cultural site-a
-  @Output() redirect:EventEmitter<any> = new EventEmitter();
-
   constructor(
     private culturalSiteService: CulturalSiteService,
-    private router : Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
   }
 
-  onPaginateChange(event: PageEvent) {
+  onPaginateChange(event: PageEvent): void {
     // emitujemo dogadjaj
     this.pageChanged.emit(event);
   }
 
-  onClickRow(id:number) {
-    //navigacija na cultural site posle klika na row
-    this.router.navigate(['cultural-site/'+id]);
+  onClickRow(id: number): void {
+    // navigacija na cultural site posle klika na row
+    this.router.navigate(['cultural-site/' + id]);
   }
 }
