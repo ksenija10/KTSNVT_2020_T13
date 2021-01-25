@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -18,9 +18,9 @@ describe('LoginComponent', () => {
     let component: LoginComponent;
     let fixture: ComponentFixture<LoginComponent>;
     // injektovani servisi i ostalo
-    let authenticationService: any;
-    let router: any;
-    let toastr: any;
+    let authenticationService: AuthenticationService;
+    let router: Router;
+    let toastr: ToastrService;
     let loader: HarnessLoader;
 
     beforeEach(() => {

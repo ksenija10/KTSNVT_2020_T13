@@ -19,10 +19,10 @@ describe('ChangePasswordComponent', () => {
     let component: ChangePasswordComponent;
     let fixture: ComponentFixture<ChangePasswordComponent>;
     // injektovani servisi i ostalo
-    let myProfileService: any;
-    let authenticationService: any;
-    let toastr: any;
-    let router: any;
+    let myProfileService: MyProfileService;
+    let authenticationService: AuthenticationService;
+    let toastr: ToastrService;
+    let router: Router;
     let loader: HarnessLoader;
 
     beforeEach(() => {

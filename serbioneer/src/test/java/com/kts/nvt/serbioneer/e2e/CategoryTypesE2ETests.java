@@ -219,7 +219,7 @@ public class CategoryTypesE2ETests {
 
         justWait();
 
-        categoryTypesPage.getTypeAddBtn().click();
+        headerPage.getCategoriesBtn().click();
 
         justWait();
 
@@ -261,7 +261,7 @@ public class CategoryTypesE2ETests {
 
         justWait();
 
-        categoryTypesPage.getTypeAddBtn().click();
+        headerPage.getCategoriesBtn().click();
 
         justWait();
 
@@ -303,7 +303,7 @@ public class CategoryTypesE2ETests {
 
         justWait();
 
-        categoryTypesPage.getTypeAddBtn().click();
+        headerPage.getCategoriesBtn().click();
 
         justWait();
 
@@ -542,7 +542,7 @@ public class CategoryTypesE2ETests {
 
         justWait();
 
-        inlineEditPage.getSave().click();
+        headerPage.getCategoriesBtn().click();
 
         assertEquals(inlineEditPage.getError().getText(), "Required field");
 
@@ -578,7 +578,7 @@ public class CategoryTypesE2ETests {
 
         justWait();
 
-        inlineEditPage.getSave().click();
+        headerPage.getCategoriesBtn().click();
 
         assertEquals(inlineEditPage.getError().getText(), "Must start with capital letter");
 
@@ -614,7 +614,7 @@ public class CategoryTypesE2ETests {
 
         justWait();
 
-        inlineEditPage.getSave().click();
+        headerPage.getCategoriesBtn().click();
 
         assertEquals(inlineEditPage.getError().getText(), "Cannot contain special characters or numbers");
 

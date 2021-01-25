@@ -1,31 +1,23 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, of } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { MyProfileService } from 'src/app/services/my-profile.service';
 import {HarnessLoader} from '@angular/cdk/testing';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
-import {MatInputHarness} from '@angular/material/input/testing';
-import { UserUpdateDTO } from 'src/app/model/user-update-dto.mpdel';
-import { MatFormFieldHarness} from '@angular/material/form-field/testing';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { RoleGuard } from 'src/app/guards/role-guard.service';
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
     let fixture: ComponentFixture<HeaderComponent>;
     // injektovani servisi i ostalo
-    let authenticationService: any;
-    let router: any;
-    let location: any;
-    let toastr: any;
+    let authenticationService: AuthenticationService;
+    let router: Router;
+    let location: Location;
+    let toastr: ToastrService;
     let loader: HarnessLoader;
 
     beforeEach(() => {

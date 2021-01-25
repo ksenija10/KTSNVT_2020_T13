@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HarnessLoader } from '@angular/cdk/testing';
-import { MatChipInputHarness } from '@angular/material/chips/testing';
-import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -16,15 +14,14 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
-import { FilterDTO } from 'src/app/model/filter-cultural-site.model';
 
 describe('HomepageComponent', () => {
   let component: HomepageComponent;
   let fixture: ComponentFixture<HomepageComponent>;
   // injektovani servisi i ostalo
-  let culturalSiteCategoryService: any;
-  let culturalSiteService: any;
-  let toastr: any;
+  let culturalSiteCategoryService: CulturalSiteCategoryService;
+  let culturalSiteService: CulturalSiteService;
+  let toastr: ToastrService;
   let loader: HarnessLoader;
 
   beforeEach(() => {
@@ -172,20 +169,4 @@ describe('HomepageComponent', () => {
       expect(component.dataSource.content.length).toBe(2);
     });
   });
-
-  /*
-  it('should add item to chip list success', async () => {
-    component.ngOnInit();
-    component.allCulturalSiteCategorys = ['Manifestacija', 'Institucija'];
-    component.culturalSiteCategorys = [];
-
-    let chipInput = await loader.getHarness(
-      MatChipInputHarness.with({ selector: '#culturalSiteCategorysInput' })
-    );
-
-    chipInput.setValue('Manifestacija');
-    chipInput.blur();
-    expect(component.culturalSiteCategorys.length).toBeGreaterThan(0);
-  });
-  */
 });

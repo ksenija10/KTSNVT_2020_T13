@@ -20,7 +20,7 @@ export class PendingCommentsComponent implements OnInit {
 
   pageEvent: PageEvent = new PageEvent();
 
-  progressBar = true;
+  progressBar: boolean = true;
 
   constructor(private commentService: CommentService) {
     this.pageEvent.pageSize = 1;

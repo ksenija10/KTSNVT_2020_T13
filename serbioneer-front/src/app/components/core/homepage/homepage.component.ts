@@ -11,7 +11,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { PageEvent } from '@angular/material/paginator';
 import { FilterDTO } from 'src/app/model/filter-cultural-site.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',

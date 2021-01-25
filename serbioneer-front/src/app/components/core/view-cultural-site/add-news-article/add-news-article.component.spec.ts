@@ -1,28 +1,21 @@
-import { ChangeDetectorRef, DebugElement, NgModule } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
-import { CommentService } from 'src/app/services/comment.service';
-import {HarnessLoader} from '@angular/cdk/testing';
-import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
 import { MatListModule } from '@angular/material/list';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { AddNewsArticleComponent } from './add-news-article.component';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { ImageService } from 'src/app/services/image.service';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NewsDTO } from 'src/app/model/news.model';
 
 describe('AddNewsArticleComponent', () => {
     let component: AddNewsArticleComponent;
     let fixture: ComponentFixture<AddNewsArticleComponent>;
-    let culturalSiteService: any;
-    let imageService: any;
-    let toastrService: any;
+    let culturalSiteService: CulturalSiteService;
+    let imageService: ImageService;
+    let toastrService: ToastrService;
     let onChange: any;
 
     beforeEach(() => {

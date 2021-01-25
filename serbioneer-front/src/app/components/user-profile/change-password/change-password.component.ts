@@ -14,7 +14,7 @@ import { MyProfileService } from 'src/app/services/my-profile.service';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  hide = true;
+  hide: boolean = true;
 
   confirmPasswordMatcher = new ConfirmPasswordMatcher();
 

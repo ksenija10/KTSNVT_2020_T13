@@ -17,7 +17,7 @@ describe('Authentication service', () => {
     let authenticationService: AuthenticationService;
     let httpMock: HttpTestingController;
     let httpClient: HttpClient;
-    let router: any;
+    let router: Router;
 
     const routerMock = {
         navigate: jasmine.createSpy('navigate')
@@ -84,33 +84,6 @@ describe('Authentication service', () => {
         expect(newUser.password).toEqual('pass');
         expect(newUser.name).toEqual('Name');
         expect(newUser.surname).toEqual('Surname');
-    }));
-
-    it('should fail to register new authenticated user - email already exists', fakeAsync(() => {
-        let response = '';
-
-        const newUser: AuthenticatedUser = new AuthenticatedUser(
-            'admin@admin.com',
-            'pass',
-            'Name',
-            'Surname'
-            );
-
-        const mockResponse = 'User with given email already exists.';
-
-        authenticationService.register(newUser).subscribe(
-            data => {
-                response = data;
-            }
-        );
-
-        const req = httpMock.expectOne('https://localhost:8080/api/register');
-        expect(req.request.method).toBe('POST');
-        req.flush(mockResponse);
-
-        tick();
-
-        expect(response).toEqual('User with given email already exists.');
     }));
 
     it('should log in user', fakeAsync(() => {

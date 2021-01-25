@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, DebugElement, NgModule } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, async } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { CommentService } from 'src/app/services/comment.service';
@@ -7,18 +7,17 @@ import { PendingCommentsComponent } from './pending-comments.component';
 import {HarnessLoader} from '@angular/cdk/testing';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
 import {MatPaginatorHarness} from '@angular/material/paginator/testing';
-import {MatListItemHarness} from '@angular/material/list/testing';
 import { MatListModule } from '@angular/material/list';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ApproveCommentComponent } from './approve-comment/approve-comment.component';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 describe('PendingCommentsComponent', () => {
     let component: PendingCommentsComponent;
     let fixture: ComponentFixture<PendingCommentsComponent>;
-    let commentService: any;
-    let router: any;
+    let commentService: CommentService;
+    let router: Router;
     let loader: HarnessLoader;
 
     beforeEach(() => {
@@ -45,7 +44,7 @@ describe('PendingCommentsComponent', () => {
       TestBed.configureTestingModule({
         declarations:   [ PendingCommentsComponent ],
         providers:      [ {provide: CommentService, useValue: commentsServiceMock },
-                         { provide: router, useValue: routerMock } ],
+                         { provide: Router, useValue: routerMock } ],
         imports: [
           MatListModule,
           MatPaginatorModule,
@@ -57,7 +56,7 @@ describe('PendingCommentsComponent', () => {
       fixture = TestBed.createComponent(PendingCommentsComponent);
       component = fixture.componentInstance;
       commentService = TestBed.inject(CommentService);
-      router = TestBed.inject(router);
+      router = TestBed.inject(Router);
       loader = TestbedHarnessEnvironment.loader(fixture);
     });
 

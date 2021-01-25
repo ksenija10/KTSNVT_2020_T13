@@ -11,7 +11,7 @@ describe('Admin service', () => {
     let adminService: AdminService;
     let httpMock: HttpTestingController;
     let httpClient: HttpClient;
-    let router: any;
+    let router: Router;
 
     const routerMock = {
         navigate: jasmine.createSpy('navigate')
@@ -81,33 +81,6 @@ describe('Admin service', () => {
         expect(newAdmin.dateOfBirth).toEqual(new Date('January 17, 1990'));
     }));
 
-    it('should fail to register new authenticated user - email already exists', fakeAsync(() => {
-        let response = '';
-
-        const newAdmin: Admin = new Admin(
-            'new@admin.com',
-            'admin',
-            'Noviadminko',
-            'Noviadminic',
-            new Date('January 17, 1990')
-        );
-
-        const mockResponse = 'Admin with given email already exists.';
-
-        adminService.createAdmin(newAdmin).subscribe(
-            data => {
-                response = data;
-            }
-        );
-
-        const req = httpMock.expectOne('https://localhost:8080/api/admin');
-        expect(req.request.method).toBe('POST');
-        req.flush(mockResponse);
-
-        tick();
-
-        expect(response).toEqual('Admin with given email already exists.');
-    }));
 
     it('should get admins by page', fakeAsync(() => {
         const mockAdmins: Admin[] = [

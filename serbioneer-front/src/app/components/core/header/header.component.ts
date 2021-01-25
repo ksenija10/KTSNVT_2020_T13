@@ -13,8 +13,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  activeLink = '';
-  role = '';
+  activeLink: string = '';
+  role: string = '';
   subscription!: Subscription;
 
   constructor(

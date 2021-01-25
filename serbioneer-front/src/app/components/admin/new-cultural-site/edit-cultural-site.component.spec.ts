@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
-import { CulturalSiteDTO, CulturalSiteView } from 'src/app/model/cultural-site.model';
+import { CulturalSiteDTO } from 'src/app/model/cultural-site.model';
 import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { GeocodingService } from 'src/app/services/geocoding.service';

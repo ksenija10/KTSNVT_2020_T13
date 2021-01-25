@@ -3,7 +3,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { fakeAsync, getTestBed, TestBed, tick } from '@angular/core/testing';
 import { CulturalCategoryType } from 'src/app/model/cultural-category-type.model';
 import { CulturalSiteCategory } from 'src/app/model/cultural-site-category.model';
-import { environment } from 'src/environments/environment';
 import { CulturalCategoryTypeData, CulturalSiteCategoryData, CulturalSiteCategoryService } from '../cultural-site-category.service';
 
 describe('Cultural site category service', () => {

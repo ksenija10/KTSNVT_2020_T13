@@ -19,10 +19,10 @@ describe('MyProfileComponent', () => {
     let component: MyProfileComponent;
     let fixture: ComponentFixture<MyProfileComponent>;
     // injektovani servisi i ostalo
-    let myProfileService: any;
-    let authenticationService: any;
-    let router: any;
-    let toastr: any;
+    let myProfileService: MyProfileService;
+    let authenticationService: AuthenticationService;
+    let router: Router;
+    let toastr: ToastrService;
     let loader: HarnessLoader;
 
     beforeEach(() => {

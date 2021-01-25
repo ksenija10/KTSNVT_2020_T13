@@ -6,14 +6,13 @@ import { NewsfeedComponent } from './newsfeed.component';
 import { MatCardModule } from '@angular/material/card';
 import { NewsService } from 'src/app/services/news.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardHarness } from '@angular/material/card/testing';
 import { NewsComponent } from './news/news.component';
 
 describe('NewsfeedComponent', () => {
     let component: NewsfeedComponent;
     let fixture: ComponentFixture<NewsfeedComponent>;
     // injektovani servisi i ostalo
-    let newsService: any;
+    let newsService: NewsService;
     let loader: HarnessLoader;
 
     beforeEach(() => {

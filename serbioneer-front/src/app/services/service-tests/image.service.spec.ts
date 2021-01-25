@@ -13,7 +13,7 @@ describe('Image service', () => {
   let imageService: ImageService;
   let httpMock: HttpTestingController;
   let httpClient: HttpClient;
-  let router: any;
+  let router: Router;
 
   const routerMock = {
     navigate: jasmine.createSpy('navigate'),
@@ -44,8 +44,8 @@ describe('Image service', () => {
     const newId = 1;
     const newFile: any = 1;
 
-    let responseImage: Image = { _id: 0, name: '', content: 0 };
-    const mockImage: Image = { _id: 1, name: 'name', content: 1 };
+    let responseImage: Image = { id: 0, name: '', content: 0 };
+    const mockImage: Image = { id: 1, name: 'name', content: 1 };
 
     imageService.createForComment(newId, newFile).subscribe((data) => {
       responseImage = data;
@@ -60,7 +60,7 @@ describe('Image service', () => {
     tick();
 
     expect(responseImage).toBeDefined();
-    expect(responseImage._id).toEqual(1);
+    expect(responseImage.id).toEqual(1);
     expect(responseImage.content).toEqual(1);
     expect(responseImage.name).toEqual('name');
   }));
@@ -69,8 +69,8 @@ describe('Image service', () => {
     const newId = 1;
     const newFile: any = 1;
 
-    let responseImage: Image = { _id: 0, name: '', content: 0 };
-    const mockImage: Image = { _id: 1, name: 'name', content: 1 };
+    let responseImage: Image = { id: 0, name: '', content: 0 };
+    const mockImage: Image = { id: 1, name: 'name', content: 1 };
 
     imageService.createForNews(newId, newFile).subscribe((data) => {
       responseImage = data;
@@ -85,7 +85,7 @@ describe('Image service', () => {
     tick();
 
     expect(responseImage).toBeDefined();
-    expect(responseImage._id).toEqual(1);
+    expect(responseImage.id).toEqual(1);
     expect(responseImage.content).toEqual(1);
     expect(responseImage.name).toEqual('name');
   }));
@@ -94,8 +94,8 @@ describe('Image service', () => {
     const newId = 1;
     const newFile: any = 1;
 
-    let responseImage: Image = { _id: 0, name: '', content: 0 };
-    const mockImage: Image = { _id: 1, name: 'name', content: 1 };
+    let responseImage: Image = { id: 0, name: '', content: 0 };
+    const mockImage: Image = { id: 1, name: 'name', content: 1 };
 
     imageService.createForCulturalSite(newId, newFile).subscribe((data) => {
       responseImage = data;
@@ -110,7 +110,7 @@ describe('Image service', () => {
     tick();
 
     expect(responseImage).toBeDefined();
-    expect(responseImage._id).toEqual(1);
+    expect(responseImage.id).toEqual(1);
     expect(responseImage.content).toEqual(1);
     expect(responseImage.name).toEqual('name');
   }));

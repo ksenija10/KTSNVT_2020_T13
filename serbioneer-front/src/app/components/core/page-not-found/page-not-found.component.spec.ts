@@ -7,7 +7,7 @@ describe('PageNotFoundComponent', () => {
   let component: PageNotFoundComponent;
   let fixture: ComponentFixture<PageNotFoundComponent>;
   // injektovani servisi i ostalo
-  let router: any;
+  let router: Router;
 
   beforeEach(() => {
     const routerMock = {

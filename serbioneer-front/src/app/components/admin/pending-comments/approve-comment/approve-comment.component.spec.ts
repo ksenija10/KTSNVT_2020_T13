@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
@@ -8,8 +8,8 @@ import { ApproveCommentComponent } from './approve-comment.component';
 describe('ApproveCommentComponent', () => {
     let component: ApproveCommentComponent;
     let fixture: ComponentFixture<ApproveCommentComponent>;
-    let commentService: any;
-    let toastrService: any;
+    let commentService: CommentService;
+    let toastrService: ToastrService;
     beforeEach(() => {
       const commentsServiceMock = {
         aproveComment: jasmine.createSpy('aproveComment')

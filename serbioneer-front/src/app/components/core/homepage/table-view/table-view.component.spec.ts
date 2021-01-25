@@ -12,8 +12,8 @@ describe('TableViewComponent', () => {
   let component: TableViewComponent;
   let fixture: ComponentFixture<TableViewComponent>;
   // injektovani servisi i ostalo
-  let culturalSiteService: any;
-  let router: any;
+  let culturalSiteService: CulturalSiteService;
+  let router: Router;
   let loader: HarnessLoader;
 
   beforeEach(() => {

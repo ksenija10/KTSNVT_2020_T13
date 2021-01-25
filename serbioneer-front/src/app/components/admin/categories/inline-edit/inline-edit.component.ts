@@ -18,7 +18,7 @@ export class InlineEditComponent implements OnInit {
   set entity(x: string) {
     this.Entity = x;
   }
-  private Entity = '';
+  private Entity: string = '';
 
   /** Overrides the edit and provides a reset value when changes are cancelled. */
   @Input()
@@ -29,10 +29,10 @@ export class InlineEditComponent implements OnInit {
   private Value = '';
 
   /** Form model for the input. */
-  edit = '';
+  edit: string  = '';
 
   editForm: FormGroup;
-  namePattern = '([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*';
+  namePattern: string = '([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*';
 
   constructor(@Optional() @Host() public popover: SatPopover) {
     this.editForm = new FormGroup({

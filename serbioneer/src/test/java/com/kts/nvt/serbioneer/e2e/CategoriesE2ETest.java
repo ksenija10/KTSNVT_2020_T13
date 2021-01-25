@@ -180,7 +180,7 @@ public class CategoriesE2ETest {
 
         justWait();
 
-        categoriesPage.getCulturalCategoryAddBtn().click();
+        headerPage.getCategoriesBtn().click();
 
         text = categoriesPage.getCategoryPaginator().getText();
         bits = text.split(" ");
@@ -209,7 +209,7 @@ public class CategoriesE2ETest {
 
         justWait();
 
-        categoriesPage.getCulturalCategoryAddBtn().click();
+        headerPage.getCategoriesBtn().click();
 
         text = categoriesPage.getCategoryPaginator().getText();
         bits = text.split(" ");
@@ -238,7 +238,7 @@ public class CategoriesE2ETest {
 
         justWait();
 
-        categoriesPage.getCulturalCategoryAddBtn().click();
+        headerPage.getCategoriesBtn().click();
 
         text = categoriesPage.getCategoryPaginator().getText();
         bits = text.split(" ");
@@ -441,7 +441,7 @@ public class CategoriesE2ETest {
 
         justWait();
 
-        inlineEditPage.getSave().click();
+        headerPage.getCategoriesBtn().click();
 
         justWait();
 
@@ -474,7 +474,7 @@ public class CategoriesE2ETest {
 
         justWait();
 
-        inlineEditPage.getSave().click();
+        headerPage.getCategoriesBtn().click();
 
         justWait();
 
@@ -507,7 +507,7 @@ public class CategoriesE2ETest {
 
         justWait();
 
-        inlineEditPage.getSave().click();
+        headerPage.getCategoriesBtn().click();
 
         justWait();
 

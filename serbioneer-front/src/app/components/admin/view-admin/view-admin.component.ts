@@ -18,7 +18,7 @@ export class ViewAdminComponent implements OnInit {
 
   constructor(private adminService: AdminService, private router: Router) {
     this.pageEvent.pageIndex = 0;
-    this.pageEvent.pageSize = 2;
+    this.pageEvent.pageSize = 5;
   }
 
   ngOnInit(): void {

@@ -1,8 +1,7 @@
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { NgImageSliderModule } from 'ng-image-slider';
@@ -15,11 +14,11 @@ import { CommentComponent } from './comment.component';
 describe('CommentComponent', () => {
     let component: CommentComponent;
     let fixture: ComponentFixture<CommentComponent>;
-    let commentService: any;
-    let toastrService: any;
-    let authenticationService: any;
-    let router: any;
-    let dialog: any;
+    let commentService: CommentService;
+    let toastrService: ToastrService;
+    let authenticationService: AuthenticationService;
+    let router: Router;
+    let dialog: MatDialog;
     const dialogRefSpyObject = jasmine.createSpyObj({
         afterClosed: of(true),
         close: null

@@ -3,8 +3,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { fakeAsync, getTestBed, TestBed, tick } from '@angular/core/testing';
 import { CommentData, CommentService } from '../comment.service';
 import { Comment } from '../../model/comment.model';
-import { makeParsedTranslation } from '@angular/localize/src/utils';
-import { EmailValidator } from '@angular/forms';
 
 describe('Comment service', () => {
     let injector;

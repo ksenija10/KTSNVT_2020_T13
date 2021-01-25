@@ -17,11 +17,11 @@ export class CommentComponent implements OnInit {
 
   @Input() culturalSiteId!: any;
   @Input() comment!: Comment;
-  editing = false;
+  editing: boolean = false;
   copyComment!: Comment;
-  activeComment = true;
-  inputText = '';
-  userComment = true;
+  activeComment: boolean = true;
+  inputText: string = '';
+  userComment: boolean = true;
 
   commentImageSlider: Array<object> = [];
 

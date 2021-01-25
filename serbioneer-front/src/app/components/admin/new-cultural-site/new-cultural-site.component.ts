@@ -38,7 +38,7 @@ export class NewCulturalSiteComponent implements OnInit {
     componentRestrictions: { country: 'RS' },
   });
 
-  foundAddress = '';
+  foundAddress: string = '';
   location: Location = new Location(0, 0);
 
   // image import
@@ -49,8 +49,8 @@ export class NewCulturalSiteComponent implements OnInit {
   editCulturalSiteId: number;
   editCulturalSite!: CulturalSiteView;
 
-  title = 'Add new cultural site';
-  btnTitle = 'Create';
+  title: string = 'Add new cultural site';
+  btnTitle: string = 'Create';
 
   constructor(
     private culturalSiteService: CulturalSiteService,
@@ -70,7 +70,7 @@ export class NewCulturalSiteComponent implements OnInit {
       lng: new FormControl({ value: '', disabled: true }, []),
     });
     // ako je u edit modu, popuni formu
-    const siteUrl = this.router.url.split('/');
+    const siteUrl: string[] = this.router.url.split('/');
     this.editCulturalSiteId = +siteUrl[siteUrl.length - 1];
     if (!isNaN(this.editCulturalSiteId)) {
       // dobavi kulturno dobro i popuni formu

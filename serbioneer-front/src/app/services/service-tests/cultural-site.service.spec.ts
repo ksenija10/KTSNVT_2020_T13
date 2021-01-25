@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { fakeAsync, getTestBed, TestBed, tick } from '@angular/core/testing';
-import { filter } from 'rxjs/operators';
 import { Comment } from 'src/app/model/comment.model';
 import { CulturalSiteView, SubscribedCulturalSiteDTO } from 'src/app/model/cultural-site.model';
 import { FilterDTO } from 'src/app/model/filter-cultural-site.model';
