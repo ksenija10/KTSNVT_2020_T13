@@ -21,14 +21,14 @@ import { FilterDTO } from 'src/app/model/filter-cultural-site.model';
 describe('HomepageComponent', () => {
   let component: HomepageComponent;
   let fixture: ComponentFixture<HomepageComponent>;
-  //injektovani servisi i ostalo
+  // injektovani servisi i ostalo
   let culturalSiteCategoryService: any;
   let culturalSiteService: any;
   let toastr: any;
   let loader: HarnessLoader;
 
   beforeEach(() => {
-    let culturalSiteCategoryServiceMock = {
+    const culturalSiteCategoryServiceMock = {
       getAllCulturalSiteCategorys: jasmine
         .createSpy('getAllCulturalSiteCategorys')
         .and.returnValue(
@@ -45,7 +45,7 @@ describe('HomepageComponent', () => {
         ),
     };
 
-    let culturalSiteServiceMock = {
+    const culturalSiteServiceMock = {
       findAllLocations: jasmine
         .createSpy('findAllLocations')
         .and.returnValue(of(['Novi Sad', 'Sabac'])),
@@ -96,18 +96,18 @@ describe('HomepageComponent', () => {
       ),
     };
 
-    let toastrMock = {
+    const toastrMock = {
       success: jasmine.createSpy('success'),
       error: jasmine.createSpy('error'),
     };
 
-    let authenticationServiceMock = {
+    const authenticationServiceMock = {
       getLoggedInUserEmail: jasmine
         .createSpy('getLoggedInUserEmail')
         .and.returnValue('user.email@gmail.com'),
     };
 
-    let activatedRouteMock = {
+    const activatedRouteMock = {
       snapshot: {
         data: {
           subscribedView: false,

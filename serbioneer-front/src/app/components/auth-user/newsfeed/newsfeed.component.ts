@@ -10,28 +10,28 @@ import { NewsService } from 'src/app/services/news.service';
 export class NewsfeedComponent implements OnInit {
 
   dataSource: NewsDTO[] = [];
-  page: number = 0;
+  page = 0;
 
   constructor(
     private newsService: NewsService
     ) {}
 
   ngOnInit(): void {
-    //neka za pocetak po defaultu dobavlja 3 novosti da bih videla da li infinite scroll radi
+    // neka za pocetak po defaultu dobavlja 3 novosti da bih videla da li infinite scroll radi
     this.newsService.getAllSubscribedNews(0, 3)
       .subscribe((responseData) => {
-        this.dataSource = this.dataSource.concat(responseData.content)
+        this.dataSource = this.dataSource.concat(responseData.content);
     });
   }
 
-  getNews() {
+  getNews(): void {
     this.newsService.getAllSubscribedNews(this.page, 2).subscribe((responseData) => {
-      this.dataSource = this.dataSource.concat(responseData.content)
+      this.dataSource = this.dataSource.concat(responseData.content);
     });
   }
 
-  onScroll() {
-      this.page++
+  onScroll(): void {
+      this.page++;
       this.getNews();
   }
 

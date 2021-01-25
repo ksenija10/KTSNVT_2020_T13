@@ -1,19 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { MatPaginatorHarness } from '@angular/material/paginator/testing';
-import { MatListModule } from '@angular/material/list';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
-import { MatTableHarness } from '@angular/material/table/testing';
-
-import { AdminService } from 'src/app/services/admin.service';
-import { ViewAdminComponent } from './view-admin.component';
-import { of } from 'rxjs';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { MatTableModule } from '@angular/material/table';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorHarness } from '@angular/material/paginator/testing';
+import { MatTableModule } from '@angular/material/table';
+import { MatTableHarness } from '@angular/material/table/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { AdminService } from 'src/app/services/admin.service';
+import { ViewAdminComponent } from './view-admin.component';
+
 
 describe('ViewAdminComponent', () => {
   let component: ViewAdminComponent;
@@ -21,10 +21,9 @@ describe('ViewAdminComponent', () => {
   let adminService: AdminService;
   let router: Router;
   let loader: HarnessLoader;
-  let paginator: any;
 
   beforeEach(() => {
-    let adminServiceMock = {
+    const adminServiceMock = {
       findAllByPage: jasmine.createSpy('findAllByPage').and.returnValue(
         of({
           content: [{}, {}, {}, {}],
@@ -35,11 +34,11 @@ describe('ViewAdminComponent', () => {
       ),
     };
 
-    let routerMock = {
+    const routerMock = {
       navigate: jasmine.createSpy('navigate'),
     };
 
-    let paginatorMock = {
+    const paginatorMock = {
       paginator: jasmine.createSpy('paginator'),
     };
 
@@ -60,7 +59,6 @@ describe('ViewAdminComponent', () => {
 
     fixture = TestBed.createComponent(ViewAdminComponent);
     component = fixture.componentInstance;
-    //component.paginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);
     adminService = TestBed.inject(AdminService);
     router = TestBed.inject(Router);
     loader = TestbedHarnessEnvironment.loader(fixture);
@@ -75,7 +73,7 @@ describe('ViewAdminComponent', () => {
       expect(component.dataSource.content.length).toBe(4);
       fixture.detectChanges();
 
-      let table = await loader.getHarness(
+      const table = await loader.getHarness(
         MatTableHarness.with({ selector: '#admin-table' })
       );
 

@@ -1,14 +1,12 @@
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { TableViewComponent } from './table-view.component';
-import { HarnessLoader } from '@angular/cdk/testing';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
 
 describe('TableViewComponent', () => {
   let component: TableViewComponent;
@@ -19,11 +17,11 @@ describe('TableViewComponent', () => {
   let loader: HarnessLoader;
 
   beforeEach(() => {
-    let culturalSiteServiceMock = {
+    const culturalSiteServiceMock = {
       setData: jasmine.createSpy('setData'),
     };
 
-    let routerMock = {
+    const routerMock = {
       navigate: jasmine.createSpy('navigate'),
     };
 
@@ -42,7 +40,7 @@ describe('TableViewComponent', () => {
     router = TestBed.inject(Router);
     loader = TestbedHarnessEnvironment.loader(fixture);
 
-    //event emiter for page changed
+    // event emiter for page changed
     spyOn(component.pageChanged, 'emit');
   });
 
@@ -62,15 +60,15 @@ describe('TableViewComponent', () => {
 
   it('emit event on paginate change', () => {
     const pageEvent = new PageEvent();
-    //'pozivamo' metodu koju testiramo
+    // 'pozivamo' metodu koju testiramo
     component.onPaginateChange(pageEvent);
-    //provera da li se emitovao event
+    // provera da li se emitovao event
     expect(component.pageChanged.emit).toHaveBeenCalledWith(pageEvent);
   });
 
   it('should set data when row is clicked', () => {
-    const number = 1;
-    component.onClickRow(number);
-    expect(router.navigate).toHaveBeenCalledWith(['cultural-site/' + number]);
+    const num = 1;
+    component.onClickRow(num);
+    expect(router.navigate).toHaveBeenCalledWith(['cultural-site/' + num]);
   });
 });

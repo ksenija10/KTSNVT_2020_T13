@@ -1,9 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationEnd, Router } from '@angular/router';
-import { LoginRegisterComponent } from './login-register.component';
-import { Route } from '@angular/compiler/src/core';
 import { of } from 'rxjs';
+import { LoginRegisterComponent } from './login-register.component';
 
 describe('LoginRegisterComponent', () => {
   let component: LoginRegisterComponent;
@@ -15,10 +14,15 @@ describe('LoginRegisterComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [LoginRegisterComponent],
       providers: [
-        { provide: Router, useValue: 
+        { provide: Router, useValue:
           {
-            url: "login-register/login",
-            events: of(new NavigationEnd(0, 'https://localhost:4200/login-register/register', 'https://localhost:4200/login-register/login'))
+            url: 'login-register/login',
+            events: of(
+              new NavigationEnd(
+                0,
+                'https://localhost:4200/login-register/register',
+                'https://localhost:4200/login-register/login'
+              ))
           }
          }
       ]
@@ -34,6 +38,6 @@ describe('LoginRegisterComponent', () => {
 
   it('ngOninit', () => {
     component.ngOnInit();
-    expect(component.activeLink).toEqual("login");
+    expect(component.activeLink).toEqual('login');
   });
 });

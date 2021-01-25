@@ -13,12 +13,12 @@ import { MatInputHarness } from '@angular/material/input/testing';
 describe('InlineEditComponent', () => {
   let component: InlineEditComponent;
   let fixture: ComponentFixture<InlineEditComponent>;
-  //injektovani servisi i ostalo
+  // injektovani servisi i ostalo
   let popover: SatPopover;
   let loader: HarnessLoader;
 
   beforeEach(() => {
-    let satPopoverMock = {
+    const satPopoverMock = {
       closed: jasmine.createSpy('closed')
         .and.returnValue(of({})),
       close: jasmine.createSpy('close')
@@ -39,16 +39,16 @@ describe('InlineEditComponent', () => {
 
     fixture = TestBed.createComponent(InlineEditComponent);
     component = fixture.componentInstance;
-    popover = TestBed.inject(SatPopover)
+    popover = TestBed.inject(SatPopover);
     loader = TestbedHarnessEnvironment.loader(fixture);
 
     component.popover = popover;
 
   });
- 	
+
 
   it('can load instance', () => {
-    InlineEditComponent.prototype.ngOnInit = () => {} // override ngOnInit
+    InlineEditComponent.prototype.ngOnInit = () => {}; // override ngOnInit
 
     expect(component).toBeTruthy();
 
@@ -56,14 +56,14 @@ describe('InlineEditComponent', () => {
   });
 
   it(`namePattern has default value`, () => {
-    InlineEditComponent.prototype.ngOnInit = () => {} // override ngOnInit
+    InlineEditComponent.prototype.ngOnInit = () => {}; // override ngOnInit
 
     expect(component.namePattern).toEqual(`([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*`);
-  
+
   });
 
   it('onSubmit', () => {
-    InlineEditComponent.prototype.ngOnInit = () => {} // override ngOnInit
+    InlineEditComponent.prototype.ngOnInit = () => {}; // override ngOnInit
 
     component.onSubmit();
     expect(popover.close).toHaveBeenCalled();
@@ -71,62 +71,62 @@ describe('InlineEditComponent', () => {
   });
 
   it('onCancel', () => {
-    InlineEditComponent.prototype.ngOnInit = () => {} // override ngOnInit
+    InlineEditComponent.prototype.ngOnInit = () => {}; // override ngOnInit
 
     component.onCancel();
     expect(popover.close).toHaveBeenCalled();
 
   });
 
-  it('get edit error message - valid', async() => {
-    InlineEditComponent.prototype.ngOnInit = () => {} // override ngOnInit
+  it('get edit error message - valid', async () => {
+    InlineEditComponent.prototype.ngOnInit = () => {}; // override ngOnInit
 
-    const inlineInput = await loader.getHarness(MatInputHarness.with({selector: '#inline-input'}))
+    const inlineInput = await loader.getHarness(MatInputHarness.with({selector: '#inline-input'}));
     await inlineInput.setValue('Valid');
     await inlineInput.blur();
 
-    let returned = component.getEditErrorMessage();
+    const returned = component.getEditErrorMessage();
     // sta ocekujemo da je povratna vrednost
     expect(returned).toEqual('');
   });
 
-  it('get required field error-invalid', async() => {
-    InlineEditComponent.prototype.ngOnInit = () => {} // override ngOnInit
+  it('get required field error-invalid', async () => {
+    InlineEditComponent.prototype.ngOnInit = () => {}; // override ngOnInit
 
-    const inlineInput = await loader.getHarness(MatInputHarness.with({selector: '#inline-input'}))
+    const inlineInput = await loader.getHarness(MatInputHarness.with({selector: '#inline-input'}));
     await inlineInput.setValue('');
     await inlineInput.blur();
 
-    let returned = component.getEditErrorMessage();
+    const returned = component.getEditErrorMessage();
     // sta ocekujemo da je povratna vrednost
     expect(returned).toEqual('Required field');
 
   });
 
-  it('get capital letter error-invalid', async() => {
-    InlineEditComponent.prototype.ngOnInit = () => {} // override ngOnInit
+  it('get capital letter error-invalid', async () => {
+    InlineEditComponent.prototype.ngOnInit = () => {}; // override ngOnInit
 
-    const inlineInput = await loader.getHarness(MatInputHarness.with({selector: '#inline-input'}))
+    const inlineInput = await loader.getHarness(MatInputHarness.with({selector: '#inline-input'}));
     await inlineInput.setValue('invalid');
     await inlineInput.blur();
 
-    let returned = component.getEditErrorMessage();
+    const returned = component.getEditErrorMessage();
     // sta ocekujemo da je povratna vrednost
     expect(returned).toEqual('Must start with capital letter');
-  
+
   });
 
-  it('get special characters error-invalid', async() => {
-    InlineEditComponent.prototype.ngOnInit = () => {} // override ngOnInit
+  it('get special characters error-invalid', async () => {
+    InlineEditComponent.prototype.ngOnInit = () => {}; // override ngOnInit
 
-    const inlineInput = await loader.getHarness(MatInputHarness.with({selector: '#inline-input'}))
+    const inlineInput = await loader.getHarness(MatInputHarness.with({selector: '#inline-input'}));
     await inlineInput.setValue('In3v%');
     await inlineInput.blur();
 
-    let returned = component.getEditErrorMessage();
+    const returned = component.getEditErrorMessage();
     // sta ocekujemo da je povratna vrednost
     expect(returned).toEqual('Cannot contain special characters or numbers');
-  
+
   });
-        
+
 });

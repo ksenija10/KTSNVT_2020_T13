@@ -13,8 +13,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  activeLink: string = '';
-  role: string = '';
+  activeLink = '';
+  role = '';
   subscription!: Subscription;
 
   constructor(
@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     sanitizer: DomSanitizer,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private toastr : ToastrService
+    private toastr: ToastrService
   ) {
     // dodavanje custom ikonice
     iconRegistry.addSvgIcon(
@@ -42,25 +42,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // preuzimanje trenutne rute
     this.router.events.subscribe((val) => {
-      if( val instanceof NavigationEnd) {
-        let routePaths= this.router.url.split('/');
-        this.activeLink = routePaths[routePaths.length-1];
+      if ( val instanceof NavigationEnd) {
+        const routePaths = this.router.url.split('/');
+        this.activeLink = routePaths[routePaths.length - 1];
       }
-    })
+    });
 
     // subscribe
     this.subscription = this.authenticationService.role
         .subscribe(role => {
           this.role = role;
-        })
+        });
   }
 
   logout(): void {
     this.authenticationService.logout();
-    this.toastr.info("Logged out successfully!");
+    this.toastr.info('Logged out successfully!');
   }
 
-  onClick(path: string) {
+  onClick(path: string): void {
     this.activeLink = path;
     this.router.navigate([path]);
   }

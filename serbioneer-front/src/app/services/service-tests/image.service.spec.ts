@@ -15,7 +15,7 @@ describe('Image service', () => {
   let httpClient: HttpClient;
   let router: any;
 
-  let routerMock = {
+  const routerMock = {
     navigate: jasmine.createSpy('navigate'),
   };
 
@@ -41,11 +41,11 @@ describe('Image service', () => {
   });
 
   it('should create new image for comment', fakeAsync(() => {
-    let newId: number = 1;
-    let newFile: any = 1;
+    const newId = 1;
+    const newFile: any = 1;
 
     let responseImage: Image = { _id: 0, name: '', content: 0 };
-    let mockImage: Image = { _id: 1, name: 'name', content: 1 };
+    const mockImage: Image = { _id: 1, name: 'name', content: 1 };
 
     imageService.createForComment(newId, newFile).subscribe((data) => {
       responseImage = data;
@@ -66,11 +66,11 @@ describe('Image service', () => {
   }));
 
   it('should create new image for news', fakeAsync(() => {
-    let newId: number = 1;
-    let newFile: any = 1;
+    const newId = 1;
+    const newFile: any = 1;
 
     let responseImage: Image = { _id: 0, name: '', content: 0 };
-    let mockImage: Image = { _id: 1, name: 'name', content: 1 };
+    const mockImage: Image = { _id: 1, name: 'name', content: 1 };
 
     imageService.createForNews(newId, newFile).subscribe((data) => {
       responseImage = data;
@@ -91,11 +91,11 @@ describe('Image service', () => {
   }));
 
   it('should create new image for cultural site', fakeAsync(() => {
-    let newId: number = 1;
-    let newFile: any = 1;
+    const newId = 1;
+    const newFile: any = 1;
 
     let responseImage: Image = { _id: 0, name: '', content: 0 };
-    let mockImage: Image = { _id: 1, name: 'name', content: 1 };
+    const mockImage: Image = { _id: 1, name: 'name', content: 1 };
 
     imageService.createForCulturalSite(newId, newFile).subscribe((data) => {
       responseImage = data;

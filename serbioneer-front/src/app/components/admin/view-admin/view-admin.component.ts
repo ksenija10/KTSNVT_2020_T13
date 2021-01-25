@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ViewAdminComponent implements OnInit {
   displayedColumns: string[] = ['name', 'surname', 'email', 'dateOfBirth'];
-  dataSource: AdminData = {content: [], totalElements: 0, totalPages:0, size: 0};
+  dataSource: AdminData = {content: [], totalElements: 0, totalPages: 0, size: 0};
   pageEvent: PageEvent = new PageEvent();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -25,26 +25,26 @@ export class ViewAdminComponent implements OnInit {
     this.initDataSource();
   }
 
-  initDataSource() {
+  initDataSource(): void {
     this.adminService
       .findAllByPage(this.pageEvent.pageIndex, this.pageEvent.pageSize)
       .pipe(map((adminData: AdminData) => (this.dataSource = adminData)))
       .subscribe();
   }
 
-  onPaginateChange(event: PageEvent) {
+  onPaginateChange(event: PageEvent): void {
     this.pageEvent = event;
     this.getNewPage(this.pageEvent.pageIndex, this.pageEvent.pageSize);
   }
 
-  getNewPage(index: number, size: number) {
+  getNewPage(index: number, size: number): void {
     this.adminService
       .findAllByPage(index, size)
       .pipe(map((adminData: AdminData) => (this.dataSource = adminData)))
       .subscribe();
   }
 
-  addAdmin() {
+  addAdmin(): void {
     this.router.navigate(['admin/new-admin']);
   }
 }

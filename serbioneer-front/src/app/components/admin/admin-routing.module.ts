@@ -1,11 +1,11 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { RoleGuard } from "src/app/guards/role-guard.service";
-import { CategoriesComponent } from "./categories/categories.component";
-import { NewCulturalSiteComponent } from "./new-cultural-site/new-cultural-site.component";
-import { PendingCommentsComponent } from "./pending-comments/pending-comments.component";
-import { NewAdminComponent } from "./view-admin/new-admin/new-admin.component";
-import { ViewAdminComponent } from "./view-admin/view-admin.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { RoleGuard } from 'src/app/guards/role-guard.service';
+import { CategoriesComponent } from './categories/categories.component';
+import { NewCulturalSiteComponent } from './new-cultural-site/new-cultural-site.component';
+import { PendingCommentsComponent } from './pending-comments/pending-comments.component';
+import { NewAdminComponent } from './view-admin/new-admin/new-admin.component';
+import { ViewAdminComponent } from './view-admin/view-admin.component';
 
 const routes: Routes = [
     {
@@ -44,7 +44,7 @@ const routes: Routes = [
         canActivate: [RoleGuard],
         data: { expectedRoles: 'ROLE_ADMIN' }
       }
-]
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

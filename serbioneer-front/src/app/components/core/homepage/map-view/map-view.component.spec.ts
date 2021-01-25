@@ -10,7 +10,7 @@ describe('MapViewComponent', () => {
 
   beforeEach(() => {
 
-    let routerMock = {
+    const routerMock = {
       navigate: jasmine.createSpy('navigate'),
     };
 

@@ -20,7 +20,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 })
 export class HomepageComponent implements OnInit {
 
-  //for chips
+  // for chips
   visible = true;
   selectable = true;
   removable = true;
@@ -30,12 +30,12 @@ export class HomepageComponent implements OnInit {
   culturalSiteCategorys: string[] = [];
   allCulturalSiteCategorys: string[] = [];
 
-  //for locations
+  // for locations
   allLocations: string[] = [];
 
-  //filter fields
-  location: string = '';
-  name: string = '';
+  // filter fields
+  location = '';
+  name = '';
 
   // cultural sites data
   dataSource: CulturalSiteData = {content: [], size: 0, totalElements: 0, totalPages: 0};
@@ -44,16 +44,16 @@ export class HomepageComponent implements OnInit {
   pageEvent: PageEvent = new PageEvent();
 
   // map div id
-  mapHomepage: string = "map-homepage"
+  mapHomepage = 'map-homepage';
 
   // zatrazen subscribed view
-  isSubscribedSitesView: boolean = false;
+  isSubscribedSitesView = false;
 
   // user email, if there is one
   userEmail: string;
 
   // loading bar
-  progressBar: boolean = true;
+  progressBar = true;
 
   @ViewChild('culturalSiteCategorysInput') culturalSiteCategorysInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
@@ -66,8 +66,8 @@ export class HomepageComponent implements OnInit {
     private toastr: ToastrService
   ) {
     // da li je zatrazen subscribed prikaz?
-    this.isSubscribedSitesView = this.route.snapshot.data['subscribedView'] || false;
-    let subscribedMap = this.route.snapshot.data['subscribedMap'];
+    this.isSubscribedSitesView = this.route.snapshot.data.subscribedView || false;
+    const subscribedMap = this.route.snapshot.data.subscribedMap;
     if (subscribedMap) {
       this.mapHomepage = subscribedMap;
     }
@@ -76,27 +76,27 @@ export class HomepageComponent implements OnInit {
     // prvobitni pageEvent
     this.pageEvent.pageIndex = 0;
     this.pageEvent.pageSize = 5;
-    //dobavljanje svih locations
+    // dobavljanje svih locations
     this.culturalSiteService.findAllLocations()
-      .subscribe((responseData)=> {
+      .subscribe((responseData) => {
         this.allLocations = responseData;
-      })
-    //dobavljanje cultural site categories
+      });
+    // dobavljanje cultural site categories
     this.culturalSiteCategoryService.getAllCulturalSiteCategorys()
       .pipe(
         map((responseData) => {
-          let names: string[] = [];
-          for (let culturalSiteCategory of responseData) {
+          const names: string[] = [];
+          for (const culturalSiteCategory of responseData) {
             names.push(culturalSiteCategory.name);
           }
           return names;
       }))
       .subscribe((responseData) => {
         this.allCulturalSiteCategorys = responseData;
-        //event da je doslo do promene u allculturalsitecategorys
+        // event da je doslo do promene u allculturalsitecategorys
         this.culturalSiteCategoryCtrl.setValue('');
-      })
-      this.filteredCulturalSiteCategories = this.culturalSiteCategoryCtrl.valueChanges.pipe(
+      });
+    this.filteredCulturalSiteCategories = this.culturalSiteCategoryCtrl.valueChanges.pipe(
         startWith(null),
         map((culturalSiteCategory: string | null) => culturalSiteCategory
         ? this._filter(culturalSiteCategory) : this.allCulturalSiteCategorys.slice()));
@@ -110,29 +110,29 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  initDataSource() {
+  initDataSource(): void {
     this.culturalSiteService.findAllByPage(0, 5).pipe(
       map((culturalSiteData: CulturalSiteData) => this.dataSource = culturalSiteData)
     ).subscribe(() => this.progressBar = false);
   }
 
-  initSubscribedDataSource() {
+  initSubscribedDataSource(): void {
     this.culturalSiteService.findAllSubscribedByPage(0, 5, this.userEmail).pipe(
       map((culturalSiteData: CulturalSiteData) => this.dataSource = culturalSiteData)
     ).subscribe(() => this.progressBar = false);
   }
 
-  onPageChange(event: PageEvent) {
+  onPageChange(event: PageEvent): void {
     this.pageEvent = event;
     this.onFilter();
   }
 
-  onFilter() {
+  onFilter(): void {
     this.progressBar = true;
-    let page = this.pageEvent.pageIndex;
-    let size = this.pageEvent.pageSize;
-    let filterDto: FilterDTO = new FilterDTO(this.culturalSiteCategorys, this.name, this.location);
-    if(!this.isSubscribedSitesView) {
+    const page = this.pageEvent.pageIndex;
+    const size = this.pageEvent.pageSize;
+    const filterDto: FilterDTO = new FilterDTO(this.culturalSiteCategorys, this.name, this.location);
+    if (!this.isSubscribedSitesView) {
       this.culturalSiteService.filterByPage(page, size, filterDto).pipe(
         map((filteredCulturalSiteData: CulturalSiteData) => this.dataSource = filteredCulturalSiteData)
       ).subscribe(() => this.progressBar = false);
@@ -147,15 +147,15 @@ export class HomepageComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    //provera da li se uneta vrednost uopste nalazi u listi
-    if(this.allCulturalSiteCategorys.indexOf(this.titleCaseWord(value)) === -1) {
+    // provera da li se uneta vrednost uopste nalazi u listi
+    if (this.allCulturalSiteCategorys.indexOf(this.titleCaseWord(value)) === -1) {
       this.toastr.error('Cultural site category ' + value + ' doesnt exist');
       return;
     }
 
     // Add our category
     if ((value || '').trim()) {
-      this.culturalSiteCategorys.push(value.trim());  
+      this.culturalSiteCategorys.push(value.trim());
       this.removeFromList(value);
     }
 
@@ -175,7 +175,7 @@ export class HomepageComponent implements OnInit {
     }
 
     this.allCulturalSiteCategorys.push(value);
-    //event da je doslo do promene u allculturalsitecategorys
+    // event da je doslo do promene u allculturalsitecategorys
     this.culturalSiteCategoryCtrl.setValue('');
   }
 
@@ -192,13 +192,13 @@ export class HomepageComponent implements OnInit {
     return this.allCulturalSiteCategorys.filter(culturalSiteCategory => culturalSiteCategory.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  titleCaseWord(word: string) {
-    if (!word) return word;
+  titleCaseWord(word: string): string {
+    if (!word) { return word; }
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
 
-  removeFromList(value: string) {
-    //ukloni iz liste
+  removeFromList(value: string): void {
+    // ukloni iz liste
     const index = this.allCulturalSiteCategorys.indexOf(value);
 
     if (index >= 0) {
@@ -206,7 +206,7 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  onKey(event: any) {
+  onKey(event: any): void {
     this.name = event.target.value;
   }
 }

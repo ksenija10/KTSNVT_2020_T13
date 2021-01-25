@@ -1,16 +1,23 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, ɵbypassSanitizationTrustResourceUrl } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { UserLogin } from '../model/user-login.model';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { AuthenticatedUser } from '../model/authenticated-user.model';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Router } from '@angular/router';
+import { UserLogin } from '../model/user-login.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
+
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.jwtService = new JwtHelperService();
+  }
 
   public role: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
@@ -20,28 +27,25 @@ export class AuthenticationService {
 
   private jwtService: JwtHelperService;
 
-  constructor(
-    private http: HttpClient, 
-    private router: Router
-  ) {
-    this.jwtService = new JwtHelperService()
-  }
+  private refreshTokenTimeout: any;
+  private refreshedToken = '';
+  private expiresInNum = 0;
 
-  register(authUserDto: AuthenticatedUser): Observable<any> {
-    return this.http.post(environment.apiEndpoint + 'register', authUserDto, {
+  register(authUserDto: AuthenticatedUser): Observable<AuthenticatedUser> {
+    return this.http.post<AuthenticatedUser>(environment.apiEndpoint + 'register', authUserDto, {
       headers: this.headers,
     });
   }
 
-  login(userLoginDto: UserLogin): Observable<any> {
-    return this.http.post('https://localhost:8080/login', userLoginDto, {
+  login(userLoginDto: UserLogin): Observable<HttpResponse<void>> {
+    return this.http.post<void>('https://localhost:8080/login', userLoginDto, {
       headers: this.headers,
       observe: 'response',
     });
   }
 
   autoLogin(): boolean {
-    const user = this.getLoggedInUser()
+    const user = this.getLoggedInUser();
     // provera postojanja tokena
     if (!user) {
       return true;
@@ -66,15 +70,15 @@ export class AuthenticationService {
     localStorage.removeItem('expiresIn');
     this.router.navigate(['login-register/login']);
     this.role.next('');
-    this.stopRefreshTokenTimer()
+    this.stopRefreshTokenTimer();
   }
 
   // geteri i seteri
-  setLoggedInUser(response: any) {
+  setLoggedInUser(response: any): void {
     // ekstrakcija tokena
-    let jwtTokenBearer = response.headers.get('Authorization');
-    let jwtToken = jwtTokenBearer.split(" ")[1];
-    let expiresIn = response.headers.get('Expires-In');
+    const jwtTokenBearer = response.headers.get('Authorization');
+    const jwtToken = jwtTokenBearer.split(' ')[1];
+    const expiresIn = response.headers.get('Expires-In');
     // postavljanje tokena
     localStorage.setItem('jwtToken', jwtToken);
     localStorage.setItem('expiresIn', expiresIn);
@@ -82,7 +86,7 @@ export class AuthenticationService {
     this.startRefreshTokenTimer(jwtToken);
  }
 
-  getLoggedInUser() {
+  getLoggedInUser(): any {
     const token = localStorage.getItem('jwtToken');
     if (!token) {
       return '';
@@ -93,34 +97,34 @@ export class AuthenticationService {
 
   getLoggedInUserAuthority(): string {
     const info = this.getLoggedInUser();
-    if (info)
+    if (info) {
       return info.authorities[0].authority;
-    else
+    }
+    else {
       return '';
+    }
   }
 
-  getLoggedInUserEmail() {
+  getLoggedInUserEmail(): string {
     const info = this.getLoggedInUser();
-    if (info)
+    if (info) {
       return info.sub;
-    else
+    }
+    else {
       return '';
+    }
   }
 
   // pomocne metode
-  private refreshToken() {
-    return this.http.post(
+  private refreshToken(): Observable<HttpResponse<void>> {
+    return this.http.post<void>(
       environment.apiEndpoint + 'refresh',
       {},
       { observe: 'response' }
     );
   }
 
-  private refreshTokenTimeout: any;
-  private refreshedToken: string = '';
-  private expiresInNum: number = 0;
-
-  public startRefreshTokenTimer(token: string) {
+  public startRefreshTokenTimer(token: string): void {
     // parse json object from base64 encoded jwt token
     const jwtToken = this.jwtService.decodeToken(token);
     // set a timeout to refresh the token a minute before it expires
@@ -132,10 +136,10 @@ export class AuthenticationService {
     this.refreshTokenTimeout = setInterval(
       () =>
         this.refreshToken().subscribe((response) => {
-          let jwtTokenBearer = response.headers.get('Authorization');
+          const jwtTokenBearer = response.headers.get('Authorization');
           if (jwtTokenBearer) {
-            let jwtToken = jwtTokenBearer.split(' ')[1];
-            this.refreshedToken = jwtToken;
+            const jwtResponseToken = jwtTokenBearer.split(' ')[1];
+            this.refreshedToken = jwtResponseToken;
             // postavljanje tokena
             localStorage.setItem('jwtToken', this.refreshedToken);
           }
@@ -145,25 +149,26 @@ export class AuthenticationService {
   }
 
   // poziv pri logout-u
-  public stopRefreshTokenTimer() {
+  public stopRefreshTokenTimer(): void {
     clearInterval(this.refreshTokenTimeout);
   }
 
-  public startAutoLoginRefreshTokenTimer() {
+  public startAutoLoginRefreshTokenTimer(): void {
     const token = localStorage.getItem('jwtToken');
-    if (!token)
-      return
+    if (!token) {
+      return;
+    }
     const expiresIn = localStorage.getItem('expiresIn');
     if (!expiresIn) {
-      return
+      return;
     } else {
-      this.expiresInNum = <number><unknown>expiresIn;
+      this.expiresInNum = (expiresIn as unknown as number);
     }
     // parse json object from base64 encoded jwt token
     const jwtToken = this.jwtService.decodeToken(token);
     // set a timeout to refresh the token a minute before it expires
     const expires = new Date(jwtToken.exp * 1000);
-    const timeout = expires.getTime() - Date.now() - 60 * 1000
+    const timeout = expires.getTime() - Date.now() - 60 * 1000;
 
     this.refreshedToken = token;
     this.refreshTokenTimeout = setTimeout(
@@ -171,21 +176,21 @@ export class AuthenticationService {
         this.intervalFunction();
         setInterval(
           () => {
-            this.intervalFunction()
-          }, this.expiresInNum - 60 * 1000)
+            this.intervalFunction();
+          }, this.expiresInNum - 60 * 1000);
       }, timeout);
   }
 
-  private intervalFunction() {
+  private intervalFunction(): void {
     this.refreshToken().subscribe((response) => {
-      let jwtTokenBearer = response.headers.get('Authorization');
+      const jwtTokenBearer = response.headers.get('Authorization');
       if (jwtTokenBearer) {
-        let jwtToken = jwtTokenBearer.split(' ')[1];
+        const jwtToken = jwtTokenBearer.split(' ')[1];
         this.refreshedToken = jwtToken;
         // postavljanje tokena
         localStorage.setItem('jwtToken', this.refreshedToken);
       }
-    })
+    });
   }
 
 }

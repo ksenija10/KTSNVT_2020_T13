@@ -1,3 +1,4 @@
+import { OnInit } from '@angular/core';
 import { Component, Input, Optional, Host } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SatPopover } from '@ncstate/sat-popover';
@@ -9,37 +10,37 @@ import { onlyContainsLettersAndSpaces } from 'src/app/util/util';
   templateUrl: './inline-edit.component.html',
   styleUrls: ['./inline-edit.component.scss']
 })
-export class InlineEditComponent {
+export class InlineEditComponent implements OnInit {
 
   // get edited entity name
   @Input()
-  get entity(): string { return this._entity; }
+  get entity(): string { return this.Entity; }
   set entity(x: string) {
-    this._entity = x;
+    this.Entity = x;
   }
-  private _entity = '';
+  private Entity = '';
 
   /** Overrides the edit and provides a reset value when changes are cancelled. */
   @Input()
-  get value(): string { return this._value; }
+  get value(): string { return this.Value; }
   set value(x: string) {
-    this.edit = this._value = x;
+    this.edit = this.Value = x;
   }
-  private _value = '';
+  private Value = '';
 
   /** Form model for the input. */
   edit = '';
 
   editForm: FormGroup;
-  namePattern = "([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*"
+  namePattern = '([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*';
 
   constructor(@Optional() @Host() public popover: SatPopover) {
     this.editForm = new FormGroup({
       editField: new FormControl('', [Validators.required, Validators.pattern(this.namePattern)])
-    })
+    });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // subscribe to cancellations and reset form value
     if (this.popover) {
       this.popover.closed.pipe(filter(val => val == null))
@@ -47,26 +48,26 @@ export class InlineEditComponent {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.popover) {
       this.popover.close(this.edit);
     }
   }
 
-  onCancel() {
+  onCancel(): void {
     if (this.popover) {
       this.popover.close();
     }
   }
 
-  getEditErrorMessage() {
-      if(this.editForm.controls['editField'].hasError('pattern')) {
-        if(onlyContainsLettersAndSpaces(this.editForm.controls['editField'].value)) {
+  getEditErrorMessage(): string {
+      if (this.editForm.controls.editField.hasError('pattern')) {
+        if (onlyContainsLettersAndSpaces(this.editForm.controls.editField.value)) {
           return 'Must start with capital letter';
         } else {
-          return 'Cannot contain special characters or numbers'
+          return 'Cannot contain special characters or numbers';
         }
       }
-      return this.editForm.controls['editField'].hasError('required') ? 'Required field' : '';
+      return this.editForm.controls.editField.hasError('required') ? 'Required field' : '';
     }
 }

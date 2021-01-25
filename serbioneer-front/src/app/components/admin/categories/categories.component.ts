@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
-import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/confirm-dialog.component';
+import { ConfirmDeleteDialogComponent } from 'src/app/components/core/confirm-dialog/confirm-dialog.component';
 import { CulturalSiteCategory } from 'src/app/model/cultural-site-category.model';
 import { CulturalSiteCategoryData, CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
 import { onlyContainsLettersAndSpaces, smoothScroll } from 'src/app/util/util';
@@ -17,15 +17,15 @@ import { onlyContainsLettersAndSpaces, smoothScroll } from 'src/app/util/util';
 export class CategoriesComponent implements OnInit {
 
   // Common
-  actions: string[] = ['edit', 'delete']
-  displayedColumns: string[] = ['name', 'actions']
-  namePattern = "([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*"
+  actions: string[] = ['edit', 'delete'];
+  displayedColumns: string[] = ['name', 'actions'];
+  namePattern = '([A-ZŠĐČĆŽ]{1}[a-zšđčćž]*)( [a-zšđčćž]*)*';
 
   // Category
-  categoryDataSource: CulturalSiteCategoryData = {content: [], size: 0, totalElements: 0, totalPages: 0}
-  categoryPageEvent: PageEvent = new PageEvent()
+  categoryDataSource: CulturalSiteCategoryData = {content: [], size: 0, totalElements: 0, totalPages: 0};
+  categoryPageEvent: PageEvent = new PageEvent();
   addCategoryForm: FormGroup;
-  categoryEntity: string = "cultural site category"
+  categoryEntity = 'cultural site category';
 
   // Chosen category
   chosenCategory!: CulturalSiteCategory;
@@ -40,51 +40,51 @@ export class CategoriesComponent implements OnInit {
     // forms
     this.addCategoryForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern(this.namePattern)])
-    })
+    });
   }
 
   ngOnInit(): void {
     this.initDataSource();
   }
 
-  initDataSource() {
+  initDataSource(): void {
     // inicijalizacija category tabele
     this.culturalSiteCategoryService.getAllByPage(0, 2).pipe(
-      map((culturalSiteCategoryData: CulturalSiteCategoryData) => 
+      map((culturalSiteCategoryData: CulturalSiteCategoryData) =>
         this.categoryDataSource = culturalSiteCategoryData
       )
-    ).subscribe()
+    ).subscribe();
   }
 
-  chooseCategory(category: CulturalSiteCategory) {
-    smoothScroll()
-    this.chosenCategory = category
+  chooseCategory(category: CulturalSiteCategory): void {
+    smoothScroll();
+    this.chosenCategory = category;
   }
 
-  onCategoryPaginateChange(event: PageEvent) {
+  onCategoryPaginateChange(event: PageEvent): void {
     // cuvanje poslednjeg event-a
     this.categoryPageEvent = event;
-    let page = this.categoryPageEvent.pageIndex;
-    let size = this.categoryPageEvent.pageSize;
+    const page = this.categoryPageEvent.pageIndex;
+    const size = this.categoryPageEvent.pageSize;
     // this.categoryDataSource.loadCategories(page, size);
     this.culturalSiteCategoryService.getAllByPage(page, size).pipe(
-      map((culturalSiteCategoryData: CulturalSiteCategoryData) => 
+      map((culturalSiteCategoryData: CulturalSiteCategoryData) =>
         this.categoryDataSource = culturalSiteCategoryData
       )
-    ).subscribe()
+    ).subscribe();
   }
 
   // add new category
-  onAddCategory(categoryFormDirective: FormGroupDirective) {
-    if(this.addCategoryForm.invalid) {
+  onAddCategory(categoryFormDirective: FormGroupDirective): void {
+    if (this.addCategoryForm.invalid) {
       return;
     }
 
-    const newCat: CulturalSiteCategory = 
+    const newCat: CulturalSiteCategory =
       new CulturalSiteCategory(
         this.addCategoryForm.value.name
-      )
-    
+      );
+
     this.culturalSiteCategoryService.createCulturalSiteCategory(newCat)
         .subscribe(
           response => {
@@ -94,91 +94,92 @@ export class CategoriesComponent implements OnInit {
             this.onCategoryPaginateChange(this.categoryPageEvent);
           },
           error => {
-            if(error.error.message){
+            if (error.error.message){
               this.toastr.error(error.error.message);
             } else {
               this.toastr.error('503 Server Unavailable');
             }
             this.addCategoryForm.reset();
             categoryFormDirective.resetForm();
-          })
+          });
   }
 
-  getCategoryNameErrorMessage() {
-    if(this.addCategoryForm.controls['name'].touched) {
-      if(this.addCategoryForm.controls['name'].hasError('pattern')) {
-        if(onlyContainsLettersAndSpaces(this.addCategoryForm.controls['name'].value)) {
+  getCategoryNameErrorMessage(): string {
+    if (this.addCategoryForm.controls.name.touched) {
+      if (this.addCategoryForm.controls.name.hasError('pattern')) {
+        if (onlyContainsLettersAndSpaces(this.addCategoryForm.controls.name.value)) {
           return 'Must start with capital letter';
         } else {
-          return 'Cannot contain special characters or numbers'
+          return 'Cannot contain special characters or numbers';
         }
       }
-      return this.addCategoryForm.controls['name'].hasError('required') ? 'Required field' : '';
+      return this.addCategoryForm.controls.name.hasError('required') ? 'Required field' : '';
     }
     return '';
   }
 
   // delete category
-  confirmDeleteCategory(category: CulturalSiteCategory) {
+  confirmDeleteCategory(category: CulturalSiteCategory): void {
 
-    const dialogRef = this.dialog.open(ConfirmDeleteDialog, {
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
       data: {
         entity: 'category',
         name: category.name
       }
-    })
+    });
 
     dialogRef.afterClosed()
       .subscribe(
         response => {
-          if(response) {
+          if (response) {
             this.culturalSiteCategoryService.deleteCulturalSiteCategory(category.id)
               .subscribe(
-                response => {
+                serviceResponse => {
                   this.toastr.success('Successfully deleted cultural site category!');
                   // reload tabele
-                  this.onCategoryPaginateChange(this.categoryPageEvent)
+                  this.onCategoryPaginateChange(this.categoryPageEvent);
                 },
                 error => {
-                  if(error.error.message){
+                  if (error.error.message){
                     this.toastr.error(error.error.message);
                   } else {
                     this.toastr.error('503 Server Unavailable');
                   }
-                })
+                });
           }
         }
-      )
+      );
   }
 
   // edit category
-  updateCategory(category: CulturalSiteCategory, newCategoryName: string) {
+  updateCategory(category: CulturalSiteCategory, newCategoryName: string): void {
     if (newCategoryName == null) {
-       return
+       return;
     }
     // ako nije promenjeno ime, nema potebe za pozivom na bek
     if (category.name === newCategoryName) {
-      return
+      return;
     }
-    
-    const updatedCategory: CulturalSiteCategory = 
+
+    const updatedCategory: CulturalSiteCategory =
       new CulturalSiteCategory(
         newCategoryName
-      )
+      );
 
     this.culturalSiteCategoryService.updateCulturalSiteCategory(category.id, updatedCategory)
       .subscribe(
         response => {
           this.toastr.success('Successfully updated cultural site category!');
           // reload tabele
-          this.onCategoryPaginateChange(this.categoryPageEvent)
+          this.chosenCategory = response;
+          this.onCategoryPaginateChange(this.categoryPageEvent);
         },
         error => {
-          if(error.error.message){
+          if (error.error.message){
             this.toastr.error(error.error.message);
           } else {
             this.toastr.error('503 Server Unavailable');
           }
-        })
+        });
   }
 }

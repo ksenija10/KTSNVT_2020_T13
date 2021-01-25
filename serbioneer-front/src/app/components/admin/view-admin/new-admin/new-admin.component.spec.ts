@@ -27,7 +27,7 @@ describe('NewAdminComponent', () => {
   let loader: HarnessLoader;
 
   beforeEach(() => {
-    let adminServiceMock = {
+    const adminServiceMock = {
       createAdmin: jasmine.createSpy('createAdmin').and.returnValue(
         of({
           email: 'new@mail.com',
@@ -40,11 +40,11 @@ describe('NewAdminComponent', () => {
       ),
     };
 
-    let routerMock = {
+    const routerMock = {
       navigate: jasmine.createSpy('navigate'),
     };
 
-    let toastrMock = {
+    const toastrMock = {
       success: jasmine.createSpy('success'),
       error: jasmine.createSpy('error'),
     };
@@ -131,7 +131,7 @@ describe('NewAdminComponent', () => {
     await emailInput.setValue('');
     await emailInput.blur();
 
-    let errorMessage = component.getEmailErrorMessage();
+    const errorMessage = component.getEmailErrorMessage();
     expect(errorMessage).toEqual('Required field');
 
     const emailFormField = await loader.getHarness(
@@ -147,7 +147,7 @@ describe('NewAdminComponent', () => {
     await emailInput.setValue('admin@admin.com');
     await emailInput.blur();
 
-    let errorMessage = component.getEmailErrorMessage();
+    const errorMessage = component.getEmailErrorMessage();
 
     expect(errorMessage).toEqual('');
     const emailFormField = await loader.getHarness(
@@ -163,7 +163,7 @@ describe('NewAdminComponent', () => {
     await passwordInput.setValue('');
     await passwordInput.blur();
 
-    let errorMessage = component.getRequiredFieldErrorMessage('password');
+    const errorMessage = component.getRequiredFieldErrorMessage('password');
 
     expect(errorMessage).toEqual('Required field');
     const passwordFormField = await loader.getHarness(
@@ -179,7 +179,7 @@ describe('NewAdminComponent', () => {
     await passwordInput.setValue('admin');
     await passwordInput.blur();
 
-    let errorMessage = component.getRequiredFieldErrorMessage('password');
+    const errorMessage = component.getRequiredFieldErrorMessage('password');
 
     expect(errorMessage).toEqual('');
     const passwordFormField = await loader.getHarness(
@@ -199,7 +199,7 @@ describe('NewAdminComponent', () => {
     await confirmPasswordInput.setValue('match');
     await confirmPasswordInput.blur();
 
-    let returned = component.getPasswordsMatch();
+    const returned = component.getPasswordsMatch();
     expect(returned).toEqual('Passwords must match');
 
     const confirmPasswordFormField = await loader.getHarness(

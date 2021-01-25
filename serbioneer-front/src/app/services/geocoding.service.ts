@@ -1,15 +1,15 @@
 /// <reference types="@types/googlemaps" />
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class GeocodingService {
 
-    private googleKey: string = "AIzaSyBCtbTPTKPVG3w-mkIaB5PTczTaOhKXTfI";
-    private apiEndpoint: string = "https://maps.googleapis.com/maps/api/geocode/json"
+    private googleKey = 'AIzaSyBCtbTPTKPVG3w-mkIaB5PTczTaOhKXTfI';
+    private apiEndpoint = 'https://maps.googleapis.com/maps/api/geocode/json';
     // allow cors
     private proxyurl = 'https://cors-anywhere.herokuapp.com/';
 
@@ -17,11 +17,11 @@ export class GeocodingService {
 
     getLatlong(address: string): Observable<any> {
         let params = new HttpParams();
-        
+
         params = params.append('address', address);
         params = params.append('key', this.googleKey);
 
-        return this.http.get(this.proxyurl+this.apiEndpoint, {params: params});
+        return this.http.get(this.proxyurl + this.apiEndpoint, {params});
       }
 
   }

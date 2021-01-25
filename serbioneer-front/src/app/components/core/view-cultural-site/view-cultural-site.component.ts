@@ -15,7 +15,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddNewsArticleComponent } from './add-news-article/add-news-article.component';
 import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
 import { ToastrService } from 'ngx-toastr';
-import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/confirm-dialog.component';
+import { ConfirmDeleteDialogComponent } from 'src/app/components/core/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-view-cultural-site',
@@ -25,57 +25,57 @@ import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/conf
   export class ViewCulturalSiteComponent implements OnInit {
 
   culturalSiteId: number;
-  culturalSite! : CulturalSiteView;
-  starRating : RatingCreateDTO = {id: 0, value: 0, culturalSiteId: 0, authenticatedUserId: 0};
+  culturalSite!: CulturalSiteView;
+  starRating: RatingCreateDTO = {id: 0, value: 0, culturalSiteId: 0, authenticatedUserId: 0};
   initialStarRating = 0;
-  news! : NewsData;
-  comments! : CommentData;
-  images : any = [];
+  news!: NewsData;
+  comments!: CommentData;
+  images: any = [];
   newImages: any = [];
   files: any = [];
-  newImageFiles : any = [];
+  newImageFiles: any = [];
   myForm = new FormGroup({
     text: new FormControl('', [Validators.required]),
     file: new FormControl(''),
     fileSource: new FormControl('')});
-  buttonValue! : string;
-  userIsLogged : boolean = false;
-  adminIsLogged : boolean = false;
-  addNewImages : boolean = false;
-  addNewComment : boolean = false;
+  buttonValue!: string;
+  userIsLogged = false;
+  adminIsLogged = false;
+  addNewImages = false;
+  addNewComment = false;
 
   // map div id
-  mapCulturalSite: string = "map-cultural-site"
+  mapCulturalSite = 'map-cultural-site';
   // images array
-  siteImageSlider: Array<object> = []
+  siteImageSlider: Array<object> = [];
 
   pageEventNews: PageEvent = new PageEvent();
   pageEventComments: PageEvent = new PageEvent();
-  page : number = 0;
-  size : number = 1;
+  page = 0;
+  size = 1;
 
   constructor(
     private culturalSiteService: CulturalSiteService,
     private router: Router,
     private toastr: ToastrService,
-    private authenticationService : AuthenticationService,
+    private authenticationService: AuthenticationService,
     private authUserService: AuthenticatedUserService,
-    private ratingService : RatingService,
-    private imageService : ImageService,
-    private newsDialog : MatDialog,
-    private confirmDeleteDialog : MatDialog) { 
-      let siteUrl = this.router.url.split('/')
-      this.culturalSiteId = +siteUrl[siteUrl.length - 1]
+    private ratingService: RatingService,
+    private imageService: ImageService,
+    private newsDialog: MatDialog,
+    private confirmDeleteDialog: MatDialog) {
+      const siteUrl = this.router.url.split('/');
+      this.culturalSiteId = +siteUrl[siteUrl.length - 1];
       this.loggedUser();
   }
 
-  fetchNews(id: number){
+  fetchNews(id: number): void {
     this.culturalSiteService.getAllCulturalSiteNews(id, this.page, this.size).pipe(
       map((news: NewsData) => this.news = news)
     ).subscribe();
   }
 
-  fetchComments(id: number){
+  fetchComments(id: number): void {
     this.culturalSiteService.getAllCulturalSiteComments(id, this.page, this.size).pipe(
       map((comments: CommentData) => this.comments = comments)
     ).subscribe();
@@ -85,23 +85,25 @@ import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/conf
     this.culturalSiteService.getCulturalSite(this.culturalSiteId).pipe(
       map((culturalSite: CulturalSiteView) => {
         this.culturalSite = culturalSite;
-        this.culturalSite.rating = +(this.culturalSite.rating?.toFixed(1)!);
+        if (this.culturalSite.rating) {
+          this.culturalSite.rating = +(this.culturalSite.rating.toFixed(1));
+        }
         // ubacivanje svih slika u listu slika kulturnog dobra
-        if(culturalSite.images) {
+        if (culturalSite.images) {
           culturalSite.images.map((image: Image) => {
             this.siteImageSlider.push({
-              image: "data:image/jpg;base64,"+image.content, 
-              thumbImage: "data:image/jpg;base64,"+image.content, 
-              title: image.name})
-          })
+              image: 'data:image/jpg;base64,' + image.content,
+              thumbImage: 'data:image/jpg;base64,' + image.content,
+              title: image.name});
+          });
         }
-        if(this.userIsLogged){
+        if (this.userIsLogged){
           this.loggedSubscribedUser();
         }
         // dobavljamo sve news
-        this.fetchNews(this.culturalSite.id!);
+        this.fetchNews(this.culturalSiteId);
         // dobavi komentare
-        this.fetchComments(this.culturalSite.id!);
+        this.fetchComments(this.culturalSiteId);
       })
     ).subscribe(
       response => {},
@@ -112,71 +114,71 @@ import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/conf
     );
   }
 
-  onPaginateChangeNews(event : PageEvent){
+  onPaginateChangeNews(event: PageEvent): void {
     this.pageEventNews = event;
     this.page = event.pageIndex;
     this.size = event.pageSize;
     this.fetchNews(this.culturalSiteId);
   }
 
-  onPaginateChangeComments(event : PageEvent){
+  onPaginateChangeComments(event: PageEvent): void {
     this.pageEventComments = event;
     this.page = event.pageIndex;
     this.size = event.pageSize;
     this.fetchComments(this.culturalSiteId);
   }
 
-  loggedUser(){
-    let role = this.authenticationService.getLoggedInUserAuthority()
-    if(role == 'ROLE_USER'){
+  loggedUser(): void {
+    const role = this.authenticationService.getLoggedInUserAuthority();
+    if (role === 'ROLE_USER'){
       this.userIsLogged = true;
-    }else if(role == 'ROLE_ADMIN'){
+    }else if (role === 'ROLE_ADMIN'){
       this.adminIsLogged = true;
       this.buttonValue = 'Add news';
     }
   }
 
-  loggedSubscribedUser(){
-    let email = this.authenticationService.getLoggedInUserEmail()
+  loggedSubscribedUser(): void {
+    const email = this.authenticationService.getLoggedInUserEmail();
 
-    this.fetchUserRating(this.culturalSite.id!, email);
+    this.fetchUserRating(this.culturalSiteId, email);
 
-    const subscribedCulturalSiteDTO : SubscribedCulturalSiteDTO
-      = new SubscribedCulturalSiteDTO(false, email, this.culturalSite.id!);
+    const subscribedCulturalSiteDTO: SubscribedCulturalSiteDTO
+      = new SubscribedCulturalSiteDTO(false, email, this.culturalSiteId);
 
     this.culturalSiteService.getUserCulturalSite(subscribedCulturalSiteDTO).pipe(map(
-      (subscribedCulturalSiteDTO: SubscribedCulturalSiteDTO) => 
+      (subscribedCulturalSite: SubscribedCulturalSiteDTO) =>
       {
-        if(subscribedCulturalSiteDTO.subscribed){
-          this.buttonValue = "Unsubscribe";
+        if (subscribedCulturalSite.subscribed){
+          this.buttonValue = 'Unsubscribe';
         }
         else{
-          this.buttonValue = "Subscribe";
+          this.buttonValue = 'Subscribe';
         }
       }
       )
     ).subscribe();
   }
 
-  fetchUserRating(culturalSiteId : number, email : string){
+  fetchUserRating(culturalSiteId: number, email: string): void {
     this.ratingService.getUserRatingForCulturalSite(culturalSiteId, email).pipe(map(
-      (ratingDto : RatingDTO) => {
+      (ratingDto: RatingDTO) => {
         this.starRating = new RatingCreateDTO(ratingDto.id, ratingDto.value, ratingDto.culturalSiteId, ratingDto.authenticatedUserId);
         this.initialStarRating = ratingDto.value;
       }
-    )).subscribe()
+    )).subscribe();
   }
 
-  onChangeSubscription(){
-    if(this.buttonValue == "Subscribe"){
+  onChangeSubscription(): void {
+    if (this.buttonValue === 'Subscribe'){
       this.authUserService.subscribe(this.culturalSiteId)
         .subscribe(
           response => {
             this.toastr.success('Successfully subscribed to cultural site!');
-            this.buttonValue = "Unsubscribe";
+            this.buttonValue = 'Unsubscribe';
           },
           error => {
-            if(error.error.message){
+            if (error.error.message){
               this.toastr.error(error.error.message);
             } else {
               this.toastr.error('503 Server Unavailable');
@@ -188,10 +190,10 @@ import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/conf
         .subscribe(
           response => {
             this.toastr.info('Successfully unsubscribed from cultural site. Sad to see you leave.');
-            this.buttonValue = "Subscribe";
+            this.buttonValue = 'Subscribe';
           },
           error => {
-            if(error.error.message){
+            if (error.error.message){
               this.toastr.error(error.error.message);
             } else {
               this.toastr.error('503 Server Unavailable');
@@ -200,72 +202,75 @@ import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/conf
     }
   }
 
-  onRatingChange(){
-    if(this.initialStarRating == 0){
-      this.ratingService.createRating(this.culturalSite.id!, this.starRating.value).pipe(map(
-        (ratingDto : RatingDTO) => {
+  onRatingChange(): void {
+    if (this.initialStarRating === 0){
+      this.ratingService.createRating(this.culturalSiteId, this.starRating.value).pipe(map(
+        (ratingDto: RatingDTO) => {
           this.initialStarRating = ratingDto.value;
           this.starRating = ratingDto;
-          this.culturalSiteService.getCulturalSite(this.culturalSite.id!).pipe(
+          this.culturalSiteService.getCulturalSite(this.culturalSiteId).pipe(
             map((culturalSite: CulturalSite) => {
               this.culturalSite = culturalSite;
-              this.culturalSite.rating = +(this.culturalSite.rating?.toFixed(1)!);
+              if (this.culturalSite.rating) {
+                this.culturalSite.rating = +(this.culturalSite.rating.toFixed(1));
+              }
             })
-          ).subscribe()
+          ).subscribe();
         }
       )).subscribe();
     }
     else{
-      if(this.initialStarRating != this.starRating.value){
-        this.ratingService.updateRating(this.starRating.id, 
-        this.starRating.value, this.culturalSite.id!).pipe(map(
-          (ratingDto : RatingDTO) => {
+      if (this.initialStarRating !== this.starRating.value){
+        this.ratingService.updateRating(this.starRating.id,
+        this.starRating.value, this.culturalSiteId).pipe(map(
+          (ratingDto: RatingDTO) => {
             this.initialStarRating = ratingDto.value;
-            this.culturalSiteService.getCulturalSite(this.culturalSite.id!).pipe(
+            this.culturalSiteService.getCulturalSite(this.culturalSiteId).pipe(
               map((culturalSite: CulturalSite) => {
                 this.culturalSite = culturalSite;
-                this.culturalSite.rating = +(this.culturalSite.rating?.toFixed(1)!);
+                if (this.culturalSite.rating) {
+                  this.culturalSite.rating = +(this.culturalSite.rating.toFixed(1));
+                }
               })
-            ).subscribe()
+            ).subscribe();
           }
         )).subscribe();
       }
     }
   }
 
-  onFileChange(event : any) {
+  onFileChange(event: any): void {
     if (event.target.files && event.target.files[0]) {
-      for (let i = 0; i < event.target.files.length; i++) {
-        let name = event.target.files[i].name
-        var reader = new FileReader();
-        this.files.push(event.target.files[i]);
-        reader.onload = (event:any) => {
-          this.images.push(event.target.result);
+      for (const file of event.target.files) {
+        const reader = new FileReader();
+        this.files.push(file);
+        reader.onload = (loadEvent: any) => {
+          this.images.push(loadEvent.target.result);
           this.myForm.patchValue({
             fileSource: this.images
           });
-        }
-        reader.readAsDataURL(event.target.files[i]);
+        };
+        reader.readAsDataURL(file);
       }
     }
   }
 
-  submit(){
-    let commentText = this.myForm.get('text')?.value;
-    this.culturalSiteService.createComment(this.culturalSite.id!, commentText).pipe(map(
-      (newComment : CommentDto) => {
-        //provera da li je lista slika prazna
-        if(this.files.length > 0){
-          //ako nije onda dodajemo jedan po jedan fajl
-          for (let i = 0; i < this.files.length; i++) {
-            this.imageService.createForComment(newComment.id!, this.files[i]).pipe(map(
-              (image : Image) => {
+  submit(): void {
+    const commentText = this.myForm.get('text')?.value;
+    this.culturalSiteService.createComment(this.culturalSiteId, commentText).pipe(map(
+      (newComment: CommentDto) => {
+        // provera da li je lista slika prazna
+        if (this.files.length > 0){
+          // ako nije onda dodajemo jedan po jedan fajl
+          for (const file of this.files) {
+            this.imageService.createForComment(newComment.id || 0, file).pipe(map(
+              (image: Image) => {
                 this.images = [];
                 this.files = [];
                 this.addNewComment = false;
-                this.fetchComments(this.culturalSite.id!);
+                this.fetchComments(this.culturalSiteId);
               }
-            )).subscribe()
+            )).subscribe();
           }
         }
       }
@@ -278,126 +283,126 @@ import { ConfirmDeleteDialog } from 'src/app/components/core/confirm-dialog/conf
         this.myForm.reset();
       },
       error => {
-        if(error.error.message){
+        if (error.error.message){
           this.toastr.error(error.error.message);
         } else {
           this.toastr.error('503 Server Unavailable');
         }
       }
-    )
+    );
   }
 
-  openDialog(){
+  openDialog(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = { culturalSite: this.culturalSite};
     dialogConfig.width = '900px';
-    let dialogRef = this.newsDialog.open(AddNewsArticleComponent, dialogConfig);
+    const dialogRef = this.newsDialog.open(AddNewsArticleComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(value => {
-      this.fetchNews(this.culturalSite.id!);
+      this.fetchNews(this.culturalSiteId);
     });
   }
 
-  addImages(){
+  addImages(): void {
     this.addNewImages = !this.addNewImages;
     this.newImageFiles = [];
     this.newImages = [];
   }
 
-  addComments(){
+  addComments(): void {
     this.addNewComment = !this.addNewComment;
     this.images = [];
     this.myForm.reset();
   }
 
-  onNewImageChange(event : any) {
+  onNewImageChange(event: any): void {
     if (event.target.files && event.target.files[0]) {
-      for (let i = 0; i < event.target.files.length; i++) {
-        var reader = new FileReader();
-        this.newImageFiles.push(event.target.files[i]);
-        reader.onload = (event:any) => {
-          this.newImages.push(event.target.result);
+      for (const file of event.target.files) {
+        const reader = new FileReader();
+        this.newImageFiles.push(file);
+        reader.onload = (loadEvent: any) => {
+          this.newImages.push(loadEvent.target.result);
           this.myForm.patchValue({
             fileSource: this.newImages
           });
-        }
-        reader.readAsDataURL(event.target.files[i]);
+        };
+        reader.readAsDataURL(file);
       }
     }
   }
 
-  submitImages(){
-    //provera da li je lista slika prazna
-    if(this.newImageFiles.length > 0){
-      //ako nije onda dodajemo jedan po jedan fajl
-      for (let i = 0; i < this.newImageFiles.length; i++) {
-        this.imageService.createForCulturalSite(this.culturalSite.id!, this.newImageFiles[i]).pipe(map(
-          (image : Image) => {
-            this.newImages = []
-            this.newImageFiles = []
+  submitImages(): void {
+    // provera da li je lista slika prazna
+    if (this.newImageFiles.length > 0){
+      // ako nije onda dodajemo jedan po jedan fajl
+      for (const file of this.newImageFiles) {
+        this.imageService.createForCulturalSite(this.culturalSiteId, file).pipe(map(
+          (image: Image) => {
+            this.newImages = [];
+            this.newImageFiles = [];
             this.addNewImages = false;
-            this.culturalSite.images?.push(image)
+            this.culturalSite.images?.push(image);
             this.siteImageSlider.push({
-              image: "data:image/jpg;base64,"+image.content, 
-              thumbImage: "data:image/jpg;base64,"+image.content, 
-              title: image.name})
+              image: 'data:image/jpg;base64,' + image.content,
+              thumbImage: 'data:image/jpg;base64,' + image.content,
+              title: image.name});
           }
         )).subscribe(
           response => {
-            this.toastr.success('Successfully added image for cultural site!')
+            this.toastr.success('Successfully added image for cultural site!');
           },
           error => {
-            if(error.error.message){
+            if (error.error.message){
               this.toastr.error(error.error.message);
             } else {
               this.toastr.error('503 Server Unavailable');
             }
           }
-        )
+        );
       }
     }
-    
+
   }
 
-  editCulturalSite() {
-    this.router.navigate(['admin/edit-cultural-site/'+this.culturalSiteId])
+  editCulturalSite(): void {
+    this.router.navigate(['admin/edit-cultural-site/' + this.culturalSiteId]);
   }
-  
-  deleteCulturalSite() {
+
+  deleteCulturalSite(): void {
     // confirm delete dialog
-    const dialogRef = this.confirmDeleteDialog.open(ConfirmDeleteDialog, {
+    const dialogRef = this.confirmDeleteDialog.open(ConfirmDeleteDialogComponent, {
       data: {
         entity: 'cultural site',
         name: this.culturalSite.name
       }
-    })
+    });
 
     dialogRef.afterClosed()
       .subscribe(
         response => {
-          if(response) {
-            this.culturalSiteService.deleteCulturalSite(this.culturalSite.id!)
+          if (response) {
+            this.culturalSiteService.deleteCulturalSite(this.culturalSiteId)
               .subscribe(
-                response => {
+                serviceResponse => {
                   this.toastr.success('Successfully deleted cultural site!');
                   // redirekcija na stranicu sa svim kulturnim dobrima
                   this.router.navigate(['homepage']);
                 },
                 error => {
-                  if(error.error.message){
+                  if (error.error.message){
                     this.toastr.error(error.error.message);
                   } else {
                     this.toastr.error('503 Server Unavailable');
                   }
-                })
+                });
           }
         }
-      )
+      );
   }
 
-  getTextErrorMessage() {
-    if(this.myForm.controls['text'].touched) {
-        if ( this.myForm.controls['text'].hasError('required')) {
+  getTextErrorMessage(): string {
+    if (this.myForm.controls.text.touched) {
+        if ( this.myForm.controls.text.hasError('required')) {
         return 'Required field';
         }
     }
