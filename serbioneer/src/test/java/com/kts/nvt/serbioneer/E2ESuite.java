@@ -18,7 +18,7 @@ import org.springframework.test.context.TestPropertySource;
         MyProfileAdminE2ETest.class,
         MyProfileAuthenticatedUserE2ETest.class,
         NewAdminE2ETest.class,
-        NewCulturalSiteE2ETEst.class,
+        NewCulturalSiteE2ETest.class,
         NewsfeedE2ETest.class,
         PendingCommentsE2ETest.class,
         RegisterE2ETest.class,

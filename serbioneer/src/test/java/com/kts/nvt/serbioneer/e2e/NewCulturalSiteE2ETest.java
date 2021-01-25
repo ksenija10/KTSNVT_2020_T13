@@ -1,24 +1,26 @@
 package com.kts.nvt.serbioneer.e2e;
 
-import com.kts.nvt.serbioneer.e2e.pages.HeaderPage;
-import com.kts.nvt.serbioneer.e2e.pages.LoginPage;
-import com.kts.nvt.serbioneer.e2e.pages.NewCulturalSitePage;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
+import com.kts.nvt.serbioneer.e2e.pages.CulturalSiteViewPage;
+import com.kts.nvt.serbioneer.e2e.pages.DialogPage;
+import com.kts.nvt.serbioneer.e2e.pages.HeaderPage;
+import com.kts.nvt.serbioneer.e2e.pages.LoginPage;
+import com.kts.nvt.serbioneer.e2e.pages.NewCulturalSitePage;
 
-import static org.junit.Assert.*;
-
-public class NewCulturalSiteE2ETEst {
+public class NewCulturalSiteE2ETest {
 
     private WebDriver driver;
 
@@ -27,6 +29,10 @@ public class NewCulturalSiteE2ETEst {
     private NewCulturalSitePage newCulturalSitePage;
 
     private LoginPage loginPage;
+    
+    private CulturalSiteViewPage culturalSiteViewPage;
+    
+    private DialogPage dialogPage;
 
 
     @Before
@@ -41,6 +47,8 @@ public class NewCulturalSiteE2ETEst {
         headerPage = PageFactory.initElements(driver, HeaderPage.class);
         newCulturalSitePage = PageFactory.initElements(driver, NewCulturalSitePage.class);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
+        culturalSiteViewPage = PageFactory.initElements(driver, CulturalSiteViewPage.class);
+        dialogPage = PageFactory.initElements(driver, DialogPage.class);
 
         driver.get("https://localhost:4200/login-register/login");
         justWait();
@@ -51,11 +59,10 @@ public class NewCulturalSiteE2ETEst {
         justWait();
 
         headerPage.getAddCulturalSiteBtn().click();
-
     }
 
     @Test
-    public void AddNewCulturalSiteTestSuccess() throws InterruptedException {
+    public void AddAndDeleteNewCulturalSiteTestSuccess() throws InterruptedException {
         justWait();
         headerPage.ensureIsAdmin();
 
@@ -79,7 +86,14 @@ public class NewCulturalSiteE2ETEst {
         justWait();
 
         assertNotEquals(oldUrl, driver.getCurrentUrl());
-
+        
+        justWait();
+        culturalSiteViewPage.getDeleteBtn().click();
+        justWait();
+        dialogPage.getDialogYes().click();
+        justWait();
+        
+        assertEquals("https://localhost:4200/homepage", driver.getCurrentUrl());
     }
 
     @Test
