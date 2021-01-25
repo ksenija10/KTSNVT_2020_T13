@@ -11,10 +11,6 @@ describe('LoginRegisterComponent', () => {
   let router: Router;
 
   beforeEach(() => {
-    /*let routerMock = () => ({
-      url: jasmine.createSpy('url')
-        .and.returnValue("login-register/login")
-    });*/
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [LoginRegisterComponent],
