@@ -147,7 +147,7 @@ public class ChangePasswordAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/change-password", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/change-password", driver.getCurrentUrl());
 
         justWait();
 
@@ -181,7 +181,7 @@ public class ChangePasswordAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/change-password", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/change-password", driver.getCurrentUrl());
 
         justWait();
 
@@ -211,7 +211,7 @@ public class ChangePasswordAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/change-password", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/change-password", driver.getCurrentUrl());
 
         justWait();
 
@@ -244,7 +244,7 @@ public class ChangePasswordAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/change-password", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/change-password", driver.getCurrentUrl());
 
         justWait();
 
@@ -277,7 +277,7 @@ public class ChangePasswordAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/change-password", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/change-password", driver.getCurrentUrl());
 
         justWait();
 
@@ -309,7 +309,7 @@ public class ChangePasswordAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/change-password", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/change-password", driver.getCurrentUrl());
 
         justWait();
 
@@ -345,7 +345,7 @@ public class ChangePasswordAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/change-password", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/change-password", driver.getCurrentUrl());
 
         justWait();
 

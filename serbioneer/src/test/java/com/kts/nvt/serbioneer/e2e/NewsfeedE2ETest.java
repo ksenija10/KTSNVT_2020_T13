@@ -75,7 +75,7 @@ public class NewsfeedE2ETest {
     	
     	justWait();
     	
-    	assertEquals("https://localhost:4200/newsfeed", driver.getCurrentUrl());
+    	assertEquals("https://localhost:4200/auth/newsfeed", driver.getCurrentUrl());
     	
     	newsfeedPage.ensureIsDisplayedNewsfeed();
     	
@@ -115,7 +115,7 @@ public class NewsfeedE2ETest {
     	
     	justWait();
     	
-    	assertEquals("https://localhost:4200/newsfeed", driver.getCurrentUrl());
+    	assertEquals("https://localhost:4200/auth/newsfeed", driver.getCurrentUrl());
     	
     	newsfeedPage.ensureIsDisplayedNewsfeed();
     	

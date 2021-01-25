@@ -162,7 +162,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/my-profile", driver.getCurrentUrl());
     }
 
     @Test
@@ -192,7 +192,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/my-profile", driver.getCurrentUrl());
     }
 
     @Test
@@ -222,7 +222,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/my-profile", driver.getCurrentUrl());
     }
 
     @Test
@@ -252,7 +252,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/my-profile", driver.getCurrentUrl());
     }
 
     @Test
@@ -281,7 +281,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/my-profile", driver.getCurrentUrl());
     }
 
     @Test
@@ -313,7 +313,7 @@ public class MyProfileAdminE2ETest {
 
         justWait();
 
-        assertEquals("https://localhost:4200/my-profile", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/profile/my-profile", driver.getCurrentUrl());
     }
 
     @After

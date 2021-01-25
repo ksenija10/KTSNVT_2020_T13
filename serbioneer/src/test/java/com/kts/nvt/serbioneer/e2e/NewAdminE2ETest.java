@@ -92,7 +92,7 @@ public class NewAdminE2ETest {
 
         justWait();
 
-        assertEquals("https://localhost:4200/view-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/view-admin", driver.getCurrentUrl());
 
     }
 
@@ -136,7 +136,7 @@ public class NewAdminE2ETest {
 
         justWait();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -174,7 +174,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -212,7 +212,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -250,7 +250,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -288,7 +288,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -326,7 +326,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -364,7 +364,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -402,7 +402,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -440,7 +440,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -478,7 +478,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -516,7 +516,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 
@@ -559,7 +559,7 @@ public class NewAdminE2ETest {
 
         headerPage.ensureIsAdmin();
 
-        assertEquals("https://localhost:4200/new-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/new-admin", driver.getCurrentUrl());
 
     }
 

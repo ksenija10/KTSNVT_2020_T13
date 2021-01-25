@@ -125,7 +125,7 @@ public class HeaderE2ETest {
         headerPage.getNewsfeedBtn().click();
         headerPage.ensureIsAuthenticatedUser();
         newsfeedPage.ensureIsDisplayedNewsfeed();
-        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/newsfeed");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/auth/newsfeed");
 
         justWait();
 
@@ -133,7 +133,7 @@ public class HeaderE2ETest {
         headerPage.getSubscribedBtn().click();
         headerPage.ensureIsAuthenticatedUser();
         subscribedSitesPage.ensureIsDisplayed();
-        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/subscribed");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/auth/subscribed");
         
         justWait();
 
@@ -143,7 +143,7 @@ public class HeaderE2ETest {
         headerPage.getMyProfileBtn().click();
         headerPage.ensureIsAuthenticatedUser();
         myProfilePage.ensureIsDisplayedMyProfileAuthenticatedUserForm();
-        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/my-profile");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/profile/my-profile");
 
         justWait();
 
@@ -152,7 +152,7 @@ public class HeaderE2ETest {
         headerPage.getChangePasswordBtn().click();
         headerPage.ensureIsAuthenticatedUser();
         changePasswordPage.ensureIsDisplayedChangePasswordForm();
-        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/change-password");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/profile/change-password");
 
         justWait();
 
@@ -193,7 +193,7 @@ public class HeaderE2ETest {
         headerPage.getAddCulturalSiteBtn().click();
         headerPage.ensureIsAdmin();
         newCulturalSitePage.ensureIsVisibleNewCulturalSiteForm();
-        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/new-cultural-site");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/admin/new-cultural-site");
 
         justWait();
 
@@ -201,7 +201,7 @@ public class HeaderE2ETest {
         headerPage.getCategoriesBtn().click();
         headerPage.ensureIsAdmin();
         categoriesPage.ensureIsDisplayed();
-        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/categories");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/admin/categories");
 
         justWait();
 
@@ -209,7 +209,7 @@ public class HeaderE2ETest {
         headerPage.getPendingCommentsBtn().click();
         headerPage.ensureIsAdmin();
         pendingCommentsPage.ensureIsDisplayedPendingComments();
-        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/pending-comments");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/admin/pending-comments");
 
         justWait();
 
@@ -217,7 +217,7 @@ public class HeaderE2ETest {
         headerPage.getViewAdminBtn().click();
         headerPage.ensureIsAdmin();
         viewAdminPage.ensureIsDisplayedAdmins();
-        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/view-admin");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/admin/view-admin");
 
         justWait();
 
@@ -227,7 +227,7 @@ public class HeaderE2ETest {
         headerPage.getMyProfileBtn().click();
         headerPage.ensureIsAdmin();
         myProfilePage.ensureIsDisplayedMyProfileAuthenticatedUserForm();
-        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/my-profile");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/profile/my-profile");
 
         justWait();
 
@@ -236,7 +236,7 @@ public class HeaderE2ETest {
         headerPage.getChangePasswordBtn().click();
         headerPage.ensureIsAdmin();
         changePasswordPage.ensureIsDisplayedChangePasswordForm();
-        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/change-password");
+        assertEquals(driver.getCurrentUrl(), "https://localhost:4200/profile/change-password");
 
         justWait();
 

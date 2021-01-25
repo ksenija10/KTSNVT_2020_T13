@@ -60,7 +60,7 @@ public class ViewAdminE2ETest {
         headerPage.getViewAdminBtn().click();
         justWait();
 
-        assertEquals("https://localhost:4200/view-admin", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/view-admin", driver.getCurrentUrl());
 
         viewAdminPage.ensureIsDisplayedAdmins();
 

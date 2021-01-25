@@ -71,7 +71,7 @@ public class PendingCommentsE2ETest {
         
         justWait();
         
-        assertEquals("https://localhost:4200/pending-comments", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/pending-comments", driver.getCurrentUrl());
         pendingCommentsPage.ensureIsDisplayedPendingComments();
 
         int sizeBefore = Integer.parseInt(pendingCommentsPage.getPendingToasterPaginator().getAttribute("ng-reflect-length"));
@@ -98,7 +98,7 @@ public class PendingCommentsE2ETest {
         
         justWait();
         
-        assertEquals("https://localhost:4200/pending-comments", driver.getCurrentUrl());
+        assertEquals("https://localhost:4200/admin/pending-comments", driver.getCurrentUrl());
         pendingCommentsPage.ensureIsDisplayedPendingComments();
 
         int sizeBefore = Integer.parseInt(pendingCommentsPage.getPendingToasterPaginator().getAttribute("ng-reflect-length"));
