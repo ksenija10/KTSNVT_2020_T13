@@ -99,15 +99,42 @@ public class CulturalSiteServiceUnitTest {
 		RATING_CULTURAL_SITE.addRating(RATING_2);
 		given(culturalSiteRepository.save(RATING_CULTURAL_SITE)).willReturn(RATING_CULTURAL_SITE);
 	
-		// filter
+		// filter with category name
 		List<CulturalSite> filteredSites = new ArrayList<>();
 		filteredSites.add(CULTURAL_SITE_1);
 		Page<CulturalSite> filteredSitesPage = new PageImpl<>(filteredSites, pageable, PAGEABLE_TOTAL_ELEMENTS);
-		/*given(culturalSiteRepository.
-				findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase(
-						pageable, categoryName, typeName, name, city))
+		given(culturalSiteRepository.
+				findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc(
+						pageable, categoryName, name, city))
 				.willReturn(filteredSitesPage);
-		*/
+		
+		// filter without category name
+		List<CulturalSite> filteredSites1 = new ArrayList<>();
+		filteredSites1.add(CULTURAL_SITE_1_1);
+		Page<CulturalSite> filteredSitesPage1 = new PageImpl<>(filteredSites1, pageable, PAGEABLE_TOTAL_ELEMENTS);
+		given(culturalSiteRepository.
+				findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc(
+						pageable, name, city))
+				.willReturn(filteredSitesPage1);
+		
+		// filter subscribed sites with category name
+		List<CulturalSite> filteredSites2 = new ArrayList<>();
+		filteredSites2.add(CULTURAL_SITE_1_2);
+		Page<CulturalSite> filteredSitesPage2 = new PageImpl<>(filteredSites2, pageable, PAGEABLE_TOTAL_ELEMENTS);
+		given(culturalSiteRepository.
+				findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc(
+						pageable, categoryName, name, city, userEmail))
+				.willReturn(filteredSitesPage2);
+		
+		// filter subscribed sites without category name
+		List<CulturalSite> filteredSites3 = new ArrayList<>();
+		filteredSites3.add(CULTURAL_SITE_1_3);
+		Page<CulturalSite> filteredSitesPage3 = new PageImpl<>(filteredSites3, pageable, PAGEABLE_TOTAL_ELEMENTS);
+		given(culturalSiteRepository.
+				findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc(
+						pageable, name, city, userEmail))
+				.willReturn(filteredSitesPage3);
+		
 		// find all subscribed
 		given(culturalSiteRepository.findAllBySubscribedUsersId(pageable, SUBSCRIBED_USER_ID)).willReturn(sitesPage);
 	}
@@ -281,19 +308,55 @@ public class CulturalSiteServiceUnitTest {
 		verify(culturalSiteRepository, times(1)).save(RATING_CULTURAL_SITE);
 		assertTrue(NEW_RATING == newRating);
 	}
-/*
+
 	@Test
 	public void testFilterCulturalSites() {
-		CulturalSiteFilterDTO filterDto = new CulturalSiteFilterDTO(categoryName, typeName, name, city);
+		CulturalSiteFilterDTO filterDto = new CulturalSiteFilterDTO(categoryName, name, city);
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
 		Page<CulturalSite> filteredSitesPageable = culturalSiteService.filterCulturalSites(pageable, filterDto);
 		
 		verify(culturalSiteRepository, times(1)).
-		findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase(
-				pageable, categoryName, typeName, name, city);
+		findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc(
+				pageable, categoryName, name, city);
 		assertEquals(1, filteredSitesPageable.getContent().size());
 	}
-*/
+	
+	@Test
+	public void testFilterCulturalSites1() {
+		CulturalSiteFilterDTO filterDto = new CulturalSiteFilterDTO(categoryName1, name, city);
+		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
+		Page<CulturalSite> filteredSitesPageable = culturalSiteService.filterCulturalSites(pageable, filterDto);
+		
+		verify(culturalSiteRepository, times(1)).
+		findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc(
+				pageable, name, city);
+		assertEquals(1, filteredSitesPageable.getContent().size());
+	}
+	
+	@Test
+	public void testFilterCulturalSites2() {
+		CulturalSiteFilterDTO filterDto = new CulturalSiteFilterDTO(categoryName, name, city);
+		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
+		Page<CulturalSite> filteredSitesPageable = culturalSiteService.filterCulturalSitesSubscribed(pageable, filterDto, userEmail);
+		
+		verify(culturalSiteRepository, times(1)).
+		findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc(
+				pageable, categoryName, name, city, userEmail);
+		assertEquals(1, filteredSitesPageable.getContent().size());
+	}
+	
+	@Test
+	public void testFilterCulturalSites3() {
+		CulturalSiteFilterDTO filterDto = new CulturalSiteFilterDTO(categoryName1, name, city);
+		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
+		Page<CulturalSite> filteredSitesPageable = culturalSiteService.filterCulturalSitesSubscribed(pageable, filterDto,userEmail);
+		
+		verify(culturalSiteRepository, times(1)).
+		findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc(
+				pageable, name, city, userEmail);
+		assertEquals(1, filteredSitesPageable.getContent().size());
+	}
+
 	@Test
 	public void testFindAllCities() {
 		List<String> cityNames = culturalSiteService.findAllCities();

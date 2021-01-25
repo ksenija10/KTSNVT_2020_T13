@@ -303,7 +303,7 @@ public class CulturalSiteControllerIntegrationTest {
     
     @Test
     public void testFilter() throws RestClientException, URISyntaxException {
-    	String[] catNames = new String[1];
+    	String[] catNames = {};
     	CulturalSiteFilterDTO siteDto = new CulturalSiteFilterDTO(catNames, "", "");
     	
     	HttpHeaders headers = new HttpHeaders();     
@@ -320,7 +320,7 @@ public class CulturalSiteControllerIntegrationTest {
     @Test
     public void testFilterCategory() throws RestClientException, URISyntaxException {
     	String[] catNames = {"Manifestacija"};
-    	CulturalSiteFilterDTO siteDto = new CulturalSiteFilterDTO(catNames, "", "");
+    	CulturalSiteFilterDTO siteDto = new CulturalSiteFilterDTO(catNames, "sajam", "");
     	HttpHeaders headers = new HttpHeaders();     
         HttpEntity<Object> request = new HttpEntity<>(siteDto, headers);
         ResponseEntity<HelperPage<CulturalSiteDTO>> responseEntity = restTemplate.exchange(
@@ -333,7 +333,7 @@ public class CulturalSiteControllerIntegrationTest {
     
     @Test
     public void testFilterCite() throws RestClientException, URISyntaxException {
-    	String[] catNames = new String[1];
+    	String[] catNames = {};
     	CulturalSiteFilterDTO siteDto = new CulturalSiteFilterDTO(catNames, CITE_NAME, "");
     	HttpHeaders headers = new HttpHeaders();     
         HttpEntity<Object> request = new HttpEntity<>(siteDto, headers);
@@ -347,7 +347,7 @@ public class CulturalSiteControllerIntegrationTest {
     
     @Test
     public void testFilterLocation() throws RestClientException, URISyntaxException {
-    	String[] catNames = new String[1];
+    	String[] catNames = {};
     	CulturalSiteFilterDTO siteDto = new CulturalSiteFilterDTO(catNames, "", LOCATION);
     	HttpHeaders headers = new HttpHeaders();     
         HttpEntity<Object> request = new HttpEntity<>(siteDto, headers);

@@ -40,6 +40,12 @@ public class CulturalSiteConstants {
 	public static final String CULTURAL_SITE_CITY_3 = "Grad 3";
 	public static final CulturalSite CULTURAL_SITE_1 = 
 			new CulturalSite(CULTURAL_SITE_NAME_1, CULTURAL_SITE_ADDRESS_1, CULTURAL_SITE_CITY_1, TYPE, CATEGORY);
+	public static final CulturalSite CULTURAL_SITE_1_1 = 
+			new CulturalSite(CULTURAL_SITE_NAME_1, CULTURAL_SITE_ADDRESS_1, CULTURAL_SITE_CITY_1, TYPE, CATEGORY);
+	public static final CulturalSite CULTURAL_SITE_1_2 = 
+			new CulturalSite(CULTURAL_SITE_NAME_1, CULTURAL_SITE_ADDRESS_1, CULTURAL_SITE_CITY_1, TYPE, CATEGORY);
+	public static final CulturalSite CULTURAL_SITE_1_3 = 
+			new CulturalSite(CULTURAL_SITE_NAME_1, CULTURAL_SITE_ADDRESS_1, CULTURAL_SITE_CITY_1, TYPE, CATEGORY);
 	public static final CulturalSite CULTURAL_SITE_2 = 
 			new CulturalSite(CULTURAL_SITE_NAME_2, CULTURAL_SITE_ADDRESS_2, CULTURAL_SITE_CITY_2, TYPE, CATEGORY);
 	public static final CulturalSite CULTURAL_SITE_3 = 
@@ -79,10 +85,14 @@ public class CulturalSiteConstants {
 					NEW_CULTURAL_SITE_ADDRESS, NEW_CULTURAL_SITE_CITY, NEW_CULTURAL_SITE_DESC);
 
 	// filter
-	public static final String categoryName = ""; // -> Kategorija
+	public static final String[] categoryName = {"Kategorija"}; // -> Kategorija
 	public static final String typeName = ""; // -> Tip kategorije
 	public static final String name = "dobro"; // -> Kulturno dobro 1, Kulturno dobro 2, Kulturno dobro 3
 	public static final String city = "1"; // -> Grad 1
+	
+	public static final String userEmail = "user@user.com";
+	
+	public static final String[] categoryName1 = {}; // -> Kategorija
 	
 	
 	// integration tests
@@ -108,11 +118,18 @@ public class CulturalSiteConstants {
 	public static final Long UPDATE_TYPE_ID = 5L;
 	
 	// filter DB
-	public static final String DB_FILTER_CATEGORY_NAME = "cija"; // -> Manifestacija, Institucija
-	public static final String DB_FILTER_TYPE_NAME = "a"; // -> Biblioteka, Festival, Sajam
+	public static final String[] DB_FILTER_CATEGORY_NAME = {"Manifestacija"}; // -> Manifestacija, Institucija
 	public static final String DB_FILTER_SITE_NAME = "sajam"; // -> Beogradski sajam knjiga, Beogradski sajam automobila
 	public static final String DB_FILTER_CITY_NAME = "grad"; // -> Beograd
 	public static final int DB_FILTER_NUM = 2;
+	
+	//1 2 4 za isidora
+	public static final String DB_FILTER_SITE_NAME1 = "a"; // -> Civijada
+	public static final String DB_FILTER_CITY_NAME1 = "a"; // -> Sabac
+	public static final String DB_FILTER_EMAIL = "prvi@user.com";
+	public static final int DB_FILTER_NUM1 = 1;
+	
+	public static final int DB_FILTER_NUM2 = 3;
 	
 	// update rating
 	public static final int NEW_RATING_VALUE = 5;
