@@ -280,13 +280,13 @@ public class CulturalSiteServiceIntegrationTest {
 		assertNotEquals(oldRatingValue, newRatingValue);
 		assertTrue((oldRatingValue + NEW_RATING_VALUE)/2 == newRatingValue);
 	}
-/*
+
 	@Test
 	public void testFilterCulturalSites() {
 		Pageable pageable = PageRequest.of(DB_PAGEABLE_PAGE, DB_PAGEABLE_SIZE);
 		CulturalSiteFilterDTO filterDto = 
 				new CulturalSiteFilterDTO(
-						DB_FILTER_CATEGORY_NAME, DB_FILTER_TYPE_NAME, DB_FILTER_SITE_NAME, DB_FILTER_CITY_NAME);
+						DB_FILTER_CATEGORY_NAME, DB_FILTER_SITE_NAME, DB_FILTER_CITY_NAME);
 		
 		Page<CulturalSite> filteredSitesPage = culturalSiteService.filterCulturalSites(pageable, filterDto);
 		
@@ -295,7 +295,7 @@ public class CulturalSiteServiceIntegrationTest {
 		assertTrue(filteredSitesPage.getContent().get(0).getName().contains(DB_FILTER_SITE_NAME));
 	}
 
-*/
+
 	@Test
 	public void testFindAllCities() {
 		List<String> cityNames = culturalSiteService.findAllCities();

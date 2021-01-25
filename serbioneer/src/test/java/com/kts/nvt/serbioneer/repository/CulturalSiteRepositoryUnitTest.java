@@ -43,32 +43,52 @@ public class CulturalSiteRepositoryUnitTest {
 		Set<CulturalSite> subscribedSites = user.getSubscribedSites();
 		userSubscribedSitesSizeDB = subscribedSites.size();
 	}
-	/*
+	
 	@Test
-	public void testFindAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase() {
-		String categoryName = "cija"; // -> Manifestacija, Institucija
-		String typeName = "a"; // -> Biblioteka, Festival, Sajam
+	public void testFindAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc() {
+		String[] categoryName = {"Manifestacija"}; // -> Manifestacija, Institucija
 		String name = "sajam"; // -> Beogradski sajam knjiga, Beogradski sajam automobila
 		String city = "grad"; // -> Beograd
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
-		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase(pageable, categoryName, typeName, name, city);
+		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc(pageable, categoryName, name, city);
 		
 		assertEquals(2, filteredSitesPageable.getContent().size());
 	}
 	
 	@Test
-	public void testFindAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseEmpty() {
-		String categoryName = ""; // -> Manifestacija, Institucija
-		String typeName = ""; // -> Biblioteka, Festival, Sajam
-		String name = ""; // -> Beogradski sajam knjiga, Beogradski sajam automobila
-		String city = ""; // -> Beograd
+	public void testFindAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc() {
+		String name = ""; //
+		String city = "abac"; //
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
-		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase(pageable, categoryName, typeName, name, city);
+		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc(pageable, name, city);
 		
-		assertEquals(5, filteredSitesPageable.getContent().size());
-
+		assertEquals(3, filteredSitesPageable.getContent().size());
 	}
-	*/
+	
+	
+	@Test
+	public void testFindAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc() {
+		String[] categoryName = {"Manifestacija"}; // -> Manifestacija, Institucija
+		String name = "a"; // -> Beogradski sajam knjiga, Beogradski sajam automobila
+		String city = "a"; // -> Beograd
+		String userEmail = "prvi@user.com";
+		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
+		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc(pageable, categoryName, name, city, userEmail);
+		
+		assertEquals(1, filteredSitesPageable.getContent().size());
+	}
+	
+	@Test
+	public void testFindAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc() {
+		String name = "a"; //
+		String city = "a"; //
+		String userEmail = "prvi@user.com";
+		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
+		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc(pageable, name, city, userEmail);
+		
+		assertEquals(3, filteredSitesPageable.getContent().size());
+	}
+	
 	@Test
 	public void testFindAllBySubscribedUsersIdPageableLong() {
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);

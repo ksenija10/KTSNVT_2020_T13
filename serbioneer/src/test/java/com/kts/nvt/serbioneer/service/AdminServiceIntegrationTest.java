@@ -50,11 +50,11 @@ public class AdminServiceIntegrationTest {
 		assertEquals(ADMIN_ID, found.getId());
 	}
 	
-	/*@Test
+	@Test
 	public void testFindOneByIdNull() {
 		Admin found = adminService.findOneById(NULL_ID);
 		assertNull(found);
-	}*/
+	}
 	
 	@Test
 	public void testCreate() throws Exception {

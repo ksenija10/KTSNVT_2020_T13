@@ -25,30 +25,43 @@ public class CulturalSiteRepositoryIntegrationTest {
 
 	@Autowired
 	private CulturalSiteRepository culturalSiteRepository;
-	/*
+	
 	@Test
-	public void testFindAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase() {
+	public void testFindAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc() {
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
-		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase(
-				pageable, DB_FILTER_CATEGORY_NAME, DB_FILTER_TYPE_NAME, DB_FILTER_SITE_NAME, DB_FILTER_CITY_NAME);
+		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc(
+				pageable, DB_FILTER_CATEGORY_NAME, DB_FILTER_SITE_NAME, DB_FILTER_CITY_NAME);
 		
 		assertEquals(DB_FILTER_NUM, filteredSitesPageable.getContent().size());
 	}
-
+	
 	@Test
-	public void testFindAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseEmpty() {
-		String categoryName = ""; // -> Manifestacija, Institucija
-		String typeName = ""; // -> Biblioteka, Festival, Sajam
-		String name = ""; // -> Beogradski sajam knjiga, Beogradski sajam automobila
-		String city = ""; // -> Beograd
+	public void testFindAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc() {
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
-		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByCulturalSiteCategoryNameContainingIgnoreCaseAndCulturalCategoryTypeNameContainingIgnoreCaseAndNameContainingIgnoreCaseAndCityContainingIgnoreCase(
-				pageable, categoryName, typeName, name, city);
+		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseOrderByIdAsc(
+				pageable, DB_FILTER_SITE_NAME, DB_FILTER_CITY_NAME);
 		
-		assertEquals(5, filteredSitesPageable.getContent().size());
+		assertEquals(DB_FILTER_NUM, filteredSitesPageable.getContent().size());
+	}
+	
+	@Test
+	public void testFindAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc() {
+		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
+		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByCulturalSiteCategoryNameInAndNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc(
+				pageable, DB_FILTER_CATEGORY_NAME, DB_FILTER_SITE_NAME1, DB_FILTER_CITY_NAME1, DB_FILTER_EMAIL);
+		
+		assertEquals(DB_FILTER_NUM1, filteredSitesPageable.getContent().size());
+	}
+	
+	@Test
+	public void testfindAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc() {
+		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
+		Page<CulturalSite> filteredSitesPageable = culturalSiteRepository.findAllByNameContainingIgnoreCaseAndCityContainingIgnoreCaseAndSubscribedUsersEmailContainingOrderByIdAsc(
+				pageable, DB_FILTER_SITE_NAME1, DB_FILTER_CITY_NAME1, DB_FILTER_EMAIL);
+		
+		assertEquals(DB_FILTER_NUM2, filteredSitesPageable.getContent().size());
 	}
 
- 	*/
 	@Test
 	public void testFindAllBySubscribedUsersIdPageableLong() {
 		Pageable pageable = PageRequest.of(PAGEABLE_PAGE, PAGEABLE_SIZE);
