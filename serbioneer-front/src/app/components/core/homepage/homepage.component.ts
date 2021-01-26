@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { CulturalSiteData, CulturalSiteService } from 'src/app/services/cultural-site.service';
@@ -25,7 +25,6 @@ export class HomepageComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  culturalSiteCategoryCtrl = new FormControl();
   filteredCulturalSiteCategories: Observable<string[]>;
   culturalSiteCategorys: string[] = [];
   allCulturalSiteCategorys: string[] = [];
@@ -34,8 +33,8 @@ export class HomepageComponent implements OnInit {
   allLocations: string[] = [];
 
   // filter fields
-  location = '';
-  name = '';
+  // filter form
+  filterForm: FormGroup;
 
   // cultural sites data
   dataSource: CulturalSiteData = {content: [], size: 0, totalElements: 0, totalPages: 0};
@@ -65,6 +64,12 @@ export class HomepageComponent implements OnInit {
     private culturalSiteService: CulturalSiteService,
     private toastr: ToastrService
   ) {
+    // inicijalizacija forme
+    this.filterForm = new FormGroup({
+      culturalSiteCategoryCtrl: new FormControl(),
+      location: new FormControl(''),
+      name: new FormControl('')
+    });
     // da li je zatrazen subscribed prikaz?
     this.isSubscribedSitesView = this.route.snapshot.data.subscribedView || false;
     const subscribedMap = this.route.snapshot.data.subscribedMap;
@@ -94,12 +99,12 @@ export class HomepageComponent implements OnInit {
       .subscribe((responseData) => {
         this.allCulturalSiteCategorys = responseData;
         // event da je doslo do promene u allculturalsitecategorys
-        this.culturalSiteCategoryCtrl.setValue('');
+        this.filterForm.get('culturalSiteCategoryCtrl')?.setValue('');
       });
-    this.filteredCulturalSiteCategories = this.culturalSiteCategoryCtrl.valueChanges.pipe(
+    this.filteredCulturalSiteCategories = this.filterForm.get('culturalSiteCategoryCtrl')?.valueChanges.pipe(
         startWith(null),
         map((culturalSiteCategory: string | null) => culturalSiteCategory
-        ? this._filter(culturalSiteCategory) : this.allCulturalSiteCategorys.slice()));
+        ? this._filter(culturalSiteCategory) : this.allCulturalSiteCategorys.slice()))!;
   }
 
   ngOnInit(): void {
@@ -131,7 +136,9 @@ export class HomepageComponent implements OnInit {
     this.progressBar = true;
     const page = this.pageEvent.pageIndex;
     const size = this.pageEvent.pageSize;
-    const filterDto: FilterDTO = new FilterDTO(this.culturalSiteCategorys, this.name, this.location);
+    let name = this.filterForm.get('name')?.value;
+    let location = this.filterForm.get('location')?.value;
+    const filterDto: FilterDTO = new FilterDTO(this.culturalSiteCategorys, name, location);
     if (!this.isSubscribedSitesView) {
       this.culturalSiteService.filterByPage(page, size, filterDto).pipe(
         map((filteredCulturalSiteData: CulturalSiteData) => this.dataSource = filteredCulturalSiteData)
@@ -164,7 +171,7 @@ export class HomepageComponent implements OnInit {
       input.value = '';
     }
 
-    this.culturalSiteCategoryCtrl.setValue(null);
+    this.filterForm.get('culturalSiteCategoryCtrl')?.setValue(null);
   }
 
   remove(value: string): void {
@@ -176,14 +183,14 @@ export class HomepageComponent implements OnInit {
 
     this.allCulturalSiteCategorys.push(value);
     // event da je doslo do promene u allculturalsitecategorys
-    this.culturalSiteCategoryCtrl.setValue('');
+    this.filterForm.get('culturalSiteCategoryCtrl')?.setValue('');
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.culturalSiteCategorys.push(event.option.viewValue);
     this.removeFromList(event.option.viewValue);
     this.culturalSiteCategorysInput.nativeElement.value = '';
-    this.culturalSiteCategoryCtrl.setValue(null);
+    this.filterForm.get('culturalSiteCategoryCtrl')?.setValue(null);
   }
 
   private _filter(value: string): string[] {
@@ -206,7 +213,4 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  onKey(event: any): void {
-    this.name = event.target.value;
-  }
 }

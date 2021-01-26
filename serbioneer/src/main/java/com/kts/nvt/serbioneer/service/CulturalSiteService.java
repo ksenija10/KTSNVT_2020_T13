@@ -1,6 +1,7 @@
 package com.kts.nvt.serbioneer.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -154,6 +155,7 @@ public class CulturalSiteService implements ServiceInterface<CulturalSite> {
 			citiesSet.add(culturalSite.getCity());
 		}
 		cities.addAll(citiesSet);
+		Collections.sort(cities); 
 		return cities;
 	}
 	

@@ -14,7 +14,7 @@ import { onlyContainsLetters } from 'src/app/util/util';
 })
 export class MyProfileComponent implements OnInit {
 
-  myProfileForm!: FormGroup;
+  myProfileForm: FormGroup;
   namePattern = '[A-ZŠĐČĆŽ][a-zšđčćž]*';
   datePattern = '[0-9]';
   loggedInUser!: UserUpdateDTO;
