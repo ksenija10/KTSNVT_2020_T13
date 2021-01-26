@@ -15,8 +15,8 @@ import { ImageService } from 'src/app/services/image.service';
 export class AddNewsArticleComponent{
 
   newsForm: FormGroup;
-  images: any = [];
-  files: any = [];
+  images: string[] = [];
+  files: Blob[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddNewsArticleComponent>,

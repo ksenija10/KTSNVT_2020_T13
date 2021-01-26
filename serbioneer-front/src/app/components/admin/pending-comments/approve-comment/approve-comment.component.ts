@@ -3,6 +3,7 @@ import { Comment } from '../../../../model/comment.model';
 import { PendingCommentsComponent } from '../pending-comments.component';
 import { CommentService } from '../../../../services/comment.service';
 import { ToastrService } from 'ngx-toastr';
+import { SliderImage } from 'src/app/model/image.model';
 
 @Component({
   selector: 'app-approve-comment',
@@ -16,7 +17,7 @@ export class ApproveCommentComponent implements OnInit {
 
   @Output() commentSaidFetch: EventEmitter<void> = new EventEmitter<void>();
 
-  imageSlider: Array<object> = [];
+  imageSlider: Array<SliderImage> = [];
 
   constructor(
         private commentService: CommentService,

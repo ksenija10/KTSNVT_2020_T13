@@ -37,8 +37,8 @@ export class NewCulturalSiteComponent implements OnInit {
   location: Location = new Location(0, 0);
 
   // image import
-  images: any = [];
-  files: any = [];
+  images: string[] = [];
+  files: Blob[] = [];
 
   // for editing
   editCulturalSiteId: number;

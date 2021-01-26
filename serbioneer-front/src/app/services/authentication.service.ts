@@ -27,6 +27,7 @@ export class AuthenticationService {
 
   private jwtService: JwtHelperService;
 
+  // varira od browser-a u kom pozivamo
   private refreshTokenTimeout: any;
   private refreshedToken = '';
   private expiresInNum = 0;
@@ -74,6 +75,7 @@ export class AuthenticationService {
   }
 
   // geteri i seteri
+  // poziva se i za updatePasswordDto i sa loginDto -> response je any
   setLoggedInUser(response: any): void {
     // ekstrakcija tokena
     const jwtTokenBearer = response.headers.get('Authorization');
@@ -86,12 +88,14 @@ export class AuthenticationService {
     this.startRefreshTokenTimer(jwtToken);
  }
 
+  // sadrzaj jwt tokena moze biti bilo sta
   getLoggedInUser(): any {
     const token = localStorage.getItem('jwtToken');
     if (!token) {
       return '';
     }
     const info = this.jwtService.decodeToken(token);
+    console.log(typeof(info));
     return info;
   }
 

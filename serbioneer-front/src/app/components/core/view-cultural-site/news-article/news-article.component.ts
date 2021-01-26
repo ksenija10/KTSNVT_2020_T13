@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { SliderImage } from 'src/app/model/image.model';
 import { NewsDTO } from 'src/app/model/news.model';
 
 @Component({
@@ -10,7 +11,7 @@ export class NewsArticleComponent implements OnInit {
 
   @Input() news!: NewsDTO;
 
-  newsImageSlider: Array<object> = [];
+  newsImageSlider: Array<SliderImage> = [];
 
   constructor() { }
 

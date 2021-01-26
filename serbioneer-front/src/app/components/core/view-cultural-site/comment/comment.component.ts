@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { ConfirmDeleteDialogComponent } from 'src/app/components/core/confirm-dialog/confirm-dialog.component';
 import { Comment } from 'src/app/model/comment.model';
+import { SliderImage } from 'src/app/model/image.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CommentService } from 'src/app/services/comment.service';
 
@@ -24,7 +25,7 @@ export class CommentComponent implements OnInit {
   inputText = '';
   userComment = true;
 
-  commentImageSlider: Array<object> = [];
+  commentImageSlider: Array<SliderImage> = [];
 
   editCommentForm: FormGroup;
 

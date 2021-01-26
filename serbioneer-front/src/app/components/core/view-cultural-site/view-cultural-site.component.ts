@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { ConfirmDeleteDialogComponent } from 'src/app/components/core/confirm-dialog/confirm-dialog.component';
 import { CulturalSite, SubscribedCulturalSiteDTO } from 'src/app/model/cultural-site.model';
-import { Image } from 'src/app/model/image.model';
+import { Image, SliderImage } from 'src/app/model/image.model';
 import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CommentData } from 'src/app/services/comment.service';
@@ -30,10 +30,10 @@ import { AddNewsArticleComponent } from './add-news-article/add-news-article.com
   initialStarRating = 0;
   news!: NewsData;
   comments!: CommentData;
-  images: any = [];
-  newImages: any = [];
-  files: any = [];
-  newImageFiles: any = [];
+  images: string[] = [];
+  newImages: string[] = [];
+  files: Blob[] = [];
+  newImageFiles: Blob[] = [];
   myForm = new FormGroup({
     text: new FormControl('', [Validators.required]),
     file: new FormControl(''),
@@ -47,7 +47,7 @@ import { AddNewsArticleComponent } from './add-news-article/add-news-article.com
   // map div id
   mapCulturalSite = 'map-cultural-site';
   // images array
-  siteImageSlider: Array<object> = [];
+  siteImageSlider: Array<SliderImage> = [];
 
   pageEventNews: PageEvent = new PageEvent();
   pageEventComments: PageEvent = new PageEvent();
@@ -413,8 +413,4 @@ import { AddNewsArticleComponent } from './add-news-article/add-news-article.com
     }
     return '';
   }
-}
-
-export interface DialogData {
-  culturalSiteId: number;
 }
