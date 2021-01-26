@@ -14,7 +14,6 @@ import {
 import { Image } from 'src/app/model/image.model';
 import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
-import { GeocodingService } from 'src/app/services/geocoding.service';
 import { ImageService } from 'src/app/services/image.service';
 
 export class Location {
@@ -56,7 +55,6 @@ export class NewCulturalSiteComponent implements OnInit {
     private culturalSiteService: CulturalSiteService,
     private culturalSiteCategoryService: CulturalSiteCategoryService,
     private imageService: ImageService,
-    private geocodingService: GeocodingService,
     private toastr: ToastrService,
     private router: Router
   ) {
@@ -165,18 +163,10 @@ export class NewCulturalSiteComponent implements OnInit {
   addressChange(address: any): void {
     // setting address from API to local variable
     this.foundAddress = address.formatted_address;
-    this.geocodingService
-      .getLatlong(this.foundAddress)
-      .subscribe((response) => {
-        this.location.lat = response.results[0].geometry.location.lat;
-        this.location.lng = response.results[0].geometry.location.lng;
-        this.newCulturalSiteForm
-          .get('lat')
-          ?.setValue(this.location.lat.toFixed(3));
-        this.newCulturalSiteForm
-          .get('lng')
-          ?.setValue(this.location.lng.toFixed(3));
-      });
+    this.location.lat = address.geometry.location.lat();
+    this.location.lng = address.geometry.location.lng();
+    this.newCulturalSiteForm.get('lat')?.setValue(this.location.lat.toFixed(3));
+    this.newCulturalSiteForm.get('lng')?.setValue(this.location.lng.toFixed(3));
   }
 
   onSubmit(): void {

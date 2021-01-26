@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^3.0.0-beta.0",
     "@angular/animations": "^11.0.7",
     "@angular/cdk": "^11.0.3",
     "@angular/common": "~11.0.3",
@@ -25,7 +26,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@ncstate/sat-popover": "^7.1.0",
     "@ng-bootstrap/ng-bootstrap": "^8.0.2",
-    "@types/googlemaps": "^3.43.2",
+    "@types/googlemaps": "^3.39.13",
     "bootstrap": "^4.5.3",
     "ng-image-slider": "^2.6.4",
     "ngx": "^2.4.0",

@@ -16,7 +16,6 @@ import { of } from 'rxjs';
 import { CulturalSiteDTO } from 'src/app/model/cultural-site.model';
 import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
-import { GeocodingService } from 'src/app/services/geocoding.service';
 import { ImageService } from 'src/app/services/image.service';
 import { NewCulturalSiteComponent } from './new-cultural-site.component';
 
@@ -27,7 +26,6 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
     let culturalSiteService: CulturalSiteService;
     let culturalSiteCategoryService: CulturalSiteCategoryService;
     let imageService: ImageService;
-    let geocodingService: GeocodingService;
     let toastr: ToastrService;
     let router: Router;
     let loader: HarnessLoader;
@@ -117,18 +115,6 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
                 }))
         };
 
-        const location = {lat: 42, lng: 20};
-        const geometry = {location};
-        const results = {geometry};
-        const geocodingServiceMock = {
-            getLatlong: jasmine.createSpy('getLatlong')
-                .and.returnValue(of({
-                    results: [
-                        results
-                    ]
-                }))
-        };
-
         const toastrMock = {
             success: jasmine.createSpy('success'),
             error: jasmine.createSpy('error')
@@ -145,7 +131,6 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
                 { provide: CulturalSiteService, useValue: culturalSiteServiceMock },
                 { provide: CulturalSiteCategoryService, useValue: culturalSiteCategoryServiceMock },
                 { provide: ImageService, useValue: imageServiceMock },
-                { provide: GeocodingService, useValue: geocodingServiceMock },
                 { provide: ToastrService, useValue: toastrMock },
                 { provide: Router, useValue: routerMock }
             ],
@@ -164,7 +149,6 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
         culturalSiteService = TestBed.inject(CulturalSiteService);
         culturalSiteCategoryService = TestBed.inject(CulturalSiteCategoryService);
         imageService = TestBed.inject(ImageService);
-        geocodingService = TestBed.inject(GeocodingService);
         toastr = TestBed.inject(ToastrService);
         router = TestBed.inject(Router);
         loader = TestbedHarnessEnvironment.loader(fixture);
@@ -276,13 +260,17 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
     });
 
     it('should set new lat and lng on address change', async () => {
+        const location = {
+            lat(): number { return 42; },
+            lng(): number { return 20; }
+        };
+        const geometry = {location};
         const formattedAddess = 'Ulica Grad';
-        const address = {formatted_address: formattedAddess};
+        const address = {formatted_address: formattedAddess, geometry};
 
         component.addressChange(address);
 
         expect(component.foundAddress).toEqual(formattedAddess);
-        expect(geocodingService.getLatlong).toHaveBeenCalledWith(formattedAddess);
         expect(component.location.lat).toEqual(42);
         expect(component.location.lng).toEqual(20);
         // provera u htmlu

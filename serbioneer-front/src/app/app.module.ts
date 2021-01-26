@@ -27,7 +27,7 @@ import { RouterModule } from '@angular/router';
     AdminModule,
     AuthUserModule,
     CoreModule,
-    UserProfileModule
+    UserProfileModule,
   ],
   providers: [
     {
