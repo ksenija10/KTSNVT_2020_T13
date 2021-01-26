@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
-import { CulturalSiteDTO } from 'src/app/model/cultural-site.model';
+import { CulturalSite } from 'src/app/model/cultural-site.model';
 import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { ImageService } from 'src/app/services/image.service';
@@ -293,14 +293,13 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
         await culturalSiteTypeInput.clickOptions(); // valjda odabere prvu
         expect(component.newCulturalSiteForm.valid).toBeTruthy();
 
-        const newCulturalSiteDto: CulturalSiteDTO =
-            new CulturalSiteDTO(
-                undefined,
+        const newCulturalSiteDto: CulturalSite =
+            new CulturalSite(
                 'Izmenjeno kulturno dobro',
                 1,
-                undefined,
+                '',
                 1,
-                undefined,
+                '',
                 42,
                 20,
                 'Adresa 5',

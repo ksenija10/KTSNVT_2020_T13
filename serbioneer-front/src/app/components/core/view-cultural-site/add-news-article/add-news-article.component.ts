@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { NewsDTO } from 'src/app/model/news.model';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
-import { ImageService, NewsDto } from 'src/app/services/image.service';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-add-news-article',
@@ -40,10 +40,10 @@ export class AddNewsArticleComponent{
     }
 
     const newsDto: NewsDTO =
-      new NewsDTO(this.newsForm.value.text, new Date(), '', []);
+      new NewsDTO(this.newsForm.value.text, new Date(), '', [], -1);
 
     this.culturalSiteService.createNews(newsDto, this.data.culturalSite.id).pipe(map(
-      (newNewsDto: NewsDto) => {
+      (newNewsDto: NewsDTO) => {
         if (this.files.length > 0) {
           for (const file of this.files) {
             this.imageService.createForNews(newNewsDto.id, file).pipe(map(

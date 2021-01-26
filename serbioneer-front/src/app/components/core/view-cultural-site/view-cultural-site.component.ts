@@ -1,21 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CulturalSite, CulturalSiteView, SubscribedCulturalSiteDTO } from 'src/app/model/cultural-site.model';
-import { Image } from 'src/app/model/image.model';
-import { CommentDto, CulturalSiteService, NewsData } from 'src/app/services/cultural-site.service';
-import { map } from 'rxjs/operators';
-import { CommentData } from 'src/app/services/comment.service';
-import { Router } from '@angular/router';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { RatingCreateDTO, RatingDTO, RatingService } from 'src/app/services/rating.service';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
-import { ImageService } from 'src/app/services/image.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AddNewsArticleComponent } from './add-news-article/add-news-article.component';
-import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
+import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs/operators';
 import { ConfirmDeleteDialogComponent } from 'src/app/components/core/confirm-dialog/confirm-dialog.component';
+import { CulturalSite, SubscribedCulturalSiteDTO } from 'src/app/model/cultural-site.model';
+import { Image } from 'src/app/model/image.model';
+import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CommentData } from 'src/app/services/comment.service';
+import { CommentDto, CulturalSiteService } from 'src/app/services/cultural-site.service';
+import { ImageService } from 'src/app/services/image.service';
+import { NewsData } from 'src/app/services/news.service';
+import { RatingCreateDTO, RatingDTO, RatingService } from 'src/app/services/rating.service';
+import { AddNewsArticleComponent } from './add-news-article/add-news-article.component';
 
 @Component({
   selector: 'app-view-cultural-site',
@@ -25,7 +25,7 @@ import { ConfirmDeleteDialogComponent } from 'src/app/components/core/confirm-di
   export class ViewCulturalSiteComponent implements OnInit {
 
   culturalSiteId: number;
-  culturalSite!: CulturalSiteView;
+  culturalSite!: CulturalSite;
   starRating: RatingCreateDTO = {id: 0, value: 0, culturalSiteId: 0, authenticatedUserId: 0};
   initialStarRating = 0;
   news!: NewsData;
@@ -83,7 +83,7 @@ import { ConfirmDeleteDialogComponent } from 'src/app/components/core/confirm-di
 
   ngOnInit(): void {
     this.culturalSiteService.getCulturalSite(this.culturalSiteId).pipe(
-      map((culturalSite: CulturalSiteView) => {
+      map((culturalSite: CulturalSite) => {
         this.culturalSite = culturalSite;
         if (this.culturalSite.rating) {
           this.culturalSite.rating = +(this.culturalSite.rating.toFixed(1));

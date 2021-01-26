@@ -5,11 +5,6 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Image } from '../model/image.model';
 
-export interface NewsDto{
-    id: number;
-    information: string;
-}
-
 @Injectable({
 providedIn: 'root'
 })

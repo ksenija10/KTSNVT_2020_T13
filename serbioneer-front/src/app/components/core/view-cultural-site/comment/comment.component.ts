@@ -16,7 +16,7 @@ import { CommentService } from 'src/app/services/comment.service';
 })
 export class CommentComponent implements OnInit {
 
-  @Input() culturalSiteId!: any;
+  @Input() culturalSiteId!: number;
   @Input() comment!: Comment;
   editing = false;
   copyComment!: Comment;

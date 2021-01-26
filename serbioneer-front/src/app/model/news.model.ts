@@ -6,6 +6,6 @@ export class NewsDTO {
       public dateTime: Date,
       public culturalSiteName: string,
       public images: Image[],
-      public id?: number
+      public id: number
   ) {}
 }

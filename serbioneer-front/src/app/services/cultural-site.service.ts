@@ -3,26 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import {
-  CulturalSite,
-  CulturalSiteView,
-  SubscribedCulturalSiteDTO,
-} from '../model/cultural-site.model';
+import { CulturalSite, SubscribedCulturalSiteDTO } from '../model/cultural-site.model';
 import { FilterDTO } from '../model/filter-cultural-site.model';
 import { NewsDTO } from '../model/news.model';
 import { Image } from 'src/app/model/image.model';
 import { CommentData } from './comment.service';
-import { NewsDto } from './image.service';
+import { NewsData } from './news.service';
 
 export interface CulturalSiteData {
   content: CulturalSite[];
-  totalPages: number;
-  totalElements: number;
-  size: number;
-}
-
-export interface NewsData {
-  content: NewsDTO[];
   totalPages: number;
   totalElements: number;
   size: number;
@@ -121,22 +110,22 @@ export class CulturalSiteService {
       .get<string[]>(environment.apiEndpoint + 'cultural-site/locations');
   }
 
-  createNews(news: NewsDTO, culturalSiteId: number): Observable<NewsDto> {
+  createNews(news: NewsDTO, culturalSiteId: number): Observable<NewsDTO> {
     const params = new HttpParams();
 
     return this.http
-      .post<NewsDto>(
+      .post<NewsDTO>(
         environment.apiEndpoint + 'cultural-site/' + culturalSiteId + '/news',
         news
       )
       .pipe(catchError((err) => throwError(err)));
   }
 
-  getCulturalSite(id: number): Observable<CulturalSiteView> {
+  getCulturalSite(id: number): Observable<CulturalSite> {
     return this.http
-      .get<CulturalSiteView>(environment.apiEndpoint + 'cultural-site/' + id)
+      .get<CulturalSite>(environment.apiEndpoint + 'cultural-site/' + id)
       .pipe(
-        map((culturalSite: CulturalSiteView) => culturalSite),
+        map((culturalSite: CulturalSite) => culturalSite),
         catchError((err) => throwError(err))
       );
   }

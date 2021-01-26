@@ -5,7 +5,7 @@ import { map, catchError} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { NewsDTO } from '../model/news.model';
 
-export interface NewsDataByPage {
+export interface NewsData {
     content: NewsDTO[];
     totalPages: number;
     totalElements: number;
@@ -21,14 +21,14 @@ export class NewsService {
         private http: HttpClient
     ) {}
 
-    getAllSubscribedNews(page: number, size: number): Observable<NewsDataByPage> {
+    getAllSubscribedNews(page: number, size: number): Observable<NewsData> {
         let params = new HttpParams();
 
         params = params.append('page', String(page));
         params = params.append('size', String(size));
 
-        return this.http.get<NewsDataByPage>(environment.apiEndpoint + 'news/subscribed/by-page', { params }).pipe(
-            map((newDTOs: NewsDataByPage) => newDTOs),
+        return this.http.get<NewsData>(environment.apiEndpoint + 'news/subscribed/by-page', { params }).pipe(
+            map((newDTOs: NewsData) => newDTOs),
             catchError(err => throwError(err))
         );
     }

@@ -2,12 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { fakeAsync, getTestBed, TestBed, tick } from '@angular/core/testing';
 import { Comment } from 'src/app/model/comment.model';
-import { CulturalSiteView, SubscribedCulturalSiteDTO } from 'src/app/model/cultural-site.model';
+import { CulturalSite, SubscribedCulturalSiteDTO } from 'src/app/model/cultural-site.model';
 import { FilterDTO } from 'src/app/model/filter-cultural-site.model';
 import { NewsDTO } from 'src/app/model/news.model';
 import { CommentData } from '../comment.service';
 import { CommentDto, CulturalSiteData, CulturalSiteService, NewsData } from '../cultural-site.service';
-import { NewsDto } from '../image.service';
 
 describe('Cultural site service', () => {
     let injector;
@@ -576,14 +575,20 @@ describe('Cultural site service', () => {
             images : []
         };
 
-        const mockNews: NewsDto = {
+        const mockNews: NewsDTO = {
             id: 1,
             information : 'News about CulturalSite1',
+            dateTime : new Date('January 18 1990'),
+            culturalSiteName: 'CulturalSite1',
+            images: []
         };
 
-        let response: NewsDto = {
+        let response: NewsDTO = {
             id: 0,
-            information: ''
+            information : '',
+            dateTime : new Date(),
+            culturalSiteName: '',
+            images: []
         };
 
         culturalSiteService.createNews(news, 1).subscribe(
@@ -603,7 +608,7 @@ describe('Cultural site service', () => {
     }));
 
     it('should get cultural site', fakeAsync( () => {
-        const mockCulturalSite: CulturalSiteView = {
+        const mockCulturalSite: CulturalSite = {
             id: 1,
             name: 'CulturalSite1',
             categoryId: 1,
@@ -619,7 +624,7 @@ describe('Cultural site service', () => {
             images: []
         };
 
-        let response: CulturalSiteView = {
+        let response: CulturalSite = {
             id: 0,
             name: '',
             categoryId: 0,
@@ -865,50 +870,59 @@ describe('Cultural site service', () => {
     }));
 
     it('should create cultural site', fakeAsync(() => {
-        const culturalSiteDto: CulturalSiteView =
+        const culturalSiteDto: CulturalSite =
         {
             name: 'Novo kulturno dobro',
             categoryId: 1,
+            category: '',
             categoryTypeId: 1,
+            categoryType: '',
             lat: 45,
             lng: 20,
             address: 'Ilije Bircanina 45',
             city: 'Krusevac',
+            description: '',
             rating: 0,
             images: []
         };
 
-        const mockCulturalSite: CulturalSiteView =
+        const mockCulturalSite: CulturalSite =
         {
             id: 1,
             name: 'Novo kulturno dobro',
             categoryId: 1,
+            category: '',
             categoryTypeId: 1,
+            categoryType: '',
             lat: 45,
             lng: 20,
             address: 'Ilije Bircanina 45',
             city: 'Krusevac',
+            description: '',
             rating: 0,
             images: []
         };
 
-        let response: CulturalSiteView =
+        let response: CulturalSite =
         {
             id: 0,
             name: '',
             categoryId: 0,
+            category: '',
             categoryTypeId: 0,
+            categoryType: '',
             lat: 0,
             lng: 0,
             address: '',
             city: '',
+            description: '',
             rating: 0,
             images: []
         };
 
         culturalSiteService.createCulturalSite(culturalSiteDto)
             .subscribe(
-                (data: CulturalSiteView) => {
+                (data: CulturalSite) => {
                     response = data;
                 }
             );
@@ -932,50 +946,59 @@ describe('Cultural site service', () => {
     }));
 
     it('should update cultural site', fakeAsync(() => {
-        const updateCulturalSiteDto: CulturalSiteView =
+        const updateCulturalSiteDto: CulturalSite =
         {
             name: 'Izmenjeno kulturno dobro',
             categoryId: 1,
+            category: '',
             categoryTypeId: 1,
+            categoryType: '',
             lat: 45,
             lng: 20,
             address: 'Marije Antoanete 3',
             city: 'Zrenjanin',
             rating: 3,
+            description: '',
             images: []
         };
 
-        const mockCulturalSite: CulturalSiteView =
+        const mockCulturalSite: CulturalSite =
         {
             id: 1,
             name: 'Izmenjeno kulturno dobro',
             categoryId: 1,
+            category: '',
             categoryTypeId: 1,
+            categoryType: '',
             lat: 45,
             lng: 20,
             address: 'Marije Antoanete 3',
             city: 'Zrenjanin',
             rating: 3,
+            description: '',
             images: []
         };
 
-        let response: CulturalSiteView =
+        let response: CulturalSite =
         {
             id: 0,
             name: '',
             categoryId: 0,
+            category: '',
             categoryTypeId: 0,
+            categoryType: '',
             lat: 0,
             lng: 0,
             address: '',
             city: '',
+            description: '',
             rating: 0,
             images: []
         };
 
         culturalSiteService.updateCulturalSite(1, updateCulturalSiteDto)
             .subscribe(
-                (data: CulturalSiteView) => {
+                (data: CulturalSite) => {
                     response = data;
                 }
             );
