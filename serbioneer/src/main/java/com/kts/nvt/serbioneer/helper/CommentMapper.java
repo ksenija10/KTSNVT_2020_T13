@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
 import com.kts.nvt.serbioneer.dto.CommentDTO;
-import com.kts.nvt.serbioneer.dto.ImageDTO;
 import com.kts.nvt.serbioneer.model.Comment;
 import com.kts.nvt.serbioneer.model.Image;
 
@@ -18,7 +17,7 @@ public class CommentMapper implements MapperInterface<Comment, CommentDTO>{
 	
     @Override
     public Comment toEntity(CommentDTO dto) {
-        return new Comment(dto.getText());
+        return new Comment(dto.getText(), dto.isApproved());
     }
     
     @Override

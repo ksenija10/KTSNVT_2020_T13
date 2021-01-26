@@ -33,5 +33,13 @@ public class CommentDTO {
     public CommentDTO(Long id, @NotBlank(message = "Comment text cannot be empty.") String text) {
         this.id = id;
         this.text = text;
+        this.approved = true;
+    }
+    
+    public CommentDTO(Long id, @NotBlank(message = "Comment text cannot be empty.") String text,
+    		boolean approved) {
+        this.id = id;
+        this.text = text;
+        this.approved = approved;
     }
 }

@@ -292,6 +292,11 @@ import { AddNewsArticleComponent } from './add-news-article/add-news-article.com
     );
   }
 
+  onEditComment(): void {
+    // dobavi ponovo sve komentare
+    this.fetchComments(this.culturalSiteId);
+  }
+
   openDialog(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = { culturalSite: this.culturalSite};

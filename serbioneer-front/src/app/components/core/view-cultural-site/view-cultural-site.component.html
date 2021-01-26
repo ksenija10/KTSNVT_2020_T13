@@ -108,7 +108,7 @@
                 <div *ngIf="comments!.content!.length > 0; then showComments else noComments"></div>
                 <ng-template #showComments>
                     <div class="row" *ngFor="let comment of comments.content">
-                        <app-comment [comment]="comment" [culturalSiteId]="culturalSite.id"></app-comment>
+                        <app-comment (editedComment)="onEditComment()" [comment]="comment" [culturalSiteId]="culturalSiteId"></app-comment>
                     </div>
                     <mat-paginator 
                         showFirstLastButtons
