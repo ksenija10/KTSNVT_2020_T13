@@ -62,6 +62,7 @@ export class MapViewComponent implements AfterViewInit, OnChanges {
     const that = this;
     this.map.on('click', (evt) => {
       const pixel = evt.pixel;
+      // dokumentacija biblioteke preporucuje ovakav zapis
       that.map.forEachFeatureAtPixel(pixel, (feature: any, layer: any) => {
         that.onFeatureClicked(feature.values_.name);
       });

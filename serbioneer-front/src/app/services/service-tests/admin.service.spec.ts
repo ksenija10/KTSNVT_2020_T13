@@ -127,7 +127,6 @@ describe('Admin service', () => {
         req.flush(mockResponse);
 
         tick();
-        console.log(response.content.length);
         expect(response.content.length).toEqual(2);
 
         expect(response.content[0].id).toEqual(1);

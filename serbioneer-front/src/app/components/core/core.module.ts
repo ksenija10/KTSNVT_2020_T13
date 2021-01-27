@@ -31,9 +31,13 @@ import { LoginComponent } from './login-register/login/login.component';
 import { RegisterComponent } from './login-register/register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddNewsArticleComponent } from './view-cultural-site/add-news-article/add-news-article.component';
-import { CommentComponent } from './view-cultural-site/comment/comment.component';
-import { NewsArticleComponent } from './view-cultural-site/news-article/news-article.component';
+import { CommentComponent } from './view-cultural-site/comments-list/comment/comment.component';
+import { NewsArticleComponent } from './view-cultural-site/news-list/news-article/news-article.component';
 import { ViewCulturalSiteComponent } from './view-cultural-site/view-cultural-site.component';
+import { NewsListComponent } from './view-cultural-site/news-list/news-list.component';
+import { CommentsListComponent } from './view-cultural-site/comments-list/comments-list.component';
+import { AddImageComponent } from './view-cultural-site/add-image/add-image.component';
+import { AddCommentComponent } from './view-cultural-site/comments-list/add-comment/add-comment.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +53,11 @@ import { ViewCulturalSiteComponent } from './view-cultural-site/view-cultural-si
         AddNewsArticleComponent,
         CommentComponent,
         NewsArticleComponent,
-        ViewCulturalSiteComponent
+        ViewCulturalSiteComponent,
+        NewsListComponent,
+        CommentsListComponent,
+        AddImageComponent,
+        AddCommentComponent,
     ],
     imports: [
         RouterModule,

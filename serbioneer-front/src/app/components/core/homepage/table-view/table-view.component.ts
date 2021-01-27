@@ -1,13 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { CulturalSiteData, CulturalSiteService } from 'src/app/services/cultural-site.service';
-
-export interface CulturalSite {
-  name: string;
-  address: string;
-  city: string;
-}
+import { CulturalSiteData } from 'src/app/services/cultural-site.service';
 
 @Component({
   selector: 'app-table-view',
@@ -24,7 +18,6 @@ export class TableViewComponent implements OnInit  {
   @Output() pageChanged: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
   constructor(
-    private culturalSiteService: CulturalSiteService,
     private router: Router
   ) {}
 

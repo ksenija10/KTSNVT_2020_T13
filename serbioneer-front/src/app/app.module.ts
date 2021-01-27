@@ -1,16 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
-import { AdminModule } from './components/admin/admin.module';
-import { AuthUserModule } from './components/auth-user/auth-user.module';
 import { CoreModule } from './components/core/core.module';
-import { UserProfileModule } from './components/user-profile/user-profile.module';
-import { RouterModule } from '@angular/router';
+import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -24,10 +21,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminModule,
-    AuthUserModule,
-    CoreModule,
-    UserProfileModule,
+    CoreModule
   ],
   providers: [
     {

@@ -6,11 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { CulturalCategoryType } from 'src/app/model/cultural-category-type.model';
 import { CulturalSiteCategory } from 'src/app/model/cultural-site-category.model';
-import {
-  CulturalSite,
-  CulturalSiteDTO,
-  CulturalSiteView,
-} from 'src/app/model/cultural-site.model';
+import { CulturalSite } from 'src/app/model/cultural-site.model';
 import { Image } from 'src/app/model/image.model';
 import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
@@ -41,12 +37,12 @@ export class NewCulturalSiteComponent implements OnInit {
   location: Location = new Location(0, 0);
 
   // image import
-  images: any = [];
-  files: any = [];
+  images: string[] = [];
+  files: Blob[] = [];
 
   // for editing
   editCulturalSiteId: number;
-  editCulturalSite!: CulturalSiteView;
+  editCulturalSite!: CulturalSite;
 
   title = 'Add new cultural site';
   btnTitle = 'Create';
@@ -70,6 +66,9 @@ export class NewCulturalSiteComponent implements OnInit {
     // ako je u edit modu, popuni formu
     const siteUrl: string[] = this.router.url.split('/');
     this.editCulturalSiteId = +siteUrl[siteUrl.length - 1];
+  }
+
+  ngOnInit(): void {
     if (!isNaN(this.editCulturalSiteId)) {
       // dobavi kulturno dobro i popuni formu
       this.title = 'Edit cultural site';
@@ -98,7 +97,7 @@ export class NewCulturalSiteComponent implements OnInit {
 
   loadCulturalSite(): void {
     this.culturalSiteService.getCulturalSite(this.editCulturalSiteId).pipe(
-      map((culturalSite: CulturalSiteView) => {
+      map((culturalSite: CulturalSite) => {
         this.editCulturalSite = culturalSite;
       })
     ).subscribe(
@@ -123,8 +122,6 @@ export class NewCulturalSiteComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit(): void {}
 
   getRequiredFieldErrorMessage(fieldName: string): string {
     if (this.newCulturalSiteForm.controls[fieldName].touched) {
@@ -160,6 +157,7 @@ export class NewCulturalSiteComponent implements OnInit {
     }
   }
 
+  // any -> dobavlja se od API-ja, api moze promeniti tip koji vraca => any
   addressChange(address: any): void {
     // setting address from API to local variable
     this.foundAddress = address.formatted_address;
@@ -189,13 +187,12 @@ export class NewCulturalSiteComponent implements OnInit {
       this.location.lng = this.editCulturalSite.lng || 0;
     }
 
-    const culturalSite: CulturalSite = new CulturalSiteDTO(
-      undefined,
+    const culturalSite: CulturalSite = new CulturalSite (
       this.newCulturalSiteForm.value.name,
       this.newCulturalSiteForm.value.category,
-      undefined,
+      '',
       this.newCulturalSiteForm.value.categoryType,
-      undefined,
+      '',
       this.location.lat,
       this.location.lng,
       address,
@@ -208,7 +205,7 @@ export class NewCulturalSiteComponent implements OnInit {
     if (this.editCulturalSiteId) {
       this.culturalSiteService.updateCulturalSite(this.editCulturalSiteId, culturalSite)
         .pipe(
-          map((savedCulturalSite: CulturalSiteDTO) => {
+          map((savedCulturalSite: CulturalSite) => {
             // provera da li je lista slika prazna
             if (this.files.length > 0) {
               // ako nije onda dodajemo jedan po jedan fajl
@@ -246,7 +243,7 @@ export class NewCulturalSiteComponent implements OnInit {
     } else {
       this.culturalSiteService.createCulturalSite(culturalSite)
         .pipe(
-          map((savedCulturalSite: CulturalSiteDTO) => {
+          map((savedCulturalSite: CulturalSite) => {
             // provera da li je lista slika prazna
             if (this.files.length > 0) {
               // ako nije onda dodajemo jedan po jedan fajl

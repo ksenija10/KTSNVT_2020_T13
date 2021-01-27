@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
-import { CulturalSiteDTO } from 'src/app/model/cultural-site.model';
+import { CulturalSite } from 'src/app/model/cultural-site.model';
 import { CulturalSiteCategoryService } from 'src/app/services/cultural-site-category.service';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { ImageService } from 'src/app/services/image.service';
@@ -158,9 +158,11 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
 
     it('should load instance', () => {
         expect(component).toBeTruthy();
+        expect(component.editCulturalSiteId).toEqual(1);
     });
 
     it('should display correct title', () => {
+        component.ngOnInit();
         const formTitle = fixture.debugElement.query(By.css('#cultural-site-form-title'));
         expect(formTitle.nativeElement.textContent).toEqual('Edit cultural site');
         const formBtn = fixture.debugElement.query(By.css('#create-edit-site-btn'));
@@ -168,6 +170,7 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
     });
 
     it('should load cultural site to be edited', () => {
+        component.ngOnInit();
         expect(culturalSiteCategoryService.getAllCulturalSiteCategorys).toHaveBeenCalled();
         expect(component.allCategoriesModel.length).toEqual(2);
         expect(component.allCategoriesModel[0].id).toEqual(1);
@@ -293,14 +296,13 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
         await culturalSiteTypeInput.clickOptions(); // valjda odabere prvu
         expect(component.newCulturalSiteForm.valid).toBeTruthy();
 
-        const newCulturalSiteDto: CulturalSiteDTO =
-            new CulturalSiteDTO(
-                undefined,
+        const newCulturalSiteDto: CulturalSite =
+            new CulturalSite(
                 'Izmenjeno kulturno dobro',
                 1,
-                undefined,
+                '',
                 1,
-                undefined,
+                '',
                 42,
                 20,
                 'Adresa 5',

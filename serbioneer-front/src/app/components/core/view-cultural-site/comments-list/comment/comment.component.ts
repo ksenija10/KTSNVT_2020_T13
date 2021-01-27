@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { ConfirmDeleteDialogComponent } from 'src/app/components/core/confirm-dialog/confirm-dialog.component';
 import { Comment } from 'src/app/model/comment.model';
+import { SliderImage } from 'src/app/model/image.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CommentService } from 'src/app/services/comment.service';
 
@@ -16,7 +17,7 @@ import { CommentService } from 'src/app/services/comment.service';
 })
 export class CommentComponent implements OnInit {
 
-  @Input() culturalSiteId!: any;
+  @Input() culturalSiteId!: number;
   @Input() comment!: Comment;
   editing = false;
   copyComment!: Comment;
@@ -24,9 +25,11 @@ export class CommentComponent implements OnInit {
   inputText = '';
   userComment = true;
 
-  commentImageSlider: Array<object> = [];
+  commentImageSlider: Array<SliderImage> = [];
 
   editCommentForm: FormGroup;
+
+  @Output() editedComment: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     // private culturalSiteService : CulturalSiteService,
@@ -34,7 +37,7 @@ export class CommentComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private toastr: ToastrService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
     this.editCommentForm = new FormGroup({
       text: new FormControl('', [Validators.required])
@@ -99,13 +102,27 @@ export class CommentComponent implements OnInit {
     const editCommentText = this.editCommentForm.get('text')?.value;
     if (editCommentText !== this.comment.text){
       this.comment.text = editCommentText;
+      this.comment.approved = false;
       this.commentService.updateComment(this.comment.id, this.comment).pipe(
         map((updatedComment: Comment) => {
-          this.inputText = updatedComment.text;
-          this.comment = updatedComment;
+          // this.inputText = updatedComment.text;
+          // this.comment = updatedComment;
           this.editing = !this.editing;
         })
-      ).subscribe();
+      ).subscribe(
+        response => {
+          this.toastr.success('Successfully edited your cultural site review!\n' +
+                              'Your review will be visible after approval.');
+          this.editCommentForm.reset();
+          this.editedComment.emit();
+        },
+        error => {
+          if (error.error.message){
+            this.toastr.error(error.error.message);
+          } else {
+            this.toastr.error('503 Server Unavailable');
+          }
+        });
     } else {
       this.editing = !this.editing;
     }

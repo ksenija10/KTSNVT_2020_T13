@@ -80,6 +80,12 @@ public class Comment {
 		this.text = text;
 		this.active = true;
 	}
+	
+	public Comment(@NonNull String text, boolean approved) {
+		this.text = text;
+		this.approved = approved;
+		this.active = true;
+	}
 
 	public Comment(@NonNull String text, boolean approved, @NonNull AuthenticatedUser authenticatedUser, @NonNull CulturalSite culturalSite) {
 		this.text = text;

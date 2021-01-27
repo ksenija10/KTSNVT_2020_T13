@@ -100,6 +100,7 @@ public class CommentService{
 			throw new Exception("Comment is being revised, you can not modify it.");
 		}
 		commentToUpdate.setText(entity.getText());
+		commentToUpdate.setApproved(entity.isApproved());
 		return commentRepository.save(commentToUpdate);
 	}
 

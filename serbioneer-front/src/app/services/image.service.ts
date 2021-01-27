@@ -5,11 +5,6 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Image } from '../model/image.model';
 
-export interface NewsDto{
-    id: number;
-    information: string;
-}
-
 @Injectable({
 providedIn: 'root'
 })
@@ -17,7 +12,7 @@ export class ImageService {
 
     constructor(private http: HttpClient) { }
 
-    createForComment(commentId: number, file: any): Observable<Image> {
+    createForComment(commentId: number, file: Blob): Observable<Image> {
 
         const formData = new FormData();
         formData.append('file', file);
@@ -28,7 +23,7 @@ export class ImageService {
           );
     }
 
-    createForNews(newsId: number, file: any): Observable<Image> {
+    createForNews(newsId: number, file: Blob): Observable<Image> {
 
         const formData = new FormData();
         formData.append('file', file);
@@ -39,7 +34,7 @@ export class ImageService {
           );
     }
 
-    createForCulturalSite(siteId: number, file: any): Observable<Image> {
+    createForCulturalSite(siteId: number, file: Blob): Observable<Image> {
 
         const formData = new FormData();
         formData.append('file', file);

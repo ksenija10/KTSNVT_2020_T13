@@ -1,0 +1,18 @@
+<div *ngIf="news!.content!.length > 0; then showNews else noNews"></div>
+<ng-template #showNews>
+    <div class="site-news" *ngFor="let oneNews of news.content">
+        <app-news-article [news]="oneNews"></app-news-article>
+    </div>
+    <mat-paginator id="news-list-paginator"
+        showFirstLastButtons
+        [length]="news.totalElements" 
+        [pageSize]="news.size" 
+        [pageSizeOptions]="[1,2,5,10]"
+        (page)="onPaginateChangeNews($event)">
+    </mat-paginator>
+</ng-template>
+<ng-template #noNews>
+    <h6>There are no news for {{culturalSiteName}} at this time.</h6>
+    <h6>But be sure to check soon!</h6>
+    <h6 *ngIf="adminIsLogged">Or try adding some yourself.</h6>
+</ng-template>

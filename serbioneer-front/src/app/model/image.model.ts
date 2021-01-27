@@ -1,23 +1,17 @@
 export class Image {
 
-id: number;
-name: string;
-content: any;
-
-constructor(obj?: any) {
-this.id = obj && obj.id || null;
-this.name = obj && obj.name || null;
-this.content = obj && obj.content || null;
-}
+    constructor(
+        public name: string,
+        public content: string,
+        public id?: number
+    ) {}
 }
 
-export class ImageDTO {
+export class SliderImage {
 
-name?: string;
-content?: any;
-
-constructor(name: string, content: any) {
-this.name = name;
-this.content = content;
-}
+    constructor(
+        public image: string,
+        public thumbImage: string,
+        public title: string
+    ) {}
 }
