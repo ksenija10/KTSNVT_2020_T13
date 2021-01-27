@@ -115,8 +115,6 @@ public class RegisterE2ETest {
 
         registerPage.getRegisterBtn().click();
 
-        justWait();
-
         loginPage.ensureIsDisplayedLoginForm();
 
         registerPage.toastSuccess();
