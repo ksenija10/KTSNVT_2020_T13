@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { NewsDTO } from '../../model/news.model';
-import { NewsDataByPage, NewsService } from '../news.service';
+import { NewsData, NewsService } from '../news.service';
 
 describe('News service', () => {
     let injector;
@@ -34,12 +34,14 @@ describe('News service', () => {
     it('should get all subscribed news', () => {
         const mockNews: NewsDTO[] = [
             {
+                id: 1,
                 information: 'Djoaki Rosini, Seviljski berberin. Subota, 23. januar u 19.00, scena Jovan Djordjevic',
                 dateTime: new Date('2021-01-16'),
                 culturalSiteName: 'Srpsko narodno pozoriste',
                 images: []
             },
             {
+                id: 2,
                 information: 'Premijera gostujuce predstave Amateri. Petak, 29. januar u 19.00, scena Pera Dobrinovic',
                 dateTime: new Date('2021-01-12'),
                 culturalSiteName: 'Srpsko narodno pozoriste',
@@ -47,14 +49,14 @@ describe('News service', () => {
             }
         ];
 
-        const mockResponse: NewsDataByPage = {
+        const mockResponse: NewsData = {
             content: mockNews,
             totalPages: 1,
             totalElements: 2,
             size: 2
         };
 
-        let response: NewsDataByPage = {
+        let response: NewsData = {
             content: [],
             totalPages: 0,
             totalElements: 0,

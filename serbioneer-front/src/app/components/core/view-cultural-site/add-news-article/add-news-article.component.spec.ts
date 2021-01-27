@@ -109,7 +109,7 @@ describe('AddNewsArticleComponent', () => {
       component.newsForm.value.text = 'Sabacka Biblioteka has new show.';
       component.newsForm.controls.text.setErrors(null);
 
-      component.files = [{}, {}];
+      component.files = [new Blob, new Blob];
 
       component.onSubmit();
 

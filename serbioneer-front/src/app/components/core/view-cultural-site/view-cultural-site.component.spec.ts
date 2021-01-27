@@ -376,12 +376,13 @@ describe('ViewCulturalSiteComponent', () => {
 
     it('should submit images', ( async () => {
         component.ngOnInit();
-        component.newImageFiles = [{name: 'image1', content: '1'}];
+        const blob = new Blob;
+        component.newImageFiles = [blob];
         component.culturalSite.images = [];
 
         component.submitImages();
 
-        expect(imageService.createForCulturalSite).toHaveBeenCalledWith(1, {name: 'image1', content: '1'});
+        expect(imageService.createForCulturalSite).toHaveBeenCalledWith(1, blob);
         expect(component.newImages.length).toEqual(0);
         expect(component.newImageFiles.length).toEqual(0);
         expect(component.addNewImages).toEqual(false);
@@ -448,10 +449,8 @@ describe('ViewCulturalSiteComponent', () => {
             file: '',
             fileSource: {}
           });
-        component.culturalSite = {
-            id: 1
-        };
-        component.files = [{}];
+        component.culturalSiteId = 1;
+        component.files = [new Blob];
         component.submit();
 
         expect(culturalSiteService.createComment).toHaveBeenCalledWith(1, 'Sabacka Biblioteka was cool.');

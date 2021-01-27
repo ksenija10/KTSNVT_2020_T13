@@ -6,7 +6,8 @@ import { CulturalSite, SubscribedCulturalSiteDTO } from 'src/app/model/cultural-
 import { FilterDTO } from 'src/app/model/filter-cultural-site.model';
 import { NewsDTO } from 'src/app/model/news.model';
 import { CommentData } from '../comment.service';
-import { CommentDto, CulturalSiteData, CulturalSiteService, NewsData } from '../cultural-site.service';
+import { CommentDto, CulturalSiteData, CulturalSiteService } from '../cultural-site.service';
+import { NewsData } from '../news.service';
 
 describe('Cultural site service', () => {
     let injector;
@@ -569,10 +570,11 @@ describe('Cultural site service', () => {
 
     it('should create news for cultural site', fakeAsync( () => {
         const news: NewsDTO = {
+            id: 0,
             information : 'News about CulturalSite1',
             dateTime : new Date('January 18 1990'),
             culturalSiteName : 'CulturalSite1',
-            images : []
+            images : [],
         };
 
         const mockNews: NewsDTO = {
@@ -670,12 +672,14 @@ describe('Cultural site service', () => {
     it('should get all news for cultural site', fakeAsync( () => {
         const news: NewsDTO[] = [
             {
+                id: 1,
                 information : 'News1 about CulturalSite1',
                 dateTime : new Date('January 18 1990'),
                 culturalSiteName : 'CulturalSite1',
                 images : []
             },
             {
+                id: 2,
                 information : 'News2 about CulturalSite1',
                 dateTime : new Date('January 19 1990'),
                 culturalSiteName : 'CulturalSite1',

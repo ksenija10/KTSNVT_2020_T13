@@ -25,7 +25,7 @@ export class HomepageComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  filteredCulturalSiteCategories: Observable<string[]>;
+  filteredCulturalSiteCategories!: Observable<string[]>;
   culturalSiteCategorys: string[] = [];
   allCulturalSiteCategorys: string[] = [];
 
@@ -81,6 +81,9 @@ export class HomepageComponent implements OnInit {
     // prvobitni pageEvent
     this.pageEvent.pageIndex = 0;
     this.pageEvent.pageSize = 5;
+  }
+
+  ngOnInit(): void {
     // dobavljanje svih locations
     this.culturalSiteService.findAllLocations()
       .subscribe((responseData) => {
@@ -103,11 +106,10 @@ export class HomepageComponent implements OnInit {
       });
     this.filteredCulturalSiteCategories = this.filterForm.get('culturalSiteCategoryCtrl')?.valueChanges.pipe(
         startWith(null),
-        map((culturalSiteCategory: string | null) => culturalSiteCategory
-        ? this._filter(culturalSiteCategory) : this.allCulturalSiteCategorys.slice()))!;
-  }
-
-  ngOnInit(): void {
+        map(
+          (culturalSiteCategory: string | null) =>
+            culturalSiteCategory ? this._filter(culturalSiteCategory) : this.allCulturalSiteCategorys.slice()
+          )) || new Observable<string[]>();
     if (!this.isSubscribedSitesView) {
       this.initDataSource();
     } else {
@@ -136,8 +138,8 @@ export class HomepageComponent implements OnInit {
     this.progressBar = true;
     const page = this.pageEvent.pageIndex;
     const size = this.pageEvent.pageSize;
-    let name = this.filterForm.get('name')?.value;
-    let location = this.filterForm.get('location')?.value;
+    const name = this.filterForm.get('name')?.value;
+    const location = this.filterForm.get('location')?.value;
     const filterDto: FilterDTO = new FilterDTO(this.culturalSiteCategorys, name, location);
     if (!this.isSubscribedSitesView) {
       this.culturalSiteService.filterByPage(page, size, filterDto).pipe(

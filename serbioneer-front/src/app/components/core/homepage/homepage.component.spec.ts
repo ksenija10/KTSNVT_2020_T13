@@ -159,8 +159,8 @@ describe('HomepageComponent', () => {
     component.pageEvent.pageIndex = 0;
     component.pageEvent.pageSize = 5;
     component.culturalSiteCategorys = [];
-    component.name = '';
-    component.location = '';
+    component.filterForm.get('name')?.setValue('');
+    component.filterForm.get('location')?.setValue('');
 
     component.onFilter();
 

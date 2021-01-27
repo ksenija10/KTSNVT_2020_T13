@@ -66,6 +66,9 @@ export class NewCulturalSiteComponent implements OnInit {
     // ako je u edit modu, popuni formu
     const siteUrl: string[] = this.router.url.split('/');
     this.editCulturalSiteId = +siteUrl[siteUrl.length - 1];
+  }
+
+  ngOnInit(): void {
     if (!isNaN(this.editCulturalSiteId)) {
       // dobavi kulturno dobro i popuni formu
       this.title = 'Edit cultural site';
@@ -119,8 +122,6 @@ export class NewCulturalSiteComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit(): void {}
 
   getRequiredFieldErrorMessage(fieldName: string): string {
     if (this.newCulturalSiteForm.controls[fieldName].touched) {

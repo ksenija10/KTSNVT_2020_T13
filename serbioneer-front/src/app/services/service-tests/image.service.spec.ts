@@ -44,8 +44,8 @@ describe('Image service', () => {
     const newId = 1;
     const newFile: any = 1;
 
-    let responseImage: Image = { id: 0, name: '', content: 0 };
-    const mockImage: Image = { id: 1, name: 'name', content: 1 };
+    let responseImage: Image = { id: 0, name: '', content: '0' };
+    const mockImage: Image = { id: 1, name: 'name', content: '1' };
 
     imageService.createForComment(newId, newFile).subscribe((data) => {
       responseImage = data;
@@ -61,7 +61,7 @@ describe('Image service', () => {
 
     expect(responseImage).toBeDefined();
     expect(responseImage.id).toEqual(1);
-    expect(responseImage.content).toEqual(1);
+    expect(responseImage.content).toEqual('1');
     expect(responseImage.name).toEqual('name');
   }));
 
@@ -69,8 +69,8 @@ describe('Image service', () => {
     const newId = 1;
     const newFile: any = 1;
 
-    let responseImage: Image = { id: 0, name: '', content: 0 };
-    const mockImage: Image = { id: 1, name: 'name', content: 1 };
+    let responseImage: Image = { id: 0, name: '', content: '0' };
+    const mockImage: Image = { id: 1, name: 'name', content: '1' };
 
     imageService.createForNews(newId, newFile).subscribe((data) => {
       responseImage = data;
@@ -86,7 +86,7 @@ describe('Image service', () => {
 
     expect(responseImage).toBeDefined();
     expect(responseImage.id).toEqual(1);
-    expect(responseImage.content).toEqual(1);
+    expect(responseImage.content).toEqual('1');
     expect(responseImage.name).toEqual('name');
   }));
 
@@ -94,8 +94,8 @@ describe('Image service', () => {
     const newId = 1;
     const newFile: any = 1;
 
-    let responseImage: Image = { id: 0, name: '', content: 0 };
-    const mockImage: Image = { id: 1, name: 'name', content: 1 };
+    let responseImage: Image = { id: 0, name: '', content: '0' };
+    const mockImage: Image = { id: 1, name: 'name', content: '1' };
 
     imageService.createForCulturalSite(newId, newFile).subscribe((data) => {
       responseImage = data;
@@ -111,7 +111,7 @@ describe('Image service', () => {
 
     expect(responseImage).toBeDefined();
     expect(responseImage.id).toEqual(1);
-    expect(responseImage.content).toEqual(1);
+    expect(responseImage.content).toEqual('1');
     expect(responseImage.name).toEqual('name');
   }));
 });

@@ -158,9 +158,11 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
 
     it('should load instance', () => {
         expect(component).toBeTruthy();
+        expect(component.editCulturalSiteId).toEqual(1);
     });
 
     it('should display correct title', () => {
+        component.ngOnInit();
         const formTitle = fixture.debugElement.query(By.css('#cultural-site-form-title'));
         expect(formTitle.nativeElement.textContent).toEqual('Edit cultural site');
         const formBtn = fixture.debugElement.query(By.css('#create-edit-site-btn'));
@@ -168,6 +170,7 @@ describe('NewCulturalSiteComponent - Edit Site', () => {
     });
 
     it('should load cultural site to be edited', () => {
+        component.ngOnInit();
         expect(culturalSiteCategoryService.getAllCulturalSiteCategorys).toHaveBeenCalled();
         expect(component.allCategoriesModel.length).toEqual(2);
         expect(component.allCategoriesModel[0].id).toEqual(1);

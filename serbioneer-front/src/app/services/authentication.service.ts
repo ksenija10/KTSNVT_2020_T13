@@ -95,7 +95,6 @@ export class AuthenticationService {
       return '';
     }
     const info = this.jwtService.decodeToken(token);
-    console.log(typeof(info));
     return info;
   }
 

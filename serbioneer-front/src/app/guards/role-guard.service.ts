@@ -12,8 +12,7 @@ export class RoleGuard implements CanActivate {
     constructor(private router: Router,
                 private toastr: ToastrService) {}
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-    boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    canActivate(route: ActivatedRouteSnapshot): boolean {
         const expectedRoles: string = route.data.expectedRoles;
         const token = localStorage.getItem('jwtToken');
         const jwt: JwtHelperService = new JwtHelperService();

@@ -20,9 +20,8 @@ export class ApproveCommentComponent implements OnInit {
   imageSlider: Array<SliderImage> = [];
 
   constructor(
-        private commentService: CommentService,
-        private toastr: ToastrService) {
-        }
+    private commentService: CommentService,
+    private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.imageSlider = [];
