@@ -1,0 +1,46 @@
+<div class="row comment-div" *ngIf="userIsLogged">
+    <div class="comment-write">Leave your review:</div>
+    <button 
+        id = "leave-review-btn"
+        type="submit" class="btn comment-btn" 
+        matTooltip="Click to review"
+        matTooltipPosition="right"
+        (click)="addComments()">
+        <mat-icon>comment</mat-icon>
+    </button>
+</div>
+<!-- Add review -->
+<div class="col-7 add-box" *ngIf="addNewComment">
+    <form [formGroup]="myForm" (ngSubmit)="submit()">
+        <div class="form-group comment-group">
+            <mat-form-field id="new-comment-form-field" appearance="fill" class="form-field">
+                <mat-label>Comment</mat-label>
+                <input 
+                    matInput id="new-comment-input" class="type-comment" name="newCommentText"
+                    placeholder="Share your experience of {{culturalSiteName}}"
+                    formControlName="text">
+                <mat-error id="new-comment-error" *ngIf="myForm.get('text')?.invalid">{{getTextErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group file-group">
+            <label for="file" class="file-title">Images</label>
+            <input 
+                formControlName="file"
+                id="file" 
+                type="file" 
+                class="form-control"
+                multiple="" 
+                (change)="onFileChange($event)">
+        </div>
+        <div>
+            <img *ngFor='let url of images'  [src]="url" class="image-preview">
+        </div>
+        <button 
+            id = "add-comment-btn"
+            mat-raised-button class="btn btn-purple" 
+            type="submit"
+            [disabled]="myForm.invalid">
+            Review
+        </button>
+    </form>
+</div>
