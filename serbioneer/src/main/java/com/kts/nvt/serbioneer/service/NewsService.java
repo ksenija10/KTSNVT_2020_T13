@@ -114,7 +114,7 @@ public class NewsService implements ServiceInterface<News> {
 		mailSender.setUsername(env.getProperty("spring.mail.username"));
 		mailSender.setPassword(env.getProperty("spring.mail.password"));
 
-		String url = "https://localhost:8080" + "/api/cultural-site/" + 
+		String url = "https://localhost:4200" + "/cultural-site/" +
 												news.getCulturalSite().getId();
 		
 		String subject = "News about " + news.getCulturalSite().getName();
@@ -123,7 +123,9 @@ public class NewsService implements ServiceInterface<News> {
         MimeMessageHelper email = new MimeMessageHelper(mimeMessage, "utf-8");
         
         email.setFrom(env.getProperty("spring.mail.username"));
-        
+
+        news = newsRepository.findById(news.getId()).orElse(null);
+
         for (AuthenticatedUser user : news.getCulturalSite().getSubscribedUsers()) {
 			email.addTo(user.getEmail());
 		}
