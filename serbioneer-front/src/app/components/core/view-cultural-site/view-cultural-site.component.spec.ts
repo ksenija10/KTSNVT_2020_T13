@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { PageEvent } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -17,9 +16,8 @@ import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { ImageService } from 'src/app/services/image.service';
 import { RatingCreateDTO, RatingService } from 'src/app/services/rating.service';
 import { ViewCulturalSiteComponent } from './view-cultural-site.component';
-import { MatInputHarness } from '@angular/material/input/testing';
 
-describe('ViewCulturalSiteComponent', () => {
+fdescribe('ViewCulturalSiteComponent', () => {
     let component: ViewCulturalSiteComponent;
     let fixture: ComponentFixture<ViewCulturalSiteComponent>;
     // injektovani servisi
@@ -207,26 +205,6 @@ describe('ViewCulturalSiteComponent', () => {
         expect(component.userIsLogged).toBeTruthy();
     });
 
-    it('should fetch news for cultural site', () => {
-        component.fetchNews(1);
-
-        expect(culturalSiteService.getAllCulturalSiteNews).toHaveBeenCalledWith(1, 0, 1);
-        expect(component.news.content.length).toEqual(2);
-        expect(component.news.totalPages).toEqual(1);
-        expect(component.news.totalElements).toEqual(2);
-        expect(component.news.size).toEqual(2);
-    });
-
-    it('should fetch comments for cultural site', () => {
-        component.fetchComments(1);
-
-        expect(culturalSiteService.getAllCulturalSiteComments).toHaveBeenCalledWith(1, 0, 1);
-        expect(component.comments.content.length).toEqual(2);
-        expect(component.comments.totalPages).toEqual(1);
-        expect(component.comments.totalElements).toEqual(2);
-        expect(component.comments.size).toEqual(2);
-    });
-
     it('should fetch cultural site on init', () => {
         component.ngOnInit();
 
@@ -255,34 +233,6 @@ describe('ViewCulturalSiteComponent', () => {
                 false, 'prvi@user.com', 1);
         expect(culturalSiteService.getUserCulturalSite).toHaveBeenCalledWith(subscribedCulturalSiteDTO);
         expect(component.buttonValue).toEqual('Unsubscribe');
-        // poziv dobavljanja vesti
-        expect(culturalSiteService.getAllCulturalSiteNews).toHaveBeenCalledWith(1, 0, 1);
-        // poziv dobavljanja komentara
-        expect(culturalSiteService.getAllCulturalSiteComments).toHaveBeenCalledWith(1, 0, 1);
-    });
-
-    it('should change news pagination', () => {
-        const event: PageEvent = new PageEvent();
-        event.pageIndex = 1;
-        event.pageSize = 2;
-
-        component.onPaginateChangeNews(event);
-
-        expect(component.page).toEqual(event.pageIndex);
-        expect(component.size).toEqual(event.pageSize);
-        expect(culturalSiteService.getAllCulturalSiteNews).toHaveBeenCalledWith(1, event.pageIndex, event.pageSize);
-    });
-
-    it('should change comment pagination', () => {
-        const event: PageEvent = new PageEvent();
-        event.pageIndex = 0;
-        event.pageSize = 1;
-
-        component.onPaginateChangeComments(event);
-
-        expect(component.page).toEqual(event.pageIndex);
-        expect(component.size).toEqual(event.pageSize);
-        expect(culturalSiteService.getAllCulturalSiteNews).toHaveBeenCalledWith(1, event.pageIndex, event.pageSize);
     });
 
     it('should set logged user authority', () => {
@@ -337,27 +287,6 @@ describe('ViewCulturalSiteComponent', () => {
         expect(component.buttonValue).toEqual('Subscribe');
     });
 
-    it('should not get text error message', ( async () => {
-        component.myForm.value.text = 'Sabacka Biblioteka was cool.';
-        component.myForm.controls.text.setErrors(null);
-
-        const message = component.getTextErrorMessage();
-
-        expect(component.myForm.invalid).toBeFalsy();
-        expect(component.myForm.controls.text.hasError('required')).toBeFalsy();
-        expect(message).toEqual('');
-    }));
-
-    it('should get text error message', ( async () => {
-        component.myForm.controls.text.markAsTouched();
-
-        const message = component.getTextErrorMessage();
-
-        expect(component.myForm.invalid).toBeTruthy();
-        expect(component.myForm.controls.text.hasError('required')).toBeTruthy();
-        expect(message).toEqual('Required field');
-    }));
-
     it('should delete cultural site', ( () => {
         component.ngOnInit();
 
@@ -374,112 +303,12 @@ describe('ViewCulturalSiteComponent', () => {
         expect(router.navigate).toHaveBeenCalledWith(['admin/edit-cultural-site/1']);
     }));
 
-    it('should submit images', ( async () => {
-        component.ngOnInit();
-        const blob = new Blob;
-        component.newImageFiles = [blob];
-        component.culturalSite.images = [];
-
-        component.submitImages();
-
-        expect(imageService.createForCulturalSite).toHaveBeenCalledWith(1, blob);
-        expect(component.newImages.length).toEqual(0);
-        expect(component.newImageFiles.length).toEqual(0);
-        expect(component.addNewImages).toEqual(false);
-        expect(component.culturalSite.images.length).toEqual(1);
-
-        expect(toastr.success).toHaveBeenCalledOnceWith('Successfully added image for cultural site!');
-    }));
-
-    it('should emit event for loading added images for cultural site', ( async () => {
-        const event = {
-            target: {
-                files: [
-                    new Blob([''], { type: 'text/html' }),
-                    new Blob([''], { type: 'text/html' })
-                ]
-            }
-        };
-
-        component.newImageFiles = [];
-        component.ngOnInit();
-
-        component.onNewImageChange(event);
-
-        expect(component.newImageFiles.length).toEqual(2);
-    }));
-
-    it('should add comments', (async () => {
-        component.ngOnInit();
-        component.addNewComment = false;
-
-        component.addComments();
-
-        const textInput = await loader.getHarness(
-            MatInputHarness.with({ selector: '#new-comment-input' })
-        );
-        expect(component.addNewComment).toEqual(true);
-        expect(component.images.length).toEqual(0);
-        expect(await textInput.getValue()).toEqual('');
-    }));
-
-    it('should add images', ( async () => {
-        component.ngOnInit();
-        component.addNewImages = false;
-
-        component.addImages();
-
-        expect(component.addNewImages).toEqual(true);
-        expect(component.newImages.length).toEqual(0);
-        expect(component.newImageFiles.length).toEqual(0);
-    }));
-
     it('should open dialog', ( async () => {
         component.ngOnInit();
 
         component.openDialog();
 
         expect(newsDialog.open).toHaveBeenCalled();
-        expect(culturalSiteService.getAllCulturalSiteNews).toHaveBeenCalled();
-    }));
-
-    it('should create new comment', ( async () => {
-        component.myForm.setValue({
-            text: 'Sabacka Biblioteka was cool.',
-            file: '',
-            fileSource: {}
-          });
-        component.culturalSiteId = 1;
-        component.files = [new Blob];
-        component.submit();
-
-        expect(culturalSiteService.createComment).toHaveBeenCalledWith(1, 'Sabacka Biblioteka was cool.');
-        expect(imageService.createForComment).toHaveBeenCalled();
-        expect(component.images.length).toEqual(0);
-        expect(component.files.length).toEqual(0);
-        expect(component.addNewComment).toEqual(false);
-        expect(culturalSiteService.getAllCulturalSiteComments).toHaveBeenCalled();
-        expect(toastr.success).toHaveBeenCalledOnceWith('Successfully reviewed cultural site!\n' +
-                                                        'Your review will be visible after approval.');
-        expect(component.addNewComment).toEqual(false);
-    }));
-
-    it('should emit event for loading added images for comment', ( async () => {
-        const event = {
-            target: {
-                files: [
-                    new Blob([''], { type: 'text/html' }),
-                    new Blob([''], { type: 'text/html' })
-                ]
-            }
-        };
-
-        component.files = [];
-        component.ngOnInit();
-
-        component.onFileChange(event);
-
-        expect(component.files.length).toEqual(2);
     }));
 
     it('should create rating', ( async () => {

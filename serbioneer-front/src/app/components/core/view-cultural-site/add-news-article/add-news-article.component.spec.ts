@@ -73,9 +73,8 @@ describe('AddNewsArticleComponent', () => {
       fixture = TestBed.createComponent(AddNewsArticleComponent);
       component = fixture.componentInstance;
       component.data = {
-          culturalSite: {
-            id: 1
-          }
+          culturalSiteId: 1,
+          culturalSiteName: "CulturalSite1"
       };
       component.dialogRef = TestBed.inject(MatDialogRef);
       culturalSiteService = TestBed.inject(CulturalSiteService);

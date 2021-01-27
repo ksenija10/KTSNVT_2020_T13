@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
@@ -10,14 +9,10 @@ import { CulturalSite, SubscribedCulturalSiteDTO } from 'src/app/model/cultural-
 import { Image, SliderImage } from 'src/app/model/image.model';
 import { AuthenticatedUserService } from 'src/app/services/auth-user.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { CommentData } from 'src/app/services/comment.service';
-import { CommentDto, CulturalSiteService } from 'src/app/services/cultural-site.service';
-import { ImageService } from 'src/app/services/image.service';
-import { NewsData } from 'src/app/services/news.service';
+import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { RatingCreateDTO, RatingDTO, RatingService } from 'src/app/services/rating.service';
 import { AddImageComponent } from './add-image/add-image.component';
 import { AddNewsArticleComponent } from './add-news-article/add-news-article.component';
-import { CommentsListComponent } from './comments-list/comments-list.component';
 import { NewsListComponent } from './news-list/news-list.component';
 
 @Component({
