@@ -145,7 +145,7 @@ public class AuthenticatedUserService implements ServiceInterface<AuthenticatedU
                 "\n" +
                 "<td style=\"outline:none;width:100%;color:#797c7f;font-family:'Fakt Pro','Segoe UI','SanFrancisco Display',Arial,sans-serif;font-size:14px;font-style:normal;font-weight:normal;line-height:24px;word-spacing:0;margin:0;padding:50px 80px 0\" align=\"left\" valign=\"top\">\n" +
                 "\n" +
-                "<p style=\"outline:none;margin:0;padding:0\">Follow the link to complete your registration: " + "https://localhost:8080" + confirmationUrl +"</p>\n" +
+                "<p style=\"outline:none;margin:0;padding:0\">Follow the link to complete your registration: " + confirmationUrl +"</p>\n" +
                 "\n" +
                 "\n" +
                 "\n" +
