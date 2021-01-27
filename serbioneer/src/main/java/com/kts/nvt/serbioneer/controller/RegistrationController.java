@@ -1,25 +1,31 @@
 package com.kts.nvt.serbioneer.controller;
 
-import com.kts.nvt.serbioneer.dto.AuthenticatedUserDTO;
-import com.kts.nvt.serbioneer.helper.AuthenticatedUserMapper;
-import com.kts.nvt.serbioneer.model.AuthenticatedUser;
-import com.kts.nvt.serbioneer.registration.OnRegistrationCompleteEvent;
-import com.kts.nvt.serbioneer.registration.VerificationToken;
-import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
-import com.kts.nvt.serbioneer.service.AuthorityService;
+import java.util.HashSet;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.util.HashSet;
+import com.kts.nvt.serbioneer.dto.AuthenticatedUserDTO;
+import com.kts.nvt.serbioneer.helper.AuthenticatedUserMapper;
+import com.kts.nvt.serbioneer.model.AuthenticatedUser;
+import com.kts.nvt.serbioneer.registration.VerificationToken;
+import com.kts.nvt.serbioneer.service.AuthenticatedUserService;
+import com.kts.nvt.serbioneer.service.AuthorityService;
 
 @RestController
 @RequestMapping(value = "api", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -52,9 +58,7 @@ public class RegistrationController {
         try {
             authenticatedUser.setAuthorities(new HashSet<>(authorityService.findByName("ROLE_USER")));
             authenticatedUser = authenticatedUserService.create(authenticatedUser);
-            String appUrl = request.getContextPath();
-            eventPublisher.publishEvent(new OnRegistrationCompleteEvent(authenticatedUser,
-                    request.getLocale(), appUrl));
+            authenticatedUserService.confirmRegistration(authenticatedUser);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }

@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,7 +34,6 @@ import com.kts.nvt.serbioneer.dto.SubscribedCulturalSiteDTO;
 import com.kts.nvt.serbioneer.helper.CommentMapper;
 import com.kts.nvt.serbioneer.helper.CulturalSiteMapper;
 import com.kts.nvt.serbioneer.helper.NewsMapper;
-import com.kts.nvt.serbioneer.mailsender.OnNewsCreatedEvent;
 import com.kts.nvt.serbioneer.model.AuthenticatedUser;
 import com.kts.nvt.serbioneer.model.Comment;
 import com.kts.nvt.serbioneer.model.CulturalSite;
@@ -228,15 +226,6 @@ public class CulturalSiteController {
 
         return new ResponseEntity<>(newsMapper.toDto(news), HttpStatus.CREATED);
     }
-    
-    /*
-	 * postavljeno u servisu kako bi se asinhrono pozvalo slanje mejla 
-	 */
-	@Async
-	public void sendMail(News news, HttpServletRequest request) {
-		eventPublisher.publishEvent(new OnNewsCreatedEvent(news,
-                request.getLocale(), request.getContextPath(), news.getCulturalSite().getSubscribedUsers()));
-	}
     
     /*
 		url: POST localhost:8080/api/cultural-site/filter/by-page
