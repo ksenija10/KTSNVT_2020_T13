@@ -44,6 +44,8 @@ describe('InlineEditComponent', () => {
 
     component.popover = popover;
 
+    InlineEditComponent.prototype.ngOnInit = () => {}; // override ngOnInit
+
   });
 
 

@@ -10,6 +10,8 @@ import org.springframework.test.context.TestPropertySource;
         CategoriesE2ETest.class,
         CategoryTypesE2ETests.class,
         ChangePasswordAdminE2ETest.class,
+        ChangePasswordAuthenticatedUserE2ETest.class,
+        EditCulturalSiteE2ETest.class,
         HeaderE2ETest.class,
         HomepageE2ETest.class,
         LoginE2ETest.class,
