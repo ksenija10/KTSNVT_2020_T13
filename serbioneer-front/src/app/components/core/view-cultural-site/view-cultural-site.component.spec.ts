@@ -15,9 +15,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { ImageService } from 'src/app/services/image.service';
 import { RatingCreateDTO, RatingService } from 'src/app/services/rating.service';
+import { NewsListComponent } from './news-list/news-list.component';
 import { ViewCulturalSiteComponent } from './view-cultural-site.component';
 
-fdescribe('ViewCulturalSiteComponent', () => {
+describe('ViewCulturalSiteComponent', () => {
     let component: ViewCulturalSiteComponent;
     let fixture: ComponentFixture<ViewCulturalSiteComponent>;
     // injektovani servisi
@@ -157,6 +158,10 @@ fdescribe('ViewCulturalSiteComponent', () => {
                 .and.returnValue(dialogRefSpyObject)
         };
 
+        const childMock = {
+            fetchNews: jasmine.createSpy('fetchNews')
+        };
+
         TestBed.configureTestingModule({
             declarations: [ViewCulturalSiteComponent],
             providers: [
@@ -167,7 +172,8 @@ fdescribe('ViewCulturalSiteComponent', () => {
                 { provide: ImageService, useValue: imageServiceMock },
                 { provide: Router, useValue: routerMock },
                 { provide: ToastrService, useValue: toastrMock },
-                { provide: MatDialog, useValue: confirmationDialogMock }
+                { provide: MatDialog, useValue: confirmationDialogMock },
+                { provide: NewsListComponent, useValue: childMock}
             ],
             imports: [
                 ReactiveFormsModule,
@@ -191,6 +197,7 @@ fdescribe('ViewCulturalSiteComponent', () => {
         // izaziva inicijalni data binding
         fixture.detectChanges();
         newsDialog = TestBed.inject(MatDialog);
+        component.newsListComponent = TestBed.inject(NewsListComponent);
     });
 
     it('should load instance', () => {

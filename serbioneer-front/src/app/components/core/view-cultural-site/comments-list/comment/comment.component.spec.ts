@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatInputHarness } from '@angular/material/input/testing';
@@ -156,4 +157,36 @@ describe('CommentComponent', () => {
         expect(commentService.updateComment).toHaveBeenCalled();
         expect(component.editing).toEqual(false);
     }));
+
+    it('should get text error message - empty field', async () => {
+        component.editing = true;
+        // popunjavanje forme
+        const commentTextInput = await loader.getHarness(MatInputHarness.with({selector: '#edit-comment-input'}));
+        await commentTextInput.setValue('');
+        await commentTextInput.blur();
+
+        const returned = component.getTextErrorMessage();
+        // sta ocekujemo da je povratna vrednost
+        expect(returned).toEqual('Required field');
+
+        const textFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#edit-comment-form-field'}));
+        expect(await textFormField.getTextErrors()).toEqual(['Required field']);
+        expect(component.editCommentForm.invalid).toBeTruthy();
+    });
+
+    it('should not get type name error message - valid field', async () => {
+        component.editing = true;
+        // popunjavanje forme
+        const commentTextInput = await loader.getHarness(MatInputHarness.with({selector: '#edit-comment-input'}));
+        await commentTextInput.setValue('Izmenjen komentar');
+        await commentTextInput.blur();
+
+        const returned = component.getTextErrorMessage();
+        // sta ocekujemo da je povratna vrednost
+        expect(returned).toEqual('');
+
+        const textFormField = await loader.getHarness(MatFormFieldHarness.with({selector: '#edit-comment-form-field'}));
+        expect(await textFormField.getTextErrors()).toEqual([]);
+        expect(component.editCommentForm.valid).toBeTruthy();
+    });
 });

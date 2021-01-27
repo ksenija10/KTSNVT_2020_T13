@@ -15,7 +15,7 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class CommentsListComponent implements OnInit {
 
-  @Input() culturalSiteId! : number;
+  @Input() culturalSiteId!: number;
   @Input() culturalSiteName!: string;
   @Input() userIsLogged!: boolean;
   comments: CommentData = {

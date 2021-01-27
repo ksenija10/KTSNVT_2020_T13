@@ -5,7 +5,7 @@
     <div class="row" *ngFor="let comment of comments.content">
         <app-comment (editedComment)="onEditComment()" [comment]="comment" [culturalSiteId]="culturalSiteId"></app-comment><!--(addedComment)="onEditComment()"-->
     </div>
-    <mat-paginator 
+    <mat-paginator id="comment-list-paginator"
         showFirstLastButtons
         [length]="comments.totalElements" 
         [pageSize]="comments.size" 

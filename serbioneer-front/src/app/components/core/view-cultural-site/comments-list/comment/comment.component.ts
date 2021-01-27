@@ -105,8 +105,8 @@ export class CommentComponent implements OnInit {
       this.comment.approved = false;
       this.commentService.updateComment(this.comment.id, this.comment).pipe(
         map((updatedComment: Comment) => {
-          //this.inputText = updatedComment.text;
-          //this.comment = updatedComment;
+          // this.inputText = updatedComment.text;
+          // this.comment = updatedComment;
           this.editing = !this.editing;
         })
       ).subscribe(

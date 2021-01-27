@@ -40,9 +40,9 @@ import { NewsListComponent } from './news-list/news-list.component';
   // images array
   siteImageSlider: Array<SliderImage> = [];
 
-  @ViewChild(NewsListComponent) private newsListComponent! : NewsListComponent;
-  @ViewChild(AddImageComponent) private addImageComponent! : AddImageComponent;
-  
+  @ViewChild(NewsListComponent) public newsListComponent!: NewsListComponent;
+  @ViewChild(AddImageComponent) private addImageComponent!: AddImageComponent;
+
   constructor(
     private culturalSiteService: CulturalSiteService,
     private router: Router,
@@ -261,5 +261,5 @@ import { NewsListComponent } from './news-list/news-list.component';
         }
       );
   }
-  
+
 }

@@ -32,7 +32,7 @@ describe('AddImageComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [ AddImageComponent ],
-      providers: [ 
+      providers: [
         { provide: ImageService, useValue: imageServiceMock},
         { provide: ToastrService, useValue: toastrMock}
       ],
@@ -44,7 +44,7 @@ describe('AddImageComponent', () => {
         BrowserAnimationsModule
       ]
     }).compileComponents();
-  
+
     fixture = TestBed.createComponent(AddImageComponent);
     component = fixture.componentInstance;
     imageService = TestBed.inject(ImageService);
@@ -73,7 +73,7 @@ describe('AddImageComponent', () => {
   });
 
   it('should submit images', ( async () => {
-    const blob = new Blob;
+    const blob = new Blob();
     component.newImageFiles = [blob];
     component.culturalSite.images = [];
 
