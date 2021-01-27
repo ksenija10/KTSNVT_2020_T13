@@ -1,0 +1,27 @@
+<!-- Add image -->
+<div class="divide">
+    <div class="row file-group add-box" *ngIf="addNewImages">
+        <form [formGroup]="myForm" (ngSubmit)="submitImages()">
+            <div class="form-group">
+                <label for="file" class="file-title">Images</label>
+                <input
+                    formControlName="file"
+                    id="file" 
+                    type="file" 
+                    class="form-control"
+                    multiple="" 
+                    (change)="onNewImageChange($event)">
+            </div>
+            <div>
+                <img *ngFor='let url of newImages'  [src]="url" class="image-preview">
+            </div>
+            <button 
+                id = "submit-new-image-btn"
+                mat-raised-button class="btn btn-purple" 
+                type="submit"
+                [disabled]="!(newImageFiles.length>0)">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<app-add-comment [culturalSiteId]="culturalSiteId" [userIsLogged]="userIsLogged" [culturalSiteName]="culturalSiteName"></app-add-comment>
+
+<div *ngIf="comments!.content!.length > 0; then showComments else noComments"></div>
+<ng-template #showComments>
+    <div class="row" *ngFor="let comment of comments.content">
+        <app-comment (editedComment)="onEditComment()" [comment]="comment" [culturalSiteId]="culturalSiteId"></app-comment><!--(addedComment)="onEditComment()"-->
+    </div>
+    <mat-paginator 
+        showFirstLastButtons
+        [length]="comments.totalElements" 
+        [pageSize]="comments.size" 
+        [pageSizeOptions]="[1,2,5,10]"
+        (page)="onPaginateChangeComments($event)">
+    </mat-paginator>
+</ng-template>
+<ng-template #noComments>
+    <h6>There are no reviews of {{culturalSiteName}} at this time.</h6>
+    <h6>But be sure to check soon!</h6>
+    <h6 *ngIf="userIsLogged">Or try adding some yourself!</h6>
+</ng-template>

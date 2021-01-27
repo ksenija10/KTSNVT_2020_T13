@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
+import { CulturalSite } from 'src/app/model/cultural-site.model';
 import { NewsDTO } from 'src/app/model/news.model';
 import { CulturalSiteService } from 'src/app/services/cultural-site.service';
 import { ImageService } from 'src/app/services/image.service';
@@ -20,7 +21,7 @@ export class AddNewsArticleComponent{
 
   constructor(
     public dialogRef: MatDialogRef<AddNewsArticleComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: { culturalSiteId: number, culturalSiteName: string},
     private culturalSiteService: CulturalSiteService,
     private imageService: ImageService,
     private toastr: ToastrService)
@@ -38,11 +39,10 @@ export class AddNewsArticleComponent{
     if (this.newsForm.invalid) {
         return;
     }
-
     const newsDto: NewsDTO =
       new NewsDTO(this.newsForm.value.text, new Date(), '', [], -1);
 
-    this.culturalSiteService.createNews(newsDto, this.data.culturalSite.id).pipe(map(
+    this.culturalSiteService.createNews(newsDto, this.data.culturalSiteId).pipe(map(
       (newNewsDto: NewsDTO) => {
         if (this.files.length > 0) {
           for (const file of this.files) {

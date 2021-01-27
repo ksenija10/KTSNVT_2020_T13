@@ -22,7 +22,7 @@
                 formControlName="text">
             <mat-error id="edit-comment-error" *ngIf="editCommentForm.get('text')?.invalid">{{getTextErrorMessage()}}</mat-error>
         </mat-form-field>
-        <button id = "save-comment" mat-icon-button type="submit">
+        <button id = "save-comment" mat-icon-button type="submit" [disabled]="editCommentForm.invalid">
           <mat-icon>save</mat-icon>
         </button>
       </div>
