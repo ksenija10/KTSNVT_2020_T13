@@ -24,10 +24,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminModule,
-    AuthUserModule,
-    CoreModule,
-    UserProfileModule,
+    CoreModule
   ],
   providers: [
     {
