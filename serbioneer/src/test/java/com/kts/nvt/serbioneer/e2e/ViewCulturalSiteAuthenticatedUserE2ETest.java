@@ -228,7 +228,6 @@ public class ViewCulturalSiteAuthenticatedUserE2ETest {
         justWait();
 
         culturalSiteViewPage.getAddCommentBtn().click();
-        assertEquals(culturalSiteViewPage.getNewCommentError().getText(), "Required field");
 
         justWait();
 
