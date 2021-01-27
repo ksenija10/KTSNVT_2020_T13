@@ -210,26 +210,6 @@ public class ViewCulturalSiteAuthenticatedUserE2ETest {
         saveBtn.click();
 
         justWait();
-
-        editBtn.click();
-
-        justWait();
-
-        editCommentInput = driver.findElement(By.id("edit-comment-input"));
-
-        clearField(editCommentInput, editCommentInput.getAttribute("value").length());
-
-        justWait();
-
-        editCommentInput.sendKeys("Zište");
-
-        justWait();
-
-        saveBtn = driver.findElement(By.id("save-comment"));
-
-        saveBtn.click();
-
-        justWait();
     }
 
     @Test
