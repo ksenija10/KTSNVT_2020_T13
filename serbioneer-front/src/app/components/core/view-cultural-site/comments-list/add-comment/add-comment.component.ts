@@ -20,21 +20,20 @@ export class AddCommentComponent implements OnInit {
   addNewComment = false;
   images: string[] = [];
   files: Blob[] = [];
-  myForm = new FormGroup({
-    text: new FormControl('', [Validators.required]),
-    file: new FormControl(''),
-    fileSource: new FormControl('')});
-
-  //@Output() addedComment: EventEmitter<void> = new EventEmitter<void>();
+  myForm: FormGroup;
 
   constructor(
     private culturalSiteService: CulturalSiteService,
     private imageService: ImageService,
     private toastr: ToastrService
-  ) { }
+  ) {
+    this.myForm = new FormGroup({
+      text: new FormControl('', [Validators.required]),
+      file: new FormControl(''),
+      fileSource: new FormControl('')});
+   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   submit(): void {
     const commentText = this.myForm.get('text')?.value;

@@ -3,7 +3,8 @@
     <div class="site-news" *ngFor="let oneNews of news.content">
         <app-news-article [news]="oneNews"></app-news-article>
     </div>
-    <mat-paginator showFirstLastButtons
+    <mat-paginator id="news-list-paginator"
+        showFirstLastButtons
         [length]="news.totalElements" 
         [pageSize]="news.size" 
         [pageSizeOptions]="[1,2,5,10]"

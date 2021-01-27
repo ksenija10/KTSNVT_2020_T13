@@ -1,6 +1,6 @@
 <div class="news">
   <div class="news-title">{{news.dateTime | date:'medium'}}:</div>
-    <div class="news-info">{{news.information}}</div>
+    <div class="news-info" id="news-info">{{news.information}}</div>
     <div class="news-images" *ngIf="news.images.length > 0">
       <ng-image-slider
         [images]="newsImageSlider"
